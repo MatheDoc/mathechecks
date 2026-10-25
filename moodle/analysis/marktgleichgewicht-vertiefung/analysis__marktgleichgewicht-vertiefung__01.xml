@@ -73,7 +73,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__01-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Der fallende Graph von \(p_N\) trifft die y-Achse bei \(p=20\). Welche Kennzahl beträgt \(20\) GE?</p>]]></text>
+      <text><![CDATA[<p>Der fallende Graph von \(p_N\) trifft die y-Achse bei \(p=20\). Welche Kennzahl beträgt \(20\) GE/ME?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -126,7 +126,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__01-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Der gekrümmte Graph von \(p_A\) beginnt an der y-Achse bei \(p=6\) und steigt danach. Welche Kennzahl beträgt \(6\) GE?</p>]]></text>
+      <text><![CDATA[<p>Der gekrümmte Graph von \(p_A\) beginnt an der y-Achse bei \(p=6\) und steigt danach. Welche Kennzahl beträgt \(6\) GE/ME?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -215,13 +215,13 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\) GE</p>]]></text>
+      <text><![CDATA[<p>\(8\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>x-Koordinate mit der Preiseinheit angegeben</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(15\) GE</p>]]></text>
+      <text><![CDATA[<p>\(15\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Gleichgewichtspreis statt Gleichgewichtsmenge angegeben</p>]]></text>
       </feedback>
@@ -256,13 +256,13 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(15\) GE</p>]]></text>
+      <text><![CDATA[<p>\(15\) GE/ME</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\) GE</p>]]></text>
+      <text><![CDATA[<p>\(8\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>x-Koordinate des Schnittpunkts als Preis verwendet</p>]]></text>
       </feedback>
@@ -391,7 +391,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__01-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welche vollständig beschriebene Stelle zeigt den Mindestangebotspreis?</p>]]></text>
+      <text><![CDATA[<p>Welche Fläche im Menge-Preis-Diagramm entspricht dem Umsatz im Marktgleichgewicht?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,86 +415,33 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Der y-Achsenabschnitt des Angebotsgraphen \(p_A\)</p>]]></text>
+      <text><![CDATA[<p>das Rechteck mit den Seiten \(x_G\) und \(p_G\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der y-Achsenabschnitt des Nachfragegraphen \(p_N\)</p>]]></text>
+      <text><![CDATA[<p>die Fläche unter \(p_N\) von \(0\) bis \(x_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Höchstpreis statt Mindestangebotspreis gewählt</p>]]></text>
+        <text><![CDATA[<p>Umsatz mit der Zahlungsbereitschaft verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Nullstelle des Nachfragegraphen \(p_N\)</p>]]></text>
+      <text><![CDATA[<p>die Fläche unter \(p_A\) von \(0\) bis \(x_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Sättigungsmenge statt Mindestangebotspreis gewählt</p>]]></text>
+        <text><![CDATA[<p>Umsatz mit der Angebotsbereitschaft verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der Schnittpunkt der Graphen von \(p_N\) und \(p_A\)</p>]]></text>
+      <text><![CDATA[<p>die Fläche zwischen \(p_N\) und \(p_A\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleichgewichtspunkt statt Mindestangebotspreis gewählt</p>]]></text>
+        <text><![CDATA[<p>Umsatz mit der Summe der Renten verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
   <question type="multichoice">
     <name>
       <text>analysis__marktgleichgewicht-vertiefung__01-09</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Welche vollständig beschriebene Stelle zeigt den Gleichgewichtspunkt?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>Der Schnittpunkt der Graphen von \(p_N\) und \(p_A\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Nullstelle des Nachfragegraphen \(p_N\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Sättigungsmenge statt Gleichgewichtspunkt gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der y-Achsenabschnitt des Nachfragegraphen \(p_N\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höchstpreis statt Gleichgewichtspunkt gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der y-Achsenabschnitt des Angebotsgraphen \(p_A\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mindestangebotspreis statt Gleichgewichtspunkt gewählt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__marktgleichgewicht-vertiefung__01-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Nachfrage- und Angebotsgraph schneiden sich bei \((12\mid 20)\). Wie groß ist der Gleichgewichtspreis?</p>]]></text>
@@ -521,27 +468,80 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(20\) GE</p>]]></text>
+      <text><![CDATA[<p>\(20\) GE/ME</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(12\) GE</p>]]></text>
+      <text><![CDATA[<p>\(12\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Gleichgewichtsmenge statt Gleichgewichtspreis gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(32\) GE</p>]]></text>
+      <text><![CDATA[<p>\(32\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Koordinaten des Schnittpunkts addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(240\) GE</p>]]></text>
+      <text><![CDATA[<p>\(240\) GE/ME</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Koordinaten des Schnittpunkts multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__01-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nachfrage- und Angebotsgraph schneiden sich bei \((12\mid 20)\). Wie groß ist der Umsatz im Marktgleichgewicht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(240\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(32\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koordinaten addiert statt multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den Gleichgewichtspreis angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(12\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Gleichgewichtsmenge angegeben</p>]]></text>
       </feedback>
     </answer>
   </question>

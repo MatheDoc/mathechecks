@@ -2165,7 +2165,7 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 1,
         "check_id": "analysis__marktgleichgewicht-vertiefung__01",
-        "Ich kann": "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Ich kann": "die Kennzahlen des Marktgleichgewichts bei beliebigen Angebots- und Nachfragefunktionen graphisch bestimmen.",
         "Sammlung": "kennzahlen-graphisch-allgemein",
         "Schlagwort": "MGG graphisch (allgemein)",
         "Flashtyp": "einzeln",
@@ -2174,20 +2174,24 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
+                "cue": "Höchstpreis",
+                "response": "$y$-Achsenabschnitt von $p_N$"
+            },
+            {
                 "cue": "Sättigungsmenge",
                 "response": "Nullstelle von $p_N$"
             },
             {
-                "cue": "Prohibitivpreis",
-                "response": "$y$-Abschnitt von $p_N$"
-            },
-            {
                 "cue": "Mindestangebotspreis",
-                "response": "$y$-Abschnitt von $p_A$"
+                "response": "$y$-Achsenabschnitt von $p_A$"
             },
             {
-                "cue": "Gleichgewichtspunkt $(x_G | p_G)$",
-                "response": "Schnittpunkt von $p_N$ und $p_A$"
+                "cue": "Marktgleichgewicht $(x_G|p_G)$",
+                "response": "Schnittpunkt der Graphen von $p_N$ und $p_A$"
+            },
+            {
+                "cue": "Umsatz im Marktgleichgewicht",
+                "response": "$x_G\\cdot p_G$, Rechteck unter dem Marktgleichgewicht"
             }
         ]
     },
@@ -2197,7 +2201,7 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 2,
         "check_id": "analysis__marktgleichgewicht-vertiefung__02",
-        "Ich kann": "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Ich kann": "die Kennzahlen des Marktgleichgewichts bei beliebigen Angebots- und Nachfragefunktionen berechnen.",
         "Sammlung": "kennzahlen-rechnerisch-lqe",
         "Schlagwort": "MGG berechnen (allgemein)",
         "Flashtyp": "einzeln",
@@ -2206,24 +2210,28 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Höchstpreis",
-                "response": "$p_N(0)$ berechnen"
+                "cue": "Höchstpreis und Mindestangebotspreis",
+                "response": "$p_N(0)$ bzw. $p_A(0)$"
             },
             {
                 "cue": "Sättigungsmenge",
-                "response": "$p_N(x)=0$ setzen und nach $x$ auflösen"
+                "response": "$p_N(x)=0$, nur Lösung mit $x\\geq 0$"
             },
             {
-                "cue": "Mindestangebotspreis",
-                "response": "$p_A(0)$ berechnen"
+                "cue": "Marktgleichgewicht",
+                "response": "$p_N(x)=p_A(x)$ nach $x_G\\geq 0$ lösen, $p_G=p_N(x_G)$"
             },
             {
-                "cue": "Gleichgewichtsmenge",
-                "response": "$p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen"
+                "cue": "Umsatz im Marktgleichgewicht",
+                "response": "$x_G\\cdot p_G$"
             },
             {
-                "cue": "Gleichgewichtspreis",
-                "response": "$x_G$ in $p_N$ oder $p_A$ einsetzen"
+                "cue": "Überschuss bei festgelegtem Preis $P$",
+                "response": "$x_N$ aus $p_N(x)=P$, $x_A$ aus $p_A(x)=P$, Differenz der Mengen"
+            },
+            {
+                "cue": "Beachte",
+                "response": "Preis unter $p_G$: Nachfrageüberschuss, Preis über $p_G$: Angebotsüberschuss"
             }
         ]
     },
@@ -2233,21 +2241,33 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 3,
         "check_id": "analysis__marktgleichgewicht-vertiefung__03",
-        "Ich kann": "die Produzenten- und Konsumentenrente berechnen.",
-        "Sammlung": "renten-bestimmung-prkr",
-        "Schlagwort": "Produzenten-/Konsumentenrente",
+        "Ich kann": "die Konsumenten- und Produzentenrente graphisch deuten und abschätzen.",
+        "Sammlung": "renten-graphisch",
+        "Schlagwort": "KR/PR graphisch",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-03",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Konsumentenrente",
-                "response": "$KR=\\int_0^{x_G}p_N(x)dx - x_G\\cdot p_G$"
+                "cue": "Konsumentenrente graphisch",
+                "response": "Fläche zwischen dem Graphen von $p_N$ und der Geraden $p=p_G$ über $[0;x_G]$"
             },
             {
-                "cue": "Produzentenrente",
-                "response": "$PR=x_G\\cdot p_G - \\int_0^{x_G}p_A(x)dx$"
+                "cue": "Produzentenrente graphisch",
+                "response": "Fläche zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$ über $[0;x_G]$"
+            },
+            {
+                "cue": "$\\int_0^{x_G}p_N(x)\\,dx$",
+                "response": "Zahlungsbereitschaft der Konsumenten"
+            },
+            {
+                "cue": "$x_G\\cdot p_G$",
+                "response": "Umsatz im Marktgleichgewicht"
+            },
+            {
+                "cue": "Fläche abschätzen",
+                "response": "Kästchen zählen, Kästchenwert $=$ Breite in ME $\\cdot$ Höhe in GE/ME"
             }
         ]
     },
@@ -2257,25 +2277,29 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 4,
         "check_id": "analysis__marktgleichgewicht-vertiefung__04",
-        "Ich kann": "den abgeschöpften Teil der Konsumentenrente bei vorgegebenem Teilmarktpreis berechnen.",
-        "Sammlung": "abschoepfung-kr-berechnung-betrag",
-        "Schlagwort": "Rentenabschöpfung berechnen",
-        "Flashtyp": "gruppiert",
+        "Ich kann": "die Konsumenten- und Produzentenrente berechnen und im Sachzusammenhang deuten.",
+        "Sammlung": "renten-bestimmung-prkr",
+        "Schlagwort": "KR/PR berechnen",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-04",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
+        "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "1. Gleichgewichtspreis",
-                "response": "Gleichsetzen von $p_N$ und $p_A$, nach $x_G$ auflösen und $p_G$ berechnen"
+                "cue": "Konsumentenrente",
+                "response": "$KR=\\int_0^{x_G}p_N(x)\\,dx-x_G\\cdot p_G=\\int_0^{x_G}(p_N(x)-p_G)\\,dx$"
             },
             {
-                "cue": "2. Teilmarktmenge",
-                "response": "Teilmarktmenge $x_2$ bestimmen: $p_N(x_2)=p_2$"
+                "cue": "Produzentenrente",
+                "response": "$PR=x_G\\cdot p_G-\\int_0^{x_G}p_A(x)\\,dx=\\int_0^{x_G}(p_G-p_A(x))\\,dx$"
             },
             {
-                "cue": "3. Abschöpfung",
-                "response": "Abschöpfung durch Teilmarktpreis: $x_2\\cdot (p_2-p_G)$"
+                "cue": "Bedeutung der Konsumentenrente",
+                "response": "Ersparnis der Konsumenten, die mehr als $p_G$ zu zahlen bereit wären"
+            },
+            {
+                "cue": "Bedeutung der Produzentenrente",
+                "response": "Mehreinnahme der Produzenten, die auch unter $p_G$ anbieten würden"
             }
         ]
     },
@@ -2285,29 +2309,29 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 5,
         "check_id": "analysis__marktgleichgewicht-vertiefung__05",
-        "Ich kann": "den Verkaufspreis auf einem Teilmarkt berechnen (wenn die die Konsumentenrente maximal abgeschöpft werden soll).",
-        "Sammlung": "abschoepfung-kr-bestimmung-preis",
-        "Schlagwort": "Max. Rentenabschöpfung",
+        "Ich kann": "den durch einen Teilmarkt abgeschöpften Teil der Konsumentenrente berechnen und den Teilmarktpreis für eine maximale Abschöpfung bestimmen.",
+        "Sammlung": "abschoepfung-kr",
+        "Schlagwort": "Abschöpfung der KR",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-05",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "1. Gleichgewichtspreis",
-                "response": "Gleichsetzen von $p_N$ und $p_A$, nach $x_G$ auflösen und $p_G$ berechnen"
+                "cue": "1. Marktgleichgewicht",
+                "response": "$p_N(x)=p_A(x)$ nach $x_G$ lösen, $p_G=p_N(x_G)$"
             },
             {
-                "cue": "2. Abschöpfung $A$ in Abhängigkeit von Teilmarktmenge $x_2$",
-                "response": "$A(x_2)=x_2\\cdot (p_N(x_2)-p_G)$"
+                "cue": "2. Abschöpfung bei Teilmarktpreis $p_2$",
+                "response": "$x_2$ aus $p_N(x_2)=p_2$, Abschöpfung $x_2\\cdot(p_2-p_G)$"
             },
             {
-                "cue": "3. Extremstelle von $A(x_2)$",
-                "response": "Extremstelle mit Standardverfahren bestimmen"
+                "cue": "3. Zielfunktion für maximale Abschöpfung",
+                "response": "$A(x_2)=x_2\\cdot(p_N(x_2)-p_G)$"
             },
             {
-                "cue": "4. Verkaufspreis bei maximaler Abschöpfung",
-                "response": "$p_N(x_2)$"
+                "cue": "4. Maximum und Teilmarktpreis",
+                "response": "$A'(x_2)=0$ und $A''(x_2)<0$, dann $p_2=p_N(x_2)$"
             }
         ]
     },

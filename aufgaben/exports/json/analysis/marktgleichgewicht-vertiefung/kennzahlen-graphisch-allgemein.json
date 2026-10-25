@@ -1,19 +1,21 @@
 [
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=4,1:2,5}",
       "{1:NUMERICAL:=150:2,5}",
       "{1:NUMERICAL:=185,1852:5}",
       "{1:NUMERICAL:=40,4495:5}",
-      "{1:NUMERICAL:=117,2359:2,5}"
+      "{1:NUMERICAL:=117,2359:2,5}",
+      "{1:NUMERICAL:=4742,1319:687,3}"
     ],
     "visual": {
       "type": "plot",
@@ -24,7 +26,7 @@
             "type": "quadratic",
             "a": 0.06,
             "b": 0.37,
-            "c": 4.1000000000000005
+            "c": 4.1
           },
           "demand": {
             "type": "linear",
@@ -40,18 +42,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               200.0
-            ]
+            ],
+            "dtick": 50.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               175.0
-            ]
+            ],
+            "dtick": 25.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -61,20 +67,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=9,5:2}",
       "{1:NUMERICAL:=68:2}",
       "{1:NUMERICAL:=104,6154:2}",
       "{1:NUMERICAL:=14,4444:2}",
-      "{1:NUMERICAL:=58,6111:2}"
+      "{1:NUMERICAL:=58,6111:2}",
+      "{1:NUMERICAL:=846,6049:146,11}"
     ],
     "visual": {
       "type": "plot",
@@ -83,7 +91,7 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 3.4000000000000004,
+            "a": 3.4,
             "b": 9.5
           },
           "demand": {
@@ -100,18 +108,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               120.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               80.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -121,20 +133,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
-      "{1:NUMERICAL:=5,8:1}",
-      "{1:NUMERICAL:=40:1}",
-      "{1:NUMERICAL:=25,1364:0,5}",
-      "{1:NUMERICAL:=18,3578:0,5}",
-      "{1:NUMERICAL:=18,3777:1}"
+      "{1:NUMERICAL:=6:1}",
+      "{1:NUMERICAL:=42:1}",
+      "{1:NUMERICAL:=25,7686:0,5}",
+      "{1:NUMERICAL:=19,1315:0,5}",
+      "{1:NUMERICAL:=18,5635:1}",
+      "{1:NUMERICAL:=355,1477:28,41}"
     ],
     "visual": {
       "type": "plot",
@@ -151,29 +165,33 @@
             "type": "quadratic",
             "a": -0.061,
             "b": -0.058,
-            "c": 40.0
+            "c": 42.0
           },
-          "eqX": 18.3578,
-          "eqP": 18.3777,
-          "satX": 25.1364,
+          "eqX": 19.1315,
+          "eqP": 18.5635,
+          "satX": 25.7686,
           "maxX": 30.0,
           "maxY": 50.0
         },
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               30.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               50.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -183,20 +201,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=6,9:1}",
       "{1:NUMERICAL:=40:1}",
       "{1:NUMERICAL:=77,5892:2}",
       "{1:NUMERICAL:=11,3432:2}",
-      "{1:NUMERICAL:=38,6608:1}"
+      "{1:NUMERICAL:=38,6608:1}",
+      "{1:NUMERICAL:=438,536:88,66}"
     ],
     "visual": {
       "type": "plot",
@@ -205,7 +225,7 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 2.8000000000000003,
+            "a": 2.8,
             "b": 6.9
           },
           "demand": {
@@ -223,18 +243,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               50.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -244,20 +268,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=33:2}",
       "{1:NUMERICAL:=90:2}",
       "{1:NUMERICAL:=33,7256:1}",
       "{1:NUMERICAL:=23,9762:1}",
-      "{1:NUMERICAL:=44,2498:2}"
+      "{1:NUMERICAL:=44,2498:2}",
+      "{1:NUMERICAL:=1060,9446:92,2}"
     ],
     "visual": {
       "type": "plot",
@@ -285,18 +311,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               40.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -306,20 +336,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=5,3:1}",
       "{1:NUMERICAL:=59:1}",
       "{1:NUMERICAL:=95,4173:2}",
       "{1:NUMERICAL:=50,3714:2}",
-      "{1:NUMERICAL:=40,56:1}"
+      "{1:NUMERICAL:=40,56:1}",
+      "{1:NUMERICAL:=2043,0667:131,49}"
     ],
     "visual": {
       "type": "plot",
@@ -328,8 +360,8 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 0.7000000000000001,
-            "b": 5.300000000000001
+            "a": 0.7,
+            "b": 5.3
           },
           "demand": {
             "type": "quadratic",
@@ -346,18 +378,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               120.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               70.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -367,20 +403,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=45:2}",
       "{1:NUMERICAL:=78:2}",
       "{1:NUMERICAL:=458,8235:10}",
       "{1:NUMERICAL:=103,125:10}",
-      "{1:NUMERICAL:=60,4688:2}"
+      "{1:NUMERICAL:=60,4688:2}",
+      "{1:NUMERICAL:=6235,8399:810,94}"
     ],
     "visual": {
       "type": "plot",
@@ -406,18 +444,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               500.0
-            ]
+            ],
+            "dtick": 100.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -427,20 +469,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=13:2}",
       "{1:NUMERICAL:=92:2}",
       "{1:NUMERICAL:=112,6976:2}",
       "{1:NUMERICAL:=55,6861:2}",
-      "{1:NUMERICAL:=68,1293:2}"
+      "{1:NUMERICAL:=68,1293:2}",
+      "{1:NUMERICAL:=3793,8552:247,63}"
     ],
     "visual": {
       "type": "plot",
@@ -454,7 +498,7 @@
           },
           "demand": {
             "type": "quadratic",
-            "a": -0.0068000000000000005,
+            "a": -0.0068,
             "b": -0.05,
             "c": 92.0
           },
@@ -467,18 +511,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               140.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -488,20 +536,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=30:2}",
       "{1:NUMERICAL:=73:2}",
       "{1:NUMERICAL:=182,5:5}",
       "{1:NUMERICAL:=21,4604:5}",
-      "{1:NUMERICAL:=64,4158:2}"
+      "{1:NUMERICAL:=64,4158:2}",
+      "{1:NUMERICAL:=1382,3904:365}"
     ],
     "visual": {
       "type": "plot",
@@ -510,7 +560,7 @@
         "params": {
           "supply": {
             "type": "quadratic",
-            "a": 0.07100000000000001,
+            "a": 0.071,
             "b": 0.08,
             "c": 30.0
           },
@@ -528,18 +578,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               200.0
-            ]
+            ],
+            "dtick": 50.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               80.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -549,20 +603,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=2,7:1}",
-      "{1:NUMERICAL:=53:1}",
+      "{1:NUMERICAL:=53,11:1}",
       "{1:NUMERICAL:=82,1104:2}",
       "{1:NUMERICAL:=23,1176:2}",
-      "{1:NUMERICAL:=16,1082:1}"
+      "{1:NUMERICAL:=16,1082:1}",
+      "{1:NUMERICAL:=372,3817:55,33}"
     ],
     "visual": {
       "type": "plot",
@@ -589,18 +645,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               60.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -610,20 +670,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=1,5:0,2}",
       "{1:NUMERICAL:=7,5:0,2}",
       "{1:NUMERICAL:=17,6283:0,5}",
       "{1:NUMERICAL:=11,524:0,5}",
-      "{1:NUMERICAL:=4,2151:0,2}"
+      "{1:NUMERICAL:=4,2151:0,2}",
+      "{1:NUMERICAL:=48,5744:4,41}"
     ],
     "visual": {
       "type": "plot",
@@ -651,18 +713,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               20.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               10.0
-            ]
+            ],
+            "dtick": 2.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -672,20 +738,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=8,6:2}",
       "{1:NUMERICAL:=76:2}",
       "{1:NUMERICAL:=40,3405:1}",
       "{1:NUMERICAL:=32,1337:1}",
-      "{1:NUMERICAL:=26,2736:2}"
+      "{1:NUMERICAL:=26,2736:2}",
+      "{1:NUMERICAL:=844,2679:90,54}"
     ],
     "visual": {
       "type": "plot",
@@ -712,18 +780,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               50.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -733,20 +805,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=2,7:0,2}",
       "{1:NUMERICAL:=8,3:0,2}",
       "{1:NUMERICAL:=25,6262:0,5}",
       "{1:NUMERICAL:=8,0186:0,5}",
-      "{1:NUMERICAL:=7,0301:0,2}"
+      "{1:NUMERICAL:=7,0301:0,2}",
+      "{1:NUMERICAL:=56,3713:5,12}"
     ],
     "visual": {
       "type": "plot",
@@ -773,18 +847,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               30.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               10.0
-            ]
+            ],
+            "dtick": 2.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -794,20 +872,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,2:0,2}",
-      "{1:NUMERICAL:=8,5:0,2}",
-      "{1:NUMERICAL:=42,5:1}",
-      "{1:NUMERICAL:=8,5688:1}",
-      "{1:NUMERICAL:=6,7862:0,2}"
+      "{1:NUMERICAL:=2,9:0,2}",
+      "{1:NUMERICAL:=8,2:0,2}",
+      "{1:NUMERICAL:=41:1}",
+      "{1:NUMERICAL:=8,0184:1}",
+      "{1:NUMERICAL:=6,5963:0,2}",
+      "{1:NUMERICAL:=52,8918:8,2}"
     ],
     "visual": {
       "type": "plot",
@@ -823,29 +903,33 @@
           "demand": {
             "type": "linear",
             "a": -0.2,
-            "b": 8.5
+            "b": 8.2
           },
-          "eqX": 8.5688,
-          "eqP": 6.7862,
-          "satX": 42.5,
+          "eqX": 8.0184,
+          "eqP": 6.5963,
+          "satX": 41.0,
           "maxX": 50.0,
           "maxY": 10.0
         },
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               50.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               10.0
-            ]
+            ],
+            "dtick": 2.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -855,20 +939,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=4,5:2}",
       "{1:NUMERICAL:=65:2}",
       "{1:NUMERICAL:=86,0485:2}",
       "{1:NUMERICAL:=31,5962:2}",
-      "{1:NUMERICAL:=54,8965:2}"
+      "{1:NUMERICAL:=54,8965:2}",
+      "{1:NUMERICAL:=1734,5195:172,99}"
     ],
     "visual": {
       "type": "plot",
@@ -896,18 +982,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               80.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -917,20 +1007,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=4,1:2}",
       "{1:NUMERICAL:=89:2}",
       "{1:NUMERICAL:=134,8485:2,5}",
       "{1:NUMERICAL:=22,5798:2,5}",
-      "{1:NUMERICAL:=74,0973:2}"
+      "{1:NUMERICAL:=74,0973:2}",
+      "{1:NUMERICAL:=1673,1022:230,4}"
     ],
     "visual": {
       "type": "plot",
@@ -940,7 +1032,7 @@
           "supply": {
             "type": "linear",
             "a": 3.1,
-            "b": 4.1000000000000005
+            "b": 4.1
           },
           "demand": {
             "type": "linear",
@@ -956,18 +1048,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               150.0
-            ]
+            ],
+            "dtick": 25.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -977,20 +1073,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=8:1}",
-      "{1:NUMERICAL:=33:1}",
+      "{1:NUMERICAL:=33,1:1}",
       "{1:NUMERICAL:=67,7557:2}",
       "{1:NUMERICAL:=22,4296:2}",
-      "{1:NUMERICAL:=11,4415:1}"
+      "{1:NUMERICAL:=11,4415:1}",
+      "{1:NUMERICAL:=256,6271:45,31}"
     ],
     "visual": {
       "type": "plot",
@@ -1006,8 +1104,8 @@
           "demand": {
             "type": "exp",
             "A": 35.0,
-            "rate": 0.043000000000000003,
-            "c": -1.9000000000000001
+            "rate": 0.043,
+            "c": -1.9
           },
           "eqX": 22.4296,
           "eqP": 11.4415,
@@ -1018,18 +1116,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               80.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               40.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -1039,20 +1141,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=8:1}",
       "{1:NUMERICAL:=42:1}",
       "{1:NUMERICAL:=22,7353:0,5}",
       "{1:NUMERICAL:=12,7436:0,5}",
-      "{1:NUMERICAL:=28,3898:1}"
+      "{1:NUMERICAL:=28,3898:1}",
+      "{1:NUMERICAL:=361,7886:26,94}"
     ],
     "visual": {
       "type": "plot",
@@ -1079,18 +1183,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               25.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               50.0
-            ]
+            ],
+            "dtick": 10.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -1100,20 +1208,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=12:2}",
       "{1:NUMERICAL:=81:2}",
       "{1:NUMERICAL:=75,5684:2}",
       "{1:NUMERICAL:=24,4816:2}",
-      "{1:NUMERICAL:=64,389:2}"
+      "{1:NUMERICAL:=64,389:2}",
+      "{1:NUMERICAL:=1576,3463:177,74}"
     ],
     "visual": {
       "type": "plot",
@@ -1123,7 +1233,7 @@
           "supply": {
             "type": "quadratic",
             "a": 0.085,
-            "b": 0.059000000000000004,
+            "b": 0.059,
             "c": 12.0
           },
           "demand": {
@@ -1141,18 +1251,22 @@
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               100.0
-            ]
+            ],
+            "dtick": 20.0,
+            "automargin": true
           }
         },
         "width": 900,
@@ -1162,20 +1276,22 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,7:0,5}",
-      "{1:NUMERICAL:=24:0,5}",
-      "{1:NUMERICAL:=28,2353:0,5}",
-      "{1:NUMERICAL:=16,6586:0,5}",
-      "{1:NUMERICAL:=9,8402:0,5}"
+      "{1:NUMERICAL:=5:0,5}",
+      "{1:NUMERICAL:=27:0,5}",
+      "{1:NUMERICAL:=31,7647:0,5}",
+      "{1:NUMERICAL:=19,4821:0,5}",
+      "{1:NUMERICAL:=10,4402:0,5}",
+      "{1:NUMERICAL:=203,3972:14,96}"
     ],
     "visual": {
       "type": "plot",
@@ -1191,29 +1307,33 @@
           "demand": {
             "type": "linear",
             "a": -0.85,
-            "b": 24.0
+            "b": 27.0
           },
-          "eqX": 16.6586,
-          "eqP": 9.8402,
-          "satX": 28.2353,
+          "eqX": 19.4821,
+          "eqP": 10.4402,
+          "satX": 31.7647,
           "maxX": 35.0,
           "maxY": 30.0
         },
         "layout": {
           "title": "Angebots- und Nachfragefunktion",
           "xaxis": {
-            "title": "Menge x",
+            "title": "Menge x in ME",
             "range": [
               0,
               35.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           },
           "yaxis": {
-            "title": "Preis p",
+            "title": "Preis p in GE/ME",
             "range": [
               0,
               30.0
-            ]
+            ],
+            "dtick": 5.0,
+            "automargin": true
           }
         },
         "width": 900,

@@ -1,342 +1,422 @@
 [
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}9x+27 \\\\ p_N(x)&=-0{,}034x^2-0{,}057x+55 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}9x+27 \\\\ p_N(x)&=-0{,}034x^2-0{,}057x+55 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 48 GE/ME festgelegt wird."
     ],
     "antworten": [
       "{1:NUMERICAL:=27:0,1}",
       "{1:NUMERICAL:=55:0,1}",
       "{1:NUMERICAL:=39,3905:0,1}",
       "{1:NUMERICAL:=17,8888:0,1}",
-      "{1:NUMERICAL:=43,1:0,1}"
+      "{1:NUMERICAL:=43,1:0,1}",
+      "{1:NUMERICAL:=771,0088:0,32}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=9,7985:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-4{,}4\\cdot e^{-0{,}13x}+11 \\\\ p_N(x)&=98\\cdot e^{-0{,}2x}-4{,}1 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}042x^2+0{,}38x+2{,}1 \\\\ p_N(x)&=34\\cdot e^{-0{,}047x}-5{,}9 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 17 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,9:0,1}",
-      "{1:NUMERICAL:=94:0,1}",
-      "{1:NUMERICAL:=15,8699:0,1}",
-      "{1:NUMERICAL:=9,7777:0,1}",
-      "{1:NUMERICAL:=9,7657:0,1}"
+      "{1:NUMERICAL:=2,1:0,1}",
+      "{1:NUMERICAL:=28,1:0,1}",
+      "{1:NUMERICAL:=37,264:0,1}",
+      "{1:NUMERICAL:=12,3193:0,1}",
+      "{1:NUMERICAL:=13,1555:0,1}",
+      "{1:NUMERICAL:=162,066:0,14}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=6,4379:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}004x^2+0{,}057x+4{,}3 \\\\ p_N(x)&=-0{,}064x^2-0{,}093x+9{,}4 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=1{,}5x+4 \\\\ p_N(x)&=-0{,}89x+10 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 6 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,3:0,1}",
-      "{1:NUMERICAL:=9,4:0,1}",
-      "{1:NUMERICAL:=11,4144:0,1}",
-      "{1:NUMERICAL:=7,6371:0,1}",
-      "{1:NUMERICAL:=4,9569:0,1}"
+      "{1:NUMERICAL:=4:0,1}",
+      "{1:NUMERICAL:=10:0,1}",
+      "{1:NUMERICAL:=11,236:0,1}",
+      "{1:NUMERICAL:=2,5105:0,1}",
+      "{1:NUMERICAL:=7,7657:0,1}",
+      "{1:NUMERICAL:=19,4955:0,1}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=3,161:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-23\\cdot e^{-0{,}047x}+60 \\\\ p_N(x)&=-0{,}64x+59 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}46x+13 \\\\ p_N(x)&=-0{,}043x^2-0{,}1x+45 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 17 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=37:0,1}",
-      "{1:NUMERICAL:=59:0,1}",
-      "{1:NUMERICAL:=92,1875:0,1}",
-      "{1:NUMERICAL:=15,6557:0,1}",
-      "{1:NUMERICAL:=48,9804:0,1}"
+      "{1:NUMERICAL:=13:0,1}",
+      "{1:NUMERICAL:=45:0,1}",
+      "{1:NUMERICAL:=31,2079:0,1}",
+      "{1:NUMERICAL:=21,5345:0,1}",
+      "{1:NUMERICAL:=22,9059:0,1}",
+      "{1:NUMERICAL:=493,2677:0,24}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=15,6859:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}026x^2+0{,}091x+8{,}4 \\\\ p_N(x)&=-0{,}077x^2-0{,}095x+19 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}08x^2+0{,}58x+29 \\\\ p_N(x)&=-2{,}7x+52 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=8,4:0,1}",
-      "{1:NUMERICAL:=19:0,1}",
-      "{1:NUMERICAL:=15,1036:0,1}",
-      "{1:NUMERICAL:=9,2818:0,1}",
-      "{1:NUMERICAL:=11,4846:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-63\\cdot e^{-0{,}068x}+66 \\\\ p_N(x)&=96\\cdot e^{-0{,}045x}-0{,}64 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=3:0,1}",
-      "{1:NUMERICAL:=95:0,1}",
-      "{1:NUMERICAL:=111,3475:0,1}",
-      "{1:NUMERICAL:=16,3738:0,1}",
-      "{1:NUMERICAL:=45,3087:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}025x^2+0{,}43x+6{,}7 \\\\ p_N(x)&=37\\cdot e^{-0{,}1x}-0{,}88 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=6,7:0,1}",
-      "{1:NUMERICAL:=36:0,1}",
-      "{1:NUMERICAL:=37,3875:0,1}",
-      "{1:NUMERICAL:=9,6667:0,1}",
-      "{1:NUMERICAL:=13,1928:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}08x^2+0{,}58x+29 \\\\ p_N(x)&=-2{,}7x+52 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 32 GE/ME festgelegt wird."
     ],
     "antworten": [
       "{1:NUMERICAL:=29:0,1}",
       "{1:NUMERICAL:=52:0,1}",
       "{1:NUMERICAL:=19,2593:0,1}",
       "{1:NUMERICAL:=6,1036:0,1}",
-      "{1:NUMERICAL:=35,5204:0,1}"
+      "{1:NUMERICAL:=35,5204:0,1}",
+      "{1:NUMERICAL:=216,801:0,22}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=3,9162:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}003x^2+0{,}5x+1 \\\\ p_N(x)&=-0{,}61x+8{,}6 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-8{,}6\\cdot e^{-0{,}046x}+18 \\\\ p_N(x)&=-0{,}15x^2-0{,}063x+30 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 10 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1:0,1}",
-      "{1:NUMERICAL:=8,6:0,1}",
-      "{1:NUMERICAL:=14,0984:0,1}",
-      "{1:NUMERICAL:=6,7246:0,1}",
-      "{1:NUMERICAL:=4,498:0,1}"
+      "{1:NUMERICAL:=9,4:0,1}",
+      "{1:NUMERICAL:=30:0,1}",
+      "{1:NUMERICAL:=13,9337:0,1}",
+      "{1:NUMERICAL:=10,5308:0,1}",
+      "{1:NUMERICAL:=12,7019:0,1}",
+      "{1:NUMERICAL:=133,7612:0,13}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=9,7667:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}064x^2+0{,}11x+6{,}2 \\\\ p_N(x)&=-0{,}079x^2-0{,}063x+98 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=3{,}8x+9{,}1 \\\\ p_N(x)&=-0{,}37x+39 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 37 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,2:0,1}",
-      "{1:NUMERICAL:=98:0,1}",
-      "{1:NUMERICAL:=34,8243:0,1}",
-      "{1:NUMERICAL:=24,7392:0,1}",
-      "{1:NUMERICAL:=48,0912:0,1}"
+      "{1:NUMERICAL:=9,1:0,1}",
+      "{1:NUMERICAL:=39:0,1}",
+      "{1:NUMERICAL:=105,4054:0,1}",
+      "{1:NUMERICAL:=7,1703:0,1}",
+      "{1:NUMERICAL:=36,347:0,1}",
+      "{1:NUMERICAL:=260,6176:0,23}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=1,9367:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-62\\cdot e^{-0{,}073x}+68 \\\\ p_N(x)&=-4{,}1x+99 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}0082x^2+0{,}8x+8{,}6 \\\\ p_N(x)&=-0{,}089x^2-0{,}25x+58 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=6,3:0,1}",
-      "{1:NUMERICAL:=99:0,1}",
-      "{1:NUMERICAL:=24,1463:0,1}",
-      "{1:NUMERICAL:=13,2917:0,1}",
-      "{1:NUMERICAL:=44,5038:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}004x^2+0{,}072x+6 \\\\ p_N(x)&=-0{,}34x+52 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=6:0,1}",
-      "{1:NUMERICAL:=52:0,1}",
-      "{1:NUMERICAL:=152,9412:0,1}",
-      "{1:NUMERICAL:=65,6384:0,1}",
-      "{1:NUMERICAL:=29,6829:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=3{,}9x+8{,}6 \\\\ p_N(x)&=-0{,}089x^2-0{,}25x+58 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 14 GE/ME festgelegt wird."
     ],
     "antworten": [
       "{1:NUMERICAL:=8,6:0,1}",
       "{1:NUMERICAL:=58:0,1}",
       "{1:NUMERICAL:=24,1622:0,1}",
-      "{1:NUMERICAL:=9,8309:0,1}",
-      "{1:NUMERICAL:=46,9407:0,1}"
+      "{1:NUMERICAL:=17,7807:0,1}",
+      "{1:NUMERICAL:=25,4171:0,1}",
+      "{1:NUMERICAL:=451,934:0,23}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=14,5363:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-39\\cdot e^{-0{,}061x}+48 \\\\ p_N(x)&=-0{,}078x^2-0{,}016x+140 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}06x^2+0{,}78x+1{,}6 \\\\ p_N(x)&=-3x+59 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 42 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=9:0,1}",
-      "{1:NUMERICAL:=140:0,1}",
-      "{1:NUMERICAL:=42,2635:0,1}",
-      "{1:NUMERICAL:=35,087:0,1}",
-      "{1:NUMERICAL:=43,4129:0,1}"
+      "{1:NUMERICAL:=1,6:0,1}",
+      "{1:NUMERICAL:=59:0,1}",
+      "{1:NUMERICAL:=19,6667:0,1}",
+      "{1:NUMERICAL:=12,6465:0,1}",
+      "{1:NUMERICAL:=21,0604:0,1}",
+      "{1:NUMERICAL:=266,341:0,18}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=14,5837:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=1{,}1x+1{,}9 \\\\ p_N(x)&=20\\cdot e^{-0{,}08x}-0{,}9 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-6{,}9\\cdot e^{-0{,}028x}+32 \\\\ p_N(x)&=-0{,}69x+74 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 31 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,9:0,1}",
-      "{1:NUMERICAL:=19:0,1}",
-      "{1:NUMERICAL:=38,7637:0,1}",
-      "{1:NUMERICAL:=7,4627:0,1}",
-      "{1:NUMERICAL:=10,109:0,1}"
+      "{1:NUMERICAL:=25,1:0,1}",
+      "{1:NUMERICAL:=74:0,1}",
+      "{1:NUMERICAL:=107,2464:0,1}",
+      "{1:NUMERICAL:=62,6023:0,1}",
+      "{1:NUMERICAL:=30,8044:0,1}",
+      "{1:NUMERICAL:=1928,4267:0,48}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=6,6641:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}35x+18 \\\\ p_N(x)&=-0{,}027x^2-0{,}1x+40 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-59\\cdot e^{-0{,}04x}+93 \\\\ p_N(x)&=-0{,}47x+67 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 65 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=18:0,1}",
-      "{1:NUMERICAL:=40:0,1}",
-      "{1:NUMERICAL:=36,6827:0,1}",
-      "{1:NUMERICAL:=21,4032:0,1}",
-      "{1:NUMERICAL:=25,4911:0,1}"
+      "{1:NUMERICAL:=34:0,1}",
+      "{1:NUMERICAL:=67:0,1}",
+      "{1:NUMERICAL:=142,5532:0,1}",
+      "{1:NUMERICAL:=14,6225:0,1}",
+      "{1:NUMERICAL:=60,1274:0,1}",
+      "{1:NUMERICAL:=879,212:0,39}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=14,378:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-6{,}9\\cdot e^{-0{,}028x}+32 \\\\ p_N(x)&=-0{,}69x+73 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}079x^2+0{,}11x+5{,}6 \\\\ p_N(x)&=-0{,}095x^2-0{,}49x+77 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 26 GE/ME festgelegt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=25:0,1}",
-      "{1:NUMERICAL:=73:0,1}",
-      "{1:NUMERICAL:=105,7971:0,1}",
-      "{1:NUMERICAL:=61,2214:0,1}",
-      "{1:NUMERICAL:=30,7573:0,1}"
+      "{1:NUMERICAL:=5,6:0,1}",
+      "{1:NUMERICAL:=77:0,1}",
+      "{1:NUMERICAL:=26,0074:0,1}",
+      "{1:NUMERICAL:=18,6061:0,1}",
+      "{1:NUMERICAL:=34,9954:0,1}",
+      "{1:NUMERICAL:=651,1262:0,28}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=5,3456:0,1} ME"
     ]
   },
   {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=-66\\cdot e^{-0{,}04x}+69 \\\\ p_N(x)&=-0{,}091x^2-0{,}37x+22 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-76\\cdot e^{-0{,}075x}+83 \\\\ p_N(x)&=-0{,}9x+56 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "den Mindestangebotspreis.",
       "den Höchstpreis.",
       "die Sättigungsmenge.",
       "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=3,4:0,1}",
-      "{1:NUMERICAL:=22:0,1}",
-      "{1:NUMERICAL:=13,648:0,1}",
-      "{1:NUMERICAL:=5,8361:0,1}",
-      "{1:NUMERICAL:=16,7411:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}009x^2+0{,}082x+6{,}8 \\\\ p_N(x)&=-0{,}79x+250 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=6,8:0,1}",
-      "{1:NUMERICAL:=250:0,1}",
-      "{1:NUMERICAL:=316,4557:0,1}",
-      "{1:NUMERICAL:=121,9625:0,1}",
-      "{1:NUMERICAL:=153,6496:0,1}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion:$$ \\begin{align*} p_A(x)&=0{,}093x^2+0{,}65x+7 \\\\ p_N(x)&=-0{,}9x+56 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 34 GE/ME festgelegt wird."
     ],
     "antworten": [
       "{1:NUMERICAL:=7:0,1}",
       "{1:NUMERICAL:=56:0,1}",
       "{1:NUMERICAL:=62,2222:0,1}",
-      "{1:NUMERICAL:=16,0865:0,1}",
-      "{1:NUMERICAL:=41,5222:0,1}"
+      "{1:NUMERICAL:=9,9721:0,1}",
+      "{1:NUMERICAL:=47,0251:0,1}",
+      "{1:NUMERICAL:=468,9409:0,3}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=18,5923:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}0033x^2+0{,}73x+31 \\\\ p_N(x)&=-0{,}044x^2-0{,}076x+90 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 75 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=31:0,1}",
+      "{1:NUMERICAL:=90:0,1}",
+      "{1:NUMERICAL:=44,3713:0,1}",
+      "{1:NUMERICAL:=27,811:0,1}",
+      "{1:NUMERICAL:=53,8544:0,1}",
+      "{1:NUMERICAL:=1497,7469:0,42}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=31,6706:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}0081x^2+0{,}44x+30 \\\\ p_N(x)&=-0{,}087x^2-0{,}28x+62 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 41 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=30:0,1}",
+      "{1:NUMERICAL:=62:0,1}",
+      "{1:NUMERICAL:=25,1346:0,1}",
+      "{1:NUMERICAL:=14,9446:0,1}",
+      "{1:NUMERICAL:=38,3847:0,1}",
+      "{1:NUMERICAL:=573,6459:0,28}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=4,6082:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}0077x^2+0{,}057x+9{,}2 \\\\ p_N(x)&=-0{,}72x+51 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 40 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=9,2:0,1}",
+      "{1:NUMERICAL:=51:0,1}",
+      "{1:NUMERICAL:=70,8333:0,1}",
+      "{1:NUMERICAL:=38,844:0,1}",
+      "{1:NUMERICAL:=23,0323:0,1}",
+      "{1:NUMERICAL:=894,6674:0,32}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=44,3747:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-80\\cdot e^{-0{,}094x}+88 \\\\ p_N(x)&=95\\cdot e^{-0{,}075x}-0{,}35 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 83 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8:0,1}",
+      "{1:NUMERICAL:=94,65:0,1}",
+      "{1:NUMERICAL:=74,716:0,1}",
+      "{1:NUMERICAL:=8,203:0,1}",
+      "{1:NUMERICAL:=50,9992:0,1}",
+      "{1:NUMERICAL:=418,3483:0,31}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=27,7512:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}92x+6{,}3 \\\\ p_N(x)&=-0{,}4x+79 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 75 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=6,3:0,1}",
+      "{1:NUMERICAL:=79:0,1}",
+      "{1:NUMERICAL:=197,5:0,1}",
+      "{1:NUMERICAL:=55,0758:0,1}",
+      "{1:NUMERICAL:=56,9697:0,1}",
+      "{1:NUMERICAL:=3137,6492:0,58}",
+      "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss} von {1:NUMERICAL:=64,6739:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}038x^2+0{,}5x+3{,}9 \\\\ p_N(x)&=-0{,}55x+45 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 5 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=3,9:0,1}",
+      "{1:NUMERICAL:=45:0,1}",
+      "{1:NUMERICAL:=81,8182:0,1}",
+      "{1:NUMERICAL:=21,8557:0,1}",
+      "{1:NUMERICAL:=32,9794:0,1}",
+      "{1:NUMERICAL:=720,7871:0,29}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=70,8074:0,1} ME"
+    ]
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=2x+31 \\\\ p_N(x)&=-0{,}4x+41 \\end{align*} $$Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis.",
+      "den Umsatz im Marktgleichgewicht.",
+      "Art und Höhe des Überschusses, wenn der Preis auf 35 GE/ME festgelegt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=31:0,1}",
+      "{1:NUMERICAL:=41:0,1}",
+      "{1:NUMERICAL:=102,5:0,1}",
+      "{1:NUMERICAL:=4,1667:0,1}",
+      "{1:NUMERICAL:=39,3333:0,1}",
+      "{1:NUMERICAL:=163,8889:0,23}",
+      "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss} von {1:NUMERICAL:=13:0,1} ME"
     ]
   }
 ]

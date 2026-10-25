@@ -1,6 +1,6 @@
 import random
 
-from aufgaben.core.tolerances import graph_read_tolerance_from_span, nice_axis_max
+from aufgaben.core.tolerances import axis_tick_step, graph_read_tolerance_from_span, nice_axis_max
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
@@ -62,7 +62,10 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
 
             tasks.append(
                 Task(
-                    einleitung="Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+                    einleitung=(
+                        "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion "
+                        "($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie"
+                    ),
                     fragen=[question for question, _ in items],
                     antworten=[answer for _, answer in items],
                     visual={
@@ -80,8 +83,19 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
                             },
                             "layout": {
                                 "title": "Angebots- und Nachfragefunktion",
-                                "xaxis": {"title": "Menge x", "range": [0, round(max_x, 3)]},
-                                "yaxis": {"title": "Preis p", "range": [0, max_y]},
+                                "xaxis": {
+                                    "title": "Menge x in ME",
+                                    "range": [0, round(max_x, 3)],
+                                    # Gitter passend zur Ableseschrittweite der Toleranz
+                                    "dtick": axis_tick_step(max_x),
+                                    "automargin": True,
+                                },
+                                "yaxis": {
+                                    "title": "Preis p in GE/ME",
+                                    "range": [0, max_y],
+                                    "dtick": axis_tick_step(max_y),
+                                    "automargin": True,
+                                },
                             },
                             "width": 900,
                             "height": 520,

@@ -3,7 +3,7 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: analysis__produktlebenszyklus__04
-abschluss: '<p>Im Training wählst du Ausdrücke und Bedeutungen aus, prüfst Aussagen mit „wahr“ oder „falsch“ und gibst Schätzwerte ein; dabei reicht eine Abweichung von etwa $10\,\%$. Denk an die Fallen: $a(t_2)-a(t_1)$ ist die <strong>Änderung des monatlichen Absatzes</strong>, kein Gesamtabsatz. „Vom Ende des 4. bis zum Ende des 8. Monats“ heißt $\int_4^8$. Für Aussagen wie „mindestens …“ helfen Monatsbalken: Bei steigendem Graphen liegen Balken mit der Höhe am <strong>linken</strong> Rand unter der Fläche, Balken mit der Höhe am <strong>rechten</strong> Rand darüber. Statt des Absatzes kann auch der Umsatz $u$ (GE/Jahr) gegeben sein; dann ist die Fläche der Gesamtumsatz in GE.</p>'
+abschluss: '<p>Im Training schätzt du Flächen ab (etwa $10\,\%$ Abweichung ist erlaubt) und deutest Integrale. Achtung: $a(t_2)-a(t_1)$ ist kein Gesamtabsatz.</p>'
 karten:
 
   # ── Phase A: Idee ─────────────────────────────────────────
@@ -170,8 +170,6 @@ karten:
       yAchse: 'ME/Monat'
       flaechen:
         - { id: f48, term: '1.5x^2*exp(-0.3*x)+2', von: 4, bis: 8, farbe: 'rgba(31,119,180,0.35)' }
-        - { id: f010, term: '1.5x^2*exp(-0.3*x)+2', von: 0, bis: 10, farbe: 'rgba(31,119,180,0.35)' }
-        - { id: avg, term: '8.41', von: 0, bis: 10, farbe: 'rgba(44,160,44,0.35)' }
         - { id: l1, term: '2', von: 0, bis: 1, farbe: 'rgba(255,127,14,0.35)' }
         - { id: l2, term: '3.111', von: 1, bis: 2, farbe: 'rgba(255,127,14,0.35)' }
         - { id: l3, term: '5.293', von: 2, bis: 3, farbe: 'rgba(255,127,14,0.35)' }
@@ -183,13 +181,6 @@ karten:
           - { label: 'ca.', loesung: 42.42, toleranz: 4.2, einheit: 'ME', zeige: { flaechen: [f48] } }
         hinweis: 'Die Breite ist $8-4=4$, eine mittlere Höhe ist etwa $10{,}5$.'
         danach: '<p>Genau sind es $\int_4^8 a(t)\,dt\approx 42{,}42$ ME.</p>'
-      - typ: eingabe
-        frage: '<strong>Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 10 Monaten</strong> – jetzt ohne Vorgabe.'
-        felder:
-          - { label: 'ca.', loesung: 8.41, toleranz: 0.85, einheit: 'ME/Monat', zeige: { flaechen: [f010] } }
-        hinweis: 'Gesucht ist die Höhe eines Rechtecks über $[0;10]$ mit derselben Fläche. Der Graph liegt anfangs tief und später bei etwa $10$ bis $11$. Oder: Kästchen zählen und durch $10$ teilen.'
-        danach: '<p>Genau sind es $\frac{1}{10}\int_0^{10} a(t)\,dt\approx 8{,}41$ ME/Monat.</p>'
-        zeige: { flaechen: [f010, avg] }
       - typ: auswahl
         frage: 'Stimmt die Aussage „In den ersten 4 Monaten werden mindestens $15$ ME abgesetzt“?'
         optionen:

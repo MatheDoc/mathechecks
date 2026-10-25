@@ -20,7 +20,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Was bedeutet Abschöpfung der Konsumentenrente?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel beschreibt die Konsumentenrente im Marktgleichgewicht?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Ein Anbieter verlangt \(p_2>p_G\) und übernimmt so einen Teil der Konsumentenrente.</p>]]></text>
+      <text><![CDATA[<p>\(KR=\int_0^{x_G}p_N(x)\,dx-x_G\cdot p_G\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Alle Nachfrager zahlen weniger als den Gleichgewichtspreis.</p>]]></text>
+      <text><![CDATA[<p>\(KR=x_G\cdot p_G-\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Abschöpfung mit einer allgemeinen Preissenkung verwechselt</p>]]></text>
+        <text><![CDATA[<p>Zahlungsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Angebotsfunktion wird zur Nachfragefunktion.</p>]]></text>
+      <text><![CDATA[<p>\(KR=\int_0^{x_G}p_A(x)\,dx-x_G\cdot p_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Abschöpfung fälschlich als Funktionswechsel gedeutet</p>]]></text>
+        <text><![CDATA[<p>Angebotsfunktion statt Nachfragefunktion verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Gleichgewichtsmenge wird immer verdoppelt.</p>]]></text>
+      <text><![CDATA[<p>\(KR=x_G\cdot p_G+\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Abschöpfung fälschlich mit einer festen Mengenverdopplung verbunden</p>]]></text>
+        <text><![CDATA[<p>Zahlungsbereitschaft und Umsatz addiert statt subtrahiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welche Gleichung bestimmt die Teilmarktmenge \(x_2\) bei gegebenem Preis \(p_2\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel beschreibt die Produzentenrente im Marktgleichgewicht?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(p_N(x_2)=p_2\)</p>]]></text>
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G-\int_0^{x_G}p_A(x)\,dx\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_A(x_2)=p_2\)</p>]]></text>
+      <text><![CDATA[<p>\(PR=\int_0^{x_G}p_A(x)\,dx-x_G\cdot p_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Angebotsfunktion statt Nachfragefunktion verwendet</p>]]></text>
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft in falscher Reihenfolge subtrahiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_N(p_2)=x_2\)</p>]]></text>
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G-\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Argument und Funktionswert vertauscht</p>]]></text>
+        <text><![CDATA[<p>Nachfragefunktion statt Angebotsfunktion verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_N(x_G)=p_2\)</p>]]></text>
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G+\int_0^{x_G}p_A(x)\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleichgewichtsmenge statt Teilmarktmenge eingesetzt</p>]]></text>
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft addiert statt subtrahiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(x_2\) Einheiten wird statt \(p_G\) der höhere Preis \(p_2\) verlangt. Welche Formel liefert den zusätzlichen Erlös \(A\)?</p>]]></text>
+      <text><![CDATA[<p>Welcher Term ist gleichwertig zu \(\int_0^{x_G}p_N(x)\,dx-x_G\cdot p_G\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(A=x_2\cdot(p_2-p_G)\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{x_G}(p_N(x)-p_G)\,dx\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=x_2\cdot(p_G-p_2)\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{x_G}(p_G-p_N(x))\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preisdifferenz in falscher Reihenfolge gebildet</p>]]></text>
+        <text><![CDATA[<p>Differenz im Integranden vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=x_G\cdot(p_2-p_G)\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{x_G}(p_N(x)-p_A(x))\,dx\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleichgewichtsmenge statt Teilmarktmenge als Breite verwendet</p>]]></text>
+        <text><![CDATA[<p>Summe aus KR und PR gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=x_2+p_2-p_G\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{x_G}p_N(x)\,dx-p_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kantenlängen addiert statt multipliziert</p>]]></text>
+        <text><![CDATA[<p>\(p_G\) nicht mit \(x_G\) multipliziert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(x_2\) Einheiten steigt der Preis von \(p_G\) auf \(p_2\). Welche Breite hat das Abschöpfungsrechteck im Menge-Preis-Diagramm?</p>]]></text>
+      <text><![CDATA[<p>Die Konsumentenrente beträgt \(50\) GE. Was bedeutet das?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(x_2\)</p>]]></text>
+      <text><![CDATA[<p>Käufer sparen insgesamt \(50\) GE.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(x_G\)</p>]]></text>
+      <text><![CDATA[<p>Käufer geben insgesamt \(50\) GE aus.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamte Gleichgewichtsmenge statt Teilmarktmenge gewählt</p>]]></text>
+        <text><![CDATA[<p>Rente mit dem Umsatz verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_2\)</p>]]></text>
+      <text><![CDATA[<p>Verkäufer nehmen \(50\) GE mehr ein.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Teilmarktpreis statt Mengenbreite gewählt</p>]]></text>
+        <text><![CDATA[<p>Konsumenten- mit Produzentenrente verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_2-p_G\)</p>]]></text>
+      <text><![CDATA[<p>Es werden \(50\) ME verkauft.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Höhe des Rechtecks statt seiner Breite gewählt</p>]]></text>
+        <text><![CDATA[<p>Geldbetrag als Menge gedeutet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(x_2\) Einheiten steigt der Preis von \(p_G\) auf \(p_2\). Welche Höhe hat das Abschöpfungsrechteck im Menge-Preis-Diagramm?</p>]]></text>
+      <text><![CDATA[<p>Die Produzentenrente beträgt \(30\) GE. Was bedeutet das?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(p_2-p_G\)</p>]]></text>
+      <text><![CDATA[<p>Verkäufer erhalten \(30\) GE mehr als ihr Mindestpreis.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_G-p_2\)</p>]]></text>
+      <text><![CDATA[<p>Käufer sparen insgesamt \(30\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preisdifferenz in falscher Reihenfolge gebildet</p>]]></text>
+        <text><![CDATA[<p>Produzenten- mit Konsumentenrente verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(x_2\)</p>]]></text>
+      <text><![CDATA[<p>Der Umsatz beträgt \(30\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Breite des Rechtecks statt seiner Höhe gewählt</p>]]></text>
+        <text><![CDATA[<p>Rente mit dem Umsatz verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_2+p_G\)</p>]]></text>
+      <text><![CDATA[<p>Die Produktionskosten betragen \(30\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preise addiert statt ihre Differenz zu bilden</p>]]></text>
+        <text><![CDATA[<p>Rente mit Kosten verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Vier Einheiten werden für je 8 statt 5 GE verkauft. Welcher Ansatz liefert den zusätzlichen Erlös \(A\)?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(x_G=3\), \(p_G=4\) und \(\int_0^{x_G}p_N(x)\,dx=18\). Wie groß ist \(KR\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(A=4\cdot(8-5)\)</p>]]></text>
+      <text><![CDATA[<p>\(6\) GE</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=4\cdot(5-8)\)</p>]]></text>
+      <text><![CDATA[<p>\(12\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preisdifferenz in falscher Reihenfolge eingesetzt</p>]]></text>
+        <text><![CDATA[<p>Nur das Umsatzrechteck \(3\cdot4\) berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=5\cdot(8-4)\)</p>]]></text>
+      <text><![CDATA[<p>\(30\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleichgewichtspreis als Breite und Menge in der Preisdifferenz verwendet</p>]]></text>
+        <text><![CDATA[<p>Integralwert und Umsatz addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(A=4+8-5\)</p>]]></text>
+      <text><![CDATA[<p>\(-6\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kantenlängen addiert statt multipliziert</p>]]></text>
+        <text><![CDATA[<p>Umsatz und Zahlungsbereitschaft in falscher Reihenfolge subtrahiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Wie groß ist \(4\cdot(8-5)\)?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(x_G=3\), \(p_G=4\) und \(\int_0^{x_G}p_A(x)\,dx=7\). Wie groß ist \(PR\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(12\)</p>]]></text>
+      <text><![CDATA[<p>\(5\) GE</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(7\)</p>]]></text>
+      <text><![CDATA[<p>\(7\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Breite und Höhe addiert statt multipliziert: \(4+(8-5)=7\)</p>]]></text>
+        <text><![CDATA[<p>Nur die gegebene Angebotsbereitschaft angegeben</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(20\)</p>]]></text>
+      <text><![CDATA[<p>\(19\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur \(4\cdot5\) berechnet</p>]]></text>
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(-12\)</p>]]></text>
+      <text><![CDATA[<p>\(-5\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Differenz in falscher Reihenfolge gebildet</p>]]></text>
+        <text><![CDATA[<p>Angebotsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Fünf Einheiten werden für je 9 statt 7 GE verkauft. Wie groß ist der zusätzlich abgeschöpfte Betrag?</p>]]></text>
+      <text><![CDATA[<p>In welcher Reihenfolge werden die Größen für \(KR\) subtrahiert?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(10\) GE</p>]]></text>
+      <text><![CDATA[<p>Zahlungsbereitschaft minus Umsatz</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(2\) GE</p>]]></text>
+      <text><![CDATA[<p>Umsatz minus Zahlungsbereitschaft</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die Preisdifferenz angegeben</p>]]></text>
+        <text><![CDATA[<p>Subtraktionsreihenfolge der Konsumentenrente vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(35\) GE</p>]]></text>
+      <text><![CDATA[<p>Angebotsbereitschaft minus Umsatz</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Teilmarktmenge mit dem Gleichgewichtspreis multipliziert</p>]]></text>
+        <text><![CDATA[<p>Konsumentenrente fälschlich mit der Angebotsseite gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(80\) GE</p>]]></text>
+      <text><![CDATA[<p>Umsatz minus Angebotsbereitschaft</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Teilmarktmenge mit der Summe der Preise multipliziert</p>]]></text>
+        <text><![CDATA[<p>Reihenfolge der Produzentenrente statt der Konsumentenrente gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gegeben sind \(p_N(x)=10-x\) und \(p_2=8\). Welcher Ansatz bestimmt \(x_2\)?</p>]]></text>
+      <text><![CDATA[<p>In welcher Reihenfolge werden die Größen für \(PR\) subtrahiert?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(10-x_2=8\)</p>]]></text>
+      <text><![CDATA[<p>Umsatz minus Angebotsbereitschaft</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10-8=x_G\)</p>]]></text>
+      <text><![CDATA[<p>Angebotsbereitschaft minus Umsatz</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesuchte Teilmarktmenge fälschlich als Gleichgewichtsmenge bezeichnet</p>]]></text>
+        <text><![CDATA[<p>Subtraktionsreihenfolge der Produzentenrente vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10-x_G=8\)</p>]]></text>
+      <text><![CDATA[<p>Zahlungsbereitschaft minus Umsatz</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleichgewichtsmenge statt Teilmarktmenge eingesetzt</p>]]></text>
+        <text><![CDATA[<p>Reihenfolge der Konsumentenrente statt der Produzentenrente gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10+x_2=8\)</p>]]></text>
+      <text><![CDATA[<p>Umsatz minus Zahlungsbereitschaft</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Minuszeichen der Nachfragefunktion beim Einsetzen verändert</p>]]></text>
+        <text><![CDATA[<p>Produzentenrente fälschlich mit der Nachfrageseite gebildet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__04-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Der Gleichgewichtspreis \(p_G\) und der Teilmarktpreis \(p_2\) sind bekannt. Was wird vor der Abschöpfungsfläche noch benötigt?</p>]]></text>
+      <text><![CDATA[<p>Bis zu welcher Obergrenze wird bei der Berechnung von \(KR\) integriert?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>die Teilmarktmenge \(x_2\)</p>]]></text>
+      <text><![CDATA[<p>bis zur Gleichgewichtsmenge \(x_G\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die Sättigungsmenge</p>]]></text>
+      <text><![CDATA[<p>bis zur Sättigungsmenge</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Sättigungsmenge statt Breite des Abschöpfungsrechtecks gewählt</p>]]></text>
+        <text><![CDATA[<p>Bis zur Nullstelle von \(p_N\) integriert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die Produzentenrente</p>]]></text>
+      <text><![CDATA[<p>bis zum Gleichgewichtspreis \(p_G\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Produzentenrente ist kein Faktor der Abschöpfungsformel</p>]]></text>
+        <text><![CDATA[<p>Preis als Integrationsgrenze verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die Ableitung von \(p_N\)</p>]]></text>
+      <text><![CDATA[<p>bis zum Höchstpreis</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Ableitung ist für die Berechnung bei vorgegebenem Teilmarktpreis nicht erforderlich</p>]]></text>
+        <text><![CDATA[<p>Preis als Integrationsgrenze verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>

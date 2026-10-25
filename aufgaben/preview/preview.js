@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260910-field-scores";
+import { renderTask } from "../runtime/task-render.js?v=20261025-markt-vertiefung";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

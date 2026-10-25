@@ -28,46 +28,46 @@ def _align_equations(expressions: list[str]) -> str:
 
 
 def _latex_supply_linear(slope: float, intercept: float) -> str:
-    return f"p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)}"
+    return f"p_A(x)={_fmt_number(slope, max_decimals=5)}x{_signed(intercept, max_decimals=5)}"
 
 
 def _latex_demand_quadratic(a2: float, a1: float, a0: float) -> str:
-    a2_text = _fmt_number(abs(a2), max_decimals=3)
-    a1_text = _fmt_number(abs(a1), max_decimals=3)
+    a2_text = _fmt_number(abs(a2), max_decimals=5)
+    a1_text = _fmt_number(abs(a1), max_decimals=5)
     return (
         "p_N(x)="
         f"-{a2_text}x^2"
         f"-{a1_text}x"
-        f"+{_fmt_number(a0, max_decimals=2)}"
+        f"+{_fmt_number(a0, max_decimals=5)}"
     )
 
 
 def _latex_supply_quadratic(a2: float, a1: float, a0: float) -> str:
     return (
         "p_A(x)="
-        f"{_fmt_number(a2, max_decimals=3)}x^2"
-        f"+{_fmt_number(a1, max_decimals=3)}x"
-        f"+{_fmt_number(a0, max_decimals=2)}"
+        f"{_fmt_number(a2, max_decimals=5)}x^2"
+        f"+{_fmt_number(a1, max_decimals=5)}x"
+        f"+{_fmt_number(a0, max_decimals=5)}"
     )
 
 
 def _latex_supply_exp(amplitude: float, rate: float, ceiling: float) -> str:
     return (
         "p_A(x)="
-        f"-{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
-        f"+{_fmt_number(ceiling, max_decimals=2)}"
+        f"-{_fmt_number(amplitude, max_decimals=5)}\\cdot e^{{-{_fmt_number(rate, max_decimals=5)}x}}"
+        f"+{_fmt_number(ceiling, max_decimals=5)}"
     )
 
 
 def _latex_demand_linear(slope_abs: float, intercept: float) -> str:
-    return f"p_N(x)=-{_fmt_number(slope_abs, max_decimals=3)}x+{_fmt_number(intercept, max_decimals=2)}"
+    return f"p_N(x)=-{_fmt_number(slope_abs, max_decimals=5)}x+{_fmt_number(intercept, max_decimals=5)}"
 
 
 def _latex_demand_exp(amplitude: float, rate: float, floor: float) -> str:
-    floor_sign = _signed(floor, max_decimals=2)
+    floor_sign = _signed(floor, max_decimals=5)
     return (
         "p_N(x)="
-        f"{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
+        f"{_fmt_number(amplitude, max_decimals=5)}\\cdot e^{{-{_fmt_number(rate, max_decimals=5)}x}}"
         f"{floor_sign}"
     )
 
@@ -86,14 +86,97 @@ def _demand_slope_abs_from_params(params: dict, x: float) -> float:
     return abs(amplitude * rate * math.exp(-rate * x))
 
 
-def _integrate_trapezoid(fn: PriceFunction, a: float, b: float, steps: int = 900) -> float:
+def _integrate_trapezoid(fn: PriceFunction, a: float, b: float, steps: int = 2000) -> float:
+    """Numerische Integration (zusammengesetzte Simpsonregel; exakt fuer Polynome bis Grad 3).
+
+    Der historische Name bleibt fuer bestehende Aufrufer erhalten.
+    """
     if b <= a:
         return 0.0
+    if steps % 2:
+        steps += 1
     width = (b - a) / steps
-    area = 0.5 * (fn(a) + fn(b))
+    area = fn(a) + fn(b)
     for idx in range(1, steps):
-        area += fn(a + idx * width)
-    return area * width
+        area += (4.0 if idx % 2 else 2.0) * fn(a + idx * width)
+    return area * width / 3.0
+
+
+def _solve_increasing(fn: PriceFunction, target: float, lo: float = 0.0, hi: float = 100.0) -> float | None:
+    """Loest fn(x)=target fuer streng monoton steigendes fn auf [lo; inf) per Bisektion."""
+    if fn(lo) > target:
+        return None
+    while fn(hi) < target:
+        hi *= 2.0
+        if hi > 1e7:
+            return None
+    for _ in range(200):
+        mid = 0.5 * (lo + hi)
+        if fn(mid) < target:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def _ueberschuss_item(
+    rng: random.Random,
+    *,
+    supply_fn: PriceFunction,
+    demand_fn: PriceFunction,
+    min_price: float,
+    max_price: float,
+    eq_x: float,
+    eq_p: float,
+    supply_ceiling: float | None = None,
+    min_share: float = 0.1,
+) -> tuple[str, str] | None:
+    """Teilfrage 'Art und Hoehe des Ueberschusses' bei festgelegtem ganzzahligem Preis.
+
+    Preis < p_G  -> Nachfrageueberschuss x_N(P) - x_A(P) (P > Mindestangebotspreis)
+    Preis > p_G  -> Angebotsueberschuss  x_A(P) - x_N(P) (P < Hoechstpreis, ggf. < Saettigungswert p_A)
+    """
+    neg_demand = lambda x: -demand_fn(x)
+
+    def candidates(direction: str) -> list[tuple[int, float]]:
+        result: list[tuple[int, float]] = []
+        if direction == "nachfrage":
+            lo = math.floor(min_price) + 1
+            hi = math.ceil(eq_p) - 1
+        else:
+            lo = math.floor(eq_p) + 1
+            hi = math.ceil(max_price) - 1
+            if supply_ceiling is not None:
+                hi = min(hi, math.ceil(supply_ceiling) - 1)
+        for price in range(lo, hi + 1):
+            if not (min_price < price < max_price):
+                continue
+            if supply_ceiling is not None and price >= supply_ceiling - 1e-9:
+                continue
+            x_a = _solve_increasing(supply_fn, float(price))
+            x_n = _solve_increasing(neg_demand, -float(price))
+            if x_a is None or x_n is None:
+                continue
+            diff = (x_n - x_a) if direction == "nachfrage" else (x_a - x_n)
+            if diff >= min_share * eq_x and diff >= 0.5:
+                result.append((price, diff))
+        return result
+
+    directions = ["nachfrage", "angebot"]
+    rng.shuffle(directions)
+    for direction in directions:
+        options = candidates(direction)
+        if not options:
+            continue
+        price, diff = rng.choice(options)
+        if direction == "nachfrage":
+            mc = "{1:MC:~Angebotsüberschuss~=Nachfrageüberschuss}"
+        else:
+            mc = "{1:MC:~=Angebotsüberschuss~Nachfrageüberschuss}"
+        question = f"Art und Höhe des Überschusses, wenn der Preis auf {price} GE/ME festgelegt wird."
+        answer = f"{mc} von {_num_tol(diff, tolerance=0.1)} ME"
+        return question, answer
+    return None
 
 
 def _find_root_in_interval(
@@ -168,6 +251,8 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
     rate = uniform_sig(rng, 0.02, 0.25)
     min_price = uniform_sig(rng, 1.0, 40.0)
     ceiling = round_sig(min_price + amplitude)
+    # Tatsaechlicher Mindestangebotspreis aus den angezeigten Parametern.
+    min_price = ceiling - amplitude
     return (
         lambda x: -amplitude * math.exp(-rate * x) + ceiling,
         _latex_supply_exp(amplitude, rate, ceiling),
@@ -212,10 +297,11 @@ def _build_demand_function(
     amplitude = uniform_sig(rng, 4.0, 120.0)
     rate = uniform_sig(rng, 0.02, 0.22)
     floor = uniform_sig(rng, -15.0, -0.3)
-    max_price = round_sig(amplitude + floor)
+    # Hoechstpreis exakt aus den angezeigten Parametern (keine Rundung).
+    max_price = amplitude + floor
     if max_price <= min_price + 4.0:
         floor = round_sig(min_price + 4.5 - amplitude)
-        max_price = round_sig(amplitude + floor)
+        max_price = amplitude + floor
 
     return (
         lambda x: amplitude * math.exp(-rate * x) + floor,
@@ -288,6 +374,10 @@ def _sample_market_params(
         if (max_price - p2) < price_range * 0.15:
             continue
 
+        # Float-Artefakte (z. B. 4.1000000000000005) aus den Visual-Specs entfernen.
+        supply_params = {k: (round(v, 10) if isinstance(v, float) else v) for k, v in supply_params.items()}
+        demand_params = {k: (round(v, 10) if isinstance(v, float) else v) for k, v in demand_params.items()}
+
         return (
             supply_fn,
             demand_fn,
@@ -328,9 +418,14 @@ def _kennzahlen_items_allgemein(
     eq_price: float,
     x_tolerance: float | None = None,
     y_tolerance: float | None = None,
+    revenue_tolerance: float | None = None,
 ) -> list[tuple[str, str]]:
     x_tol = 0.5 if x_tolerance is None else x_tolerance
     y_tol = 0.25 if y_tolerance is None else y_tolerance
+    # Fehlerfortpflanzung fuer U = x_G * p_G: |dU| <= dx * p_G + dp * x_G
+    revenue_tol = (
+        x_tol * eq_price + y_tol * eq_quantity if revenue_tolerance is None else revenue_tolerance
+    )
 
     return [
         ("den Mindestangebotspreis.", _num_tol(min_price, tolerance=y_tol)),
@@ -338,4 +433,5 @@ def _kennzahlen_items_allgemein(
         ("die Sättigungsmenge.", _num_tol(sat_quantity, tolerance=x_tol)),
         ("die Gleichgewichtsmenge.", _num_tol(eq_quantity, tolerance=x_tol)),
         ("den Gleichgewichtspreis.", _num_tol(eq_price, tolerance=y_tol)),
+        ("den Umsatz im Marktgleichgewicht.", _num_tol(eq_quantity * eq_price, tolerance=revenue_tol)),
     ]

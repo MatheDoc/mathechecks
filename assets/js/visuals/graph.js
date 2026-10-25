@@ -20,7 +20,13 @@ export function buildGraphFigure({
     xMax = 20,
     yMin = null,
     yMax = null,
+    xDtick = null,
+    yDtick = null,
 }) {
+    // Optionales festes Raster (z. B. 2er-Kästchen zum Abzählen), etwas kräftigeres Gitter
+    const tickRaster = (dtick) => (Number.isFinite(dtick) && dtick > 0
+        ? { tickmode: "linear", tick0: 0, dtick, showgrid: true, gridcolor: themeTextColor() + "40" }
+        : {});
     const step = 0.1;
     const eps = 1e-9;
     const xWerte = [];
@@ -169,6 +175,7 @@ export function buildGraphFigure({
         xaxis: {
             ...(xAchse ? { title: { text: xAchse, y: 0.5 } } : {}),
             range: [xMin, xMax],
+            ...tickRaster(xDtick),
             layer: "below traces",
         },
         yaxis: {
@@ -176,6 +183,7 @@ export function buildGraphFigure({
             ...(yMin != null || yMax != null
                 ? { range: [yMin ?? null, yMax ?? null] }
                 : {}),
+            ...tickRaster(yDtick),
             layer: "below traces",
         },
         hovermode: "closest",

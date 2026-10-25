@@ -1,5 +1,5 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260908-strict-user-number";
-import { renderVisual } from "./task-visuals.js?v=20260614-expression-curves-b";
+import { renderVisual } from "./task-visuals.js?v=20261025-expression-parser";
 import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260816-mobile-restart";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";

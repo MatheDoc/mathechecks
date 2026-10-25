@@ -4,7 +4,7 @@ import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-
 import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
-import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
+import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261025-expression-parser";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction, createCardTaskPicker } from "./ui/card-actions-menu.js";

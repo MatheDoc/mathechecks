@@ -2,85 +2,67 @@
 layout: null
 permalink: /lernbereiche/analysis/marktgleichgewicht-vertiefung/beispiele/02-kennzahlen-rechnerisch-lqe.html
 ---
-Berechnung der Kennzahlen zum Marktgleichgewicht. Den Beispielen liegen folgende Funktionen zugrunde:
+Gegeben sind die Nachfragefunktion $p_N$ und die Angebotsfunktion $p_A$ mit
 
 $$
 \begin{align*}
-p_N(x)&=45{,}75\cdot e^{-0{,}044x}-6{,}75\\
-p_A(x)&=0{,}016x^2+0{,}022x+6\\
+p_N(x)&=80e^{-0{,}04x}-10\\
+p_A(x)&=0{,}02x^2+0{,}5x+5.
 \end{align*}
 $$
 
-- Höchstpreis
+Berechnen Sie den Höchstpreis, die Sättigungsmenge, den Mindestangebotspreis, das Marktgleichgewicht und den Umsatz im Marktgleichgewicht. Bestimmen Sie außerdem Art und Höhe des Überschusses, wenn der Preis auf $40$ GE/ME festgelegt wird.
 
-    Der y-Achsenabschnitt von $p_N(x)$:
+**Höchstpreis und Mindestangebotspreis**
 
-    $$
-    45{,}75\cdot e^{-0{,}044\cdot 0}-6{,}75 = 39
-    $$
+$$
+\begin{align*}
+p_N(0)&=80-10=70\\
+p_A(0)&=5
+\end{align*}
+$$
 
-    Der Höchstpreis beträgt 39 GE.
+Der Höchstpreis beträgt $70$ GE/ME, der Mindestangebotspreis $5$ GE/ME.
 
-- Sättigungsmenge
+**Sättigungsmenge**
 
-    Nullstelle von $p_N(x)$:
+$$
+\begin{align*}
+80e^{-0{,}04x}-10&=0\\
+e^{-0{,}04x}&=0{,}125\\
+x&=\frac{\ln(0{,}125)}{-0{,}04}\approx 51{,}99
+\end{align*}
+$$
 
-    $$
-    \begin{align*}
-    45{,}75\cdot e^{-0{,}044x}-6{,}75 &= 0 \quad|\text{ TR}\\
-    x &= 43{,}4921
-    \end{align*}
-    $$
+Die Sättigungsmenge beträgt etwa $51{,}99$ ME.
 
-    Die Sättigungsmenge beträgt 43,49 ME.
+**Marktgleichgewicht**
 
-- Mindestangebotspreis
+$$
+\begin{align*}
+80e^{-0{,}04x}-10&=0{,}02x^2+0{,}5x+5 \quad |\text{ CAS}\\
+x_G&\approx 21{,}08\\
+p_G&=p_N(21{,}08)\approx 24{,}43
+\end{align*}
+$$
 
-    Der y-Achsenabschnitt von $p_A(x)$:
+Die Gleichgewichtsmenge beträgt etwa $21{,}08$ ME, der Gleichgewichtspreis etwa $24{,}43$ GE/ME.
 
-    $$
-    0{,}016\cdot 0^2+0{,}022\cdot 0+6 = 6
-    $$
+**Umsatz im Marktgleichgewicht**
 
-    Der Mindestangebotspreis beträgt 6 GE.
+$$
+x_G\cdot p_G\approx 21{,}0797\cdot 24{,}4269\approx 514{,}91
+$$
 
-- Gleichgewichtsmenge
+Der Umsatz im Marktgleichgewicht beträgt etwa $514{,}91$ GE.
 
-    Schnittstelle von $p_N$ und $p_A$:
+**Überschuss bei festgelegtem Preis von 40 GE/ME**
 
-    $$
-    \begin{align*}
-    45{,}75\cdot e^{-0{,}044x}-6{,}75 &= 0{,}016x^2+0{,}022x+6 \quad|\text{ TR}\\
-    x &= 19{,}5903
-    \end{align*}
-    $$
+$$
+\begin{align*}
+p_N(x)=40 &\Rightarrow 80e^{-0{,}04x}=50 \Rightarrow x_N=\frac{\ln(0{,}625)}{-0{,}04}\approx 11{,}75\\
+p_A(x)=40 &\Rightarrow 0{,}02x^2+0{,}5x-35=0 \Rightarrow x_A\approx 31{,}16 \quad (x\approx -56{,}16 \text{ entfällt})
+\end{align*}
+$$
 
-    Die Gleichgewichtsmenge beträgt 19,59 ME.
-
-- Gleichgewichtspreis
-
-    y-Wert des Schnittpunkts von $p_N$ und $p_A$:
-
-    $$
-    p_N(19{,}5903)=12{,}5715
-    $$
-
-    Oder gleichwertig:
-
-    $$
-    p_A(19{,}5903)=12{,}5715
-    $$
-
-
-    Der Gleichgewichtspreis beträgt 12,57 GE.
-
-- Umsatz im Marktgleichgewicht
-
-    Produkt der Gleichgewichtsmenge und des Gleichgewichtspreis:
-
-    $$
-    19{,}5903\cdot 12{,}5715 = 246{,}2795
-    $$
-
-    Der Umsatz im Marktgleichgewicht beträgt 246,28 GE.
-
+Da $40$ GE/ME über dem Gleichgewichtspreis liegt, wird mehr angeboten als nachgefragt. Es besteht ein Angebotsüberschuss von $31{,}16-11{,}75=19{,}41$ ME.

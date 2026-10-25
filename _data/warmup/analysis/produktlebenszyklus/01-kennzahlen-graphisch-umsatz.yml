@@ -3,13 +3,13 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: analysis__produktlebenszyklus__01
-abschluss: '<p>Im Training liest du die Kennzahlen am Graphen von $a$ ab, Zeitpunkte und Höhen so genau wie möglich. Bei „progressiv oder degressiv“ entscheidest du über die Krümmung. Denk an die Falle: Ist der Graph schon bei $t=0$ rechtsgekrümmt, liegt der stärkste Anstieg bei der Markteinführung, also bei $t=0$. Statt des Absatzes (ME/Monat) kann auch der <strong>Umsatz</strong> $u$ (GE/Jahr) gegeben sein; das Ablesen bleibt gleich.</p>'
+abschluss: '<p>Im Training liest du diese Kennzahlen am Graphen ab, auch für den Umsatz $u$ (GE/Jahr). Beachte, dass der stärkste Anstieg auch bei $t=0$ liegen kann.</p>'
 karten:
 
   # ── Phase A: Idee ─────────────────────────────────────────
   - phase: orientierung
     titel: 'Ein Graph, viele Kennzahlen'
-    text: '<p>Eine Spielkonsole kommt auf den Markt. Der Graph zeigt den monatlichen Absatz $a(t)$ in ME/Monat, $t$ in Monaten seit der Markteinführung.</p><p>$a(t)$ ist eine <strong>Rate</strong>: Wie viel wird zum Zeitpunkt $t$ <em>pro Monat</em> verkauft?</p>'
+    text: '<p>Eine Spielkonsole kommt auf den Markt. Der Graph zeigt den monatlichen Absatz $a(t)$ in ME/Monat, $t$ in Monaten seit der Markteinführung.</p><p>$a(t)$ ist eine <strong>Rate</strong>: Sie gibt an, wie viel zum Zeitpunkt $t$ <em>pro Monat</em> verkauft wird.</p>'
     visual:
       typ: graph
       funktionen:
@@ -147,52 +147,8 @@ karten:
           - { links: 'langfristiger Absatz', rechts: 'waagrechte Asymptote' }
 
   - phase: mitmachen
-    titel: 'Neuer Graph – mit Hilfe'
-    text: '<p>Jetzt liest du selbst ab.</p>'
-    visual:
-      typ: graph
-      funktionen:
-        - { term: 'x^2*exp(-0.2*x)+2', name: 'a(t)', xmin: 0 }
-      xMin: -0.5
-      xMax: 40
-      yMin: 0
-      yMax: 18
-      xSchritt: 2
-      ySchritt: 2
-      xAchse: 't in Monaten'
-      yAchse: 'ME/Monat'
-      punkte:
-        - { id: hp, x: 10, y: 15.53, label: 'Hochpunkt', hilfslinie: true, ax: 50, ay: -10 }
-        - { id: w1, x: 2.93, y: 6.78, label: 'stärkster Anstieg', ax: 70, ay: 10 }
-        - { id: w2, x: 17.07, y: 11.59, label: 'stärkster Rückgang', ax: 60, ay: -30 }
-    schritte:
-      - typ: eingabe
-        frage: '<strong>Höchster Absatz:</strong> Lies den Hochpunkt ab.'
-        layout: zeile
-        felder:
-          - { label: 'nach $t=$', loesung: 10, toleranz: 0.5, einheit: 'Monaten:', zeige: { punkte: [hp] } }
-          - { loesung: 15.5, toleranz: 0.5, einheit: 'ME/Monat' }
-        hinweis: 'Suche den höchsten Punkt des Graphen. Lies erst den $t$-Wert, dann den $y$-Wert ab.'
-      - typ: eingabe
-        frage: '<strong>Stärkster Anstieg und Rückgang:</strong> Lies die Wendestellen ab.'
-        layout: zeile
-        felder:
-          - { label: 'Anstieg bei $t\approx$', loesung: 2.93, toleranz: 1, zeige: { punkte: [w1] } }
-          - { label: 'Rückgang bei $t\approx$', loesung: 17.07, toleranz: 1.5, zeige: { punkte: [w2] } }
-        hinweis: 'Links vom Hochpunkt wechselt der Graph von links- zu rechtsgekrümmt, rechts davon wieder zurück. Dort ist er am steilsten.'
-      - typ: auswahl
-        frage: 'Steigt der Absatz im Zeitraum von $t=0$ bis $t=2$ progressiv oder degressiv?'
-        optionen:
-          - 'progressiv'
-          - 'degressiv'
-        korrekt: 0
-        mischen: false
-        hinweis: 'Der Zeitraum liegt vor dem ersten Wendepunkt. Wie ist der Graph dort gekrümmt?'
-        danach: '<p>Vor dem ersten Wendepunkt ist der Graph linksgekrümmt: <strong>progressiv</strong>.</p>'
-
-  - phase: mitmachen
-    titel: 'Rand und Ende – ohne Hilfe'
-    text: '<p>Noch ein Produkt. Jetzt ohne Vorgabe.</p>'
+    titel: 'Neuer Graph – Rand und Ende'
+    text: '<p>Ein anderes Produkt. Jetzt liest du selbst ab.</p>'
     visual:
       typ: graph
       funktionen:
@@ -208,11 +164,6 @@ karten:
       punkte:
         - { id: start, x: 0, y: 5, label: 'stärkster Anstieg', ax: 50, ay: 30 }
     schritte:
-      - typ: eingabe
-        frage: 'Wie hoch ist der monatliche Absatz bei der Markteinführung?'
-        felder:
-          - { label: '$a(0)=$', loesung: 5, toleranz: 0.25, einheit: 'ME/Monat' }
-        hinweis: 'Lies den $y$-Achsenabschnitt ab.'
       - typ: eingabe
         frage: 'Zu welchem Zeitpunkt steigt der Absatz am stärksten?'
         felder:

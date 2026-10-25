@@ -1,7 +1,7 @@
-﻿---
+---
 layout: module
 title: "Konsumentenrente und Produzentenrente erklärt – mit Beispielen"
-description: "Konsumentenrente und Produzentenrente erklärt: Berechnung und grafische Deutung am Marktgleichgewicht, Abschöpfung der Konsumentenrente – mit Beispielen."
+description: "Marktgleichgewicht mit nichtlinearen Funktionen, Konsumentenrente und Produzentenrente graphisch und rechnerisch, Abschöpfung der Konsumentenrente durch einen Teilmarkt – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -14,143 +14,144 @@ permalink: /lernbereiche/analysis/marktgleichgewicht-vertiefung/skript.html
 
 # Konsumentenrente und Produzentenrente am Marktgleichgewicht
 
-## Wiederholung
+Ein Marktforschungsinstitut beschreibt den Markt für Fahrradhelme in einer Region durch die Nachfragefunktion $p_N$ und die Angebotsfunktion $p_A$ mit
 
-Die **Nachfragefunktion** $p_N(x)$ gibt an, wie hoch der Preis in Geldeinheiten (GE) pro nachgefragter Mengeneinheit (ME) ist. Da es keine negativen Preise geben kann, gilt stets $p_N(x)\geq0$. Weil die nachgefragte Menge in der Regel nur dann steigt, wenn der Preis sinkt, ist die Nachfragefunktion monoton fallend.
+$$
+\begin{align*}
+p_N(x)&=45{,}75e^{-0{,}044x}-6{,}75\\
+p_A(x)&=0{,}016x^2+0{,}022x+6.
+\end{align*}
+$$
 
-Die **Angebotsfunktion** $p_A(x)$ gibt an, wie hoch der Preis in Geldeinheiten (GE) pro angebotener Mengeneinheit (ME) ist. Auch hier gilt $p_A(x)\geq0$, da negative Preise nicht sinnvoll sind. Da Produzenten nur dann bereit sind, mehr anzubieten, wenn der Preis steigt, ist die Angebotsfunktion monoton steigend.
+Dabei ist $x$ die Menge in Mengeneinheiten (ME, 1 ME = 100 Helme) und $p_N(x)$ bzw. $p_A(x)$ der Preis in Geldeinheiten pro Mengeneinheit (GE/ME, 1 GE = 1000 €). Dieses Leitbeispiel begleitet uns durch das ganze Skript.
 
-Wir verwenden folgende Kennzahlen zur Beschreibung von Nachfrage und Angebot:
+$p_N(x)$ ist der Preis, zu dem die Konsumenten insgesamt $x$ ME nachfragen. Je niedriger der Preis, desto mehr wird nachgefragt: $p_N$ ist monoton fallend. $p_A(x)$ ist der Preis, zu dem die Produzenten insgesamt $x$ ME anbieten. Je höher der Preis, desto mehr wird angeboten: $p_A$ ist monoton steigend. Anders als im Lernbereich [Marktgleichgewicht – Grundlagen](../marktgleichgewicht-grundlagen/skript.html) sind die Funktionen hier nicht linear, sondern zum Beispiel quadratisch oder exponentiell.
 
-- **Gleichgewichtsmenge:** Menge, bei der nachgefragter und angebotener Preis gleich sind.
-- **Gleichgewichtspreis:** Preis, bei der nachgefragte und angebotene Menge gleich sind.
-- **Höchstpreis:** Maximaler Preis, den ein Konsument zu zahlen bereit ist.
-- **Sättigungsmenge:** Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht.
-- **Mindestangebotspreis:** Preis, ab dem Produzenten bereits, das Produkt anzubieten.
-- **Umsatz im Marktgleichgewicht:** Gesamtumsatz, wenn auf dem Markt die Gleichgewichtsmenge zum Gleichgewichtspreis gehandelt wird.
+## Marktgleichgewicht bei nichtlinearen Funktionen
 
-### Graphische Bestimmungen
+### Kennzahlen graphisch bestimmen
+
+Im Diagramm des Leitbeispiels lesen wir die Kennzahlen ab:
+
+- **Höchstpreis:** $y$-Achsenabschnitt von $p_N$, hier $39$ GE/ME. Zu diesem oder einem höheren Preis kauft niemand.
+- **Sättigungsmenge:** Nullstelle von $p_N$, hier etwa $43{,}5$ ME. So viel würde selbst zum Preis $0$ GE/ME höchstens nachgefragt.
+- **Mindestangebotspreis:** $y$-Achsenabschnitt von $p_A$, hier $6$ GE/ME. Erst über diesem Preis bieten die Produzenten an.
+- **Marktgleichgewicht:** Schnittpunkt der beiden Graphen, hier etwa $(19{,}6\mid 12{,}6)$. Die **Gleichgewichtsmenge** $x_G\approx 19{,}6$ ME wird zum **Gleichgewichtspreis** $p_G\approx 12{,}6$ GE/ME gehandelt.
+- **Umsatz im Marktgleichgewicht:** $x_G\cdot p_G\approx 19{,}6\cdot 12{,}6\approx 247$ GE. Graphisch ist das die Fläche des Rechtecks mit den Seitenlängen $x_G$ und $p_G$.
+
+{% include graph.html
+   funktionen='[
+    {"name":"p<sub>N</sub>(x)", "term":"45.75*exp(-0.044*x)-6.75", "beschreibung":"Nachfragefunktion", "color":"#1f77b4"},
+    {"name":"p<sub>A</sub>(x)", "term":"0.016*x^2+0.022*x+6", "beschreibung":"Angebotsfunktion", "color":"#d62728"}
+   ]'
+   flaechen='[
+    {"term":"12.5715", "von":0, "bis":19.5903, "farbe":"rgba(120,120,120,0.25)", "name":"Umsatz im Marktgleichgewicht"}
+   ]'
+   punkte='[
+    {"x":0,"y":39,"text":"Höchstpreis"},
+    {"x":0,"y":6,"text":"Mindestangebotspreis"},
+    {"x":19.5903,"y":12.5715,"text":"Marktgleichgewicht"},
+    {"x":43.4920,"y":0,"text":"Sättigungsmenge"}
+   ]'
+   titel="Markt für Fahrradhelme"
+   xachse="Menge x in ME"
+   yachse="Preis p in GE/ME"
+   xmin=0
+   xmax=46
+   ymin=0
+   ymax=42
+%}
+
+Typische Fehler: Höchstpreis und Sättigungsmenge gehören zur Nachfragefunktion, der Mindestangebotspreis zur Angebotsfunktion. Der Umsatz ist die Rechteckfläche $x_G\cdot p_G$, nicht die Fläche unter einem der Graphen.
 
 {% include check-anker.html nummer="1" %}
 
+### Kennzahlen berechnen
 
-### Berechnungen
+Rechnerisch übersetzen wir jede Kennzahl in einen Funktionswert oder eine Gleichung:
+
+- **Höchstpreis:** $p_N(0)=45{,}75-6{,}75=39$ GE/ME. **Mindestangebotspreis:** $p_A(0)=6$ GE/ME.
+- **Sättigungsmenge:** $p_N(x)=0 \Leftrightarrow e^{-0{,}044x}=\frac{6{,}75}{45{,}75} \Leftrightarrow x=\frac{1}{0{,}044}\ln\left(\frac{45{,}75}{6{,}75}\right)\approx 43{,}49$ ME.
+- **Marktgleichgewicht:** $p_N(x)=p_A(x)$. Eine Gleichung mit $e$-Funktion und Polynom lässt sich nicht von Hand umformen, wir lösen sie mit dem CAS: $x_G\approx 19{,}59$ ME. Den Gleichgewichtspreis liefert eine der beiden Funktionen: $p_G=p_N(19{,}59)\approx 12{,}57$ GE/ME.
+- **Umsatz im Marktgleichgewicht:** $x_G\cdot p_G\approx 19{,}5903\cdot 12{,}5715\approx 246{,}28$ GE, also etwa 246 280 €.
+
+Bei nichtlinearen Funktionen liefert das CAS oft mehrere Lösungen. Ökonomisch sinnvoll sind nur Lösungen mit $x\geq 0$, bei denen auch die Preise nicht negativ sind. Eine negative Lösung wird mit dem Hinweis „nicht im ökonomischen Definitionsbereich“ verworfen.
+
+**Staatlich festgelegter Preis.** Wird der Preis nicht vom Markt bestimmt, sondern zum Beispiel auf $10$ GE/ME festgelegt, so passen Angebot und Nachfrage nicht mehr zusammen. Wir berechnen beide Mengen:
+
+$$
+\begin{align*}
+p_N(x)=10 &\Rightarrow x_N\approx 22{,}84\\
+p_A(x)=10 &\Rightarrow x_A\approx 15{,}14 \quad (x\approx -16{,}51 \text{ entfällt})
+\end{align*}
+$$
+
+Es werden $22{,}84$ ME nachgefragt, aber nur $15{,}14$ ME angeboten: Es besteht ein **Nachfrageüberschuss** von $22{,}84-15{,}14=7{,}70$ ME. Allgemein gilt: Liegt der festgelegte Preis unter $p_G$, entsteht ein Nachfrageüberschuss, liegt er über $p_G$, ein **Angebotsüberschuss**.
 
 {% include check-anker.html nummer="2" %}
 
 ## Konsumenten- und Produzentenrente
 
-Die Konsumenten- und Produzentenrente und beschreiben, wie Konsumenten und Produzenten vom Marktgleichgewicht profitieren:
+### Idee an einem kleinen Markt
 
-- Ein Konsument profitiert vom Marktgleichgewicht, wenn der Marktpreis geringer ist, als der Preis, den der Konsument bereit wäre zu zahlen.
+Bevor wir mit Funktionen rechnen, betrachten wir einen kleinen Markt mit vier Konsumenten und vier Produzenten. Jeder Konsument möchte einen Helm kaufen, jeder Produzent einen Helm verkaufen. Der Marktpreis beträgt $30$ €.
 
-- Ein Produzent profitiert vom Marktgleichgewicht, wenn der Marktpreis größer ist, als der Preis, zu dem der Produzent bereit wäre das Produkt anzubieten.
+| Konsument | Zahlungsbereitschaft | individuelle Konsumentenrente |
+| --------- | -------------------- | ----------------------------- |
+| Anton     | $60$ €               | $60-30=30$ €                  |
+| Berta     | $45$ €               | $45-30=15$ €                  |
+| Cem       | $35$ €               | $35-30=5$ €                   |
+| Daria     | $25$ €               | kauft nicht                   |
 
-### Konsumentenrente: Diskretes Beispiel
-
-Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 3 ME und einen Gleichgewichtspreis von 2 GE/ME. Vier Freunde analysieren ausgehend von ihrer Zahlungsbereitschaft die Konsumentenrente.
-
-|       | ist bereit für eine ME Loca ... GE zu zahlen. |
-| ----- | --------------------------------------------- |
-| Anton | $4$                                           |
-| Berta | $3$                                           |
-| Cem   | $2$                                           |
-| Daria | $1$                                           |
-
-Die individuelle Konsumentenrente ist die Differenz aus der individuellen Zahlungssbereitschaft und dem Marktpreis:
-
-|       | Individuelle Konsumentenrente |
-| ----- | ----------------------------- |
-| Anton | $4-2=2$                       |
-| Berta | $3-2=1$                       |
-| Cem   | $2-2=0$                       |
-| Daria | ---                           |
-
-Die kollektive Konsumentenrente (oder einfach Konsumentenrente) $KR$ ist die Summe der individuellen Konsumentenrenten:
+Anton wäre bereit gewesen, $60$ € zu zahlen, zahlt aber nur $30$ €. Er spart $30$ €. Die **Konsumentenrente** $KR$ ist die Summe dieser Ersparnisse:
 
 $$
-KR=2+1+0=3.
+KR=30+15+5=50 \text{ €}.
 $$
 
-Alternativ hätten wir auch die Differenz aus der gesamten Zahlungsbereitschaft (ohne die Zahlungsbereitschaft von Daria, die nichts konsumiert) und dem Umsatz im Marktgleichgewicht berechnen können:
+Gleichwertig ist: gesamte Zahlungsbereitschaft der Käufer minus ihre Ausgaben, also $(60+45+35)-3\cdot 30=140-90=50$ €.
+
+| Produzent | Angebotsbereitschaft | individuelle Produzentenrente |
+| --------- | -------------------- | ----------------------------- |
+| Alpha     | $15$ €               | $30-15=15$ €                  |
+| Beta      | $20$ €               | $30-20=10$ €                  |
+| Gamma     | $28$ €               | $30-28=2$ €                   |
+| Delta     | $40$ €               | verkauft nicht                |
+
+Alpha hätte schon für $15$ € verkauft, erhält aber $30$ €. Die **Produzentenrente** $PR$ ist die Summe dieser Mehreinnahmen:
 
 $$
-KR=(4+3+2)-3\cdot 2=3.
+PR=15+10+2=27 \text{ €}.
 $$
 
-Dieses Beispiel motiviert folgende
+Gleichwertig ist: Umsatz minus gesamte Angebotsbereitschaft der Verkäufer, also $3\cdot 30-(15+20+28)=90-63=27$ €.
 
-**Definition:** Die Konsumentenrente $KR$ ist die Differenz aus der Zahlungsbereitschaft des Markts und dem Umsatz im Marktgleich.
+Bei diesem Preis werden drei Helme gekauft und drei verkauft: Der Markt ist im Gleichgewicht.
 
-### Konsumentenrente: Kontinuierliches Beispiel
+### Von der Summe zum Integral
 
-Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 2 ME und einen Gleichgewichtspreis von 2,5 GE/ME. Ein Marktforschungsinstitut analysiert ausgehend von der Nachfragefunktion $p_N(x)=-1{,}25x+5$ die Konsumentenrente.
+Auf einem großen Markt gibt $p_N(x)$ an, welcher Preis für die „$x$-te“ Mengeneinheit gerade noch gezahlt würde. Summieren wir diese Zahlungsbereitschaften über alle Einheiten von $0$ bis $x_G$, erhalten wir ein Integral. Ebenso gibt $p_A(x)$ an, zu welchem Preis die $x$-te Einheit gerade noch angeboten würde.
 
-Die Zahlungsbereitschaft der Konsumenten ist gleich dem Integral der Nachfragefunktion von 0 bis zur Gleichgewichtsmenge, weil die Nachfragefunktion angibt, wie viel für jede einzelne zusätzliche Einheit maximal bezahlt würde, und das Integral genau die Summe dieser marginalen Zahlungsbereitschaften über alle Einheiten bis zur nachgefragten Menge bildet. Wir erhalten:
+| Term | Bedeutung | Fläche im Diagramm |
+| ---- | --------- | ------------------ |
+| $\int_0^{x_G}p_N(x)\,dx$ | Zahlungsbereitschaft der Konsumenten | unter dem Graphen von $p_N$ über $[0;x_G]$ |
+| $\int_0^{x_G}p_A(x)\,dx$ | Angebotsbereitschaft der Produzenten | unter dem Graphen von $p_A$ über $[0;x_G]$ |
+| $x_G\cdot p_G$ | Umsatz im Marktgleichgewicht | Rechteck mit den Seiten $x_G$ und $p_G$ |
 
-$$
-\begin{align*}
-KR&=\text{Zahlungsbereitschaft des Markts} - \text{Umsatz im Marktgleichgewicht}\\
-  &=\int_0^{2{,}5}-1{,}25x+5dx - 2{,}5\cdot 2\\
-  &=7{,}5-5=2{,}5
-\end{align*}
-$$
-
-### Produzenrente: Diskretes Beispiel
-
-Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 3 ME und einen Gleichgewichtspreis von 4 GE/ME. Vier Unternehmen analysieren ausgehend von ihrer Angebotsbereitschaft die Produzentenrente.
-
-|       | ist bereit, eine ME Loca für ... GE anzubieten. |
-| ----- | ----------------------------------------------- |
-| Alpha | $2$                                             |
-| Beta  | $3$                                             |
-| Gamma | $4$                                             |
-| Delta | $5$                                             |
-
-Die individuelle Produzentenrente ist die Differenz aus dem Marktpreis und der individuellen Angebotsbereitschaft:
-
-|       | Individuelle Produzentenrente |
-| ----- | ----------------------------- |
-| Alpha | $4-2=2$                       |
-| Beta  | $4-3=1$                       |
-| Gamma | $4-4=0$                       |
-| Delta | ---                           |
-
-Die kollektive Produzentenrente (oder einfach Produzentenrente) $PR$ ist die Summe der individuellen Produzentenrenten:
-
-$$
-PR=2+1+0=3.
-$$
-
-Alternativ hätten wir auch die Differenz aus dem Umsatz im Marktgleichgewicht und der gesamten Angebotssbereitschaft (ohne die Angebotsbereitschaft von Delta, die nichts anbietet) berechnen können:
-
-$$
-PR=4\cdot 3-(2+3+4)=3.
-$$
-
-Dieses Beispiel motiviert folgende
-
-**Definition:** Die Produzentenrente $PR$ ist die Differenz aus dem Umsatz im Marktgleichgewicht und der Angebotssbereitschaft des Markts.
-
-### Produzentenrente: Kontinuierliches Beispiel
-
-Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 2 ME und einen Gleichgewichtspreis von 2,5 GE/ME. Ein Marktforschungsinstitut analysiert ausgehend von der Angebotsfunktion $p_A(x)=0{,}75x+1$ die Produzentenrente.
-
-Die Angebotsbereitschaft des Markts ist gleich dem Integral der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge, weil die Angebotsfunktion angibt, zu welchem minimalen Preis jede einzelne zusätzliche Einheit gerade noch angeboten würde, und das Integral genau die Summe dieser marginalen Angebotsbereitschaften über alle Einheiten bis zur angebotenen Menge bildet. Wir erhalten:
+Damit übertragen wir die beiden Definitionen vom kleinen Markt:
 
 $$
 \begin{align*}
-PR&=\text{Umsatz im Marktgleichgewicht} - \text{Angebotssbereitschaft des Markts}\\
-  &=2{,}5\cdot 2 - \int_0^2 0{,}75x+1 dx\\
-  &=5-3{,}5=1{,}5
+KR&=\underbrace{\int_0^{x_G}p_N(x)\,dx}_{\text{Zahlungsbereitschaft}}-\underbrace{x_G\cdot p_G}_{\text{Umsatz}}=\int_0^{x_G}\left(p_N(x)-p_G\right)dx\\
+PR&=\underbrace{x_G\cdot p_G}_{\text{Umsatz}}-\underbrace{\int_0^{x_G}p_A(x)\,dx}_{\text{Angebotsbereitschaft}}=\int_0^{x_G}\left(p_G-p_A(x)\right)dx
 \end{align*}
 $$
 
-### Zusammenfassung
+Die rechte Form entsteht, weil $x_G\cdot p_G=\int_0^{x_G}p_G\,dx$ gilt. Beide Formen kommen in Abituraufgaben vor.
 
-Die Konsumentenrente beschreibt mit Hilfe der Differenz aus der Zahlungsbereitschaft und des Umsatz im Marktgleichgewicht, wie Konsumenten vom Marktgleichgewicht profitieren. Graphisch entspricht die Konsumentenrente der Fläche zwischen dem Graphen der Nachfragefunktion und dem Marktpreis von 0 bis zur Gleichgewichtsmenge.
+### Renten graphisch deuten und abschätzen
 
-Die Produzentenrente beschreibt mit Hilfe der Differenz aus dem Umsatz im Marktlgeichgewicht und der Angebotsbereitschaft, wie Produzenten vom Marktgleichgewicht profitieren. Graphisch entspricht die Produzentenrente der Fläche zwischen dem Marktpreis und dem Graphen der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge.
+Die Konsumentenrente ist die Fläche zwischen dem Graphen von $p_N$ und der waagerechten Geraden $p=p_G$ über $[0;x_G]$. Die Produzentenrente ist die Fläche zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$ über $[0;x_G]$.
 
 {% include graph.html
    funktionen='[
@@ -161,32 +162,68 @@ Die Produzentenrente beschreibt mit Hilfe der Differenz aus dem Umsatz im Marktl
     {"term":"45.75*exp(-0.044*x)-6.75", "von":0, "bis":19.5903, "basis":12.5715, "farbe":"rgba(31,119,180,0.3)", "name":"Konsumentenrente (KR)"},
     {"term":"0.016*x^2+0.022*x+6", "von":0, "bis":19.5903, "basis":12.5715, "farbe":"rgba(214,39,40,0.3)", "name":"Produzentenrente (PR)"}
    ]'
-    punkte='[
-     {"x":19.5903,"y":12.5715,"text":"Marktgleichgewicht: x_G, p_G"}
+   hilfslinien='[
+    {"x":19.5903,"y":12.5715}
    ]'
    titel="Konsumenten- und Produzentenrente"
    xachse="Menge x in ME"
-   yachse="Preis p in GE"
+   yachse="Preis p in GE/ME"
    xmin=0
-   xmax=40
+   xmax=30
    ymin=0
    ymax=42
+   xdtick=2
+   ydtick=2
 %}
+
+**Abschätzen durch Kästchenzählen.** Ein Kästchen ist $2$ ME breit und $2$ GE/ME hoch, es steht also für $2\cdot 2=4$ GE. Die blaue Fläche umfasst etwa $55$ Kästchen, also $KR\approx 55\cdot 4=220$ GE. Die rote Fläche umfasst etwa $21$ Kästchen, also $PR\approx 21\cdot 4=84$ GE. Schon ohne Rechnung sehen wir: Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.
+
+Typische Fehler:
+
+- Die Fläche bis zur $x$-Achse statt bis zur Geraden $p=p_G$ zählen. Das ergibt die Zahlungsbereitschaft bzw. die Angebotsbereitschaft, nicht die Rente.
+- Bis zur Sättigungsmenge statt bis $x_G$ zählen.
+- Ein Kästchen mit $1$ GE ansetzen, statt Breite mal Höhe zu rechnen.
 
 {% include check-anker.html nummer="3" %}
 
+### Renten berechnen und deuten
+
+Im Leitbeispiel berechnen wir die Integrale mit dem CAS und verwenden dabei die ungerundeten Werte $x_G$ und $p_G$:
+
+$$
+\begin{align*}
+KR&=\int_0^{x_G}p_N(x)\,dx-x_G\cdot p_G\approx 468{,}41-246{,}28=222{,}13\\
+PR&=x_G\cdot p_G-\int_0^{x_G}p_A(x)\,dx\approx 246{,}28-161{,}86=84{,}42
+\end{align*}
+$$
+
+Die Schätzungen aus dem Diagramm ($220$ GE und $84$ GE) werden bestätigt.
+
+**Deutung im Sachzusammenhang.** Die Konsumentenrente beträgt etwa $222{,}13$ GE, also etwa 222 130 €. Diesen Betrag sparen die Konsumenten, die bereit gewesen wären, mehr als den Gleichgewichtspreis von $12{,}57$ GE/ME zu zahlen. Die Produzentenrente beträgt etwa $84{,}42$ GE. Diesen Betrag nehmen die Produzenten mehr ein, die auch zu einem niedrigeren Preis als $12{,}57$ GE/ME angeboten hätten.
+
+**Terme erkennen.** In Aufgaben ohne Hilfsmittel wird oft ein Term vorgegeben, dessen Bedeutung zu benennen ist. Ein Term der Form „Integral über $p_N$ von $0$ bis $x_G$ minus $x_G\cdot p_G$“ ist die Konsumentenrente. „$x_G\cdot p_G$ minus Integral über $p_A$“ ist die Produzentenrente.
+
+Typische Fehler: den Umsatz nicht abziehen, bis zur Sättigungsmenge integrieren oder mit stark gerundeten Gleichgewichtswerten rechnen.
+
+{% include check-anker.html nummer="4" %}
 
 ## Abschöpfung der Konsumentenrente
 
-Wird auf einem Markt ein Produkt nur zum Gleichgewichtspreis angeboten, ist die Konsumentenrente die Differenz zwischen der Zahlungsbereitschaft der Konsumenten und den von ihnen insgesamt gezahlten Gleichgewichtspreisen.
+Die Konsumentenrente ist Geld, das die Konsumenten zu zahlen bereit wären, aber nicht zahlen müssen. Ein Anbieter kann versuchen, einen Teil davon zu erhalten. Er bildet dazu einen **Teilmarkt** mit höherem Preis, zum Beispiel durch einen früheren Verkaufsstart oder eine Premium-Ausführung. Man spricht von **Preisdifferenzierung**.
 
-Die Abschöpfung der Konsumentenrente bezeichnet eine Preissetzungsstrategie, bei der ein Anbieter versucht, möglichst viel von der Zahlungsbereitschaft der Nachfrager abzuschöpfen. Beispiele sind:
+Im Leitbeispiel werden die Helme zunächst auf einem Teilmarkt für $p_2=20$ GE/ME angeboten. Dort kaufen alle, deren Zahlungsbereitschaft mindestens $20$ GE/ME beträgt:
 
-- individuelle Preise je nach Zahlungsbereitschaft (erste Preisdifferenzierung),
-- unterschiedliche Preise für verschiedene Kundengruppen (zweite oder dritte Preisdifferenzierung),
-- zeitlich gestaffelte Preise (z. B. bei technischen Geräten oder Software).
+$$
+p_N(x_2)=20 \Rightarrow x_2\approx 12{,}20 \text{ ME}.
+$$
 
-Bei einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt wird. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis. Auf dem zweiten Teilmarkt wird ein neuer Preis $p_2$ festgelegt. Die Konsumentenrente ergibt sich dann aus der Summe der Konsumentenrente des ersten Teilmarkts KR1 und der Konsumentenrente des zweiten Teilmarkts KR2. Der Sachverhalt ist in folgendem Diagramm dargestellt:
+Die übrigen Konsumenten bis zur Gleichgewichtsmenge kaufen danach zum Gleichgewichtspreis $p_G$. Die ersten $x_2$ ME werden also um $p_2-p_G$ teurer verkauft. Der **abgeschöpfte Betrag** ist das grau schraffierte Rechteck:
+
+$$
+x_2\cdot(p_2-p_G)\approx 12{,}1968\cdot(20-12{,}5715)\approx 90{,}60 \text{ GE}.
+$$
+
+Dieser Betrag geht von den Konsumenten an die Produzenten. Den Konsumenten bleibt nur noch die Konsumentenrente $KR_1+KR_2\approx 222{,}13-90{,}60=131{,}53$ GE.
 
 {% include graph.html
    funktionen='[
@@ -194,37 +231,54 @@ Bei einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt wir
     {"name":"p<sub>A</sub>(x)", "term":"0.016*x^2+0.022*x+6", "beschreibung":"Angebotsfunktion", "color":"#d62728"}
    ]'
    flaechen='[
-    {"term":"45.75*exp(-0.044*x)-6.75", "von":0, "bis":12.1968, "basis":20, "farbe":"rgba(59,130,246,0.25)", "name":"KR2"},
-    {"term":"45.75*exp(-0.044*x)-6.75", "von":12.1968, "bis":19.5903, "basis":12.5715, "farbe":"rgba(16,185,129,0.25)", "name":"KR1"},
+    {"term":"45.75*exp(-0.044*x)-6.75", "von":0, "bis":12.1968, "basis":20, "farbe":"rgba(59,130,246,0.25)", "name":"KR<sub>2</sub>"},
+    {"term":"45.75*exp(-0.044*x)-6.75", "von":12.1968, "bis":19.5903, "basis":12.5715, "farbe":"rgba(16,185,129,0.25)", "name":"KR<sub>1</sub>"},
     {"term":"20", "von":0, "bis":12.1968, "basis":12.5715, "farbe":"rgba(120,120,120,0.6)", "schraffur":true, "name":"abgeschöpfter Betrag"}
    ]'
    hilfslinien='[
-    {"x":12.1968,"y":20,"xLabel":"x<sub>2</sub>","yLabel":"p<sub>2</sub>"},
+    {"x":12.1968,"y":20,"xLabel":"x<sub>2</sub>"},
     {"x":19.5903,"y":12.5715,"xLabel":"x<sub>G</sub>","yLabel":"p<sub>G</sub>"}
    ]'
    titel="Preisdifferenzierung: Abschöpfung der Konsumentenrente"
    xachse="Menge x in ME"
-   yachse="Preis p in GE"
+   yachse="Preis p in GE/ME"
    xmin=0
-   xmax=40
+   xmax=30
    ymin=0
    ymax=42
 %}
 
-{% include check-anker.html nummer="4" %}
+### Maximale Abschöpfung
 
-Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Dies ist genau dann der Fall, falls der Inhalt der grau schraffierten Fläche zwischen KR1 und KR2 mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
+Bei welchem Teilmarktpreis wird möglichst viel abgeschöpft? Ein hoher Preis $p_2$ ergibt ein hohes, aber schmales Rechteck, weil nur wenige so viel zahlen. Ein niedriger Preis ergibt ein breites, aber flaches Rechteck. Im Widget kannst du $x_2$ verschieben und den abgeschöpften Betrag beobachten:
 
-Der Flächeninhalt des grau schraffierten Bereichs in Abhängigkeit von $x_2$ lautet:
+{% include widgets/widget-abschoepfung.html
+   id="abschoepfung"
+   term_n="45.75*exp(-0.044*x)-6.75"
+   term_a="0.016*x^2+0.022*x+6"
+   xmax=40
+   ymax=42
+   start_x2=12.1968
+   xachse="Menge x in ME"
+   yachse="Preis p in GE/ME"
+%}
+
+Da $p_2=p_N(x_2)$ gilt, hängt der abgeschöpfte Betrag nur von $x_2$ ab. Wir erhalten die **Zielfunktion**
 
 $$
-\begin{align*}
-A(x_2)&=x_2\cdot (p_2-p_G)\\
-      &=x_2\cdot (p_N(x_2)-p_G)
-\end{align*}
+A(x_2)=x_2\cdot\left(p_N(x_2)-p_G\right).
 $$
 
-Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des grau schraffierten Bereichs maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
+$A(x_2)$ ist die Rechteckfläche: Breite $x_2$ mal Höhe $p_N(x_2)-p_G$. Für $x_2=0$ und für $x_2=x_G$ ist $A=0$, dazwischen liegt das Maximum. Im Leitbeispiel ist
 
+$$
+A(x_2)=x_2\cdot\left(45{,}75e^{-0{,}044x_2}-6{,}75-12{,}57\right).
+$$
+
+Mit dem CAS lösen wir die notwendige Bedingung $A'(x_2)=0$ und erhalten $x_2\approx 8{,}67$. Wegen $A''(8{,}67)\approx -2{,}22<0$ liegt ein Maximum vor. Der zugehörige Teilmarktpreis ist $p_2=p_N(8{,}67)\approx 24{,}49$ GE/ME, und es werden $A(8{,}67)\approx 103{,}34$ GE abgeschöpft.
+
+**Deutung:** Bietet der Anbieter auf einem Teilmarkt $8{,}67$ ME zum Preis von $24{,}49$ GE/ME an, so schöpft er mit diesem einen Teilmarkt die Konsumentenrente maximal ab, nämlich um etwa $103{,}34$ GE. Weitere Teilmärkte würden noch mehr abschöpfen. Im Abitur heißt die Zielfunktion oft anders, zum Beispiel $h(x)=x\cdot(p_N(x)-p_G)$, und gesucht ist der zugehörige Punkt $P(x_2\mid p_2)$ auf dem Graphen von $p_N$.
+
+Typische Fehler: $p_A$ statt $p_N$ einsetzen, $p_G$ nicht abziehen, oder $x_2$ als Ergebnis angeben, obwohl nach dem Preis $p_2$ gefragt ist.
 
 {% include check-anker.html nummer="5" %}

@@ -1,0 +1,2682 @@
+[
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{9}p_N(x)\\,dx-9\\cdot 16$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$9\\cdot 16-\\int_0^{9}p_N(x)\\,dx$~$\\int_0^{9}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{9}p_N(x)\\,dx-9\\cdot 16$~$\\int_0^{9}p_N(x)\\,dx$}",
+      "{1:MC:~=Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=111,78:11,18}",
+      "{1:NUMERICAL:=52,65:5,27}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "1.3*x+4.3",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.18*x^2-0.6*x+35.98",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              9
+            ],
+            "y": [
+              16
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              15
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              40
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 9,
+              "x1": 9,
+              "y0": 0,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 9,
+              "y0": 16,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "1.3*x+4.3",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.18*x^2-0.6*x+35.98",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $70\\cdot 16-\\int_0^{70}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$70\\cdot 16-\\int_0^{70}p_N(x)\\,dx$~$\\int_0^{70}p_N(x)\\,dx$~=$\\int_0^{70}p_N(x)\\,dx-70\\cdot 16$~$\\int_0^{70}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~Konsumentenrente~=Produzentenrente~Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=556,9667:55,7}",
+      "{1:NUMERICAL:=490:49}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.2*x+2",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.0019*x^2-0.05*x+28.81",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              70
+            ],
+            "y": [
+              16
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              120
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              34
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 70,
+              "x1": 70,
+              "y0": 0,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 70,
+              "y0": 16,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.2*x+2",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.0019*x^2-0.05*x+28.81",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{40}p_N(x)\\,dx-40\\cdot 20$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$40\\cdot 20-\\int_0^{40}p_N(x)\\,dx$~=$\\int_0^{40}p_N(x)\\,dx-40\\cdot 20$~$\\int_0^{40}p_N(x)\\,dx$~$\\int_0^{40}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~=Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=464:46,4}",
+      "{1:NUMERICAL:=213,3333:21,33}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.005*x^2+12",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.009*x^2-0.1*x+38.4",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              40
+            ],
+            "y": [
+              20
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              65
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              50
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 40,
+              "x1": 40,
+              "y0": 0,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 40,
+              "y0": 20,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.005*x^2+12",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.009*x^2-0.1*x+38.4",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $55\\cdot 45$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Produzentenrente ist größer als die Konsumentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{55}p_N(x)\\,dx$~$55\\cdot 45-\\int_0^{55}p_N(x)\\,dx$~=$\\int_0^{55}p_N(x)\\,dx-55\\cdot 45$~$\\int_0^{55}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~=Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=756,25:75,62}",
+      "{1:NUMERICAL:=344,0752:34,41}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "-25*exp(-0.016*x)+55.369573",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.5*x+72.5",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              55
+            ],
+            "y": [
+              45
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              90
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              85
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 55,
+              "x1": 55,
+              "y0": 0,
+              "y1": 45,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 55,
+              "y0": 45,
+              "y1": 45,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "-25*exp(-0.016*x)+55.369573",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.5*x+72.5",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{80}p_N(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~=$\\int_0^{80}p_N(x)\\,dx-80\\cdot 35$~$80\\cdot 35-\\int_0^{80}p_N(x)\\,dx$~$\\int_0^{80}\\left(p_N(x)-p_A(x)\\right)dx$~$\\int_0^{80}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=2037,3333:203,73}",
+      "{1:NUMERICAL:=666,6667:66,67}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.00125*x^2+0.075*x+21",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.0055*x^2-0.05*x+74.2",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              80
+            ],
+            "y": [
+              35
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              130
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              85
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 80,
+              "x1": 80,
+              "y0": 0,
+              "y1": 35,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 80,
+              "y0": 35,
+              "y1": 35,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.00125*x^2+0.075*x+21",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.0055*x^2-0.05*x+74.2",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $35\\cdot 80$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Produzentenrente ist mehr als doppelt so groß wie die Konsumentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~=$\\int_0^{35}p_N(x)\\,dx-35\\cdot 80$~$\\int_0^{35}p_N(x)\\,dx$~$35\\cdot 80-\\int_0^{35}p_N(x)\\,dx$~$\\int_0^{35}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~=Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=1445,0945:144,51}",
+      "{1:NUMERICAL:=918,75:91,88}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "1.5*x+27.5",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "150*exp(-0.032*x)+31.058031",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              35
+            ],
+            "y": [
+              80
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              60
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              200
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 35,
+              "x1": 35,
+              "y0": 0,
+              "y1": 80,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 35,
+              "y0": 80,
+              "y1": 80,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "1.5*x+27.5",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "150*exp(-0.032*x)+31.058031",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{35}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{35}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{35}p_N(x)\\,dx-35\\cdot 20$~$35\\cdot 20-\\int_0^{35}p_N(x)\\,dx$~$\\int_0^{35}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=232,75:23,28}",
+      "{1:NUMERICAL:=142,1:14,21}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0024*x^2+0.12*x+12.86",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.38*x+33.3",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              35
+            ],
+            "y": [
+              20
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              60
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              38
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 35,
+              "x1": 35,
+              "y0": 0,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 35,
+              "y0": 20,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0024*x^2+0.12*x+12.86",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.38*x+33.3",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $8\\cdot 6-\\int_0^{8}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Produzentenrente ist größer als die Konsumentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{8}\\left(p_N(x)-p_A(x)\\right)dx$~$8\\cdot 6-\\int_0^{8}p_N(x)\\,dx$~=$\\int_0^{8}p_N(x)\\,dx-8\\cdot 6$~$\\int_0^{8}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~=Produzentenrente~Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=36,8:3,68}",
+      "{1:NUMERICAL:=8,4267:0,84}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.02*x^2+0.05*x+4.32",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-1.15*x+15.2",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              8
+            ],
+            "y": [
+              6
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              13
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              17
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8,
+              "x1": 8,
+              "y0": 0,
+              "y1": 6,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 8,
+              "y0": 6,
+              "y1": 6,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.02*x^2+0.05*x+4.32",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-1.15*x+15.2",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{8}p_N(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{8}\\left(p_N(x)-p_A(x)\\right)dx$~$\\int_0^{8}p_N(x)\\,dx$~$8\\cdot 90-\\int_0^{8}p_N(x)\\,dx$~=$\\int_0^{8}p_N(x)\\,dx-8\\cdot 90$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=420,2667:42,03}",
+      "{1:NUMERICAL:=200,5333:20,05}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.4*x^2+2*x+48.4",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.95*x^2-3*x+174.8",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              8
+            ],
+            "y": [
+              90
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              13
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              200
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8,
+              "x1": 8,
+              "y0": 0,
+              "y1": 90,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 8,
+              "y0": 90,
+              "y1": 90,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.4*x^2+2*x+48.4",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.95*x^2-3*x+174.8",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{16}p_N(x)\\,dx-16\\cdot 45$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Produzentenrente ist mehr als doppelt so groß wie die Konsumentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{16}p_N(x)\\,dx$~$\\int_0^{16}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{16}p_N(x)\\,dx-16\\cdot 45$~$16\\cdot 45-\\int_0^{16}p_N(x)\\,dx$}",
+      "{1:MC:~=Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=450,1333:45,01}",
+      "{1:NUMERICAL:=160:16}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "1.25*x+25",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.10625*x^2-1.25*x+92.2",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              16
+            ],
+            "y": [
+              45
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              26
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              105
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 16,
+              "x1": 16,
+              "y0": 0,
+              "y1": 45,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 16,
+              "y0": 45,
+              "y1": 45,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "1.25*x+25",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.10625*x^2-1.25*x+92.2",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $70\\cdot 10-\\int_0^{70}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{70}p_N(x)\\,dx$~=$\\int_0^{70}p_N(x)\\,dx-70\\cdot 10$~$70\\cdot 10-\\int_0^{70}p_N(x)\\,dx$~$\\int_0^{70}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~Konsumentenrente~=Produzentenrente~Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=545,3545:54,54}",
+      "{1:NUMERICAL:=189,4667:18,95}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0004*x^2+0.04*x+5.24",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "27*exp(-0.019*x)+2.859114",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              70
+            ],
+            "y": [
+              10
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              120
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              34
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 70,
+              "x1": 70,
+              "y0": 0,
+              "y1": 10,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 70,
+              "y0": 10,
+              "y1": 10,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0004*x^2+0.04*x+5.24",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "27*exp(-0.019*x)+2.859114",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{60}p_N(x)\\,dx-60\\cdot 50$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{60}p_N(x)\\,dx$~=$\\int_0^{60}p_N(x)\\,dx-60\\cdot 50$~$60\\cdot 50-\\int_0^{60}p_N(x)\\,dx$~$\\int_0^{60}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~=Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=621:62,1}",
+      "{1:NUMERICAL:=1152:115,2}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0055*x^2+0.2*x+18.2",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.004*x^2-0.025*x+65.9",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              60
+            ],
+            "y": [
+              50
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              100
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              75
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 60,
+              "x1": 60,
+              "y0": 0,
+              "y1": 50,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 60,
+              "y0": 50,
+              "y1": 50,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0055*x^2+0.2*x+18.2",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.004*x^2-0.025*x+65.9",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $9\\cdot 16$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{9}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{9}p_N(x)\\,dx-9\\cdot 16$~$\\int_0^{9}p_N(x)\\,dx$~$9\\cdot 16-\\int_0^{9}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~=Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=117,45:11,75}",
+      "{1:NUMERICAL:=62,37:6,24}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.12*x^2+0.1*x+5.38",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.2*x^2-0.5*x+36.7",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              9
+            ],
+            "y": [
+              16
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              15
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              42
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 9,
+              "x1": 9,
+              "y0": 0,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 9,
+              "y0": 16,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.12*x^2+0.1*x+5.38",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.2*x^2-0.5*x+36.7",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{40}p_N(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Produzentenrente ist mehr als doppelt so groß wie die Konsumentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{40}p_N(x)\\,dx$~=$\\int_0^{40}p_N(x)\\,dx-40\\cdot 16$~$\\int_0^{40}\\left(p_N(x)-p_A(x)\\right)dx$~$40\\cdot 16-\\int_0^{40}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=468,2667:46,83}",
+      "{1:NUMERICAL:=129,9291:12,99}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "-11*exp(-0.038*x)+18.405831",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.0076*x^2-0.18*x+35.36",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              40
+            ],
+            "y": [
+              16
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              65
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              40
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 40,
+              "x1": 40,
+              "y0": 0,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 40,
+              "y0": 16,
+              "y1": 16,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "-11*exp(-0.038*x)+18.405831",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.0076*x^2-0.18*x+35.36",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $16\\cdot 20$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$16\\cdot 20-\\int_0^{16}p_N(x)\\,dx$~=$\\int_0^{16}p_N(x)\\,dx-16\\cdot 20$~$\\int_0^{16}p_N(x)\\,dx$~$\\int_0^{16}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~=Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=115,2:11,52}",
+      "{1:NUMERICAL:=64,0605:6,41}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "-16*exp(-0.055*x)+26.636527",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.9*x+34.4",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              16
+            ],
+            "y": [
+              20
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              26
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              38
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 16,
+              "x1": 16,
+              "y0": 0,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 16,
+              "y0": 20,
+              "y1": 20,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "-16*exp(-0.055*x)+26.636527",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.9*x+34.4",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{25}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$25\\cdot 6-\\int_0^{25}p_N(x)\\,dx$~$\\int_0^{25}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{25}p_N(x)\\,dx-25\\cdot 6$~$\\int_0^{25}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Angebotsbereitschaft der Produzenten}",
+      "{1:NUMERICAL:=48,9583:4,9}",
+      "{1:NUMERICAL:=64,5833:6,46}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0038*x^2+0.08*x+1.625",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.0032*x^2-0.05*x+9.25",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              25
+            ],
+            "y": [
+              6
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              40
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              12
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 25,
+              "x1": 25,
+              "y0": 0,
+              "y1": 6,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 25,
+              "y0": 6,
+              "y1": 6,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0038*x^2+0.08*x+1.625",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.0032*x^2-0.05*x+9.25",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $6\\cdot 9-\\int_0^{6}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{6}\\left(p_N(x)-p_A(x)\\right)dx$~$6\\cdot 9-\\int_0^{6}p_N(x)\\,dx$~=$\\int_0^{6}p_N(x)\\,dx-6\\cdot 9$~$\\int_0^{6}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~=Produzentenrente~Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=22,0342:2,2}",
+      "{1:NUMERICAL:=16,2378:1,62}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "-9.5*exp(-0.21*x)+11.694713",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "15*exp(-0.14*x)+2.524342",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              6
+            ],
+            "y": [
+              9
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              10
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              20
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 6,
+              "x1": 6,
+              "y0": 0,
+              "y1": 9,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 6,
+              "y0": 9,
+              "y1": 9,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "-9.5*exp(-0.21*x)+11.694713",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "15*exp(-0.14*x)+2.524342",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{70}p_N(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$70\\cdot 8-\\int_0^{70}p_N(x)\\,dx$~$\\int_0^{70}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{70}p_N(x)\\,dx-70\\cdot 8$~$\\int_0^{70}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~=Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=171,5:17,15}",
+      "{1:NUMERICAL:=224,5833:22,46}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0005*x^2+0.045*x+2.4",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.00075*x^2+11.675",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              70
+            ],
+            "y": [
+              8
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              120
+            ],
+            "dtick": 10,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              14
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 70,
+              "x1": 70,
+              "y0": 0,
+              "y1": 8,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 70,
+              "y0": 8,
+              "y1": 8,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0005*x^2+0.045*x+2.4",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.00075*x^2+11.675",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $\\int_0^{18}p_N(x)\\,dx-18\\cdot 35$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist größer als die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$18\\cdot 35-\\int_0^{18}p_N(x)\\,dx$~=$\\int_0^{18}p_N(x)\\,dx-18\\cdot 35$~$\\int_0^{18}p_N(x)\\,dx$~$\\int_0^{18}\\left(p_N(x)-p_A(x)\\right)dx$}",
+      "{1:MC:~=Konsumentenrente~Produzentenrente~Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=384,75:38,48}",
+      "{1:NUMERICAL:=230,85:23,09}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.04375*x^2+0.375*x+14.075",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.0625*x^2-0.875*x+71",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              18
+            ],
+            "y": [
+              35
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              30
+            ],
+            "dtick": 2,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              85
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 18,
+              "x1": 18,
+              "y0": 0,
+              "y1": 35,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 18,
+              "y0": 35,
+              "y1": 35,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.04375*x^2+0.375*x+14.075",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.0625*x^2-0.875*x+71",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebotsfunktion $ p_A $ und der Nachfragefunktion $ p_N $ ($ x $ in ME, $ p $ in GE/ME). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der die Konsumentenrente angibt.",
+      "die ökonomische Bedeutung von $40\\cdot 10-\\int_0^{40}p_A(x)\\,dx$.",
+      "einen Schätzwert für die Konsumentenrente (in GE).",
+      "einen Schätzwert für die Produzentenrente (in GE).",
+      "ob die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~$\\int_0^{40}\\left(p_N(x)-p_A(x)\\right)dx$~=$\\int_0^{40}p_N(x)\\,dx-40\\cdot 10$~$\\int_0^{40}p_N(x)\\,dx$~$40\\cdot 10-\\int_0^{40}p_N(x)\\,dx$}",
+      "{1:MC:~Konsumentenrente~=Produzentenrente~Umsatz im Marktgleichgewicht~Zahlungsbereitschaft der Konsumenten}",
+      "{1:NUMERICAL:=136:13,6}",
+      "{1:NUMERICAL:=225,0667:22,51}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Angebots- und Nachfragefunktion",
+        "curves": [
+          {
+            "term": "0.0034*x^2+0.1*x+0.56",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Angebot p<sub>A</sub>(x)",
+            "description": "Angebotsfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "-0.17*x+16.8",
+            "variable": "x",
+            "mode": "lines",
+            "name": "Nachfrage p<sub>N</sub>(x)",
+            "description": "Nachfragefunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "extraTraces": [
+          {
+            "x": [
+              40
+            ],
+            "y": [
+              10
+            ],
+            "mode": "markers",
+            "name": "Marktgleichgewicht",
+            "marker": {
+              "color": "#f59e0b",
+              "size": 10,
+              "line": {
+                "color": "#111827",
+                "width": 1
+              }
+            }
+          }
+        ],
+        "points": 401,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0,
+              65
+            ],
+            "dtick": 5,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME",
+            "range": [
+              0,
+              19
+            ],
+            "dtick": 1,
+            "zeroline": true,
+            "showline": true,
+            "showgrid": true,
+            "automargin": true
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 40,
+              "x1": 40,
+              "y0": 0,
+              "y1": 10,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            },
+            {
+              "type": "line",
+              "x0": 0,
+              "x1": 40,
+              "y0": 10,
+              "y1": 10,
+              "line": {
+                "color": "#6b7280",
+                "width": 1.5,
+                "dash": "dash"
+              }
+            }
+          ]
+        },
+        "funktionen": [
+          {
+            "name": "p_A(x)",
+            "term": "0.0034*x^2+0.1*x+0.56",
+            "beschreibung": "Angebotsfunktion"
+          },
+          {
+            "name": "p_N(x)",
+            "term": "-0.17*x+16.8",
+            "beschreibung": "Nachfragefunktion"
+          }
+        ]
+      }
+    }
+  }
+]

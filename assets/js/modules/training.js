@@ -14,7 +14,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260910-field-scores";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261025-markt-vertiefung";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -1044,7 +1044,9 @@ function buildFunctionLinesFromSpec(spec) {
   if (specType === "expression-curves") {
     const curves = Array.isArray(spec.curves) ? spec.curves : [];
     curves.forEach((curve, index) => {
-      const name = String(curve?.name || "").trim() || `f_${index + 1}(t)`;
+      const rawName = String(curve?.name || "").trim();
+      // Plotly-HTML (z. B. "p<sub>A</sub>(x)") für den KI-Kontext in Textform bringen.
+      const name = rawName.replace(/<sub>(.*?)<\/sub>/g, "_$1").replace(/<[^>]+>/g, "") || `f_${index + 1}(t)`;
       const expression = String(curve?.term || "").trim();
       if (!expression) return;
       const description = String(curve?.description || "").trim() || describeFunctionName(name);

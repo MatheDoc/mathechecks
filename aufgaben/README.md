@@ -221,8 +221,9 @@ Eigene kompakte Spec-Typen sind gegenüber rohen `"plotly"`-Trace-Arrays bevorzu
 |---|---|
 | `cost-curves` | Grenzkosten-, Stückkosten-, variable Stückkostenfunktion (K3-Polynom) |
 | `market-curves` | Einfaches lineares Marktdiagramm |
-| `market-equilibrium` | Marktgleichgewicht mit variablen Funktionstypen (linear/quadratisch/exp); `p_N` endet bei `satX` |
-| `market-abschoepfung` | Preisdifferenzierung mit KR1/KR2-Flächen |
+| `market-equilibrium` | Marktgleichgewicht mit variablen Funktionstypen (linear/quadratisch/exp); `p_N` endet bei `satX`. Achsentitel/`dtick` aus `spec.layout` werden übernommen (Achsen tief gemischt) |
+| `market-abschoepfung` | Abschöpfung durch einen Teilmarkt mit festem Preis: `params.price` (Teilmarktpreis P), `params.xP` (Menge zu P), `eqX`, `eqP`, `maxX`, `maxY`; zeigt KR<sub>1</sub>, KR<sub>2</sub> und den grau schraffierten abgeschöpften Betrag (Rechteck zwischen p_G und P über [0; x_P]). Achsen nur mit x_G, p_G und dem Zahlenwert von P beschriftet (optimales x_2/p_2 wird nicht verraten) |
+| `expression-curves` | Beliebige Terme (`curves[].term`, Variable z. B. `x`/`t`, `^` und `exp(...)` erlaubt, keine Exponentialschreibweise wie `1e-5`), plus `extraTraces` (z. B. Punkte) und freies `layout` (z. B. `dtick`-Gitter, gestrichelte `shapes`). Genutzt u. a. für `renten-graphisch` (Marktgleichgewicht auf Gitterpunkt, Kästchenwert = `dtick_x·dtick_y`) und Produktlebenszyklus |
 | `economic-curves` | Erlös-, Kosten-, Gewinnfunktion |
 | `plotly` | Fallback: explizite Trace-Arrays mit x/y-Werten |
 | `vft` | Vier-Felder-Tafel als DOM-Tabelle (kein Plotly) |
@@ -246,7 +247,7 @@ Alle Parameterwerte sind auf sinnvolle Dezimalstellen gerundet (max. 3–4 NKS).
 
 - Format: `kebab-case`
 - Nur inhaltliche Bezeichnung, kein Gebiets- oder Lernbereichspräfix
-- Beispiele: `kennzahlen-graphisch-allgemein`, `kennzahlen-rechnerisch-lqe`, `renten-bestimmung-prkr`, `abschoepfung-kr-bestimmung-preis`
+- Beispiele: `kennzahlen-graphisch-allgemein`, `kennzahlen-rechnerisch-lqe`, `renten-graphisch`, `renten-bestimmung-prkr`, `abschoepfung-kr`
 
 Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kennzahlen-graphisch-allgemein.json`) sowie den Ablageordner unter `aufgaben/exports/json/<gebiet>/<lernbereich>/`.
 

@@ -1,0 +1,37 @@
+{%- assign ab_start = include.start_x2 | default: '' -%}
+<div class="skript-widget ab-widget"{% if include.id %} id="{{ include.id | escape }}"{% endif %}
+    data-term-n="{{ include.term_n | default: '45.75*exp(-0.044*x)-6.75' | escape }}"
+    data-term-a="{{ include.term_a | default: '0.016*x^2+0.022*x+6' | escape }}"
+    data-xmax="{{ include.xmax | default: 40 }}" data-ymax="{{ include.ymax | default: 42 }}"
+    data-start-x2="{{ ab_start }}"
+    data-einheit-x="{{ include.einheit_x | default: 'ME' | escape }}"
+    data-einheit-p="{{ include.einheit_p | default: 'GE/ME' | escape }}"
+    data-einheit-a="{{ include.einheit_a | default: 'GE' | escape }}"
+    data-xachse="{{ include.xachse | default: 'Menge x in ME' | escape }}"
+    data-yachse="{{ include.yachse | default: 'Preis p in GE/ME' | escape }}"
+    data-titel="{{ include.titel | default: 'Menge-Preis-Diagramm' | escape }}"
+    data-titel-ziel="{{ include.titel_ziel | default: 'Abgeschöpfter Betrag in Abhängigkeit von x₂' | escape }}"
+    data-xachse-ziel="{{ include.xachse_ziel | default: '' | escape }}"
+    data-yachse-ziel="{{ include.yachse_ziel | default: '' | escape }}">
+    <div class="widget-controls">
+        <div class="widget-row">
+            <label>Teilmarktmenge $ x_2 $</label>
+            <input type="range" class="ab-x2Slider" min="1" max="200" step="1" value="100"
+                aria-label="Teilmarktmenge x2">
+        </div>
+        <div class="widget-row ab-werte" aria-live="polite">
+            <span>x<sub>2</sub> = <strong class="ab-x2Wert"></strong></span>
+            <span>p<sub>2</sub> = <strong class="ab-p2Wert"></strong></span>
+            <span>A = <strong class="ab-aWert"></strong></span>
+        </div>
+        <div class="widget-row ab-toggles">
+            <label><input type="checkbox" class="ab-maximum"> Maximum zeigen</label>
+        </div>
+        <div class="widget-info ab-info"></div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="ab-plot diagramm"></div>
+        <div class="ab-plotZiel diagramm"></div>
+    </div>
+</div>
