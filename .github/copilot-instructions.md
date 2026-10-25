@@ -19,7 +19,8 @@ Priorität: fachliche Korrektheit vor Stil.
 
 - Fachlich sind Inhalte in **Lernbereiche** gegliedert.
 - **Checks** unterteilen Lernbereiche weiter in einzelne Einheiten.
-- Die Zuordnung von Checks zu Lernbereichen und Modulen erfolgt über `checks.json`.
+- Die Zuordnung von Checks zu Lernbereichen und Modulen erfolgt über `_data/checks.json`.
+- Ziel jedes Lernbereichs: Vorbereitung auf die Abituraufgaben seines Themas (Musterprüfungen in `muster-pruefungen/abitur/pruefungen-md/`, Index `_themen.json`).
 
 Gebiete der Plattform:
 
@@ -45,13 +46,14 @@ Jeder Lernbereich enthält mindestens folgende Dateien:
 
 ## Check-Struktur
 
-Jeder Check ist über `checks.json` verknüpft mit:
+Jeder Check ist über `_data/checks.json` verknüpft mit:
 
 - genau einem Kompetenzlisteneintrag
-- einer Aufgabensammlung im Training
-- einem Recall-Bezug
-- einem Feynman-Eintrag
-- einem Bezug im Skript
+- einer Aufgabensammlung (Training, Flashcards)
+- Tipps (Recall, Feynman, Skript)
+- einem Beispiel (`beispiele/`)
+- einem Test (`test/`)
+- einem Abschnitt mit Check-Anker im Skript
 
 
 ## Aufgabensammlungen
@@ -65,8 +67,11 @@ Sie werden vom Python-Aufgabengenerator erzeugt.
 
 ## Weitere Dokumentation
 
-Datenmodell & Inhalts-Architektur  
+Datenmodell (wo liegt was)  
 → `.github/datenmodell.md`
+
+Inhaltsstandards (Checks, Skript, Beispiele, Tipps, Abiturbezug)  
+→ `.github/inhalte.md`
 
 Lernbereiche  
 → `lernbereiche/README.md`
@@ -76,6 +81,9 @@ Aufgabengenerator
 
 Skript-Widgets  
 → `.github/widgets.md`
+
+Test-Fragen  
+→ `test/README.md`
 
 Warm-Up (geführter Einstieg pro Check, nicht verlinkt)  
 → `_data/warmup/README.md`

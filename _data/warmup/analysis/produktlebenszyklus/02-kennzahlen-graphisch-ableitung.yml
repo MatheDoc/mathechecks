@@ -1,0 +1,203 @@
+# Warm-Up zu Check 02 „Ableitungsgraph interpretieren“ (Produktlebenszyklus)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__produktlebenszyklus__02
+abschluss: '<p>Im Training siehst du nur den Graphen von $a''$ und liest Zeitpunkte, Änderungsraten und „zunimmt oder abnimmt“ ab. Denk an die Fallen: Die <strong>Höhe</strong> des Absatzes kannst du an $a''$ nicht ablesen, nur, wie schnell er sich ändert. Liegt der höchste (bzw. tiefste) Punkt von $a''$ am Rand bei $t=0$, ist der stärkste Anstieg (bzw. Rückgang) bei der Markteinführung. Statt $a''$ kann auch $u''$ für den Umsatz (GE/Jahr) gegeben sein.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Wie schnell ändert sich der Absatz?'
+    text: '<p>Die Ableitung $a''(t)$ ist die <strong>Änderungsrate</strong> des monatlichen Absatzes, in ME/Monat pro Monat. Sie sagt, <em>wie schnell</em> sich der Absatz ändert, nicht <em>wie hoch</em> er ist.</p><p>Damit du den Zusammenhang siehst, ist hier ausnahmsweise auch $a$ eingezeichnet.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(x^2+x-4)*exp(-0.25*x)+4', name: 'a(t)', xmin: 0 }
+        - { term: '(-0.25*x^2+1.75*x+2)*exp(-0.25*x)', name: 'a′(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 30
+      yMin: -3
+      yMax: 15
+      xAchse: 't in Monaten'
+      yAchse: 'a(t) bzw. a′(t)'
+      flaechen:
+        - { id: plus, term: '(-0.25*x^2+1.75*x+2)*exp(-0.25*x)', von: 0, bis: 8, farbe: 'rgba(44,160,44,0.35)' }
+        - { id: minus, term: '(-0.25*x^2+1.75*x+2)*exp(-0.25*x)', von: 8, bis: 30, farbe: 'rgba(214,39,40,0.3)' }
+      punkte:
+        - { id: n8, x: 8, y: 0, label: 'Nullstelle von a′', ax: 45, ay: -45 }
+        - { id: hp, x: 8, y: 13.2, label: 'Hochpunkt von a', ax: 50, ay: -15 }
+        - { id: hpd, x: 1.48, y: 2.79, label: 'Hochpunkt von a′', ax: 60, ay: -30 }
+        - { id: w1, x: 1.48, y: 3.77 }
+        - { id: tpd, x: 13.52, y: -0.68, label: 'Tiefpunkt von a′', ax: 50, ay: 22 }
+        - { id: w2, x: 13.52, y: 10.55 }
+    schritte:
+      - typ: aufdecken
+        frage: 'Wo ist $a''$ positiv, wo negativ?'
+        knopf: 'Vorzeichen zeigen'
+        text: '<p><strong>Grün:</strong> $a''(t)>0$, der Absatz <strong>nimmt zu</strong>. <strong>Rot:</strong> $a''(t)&lt;0$, der Absatz <strong>nimmt ab</strong>.</p>'
+        zeige: { flaechen: [plus, minus] }
+      - typ: auswahl
+        frage: 'Bei $t=8$ wechselt $a''$ von $+$ nach $-$. Schau dir den Graphen von $a$ an dieser Stelle an. Was siehst du?'
+        optionen:
+          - 'Einen Hochpunkt.'
+          - 'Einen Tiefpunkt.'
+          - 'Eine Nullstelle.'
+        korrekt: 0
+        hinweis: 'Folge dem Graphen von $a$: Bis $t=8$ steigt er, danach fällt er.'
+        danach: '<p>Genau: Die Nullstelle von $a''$ mit Vorzeichenwechsel von $+$ nach $-$ ist der <strong>Zeitpunkt des höchsten Absatzes</strong>. Die Höhe ($13{,}2$ ME/Monat) siehst du aber nur an $a$, nicht an $a''$.</p>'
+        zeige: { punkte: [n8, hp] }
+      - typ: aufdecken
+        frage: 'Und wann steigt bzw. fällt der Absatz am stärksten?'
+        knopf: 'Extrempunkte von a′ zeigen'
+        text: '<p>Dort, wo $a''$ am größten bzw. am kleinsten ist: am <strong>Hochpunkt</strong> von $a''$ ($t\approx 1{,}5$) und am <strong>Tiefpunkt</strong> von $a''$ ($t\approx 13{,}5$). Das sind genau die Wendestellen von $a$.</p><p><strong>Merke:</strong></p><ul><li>$a''(t)>0$: Absatz nimmt zu, $a''(t)&lt;0$: Absatz nimmt ab</li><li>Nullstelle von $a''$ mit VZW $+\to-$: Zeitpunkt des höchsten Absatzes</li><li>Hoch- bzw. Tiefpunkt von $a''$: stärkster Anstieg bzw. Rückgang</li></ul>'
+        zeige: { flaechen: [], punkte: [hpd, w1, tpd, w2] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Jetzt nur mit a′'
+    text: '<p>Wie im Training ist nur der Graph von $a''$ gegeben. Wir lesen Schritt für Schritt ab.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(2*x-0.25*x^2)*exp(-0.25*x)', name: 'a′(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 30
+      yMin: -1
+      yMax: 2.2
+      xSchritt: 2
+      ySchritt: 0.5
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat pro Monat'
+      punkte:
+        - { id: z10, x: 10, y: -0.41, hilfslinie: true }
+        - { id: n8, x: 8, y: 0, label: 'höchster Absatz', ax: 40, ay: -40 }
+        - { id: hpd, x: 2.34, y: 1.84, label: 'stärkster Anstieg', ax: 70, ay: -5 }
+        - { id: tpd, x: 13.66, y: -0.64, label: 'stärkster Rückgang', ax: 50, ay: 25 }
+        - { id: r4, x: 4, y: 1.47, label: 'a′(4) ≈ 1,5', hilfslinie: true, ax: 60, ay: -15 }
+    schritte:
+      - typ: auswahl
+        frage: 'Nimmt der monatliche Absatz zum Zeitpunkt $t=10$ zu oder ab?'
+        optionen:
+          - 'nimmt zu'
+          - 'nimmt ab'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Liegt der Graph von $a''$ bei $t=10$ über oder unter der $t$-Achse?'
+        danach: '<p>$a''(10)&lt;0$, der Graph liegt unter der Achse: Der Absatz <strong>nimmt ab</strong>.</p>'
+        zeige: { punkte: [z10] }
+      - typ: aufdecken
+        frage: '<strong>Zeitpunkt des höchsten Absatzes</strong>'
+        knopf: 'Ablesen'
+        text: '<p>$a''$ hat bei $t=8$ eine Nullstelle und wechselt dort von $+$ nach $-$. Nach $8$ Monaten ist der Absatz am höchsten.</p>'
+        zeige: { punkte: [n8] }
+      - typ: aufdecken
+        frage: '<strong>Stärkster Anstieg und Rückgang</strong>'
+        knopf: 'Ablesen'
+        text: '<p>Hochpunkt von $a''$ bei ca. $(2{,}3\,|\,1{,}8)$: Nach ca. $2{,}3$ Monaten steigt der Absatz am stärksten, um ca. $1{,}8$ ME/Monat pro Monat.</p><p>Tiefpunkt von $a''$ bei ca. $(13{,}7\,|\,-0{,}6)$: Nach ca. $13{,}7$ Monaten geht der Absatz am stärksten zurück.</p>'
+        zeige: { punkte: [hpd, tpd] }
+      - typ: eingabe
+        frage: '<strong>Momentane Änderungsrate nach 4 Monaten:</strong> Das ist einfach der Funktionswert $a''(4)$. Lies ihn ab.'
+        felder:
+          - { label: '$a''(4)\approx$', loesung: 1.47, toleranz: 0.15, einheit: 'ME/Monat pro Monat', zeige: { punkte: [r4] } }
+        hinweis: 'Geh bei $t=4$ senkrecht nach oben bis zum Graphen und lies den $y$-Wert ab.'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was lese ich an a′ ab?'
+    text: '<p>Ordne jeder Frage das passende Merkmal des Graphen von $a''$ zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Frage'
+        titel_rechts: 'Merkmal von $a''$'
+        paare:
+          - { links: 'momentane Änderungsrate nach $t_0$ Monaten', rechts: 'Funktionswert $a''(t_0)$' }
+          - { links: 'Absatz nimmt zu', rechts: '$a''(t)>0$' }
+          - { links: 'Zeitpunkt des höchsten Absatzes', rechts: 'Nullstelle mit VZW $+\to-$' }
+          - { links: 'stärkster Anstieg', rechts: 'Hochpunkt von $a''$ oder Rand' }
+          - { links: 'stärkster Rückgang', rechts: 'Tiefpunkt von $a''$ oder Rand' }
+
+  - phase: mitmachen
+    titel: 'Neue Ableitung – mit Hilfe'
+    text: '<p>Hier siehst du den Graphen von $a''$ für ein anderes Produkt.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(2.4-0.6*x)*exp(-0.2*x)', name: 'a′(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 30
+      yMin: -1
+      yMax: 2.6
+      xSchritt: 2
+      ySchritt: 0.5
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat pro Monat'
+      punkte:
+        - { id: n4, x: 4, y: 0, label: 'höchster Absatz', ax: 40, ay: -40 }
+        - { id: rand, x: 0, y: 2.4, label: 'stärkster Anstieg', ax: 60, ay: 0 }
+        - { id: tpd, x: 9, y: -0.5, label: 'stärkster Rückgang', ax: 50, ay: 25 }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Zeitpunkt des höchsten Absatzes</strong> – die Nullstelle von $a''$ mit VZW von $+$ nach $-$:'
+        felder:
+          - { label: '$t=$', loesung: 4, toleranz: 0.3, einheit: 'Monate', zeige: { punkte: [n4] } }
+        hinweis: 'Wo schneidet der Graph die $t$-Achse?'
+      - typ: auswahl
+        frage: '<strong>Zeitpunkt des stärksten Absatzanstiegs:</strong> Wo ist $a''$ am größten?'
+        optionen:
+          - 'Bei $t=0$, am Rand.'
+          - 'Bei $t=4$.'
+          - 'Bei $t\approx 9$.'
+        korrekt: 0
+        hinweis: '$a''$ hat hier keinen Hochpunkt. Wo ist der Graph trotzdem am höchsten?'
+        danach: '<p>$a''$ fällt von Anfang an, der größte Wert liegt am <strong>Rand</strong>: Der stärkste Anstieg ist bei der Markteinführung, $t=0$.</p>'
+        zeige: { punkte: [rand] }
+      - typ: eingabe
+        frage: '<strong>Zeitpunkt des stärksten Absatzrückgangs</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: '$t\approx$', loesung: 9, toleranz: 1, einheit: 'Monate', zeige: { punkte: [tpd] } }
+        hinweis: 'Suche den tiefsten Punkt von $a''$.'
+
+  - phase: mitmachen
+    titel: 'Noch eine Ableitung – ohne Hilfe'
+    text: '<p>Ein drittes Produkt. Jetzt ohne Vorgabe.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(2*x-0.2*x^2)*exp(-0.2*x)', name: 'a′(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 40
+      yMin: -1
+      yMax: 2.6
+      xSchritt: 2
+      ySchritt: 0.5
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat pro Monat'
+      punkte:
+        - { id: r5, x: 5, y: 1.84, hilfslinie: true }
+        - { id: z, x: 12.5, y: -0.51, hilfslinie: true }
+        - { id: hpd, x: 2.93, y: 2.31, label: 'stärkster Anstieg', ax: 70, ay: -5 }
+        - { id: tpd, x: 17.07, y: -0.79, label: 'stärkster Rückgang', ax: 50, ay: 25 }
+    schritte:
+      - typ: eingabe
+        frage: 'Wie groß ist die momentane Änderungsrate des monatlichen Absatzes nach $5$ Monaten?'
+        felder:
+          - { label: '$a''(5)\approx$', loesung: 1.84, toleranz: 0.15, einheit: 'ME/Monat pro Monat', zeige: { punkte: [r5] } }
+        hinweis: 'Lies den Funktionswert von $a''$ an der Stelle $t=5$ ab.'
+      - typ: auswahl
+        frage: 'Nimmt der monatliche Absatz zum Zeitpunkt $t=12{,}5$ zu oder ab?'
+        optionen:
+          - 'nimmt zu'
+          - 'nimmt ab'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Liegt $a''$ bei $t=12{,}5$ über oder unter der $t$-Achse?'
+        zeige: { punkte: [z] }
+      - typ: eingabe
+        frage: 'Wann steigt bzw. fällt der Absatz am stärksten?'
+        layout: zeile
+        felder:
+          - { label: 'Anstieg bei $t\approx$', loesung: 2.93, toleranz: 0.75, zeige: { punkte: [hpd] } }
+          - { label: 'Rückgang bei $t\approx$', loesung: 17.07, toleranz: 1.5, zeige: { punkte: [tpd] } }
+        hinweis: 'Suche Hoch- und Tiefpunkt von $a''$. Prüfe auch den Rand: Ist $a''(0)$ größer als der Hochpunkt?'
+        danach: '<p>Hier ist $a''(0)=0$, der Hochpunkt liegt im Inneren. Der Rand liefert diesmal nicht den stärksten Anstieg.</p>'

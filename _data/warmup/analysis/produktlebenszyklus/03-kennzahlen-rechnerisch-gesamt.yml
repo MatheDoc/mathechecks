@@ -1,0 +1,216 @@
+# Warm-Up zu Check 03 „Kennzahlen (ohne Integral)“ (Produktlebenszyklus)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__produktlebenszyklus__03
+abschluss: '<p>Im Training sind $a$, $a''$ und $a^{\prime\prime}$ gegeben, alle Ergebnisse auf 2 Nachkommastellen gerundet. Denk an die Fallen: Beim stärksten Anstieg bzw. Rückgang immer den <strong>Rand $t=0$</strong> mitprüfen; liegt er dort, gibst du $0$ ein. Bei der Frage nach dem Ende des Zyklus gibst du <strong>eine</strong> Zahl ein: den Zeitpunkt des Marktaustritts (positive Nullstelle der Klammer, wenn kein Summand $d$ dabei ist) oder den langfristigen Absatz $d$. Hat die Klammer keine positive Nullstelle und ist $d=0$, geht der Absatz langfristig gegen $0$. Beim Zeitraum gibst du beide Grenzen an. Statt $a$ kann auch der Umsatz $u$ (GE/Jahr) gegeben sein.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Nur die Klammer zählt'
+    text: '<p>Bei Produktlebenszyklen haben $a''$ und $a^{\prime\prime}$ immer die Form <strong>Klammer mal $e$-Funktion</strong>, z. B. bei der Spielkonsole:</p>$$a''(t)=(-0{,}25t^2+1{,}75t+2)\cdot e^{-0{,}25t}$$'
+    schritte:
+      - typ: aufdecken
+        knopf: 'Warum nur die Klammer?'
+        text: '<p>Die $e$-Funktion wird nie null: $e^{-ct}>0$ für alle $t$. Ein Produkt ist genau dann null, wenn ein Faktor null ist. Also:</p>$$p(t)\cdot e^{-ct}=0\quad\Leftrightarrow\quad p(t)=0$$'
+      - typ: aufdecken
+        frage: 'Für $a''(t)=0$ reicht also:'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}-0{,}25t^2+1{,}75t+2&=0 \quad|\cdot(-4)\\ t^2-7t-8&=0\\ t=-1 \ \text{ oder } \ t&=8\end{align*}$$<p>$t=-1$ liegt vor der Markteinführung und entfällt. Die Klammer wechselt bei $t=8$ von $+$ nach $-$: Nach $8$ Monaten ist der Absatz am höchsten.</p><p><strong>Merke:</strong> Klammer null setzen, Kandidaten mit $t&lt;0$ verwerfen, Vorzeichenwechsel prüfen.</p>'
+
+  - phase: orientierung
+    titel: 'Zwei Arten von Ende'
+    text: '<p>Zwei Produkte im Vergleich:</p>$$\begin{align*}a_1(t)&=(3t+3)\cdot e^{-0{,}2t}+2\\ a_2(t)&=(-0{,}5t^2+6t)\cdot e^{-0{,}2t}\end{align*}$$'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(3x+3)*exp(-0.2*x)+2', name: 'a₁(t)', xmin: 0 }
+        - { term: '(-0.5*x^2+6*x)*exp(-0.2*x)', name: 'a₂(t)', xmin: 0, xmax: 12 }
+        - { term: '2+0*x', name: 'y = 2', color: '#888888', dash: 'dash' }
+      xMin: -0.5
+      xMax: 30
+      yMin: 0
+      yMax: 10
+      xSchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: ende, x: 12, y: 0, label: 'Marktaustritt', ax: 40, ay: -35 }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Was passiert für große t?'
+        text: '<p>Die $e$-Funktion geht schneller gegen $0$, als jedes Polynom wächst. Deshalb gilt $p(t)\cdot e^{-ct}\to 0$. Übrig bleibt nur ein konstanter Summand, falls es einen gibt.</p>'
+      - typ: auswahl
+        frage: 'Vergleiche, wie die beiden Graphen enden. Was fällt dir auf?'
+        optionen:
+          - '$a_1$ nähert sich $y=2$, $a_2$ erreicht bei $t=12$ die Null.'
+          - 'Beide nähern sich $y=2$.'
+          - 'Beide erreichen bei $t=12$ die Null.'
+        korrekt: 0
+        hinweis: 'Verfolge jeden Graphen bis zu seinem Ende und achte auf die gestrichelte Linie.'
+        danach: '<ul><li><strong>Langfristiger Absatz:</strong> Bei $a_1$ bleibt der Summand übrig: $\lim\limits_{t\to\infty} a_1(t)=0+2=2$ ME/Monat.</li><li><strong>Marktaustritt:</strong> $a_2$ hat keinen Summanden. Die Klammer $t\,(6-0{,}5t)$ wird bei $t=12$ null: Das Produkt wird nach $12$ Monaten vom Markt genommen.</li></ul>'
+        zeige: { punkte: [ende] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Start und höchster Absatz'
+    text: '<p>Gegeben sind:</p>$$\begin{align*}a(t)&=(4t+2)\cdot e^{-0{,}2t}+3\\ a''(t)&=(-0{,}8t+3{,}6)\cdot e^{-0{,}2t}\\ a^{\prime\prime}(t)&=(0{,}16t-1{,}52)\cdot e^{-0{,}2t}\end{align*}$$'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Absatz bei der Markteinführung:</strong> Setze $t=0$ ein. Beachte $e^0=1$.'
+        felder:
+          - { label: '$a(0)=$', loesung: 5, einheit: 'ME/Monat' }
+        hinweis: '$a(0)=(4\cdot 0+2)\cdot 1+3$.'
+      - typ: auswahl
+        frage: '<strong>Zeitpunkt des höchsten Absatzes:</strong> Welche Gleichung löst du?'
+        optionen:
+          - '$-0{,}8t+3{,}6=0$'
+          - '$0{,}16t-1{,}52=0$'
+          - '$4t+2=0$'
+        korrekt: 0
+        hinweis: 'Notwendige Bedingung für ein Maximum ist $a''(t)=0$. Davon brauchst du nur die Klammer.'
+        danach: '$$-0{,}8t+3{,}6=0\quad\Rightarrow\quad t=4{,}5$$<p>Die Klammer wechselt bei $t=4{,}5$ von $+$ nach $-$, also ein Maximum. Die Höhe:</p>$$a(4{,}5)=20\cdot e^{-0{,}9}+3\approx 11{,}13 \text{ ME/Monat}$$'
+
+  - phase: vormachen
+    titel: 'Stärkster Rückgang, Rand und Zeitraum'
+    text: '<p>Gleiche Funktion: $a(t)=(4t+2)\cdot e^{-0{,}2t}+3$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(4x+2)*exp(-0.2*x)+3', name: 'a(t)', xmin: 0 }
+        - { term: '10+0*x', name: 'y = 10', color: '#888888', dash: 'dash' }
+      xMin: -0.5
+      xMax: 30
+      yMin: 0
+      yMax: 12
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: wp, x: 9.5, y: 8.98, label: 'stärkster Rückgang', ax: 60, ay: -25 }
+        - { id: start, x: 0, y: 5, label: 'stärkster Anstieg', ax: 55, ay: 30 }
+        - { id: s1, x: 2.24, y: 10, hilfslinie: true }
+        - { id: s2, x: 7.76, y: 10, hilfslinie: true }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Stärkster Rückgang:</strong> $a^{\prime\prime}(t)=0$, also nur die Klammer.'
+        knopf: 'Rechnung zeigen'
+        text: '$$0{,}16t-1{,}52=0\quad\Rightarrow\quad t=9{,}5$$<p>Die Klammer wechselt von $-$ nach $+$: $a''$ hat dort ein Minimum. Mit $a''(9{,}5)\approx -0{,}60$ geht der Absatz nach $9{,}5$ Monaten am stärksten zurück.</p>'
+        zeige: { punkte: [wp] }
+      - typ: auswahl
+        frage: 'Eine zweite Wendestelle gibt es nicht. Wann steigt der Absatz am stärksten?'
+        optionen:
+          - 'Bei $t=0$, am Rand.'
+          - 'Bei $t=4{,}5$.'
+          - 'Es gibt keinen stärksten Anstieg.'
+        korrekt: 0
+        hinweis: 'Für $0\le t&lt;9{,}5$ ist $a^{\prime\prime}(t)&lt;0$. Was macht $a''$ dann?'
+        danach: '<p>$a''$ fällt von Anfang an. Der größte Wert ist $a''(0)=3{,}6$: Der stärkste Anstieg ist bei der Markteinführung, $t=0$.</p>'
+        zeige: { punkte: [start] }
+      - typ: aufdecken
+        frage: '<strong>Zeitraum mit mehr als $10$ ME/Monat:</strong> $a(t)=10$ mit dem Rechner lösen.'
+        knopf: 'Lösen'
+        text: '$$a(t)=10\quad\Rightarrow\quad t_1\approx 2{,}24 \qquad t_2\approx 7{,}76$$<p>Das Maximum $11{,}13>10$ liegt dazwischen. Für $2{,}24&lt;t&lt;7{,}76$ liegt der Absatz über $10$ ME/Monat.</p>'
+        zeige: { punkte: [s1, s2] }
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Ansatz gehört wozu?'
+    text: '<p>Ordne jeder Kennzahl ihren Ansatz zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Kennzahl'
+        titel_rechts: 'Ansatz'
+        paare:
+          - { links: 'Absatz bei Markteinführung', rechts: '$a(0)$' }
+          - { links: 'Zeitpunkt des höchsten Absatzes', rechts: '$a''(t)=0$ mit VZW' }
+          - { links: 'stärkster Anstieg bzw. Rückgang', rechts: '$a^{\prime\prime}(t)=0$ mit VZW, Rand prüfen' }
+          - { links: 'Änderungsrate nach $t_0$ Monaten', rechts: '$a''(t_0)$' }
+          - { links: 'langfristiger Absatz', rechts: '$\lim\limits_{t\to\infty} a(t)$' }
+          - { links: 'Zeitraum mit Absatz über $c$', rechts: '$a(t)=c$ lösen' }
+
+  - phase: mitmachen
+    titel: 'Neue Funktion – Extrem- und Wendestellen'
+    text: '<p>Gegeben sind:</p>$$\begin{align*}a(t)&=5t^2\cdot e^{-0{,}5t}+2\\ a''(t)&=(10t-2{,}5t^2)\cdot e^{-0{,}5t}\\ a^{\prime\prime}(t)&=(1{,}25t^2-10t+10)\cdot e^{-0{,}5t}\end{align*}$$<p>Runde auf 2 Nachkommastellen.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '5x^2*exp(-0.5*x)+2', name: 'a(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 20
+      yMin: 0
+      yMax: 14
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: hp, x: 4, y: 12.83, label: 'Hochpunkt', ax: 40, ay: -20 }
+        - { id: w1, x: 1.17, y: 5.82, label: 'stärkster Anstieg', ax: 70, ay: 5 }
+        - { id: w2, x: 6.83, y: 9.67, label: 'stärkster Rückgang', ax: 60, ay: -25 }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Höchster Absatz:</strong> Der Ansatz steht da: $$10t-2{,}5t^2=2{,}5t\,(4-t)=0$$ $t=0$ ist der Rand. Bestimme die Stelle des Maximums und die Höhe.'
+        layout: zeile
+        felder:
+          - { label: '$t=$', loesung: 4, einheit: '$\quad a(4)\approx$', zeige: { punkte: [hp] } }
+          - { loesung: 12.83, toleranz: 0.01, einheit: 'ME/Monat' }
+        hinweis: 'Aus $4-t=0$ folgt $t=4$. Dann $a(4)=80\cdot e^{-2}+2$ in den Rechner eingeben.'
+      - typ: eingabe
+        frage: '<strong>Wendestellen:</strong> Stelle den Ansatz selbst auf und löse.'
+        layout: zeile
+        felder:
+          - { label: '$t_1\approx$', loesung: 1.17, toleranz: 0.01, einheit: '$\quad t_2\approx$' }
+          - { loesung: 6.83, toleranz: 0.01 }
+        hinweis: 'Klammer von $a^{\prime\prime}$ null setzen: $1{,}25t^2-10t+10=0$. Durch $1{,}25$ teilen ergibt $t^2-8t+8=0$, dann pq-Formel.'
+      - typ: auswahl
+        frage: 'Jetzt den Rand prüfen: $a''(0)=0$, $a''(1{,}17)\approx 4{,}61$, $a''(6{,}83)\approx -1{,}59$. Was gilt?'
+        optionen:
+          - 'Stärkster Anstieg bei $t\approx 1{,}17$, stärkster Rückgang bei $t\approx 6{,}83$.'
+          - 'Stärkster Anstieg bei $t=0$, stärkster Rückgang bei $t\approx 6{,}83$.'
+          - 'Stärkster Anstieg bei $t\approx 6{,}83$, stärkster Rückgang bei $t\approx 1{,}17$.'
+        korrekt: 0
+        hinweis: 'Der stärkste Anstieg gehört zum größten Wert von $a''$, der stärkste Rückgang zum kleinsten.'
+        danach: '<p>Hier liefert der Rand nicht den stärksten Anstieg, denn $a''(0)=0$ ist kleiner als $a''(1{,}17)$.</p>'
+        zeige: { punkte: [w1, w2] }
+
+  - phase: mitmachen
+    titel: 'Gleiche Funktion – ohne Hilfe'
+    text: '<p>Weiter mit</p>$$\begin{align*}a(t)&=5t^2\cdot e^{-0{,}5t}+2\\ a''(t)&=(10t-2{,}5t^2)\cdot e^{-0{,}5t}\end{align*}$$'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '5x^2*exp(-0.5*x)+2', name: 'a(t)', xmin: 0 }
+        - { term: '10+0*x', name: 'y = 10', color: '#888888', dash: 'dash' }
+      xMin: -0.5
+      xMax: 20
+      yMin: 0
+      yMax: 14
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: s1, x: 2.18, y: 10, hilfslinie: true }
+        - { id: s2, x: 6.62, y: 10, hilfslinie: true }
+    schritte:
+      - typ: eingabe
+        frage: 'Wie groß ist die momentane Änderungsrate des monatlichen Absatzes nach $3$ Monaten?'
+        felder:
+          - { label: '$\approx$', loesung: 1.67, toleranz: 0.01, einheit: 'ME/Monat pro Monat' }
+        hinweis: 'Setze $t=3$ in $a''$ ein: $(30-22{,}5)\cdot e^{-1{,}5}$.'
+      - typ: eingabe
+        frage: 'Wird das Produkt vom Markt genommen, oder nähert sich der Absatz einem festen Wert? Gib den Marktaustritt bzw. den langfristigen Absatz an.'
+        felder:
+          - { label: '', loesung: 2, toleranz: 0.01 }
+        hinweis: 'Es gibt einen Summanden $+2$. Was passiert mit $5t^2\cdot e^{-0{,}5t}$ für $t\to\infty$?'
+        danach: '<p>$\lim\limits_{t\to\infty} a(t)=0+2=2$: Kein Marktaustritt, langfristig ca. $2$ ME pro Monat.</p>'
+      - typ: eingabe
+        frage: 'In welchem Zeitraum liegt der monatliche Absatz über $10$ ME/Monat?'
+        layout: zeile
+        felder:
+          - { label: 'von $t\approx$', loesung: 2.18, toleranz: 0.01, einheit: 'bis', zeige: { punkte: [s1] } }
+          - { loesung: 6.62, toleranz: 0.01, zeige: { punkte: [s2] } }
+        hinweis: 'Löse $a(t)=10$ mit dem Rechner. Das Maximum $12{,}83$ liegt über $10$, also gibt es zwei Lösungen.'

@@ -1,0 +1,157 @@
+# Warm-Up zu Check 05 „Kennzahlen (mit Integral)“ (Produktlebenszyklus)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__produktlebenszyklus__05
+abschluss: '<p>Im Training berechnest du mit dem Rechner fünf Kennzahlen, auf 2 Nachkommastellen gerundet. Lies jede Frage genau: <strong>monatlicher Absatz</strong> ist ein Funktionswert, <strong>Gesamtabsatz</strong> ein Integral, <strong>durchschnittlicher</strong> Absatz ein Integral geteilt durch die Breite. „In den ersten $6$ Monaten“ heißt $\int_0^6$. Für den gesamten Lebenszyklus nimmst du als obere Grenze das angegebene Ende oder den Marktaustritt. Statt des Absatzes kann auch der Umsatz $u$ (GE/Jahr, $t$ in Jahren) gegeben sein.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Funktionswert oder Fläche?'
+    text: '<p>Wieder die Spielkonsole mit dem monatlichen Absatz $a(t)$ in ME/Monat. Mit dem Rechner kannst du Funktionswerte und Integrale genau bestimmen. Entscheidend ist, <strong>was</strong> gefragt ist.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(x^2+x-4)*exp(-0.25*x)+4', name: 'a(t)', xmin: 0 }
+      xMin: -0.3
+      xMax: 20
+      yMin: 0
+      yMax: 15
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: p4, x: 4, y: 9.89, label: 'a(4) ≈ 9,89', hilfslinie: true, ax: -45, ay: -35 }
+      flaechen:
+        - { id: f06, term: '(x^2+x-4)*exp(-0.25*x)+4', von: 0, bis: 6, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: avg, term: '7.185', von: 0, bis: 6, farbe: 'rgba(44,160,44,0.35)' }
+        - { id: f0z, term: '(x^2+x-4)*exp(-0.25*x)+4', von: 0, bis: 10.39, farbe: 'rgba(31,119,180,0.35)' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Höhe und Fläche zeigen'
+        text: '<p><strong>Höhe:</strong> Der Funktionswert $a(4)\approx 9{,}89$ ist der <strong>monatliche Absatz</strong> nach 4 Monaten (ME/Monat).</p><p><strong>Fläche:</strong> Das Integral $\int_0^6 a(t)\,dt\approx 43{,}11$ ist der <strong>Gesamtabsatz</strong> im ersten Halbjahr (ME).</p>'
+        zeige: { punkte: [p4], flaechen: [f06] }
+      - typ: aufdecken
+        frage: 'Wie viel wird im ersten Halbjahr durchschnittlich pro Monat verkauft?'
+        knopf: 'Durchschnitt zeigen'
+        text: '<p>Fläche geteilt durch Breite:</p>$$\frac{1}{6-0}\int_0^6 a(t)\,dt\approx\frac{43{,}11}{6}\approx 7{,}19 \text{ ME/Monat}$$'
+        zeige: { flaechen: [f06, avg] }
+      - typ: aufdecken
+        frage: 'Wann sind insgesamt $100$ ME verkauft?'
+        knopf: 'Grenze suchen'
+        text: '<p>Jetzt ist die <strong>Fläche</strong> bekannt und die <strong>obere Grenze</strong> $z$ gesucht:</p>$$\int_0^{z} a(t)\,dt=100\quad\Rightarrow\quad z\approx 10{,}39$$<p>Nach ca. $10{,}39$ Monaten sind $100$ ME verkauft. Die Gleichung löst du mit dem Rechner.</p><p><strong>Merke:</strong> Funktionswert → pro Monat, Integral → insgesamt, Integral durch Breite → durchschnittlich.</p>'
+        zeige: { flaechen: [f0z] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Ein Produkt mit Marktaustritt'
+    text: '<p>Der monatliche Absatz wird beschrieben durch</p>$$a(t)=(-0{,}1t^3+2t^2)\cdot e^{-0{,}2t}$$<p>Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird: Die Klammer $t^2\,(2-0{,}1t)$ wird bei $t=20$ null.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(-0.1x^3+2x^2)*exp(-0.2*x)', name: 'a(t)', xmin: 0, xmax: 20 }
+      xMin: -0.3
+      xMax: 22
+      yMin: 0
+      yMax: 18
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: p8, x: 8, y: 15.51, label: 'a(8) ≈ 15,51', hilfslinie: true, ax: 50, ay: -15 }
+      flaechen:
+        - { id: f39, term: '(-0.1x^3+2x^2)*exp(-0.2*x)', von: 3, bis: 9, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: f020, term: '(-0.1x^3+2x^2)*exp(-0.2*x)', von: 0, bis: 20, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: f0z, term: '(-0.1x^3+2x^2)*exp(-0.2*x)', von: 0, bis: 9.42, farbe: 'rgba(31,119,180,0.35)' }
+    schritte:
+      - typ: auswahl
+        frage: '<strong>Monatlicher Absatz nach 8 Monaten:</strong> Welcher Ansatz passt?'
+        optionen:
+          - '$a(8)$'
+          - '$\int_0^8 a(t)\,dt$'
+          - '$\int_7^8 a(t)\,dt$'
+        korrekt: 0
+        hinweis: 'Monatlicher Absatz heißt: wie viel pro Monat, also eine Höhe.'
+        danach: '$$a(8)\approx 15{,}51 \text{ ME/Monat}$$'
+        zeige: { punkte: [p8] }
+      - typ: aufdecken
+        frage: '<strong>Gesamtabsatz</strong> vom Ende des 3. bis zum Ende des 9. Monats und <strong>durchschnittlicher</strong> monatlicher Absatz in den ersten 6 Monaten'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}\int_3^9 a(t)\,dt&\approx 83{,}63 \text{ ME}\\ \frac{1}{6-0}\int_0^6 a(t)\,dt&\approx 7{,}93 \text{ ME/Monat}\end{align*}$$'
+        zeige: { flaechen: [f39] }
+      - typ: auswahl
+        frage: '<strong>Gesamtabsatz während des gesamten Produktlebenszyklus:</strong> Welcher Ansatz passt?'
+        optionen:
+          - '$\int_0^{20} a(t)\,dt$'
+          - '$\int_0^{7{,}19} a(t)\,dt$'
+          - '$a(20)$'
+        korrekt: 0
+        hinweis: 'Der Lebenszyklus endet mit dem Marktaustritt.'
+        danach: '$$\int_0^{20} a(t)\,dt\approx 168{,}50 \text{ ME}$$<p>Bis zum Marktaustritt werden insgesamt ca. $168{,}50$ ME abgesetzt.</p>'
+        zeige: { flaechen: [f020] }
+      - typ: aufdecken
+        frage: '<strong>Zeitpunkt, zu dem der Gesamtabsatz $100$ ME erreicht</strong>'
+        knopf: 'Gleichung lösen'
+        text: '$$\int_0^{z} a(t)\,dt=100\quad\Rightarrow\quad z\approx 9{,}42$$<p>Nach ca. $9{,}42$ Monaten sind insgesamt $100$ ME abgesetzt.</p>'
+        zeige: { flaechen: [f0z] }
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Ansatz gehört wozu?'
+    text: '<p>Ordne jeder Frage ihren Ansatz zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gesucht'
+        titel_rechts: 'Ansatz'
+        paare:
+          - { links: 'monatlicher Absatz nach 5 Monaten', rechts: '$a(5)$' }
+          - { links: 'Gesamtabsatz in den ersten 5 Monaten', rechts: '$\int_0^5 a(t)\,dt$' }
+          - { links: 'Gesamtabsatz vom Ende des 2. bis zum Ende des 5. Monats', rechts: '$\int_2^5 a(t)\,dt$' }
+          - { links: 'durchschnittlicher monatlicher Absatz in den ersten 5 Monaten', rechts: '$\frac{1}{5}\int_0^5 a(t)\,dt$' }
+          - { links: 'Zeitpunkt, zu dem der Gesamtabsatz $50$ ME erreicht', rechts: '$\int_0^z a(t)\,dt=50$' }
+
+  - phase: mitmachen
+    titel: 'Neue Funktion – mit dem Rechner'
+    text: '<p>Der monatliche Absatz eines Produkts wird beschrieben durch</p>$$a(t)=(2t+1)\cdot e^{-0{,}2t}+3$$<p>Der Produktlebenszyklus endet nach $18$ Monaten. Runde auf 2 Nachkommastellen.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(2x+1)*exp(-0.2*x)+3', name: 'a(t)', xmin: 0, xmax: 18 }
+      xMin: -0.3
+      xMax: 20
+      yMin: 0
+      yMax: 8
+      xSchritt: 2
+      ySchritt: 1
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      flaechen:
+        - { id: f26, term: '(2x+1)*exp(-0.2*x)+3', von: 2, bis: 6, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: avg, term: '6.394', von: 0, bis: 6, farbe: 'rgba(44,160,44,0.35)' }
+        - { id: f018, term: '(2x+1)*exp(-0.2*x)+3', von: 0, bis: 18, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: f0z, term: '(2x+1)*exp(-0.2*x)+3', von: 0, bis: 9.32, farbe: 'rgba(31,119,180,0.35)' }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Gesamtabsatz vom Ende des 2. bis zum Ende des 6. Monats.</strong> Der Ansatz steht da: $$\int_2^6 a(t)\,dt$$'
+        felder:
+          - { label: 'ca.', loesung: 27.64, toleranz: 0.01, einheit: 'ME', zeige: { flaechen: [f26] } }
+        hinweis: 'Gib das Integral mit den Grenzen $2$ und $6$ in den Rechner ein.'
+      - typ: eingabe
+        frage: '<strong>Durchschnittlicher monatlicher Absatz in den ersten 6 Monaten.</strong> Stelle den Ansatz selbst auf.'
+        felder:
+          - { label: 'ca.', loesung: 6.39, toleranz: 0.01, einheit: 'ME/Monat', zeige: { flaechen: [avg] } }
+        danach: '<p>Das grüne Rechteck über $[0;6]$ mit der Höhe $6{,}39$ hat dieselbe Fläche wie die Fläche unter dem Graphen.</p>'
+        hinweis: 'Die ersten 6 Monate gehen von $t=0$ bis $t=6$: $\frac{1}{6}\int_0^6 a(t)\,dt$.'
+      - typ: eingabe
+        frage: '<strong>Gesamtabsatz während des gesamten Produktlebenszyklus.</strong>'
+        felder:
+          - { label: 'ca.', loesung: 102.58, toleranz: 0.01, einheit: 'ME', zeige: { flaechen: [f018] } }
+        hinweis: 'Der Zyklus endet laut Aufgabe nach $18$ Monaten. Das ist die obere Grenze.'
+      - typ: eingabe
+        frage: '<strong>Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung $60$ ME erreicht.</strong>'
+        felder:
+          - { label: '$z\approx$', loesung: 9.32, toleranz: 0.01, einheit: 'Monate', zeige: { flaechen: [f0z] } }
+        hinweis: 'Löse $\int_0^z a(t)\,dt=60$ mit dem Rechner. Zur Kontrolle: Nach $6$ Monaten sind es erst ca. $38{,}4$ ME.'

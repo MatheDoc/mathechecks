@@ -6,14 +6,12 @@ Konkrete, wiederverwendbare Arbeitsaufträge und verbindliche Regelwerke. Jeder 
 
 | Typ | Namensschema | Zweck |
 |---|---|---|
-| **Task-Skill** | `prompt-<zweck>` | Konkreter Arbeitsauftrag für einen klaren Use Case |
+| **Task-Skill** | `<zweck>` oder `prompt-<zweck>` | Konkreter Arbeitsauftrag für einen klaren Use Case |
 | **Systemprompt-Skill** | `systemprompt-<kontext>` | Domänenspezifische, verbindliche Ausgaberegeln |
 
 ## Aktuelle Skills
 
-- `prompt-aufgaben` – 20 JSON-Aufgaben erzeugen (verweist auf `aufgaben/README.md`)
-- `prompt-neuer-lernbereich` – Schrittfolge zum Anlegen eines neuen Lernbereichs
-- `prompt-skript-ueberarbeiten` – Skripte fachlich, didaktisch und LLM-freundlich überarbeiten
+- `lernbereich-erstellen` – Lernbereich neu anlegen oder überarbeiten (Checks, Skript, Beispiele, Aufgaben, Test) mit Abgleich gegen die Abitur-Musterprüfungen
 - `prompt-klausur-erstellen` – Klausur aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml` erzeugen (verweist auf `systemprompt-klausur`)
 - `systemprompt-klausur` – verbindliche Ausgaberegeln für Klausuren (Zielformat `klausuren/templates/template.md`)
 - `systemprompt-template` – Vorlage für neue Systemprompts
@@ -21,11 +19,12 @@ Konkrete, wiederverwendbare Arbeitsaufträge und verbindliche Regelwerke. Jeder 
 
 ## Verwandte Referenzdokumente
 
+- `../inhalte.md` – Inhaltsstandards für Lernbereiche
 - `../rechner-architektur.md` – Rechnerrollen, UX-Leitplanken und Verhaltensregeln
 
 ## Empfehlungen
 
-- Skills kurz, präzise, testbar formulieren.
+- Skills kurz und zielorientiert formulieren: Ziel, Schritte, Prüfkriterien, Ausgabe.
 - YAML-Frontmatter mit `name` und `description` verwenden.
 - Fachlogik und Formatregeln nicht vermischen.
 - Technische Specs nicht im Skill duplizieren – auf Referenzdokumente verweisen.

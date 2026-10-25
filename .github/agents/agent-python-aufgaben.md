@@ -36,7 +36,7 @@ Vor jeder Arbeit diese Referenzdokumente lesen:
 - Bestehende APIs, Dateistrukturen und Konfigurationsmuster respektieren.
 - Bei inhaltlichen Textausgaben didaktische Qualitätskriterien berücksichtigen.
 - Bei erheblicher Unklarheit kurz nachfragen, bevor umfangreiche Änderungen durchgeführt werden.
-- Zusammenhang mit `project_config.json` und `checks.json` beachten.
+- Zusammenhang mit `aufgaben/project_config.json` und `_data/checks.json` beachten (`Sammlung`).
 - Nach Änderung in den Generatoren Batch-Run für die betroffenen Dateien durchführen.
 
 ## Übergabeformat

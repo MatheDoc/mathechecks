@@ -7,7 +7,7 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
 ## Agenten
 
 1. `agent-content-didaktik.md`
-   - Mathematische Inhalte, Erklärtexte, Aufgabenstellungen, Feedbacksprache
+   - Checks, Skripte, Beispiele, Tipps, Tests, Abiturbezug
 2. `agent-python-aufgaben.md`
    - Aufgabengeneratoren, Exportlogik, Python-Refactoring in `aufgaben/`
 3. `agent-frontend-ux.md`
@@ -26,11 +26,11 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
 | **Projektkontext** (immer geladen) | `copilot-instructions.md` | Was ist das Projekt? |
 | **Agenten** (bei Auswahl geladen) | `agent-*.md` | Wer arbeitet mit welchem Fokus? |
 | **Skills** (bei Aufruf geladen, `../skills/<name>/SKILL.md`) | siehe `../skills/README.md` | Welcher konkrete Arbeitsauftrag bzw. welches Regelwerk gilt? |
-| **Referenzdokumente** (per Pflichtlektüre) | `glossary.md`, `datenmodell.md`, `aufgaben/README.md` u. a. | Welche Konventionen und Specs gelten? |
+| **Referenzdokumente** (per Pflichtlektüre) | `glossary.md`, `datenmodell.md`, `inhalte.md`, `aufgaben/README.md` u. a. | Welche Konventionen und Specs gelten? |
 
 ## Konvention
 
 - Dateinamen: `agent-<rolle>.md`
 - Format: Markdown mit YAML-Frontmatter (`name`, `description`)
-- Inhalt: Rolle, Zuständigkeiten, Pflichtlektüre, Prioritäten, Arbeitsmodus, Übergabeformat
+- Inhalt: Rolle, Pflichtlektüre, Prioritäten, Arbeitsmodus, Übergabe – knapp, ohne Wiederholung der Referenzdokumente
 - Keine technischen Specs im Agent duplizieren – stattdessen auf Referenzdokumente verweisen

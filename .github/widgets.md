@@ -27,7 +27,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | Lineare Funktionen | `widget-lineare-funktionen.html` | `.lf-widget` | Graph + Wertetabelle |
 | h-Methode der Ableitung | `widget-h-methode-ableitung.html` | `.qhm-widget` | Graph von $f(x)=x^2$ + Sekante/Tangente + Differenzenquotient |
 | Quadratische Funktionen | `widget-quadratische-funktionen.html` | `.qf-widget` | Graph + Wertetabelle + Formel |
-| Quadratische Funktionen Parameter | `widget-quadratische-funktionen-parameter.html` | `.qfp-widget` | Graph + Scheitel + Formel |
+| Gauß-Schritte | `widget-gauss-schritte.html` | `.gauss-widget` | Matrix mit Schritt-für-Schritt-Umformungen (vor/zurück); Parameter `id`, `matrix`, `steps`; kein Plotly |
 | Regression erkennen | `widget-punktwolke-regression.html` | `.pr-widget` | Zufällige Punktewolke + verzögert eingeblendete Regressionsfunktion |
 | Regression Minimierung | `widget-regression-minimierung.html` | `.rm-widget` | Feste Punktwolke + verstellbare Gerade + Residuen-Quadrate + Quadratsumme (SSE) |
 | Tilgungsplan | `widget-tilgungsplan.html` | `.tp-widget` | Annuitätenformel mit Werten + vollständiger Tilgungsplan (zeilenweise auf Cent gerundet, Rundungsdifferenz) + gestapeltes Balkendiagramm Zinsen/Tilgung; läuft auch ohne Plotly (nur Tabelle) |

@@ -1,0 +1,226 @@
+# Warm-Up zu Check 01 „Graph interpretieren“ (Produktlebenszyklus)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__produktlebenszyklus__01
+abschluss: '<p>Im Training liest du die Kennzahlen am Graphen von $a$ ab, Zeitpunkte und Höhen so genau wie möglich. Bei „progressiv oder degressiv“ entscheidest du über die Krümmung. Denk an die Falle: Ist der Graph schon bei $t=0$ rechtsgekrümmt, liegt der stärkste Anstieg bei der Markteinführung, also bei $t=0$. Statt des Absatzes (ME/Monat) kann auch der <strong>Umsatz</strong> $u$ (GE/Jahr) gegeben sein; das Ablesen bleibt gleich.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Ein Graph, viele Kennzahlen'
+    text: '<p>Eine Spielkonsole kommt auf den Markt. Der Graph zeigt den monatlichen Absatz $a(t)$ in ME/Monat, $t$ in Monaten seit der Markteinführung.</p><p>$a(t)$ ist eine <strong>Rate</strong>: Wie viel wird zum Zeitpunkt $t$ <em>pro Monat</em> verkauft?</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(x^2+x-4)*exp(-0.25*x)+4', name: 'a(t)', xmin: 0 }
+        - { term: '4+0*x', name: 'y = 4', color: '#888888', dash: 'dash' }
+      xMin: -0.5
+      xMax: 30
+      yMin: 0
+      yMax: 15
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: start, x: 0, y: 0, label: 'a(0) = 0', ax: 40, ay: -20 }
+        - { id: hp, x: 8, y: 13.2, label: 'Hochpunkt', ax: 40, ay: -20 }
+        - { id: w1, x: 1.48, y: 3.77, label: 'stärkster Anstieg', ax: 70, ay: 10 }
+        - { id: w2, x: 13.52, y: 10.55, label: 'stärkster Rückgang', ax: 60, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir Start und Spitze'
+        text: '<p>Der <strong>$y$-Achsenabschnitt</strong> ist der Absatz bei der Markteinführung: $a(0)=0$, am Anfang wird noch nichts verkauft.</p><p>Der <strong>Hochpunkt</strong> $(8\,|\,13{,}2)$ zeigt den höchsten Absatz: Nach $8$ Monaten werden ca. $13{,}2$ ME pro Monat verkauft.</p>'
+        zeige: { punkte: [start, hp] }
+      - typ: auswahl
+        frage: 'Schau dir den Graphen für große $t$ an. Was fällt dir auf?'
+        optionen:
+          - 'Er nähert sich der gestrichelten Linie $y=4$.'
+          - 'Er fällt auf null.'
+          - 'Er steigt wieder an.'
+        korrekt: 0
+        hinweis: 'Verfolge den Graphen ganz nach rechts und vergleiche mit der gestrichelten Linie.'
+        danach: '<p>Genau. Die waagrechte <strong>Asymptote</strong> $y=4$ gibt den <strong>langfristigen Absatz</strong> an: ca. $4$ ME pro Monat. Endet ein Graph dagegen bei einer positiven <strong>Nullstelle</strong>, wird das Produkt dort vom Markt genommen (<strong>Marktaustritt</strong>).</p>'
+      - typ: aufdecken
+        frage: 'Wann steigt bzw. fällt der Absatz am stärksten?'
+        knopf: 'Wendepunkte zeigen'
+        text: '<p>Dort, wo der Graph am steilsten ist, also an den <strong>Wendepunkten</strong>: stärkster Anstieg nach ca. $1{,}5$ Monaten, stärkster Rückgang nach ca. $13{,}5$ Monaten.</p><p>Bis zum ersten Wendepunkt ist der Graph linksgekrümmt: Der Absatz steigt <strong>progressiv</strong> (immer schneller). Danach ist er bis zum Hochpunkt rechtsgekrümmt: Der Absatz steigt <strong>degressiv</strong> (immer langsamer).</p>'
+        zeige: { punkte: [w1, w2] }
+
+  - phase: orientierung
+    titel: 'Achtung am Rand'
+    text: '<p>Ein anderes Produkt: Hier wird schon bei der Markteinführung etwas verkauft.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(5x+5)*exp(-0.25*x)+2', name: 'a(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 30
+      yMin: 0
+      yMax: 13
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: start, x: 0, y: 7, label: 'stärkster Anstieg', ax: 50, ay: 40 }
+        - { id: hp, x: 3, y: 11.45, label: 'Hochpunkt', ax: 40, ay: -20 }
+        - { id: w, x: 7, y: 8.95, label: 'stärkster Rückgang', ax: 60, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Was ist hier anders?'
+        text: '<p>Der Absatz startet bei $a(0)=7$ ME/Monat. Einen Wendepunkt vor dem Hochpunkt gibt es nur, wenn der Graph am Anfang <strong>linksgekrümmt</strong> ist, also zuerst immer steiler wird.</p>'
+      - typ: auswahl
+        frage: 'Schau dir den Anfang genau an. Wo steigt dieser Graph am steilsten?'
+        optionen:
+          - 'Direkt bei $t=0$.'
+          - 'Kurz vor dem Hochpunkt.'
+          - 'Bei $t\approx 7$.'
+        korrekt: 0
+        hinweis: 'Vergleiche die Steigung ganz links mit der Steigung kurz vor dem Hochpunkt.'
+        danach: '<p>Richtig. Der Graph ist von Anfang an <strong>rechtsgekrümmt</strong>, der Absatz steigt sofort degressiv. Vor dem Hochpunkt gibt es keinen Wendepunkt, der stärkste Anstieg liegt am <strong>Rand</strong> $t=0$. Der stärkste Rückgang liegt wie gewohnt am Wendepunkt, hier bei $t\approx 7$.</p><p><strong>Merke:</strong></p><ul><li>$y$-Achsenabschnitt → Absatz bei Markteinführung, Hochpunkt → höchster Absatz</li><li>Wendepunkte → stärkster Anstieg bzw. Rückgang, <strong>Rand $t=0$ mitprüfen</strong></li><li>Asymptote → langfristiger Absatz, positive Nullstelle → Marktaustritt</li></ul>'
+        zeige: { punkte: [start, hp, w] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Ein Produkt mit Marktaustritt'
+    text: '<p>Wie im Training ist nur der Graph gegeben. Wir lesen die Kennzahlen Schritt für Schritt ab.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(-0.1x^3+2x^2)*exp(-0.2*x)', name: 'a(t)', xmin: 0, xmax: 20 }
+      xMin: -0.5
+      xMax: 22
+      yMin: 0
+      yMax: 18
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: hp, x: 7.19, y: 15.72, label: 'Hochpunkt', hilfslinie: true, ax: 50, ay: -10 }
+        - { id: ende, x: 20, y: 0, label: 'Nullstelle', ax: -30, ay: -40 }
+        - { id: w1, x: 2.26, y: 5.77, label: 'stärkster Anstieg', ax: 70, ay: 10 }
+        - { id: w2, x: 12.57, y: 9.51, label: 'stärkster Rückgang', ax: 60, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Start und höchster Absatz</strong>'
+        knopf: 'Ablesen'
+        text: '<p>Bei der Markteinführung ist $a(0)=0$. Der Hochpunkt liegt bei ca. $(7{,}2\,|\,15{,}7)$: Nach ca. $7{,}2$ Monaten ist der Absatz mit ca. $15{,}7$ ME/Monat am höchsten.</p>'
+        zeige: { punkte: [hp] }
+      - typ: auswahl
+        frage: 'Wann wird das Produkt vom Markt genommen?'
+        optionen:
+          - 'Nach $20$ Monaten.'
+          - 'Nach ca. $7{,}2$ Monaten.'
+          - 'Nie, der Absatz nähert sich einem festen Wert.'
+        korrekt: 0
+        hinweis: 'Ab wann wird nichts mehr verkauft?'
+        danach: '<p>Die positive Nullstelle $t=20$ ist der <strong>Marktaustritt</strong>. Danach ist das Modell nicht mehr sinnvoll.</p>'
+        zeige: { punkte: [ende] }
+      - typ: aufdecken
+        frage: '<strong>Stärkster Anstieg und Rückgang</strong>'
+        knopf: 'Wendepunkte ablesen'
+        text: '<p>Der Graph ist bei $t=0$ linksgekrümmt, also gibt es vor dem Hochpunkt einen Wendepunkt: stärkster Anstieg nach ca. $2{,}3$ Monaten. Stärkster Rückgang nach ca. $12{,}6$ Monaten.</p>'
+        zeige: { punkte: [w1, w2] }
+      - typ: auswahl
+        frage: 'Steigt der Absatz im Zeitraum von $t=4$ bis $t=6$ progressiv oder degressiv?'
+        optionen:
+          - 'progressiv'
+          - 'degressiv'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Liegt der Zeitraum vor oder nach dem ersten Wendepunkt? Wie ist der Graph dort gekrümmt?'
+        danach: '<p>Zwischen dem ersten Wendepunkt ($t\approx 2{,}3$) und dem Hochpunkt ist der Graph rechtsgekrümmt: Der Absatz steigt <strong>degressiv</strong>.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was lese ich wo ab?'
+    text: '<p>Ordne jeder Frage das passende Merkmal des Graphen zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Frage'
+        titel_rechts: 'Merkmal des Graphen'
+        paare:
+          - { links: 'Absatz bei Markteinführung', rechts: '$y$-Achsenabschnitt' }
+          - { links: 'höchster Absatz', rechts: 'Hochpunkt' }
+          - { links: 'stärkster Anstieg bzw. Rückgang', rechts: 'Wendepunkte, Rand beachten' }
+          - { links: 'progressiver bzw. degressiver Anstieg', rechts: 'Links- bzw. Rechtskrümmung' }
+          - { links: 'Marktaustritt', rechts: 'positive Nullstelle' }
+          - { links: 'langfristiger Absatz', rechts: 'waagrechte Asymptote' }
+
+  - phase: mitmachen
+    titel: 'Neuer Graph – mit Hilfe'
+    text: '<p>Jetzt liest du selbst ab.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: 'x^2*exp(-0.2*x)+2', name: 'a(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 40
+      yMin: 0
+      yMax: 18
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: hp, x: 10, y: 15.53, label: 'Hochpunkt', hilfslinie: true, ax: 50, ay: -10 }
+        - { id: w1, x: 2.93, y: 6.78, label: 'stärkster Anstieg', ax: 70, ay: 10 }
+        - { id: w2, x: 17.07, y: 11.59, label: 'stärkster Rückgang', ax: 60, ay: -30 }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Höchster Absatz:</strong> Lies den Hochpunkt ab.'
+        layout: zeile
+        felder:
+          - { label: 'nach $t=$', loesung: 10, toleranz: 0.5, einheit: 'Monaten:', zeige: { punkte: [hp] } }
+          - { loesung: 15.5, toleranz: 0.5, einheit: 'ME/Monat' }
+        hinweis: 'Suche den höchsten Punkt des Graphen. Lies erst den $t$-Wert, dann den $y$-Wert ab.'
+      - typ: eingabe
+        frage: '<strong>Stärkster Anstieg und Rückgang:</strong> Lies die Wendestellen ab.'
+        layout: zeile
+        felder:
+          - { label: 'Anstieg bei $t\approx$', loesung: 2.93, toleranz: 1, zeige: { punkte: [w1] } }
+          - { label: 'Rückgang bei $t\approx$', loesung: 17.07, toleranz: 1.5, zeige: { punkte: [w2] } }
+        hinweis: 'Links vom Hochpunkt wechselt der Graph von links- zu rechtsgekrümmt, rechts davon wieder zurück. Dort ist er am steilsten.'
+      - typ: auswahl
+        frage: 'Steigt der Absatz im Zeitraum von $t=0$ bis $t=2$ progressiv oder degressiv?'
+        optionen:
+          - 'progressiv'
+          - 'degressiv'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Der Zeitraum liegt vor dem ersten Wendepunkt. Wie ist der Graph dort gekrümmt?'
+        danach: '<p>Vor dem ersten Wendepunkt ist der Graph linksgekrümmt: <strong>progressiv</strong>.</p>'
+
+  - phase: mitmachen
+    titel: 'Rand und Ende – ohne Hilfe'
+    text: '<p>Noch ein Produkt. Jetzt ohne Vorgabe.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(3x+3)*exp(-0.2*x)+2', name: 'a(t)', xmin: 0 }
+      xMin: -0.5
+      xMax: 40
+      yMin: 0
+      yMax: 10
+      xSchritt: 2
+      ySchritt: 1
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      punkte:
+        - { id: start, x: 0, y: 5, label: 'stärkster Anstieg', ax: 50, ay: 30 }
+    schritte:
+      - typ: eingabe
+        frage: 'Wie hoch ist der monatliche Absatz bei der Markteinführung?'
+        felder:
+          - { label: '$a(0)=$', loesung: 5, toleranz: 0.25, einheit: 'ME/Monat' }
+        hinweis: 'Lies den $y$-Achsenabschnitt ab.'
+      - typ: eingabe
+        frage: 'Zu welchem Zeitpunkt steigt der Absatz am stärksten?'
+        felder:
+          - { label: '$t=$', loesung: 0, toleranz: 0.5, einheit: 'Monate', zeige: { punkte: [start] } }
+        hinweis: 'Gibt es links vom Hochpunkt einen Wendepunkt? Schau, wie der Graph direkt bei $t=0$ gekrümmt ist.'
+        danach: '<p>Der Graph ist von Anfang an rechtsgekrümmt. Der stärkste Anstieg liegt am Rand, bei der Markteinführung.</p>'
+      - typ: eingabe
+        frage: 'Welcher monatliche Absatz ist langfristig zu erwarten?'
+        felder:
+          - { label: 'ca.', loesung: 2, toleranz: 0.3, einheit: 'ME/Monat' }
+        hinweis: 'Welchem Wert nähert sich der Graph ganz rechts? Der Startwert hat damit nichts zu tun.'

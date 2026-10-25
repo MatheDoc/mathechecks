@@ -1,0 +1,202 @@
+# Warm-Up zu Check 04 „Gesamtabsatz graphisch“ (Produktlebenszyklus)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__produktlebenszyklus__04
+abschluss: '<p>Im Training wählst du Ausdrücke und Bedeutungen aus, prüfst Aussagen mit „wahr“ oder „falsch“ und gibst Schätzwerte ein; dabei reicht eine Abweichung von etwa $10\,\%$. Denk an die Fallen: $a(t_2)-a(t_1)$ ist die <strong>Änderung des monatlichen Absatzes</strong>, kein Gesamtabsatz. „Vom Ende des 4. bis zum Ende des 8. Monats“ heißt $\int_4^8$. Für Aussagen wie „mindestens …“ helfen Monatsbalken: Bei steigendem Graphen liegen Balken mit der Höhe am <strong>linken</strong> Rand unter der Fläche, Balken mit der Höhe am <strong>rechten</strong> Rand darüber. Statt des Absatzes kann auch der Umsatz $u$ (GE/Jahr) gegeben sein; dann ist die Fläche der Gesamtumsatz in GE.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Rate mal Zeit gleich Menge'
+    text: '<p>Der Graph zeigt wieder den monatlichen Absatz $a(t)$ der Spielkonsole in ME/Monat. Wie viele ME werden im ersten Halbjahr <em>insgesamt</em> verkauft? Ein Funktionswert sagt das nicht, er gibt nur an, wie viel <em>pro Monat</em> verkauft wird.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '(x^2+x-4)*exp(-0.25*x)+4', name: 'a(t)', xmin: 0 }
+      xMin: -0.3
+      xMax: 12
+      yMin: 0
+      yMax: 15
+      xSchritt: 1
+      ySchritt: 2
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      flaechen:
+        - { id: b1, term: '2.442', von: 0, bis: 1, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b2, term: '5.213', von: 1, bis: 2, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b3, term: '7.779', von: 2, bis: 3, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b4, term: '9.886', von: 3, bis: 4, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b5, term: '11.449', von: 4, bis: 5, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b6, term: '12.479', von: 5, bis: 6, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: f06, term: '(x^2+x-4)*exp(-0.25*x)+4', von: 0, bis: 6, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: avg, term: '7.185', von: 0, bis: 6, farbe: 'rgba(44,160,44,0.35)' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Ein einzelner Monat: der 4. Monat, von $t=3$ bis $t=4$.'
+        knopf: 'Balken zeigen'
+        text: '<p>Am Ende des 4. Monats werden $a(4)\approx 9{,}9$ ME <em>pro Monat</em> verkauft. Rechnen wir einen Monat lang mit diesem Wert, sind das $9{,}9\cdot 1=9{,}9$ ME.</p><p>Das ist die <strong>Fläche</strong> eines Rechtecks: Höhe in ME/Monat mal Breite in Monaten ergibt ME.</p>'
+        zeige: { flaechen: [b4] }
+      - typ: aufdecken
+        frage: 'Jetzt alle sechs Monate des ersten Halbjahres.'
+        knopf: 'Alle Balken zeigen'
+        text: '$$a(1)+a(2)+\dots+a(6)\approx 49{,}2 \text{ ME}$$<p>Die Summe der Balkenflächen ist ein erster Schätzwert für den Gesamtabsatz.</p>'
+        zeige: { flaechen: [b1, b2, b3, b4, b5, b6] }
+      - typ: auswahl
+        frage: 'Vergleiche die Balken mit dem Graphen. Was fällt dir auf?'
+        optionen:
+          - 'Die Balken ragen über den Graphen hinaus.'
+          - 'Die Balken bleiben unter dem Graphen.'
+          - 'Die Balken passen genau unter den Graphen.'
+        korrekt: 0
+        hinweis: 'Schau dir die rechte obere Ecke jedes Balkens an.'
+        danach: '<p>Genau: $49{,}2$ ME ist zu viel. Mit immer schmaleren Streifen erhält man genau die <strong>Fläche unter dem Graphen</strong>:</p>$$\int_0^6 a(t)\,dt\approx 43{,}11 \text{ ME}$$'
+        zeige: { flaechen: [f06] }
+      - typ: aufdecken
+        frage: 'Und der durchschnittliche monatliche Absatz?'
+        knopf: 'Rechteck zeigen'
+        text: '<p>Das ist die Höhe des Rechtecks, das über demselben Zeitraum dieselbe Fläche hat: $\frac{43{,}11}{6}\approx 7{,}19$ ME/Monat.</p><p><strong>Merke:</strong></p><ul><li>Gesamtabsatz von $t_1$ bis $t_2$ = Fläche unter dem Graphen = $\int_{t_1}^{t_2} a(t)\,dt$ (in ME)</li><li>durchschnittlicher monatlicher Absatz = Fläche geteilt durch Breite (in ME/Monat)</li></ul>'
+        zeige: { flaechen: [f06, avg] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Fläche deuten und abschätzen'
+    text: '<p>Der monatliche Absatz eines Produkts wird durch den Graphen von $a$ beschrieben.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: 'x^2*exp(-0.25*x)+3', name: 'a(t)', xmin: 0 }
+      xMin: -0.3
+      xMax: 24
+      yMin: 0
+      yMax: 13
+      xSchritt: 2
+      ySchritt: 1
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      flaechen:
+        - { id: f612, term: 'x^2*exp(-0.25*x)+3', von: 6, bis: 12, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: avg, term: '11.23', von: 6, bis: 12, farbe: 'rgba(44,160,44,0.35)' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ausdruck gibt den Gesamtabsatz vom Ende des 6. bis zum Ende des 12. Monats an?'
+        optionen:
+          - '$\int_6^{12} a(t)\,dt$'
+          - '$a(12)-a(6)$'
+          - '$\int_0^{12} a(t)\,dt$'
+          - '$a(12)$'
+        korrekt: 0
+        hinweis: 'Gesamtabsatz ist eine Fläche. Das Ende des 6. Monats ist $t=6$.'
+        danach: '<p>Die markierte Fläche über $[6;12]$ ist der Gesamtabsatz im zweiten Halbjahr. $a(12)-a(6)$ wäre nur die Änderung des <em>monatlichen</em> Absatzes.</p>'
+        zeige: { flaechen: [f612] }
+      - typ: aufdecken
+        frage: '<strong>Fläche abschätzen</strong>'
+        knopf: 'Schätzen'
+        text: '<p>Auf $[6;12]$ liegt der Graph zwischen ca. $10{,}2$ und $11{,}7$ ME/Monat. Die Fläche liegt also zwischen zwei Rechtecken der Breite $6$:</p>$$6\cdot 10{,}2\approx 61 \quad&lt;\quad \int_6^{12} a(t)\,dt\quad&lt;\quad 6\cdot 11{,}7\approx 70$$<p>Ein guter Schätzwert ist $6\cdot 11{,}2\approx 67$ ME. Genau sind es ca. $67{,}36$ ME.</p>'
+      - typ: eingabe
+        frage: '<strong>Durchschnittlicher monatlicher Absatz</strong> im zweiten Halbjahr: Fläche geteilt durch Breite, $\frac{67{,}36}{6}$.'
+        felder:
+          - { label: 'ca.', loesung: 11.23, toleranz: 0.1, einheit: 'ME/Monat' }
+        hinweis: 'Teile $67{,}36$ durch $6$.'
+        danach: '<p>Das Rechteck mit der Höhe $11{,}23$ hat dieselbe Fläche wie die Fläche unter dem Graphen.</p>'
+        zeige: { flaechen: [f612, avg] }
+
+  - phase: vormachen
+    titel: 'Eine Aussage prüfen'
+    text: '<p>Gleicher Graph. Stimmt die Aussage „Im ersten Halbjahr werden mindestens $60$ ME abgesetzt“?</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: 'x^2*exp(-0.25*x)+3', name: 'a(t)', xmin: 0 }
+      xMin: -0.3
+      xMax: 12
+      yMin: 0
+      yMax: 13
+      xSchritt: 1
+      ySchritt: 1
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      flaechen:
+        - { id: b1, term: '3.779', von: 0, bis: 1, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b2, term: '5.426', von: 1, bis: 2, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b3, term: '7.251', von: 2, bis: 3, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b4, term: '8.886', von: 3, bis: 4, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b5, term: '10.163', von: 4, bis: 5, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: b6, term: '11.033', von: 5, bis: 6, farbe: 'rgba(255,127,14,0.35)' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Balken zeigen'
+        text: '<p>Auf $[0;6]$ steigt $a$. Balken mit der Höhe am <strong>rechten</strong> Rand ragen über den Graphen. Ihre Summe ist also größer als der Gesamtabsatz:</p>$$\int_0^6 a(t)\,dt&lt;3{,}8+5{,}4+7{,}3+8{,}9+10{,}2+11{,}0=46{,}6$$'
+        zeige: { flaechen: [b1, b2, b3, b4, b5, b6] }
+      - typ: auswahl
+        frage: 'Ist die Aussage „mindestens $60$ ME“ wahr oder falsch?'
+        optionen:
+          - 'wahr'
+          - 'falsch'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Schon die zu großen Balken ergeben weniger als $60$.'
+        danach: '<p>Der Gesamtabsatz ist kleiner als $46{,}6$ ME, also sicher kleiner als $60$ ME: Die Aussage ist <strong>falsch</strong>.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was bedeutet welcher Ausdruck?'
+    text: '<p>Ordne jedem Ausdruck seine Bedeutung im Sachzusammenhang zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Ausdruck'
+        titel_rechts: 'Bedeutung'
+        paare:
+          - { links: '$\int_2^5 a(t)\,dt$', rechts: 'Gesamtabsatz vom Ende des 2. bis zum Ende des 5. Monats' }
+          - { links: '$\int_0^5 a(t)\,dt$', rechts: 'Gesamtabsatz in den ersten 5 Monaten' }
+          - { links: '$a(5)$', rechts: 'monatlicher Absatz nach 5 Monaten' }
+          - { links: '$a(5)-a(2)$', rechts: 'Zunahme des monatlichen Absatzes von $t=2$ bis $t=5$' }
+          - { links: '$\frac{1}{3}\int_2^5 a(t)\,dt$', rechts: 'durchschnittlicher monatlicher Absatz von $t=2$ bis $t=5$' }
+
+  - phase: mitmachen
+    titel: 'Neuer Graph – schätzen und prüfen'
+    text: '<p>Ein anderes Produkt. Ein Kästchen ist $1$ Monat breit und $1$ ME/Monat hoch, also $1$ ME.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '1.5x^2*exp(-0.3*x)+2', name: 'a(t)', xmin: 0 }
+      xMin: -0.3
+      xMax: 16
+      yMin: 0
+      yMax: 12
+      xSchritt: 1
+      ySchritt: 1
+      xAchse: 't in Monaten'
+      yAchse: 'ME/Monat'
+      flaechen:
+        - { id: f48, term: '1.5x^2*exp(-0.3*x)+2', von: 4, bis: 8, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: f010, term: '1.5x^2*exp(-0.3*x)+2', von: 0, bis: 10, farbe: 'rgba(31,119,180,0.35)' }
+        - { id: avg, term: '8.41', von: 0, bis: 10, farbe: 'rgba(44,160,44,0.35)' }
+        - { id: l1, term: '2', von: 0, bis: 1, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: l2, term: '3.111', von: 1, bis: 2, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: l3, term: '5.293', von: 2, bis: 3, farbe: 'rgba(255,127,14,0.35)' }
+        - { id: l4, term: '7.489', von: 3, bis: 4, farbe: 'rgba(255,127,14,0.35)' }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Schätzwert für den Gesamtabsatz vom Ende des 4. bis zum Ende des 8. Monats.</strong> Auf $[4;8]$ liegt der Graph etwa zwischen $9{,}2$ und $11$. Rechne Breite mal mittlere Höhe.'
+        felder:
+          - { label: 'ca.', loesung: 42.42, toleranz: 4.2, einheit: 'ME', zeige: { flaechen: [f48] } }
+        hinweis: 'Die Breite ist $8-4=4$, eine mittlere Höhe ist etwa $10{,}5$.'
+        danach: '<p>Genau sind es $\int_4^8 a(t)\,dt\approx 42{,}42$ ME.</p>'
+      - typ: eingabe
+        frage: '<strong>Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 10 Monaten</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: 'ca.', loesung: 8.41, toleranz: 0.85, einheit: 'ME/Monat', zeige: { flaechen: [f010] } }
+        hinweis: 'Gesucht ist die Höhe eines Rechtecks über $[0;10]$ mit derselben Fläche. Der Graph liegt anfangs tief und später bei etwa $10$ bis $11$. Oder: Kästchen zählen und durch $10$ teilen.'
+        danach: '<p>Genau sind es $\frac{1}{10}\int_0^{10} a(t)\,dt\approx 8{,}41$ ME/Monat.</p>'
+        zeige: { flaechen: [f010, avg] }
+      - typ: auswahl
+        frage: 'Stimmt die Aussage „In den ersten 4 Monaten werden mindestens $15$ ME abgesetzt“?'
+        optionen:
+          - 'wahr'
+          - 'falsch'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Auf $[0;4]$ steigt $a$. Balken mit der Höhe am <strong>linken</strong> Rand liegen unter dem Graphen: $a(0)+a(1)+a(2)+a(3)$.'
+        danach: '<p>Die Balken mit der Höhe am linken Rand liegen ganz unter dem Graphen:</p>$$\int_0^4 a(t)\,dt>2+3{,}1+5{,}3+7{,}5=17{,}9$$<p>Schon das sind mehr als $15$ ME: Die Aussage ist <strong>wahr</strong>.</p>'
+        zeige: { flaechen: [l1, l2, l3, l4] }
