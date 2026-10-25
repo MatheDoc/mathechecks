@@ -8,7 +8,6 @@ import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } f
 import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, REGRESSION_MINIMIERUNG_PUNKTE } from "../visuals/regression-minimierung.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
-import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
 import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgungsplan.js";
 import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinseszins-herleitung.js";
 import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
@@ -1623,69 +1622,6 @@ f'(x_0) & = \\lim_{h \\to 0} m_h = 2x_0 = ${fmtTex(tangentSteigung)}
         aSlider.addEventListener("input", update);
         bSlider.addEventListener("input", update);
         cSlider.addEventListener("input", update);
-        update();
-    });
-
-    /* ---- Quadratische Funktionen Parameter (Scheitelpunktform) ---- */
-    root.querySelectorAll(".qfp-widget").forEach((row) => {
-        const aSlider = row.querySelector(".qfp-aSlider");
-        if (!aSlider) return;
-        const dSlider = row.querySelector(".qfp-dSlider");
-        const eSlider = row.querySelector(".qfp-eSlider");
-        const aWert = row.querySelector(".qfp-aWert");
-        const dWert = row.querySelector(".qfp-dWert");
-        const eWert = row.querySelector(".qfp-eWert");
-        const eqDisplay = row.querySelector(".qfp-eqDisplay");
-        const scheitelX = row.querySelector(".qfp-scheitelX");
-        const scheitelY = row.querySelector(".qfp-scheitelY");
-        const plotDiv = row.querySelector(".qfp-plotGraph");
-
-        function fmt(n) {
-            const r = Math.round(n * 100) / 100;
-            return r % 1 === 0 ? String(r) : r.toFixed(2).replace(/0+$/, "");
-        }
-        function fmtDe(n) { return fmt(n).replace(".", ","); }
-
-        function buildEquation(a, d, e) {
-            let term = "";
-            // a-Faktor
-            if (a === 1) term = "";
-            else if (a === -1) term = "-";
-            else term = fmtDe(a);
-            // (x - d)²
-            if (d === 0) term += "(x)^2";
-            else if (d > 0) term += "(x - " + fmtDe(d) + ")^2";
-            else term += "(x + " + fmtDe(Math.abs(d)) + ")^2";
-            // + e
-            if (e !== 0) {
-                const sign = e > 0 ? "+" : "-";
-                term += " " + sign + " " + fmtDe(Math.abs(e));
-            }
-            return "$ f(x) = " + term + " $";
-        }
-
-        function update() {
-            const a = parseFloat(aSlider.value);
-            const d = parseFloat(dSlider.value);
-            const e = parseFloat(eSlider.value);
-
-            aWert.textContent = fmtDe(a);
-            dWert.textContent = fmtDe(d);
-            eWert.textContent = fmtDe(e);
-
-            eqDisplay.innerHTML = buildEquation(a, d, e);
-            scheitelX.textContent = fmtDe(d);
-            scheitelY.textContent = fmtDe(e);
-            if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay, eqDisplay.closest(".widget-controls")]);
-
-            // Graph
-            const figure = buildQuadratischeParameterFigure({ a, d, e });
-            plotlyRender(plotDiv, figure.data, figure.layout);
-        }
-
-        aSlider.addEventListener("input", update);
-        dSlider.addEventListener("input", update);
-        eSlider.addEventListener("input", update);
         update();
     });
 }

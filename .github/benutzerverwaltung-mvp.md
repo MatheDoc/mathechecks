@@ -69,9 +69,9 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab und erhöht dabei den user-scoped Feed-Aktivitätszähler.
 - `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad außerhalb des Core-Cursors; die Durchgänge können auch während einer aktiven Core-Session sichtbar werden.
 - `user_activity_events` ergänzt einen separaten user-scoped Append-only Log für accountgebundene Aktivitätsstatistik außerhalb der Feed-Projektion.
-- `record_user_activity(...)` schreibt kumulative Ereignisse für `training`, `recall`, `feynman` und `flashcards`; `get_user_activity_overview()` liefert daraus das Dashboard-Read-Model für Gesamtzahlen und 7-Tage-Überblick.
+- `record_user_activity(...)` schreibt kumulative Ereignisse für `training`, `recall`, `feynman`, `test` und `flashcards`; `get_user_activity_overview()` liefert daraus das Dashboard-Read-Model für Gesamtzahlen und 7-Tage-Überblick.
 - `get_user_check_proficiency()` leitet die user-scoped Quote je Check als recency-gewichtetes Read-Model aus den `training`-Ereignissen ab (Parameter `proficiency.*` in `system_settings`); `get_user_activity_overview().trainingSuccess` und `.proficiency` beziehen ihre Erfolgsquote daraus, das Dashboard rendert die nach Quote sortierte Trainingsfokus-Liste.
-- `complete_test_step(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
+- `complete_test_step(...)` schließt den letzten checkbezogenen Schritt (`test`) ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
@@ -79,7 +79,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Das Dashboard trennt im UI zwischen `Session` und `Feed`: Die Session verwaltet die aktive Core-Session, der Feed bündelt Empfehlungen aus der aktiven Session und aus Wiederholungen.
 - Die Feed-Projektion zeigt im Dashboard aktuell genau ein sichtbares Hauptelement, priorisiert offene `start`-Aktivitäten und sonst serverseitig freigegebene Check-Schritte mit materialisierten Zeitfenstern; fällige Retention-Flashcards bleiben cursor-separat und dürfen den sichtbaren Feed-Kopf übernehmen, wenn gerade kein `due`- oder `overdue`-Core-Schritt Vorrang hat.
 - Ein `Nein, zum Dashboard` im Feed ändert den Aktivitätszustand nicht persistent; die Aktivität bleibt offen und erscheint in ihrer normalen fachlichen Reihenfolge weiter.
-- Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
+- Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `test` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
 - Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt dabei außerhalb des serverseitigen Core-Cursors, kann aber im Frontend als separater sichtbarer Kopf auftauchen.
@@ -220,7 +220,7 @@ Aktuelle Schlüssel:
 - `feed.weight_training`
 - `feed.weight_recall`
 - `feed.weight_feynman`
-- `feed.weight_kompetenzliste`
+- `feed.weight_test`
 - `feed.core_gap_very_tight_hours`
 - `feed.core_gap_tight_hours`
 - `feed.core_gap_normal_hours`
@@ -244,7 +244,7 @@ Die `feed.core_gap_*_hours`-Werte definieren die fünf serverseitigen `G`-Profil
 Zweck:
 User-scoped Zähler für abgeschlossene Feed-Aktivitäten. Die Tabelle liefert serverseitige Referenzwerte für Retention-Abstände und andere feedweite Freigabelogik.
 
-Gezählt werden aktuell abgeschlossene `start`-, `training`-, erfolgreiche `recall`-/`feynman`-, `kompetenzliste`- und abgeschlossene Retention-Aktivitäten.
+Gezählt werden aktuell abgeschlossene `start`-, `training`-, erfolgreiche `recall`-/`feynman`-, `test`- und abgeschlossene Retention-Aktivitäten.
 
 Aktuelle Felder:
 
@@ -271,7 +271,7 @@ Aktuelle Felder:
 
 - `id uuid primary key default gen_random_uuid()`
 - `user_id uuid not null references auth.users(id) on delete cascade`
-- `activity_type text not null check (activity_type in ('training', 'recall', 'feynman', 'flashcards'))`
+- `activity_type text not null check (activity_type in ('training', 'recall', 'feynman', 'flashcards', 'test'))`
 - `lernbereich_slug text null`
 - `check_id text null`
 - `context_key text null` — aktuell fachlich `feed` oder `free`
@@ -700,7 +700,7 @@ Wichtig:
 
 - Der erste serverseitige Trainingsübergang sagt nur: `Der Trainingsschritt in der Feed-Kette wurde bewusst abgeschlossen.`
 - Er sagt **noch nicht**: `Der Check wurde automatisiert fehlerfrei gelöst.`
-- Automatisierte Trainingsabschlüsse für Kompetenzlisten-Freigabe und feinere Fortschrittswerte sind ein eigener, späterer Datenpfad.
+- Automatisierte Trainingsabschlüsse und feinere Fortschrittswerte sind ein eigener, späterer Datenpfad.
 
 ### Aktuelle Training-RPC und Zielbild
 

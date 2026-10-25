@@ -44,7 +44,8 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 - Module arbeiten mit Modul-Systemfarben.
 
 ## Check-Anker in Skripten
-- Für jeden Check gibt es Hinweise, Beispiel und Aufgabe. 
+
+- Jeder Check-Anker blendet Tipps, Beispiel und eine Aufgabe ein. Skript-Widgets: `.github/widgets.md`.
 
 ## Konsistenz- und Cleanup-Regeln
 

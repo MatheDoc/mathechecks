@@ -178,13 +178,13 @@ python -m aufgaben.cli validate-binomial
 1. Neue Klasse in `aufgaben/generators/<bereich>/...` von `TaskGenerator` ableiten.
 2. `generator_key` setzen (z. B. `analysis.nullstellen.linear`).
 3. Job mit `targets` in `project_config.json` ergänzen.
-4. Passenden Eintrag in `checks.json` anlegen (mit übereinstimmender `Sammlung`).
+4. Passenden Eintrag in `_data/checks.json` anlegen (mit übereinstimmender `Sammlung`).
 
 ## Neue statische Sammlung anlegen
 
 1. JSON-Datei manuell unter `aufgaben/exports/json/<gebiet>/<lernbereich>/<sammlung>.json` ablegen.
 2. Eintrag in `project_config.json` unter `"static"` hinzufügen.
-3. Passenden Eintrag in `checks.json` anlegen.
+3. Passenden Eintrag in `_data/checks.json` anlegen.
 
 ## Moodle-XML-Export
 

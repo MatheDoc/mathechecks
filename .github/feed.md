@@ -172,13 +172,13 @@ Die offene Last wird gewichtet nach Schritttyp betrachtet. Ein möglicher Startw
 - `training = 1.0`
 - `recall = 0.7`
 - `feynman = 1.0`
-- `kompetenzliste = 0.5`
+- `test = 0.5`
 
 `start` zählt bewusst mit, weil es ein echter Feed-Schritt mit eigener Zeit- und Lock-Semantik ist.
 
 Damit ergibt sich:
 
-`W = 1.0 * n_S + 1.0 * n_T + 0.7 * n_R + 1.0 * n_F + 0.5 * n_K`
+`W = 1.0 * n_S + 1.0 * n_T + 0.7 * n_R + 1.0 * n_F + 0.5 * n_{Test}`
 
 und für explizite Ziele daraus die erforderliche Geschwindigkeit:
 
