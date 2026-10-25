@@ -4720,6 +4720,35 @@ html.light .roulette-widget__event {
   margin-top: 8px;
 }
 
+/* ── Widget-specific: Abschöpfung der Konsumentenrente ── */
+.ab-widget .widget-controls {
+  width: 100%;
+  max-width: 560px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.ab-widget .ab-werte {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ab-widget .ab-toggles label {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.ab-info {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ab-info > div + div {
+  margin-top: 8px;
+}
+
 /* ── Widget-specific: Herleitung Zinseszinsformel (Inline-SVG-Zeitstrahl) ── */
 .zzh-widget .widget-controls {
   max-width: 480px;

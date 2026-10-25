@@ -2,7 +2,7 @@ import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildBaumdiagrammBinomialFigure } from "../visuals/baumdiagramm-binomial.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
-import { buildGraphFigure } from "../visuals/graph.js?v=20261024-graph-dash";
+import { buildGraphFigure } from "../visuals/graph.js?v=20261025-graph-dtick";
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
 import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, REGRESSION_MINIMIERUNG_PUNKTE } from "../visuals/regression-minimierung.js";
@@ -11,6 +11,7 @@ import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funkt
 import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgungsplan.js";
 import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinseszins-herleitung.js";
 import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
+import { berechneMarkt, berechneAbschoepfung, buildAbschoepfungMarktFigure, buildAbschoepfungZielFigure } from "../visuals/abschoepfung.js?v=20261025-abschoepfung";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
@@ -1072,6 +1073,116 @@ function initGesamtabsatzWidgets(root) {
     });
 }
 
+/* ---- Abschöpfung der Konsumentenrente (Preisdifferenzierung) ---- */
+const AB_SCHRITTE = 200;
+
+function initAbschoepfungWidgets(root) {
+    const zahl = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const tex = (n) => zahl.format(n).replace(",", "{,}").replace(/\./g, "\\,");
+    const texText = (s) => String(s).replace(/([%&#_$])/g, "\\$1");
+
+    root.querySelectorAll(".ab-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true" || !window.math) return;
+        widget.dataset.bound = "true";
+
+        const slider = widget.querySelector(".ab-x2Slider");
+        if (!slider) return;
+        const x2Wert = widget.querySelector(".ab-x2Wert");
+        const p2Wert = widget.querySelector(".ab-p2Wert");
+        const aWert = widget.querySelector(".ab-aWert");
+        const maxBox = widget.querySelector(".ab-maximum");
+        const info = widget.querySelector(".ab-info");
+        const plotDiv = widget.querySelector(".ab-plot");
+        const plotZielDiv = widget.querySelector(".ab-plotZiel");
+
+        const ds = widget.dataset;
+        const termN = ds.termN;
+        const termA = ds.termA;
+        const xMax = parseNum(ds.xmax) || 40;
+        const yMax = parseNum(ds.ymax) || 42;
+        const einheitX = ds.einheitX || "ME";
+        const einheitP = ds.einheitP || "GE/ME";
+        const einheitA = ds.einheitA || "GE";
+
+        let markt;
+        try {
+            markt = berechneMarkt({ termN, termA, xSuche: Math.max(xMax, 1) * 3 });
+        } catch (error) {
+            markt = null;
+            console.warn("[ab-widget] Funktionsterme ungültig:", termN, termA, error);
+        }
+        if (!markt) {
+            if (info) info.textContent = "Das Marktgleichgewicht konnte nicht bestimmt werden.";
+            return;
+        }
+        const { xG, pG } = markt;
+
+        // Slider arbeitet auf Indizes 1 … AB_SCHRITTE (Schrittweite xG / AB_SCHRITTE);
+        // der Startwert wird exakt übernommen, bis der Slider bewegt wird.
+        slider.min = "1";
+        slider.max = String(AB_SCHRITTE);
+        slider.step = "1";
+        const startRoh = parseNum(ds.startX2);
+        let x2 = Number.isFinite(startRoh) && startRoh > 0 && startRoh <= xG ? startRoh : 0.6 * xG;
+        slider.value = String(Math.min(AB_SCHRITTE, Math.max(1, Math.round((x2 / xG) * AB_SCHRITTE))));
+
+        const einheitTex = (e) => `\\,\\text{${texText(e)}}`;
+
+        function update() {
+            const zeigeMaximum = !!maxBox?.checked;
+            const { p2, betrag } = berechneAbschoepfung({ termN, x2, pG });
+
+            x2Wert.textContent = `${zahl.format(x2)} ${einheitX}`;
+            p2Wert.textContent = `${zahl.format(p2)} ${einheitP}`;
+            aWert.textContent = `${zahl.format(betrag)} ${einheitA}`;
+
+            const zeilen = [
+                `Abgeschöpfter Betrag (graues Rechteck mit den Seiten $x_2$ und $p_2-p_G$):<br>`
+                + `$ \\begin{aligned} A(x_2) &= x_2\\cdot\\bigl(p_N(x_2)-p_G\\bigr)\\\\ `
+                + `&= ${tex(x2)}\\cdot\\bigl(${tex(p2)}-${tex(pG)}\\bigr)\\\\ `
+                + `&\\approx ${tex(betrag)}${einheitTex(einheitA)} \\end{aligned} $`,
+                `Gleichgewicht: $x_G \\approx ${tex(xG)}${einheitTex(einheitX)}$, `
+                + `$p_G \\approx ${tex(pG)}${einheitTex(einheitP)}$`,
+            ];
+            if (zeigeMaximum) {
+                zeilen.push(
+                    `Maximum bei $x_2 \\approx ${tex(markt.xMax)}${einheitTex(einheitX)}$, `
+                    + `$p_2 \\approx ${tex(markt.pMax)}${einheitTex(einheitP)}$, `
+                    + `$A \\approx ${tex(markt.aMax)}${einheitTex(einheitA)}$`
+                );
+            }
+            info.innerHTML = zeilen.map((z) => `<div>${z}</div>`).join("");
+            if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([info]).catch(() => { });
+
+            const fig = buildAbschoepfungMarktFigure({
+                termN, termA, x2, xG, pG, xMax, yMax, einheitX, einheitP,
+                titel: ds.titel || "",
+                xAchse: ds.xachse || "",
+                yAchse: ds.yachse || "",
+            });
+            plotlyRender(plotDiv, fig.data, fig.layout);
+
+            if (plotZielDiv) {
+                const figZiel = buildAbschoepfungZielFigure({
+                    termN, x2, xG, pG, einheitX, einheitA,
+                    maximum: zeigeMaximum ? markt : null,
+                    titel: ds.titelZiel || "",
+                    xAchse: ds.xachseZiel || `Teilmarktmenge x<sub>2</sub> in ${einheitX}`,
+                    yAchse: ds.yachseZiel || `A(x<sub>2</sub>) in ${einheitA}`,
+                });
+                plotlyRender(plotZielDiv, figZiel.data, figZiel.layout);
+            }
+        }
+
+        slider.addEventListener("input", () => {
+            x2 = (Number(slider.value) / AB_SCHRITTE) * xG;
+            update();
+        });
+        maxBox?.addEventListener("change", update);
+        update();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -1088,6 +1199,7 @@ export function initSkriptVisuals(root) {
     initPunktwolkeRegressionWidgets(root);
     initRegressionMinimierungWidgets(root);
     initGesamtabsatzWidgets(root);
+    initAbschoepfungWidgets(root);
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");
@@ -1130,6 +1242,8 @@ export function initSkriptVisuals(root) {
             xMax: div.dataset.xmax !== "" ? Number(div.dataset.xmax) : 20,
             yMin: div.dataset.ymin !== "" ? Number(div.dataset.ymin) : null,
             yMax: div.dataset.ymax !== "" ? Number(div.dataset.ymax) : null,
+            xDtick: parseNum(div.dataset.xdtick),
+            yDtick: parseNum(div.dataset.ydtick),
         });
 
         plotlyRender(div, figure.data, figure.layout);

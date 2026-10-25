@@ -33,6 +33,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | Tilgungsplan | `widget-tilgungsplan.html` | `.tp-widget` | Annuitätenformel mit Werten + vollständiger Tilgungsplan (zeilenweise auf Cent gerundet, Rundungsdifferenz) + gestapeltes Balkendiagramm Zinsen/Tilgung; läuft auch ohne Plotly (nur Tabelle) |
 | Herleitung Zinseszinsformel | `widget-zinseszins-herleitung.html` | `.zzh-widget` | Inline-SVG-Zeitstrahl (Kapital je Jahr, Zinsen mit Rechenweg, Zinsfaktor-Bögen, Sammelbogen $q^n$) + MathJax-Herleitung $K_1 \to K_n$; kein Plotly |
 | Gesamtabsatz | `widget-gesamtabsatz.html` | `.ga-widget` | Absatzrate $a(t)$ mit Fläche auf $[t_1;t_2]$ (optional Monatsbalken, Durchschnittsrechteck) + kumulierte Absatzfunktion $A(t)$ mit Differenz $A(t_2)-A(t_1)$ + MathJax-Infoblock; Parameter `term` (math.js, Variable `t`), `tmax`, `t1`, `t2`, `fname`, `einheit_y`, `einheit_flaeche`, `zeiteinheit`, `xachse`, `yachse` (optional `titel`, `titel_kumuliert`, `yachse_kumuliert`, `balken_label`) |
+| Abschöpfung der Konsumentenrente | `widget-abschoepfung.html` | `.ab-widget` | Slider für Teilmarktmenge $x_2$ (Werte $x_2$, $p_2$, $A$) + Menge-Preis-Diagramm ($p_N$, $p_A$, KR2, KR1, schraffierter abgeschöpfter Betrag, Hilfslinien $x_2/p_2$, $x_G/p_G$) + Zielfunktion $A(x_2)=x_2\cdot(p_N(x_2)-p_G)$ mit aktuellem Punkt, optional Maximum (Checkbox) + MathJax-Infoblock; $x_G$, $p_G$ und Maximum numerisch; Parameter `id`, `term_n`, `term_a` (math.js, Variable `x`), `xmax`, `ymax`, `start_x2`, `xachse`, `yachse` (optional `einheit_x`, `einheit_p`, `einheit_a`, `titel`, `titel_ziel`, `xachse_ziel`, `yachse_ziel`) |
 
 
 ## HTML-Struktur
@@ -103,6 +104,7 @@ Einstiegspunkt: `initSkriptVisuals(root)`.
 - Findet alle Widget-Container via CSS-Klasse (`.hb-widget`, `.lf-widget`, …)
 - Bindet Slider-Events → ruft Figure-Builder → `plotlyRender()`
 - Findet auch statische Plotly-Blöcke (`.baumdiagramm-auto`, `.histogramm-einzel-auto`, …) und rendert sie
+- Statischer Graph `graph.html` (`.graph-auto` → `buildGraphFigure`): Parameter `funktionen`, `punkte`, `flaechen`, `hilfslinien`, `titel`, `xachse`, `yachse`, `xmin`, `xmax`, `ymin`, `ymax`, optional `xdtick`/`ydtick` (festes Gitter ab 0, z. B. `xdtick=2 ydtick=2` zum Kästchenzählen)
 
 
 ## Dark-Mode

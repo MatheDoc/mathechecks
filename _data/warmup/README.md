@@ -20,7 +20,7 @@ Kurzer, interaktiver Einstieg in **einen** Check, so kurz wie möglich, so lang 
 |---|---|---|---|
 | `orientierung` | Idee | Worum geht es, Kernidee, nötige Begriffe/Formeln; am Ende ein bis drei Merksätze | 1–2 Karten, 2–4 Schritte |
 | `vormachen` | Zuschauen | Musterbeispiel aus `beispiele/<NN>-<sammlung>.md`, Schritt für Schritt mit kleinen Begleitfragen | 1–3 Karten |
-| `mitmachen` | Mitmachen | Neue Zahlen, Hilfe nimmt ab bis kurz vor die Trainingsaufgabe | 2–4 Karten |
+| `mitmachen` | Mitmachen | Neue Zahlen, Hilfe nimmt ab bis kurz vor die Trainingsaufgabe | 2–3 Karten, meist Zuordnung + eine Rechenkarte |
 
 Insgesamt 4–8 Karten, Richtwert höchstens etwa 15 Schritte. Checks mit vielen Kennzahlen oder Lösungswegen dürfen begründet darüber liegen.
 
@@ -29,6 +29,7 @@ Insgesamt 4–8 Karten, Richtwert höchstens etwa 15 Schritte. Checks mit vielen
    - Ein Gedanke pro Klick; das Bild baut sich über `zeige` mit auf. Es darf mehr zeigen als im Training, z. B. $f$ zusätzlich zu $f'$.
    - Höchstens ein bis zwei **Beobachtungsfragen**. Erlaubt ist eine Frage nur, wenn man sie ohne Vorwissen zum Check allein aus Text und Bild beantworten kann und dafür trotzdem kurz hinschauen muss. Beispiel: „Schau dir $K'$ an. Was fällt dir auf?“
    - Nicht erlaubt sind Fragen, deren Antwort gerade dasteht, und Fragen, deren Antwort erst später erklärt wird.
+   - Die Leitidee ist der fachliche Kern (z. B. „Merkmal des Graphen → Gleichung“), kein Rechentrick. Rechentipps (z. B. $e^{-ct}\neq 0$, also genügt die Klammer) gehören an die passende Stelle beim Zuschauen.
 2. **Jeder Klick bringt einen neuen Gedanken oder eine echte Entscheidung.**
    - Aufdecken-Schritte ohne Denkpause dazwischen zusammenfassen.
    - Keine Plausibilitäts- oder Pflichtfragen ohne echte Hürde.
@@ -42,11 +43,12 @@ Insgesamt 4–8 Karten, Richtwert höchstens etwa 15 Schritte. Checks mit vielen
    - Eine Zuordnung „Situation → Ansatz“ ist ein guter Start ins Mitmachen.
 4. **Kein Doppel zum Training.**
    - Es gibt keine Karte, die einer Trainingsaufgabe entspricht. Das Fading endet kurz davor.
+   - Mitmachen lieber knapp halten: Was nur noch ein weiteres Ablesen oder Einsetzen wie im Training wäre, fällt weg. Eine Rechenkarte übt vor allem die wichtigste Falle bzw. den neuen Schritt.
    - Bis zum Ende kommt jedes Eingabeformat des Trainings einmal vor (Rundung, $Bcd(\dots)$, „keine Lösung“ …).
-   - Hinweise auf Fallen stehen im `abschluss`.
+   - Der `abschluss` ist **kurz** (ein bis drei Sätze): was im Training kommt und die wichtigste Falle.
 5. **Kern vor Vollständigkeit.**
    - Der häufigste Aufgabentyp und die wichtigste Falle bekommen eigene Karten. Das gilt auch für häufige Informationstypen der Aufgabensammlung, die im Musterbeispiel fehlen.
-   - Seltene Sonderfälle stehen nur im `abschluss`.
+   - Seltene Sonderfälle höchstens mit einem Halbsatz im `abschluss`.
 6. **Gleichwertige Lösungswege beide zeigen** (z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle mit $K'$). Beim Mitmachen wird jeder Weg einmal geübt.
 7. **Bezeichnungen wie im Skript.**
 8. **Für welche Checks?** Ein Warm-Up lohnt sich bei einer neuen Idee, einem neuen Verfahren oder einer typischen Fehlvorstellung, kaum bei Routine-Varianten.

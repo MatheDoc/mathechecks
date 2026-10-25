@@ -6,7 +6,9 @@ from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 def _fmt_number(value: float, max_decimals: int = 4) -> str:
     rounded = round(float(value), max_decimals)
-    text = f"{rounded:.{max_decimals}f}".rstrip("0").rstrip(".")
+    text = f"{rounded:.{max_decimals}f}"
+    if "." in text:
+        text = text.rstrip("0").rstrip(".")
     if text in {"-0", ""}:
         text = "0"
     return text.replace(".", ",")

@@ -1,12 +1,12 @@
-import { initTrainingModule } from "./modules/training.js?v=20260910-field-scores";
+import { initTrainingModule } from "./modules/training.js?v=20261025-markt-vertiefung";
 import { initRecallModule } from "./modules/recall.js?v=20261007-ai-gate-timeout";
-import { initFeynmanModule } from "./modules/feynman.js?v=20261007-ai-gate-timeout";
+import { initFeynmanModule } from "./modules/feynman.js?v=20261025-markt-vertiefung";
 import { initTestModule } from "./modules/test.js?v=20260908-run-rate";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260925-session-scope";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260910-field-scores";
-import { initCheckAnker } from "./modules/check-anker.js?v=20260925-session-scope";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20261025-markt-vertiefung";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261025-markt-vertiefung";
+import { initCheckAnker } from "./modules/check-anker.js?v=20261025-abschoepfung-widget";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
-import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
+import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js?v=20261025-abschoepfung-widget";
 import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { initWarmupModule } from "./modules/warmup.js?v=20261019-warmup-graph-flaechen";

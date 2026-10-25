@@ -12,6 +12,11 @@ from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
 )
 
 
+def _fmt_fixed4(value: float) -> str:
+    """Gleichgewichtswerte einheitlich mit genau 4 Nachkommastellen anzeigen."""
+    return f"{value:.4f}".replace(".", ",")
+
+
 class MarketEquilibriumRentenBestimmungPRKRGenerator(TaskGenerator):
     generator_key = "analysis.marktgleichgewicht_vertiefung.renten_bestimmung_prkr"
 
@@ -52,10 +57,10 @@ class MarketEquilibriumRentenBestimmungPRKRGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):"
                         f"{_align_equations([supply_latex, demand_latex])}"
-                        f"Die Gleichgewichtsmenge beträgt {_fmt_number(eq_x)} ME "
-                        f"und der Gleichgewichtspreis {_fmt_number(eq_p)} GE. Bestimmen Sie (auf 2 NKS gerundet)"
+                        f"Die Gleichgewichtsmenge beträgt {_fmt_fixed4(eq_x)} ME "
+                        f"und der Gleichgewichtspreis {_fmt_fixed4(eq_p)} GE/ME. Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[
                         "die Konsumentenrente.",

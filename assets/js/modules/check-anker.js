@@ -1,6 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { fetchBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
-import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js";
+import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js?v=20261025-abschoepfung-widget";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
 const CHECK_ANKER_BEISPIEL_CACHE = new Map();

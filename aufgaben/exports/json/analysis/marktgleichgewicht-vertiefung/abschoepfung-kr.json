@@ -1,0 +1,969 @@
+[
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-8{,}2\\cdot e^{-0{,}086x}+42 \\\\ p_N(x)&=-2{,}8x+95 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 76 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=241,1363:0,23}",
+      "$x_2=$ {1:NUMERICAL:=9,7386:0,1} ME, $p_2=$ {1:NUMERICAL:=67,7321:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -8.2,
+            "rate": 0.086,
+            "c": 42.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -2.8,
+            "b": 95.0
+          },
+          "eqX": 19.4771,
+          "eqP": 40.4641,
+          "xP": 6.7857,
+          "price": 76.0,
+          "maxX": 25.0,
+          "maxY": 120.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 76 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-7{,}7\\cdot e^{-0{,}051x}+18 \\\\ p_N(x)&=65\\cdot e^{-0{,}078x}-6{,}4 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 41 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=107,8851:0,17}",
+      "$x_2=$ {1:NUMERICAL:=6,1884:0,1} ME, $p_2=$ {1:NUMERICAL:=33,7126:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -7.7,
+            "rate": 0.051,
+            "c": 18.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 65.0,
+            "rate": 0.078,
+            "c": -6.4
+          },
+          "eqX": 14.6388,
+          "eqP": 14.3503,
+          "xP": 4.0483,
+          "price": 41.0,
+          "maxX": 20.0,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 41 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}9x+3{,}2 \\\\ p_N(x)&=-3x+99 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 51 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=411,0769:0,22}",
+      "$x_2=$ {1:NUMERICAL:=12,2821:0,1} ME, $p_2=$ {1:NUMERICAL:=62,1538:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.9,
+            "b": 3.2
+          },
+          "demand": {
+            "type": "linear",
+            "a": -3.0,
+            "b": 99.0
+          },
+          "eqX": 24.5641,
+          "eqP": 25.3077,
+          "xP": 16.0,
+          "price": 51.0,
+          "maxX": 35.0,
+          "maxY": 120.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 51 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}088x^2+0{,}079x+5{,}4 \\\\ p_N(x)&=43\\cdot e^{-0{,}037x}-0{,}84 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 30 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=49,3973:0,1}",
+      "$x_2=$ {1:NUMERICAL:=6,6533:0,1} ME, $p_2=$ {1:NUMERICAL:=32,7769:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.088,
+            "b": 0.079,
+            "c": 5.4
+          },
+          "demand": {
+            "type": "exp",
+            "A": 43.0,
+            "rate": 0.037,
+            "c": -0.84
+          },
+          "eqX": 14.2909,
+          "eqP": 24.5013,
+          "xP": 8.9834,
+          "price": 30.0,
+          "maxX": 20.0,
+          "maxY": 50.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 30 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-50\\cdot e^{-0{,}024x}+55 \\\\ p_N(x)&=56\\cdot e^{-0{,}074x}-0{,}47 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 41 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=88,0108:0,14}",
+      "$x_2=$ {1:NUMERICAL:=6,0447:0,1} ME, $p_2=$ {1:NUMERICAL:=35,3334:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -50.0,
+            "rate": 0.024,
+            "c": 55.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 56.0,
+            "rate": 0.074,
+            "c": -0.47
+          },
+          "eqX": 14.0576,
+          "eqP": 19.3182,
+          "xP": 4.0592,
+          "price": 41.0,
+          "maxX": 20.0,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 41 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}34x+8 \\\\ p_N(x)&=30\\cdot e^{-0{,}075x}-0{,}5 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 17 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=36,0977:0,1}",
+      "$x_2=$ {1:NUMERICAL:=5,1646:0,1} ME, $p_2=$ {1:NUMERICAL:=19,8657:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.34,
+            "b": 8.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 30.0,
+            "rate": 0.075,
+            "c": -0.5
+          },
+          "eqX": 11.6974,
+          "eqP": 11.9771,
+          "xP": 7.1866,
+          "price": 17.0,
+          "maxX": 15.0,
+          "maxY": 35.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 17 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}039x^2+0{,}72x+9{,}7 \\\\ p_N(x)&=95\\cdot e^{-0{,}059x}-8{,}6 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 65 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=151,9297:0,21}",
+      "$x_2=$ {1:NUMERICAL:=6,7346:0,1} ME, $p_2=$ {1:NUMERICAL:=55,2498:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.039,
+            "b": 0.72,
+            "c": 9.7
+          },
+          "demand": {
+            "type": "exp",
+            "A": 95.0,
+            "rate": 0.059,
+            "c": -8.6
+          },
+          "eqX": 15.3178,
+          "eqP": 29.8796,
+          "xP": 4.326,
+          "price": 65.0,
+          "maxX": 20.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 65 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-4{,}7\\cdot e^{-0{,}02x}+21 \\\\ p_N(x)&=-4{,}6x+75 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 55 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=163,7298:0,23}",
+      "$x_2=$ {1:NUMERICAL:=6,2672:0,1} ME, $p_2=$ {1:NUMERICAL:=46,1711:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -4.7,
+            "rate": 0.02,
+            "c": 21.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -4.6,
+            "b": 75.0
+          },
+          "eqX": 12.5343,
+          "eqP": 17.3421,
+          "xP": 4.3478,
+          "price": 55.0,
+          "maxX": 17.5,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 55 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}7x+20 \\\\ p_N(x)&=-4{,}9x+69 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 54 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=85,3316:0,17}",
+      "$x_2=$ {1:NUMERICAL:=4,375:0,1} ME, $p_2=$ {1:NUMERICAL:=47,5625:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.7,
+            "b": 20.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -4.9,
+            "b": 69.0
+          },
+          "eqX": 8.75,
+          "eqP": 26.125,
+          "xP": 3.0612,
+          "price": 54.0,
+          "maxX": 12.0,
+          "maxY": 80.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 54 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}07x^2+0{,}094x+4 \\\\ p_N(x)&=60\\cdot e^{-0{,}093x}-2{,}9 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 27 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=82,4979:0,11}",
+      "$x_2=$ {1:NUMERICAL:=5,2422:0,1} ME, $p_2=$ {1:NUMERICAL:=33,9488:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.07,
+            "b": 0.094,
+            "c": 4.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 60.0,
+            "rate": 0.093,
+            "c": -2.9
+          },
+          "eqX": 12.4303,
+          "eqP": 15.9843,
+          "xP": 7.4891,
+          "price": 27.0,
+          "maxX": 17.5,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 27 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}044x^2+0{,}8x+4{,}7 \\\\ p_N(x)&=-0{,}78x+98 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 82 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=175,3205:0,16}",
+      "$x_2=$ {1:NUMERICAL:=15,7352:0,1} ME, $p_2=$ {1:NUMERICAL:=85,7266:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.044,
+            "b": 0.8,
+            "c": 4.7
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.78,
+            "b": 98.0
+          },
+          "eqX": 31.4703,
+          "eqP": 73.4531,
+          "xP": 20.5128,
+          "price": 82.0,
+          "maxX": 40.0,
+          "maxY": 120.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 82 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-5{,}2\\cdot e^{-0{,}079x}+11 \\\\ p_N(x)&=79\\cdot e^{-0{,}035x}-2 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 27 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=460,6234:0,24}",
+      "$x_2=$ {1:NUMERICAL:=19,3716:0,1} ME, $p_2=$ {1:NUMERICAL:=38,1026:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -5.2,
+            "rate": 0.079,
+            "c": 11.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 79.0,
+            "rate": 0.035,
+            "c": -2.0
+          },
+          "eqX": 51.7494,
+          "eqP": 10.9128,
+          "xP": 28.6329,
+          "price": 27.0,
+          "maxX": 70.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 27 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}04x^2+0{,}48x+5{,}4 \\\\ p_N(x)&=79\\cdot e^{-0{,}049x}-1{,}8 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 43 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=160,0403:0,14}",
+      "$x_2=$ {1:NUMERICAL:=8,357:0,1} ME, $p_2=$ {1:NUMERICAL:=50,6551:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.04,
+            "b": 0.48,
+            "c": 5.4
+          },
+          "demand": {
+            "type": "exp",
+            "A": 79.0,
+            "rate": 0.049,
+            "c": -1.8
+          },
+          "eqX": 19.1074,
+          "eqP": 29.1752,
+          "xP": 11.5763,
+          "price": 43.0,
+          "maxX": 25.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 43 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}077x^2+0{,}26x+3{,}3 \\\\ p_N(x)&=54\\cdot e^{-0{,}03x}-0{,}62 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 45 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=76,7286:0,11}",
+      "$x_2=$ {1:NUMERICAL:=8,14:0,1} ME, $p_2=$ {1:NUMERICAL:=41,6799:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.077,
+            "b": 0.26,
+            "c": 3.3
+          },
+          "demand": {
+            "type": "exp",
+            "A": 54.0,
+            "rate": 0.03,
+            "c": -0.62
+          },
+          "eqX": 17.4726,
+          "eqP": 31.3503,
+          "xP": 5.6213,
+          "price": 45.0,
+          "maxX": 25.0,
+          "maxY": 60.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 45 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-74\\cdot e^{-0{,}22x}+80 \\\\ p_N(x)&=-2{,}1x+140 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 119 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=391,3589:0,26}",
+      "$x_2=$ {1:NUMERICAL:=14,3181:0,1} ME, $p_2=$ {1:NUMERICAL:=109,9321:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -74.0,
+            "rate": 0.22,
+            "c": 80.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -2.1,
+            "b": 140.0
+          },
+          "eqX": 28.6361,
+          "eqP": 79.8641,
+          "xP": 10.0,
+          "price": 119.0,
+          "maxX": 40.0,
+          "maxY": 175.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 119 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}95x+1{,}1 \\\\ p_N(x)&=80\\cdot e^{-0{,}099x}-0{,}68 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 54 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=145,7081:0,22}",
+      "$x_2=$ {1:NUMERICAL:=6,1919:0,1} ME, $p_2=$ {1:NUMERICAL:=42,658:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.95,
+            "b": 1.1
+          },
+          "demand": {
+            "type": "exp",
+            "A": 80.0,
+            "rate": 0.099,
+            "c": -0.68
+          },
+          "eqX": 15.781,
+          "eqP": 16.0919,
+          "xP": 3.8437,
+          "price": 54.0,
+          "maxX": 20.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 54 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=0{,}91x+23 \\\\ p_N(x)&=-4{,}6x+95 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 74 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=178,5406:0,23}",
+      "$x_2=$ {1:NUMERICAL:=6,5336:0,1} ME, $p_2=$ {1:NUMERICAL:=64,9456:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.91,
+            "b": 23.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -4.6,
+            "b": 95.0
+          },
+          "eqX": 13.0672,
+          "eqP": 34.8911,
+          "xP": 4.5652,
+          "price": 74.0,
+          "maxX": 17.5,
+          "maxY": 120.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 74 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-6{,}9\\cdot e^{-0{,}045x}+9{,}9 \\\\ p_N(x)&=86\\cdot e^{-0{,}088x}-0{,}8 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 53 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=241,0546:0,27}",
+      "$x_2=$ {1:NUMERICAL:=8,8863:0,1} ME, $p_2=$ {1:NUMERICAL:=38,5443:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -6.9,
+            "rate": 0.045,
+            "c": 9.9
+          },
+          "demand": {
+            "type": "exp",
+            "A": 86.0,
+            "rate": 0.088,
+            "c": -0.8
+          },
+          "eqX": 26.1958,
+          "eqP": 7.7773,
+          "xP": 5.3304,
+          "price": 53.0,
+          "maxX": 35.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 53 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=1{,}3x+5 \\\\ p_N(x)&=50\\cdot e^{-0{,}053x}-0{,}81 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 39 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=68,3817:0,12}",
+      "$x_2=$ {1:NUMERICAL:=6,282:0,1} ME, $p_2=$ {1:NUMERICAL:=35,0305:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 1.3,
+            "b": 5.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 50.0,
+            "rate": 0.053,
+            "c": -0.81
+          },
+          "eqX": 13.9212,
+          "eqP": 23.0976,
+          "xP": 4.3001,
+          "price": 39.0,
+          "maxX": 17.5,
+          "maxY": 60.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 39 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Gegeben sind die Angebots- und Nachfragefunktion ($ x $ in ME, $ p $ in GE/ME):$$ \\begin{align*} p_A(x)&=-8{,}1\\cdot e^{-0{,}09x}+12 \\\\ p_N(x)&=82\\cdot e^{-0{,}083x}-0{,}33 \\end{align*} $$Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $ p_G $. Bestimmen Sie (auf 2 NKS gerundet)",
+    "fragen": [
+      "den abgeschöpften Teil der Konsumentenrente, wenn auf dem Teilmarkt ein Preis von 28 GE/ME verlangt wird.",
+      "die Teilmarktmenge $ x_2 $ und den Teilmarktpreis $ p_2 $, bei denen die Konsumentenrente maximal abgeschöpft wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=217,0607:0,16}",
+      "$x_2=$ {1:NUMERICAL:=8,6271:0,1} ME, $p_2=$ {1:NUMERICAL:=39,7418:0,1} GE/ME"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -8.1,
+            "rate": 0.09,
+            "c": 12.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 82.0,
+            "rate": 0.083,
+            "c": -0.33
+          },
+          "eqX": 23.7951,
+          "eqP": 11.0485,
+          "xP": 12.8048,
+          "price": 28.0,
+          "maxX": 30.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Abschöpfung durch einen Teilmarkt mit dem Preis 28 GE/ME",
+          "xaxis": {
+            "title": "Menge x in ME"
+          },
+          "yaxis": {
+            "title": "Preis p in GE/ME"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  }
+]

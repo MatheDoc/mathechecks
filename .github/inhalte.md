@@ -34,7 +34,7 @@ Verbindliche Ziele für die Inhalte eines Lernbereichs. Wo was liegt: `datenmode
 - **Formeln** mit Worten begleiten: Was bedeutet jeder Term, was sagt das Ergebnis?
 - **Aufwand verhältnismäßig:** Selten verlangte Teilfragen bekommen keinen langen Spezialabschnitt.
 - **LLM-tauglich:** explizite Bezüge, keine vagen Verweise wie „siehe oben“.
-- **Graphen:** `{% include graph.html … %}`. Gestrichelte Linien (z. B. Asymptoten) über `"dash":"dash"`.
+- **Graphen:** `{% include graph.html … %}`. Gestrichelte Linien (z. B. Asymptoten) über `"dash":"dash"`. Optional `xdtick`/`ydtick` (z. B. `xdtick=2 ydtick=2`): festes Gitter ab 0 zum Kästchenzählen.
 - **Widgets** einsetzen, wenn Interaktion einen Zusammenhang erfahrbar macht (Parameter, Fläche, Wertetabelle). Sie werden im Text vorbereitet und eingebettet. Technik: `widgets.md`, Umsetzung durch `agent-frontend-ux`.
 - **Check-Anker:** `{% include check-anker.html nummer="N" %}` blendet Tipps, Beispiel und eine Aufgabe ein. Der Skripttext muss zu allen drei passen.
 - Nur `##` und `###` verwenden.

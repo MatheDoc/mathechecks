@@ -3,7 +3,7 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: analysis__produktlebenszyklus__02
-abschluss: '<p>Im Training siehst du nur den Graphen von $a''$ und liest Zeitpunkte, Änderungsraten und „zunimmt oder abnimmt“ ab. Denk an die Fallen: Die <strong>Höhe</strong> des Absatzes kannst du an $a''$ nicht ablesen, nur, wie schnell er sich ändert. Liegt der höchste (bzw. tiefste) Punkt von $a''$ am Rand bei $t=0$, ist der stärkste Anstieg (bzw. Rückgang) bei der Markteinführung. Statt $a''$ kann auch $u''$ für den Umsatz (GE/Jahr) gegeben sein.</p>'
+abschluss: '<p>Im Training liest du alles am Graphen von $a''$ (bzw. $u''$) ab. Die <strong>Höhe</strong> des Absatzes siehst du dort nicht, und der stärkste Anstieg kann am Rand $t=0$ liegen.</p>'
 karten:
 
   # ── Phase A: Idee ─────────────────────────────────────────
@@ -70,22 +70,22 @@ karten:
       xAchse: 't in Monaten'
       yAchse: 'ME/Monat pro Monat'
       punkte:
-        - { id: z10, x: 10, y: -0.41, hilfslinie: true }
+        - { id: z18, x: 18, y: -0.5, hilfslinie: true }
         - { id: n8, x: 8, y: 0, label: 'höchster Absatz', ax: 40, ay: -40 }
         - { id: hpd, x: 2.34, y: 1.84, label: 'stärkster Anstieg', ax: 70, ay: -5 }
         - { id: tpd, x: 13.66, y: -0.64, label: 'stärkster Rückgang', ax: 50, ay: 25 }
         - { id: r4, x: 4, y: 1.47, label: 'a′(4) ≈ 1,5', hilfslinie: true, ax: 60, ay: -15 }
     schritte:
       - typ: auswahl
-        frage: 'Nimmt der monatliche Absatz zum Zeitpunkt $t=10$ zu oder ab?'
+        frage: 'Nimmt der monatliche Absatz zum Zeitpunkt $t=18$ zu oder ab?'
         optionen:
           - 'nimmt zu'
           - 'nimmt ab'
         korrekt: 1
         mischen: false
-        hinweis: 'Liegt der Graph von $a''$ bei $t=10$ über oder unter der $t$-Achse?'
-        danach: '<p>$a''(10)&lt;0$, der Graph liegt unter der Achse: Der Absatz <strong>nimmt ab</strong>.</p>'
-        zeige: { punkte: [z10] }
+        hinweis: 'Es zählt nur, ob $a''(18)$ positiv oder negativ ist, also ob der Graph über oder unter der $t$-Achse liegt. Ob $a''$ dort steigt, spielt keine Rolle.'
+        danach: '<p>$a''(18)\approx -0{,}5&lt;0$, der Graph liegt unter der Achse: Der Absatz <strong>nimmt ab</strong>. Dass $a''$ dort steigt, heißt nur: Der Rückgang wird schwächer.</p>'
+        zeige: { punkte: [z18] }
       - typ: aufdecken
         frage: '<strong>Zeitpunkt des höchsten Absatzes</strong>'
         knopf: 'Ablesen'
@@ -158,46 +158,3 @@ karten:
           - { label: '$t\approx$', loesung: 9, toleranz: 1, einheit: 'Monate', zeige: { punkte: [tpd] } }
         hinweis: 'Suche den tiefsten Punkt von $a''$.'
 
-  - phase: mitmachen
-    titel: 'Noch eine Ableitung – ohne Hilfe'
-    text: '<p>Ein drittes Produkt. Jetzt ohne Vorgabe.</p>'
-    visual:
-      typ: graph
-      funktionen:
-        - { term: '(2*x-0.2*x^2)*exp(-0.2*x)', name: 'a′(t)', xmin: 0 }
-      xMin: -0.5
-      xMax: 40
-      yMin: -1
-      yMax: 2.6
-      xSchritt: 2
-      ySchritt: 0.5
-      xAchse: 't in Monaten'
-      yAchse: 'ME/Monat pro Monat'
-      punkte:
-        - { id: r5, x: 5, y: 1.84, hilfslinie: true }
-        - { id: z, x: 12.5, y: -0.51, hilfslinie: true }
-        - { id: hpd, x: 2.93, y: 2.31, label: 'stärkster Anstieg', ax: 70, ay: -5 }
-        - { id: tpd, x: 17.07, y: -0.79, label: 'stärkster Rückgang', ax: 50, ay: 25 }
-    schritte:
-      - typ: eingabe
-        frage: 'Wie groß ist die momentane Änderungsrate des monatlichen Absatzes nach $5$ Monaten?'
-        felder:
-          - { label: '$a''(5)\approx$', loesung: 1.84, toleranz: 0.15, einheit: 'ME/Monat pro Monat', zeige: { punkte: [r5] } }
-        hinweis: 'Lies den Funktionswert von $a''$ an der Stelle $t=5$ ab.'
-      - typ: auswahl
-        frage: 'Nimmt der monatliche Absatz zum Zeitpunkt $t=12{,}5$ zu oder ab?'
-        optionen:
-          - 'nimmt zu'
-          - 'nimmt ab'
-        korrekt: 1
-        mischen: false
-        hinweis: 'Liegt $a''$ bei $t=12{,}5$ über oder unter der $t$-Achse?'
-        zeige: { punkte: [z] }
-      - typ: eingabe
-        frage: 'Wann steigt bzw. fällt der Absatz am stärksten?'
-        layout: zeile
-        felder:
-          - { label: 'Anstieg bei $t\approx$', loesung: 2.93, toleranz: 0.75, zeige: { punkte: [hpd] } }
-          - { label: 'Rückgang bei $t\approx$', loesung: 17.07, toleranz: 1.5, zeige: { punkte: [tpd] } }
-        hinweis: 'Suche Hoch- und Tiefpunkt von $a''$. Prüfe auch den Rand: Ist $a''(0)$ größer als der Hochpunkt?'
-        danach: '<p>Hier ist $a''(0)=0$, der Hochpunkt liegt im Inneren. Der Rand liefert diesmal nicht den stärksten Anstieg.</p>'
