@@ -23,22 +23,6 @@ p_A(x)&=0{,}016x^2+0{,}022x+6.
 \end{align*}
 $$
 
-Dabei ist $x$ die Menge in Mengeneinheiten (ME, 1 ME = 100 Helme) und $p_N(x)$ bzw. $p_A(x)$ der Preis in Geldeinheiten pro Mengeneinheit (GE/ME, 1 GE = 1000 €). Dieses Leitbeispiel begleitet uns durch das ganze Skript. Die Antwort auf die Eingangsfrage liefern die Konsumenten- und die Produzentenrente im zweiten Teil. Zuerst klären wir, wo das Marktgleichgewicht liegt.
-
-$p_N(x)$ ist der Preis, zu dem die Konsumenten insgesamt $x$ ME nachfragen. Je niedriger der Preis, desto mehr wird nachgefragt: $p_N$ ist monoton fallend. $p_A(x)$ ist der Preis, zu dem die Produzenten insgesamt $x$ ME anbieten. Je höher der Preis, desto mehr wird angeboten: $p_A$ ist monoton steigend. Anders als im Lernbereich [Marktgleichgewicht – Grundlagen](../marktgleichgewicht-grundlagen/skript.html) sind die Funktionen hier nicht linear, sondern zum Beispiel quadratisch oder exponentiell.
-
-## Marktgleichgewicht bei nichtlinearen Funktionen
-
-### Kennzahlen graphisch bestimmen
-
-Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen. Im Diagramm des Leitbeispiels sind sie markiert:
-
-- **Höchstpreis** ($y$-Achsenabschnitt von $p_N$): Zu diesem oder einem höheren Preis kauft niemand mehr einen Helm.
-- **Sättigungsmenge** (Nullstelle von $p_N$): Mehr Helme würden selbst dann nicht nachgefragt, wenn sie verschenkt würden.
-- **Mindestangebotspreis** ($y$-Achsenabschnitt von $p_A$): Erst über diesem Preis bieten die Produzenten überhaupt Helme an.
-- **Marktgleichgewicht** (Schnittpunkt der Graphen): Hier stimmen angebotene und nachgefragte Menge überein. Seine Koordinaten sind die **Gleichgewichtsmenge** $x_G$ und der **Gleichgewichtspreis** $p_G$.
-- **Umsatz im Marktgleichgewicht** $x_G\cdot p_G$: Das ist der Betrag, den die Konsumenten insgesamt bezahlen. Graphisch ist er die Fläche des grauen Rechtecks mit den Seitenlängen $x_G$ und $p_G$.
-
 {% include graph.html
    funktionen='[
     {"name":"p<sub>N</sub>(x)", "term":"45.75*exp(-0.044*x)-6.75", "beschreibung":"Nachfragefunktion", "color":"#1f77b4"},
@@ -62,11 +46,27 @@ Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen. Im Diagramm
    ymax=42
 %}
 
+Dabei ist $x$ die Menge in Mengeneinheiten (ME, 1 ME = 100 Helme) und $p_N(x)$ bzw. $p_A(x)$ der Preis in Geldeinheiten pro Mengeneinheit (GE/ME, 1 GE = 1000 €). Dieses Leitbeispiel begleitet uns durch das ganze Skript. Die Antwort auf die Eingangsfrage liefern die Konsumenten- und die Produzentenrente im zweiten Teil. Zuerst klären wir, wo das Marktgleichgewicht liegt.
+
+$p_N(x)$ ist der Preis, zu dem die Konsumenten insgesamt $x$ ME nachfragen. Je niedriger der Preis, desto mehr wird nachgefragt: $p_N$ ist monoton fallend. $p_A(x)$ ist der Preis, zu dem die Produzenten insgesamt $x$ ME anbieten. Je höher der Preis, desto mehr wird angeboten: $p_A$ ist monoton steigend. Anders als im Lernbereich [Marktgleichgewicht – Grundlagen](../marktgleichgewicht-grundlagen/skript.html) sind die Funktionen hier nicht linear, sondern zum Beispiel quadratisch oder exponentiell.
+
+## Marktgleichgewicht bei nichtlinearen Funktionen
+
+### Kennzahlen graphisch bestimmen
+
+Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen. Im Diagramm des Leitbeispiels sind sie markiert:
+
+- **Höchstpreis** ($y$-Achsenabschnitt von $p_N$): Zu diesem oder einem höheren Preis kauft niemand mehr einen Helm.
+- **Sättigungsmenge** (Nullstelle von $p_N$): Mehr Helme würden selbst dann nicht nachgefragt, wenn sie verschenkt würden.
+- **Mindestangebotspreis** ($y$-Achsenabschnitt von $p_A$): Erst über diesem Preis bieten die Produzenten überhaupt Helme an.
+- **Marktgleichgewicht** (Schnittpunkt der Graphen): Hier stimmen angebotene und nachgefragte Menge überein. Seine Koordinaten sind die **Gleichgewichtsmenge** $x_G$ und der **Gleichgewichtspreis** $p_G$.
+- **Umsatz im Marktgleichgewicht** $x_G\cdot p_G$: Das ist der Betrag, den die Konsumenten insgesamt bezahlen. Graphisch ist er die Fläche des grauen Rechtecks mit den Seitenlängen $x_G$ und $p_G$.
+
+
+
 Typische Fehler: Höchstpreis und Sättigungsmenge gehören zur Nachfragefunktion, der Mindestangebotspreis zur Angebotsfunktion. Beim Ablesen des Marktgleichgewichts werden $x$- und $y$-Koordinate vertauscht. Der Umsatz ist die Rechteckfläche $x_G\cdot p_G$, nicht die Fläche unter einem der Graphen.
 
 Warum wird der Graph von $p_N$ nach rechts immer flacher? Bei hohen Preisen kaufen nur wenige, die unbedingt einen Helm wollen; eine kleine Preissenkung gewinnt kaum neue Käufer. Bei niedrigen Preisen dagegen reicht schon eine kleine Preissenkung, damit viele zusätzliche Kunden zugreifen, die Menge wächst stark. Eine lineare Nachfragefunktion kann dieses Verhalten nicht abbilden.
-
-Im Abitur wird das graphische Ablesen oft mit „Nehmen Sie begründet Stellung zu der Aussage …“ verbunden, etwa zum Umsatz im Marktgleichgewicht.
 
 {% include check-anker.html nummer="1" %}
 
@@ -104,7 +104,7 @@ Im Leitbeispiel liegt der festgelegte Preis von $10$ GE/ME unter dem Gleichgewic
 
 Typische Fehler: die beiden Mengen in der falschen Funktion bestimmen, die Art des Überschusses vertauschen oder bei $p_A(x)=P$ eine negative Lösung übernehmen.
 
-Aus dem Alltag kennt man beide Fälle: Ein staatlich gedeckelter Preis unter dem Gleichgewichtspreis (z. B. bei Mieten) führt zu Wartelisten, also einem Nachfrageüberschuss. Ein garantierter Mindestpreis über dem Gleichgewichtspreis (z. B. für Agrarprodukte) führt zu Überproduktion, also einem Angebotsüberschuss. Im Abitur heißt es dazu etwa: „Vergleichen Sie die angebotene und die nachgefragte Menge, die sich durch diesen staatlichen Eingriff ergeben würden.“
+Aus dem Alltag kennt man beide Fälle: Ein staatlich gedeckelter Preis unter dem Gleichgewichtspreis (z. B. bei Mieten) führt zu Wartelisten, also einem Nachfrageüberschuss. Ein garantierter Mindestpreis über dem Gleichgewichtspreis (z. B. für Agrarprodukte) führt zu Überproduktion, also einem Angebotsüberschuss.
 
 {% include check-anker.html nummer="2" %}
 
@@ -165,15 +165,15 @@ PR&=\underbrace{x_G\cdot p_G}_{\text{Umsatz}}-\underbrace{\int_0^{x_G}p_A(x)\,dx
 \end{align*}
 $$
 
-Die rechte Form entsteht, weil $x_G\cdot p_G=\int_0^{x_G}p_G\,dx$ gilt. Beide Formen kommen in Abituraufgaben vor.
+Die rechte Form entsteht, weil $x_G\cdot p_G=\int_0^{x_G}p_G\,dx$ gilt.
 
-In Aufgaben ohne Hilfsmittel ist oft ein Term mit konkreten Zahlen vorgegeben, dessen ökonomische Bedeutung zu benennen ist. Dann hilft die Tabelle: Ein Produkt aus Gleichgewichtsmenge und Gleichgewichtspreis ist der Umsatz, ein Integral über $p_N$ die Zahlungsbereitschaft, ein Integral über $p_A$ die Angebotsbereitschaft. Die Differenz entscheidet über Konsumenten- oder Produzentenrente.
+Ist ein Term mit konkreten Zahlen gegeben, lässt sich seine ökonomische Bedeutung mit der Tabelle erkennen: Ein Produkt aus Gleichgewichtsmenge und Gleichgewichtspreis ist der Umsatz, ein Integral über $p_N$ die Zahlungsbereitschaft, ein Integral über $p_A$ die Angebotsbereitschaft. Die Differenz entscheidet über Konsumenten- oder Produzentenrente.
 
 ### Renten graphisch deuten und abschätzen
 
 Die Konsumentenrente ist die Fläche zwischen dem Graphen von $p_N$ und der waagerechten Geraden $p=p_G$ über $[0;x_G]$. Die Produzentenrente ist die Fläche zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$ über $[0;x_G]$.
 
-Schätze nach Augenmaß, bevor du Kästchen zählst: Ist die blaue Fläche mehr als doppelt so groß wie die rote? Sie ist es deutlich, die Konsumenten profitieren im Leitbeispiel also wesentlich stärker vom Marktgleichgewicht als die Produzenten. Solche Vergleiche („Die Konsumentenrente ist mehr als … so hoch wie die Produzentenrente.“) werden im Abitur häufig zur Prüfung vorgelegt.
+Schätze nach Augenmaß, bevor du Kästchen zählst: Ist die blaue Fläche mehr als doppelt so groß wie die rote? Sie ist es deutlich, die Konsumenten profitieren im Leitbeispiel also wesentlich stärker vom Marktgleichgewicht als die Produzenten.
 
 {% include graph.html
    funktionen='[
@@ -217,7 +217,7 @@ Sind die Funktionsterme bekannt, berechnen wir die Renten mit den Formeln aus de
 - Die Konsumentenrente ist der Betrag, den die Konsumenten insgesamt sparen, weil sie nur den Gleichgewichtspreis zahlen, obwohl manche von ihnen mehr zu zahlen bereit wären.
 - Die Produzentenrente ist der Betrag, den die Produzenten insgesamt zusätzlich einnehmen, weil sie den Gleichgewichtspreis erhalten, obwohl manche von ihnen auch billiger angeboten hätten.
 
-„Die Konsumentenrente ist der Gewinn der Konsumenten.“ Stimmt das? Nur ungenau: Die Konsumenten nehmen kein Geld ein, sie geben weniger aus, als sie zu zahlen bereit wären. Ebenso ist die Produzentenrente nicht der Gewinn der Produzenten, denn Kosten wie Fixkosten werden nicht abgezogen. Im Abitur lautet der Auftrag deshalb oft: „Bestimmen Sie die Konsumentenrente und erläutern Sie die Bedeutung im Sachzusammenhang.“
+„Die Konsumentenrente ist der Gewinn der Konsumenten.“ Stimmt das? Nur ungenau: Die Konsumenten nehmen kein Geld ein, sie geben weniger aus, als sie zu zahlen bereit wären. Ebenso ist die Produzentenrente nicht der Gewinn der Produzenten, denn Kosten wie Fixkosten werden nicht abgezogen.
 
 Typische Fehler: den Umsatz nicht abziehen, bis zur Sättigungsmenge integrieren oder mit stark gerundeten Gleichgewichtswerten rechnen.
 
@@ -285,7 +285,7 @@ $$
 
 $A(x_2)$ ist die Rechteckfläche: Breite $x_2$ mal Höhe $p_N(x_2)-p_G$. Für $x_2=0$ und für $x_2=x_G$ ist $A=0$, dazwischen liegt das Maximum. Gesucht ist also ein Hochpunkt von $A$, bestimmt mit notwendiger und hinreichender Bedingung, genau wie beim Maximieren einer Gewinnfunktion. Im Widget zeigt „Maximum zeigen“ den Hochpunkt für das Leitbeispiel.
 
-**Deutung:** Die Maximalstelle $x_2$ gibt an, welche Menge auf dem Teilmarkt verkauft wird, $p_2=p_N(x_2)$ ist der zugehörige Teilmarktpreis und $A(x_2)$ der größtmögliche abgeschöpfte Betrag bei *einem* zusätzlichen Teilmarkt. Weitere Teilmärkte würden noch mehr abschöpfen. Im Abitur heißt die Zielfunktion oft anders, zum Beispiel $h(x)=x\cdot(p_N(x)-p_G)$, und gesucht ist der zugehörige Punkt $P(x_2\mid p_2)$ auf dem Graphen von $p_N$.
+**Deutung:** Die Maximalstelle $x_2$ gibt an, welche Menge auf dem Teilmarkt verkauft wird, $p_2=p_N(x_2)$ ist der zugehörige Teilmarktpreis und $A(x_2)$ der größtmögliche abgeschöpfte Betrag bei *einem* zusätzlichen Teilmarkt. Weitere Teilmärkte würden noch mehr abschöpfen. Graphisch ist $P(x_2\mid p_2)$ der Punkt auf dem Graphen von $p_N$, der die rechte obere Ecke des größtmöglichen Rechtecks bildet.
 
 Typische Fehler: $p_A$ statt $p_N$ einsetzen, $p_G$ nicht abziehen, oder $x_2$ als Ergebnis angeben, obwohl nach dem Preis $p_2$ gefragt ist.
 
