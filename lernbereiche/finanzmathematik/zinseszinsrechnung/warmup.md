@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: zinseszinsrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/warmup.css?v=20261026-warmup-zeitstrahl
+page_css: /assets/css/warmup.css?v=20261026-warmup-listen
 permalink: /lernbereiche/finanzmathematik/zinseszinsrechnung/warmup.html
 ---
 

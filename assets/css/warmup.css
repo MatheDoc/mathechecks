@@ -248,6 +248,40 @@
     margin-bottom: 0;
 }
 
+.cw-page__intro :is(ul, ol),
+.cw-step__lead :is(ul, ol),
+.cw-step__text :is(ul, ol),
+.cw-after :is(ul, ol),
+.cw-feedback :is(ul, ol),
+.cw-finish__text :is(ul, ol) {
+    margin: 0 0 0.6em;
+    padding-left: 1.4em;
+    list-style-position: outside;
+}
+
+.cw-page__intro ul,
+.cw-step__lead ul,
+.cw-step__text ul,
+.cw-after ul,
+.cw-feedback ul,
+.cw-finish__text ul {
+    list-style-type: disc;
+}
+
+.cw-page__intro li + li,
+.cw-step__text li + li,
+.cw-after li + li,
+.cw-finish__text li + li {
+    margin-top: 0.25em;
+}
+
+.cw-page__intro :is(ul, ol):last-child,
+.cw-step__text :is(ul, ol):last-child,
+.cw-after :is(ul, ol):last-child,
+.cw-finish__text :is(ul, ol):last-child {
+    margin-bottom: 0;
+}
+
 /* Breite Formeln scrollen im eigenen Kasten statt die Karte zu sprengen. */
 .cw-root mjx-container[display="true"] {
     max-width: 100%;

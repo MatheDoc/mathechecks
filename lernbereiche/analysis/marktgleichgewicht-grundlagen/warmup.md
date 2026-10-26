@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: marktgleichgewicht-grundlagen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261026-warmup-zeitstrahl
+page_css: /assets/css/warmup.css?v=20261026-warmup-listen
 permalink: /lernbereiche/analysis/marktgleichgewicht-grundlagen/warmup.html
 ---
 
