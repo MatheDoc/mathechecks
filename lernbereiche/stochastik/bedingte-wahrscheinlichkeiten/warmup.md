@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: bedingte-wahrscheinlichkeiten
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261017-warmup-formel-titel
+page_css: /assets/css/warmup.css?v=20261026-warmup-zeitstrahl
 permalink: /lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/warmup.html
 ---
 

@@ -25,17 +25,22 @@ Verbindliche Ziele für die Inhalte eines Lernbereichs. Wo was liegt: `datenmode
 
 ## Skript (`skript.md`)
 
-- **Einstieg:** Ein konkretes Szenario mit Zahlen wird sofort für den ersten Begriff genutzt. Keine Eingangsfrage, die erst am Ende aufgelöst wird.
+**Rolle des Skripttexts:** Der Text zwischen den Check-Ankern führt durch das Thema. Er erklärt, motiviert, bettet Widgets ein und benennt typische Fehler. Konkrete Rechenwege stehen in den Beispielen, Abrufhilfen in den Tipps, Übung in den Aufgaben.
+
+- **Einstieg:** Ein konkretes Szenario mit Zahlen wird sofort für den ersten Begriff genutzt. Am besten beginnt es mit einer Frage oder Entscheidung aus dem Sachkontext, auf die der eingeführte Begriff die Antwort ist. Keine Eingangsfrage, die erst am Ende aufgelöst wird.
   - Einführungsbeispiel (Standard): trägt den Einstieg und darf danach auslaufen, ohne Rückblick-Abschnitt.
   - Leitbeispiel: ein Zahlensatz, der in jedem Abschnitt weitergerechnet wird (z. B. Finanzmathematik).
 - **Zahlen im Szenario:** plausibel. Keine zufälligen Übereinstimmungen von Größen, die im Allgemeinen verschieden sind (z. B. Startwert = Grenzwert).
 - **Pro Check ein Abschnitt** (`##`/`###`): Idee, Bedeutung im Sachzusammenhang, Sonderfälle und typische Fehler werden erklärt, bevor der Check-Anker folgt. Ein Abschnitt besteht nie nur aus Anker oder Tabelle.
-- **Rechnen:** Kurze Anwendungen am Szenario sind erwünscht. Vollständige Rechenwege gehören ins Beispiel.
+- **Rechnen:** Vollständige Rechenwege gehören ins Beispiel. Der Skripttext rechnet nicht vor, was das Beispiel des Checks gleich danach vorführt. Er nutzt das Szenario für Bedeutung, Graph, Sonderfälle und typische Fehler und nennt höchstens einzelne Ergebnisse, wenn sie einen Zusammenhang zeigen (z. B. Schätzwert und exakter Wert).
+- **Denkanstöße:** Vor einer Erklärung darf eine kurze Vorhersage- oder Prüffrage stehen („Was schätzt du …?“). Sie wird im direkt folgenden Absatz aufgelöst.
+- **Typische Fehler:** gern als Aussage zum Prüfen formulieren („‚…‘ Stimmt das?“) und sofort auflösen, sonst als knappe Liste.
+- **Abiturbezug:** pro Abschnitt höchstens ein Satz, wie die Kompetenz im Abitur abgefragt wird, mit dem dort üblichen Operator.
 - **Formeln** mit Worten begleiten: Was bedeutet jeder Term, was sagt das Ergebnis?
-- **Aufwand verhältnismäßig:** Selten verlangte Teilfragen bekommen keinen langen Spezialabschnitt.
+- **Aufwand verhältnismäßig:** Selten verlangte Teilfragen bekommen keinen langen Spezialabschnitt. Alltagsbezüge höchstens ein Satz.
 - **LLM-tauglich:** explizite Bezüge, keine vagen Verweise wie „siehe oben“.
 - **Graphen:** `{% include graph.html … %}`. Gestrichelte Linien (z. B. Asymptoten) über `"dash":"dash"`. Optional `xdtick`/`ydtick` (z. B. `xdtick=2 ydtick=2`): festes Gitter ab 0 zum Kästchenzählen.
-- **Widgets** einsetzen, wenn Interaktion einen Zusammenhang erfahrbar macht (Parameter, Fläche, Wertetabelle). Sie werden im Text vorbereitet und eingebettet. Technik: `widgets.md`, Umsetzung durch `agent-frontend-ux`.
+- **Widgets** einsetzen, wenn Interaktion einen Zusammenhang erfahrbar macht (Parameter, Fläche, Wertetabelle). Sie werden im Text vorbereitet und mit einem konkreten Arbeitsauftrag eingebettet („Schiebe … Wann …? Warum …?“). Die Beobachtung wird danach im Text eingeordnet. Technik: `widgets.md`, Umsetzung durch `agent-frontend-ux`.
 - **Check-Anker:** `{% include check-anker.html nummer="N" %}` blendet Tipps, Beispiel und eine Aufgabe ein. Der Skripttext muss zu allen drei passen.
 - Nur `##` und `###` verwenden.
 

@@ -1,0 +1,107 @@
+# Warm-Up zu Check 04 „Kapitalvergleich“ (Zinseszinsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__zinseszinsrechnung__04
+abschluss: '<p>Im Training berechnest du die Barwerte von Angebot B und C und triffst dann die Entscheidung. Angebot A wird immer sofort gezahlt, sein Barwert ist der Betrag selbst.</p><p>Lies genau, wer zahlt. Beim <strong>Verkauf</strong> („Für welches Angebot sollte sich … entscheiden?“) zählt der höchste Barwert, beim <strong>Kauf</strong> („Welche Zahlungsvariante ist … am günstigsten?“) der niedrigste. Beträge trägst du ohne Tausenderpunkt ein, auf 2 Nachkommastellen gerundet.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Geld von heute ist mehr wert'
+    text: '<p>Bei einem Verkauf gibt es oft mehrere Angebote: Geld sofort, Geld später oder beides. Welches Angebot ist am meisten wert?</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '$1\,000$ € heute oder $1\,000$ € in 5 Jahren: Ist das dasselbe?'
+        knopf: 'Antwort zeigen'
+        text: '<p>Nein. Geld von heute kann man anlegen. Bei $3\,\%$ werden aus $1\,000$ € in 5 Jahren</p>$$\begin{align*}&1\,000\cdot 1{,}03^5\\ \approx\;&1\,159{,}27\,\text{€}\end{align*}$$<p>Derselbe Betrag ist also mehr wert, je früher er gezahlt wird.</p>'
+      - typ: aufdecken
+        frage: 'Zahlungen zu verschiedenen Zeitpunkten kann man also nicht direkt vergleichen.'
+        knopf: 'Barwert zeigen'
+        text: '<p>Deshalb rechnet man jede Zahlung auf <strong>heute</strong> zurück: Wie viel müsste man heute anlegen, um später den Betrag $K_n$ zu haben? Das ist der <strong>Barwert</strong>:</p>$$K_0=\frac{K_n}{q^n}$$<p>Beispiel: $3\,600$ € in 6 Jahren sind bei $3\,\%$ heute</p>$$\frac{3\,600}{1{,}03^6}\approx 3\,014{,}94\,\text{€}$$<p>wert, also etwas mehr als $3\,000$ € sofort. Besteht ein Angebot aus mehreren Zahlungen, addiert man deren Barwerte.</p>'
+      - typ: auswahl
+        frage: 'Du <strong>kaufst</strong> ein Auto und darfst zwischen drei Zahlungsvarianten wählen. Welche nimmst du?'
+        optionen:
+          - 'die mit dem niedrigsten Barwert'
+          - 'die mit dem höchsten Barwert'
+          - 'die mit der kleinsten Summe aller Zahlungen'
+        korrekt: 0
+        hinweis: 'Als Käufer zahlst du. Du möchtest möglichst wenig zahlen, gerechnet in Geld von heute.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>Für jede Zahlung den Barwert berechnen und pro Angebot addieren.</li><li>Wer Geld <strong>bekommt</strong> (Verkäufer), wählt den <strong>höchsten</strong> Barwert. Wer <strong>zahlt</strong> (Käufer), wählt den <strong>niedrigsten</strong>.</li></ul>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Die Fahrschule verkauft'
+    text: '<p><em>Eine Fahrschule verkauft einen Kleinbus. Drei Interessenten machen Angebote. Für den Vergleich wird ein Zinssatz von $4\,\%$ zugrunde gelegt.</em></p>'
+    visual:
+      typ: liste
+      titel: 'Barwerte bei 4 %'
+      eintraege:
+        - { id: a, text: 'A: $50\,000$ € sofort', gleichung: '$B_A=50\,000$ €' }
+        - { id: b, text: 'B: $20\,000$ € sofort und $35\,000$ € in 4 Jahren', gleichung: '$B_B\approx 49\,918{,}15$ €' }
+        - { id: c, text: 'C: $60\,000$ € in 3 Jahren', gleichung: '$B_C\approx 53\,339{,}78$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Angebot A wird sofort gezahlt.'
+        knopf: 'Barwert A'
+        text: '<p>Eine Zahlung von heute muss nicht abgezinst werden: $B_A=50\,000$ €.</p>'
+        zeige: { eintraege: [a] }
+      - typ: auswahl
+        frage: 'Wie berechnest du den Barwert von Angebot B?'
+        optionen:
+          - '$20\,000+\frac{35\,000}{1{,}04^4}$'
+          - '$\frac{20\,000+35\,000}{1{,}04^4}$'
+          - '$\frac{20\,000}{1{,}04^4}+35\,000$'
+        korrekt: 0
+        hinweis: 'Die $20\,000$ € gibt es sofort, sie werden nicht abgezinst. Nur die Zahlung in 4 Jahren wird durch $1{,}04^4$ geteilt.'
+        danach: '$$\begin{align*}B_B&=20\,000+\frac{35\,000}{1{,}04^4}\\ &\approx 49\,918{,}15\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [b] }
+      - typ: aufdecken
+        frage: 'Angebot C: eine Zahlung in 3 Jahren.'
+        knopf: 'Barwert C'
+        text: '$$\begin{align*}B_C&=\frac{60\,000}{1{,}04^3}\\ &\approx 53\,339{,}78\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [c] }
+      - typ: auswahl
+        frage: 'Die Fahrschule bekommt das Geld. Für welches Angebot sollte sie sich entscheiden?'
+        optionen:
+          - 'Angebot C'
+          - 'Angebot A'
+          - 'Angebot B'
+        korrekt: 0
+        hinweis: 'Wer Geld bekommt, wählt den höchsten Barwert.'
+        danach: '<p>Angebot C hat den höchsten Barwert. Angebot B bringt zusammen $55\,000$ €, ist heute aber etwas weniger wert als A, weil der Großteil erst in 4 Jahren kommt.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Term passt?'
+    text: '<p>Zinssatz $5\,\%$, also $q=1{,}05$. Ordne jedem Angebot den Term für seinen Barwert zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Angebot'
+        titel_rechts: 'Barwert'
+        paare:
+          - { links: '$8\,000$ € sofort', rechts: '$8\,000$' }
+          - { links: '$8\,000$ € in 2 Jahren', rechts: '$\frac{8\,000}{1{,}05^2}$' }
+          - { links: '$3\,000$ € sofort und $5\,000$ € in 2 Jahren', rechts: '$3\,000+\frac{5\,000}{1{,}05^2}$' }
+          - { links: '$3\,000$ € in 2 Jahren und $5\,000$ € in 4 Jahren', rechts: '$\frac{3\,000}{1{,}05^2}+\frac{5\,000}{1{,}05^4}$' }
+        danach: '<p>Jede spätere Zahlung wird mit ihrer eigenen Laufzeit abgezinst. „In einem Jahr“ heißt $n=1$.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Wer zahlt?'
+    text: '<p><em>Herr Yilmaz kauft ein Motorrad. Der Händler bietet drei Zahlungsvarianten an. Für den Vergleich wird ein Zinssatz von $5\,\%$ zugrunde gelegt.</em></p><ul><li>A: $12\,000$ € sofort</li><li>B: $4\,000$ € sofort und $8\,800$ € in 2 Jahren</li><li>C: $6\,000$ € in einem Jahr und $7\,200$ € in 4 Jahren</li></ul><p>Der Barwert von B ist schon berechnet: $B_B\approx 11\,981{,}86$ €.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne den Barwert von Angebot C (Betrag ohne Tausenderpunkt eintragen).'
+        felder:
+          - { label: '$B_C=$', loesung: 11637.74, toleranz: 1, einheit: '€' }
+        hinweis: 'Jede Zahlung einzeln abzinsen und addieren: $\frac{6\,000}{1{,}05}+\frac{7\,200}{1{,}05^4}$.'
+        danach: '$$\begin{align*}B_C&=\frac{6\,000}{1{,}05}+\frac{7\,200}{1{,}05^4}\\ &\approx 5\,714{,}29+5\,923{,}45\\ &=11\,637{,}74\,\text{€}\end{align*}$$'
+      - typ: auswahl
+        frage: 'Welche Zahlungsvariante ist für Herrn Yilmaz am günstigsten?'
+        optionen:
+          - 'Angebot C'
+          - 'Angebot A'
+          - 'Angebot B'
+        korrekt: 0
+        hinweis: 'Herr Yilmaz zahlt. Er wählt den niedrigsten Barwert, nicht die kleinste Summe.'
+        danach: '<p>Angebot C hat den niedrigsten Barwert, obwohl dort insgesamt am meisten gezahlt wird ($13\,200$ €). Die Zahlungen kommen spät, bis dahin kann das Geld noch Zinsen bringen.</p>'

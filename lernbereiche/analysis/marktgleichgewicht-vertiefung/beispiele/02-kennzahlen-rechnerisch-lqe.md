@@ -28,9 +28,8 @@ Der Höchstpreis beträgt $70$ GE/ME, der Mindestangebotspreis $5$ GE/ME.
 
 $$
 \begin{align*}
-80e^{-0{,}04x}-10&=0\\
-e^{-0{,}04x}&=0{,}125\\
-x&=\frac{\ln(0{,}125)}{-0{,}04}\approx 51{,}99
+80e^{-0{,}04x}-10&=0 \quad |\text{ CAS}\\
+x&\approx 51{,}99
 \end{align*}
 $$
 

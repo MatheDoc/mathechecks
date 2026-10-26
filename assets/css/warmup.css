@@ -1082,6 +1082,29 @@
 /* ─── Responsive ─────────────────────────────────────────── */
 
 @media (max-width: 640px) {
+    .cw-page__intro .zeitstrahl {
+        padding: 0 3.2rem 0 2.8rem;
+    }
+
+    .cw-page__intro .zeitstrahl__track {
+        min-width: 0;
+        height: 190px;
+    }
+
+    .cw-page__intro .zeitstrahl__wert {
+        font-size: 0.78rem;
+    }
+
+    .cw-page__intro .zeitstrahl__label {
+        font-size: 0.74rem;
+        white-space: normal;
+    }
+
+    .cw-page__intro .zeitstrahl__achse {
+        right: -3rem;
+        font-size: 0.72rem;
+    }
+
     .cw-proto,
     .cw-skip__long {
         display: none;

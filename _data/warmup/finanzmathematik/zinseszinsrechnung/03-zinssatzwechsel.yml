@@ -1,0 +1,151 @@
+# Warm-Up zu Check 03 „Zinssatzwechsel“ (Zinseszinsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__zinseszinsrechnung__03
+abschluss: '<p>Im Training fragt die erste Teilaufgabe immer nach dem Zwischenwert $K_{n_1}$. Die zweite fragt nach einer der Größen $K_0$, $K_n$, $p_1$, $p_2$, $n_1$ oder $n_2$. Prüfe vor dem Rechnen, in welcher Phase die Unbekannte liegt: Phase 2 → vorwärts, Phase 1 → rückwärts.</p><p>Rechne mit dem ungerundeten Zwischenwert weiter und runde erst am Ende auf 2 Nachkommastellen. Beträge trägst du ohne Tausenderpunkt ein, den Zinssatz in Prozent.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Zwei Zinsphasen, ein Zwischenwert'
+    text: '<p>Manchmal ändert sich der Zinssatz während der Laufzeit. Lenas Bank bietet an: $3\,000$ € in den ersten 2 Jahren zu $2\,\%$, danach 4 Jahre lang zu $3{,}5\,\%$. Die Laufzeit zerfällt in zwei <strong>Zinsphasen</strong>.</p>
+      <div class="zeitstrahl" style="--zs-n: 6;"><div class="zeitstrahl__track">
+      <div class="zeitstrahl__phase zeitstrahl__phase--1" style="--zs-from: 0; --zs-to: 2;"></div>
+      <div class="zeitstrahl__phase zeitstrahl__phase--2" style="--zs-from: 2; --zs-to: 6;"></div>
+      <span class="zeitstrahl__tick" style="--zs-t: 0;"><span class="zeitstrahl__jahr">0</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 1;"><span class="zeitstrahl__jahr">1</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 2;"><span class="zeitstrahl__jahr">2</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 3;"><span class="zeitstrahl__jahr">3</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 4;"><span class="zeitstrahl__jahr">4</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 5;"><span class="zeitstrahl__jahr">5</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 6;"><span class="zeitstrahl__jahr">6</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 0;"><span class="zeitstrahl__wert">$K_0=3\,000$ €</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 2;"><span class="zeitstrahl__wert">$K_2$</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 6;"><span class="zeitstrahl__wert">$K_6$</span></span>
+      <span class="zeitstrahl__label zeitstrahl__label--1" style="--zs-from: 0; --zs-to: 2;">Phase 1<br>$n_1=2$, $p_1=2\,\%$</span>
+      <span class="zeitstrahl__label zeitstrahl__label--2" style="--zs-from: 2; --zs-to: 6;">Phase 2<br>$n_2=4$, $p_2=3{,}5\,\%$</span>
+      <span class="zeitstrahl__achse">Jahre</span>
+      </div></div>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Phase 1 ist eine gewöhnliche Zinseszinsaufgabe.'
+        knopf: 'Phase 1 rechnen'
+        text: '$$\begin{align*}K_2&=3\,000\cdot 1{,}02^2\\ &=3\,121{,}20\,\text{€}\end{align*}$$<p>Das ist der <strong>Zwischenwert</strong> $K_{n_1}$ am Übergang der beiden Phasen.</p>'
+      - typ: auswahl
+        frage: 'Mit welchem Kapital startet Phase 2?'
+        optionen:
+          - '$K_2=3\,121{,}20$ €'
+          - '$K_0=3\,000$ €'
+          - '$0$ €, weil eine neue Phase beginnt'
+        korrekt: 0
+        hinweis: 'Das Geld bleibt auf dem Konto. Ab Jahr 2 ändert sich nur der Zinsfaktor.'
+        danach: '$$\begin{align*}K_6&=3\,121{,}20\cdot 1{,}035^4\\ &\approx 3\,581{,}65\,\text{€}\end{align*}$$<p>Die Zinseszinsformel wird zweimal angewendet. Der Zwischenwert ist das <strong>Endkapital</strong> von Phase 1 und zugleich das <strong>Anfangskapital</strong> von Phase 2.</p>'
+      - typ: aufdecken
+        frage: 'Und wenn eine Größe fehlt?'
+        knopf: 'Vorwärts oder rückwärts'
+        text: '<p>In Aufgaben ist meist eine der sechs Größen $K_0$, $K_n$, $p_1$, $p_2$, $n_1$, $n_2$ unbekannt. Den Zwischenwert $K_{n_1}$ berechnest du aus der Phase, in der alles bekannt ist:</p><ul><li>Unbekannte in <strong>Phase 2</strong> → <strong>vorwärts</strong>: $K_{n_1}=K_0\cdot q_1^{n_1}$</li><li>Unbekannte in <strong>Phase 1</strong> → <strong>rückwärts</strong>: $K_{n_1}=\frac{K_n}{q_2^{n_2}}$</li></ul><p>In der anderen Phase bleibt dann eine gewöhnliche Zinseszinsaufgabe.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Unbekannte in Phase 2: vorwärts'
+    text: '<p><em>Eine Tischlerei legt $20\,000$ € an. In den ersten 3 Jahren wird das Kapital mit $2\,\%$ verzinst, anschließend 5 Jahre lang mit einem anderen Zinssatz. Nach insgesamt 8 Jahren beträgt das Guthaben $25\,200$ €.</em></p><p>Gesucht sind das Guthaben am Ende der ersten Phase und der Zinssatz der zweiten Phase.</p>
+      <div class="zeitstrahl" style="--zs-n: 8;"><div class="zeitstrahl__track">
+      <div class="zeitstrahl__phase zeitstrahl__phase--1" style="--zs-from: 0; --zs-to: 3;"></div>
+      <div class="zeitstrahl__phase zeitstrahl__phase--2" style="--zs-from: 3; --zs-to: 8;"></div>
+      <span class="zeitstrahl__tick" style="--zs-t: 0;"><span class="zeitstrahl__jahr">0</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 3;"><span class="zeitstrahl__jahr">3</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 8;"><span class="zeitstrahl__jahr">8</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 0;"><span class="zeitstrahl__wert">$K_0=20\,000$ €</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 3;"><span class="zeitstrahl__wert">$K_3=\,?$</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 8;"><span class="zeitstrahl__wert">$K_8=25\,200$ €</span></span>
+      <span class="zeitstrahl__label zeitstrahl__label--1" style="--zs-from: 0; --zs-to: 3;">Phase 1<br>$n_1=3$, $p_1=2\,\%$</span>
+      <span class="zeitstrahl__label zeitstrahl__label--2" style="--zs-from: 3; --zs-to: 8;">Phase 2<br>$n_2=5$, $p_2=\,?$</span>
+      <span class="zeitstrahl__achse">Jahre</span>
+      </div></div>'
+    schritte:
+      - typ: auswahl
+        frage: 'Die Unbekannte $p_2$ liegt in Phase 2. Wie berechnest du den Zwischenwert $K_3$?'
+        optionen:
+          - '$K_3=20\,000\cdot 1{,}02^3$'
+          - '$K_3=\frac{25\,200}{1{,}02^5}$'
+          - '$K_3=20\,000\cdot 1{,}02^8$'
+        korrekt: 0
+        hinweis: 'Phase 1 ist vollständig bekannt: $K_0$, $p_1$ und $n_1$. Also vorwärts, und zwar nur über die 3 Jahre von Phase 1.'
+        danach: '$$\begin{align*}K_3&=20\,000\cdot 1{,}02^3\\ &\approx 21\,224{,}16\,\text{€}\end{align*}$$'
+      - typ: aufdecken
+        frage: 'In Phase 2 ist $K_3$ das Anfangskapital und $K_8$ das Endkapital. Jetzt wie gewohnt nach $q_2$ auflösen.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Durch $K_3$ teilen, dann die 5. Wurzel ziehen:</p>$$\begin{align*}25\,200&=21\,224{,}16\cdot q_2^5\\ q_2^5&\approx 1{,}1873\\ q_2&=\sqrt[5]{1{,}1873}\approx 1{,}0349\end{align*}$$<p>In der zweiten Phase wurde mit etwa $3{,}49\,\%$ verzinst.</p><p><strong>Tipp:</strong> Rechne mit dem ungerundeten Zwischenwert aus dem Taschenrechner weiter.</p>'
+
+  - phase: vormachen
+    titel: 'Unbekannte in Phase 1: rückwärts'
+    text: '<p>Dieselbe Tischlerei, aber jetzt ist der Zinssatz der <strong>ersten</strong> Phase unbekannt. In Phase 2 wird mit $3{,}5\,\%$ verzinst.</p>
+      <div class="zeitstrahl" style="--zs-n: 8;"><div class="zeitstrahl__track">
+      <div class="zeitstrahl__phase zeitstrahl__phase--1" style="--zs-from: 0; --zs-to: 3;"></div>
+      <div class="zeitstrahl__phase zeitstrahl__phase--2" style="--zs-from: 3; --zs-to: 8;"></div>
+      <span class="zeitstrahl__tick" style="--zs-t: 0;"><span class="zeitstrahl__jahr">0</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 3;"><span class="zeitstrahl__jahr">3</span></span>
+      <span class="zeitstrahl__tick" style="--zs-t: 8;"><span class="zeitstrahl__jahr">8</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 0;"><span class="zeitstrahl__wert">$K_0=20\,000$ €</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 3;"><span class="zeitstrahl__wert">$K_3=\,?$</span></span>
+      <span class="zeitstrahl__punkt" style="--zs-t: 8;"><span class="zeitstrahl__wert">$K_8=25\,200$ €</span></span>
+      <span class="zeitstrahl__label zeitstrahl__label--1" style="--zs-from: 0; --zs-to: 3;">Phase 1<br>$n_1=3$, $p_1=\,?$</span>
+      <span class="zeitstrahl__label zeitstrahl__label--2" style="--zs-from: 3; --zs-to: 8;">Phase 2<br>$n_2=5$, $p_2=3{,}5\,\%$</span>
+      <span class="zeitstrahl__achse">Jahre</span>
+      </div></div>'
+    schritte:
+      - typ: auswahl
+        frage: 'Wie berechnest du jetzt den Zwischenwert $K_3$?'
+        optionen:
+          - '$K_3=\frac{25\,200}{1{,}035^5}$'
+          - '$K_3=20\,000\cdot 1{,}035^3$'
+          - '$K_3=25\,200\cdot 1{,}035^5$'
+        korrekt: 0
+        hinweis: 'In Phase 1 fehlt $q_1$, dort kommst du nicht vorwärts. Phase 2 ist vollständig: Von $K_8$ aus 5 Jahre zurückrechnen, also durch $1{,}035^5$ teilen.'
+        danach: '$$\begin{align*}K_3&=\frac{25\,200}{1{,}035^5}\\ &\approx 21\,217{,}72\,\text{€}\end{align*}$$<p>Gefragt ist wieder $K_3$, aber die Rechenrichtung ist umgekehrt.</p>'
+      - typ: aufdecken
+        frage: 'In Phase 1 gilt $21\,217{,}72=20\,000\cdot q_1^3$. Nach $q_1$ auflösen.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Durch $20\,000$ teilen, dann die 3. Wurzel ziehen:</p>$$\begin{align*}q_1^3&=\frac{21\,217{,}72}{20\,000}\\ &\approx 1{,}0609\\ q_1&=\sqrt[3]{1{,}0609}\approx 1{,}0199\end{align*}$$<p>In der ersten Phase wurde mit etwa $1{,}99\,\%$ verzinst.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen: vorwärts'
+    text: '<p><em>Familie Roth legt $8\,000$ € an. In den ersten 4 Jahren wird das Kapital mit $3\,\%$ verzinst, danach mit $5\,\%$, bis das Guthaben $11\,500$ € erreicht hat.</em></p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Gesucht ist die Dauer $n_2$, also liegt die Unbekannte in Phase 2. Berechne den Zwischenwert vorwärts: $$K_4=8\,000\cdot 1{,}03^4$$'
+        felder:
+          - { label: '$K_4=$', loesung: 9004.07, toleranz: 1, einheit: '€' }
+        hinweis: 'Taschenrechner: $8000\cdot 1{,}03^4$. Betrag ohne Tausenderpunkt eintragen, z. B. 1234,56.'
+      - typ: eingabe
+        frage: 'In Phase 2 gilt $$11\,500=K_4\cdot 1{,}05^{n_2}$$ Löse nach $n_2$ auf, auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$n_2\approx$', loesung: 5.01, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: 'Durch $K_4$ teilen: $1{,}05^{n_2}\approx 1{,}2772$. $n_2$ steht im Exponenten, also Logarithmus.'
+        danach: '$$\begin{align*}1{,}05^{n_2}&\approx 1{,}2772\\ n_2&=\frac{\ln 1{,}2772}{\ln 1{,}05}\approx 5{,}01\end{align*}$$<p>Die zweite Phase dauert etwa 5 Jahre. Dass nicht genau $5$ herauskommt, liegt am gerundeten Endbetrag.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: rückwärts'
+    text: '<p><em>Ein Sportverein legt $6\,000$ € an. In den ersten 5 Jahren wird das Kapital mit einem zunächst unbekannten Zinssatz verzinst, anschließend 3 Jahre lang mit $4\,\%$. Nach insgesamt 8 Jahren beträgt das Guthaben $7\,800$ €.</em></p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Wie berechnest du den Zwischenwert $K_5$?'
+        optionen:
+          - '$K_5=\frac{7\,800}{1{,}04^3}$'
+          - '$K_5=6\,000\cdot 1{,}04^5$'
+          - '$K_5=\frac{7\,800}{1{,}04^8}$'
+        korrekt: 0
+        hinweis: '$p_1$ fehlt, die Unbekannte liegt also in Phase 1. Rechne aus Phase 2 rückwärts, und zwar nur über deren 3 Jahre.'
+      - typ: eingabe
+        frage: 'Rechne den Zwischenwert aus.'
+        felder:
+          - { label: '$K_5=$', loesung: 6934.17, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $7800:1{,}04^3$. Probe: Das Ergebnis liegt zwischen $6\,000$ € und $7\,800$ €.'
+      - typ: eingabe
+        frage: 'Bestimme den Zinssatz der ersten Phase, auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$p_1=$', loesung: 2.94, toleranz: 0.01, einheit: '%' }
+        hinweis: 'In Phase 1 gilt $K_5=6\,000\cdot q_1^5$. Durch $6\,000$ teilen, 5. Wurzel ziehen, dann $p_1=(q_1-1)\cdot 100$.'
+        danach: '$$\begin{align*}6\,934{,}17&=6\,000\cdot q_1^5\\ q_1^5&\approx 1{,}1557\\ q_1&=\sqrt[5]{1{,}1557}\approx 1{,}0294\end{align*}$$<p>In der ersten Phase wurde mit etwa $2{,}94\,\%$ verzinst.</p>'

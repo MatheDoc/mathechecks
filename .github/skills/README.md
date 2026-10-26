@@ -11,7 +11,7 @@ Konkrete, wiederverwendbare Arbeitsaufträge und verbindliche Regelwerke. Jeder 
 
 ## Aktuelle Skills
 
-- `lernbereich-erstellen` – Lernbereich neu anlegen oder überarbeiten (Checks, Skript, Beispiele, Aufgaben, Test) mit Abgleich gegen die Abitur-Musterprüfungen
+- `lernbereich-erstellen` – Lernbereich neu anlegen, vollständig überarbeiten oder gezielt ändern, mit Abgleich gegen die Abitur-Musterprüfungen (Einstieg: `agent-lernbereich`)
 - `prompt-klausur-erstellen` – Klausur aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml` erzeugen (verweist auf `systemprompt-klausur`)
 - `systemprompt-klausur` – verbindliche Ausgaberegeln für Klausuren (Zielformat `klausuren/templates/template.md`)
 - `systemprompt-template` – Vorlage für neue Systemprompts
