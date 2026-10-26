@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
-page_css: /assets/css/warmup.css?v=20261017-warmup-formel-titel
+page_css: /assets/css/warmup.css?v=20261026-warmup-zeitstrahl
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/warmup.html
 ---
 

@@ -1,12 +1,14 @@
 ---
 name: lernbereich-erstellen
-description: Lernbereich neu anlegen oder überarbeiten (Checks, Skript, Beispiele, Aufgaben, Test) mit Abgleich gegen die Abitur-Musterprüfungen.
+description: Lernbereich neu anlegen, vollständig überarbeiten oder gezielt ändern (Checks, Skript, Beispiele, Aufgaben, Test) mit Abgleich gegen die Abitur-Musterprüfungen.
 disable-model-invocation: true
 ---
 # Lernbereich erstellen oder überarbeiten
 
-Eingabe: Lernbereich-Slug, optional ein Fokus (z. B. „nur Skript“ oder konkrete Hinweise).
-Neuanlage, wenn der Slug noch nicht in `_data/lernbereiche.yml` steht, sonst Überarbeitung.
+Eingabe: Lernbereich-Slug und Auftrag.
+
+- **Vollständig** (Neuanlage, wenn der Slug noch nicht in `_data/lernbereiche.yml` steht, sonst Überarbeitung): Abschnitte 1–4.
+- **Gezielt** (eine konkrete Stelle): Abschnitt „Gezielte Änderung“.
 
 Verbindlich: `.github/inhalte.md` (Ziele), `.github/datenmodell.md` (Ablage), `.github/glossary.md` (LaTeX).
 
@@ -41,8 +43,15 @@ Bei gelöschten oder umbenannten Sammlungen und Checks die verwaisten Exporte, B
 
 Abschnitt „Fertig, wenn“ in `.github/inhalte.md`.
 
+## Gezielte Änderung
+
+1. Die Stelle und die betroffenen Checks lesen.
+2. Ändern. Rückfragen und Sofortkorrekturen wie in Abschnitt 2.
+3. Konsistenz der betroffenen Checks prüfen: `Ich kann` und Tipps, Skript-Abschnitt, Beispiel, Aufgabensammlung, Test, ggf. Warm-Up. Abweichungen mitändern oder als offenen Punkt melden.
+4. Nur die Punkte aus „Fertig, wenn“ prüfen, die die geänderten Dateien betreffen.
+
 ## Ausgabe
 
-- Abgleichtabelle (final) und Check-Liste
+- Abgleichtabelle (final) und Check-Liste (nur vollständig)
 - geänderte Dateien, korrigierte Fehler
 - Folgen für Nutzerfortschritt bei geänderten `check_id`s, offene Punkte (z. B. Podcast)

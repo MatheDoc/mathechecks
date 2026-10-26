@@ -15,7 +15,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - `.github/datenmodell.md` → wo welche Inhalte liegen
 - `.github/glossary.md` → LaTeX-Konventionen, Begriffe
 
-Ablauf für Neuanlage und Überarbeitung: Skill `lernbereich-erstellen`.
+Arbeit an einem ganzen Lernbereich steuert `agent-lernbereich` (Ablauf: Skill `lernbereich-erstellen`).
 
 ## Prioritäten
 

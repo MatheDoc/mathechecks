@@ -18,6 +18,8 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
    - Warm-Up pro Check: geführter Einstieg (Erklärung wie im Erklärvideo, vorgerechnetes Beispiel, Fading), Übergabe ans Training (derzeit nicht verlinkt)
 6. `agent-klausuren.md`
    - Klausuren: automatisierte Erstellung aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml`
+7. `agent-lernbereich.md`
+   - Einstieg für Arbeit an einem Lernbereich (vollständig oder gezielt): steuert den Ablauf aus Skill `lernbereich-erstellen` und delegiert an die Fachagenten
 
 ## 4-Schichten-Modell
 
