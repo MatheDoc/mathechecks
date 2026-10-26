@@ -35,7 +35,7 @@ Verbindliche Ziele für die Inhalte eines Lernbereichs. Wo was liegt: `datenmode
 - **Rechnen:** Vollständige Rechenwege gehören ins Beispiel. Der Skripttext rechnet nicht vor, was das Beispiel des Checks gleich danach vorführt. Er nutzt das Szenario für Bedeutung, Graph, Sonderfälle und typische Fehler und nennt höchstens einzelne Ergebnisse, wenn sie einen Zusammenhang zeigen (z. B. Schätzwert und exakter Wert).
 - **Denkanstöße:** Vor einer Erklärung darf eine kurze Vorhersage- oder Prüffrage stehen („Was schätzt du …?“). Sie wird im direkt folgenden Absatz aufgelöst.
 - **Typische Fehler:** gern als Aussage zum Prüfen formulieren („‚…‘ Stimmt das?“) und sofort auflösen, sonst als knappe Liste.
-- **Abiturbezug:** pro Abschnitt höchstens ein Satz, wie die Kompetenz im Abitur abgefragt wird, mit dem dort üblichen Operator.
+- **Abiturbezug:** Das Skript bereitet auf die Aufgabentypen vor, ohne darauf zu verweisen. Keine Floskeln wie „Im Abitur …“ oder „Das kommt oft dran“.
 - **Formeln** mit Worten begleiten: Was bedeutet jeder Term, was sagt das Ergebnis?
 - **Aufwand verhältnismäßig:** Selten verlangte Teilfragen bekommen keinen langen Spezialabschnitt. Alltagsbezüge höchstens ein Satz.
 - **LLM-tauglich:** explizite Bezüge, keine vagen Verweise wie „siehe oben“.
