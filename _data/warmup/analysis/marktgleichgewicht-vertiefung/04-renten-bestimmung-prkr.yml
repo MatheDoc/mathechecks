@@ -1,0 +1,104 @@
+# Warm-Up zu Check 04 „KR/PR berechnen“ (Marktgleichgewicht - Vertiefung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__marktgleichgewicht-vertiefung__04
+abschluss: '<p>Im Training sind $x_G$ und $p_G$ meist schon angegeben. Setze sie ungerundet in die Integrale ein und runde erst das Endergebnis auf zwei Nachkommastellen.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Von der Fläche zur Formel'
+    text: '<p>Die beiden Renten sind Flächen – und Flächen unter Graphen berechnen wir mit Integralen. Im Beispiel gilt $p_N(x)=30-0{,}15x^2$ und $p_A(x)=3+1{,}2x$ mit dem Marktgleichgewicht $(10\mid 15)$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '30-0.15x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 14.14 }
+        - { term: '3+1.2x', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 16, color: '#d62728' }
+      xMin: -1
+      xMax: 17
+      yMin: -2
+      yMax: 34
+      xSchritt: 2
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 10, y: 15, label: 'Marktgleichgewicht', hilfslinie: true, sichtbar: true, ax: 56, ay: -30 }
+      flaechen:
+        - { id: zb, term: '30-0.15x^2', von: 0, bis: 10, farbe: 'rgba(31,119,180,0.3)', name: 'Zahlungsbereitschaft' }
+        - { id: umsatz, term: '15', von: 0, bis: 10, farbe: 'rgba(120,120,120,0.35)', name: 'Umsatz' }
+        - { id: kr, term: '30-0.15x^2', von: 0, bis: 10, basis: 15, farbe: 'rgba(31,119,180,0.3)', name: 'Konsumentenrente' }
+        - { id: pr, term: '3+1.2x', von: 0, bis: 10, basis: 15, farbe: 'rgba(214,39,40,0.3)', name: 'Produzentenrente' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Konsumentenrente berechnen'
+        text: '<p>Fläche unter $p_N$ minus Rechteck:</p>$$\begin{align*}\int_0^{10}\left(30-0{,}15x^2\right)dx&=250\\ x_G\cdot p_G&=10\cdot 15=150\\ KR&=250-150=100\end{align*}$$<p>Die Konsumentenrente beträgt $100$ GE.</p>'
+        zeige: { flaechen: [zb, umsatz] }
+      - typ: auswahl
+        frage: 'Welcher Ausdruck gibt die <strong>Produzentenrente</strong> an?'
+        optionen:
+          - '$x_G\cdot p_G-\int_0^{x_G}p_A(x)\,dx$'
+          - '$\int_0^{x_G}p_A(x)\,dx-x_G\cdot p_G$'
+          - '$\int_0^{x_G}p_A(x)\,dx$'
+        korrekt: 0
+        hinweis: 'Die Produzenten nehmen den Umsatz ein, angeboten hätten sie billiger. Welche Fläche liegt zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$?'
+        danach: '$$PR=150-\int_0^{10}\left(3+1{,}2x\right)dx=150-90=60$$<p>Die Produzentenrente beträgt $60$ GE.</p>'
+        zeige: { flaechen: [kr, pr] }
+      - typ: aufdecken
+        frage: 'Die beiden Formeln auf einen Blick'
+        knopf: 'Merksatz zeigen'
+        text: '$$\begin{align*}KR&=\int_0^{x_G}p_N(x)\,dx-x_G\cdot p_G\\ PR&=x_G\cdot p_G-\int_0^{x_G}p_A(x)\,dx\end{align*}$$<p>Gleichwertig sind $KR=\int_0^{x_G}\left(p_N(x)-p_G\right)dx$ und $PR=\int_0^{x_G}\left(p_G-p_A(x)\right)dx$.</p><p><strong>Merke:</strong> immer bis $x_G$ integrieren und den Umsatz nie vergessen.</p>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Mit CAS und krummen Zahlen'
+    text: '<p>Wie im Training sind nur die Terme gegeben:</p>$$\begin{align*}p_N(x)&=60e^{-0{,}05x}\\ p_A(x)&=0{,}05x^2+x+10\end{align*}$$'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Marktgleichgewicht und Umsatz'
+        knopf: 'Mit CAS lösen'
+        text: '$$\begin{align*}60e^{-0{,}05x}&=0{,}05x^2+x+10 \quad|\text{ CAS}\\ x_G&\approx 12{,}97\\ p_G&=p_N(12{,}97)\approx 31{,}37\\ x_G\cdot p_G&\approx 406{,}83\end{align*}$$'
+      - typ: aufdecken
+        frage: '<strong>Schritt 2:</strong> Konsumentenrente'
+        knopf: 'Integral auswerten'
+        text: '$$\begin{align*}KR&=\int_0^{12{,}97}60e^{-0{,}05x}\,dx-406{,}83\\ &\approx 572{,}51-406{,}83\\ &\approx 165{,}68\end{align*}$$<p>Im CAS stehen für $x_G$ und $p_G$ die ungerundeten Werte.</p>'
+      - typ: aufdecken
+        frage: '<strong>Schritt 3:</strong> Produzentenrente'
+        knopf: 'Integral auswerten'
+        text: '$$\begin{align*}PR&=406{,}83-\int_0^{12{,}97}\left(0{,}05x^2+x+10\right)dx\\ &\approx 406{,}83-250{,}08\\ &\approx 156{,}75\end{align*}$$'
+      - typ: auswahl
+        frage: 'Was bedeutet $KR\approx 165{,}68$ GE im Sachzusammenhang?'
+        optionen:
+          - 'Um diesen Betrag sparen die Konsumenten, die auch mehr als $31{,}37$ GE/ME gezahlt hätten.'
+          - 'Das ist der Gewinn der Konsumenten.'
+          - 'So viel geben die Konsumenten insgesamt aus.'
+        korrekt: 0
+        hinweis: 'Die Konsumenten nehmen kein Geld ein – sie geben weniger aus, als sie zu zahlen bereit wären.'
+        danach: '<p>Genau. „Gewinn“ wäre falsch: Die Konsumenten sparen nur. Die Ausgaben insgesamt sind der Umsatz von etwa $406{,}83$ GE.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen – du rechnest mit'
+    text: '<p>Jetzt gilt $p_N(x)=56-0{,}3x^2$ und $p_A(x)=1{,}6x+10$. Die Gleichgewichtsmenge beträgt $10$ ME, der Gleichgewichtspreis $26$ GE/ME.</p>'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Konsumentenrente</strong> – das CAS liefert $\int_0^{10}p_N(x)\,dx=460$. Es fehlen noch der Umsatz und die Differenz.'
+        felder:
+          - { label: 'Umsatz $=$', loesung: 260, einheit: 'GE' }
+          - { label: '$KR=$', loesung: 200, einheit: 'GE' }
+        hinweis: 'Umsatz ist $x_G\cdot p_G$, danach $KR=460-x_G\cdot p_G$.'
+      - typ: eingabe
+        frage: '<strong>Produzentenrente</strong> – jetzt ohne Vorgabe. Das CAS liefert $\int_0^{10}p_A(x)\,dx=180$.'
+        felder:
+          - { label: '$PR=$', loesung: 80, einheit: 'GE' }
+        hinweis: 'Beim Angebot wird das Integral vom Umsatz abgezogen.'
+      - typ: auswahl
+        frage: 'Was bedeutet $PR=80$ GE hier?'
+        optionen:
+          - 'Diesen Betrag nehmen die Produzenten zusätzlich ein, weil sie auch billiger angeboten hätten.'
+          - 'Diesen Betrag sparen die Konsumenten.'
+          - 'Das sind die Kosten der Produzenten.'
+        korrekt: 0
+        hinweis: 'Die Produzentenrente vergleicht den Umsatz mit der Angebotsbereitschaft.'
+        danach: '<p>Richtig. Kosten tauchen hier gar nicht auf, die Produzentenrente ist deshalb auch nicht der Gewinn.</p>'

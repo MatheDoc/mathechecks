@@ -172,7 +172,7 @@ Ist ein Term mit konkreten Zahlen gegeben, lässt sich seine ökonomische Bedeut
 
 Die Konsumentenrente ist die Fläche zwischen dem Graphen von $p_N$ und der waagerechten Geraden $p=p_G$ über $[0;x_G]$. Die Produzentenrente ist die Fläche zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$ über $[0;x_G]$.
 
-Schätze nach Augenmaß, bevor du Kästchen zählst: Ist die blaue Fläche mehr als doppelt so groß wie die rote? Sie ist es deutlich, die Konsumenten profitieren im Leitbeispiel also wesentlich stärker vom Marktgleichgewicht als die Produzenten.
+Schätze zuerst nach Augenmaß: Ist die blaue Fläche mehr als doppelt so groß wie die rote? Sie ist es deutlich, die Konsumenten profitieren im Leitbeispiel also wesentlich stärker vom Marktgleichgewicht als die Produzenten.
 
 {% include graph.html
    funktionen='[
@@ -197,19 +197,37 @@ Schätze nach Augenmaß, bevor du Kästchen zählst: Ist die blaue Fläche mehr 
    ydtick=2
 %}
 
-**Abschätzen durch Kästchenzählen.** Ohne Funktionsterme lassen sich die Renten nur abschätzen. Jedes Kästchen des Gitters steht für einen festen Geldbetrag: Breite in ME mal Höhe in GE/ME, hier $2\cdot 2=4$ GE. Teilweise bedeckte Kästchen werden so zusammengefasst, dass sie sich ungefähr zu vollen Kästchen ergänzen.
+**Abschätzen mit einfachen Figuren.** Ohne Funktionsterme lassen sich die Renten nur abschätzen. Dazu ersetzt man die Fläche durch Figuren, deren Inhalt man kennt.
+
+1. **Dreieck als Grundgerüst.** Ersetze den gekrümmten Rand durch eine Gerade. Die Konsumentenrente wird so zu einem Dreieck mit der Breite $x_G$ (in ME) und der Höhe Höchstpreis minus $p_G$ (in GE/ME), die Produzentenrente zu einem Dreieck mit der Breite $x_G$ und der Höhe $p_G$ minus Mindestangebotspreis. Die Einheiten passen zusammen: ME $\cdot$ GE/ME $=$ GE.
+2. **Krümmung berücksichtigen.** Liegt der Graph über der schrägen Dreieckskante, ist die Rente größer als das Dreieck, liegt er darunter, kleiner. Ist der Graph eine Gerade, stimmt das Dreieck genau.
+3. **Genauer mit der Mitte.** Lies die Höhe $h_0$ der Fläche an der $p$-Achse und die Höhe $h_m$ in der Mitte bei $\frac{x_G}{2}$ ab. Da die Fläche bei $x_G$ auf null zuläuft, ergibt sich aus zwei Trapezen
+
+   $$
+   \text{Rente}\approx\frac{x_G}{4}\left(h_0+2h_m\right).
+   $$
+
+Im Leitbeispiel ist das Dreieck der Konsumentenrente $19{,}59$ ME breit und $39-12{,}57=26{,}43$ GE/ME hoch, also $\frac{1}{2}\cdot 19{,}59\cdot 26{,}43\approx 259$ GE groß. In der Mitte liegt der Graph von $p_N$ aber nur $10{,}4$ statt $13{,}2$ GE/ME über $p_G$, die Fläche ist also kleiner:
+
+$$
+KR\approx\frac{19{,}59}{4}\left(26{,}43+2\cdot 10{,}4\right)\approx 231 \text{ GE}
+$$
+
+Bei der Produzentenrente ist es umgekehrt: Das Dreieck ergibt $\frac{1}{2}\cdot 19{,}59\cdot 6{,}57\approx 64$ GE, in der Mitte liegt $p_A$ mit $4{,}8$ GE/ME aber weiter unter $p_G$ als die Dreieckskante mit $3{,}3$ GE/ME, und man erhält $PR\approx 79$ GE.
+
+Wer möchte, kann stattdessen Kästchen zählen: Jedes Kästchen des Gitters steht für Breite mal Höhe, hier $2\cdot 2=4$ GE.
 
 Typische Fehler:
 
-- Die Fläche bis zur $x$-Achse statt bis zur Geraden $p=p_G$ zählen. Das ergibt die Zahlungsbereitschaft bzw. die Angebotsbereitschaft, nicht die Rente.
-- Bis zur Sättigungsmenge statt bis $x_G$ zählen.
-- Ein Kästchen mit $1$ GE ansetzen, statt Breite mal Höhe zu rechnen.
+- Die Fläche bis zur $x$-Achse statt bis zur Geraden $p=p_G$ nehmen. Das ergibt die Zahlungsbereitschaft bzw. die Angebotsbereitschaft, nicht die Rente.
+- Bis zur Sättigungsmenge statt bis $x_G$ gehen.
+- Beim Dreieck die Höhe ab der $x$-Achse messen oder das Halbieren vergessen.
 
 {% include check-anker.html nummer="3" %}
 
 ### Renten berechnen und deuten
 
-Sind die Funktionsterme bekannt, berechnen wir die Renten mit den Formeln aus dem Abschnitt „Von der Summe zum Integral“. Zuerst wird das Marktgleichgewicht bestimmt, danach werden die Integrale mit dem CAS ausgewertet, und zwar mit den ungerundeten Werten von $x_G$ und $p_G$. Im Leitbeispiel ergeben sich $KR\approx 222{,}13$ GE und $PR\approx 84{,}42$ GE. Die Schätzung durch Kästchenzählen liegt also schon nahe am exakten Wert.
+Sind die Funktionsterme bekannt, berechnen wir die Renten mit den Formeln aus dem Abschnitt „Von der Summe zum Integral“. Zuerst wird das Marktgleichgewicht bestimmt, danach werden die Integrale mit dem CAS ausgewertet, und zwar mit den ungerundeten Werten von $x_G$ und $p_G$. Im Leitbeispiel ergeben sich $KR\approx 222{,}13$ GE und $PR\approx 84{,}42$ GE. Die Schätzungen des vorigen Abschnitts mit rund $231$ GE und $79$ GE liegen also schon nahe an den exakten Werten.
 
 **Deutung im Sachzusammenhang.** Ein Zahlenwert allein genügt nicht, gefragt ist meist auch seine Bedeutung:
 

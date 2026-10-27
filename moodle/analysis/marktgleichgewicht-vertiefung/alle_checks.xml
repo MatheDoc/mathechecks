@@ -1461,7 +1461,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__03-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Kästchen ist \(2\) ME breit und \(5\) GE/ME hoch. Für wie viele GE steht ein Kästchen?</p>]]></text>
+      <text><![CDATA[<p>Die Konsumentenrente wird durch ein Dreieck mit der Breite \(10\) ME und der Höhe \(6\) GE/ME angenähert. Wie groß ist der Schätzwert?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -1485,13 +1485,19 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(10\) GE</p>]]></text>
+      <text><![CDATA[<p>\(30\) GE</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(7\) GE</p>]]></text>
+      <text><![CDATA[<p>\(60\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Halbieren vergessen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(16\) GE</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Breite und Höhe addiert</p>]]></text>
       </feedback>
@@ -1499,13 +1505,7 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(5\) GE</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die Höhe verwendet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(2{,}5\) GE</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höhe durch Breite geteilt</p>]]></text>
+        <text><![CDATA[<p>Höhe nicht berücksichtigt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -1514,7 +1514,7 @@
       <text>analysis__marktgleichgewicht-vertiefung__03-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die Fläche der Konsumentenrente umfasst etwa \(30\) Kästchen zu je \(4\) GE. Wie groß ist die Konsumentenrente ungefähr?</p>]]></text>
+      <text><![CDATA[<p>Das Dreieck für die Konsumentenrente ergibt \(80\) GE. Der Graph von \(p_N\) verläuft über der schrägen Dreieckskante. Was folgt daraus?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -1538,27 +1538,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(120\) GE</p>]]></text>
+      <text><![CDATA[<p>Die Konsumentenrente ist größer als \(80\) GE.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(34\) GE</p>]]></text>
+      <text><![CDATA[<p>Die Konsumentenrente ist kleiner als \(80\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anzahl und Kästchenwert addiert</p>]]></text>
+        <text><![CDATA[<p>Krümmungsrichtung verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(30\) GE</p>]]></text>
+      <text><![CDATA[<p>Die Konsumentenrente beträgt genau \(80\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kästchenwert nicht berücksichtigt</p>]]></text>
+        <text><![CDATA[<p>Krümmung ignoriert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(7{,}5\) GE</p>]]></text>
+      <text><![CDATA[<p>Die Produzentenrente ist größer als \(80\) GE.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anzahl durch Kästchenwert geteilt</p>]]></text>
+        <text><![CDATA[<p>auf die falsche Rente bezogen</p>]]></text>
       </feedback>
     </answer>
   </question>

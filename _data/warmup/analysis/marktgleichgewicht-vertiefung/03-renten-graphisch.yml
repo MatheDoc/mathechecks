@@ -1,0 +1,161 @@
+# Warm-Up zu Check 03 „KR/PR graphisch“ (Marktgleichgewicht - Vertiefung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__marktgleichgewicht-vertiefung__03
+abschluss: '<p>Im Training schätzt du die Flächen selbst: Dreieck mit der Breite in ME und der Höhe in GE/ME, dann je nach Wölbung des Graphen etwas dazu oder weg. Ist der Graph eine Gerade, stimmt das Dreieck genau.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Wer profitiert vom Marktpreis?'
+    text: '<p>Im Marktgleichgewicht zahlen alle denselben Preis $p_G$. Manche Konsumenten hätten mehr gezahlt, manche Produzenten hätten billiger angeboten. Genau dieser Vorteil steckt als Fläche im Diagramm.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '45.75*exp(-0.044x)-6.75', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 30 }
+        - { term: '0.016x^2+0.022x+6', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 30, color: '#d62728' }
+      xMin: -1
+      xMax: 32
+      yMin: -2
+      yMax: 44
+      xSchritt: 5
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 19.59, y: 12.57, label: 'Marktgleichgewicht', hilfslinie: true, sichtbar: true, ax: 60, ay: -34 }
+      flaechen:
+        - { id: zb, term: '45.75*exp(-0.044x)-6.75', von: 0, bis: 19.59, farbe: 'rgba(31,119,180,0.3)', name: 'Zahlungsbereitschaft' }
+        - { id: umsatz, term: '12.5715', von: 0, bis: 19.59, farbe: 'rgba(120,120,120,0.35)', name: 'Umsatz' }
+        - { id: kr, term: '45.75*exp(-0.044x)-6.75', von: 0, bis: 19.59, basis: 12.5715, farbe: 'rgba(31,119,180,0.3)', name: 'Konsumentenrente' }
+        - { id: pr, term: '0.016x^2+0.022x+6', von: 0, bis: 19.59, basis: 12.5715, farbe: 'rgba(214,39,40,0.3)', name: 'Produzentenrente' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zahlungsbereitschaft und Umsatz zeigen'
+        text: '<p>$p_N(x)$ gibt an, welchen Preis die Konsumenten für die $x$-te Mengeneinheit gerade noch zahlen würden.</p><ul><li>Die Fläche unter dem Graphen von $p_N$ über $[0;x_G]$ ist die <strong>Zahlungsbereitschaft</strong>: $\int_0^{x_G}p_N(x)\,dx$.</li><li>Das graue Rechteck ist der <strong>Umsatz</strong> $x_G\cdot p_G$, also das, was tatsächlich gezahlt wird.</li></ul>'
+        zeige: { flaechen: [zb, umsatz] }
+      - typ: auswahl
+        frage: 'Die Konsumenten sparen also die Differenz. Welcher Teil des Bildes bleibt damit übrig?'
+        optionen:
+          - 'die Fläche zwischen dem Graphen von $p_N$ und der Geraden $p=p_G$'
+          - 'die Fläche unter dem Graphen von $p_N$ bis zur $x$-Achse'
+          - 'das graue Rechteck'
+        korrekt: 0
+        hinweis: 'Nimm von der Fläche unter $p_N$ das Rechteck weg. Was bleibt oberhalb der Höhe $p_G$ übrig?'
+        danach: '<p>Das ist die <strong>Konsumentenrente</strong> $KR$: die Fläche zwischen dem Graphen von $p_N$ und der Geraden $p=p_G$ über $[0;x_G]$.</p>'
+        zeige: { flaechen: [kr] }
+      - typ: aufdecken
+        frage: 'Und die Produzenten?'
+        knopf: 'Produzentenrente zeigen'
+        text: '<p>Die <strong>Produzentenrente</strong> $PR$ liegt spiegelbildlich darunter: die Fläche zwischen der Geraden $p=p_G$ und dem Graphen von $p_A$ über $[0;x_G]$. Sie ist die Mehreinnahme der Produzenten, die auch billiger angeboten hätten.</p><p><strong>Merke:</strong> Beide Renten reichen nur bis $x_G$, nicht bis zur Sättigungsmenge, und nur bis zur Geraden $p=p_G$, nicht bis zur $x$-Achse.</p>'
+        zeige: { flaechen: [kr, pr] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Flächen mit einfachen Figuren abschätzen'
+    text: '<p>Wie im Training sind nur die Graphen gegeben. Das Marktgleichgewicht liegt bei $(10\mid 15)$, also $x_G=10$ ME und $p_G=15$ GE/ME.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '30-0.15x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 14.14 }
+        - { term: '3+1.2x', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 16, color: '#d62728' }
+        - { term: '30-1.5x', name: 'Dreieckskante', xmin: 0, xmax: 10, color: '#6b7280', dash: 'dash' }
+      xMin: -1
+      xMax: 17
+      yMin: -2
+      yMax: 34
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 10, y: 15, label: 'Marktgleichgewicht', hilfslinie: true, sichtbar: true, ax: 56, ay: -30 }
+      flaechen:
+        - { id: kr, term: '30-0.15x^2', von: 0, bis: 10, basis: 15, farbe: 'rgba(31,119,180,0.3)', name: 'Konsumentenrente' }
+        - { id: pr, term: '3+1.2x', von: 0, bis: 10, basis: 15, farbe: 'rgba(214,39,40,0.3)', name: 'Produzentenrente' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Grundgerüst für die Konsumentenrente'
+        knopf: 'Dreieck berechnen'
+        text: '<p>Die blaue Fläche ist fast ein Dreieck: Es reicht von der $p$-Achse bis $x_G$ und vom Höchstpreis bis $p_G$ (gestrichelte Kante).</p><ul><li>Breite: $x_G=10$ ME</li><li>Höhe: $30-15=15$ GE/ME</li></ul>$$\frac{1}{2}\cdot 10\cdot 15=75 \text{ GE}$$<p>Die Einheiten passen: ME $\cdot$ GE/ME $=$ GE.</p>'
+        zeige: { flaechen: [kr] }
+      - typ: auswahl
+        frage: '<strong>Schritt 2:</strong> Vergleiche den Graphen von $p_N$ mit der gestrichelten Kante. Was folgt für die Konsumentenrente?'
+        optionen:
+          - 'Sie ist größer als $75$ GE, denn der Graph liegt über der Kante.'
+          - 'Sie ist kleiner als $75$ GE, denn der Graph liegt unter der Kante.'
+          - 'Sie beträgt genau $75$ GE.'
+        korrekt: 0
+        hinweis: 'Schau in die Mitte bei $x=5$: Liegt der Graph dort über oder unter der gestrichelten Linie?'
+        danach: '<p>Bei $x=5$ liegt der Graph bei $26{,}25$ statt bei $22{,}5$, also deutlich höher. Die Wölbung bringt hier etwa ein Viertel des Dreiecks dazu, also $18{,}75$ GE:</p>$$KR\approx 75+18{,}75\approx 94 \text{ GE}$$<p>Der exakte Wert ist $100$ GE – als Schätzung völlig in Ordnung.</p>'
+      - typ: aufdecken
+        frage: '<strong>Schritt 3:</strong> Produzentenrente'
+        knopf: 'Dreieck berechnen'
+        text: '<p>Hier ist $p_A$ eine Gerade, das Dreieck passt also genau: Breite $x_G=10$ ME, Höhe $15-3=12$ GE/ME.</p>$$PR=\frac{1}{2}\cdot 10\cdot 12=60 \text{ GE}$$'
+        zeige: { flaechen: [kr, pr] }
+      - typ: auswahl
+        frage: 'Ist die Aussage „Die Konsumentenrente ist mehr als doppelt so groß wie die Produzentenrente.“ wahr oder falsch?'
+        optionen:
+          - 'falsch'
+          - 'wahr'
+        korrekt: 0
+        hinweis: 'Rechne das Doppelte der Produzentenrente aus und vergleiche mit der Konsumentenrente.'
+        danach: '<p>Das Doppelte der Produzentenrente ist $2\cdot 60=120$ GE. Wegen $94&lt;120$ ist die Aussage <strong>falsch</strong>. Für solche Vergleiche genügt eine grobe Schätzung.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was bedeutet welcher Term?'
+    text: '<p>In Aufgaben werden solche Terme oft ohne Erklärung angegeben. Ordne zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Term'
+        titel_rechts: 'Bedeutung'
+        paare:
+          - { links: '$\int_0^{x_G}p_N(x)\,dx$', rechts: 'Zahlungsbereitschaft der Konsumenten' }
+          - { links: '$\int_0^{x_G}p_A(x)\,dx$', rechts: 'Angebotsbereitschaft der Produzenten' }
+          - { links: '$x_G\cdot p_G$', rechts: 'Umsatz im Marktgleichgewicht' }
+          - { links: '$\int_0^{x_G}p_N(x)\,dx$<br>$-\;x_G\cdot p_G$', rechts: 'Konsumentenrente' }
+          - { links: '$x_G\cdot p_G$<br>$-\;\int_0^{x_G}p_A(x)\,dx$', rechts: 'Produzentenrente' }
+        danach: '<p>Faustregel: Integral über $p_N$ gehört zu den Konsumenten, Integral über $p_A$ zu den Produzenten. Die Differenz zum Umsatz ist die Rente.</p>'
+
+  - phase: mitmachen
+    titel: 'Jetzt schätzt du'
+    text: '<p>Ein neuer Markt mit dem Marktgleichgewicht $(12\mid 18)$ und dem Höchstpreis $36$ GE/ME.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '36-0.125x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 16.97 }
+        - { term: 'x+6', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 18, color: '#d62728' }
+        - { term: '36-1.5x', name: 'Dreieckskante', xmin: 0, xmax: 12, color: '#6b7280', dash: 'dash' }
+      xMin: -1
+      xMax: 19
+      yMin: -2
+      yMax: 40
+      xSchritt: 2
+      ySchritt: 2
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 12, y: 18, label: 'Marktgleichgewicht', hilfslinie: true, sichtbar: true, ax: 54, ay: -30 }
+      flaechen:
+        - { id: kr, term: '36-0.125x^2', von: 0, bis: 12, basis: 18, farbe: 'rgba(31,119,180,0.3)', sichtbar: true, name: 'Konsumentenrente' }
+        - { id: pr, term: 'x+6', von: 0, bis: 12, basis: 18, farbe: 'rgba(214,39,40,0.3)', name: 'Produzentenrente' }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Grundgerüst:</strong> Das Dreieck unter der gestrichelten Kante ist $12$ ME breit und $36-18=18$ GE/ME hoch.'
+        felder:
+          - { label: 'Dreieck $=$', loesung: 108, toleranz: 2, einheit: 'GE' }
+        hinweis: 'Dreiecksfläche: $\frac{1}{2}\cdot$ Breite $\cdot$ Höhe.'
+      - typ: eingabe
+        frage: 'Der Graph von $p_N$ liegt wieder über der Kante. Schätze damit die <strong>Konsumentenrente</strong>.'
+        felder:
+          - { label: '$KR\approx$', loesung: 135, toleranz: 18, einheit: 'GE' }
+        hinweis: 'Rechne wie eben etwa ein Viertel des Dreiecks dazu.'
+        danach: '<p>Rund $135$ GE – der exakte Wert ist $144$ GE.</p>'
+      - typ: eingabe
+        frage: 'Jetzt ohne Vorgabe: Schätze die <strong>Produzentenrente</strong> ab.'
+        felder:
+          - { label: '$PR\approx$', loesung: 72, toleranz: 8, einheit: 'GE', zeige: { flaechen: [kr, pr] } }
+        hinweis: 'Hier ist $p_A$ eine Gerade: Dreieck mit der Breite $12$ ME und der Höhe $18-6=12$ GE/ME.'
+        danach: '<p>$PR=\frac{1}{2}\cdot 12\cdot 12=72$ GE, hier sogar exakt. Die Konsumentenrente ist also etwa doppelt so groß wie die Produzentenrente.</p>'

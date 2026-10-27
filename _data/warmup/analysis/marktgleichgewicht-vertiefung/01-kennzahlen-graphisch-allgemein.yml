@@ -1,0 +1,150 @@
+# Warm-Up zu Check 01 „MGG graphisch (allgemein)“ (Marktgleichgewicht - Vertiefung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__marktgleichgewicht-vertiefung__01
+abschluss: '<p>Im Training sind die Graphen krummer und die Werte liegen zwischen den Gitterlinien. Lies so genau wie möglich ab und rechne den Umsatz mit deinen abgelesenen Werten.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Gekrümmte Graphen, dieselben Kennzahlen'
+    text: '<p>Auch wenn die Graphen von $p_N$ und $p_A$ keine Geraden sind, bleibt alles beim Alten: $p_N$ fällt, $p_A$ steigt, und die Kennzahlen stecken in denselben besonderen Punkten.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '36-0.09x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 20 }
+        - { term: '0.2x^2+7', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 12.5, color: '#d62728' }
+      xMin: -1
+      xMax: 22
+      yMin: -2
+      yMax: 42
+      xSchritt: 2
+      ySchritt: 4
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: hp, x: 0, y: 36, label: 'Höchstpreis', ax: 70, ay: -6 }
+        - { id: map, x: 0, y: 7, label: 'Mindestangebotspreis', ax: 86, ay: 20 }
+        - { id: sm, x: 20, y: 0, label: 'Sättigungsmenge', ax: -24, ay: -34 }
+        - { id: mg, x: 10, y: 27, label: 'Marktgleichgewicht', hilfslinie: true, ax: 66, ay: -30 }
+      flaechen:
+        - { id: umsatz, term: '27', von: 0, bis: 10, farbe: 'rgba(120,120,120,0.25)', name: 'Umsatz' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir die besonderen Punkte'
+        text: '<ul><li><strong>Höchstpreis:</strong> $y$-Achsenabschnitt von $p_N$, hier $36$ GE/ME.</li><li><strong>Sättigungsmenge:</strong> Nullstelle von $p_N$, hier $20$ ME.</li><li><strong>Mindestangebotspreis:</strong> $y$-Achsenabschnitt von $p_A$, hier $7$ GE/ME.</li><li><strong>Marktgleichgewicht:</strong> Schnittpunkt der Graphen, hier $(10\mid 27)$, also $x_G=10$ ME und $p_G=27$ GE/ME.</li></ul>'
+        zeige: { punkte: [hp, map, sm, mg] }
+      - typ: auswahl
+        frage: 'Der Umsatz im Marktgleichgewicht ist $x_G\cdot p_G$. Welche Fläche im Diagramm ist das?'
+        optionen:
+          - 'das Rechteck mit den Seiten $x_G$ und $p_G$'
+          - 'die Fläche unter dem Graphen von $p_N$ bis zur Sättigungsmenge'
+          - 'die Fläche zwischen beiden Graphen'
+        korrekt: 0
+        hinweis: 'Ein Produkt aus zwei Längen ist der Flächeninhalt eines Rechtecks.'
+        danach: '<p>Richtig: $x_G\cdot p_G=10\cdot 27=270$ GE.</p><p><strong>Merke:</strong> Höchstpreis und Mindestangebotspreis stehen an der $p$-Achse, die Sättigungsmenge an der $x$-Achse, das Marktgleichgewicht im Schnittpunkt, der Umsatz ist das Rechteck darunter.</p>'
+        zeige: { flaechen: [umsatz] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Ein Markt zum Ablesen'
+    text: '<p>Wie im Training sind nur die Graphen gegeben. Wir lesen die fünf Kennzahlen der Reihe nach ab.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '40-0.016x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 50 }
+        - { term: '0.4x+20', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 50, color: '#d62728' }
+      xMin: -2
+      xMax: 55
+      yMin: -2
+      yMax: 45
+      xSchritt: 5
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: hp, x: 0, y: 40, label: 'Höchstpreis', ax: 66, ay: -6 }
+        - { id: map, x: 0, y: 20, label: 'Mindestangebotspreis', ax: 90, ay: 22 }
+        - { id: sm, x: 50, y: 0, label: 'Sättigungsmenge', ax: -30, ay: -36 }
+        - { id: mg, x: 25, y: 30, label: 'Marktgleichgewicht', hilfslinie: true, ax: 56, ay: -34 }
+      flaechen:
+        - { id: umsatz, term: '30', von: 0, bis: 25, farbe: 'rgba(120,120,120,0.25)', name: 'Umsatz' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>An der $p$-Achse:</strong> Höchstpreis und Mindestangebotspreis'
+        knopf: 'Ablesen'
+        text: '<p>Der Graph von $p_N$ startet bei $40$, der Graph von $p_A$ bei $20$.</p><p>Der Höchstpreis beträgt $40$ GE/ME, der Mindestangebotspreis $20$ GE/ME.</p>'
+        zeige: { punkte: [hp, map] }
+      - typ: auswahl
+        frage: '<strong>Sättigungsmenge:</strong> Welchen Punkt liest du dafür ab?'
+        optionen:
+          - 'die Nullstelle von $p_N$'
+          - 'die Nullstelle von $p_A$'
+          - 'den Schnittpunkt der beiden Graphen'
+        korrekt: 0
+        hinweis: 'Gesucht ist die Menge, die selbst zum Preis $0$ gerade noch nachgefragt wird.'
+        danach: '<p>Der Graph von $p_N$ trifft die $x$-Achse bei $50$. Die Sättigungsmenge beträgt $50$ ME.</p>'
+        zeige: { punkte: [sm] }
+      - typ: aufdecken
+        frage: '<strong>Marktgleichgewicht und Umsatz</strong>'
+        knopf: 'Ablesen und rechnen'
+        text: '<p>Die Graphen schneiden sich bei $(25\mid 30)$: $x_G=25$ ME und $p_G=30$ GE/ME.</p>$$x_G\cdot p_G=25\cdot 30=750$$<p>Der Umsatz im Marktgleichgewicht beträgt $750$ GE.</p>'
+        zeige: { punkte: [mg], flaechen: [umsatz] }
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welche Kennzahl steckt wo?'
+    text: '<p>Ordne jeder Kennzahl die Stelle im Diagramm zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Kennzahl'
+        titel_rechts: 'Stelle im Diagramm'
+        paare:
+          - { links: 'Höchstpreis', rechts: '$y$-Achsenabschnitt von $p_N$' }
+          - { links: 'Mindestangebotspreis', rechts: '$y$-Achsenabschnitt von $p_A$' }
+          - { links: 'Sättigungsmenge', rechts: 'Nullstelle von $p_N$' }
+          - { links: 'Marktgleichgewicht', rechts: 'Schnittpunkt der Graphen' }
+          - { links: 'Umsatz', rechts: 'Rechteck unter dem Marktgleichgewicht' }
+        danach: '<p>Damit hast du den Fahrplan fürs Ablesen. Gleich übernimmst du einen neuen Markt.</p>'
+
+  - phase: mitmachen
+    titel: 'Jetzt liest du ab'
+    text: '<p>Ein neuer Markt, dieselben Kennzahlen. Alle Werte liegen auf Gitterlinien.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '48-0.03x^2', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 40 }
+        - { term: '0.3x+12', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 40, color: '#d62728' }
+      xMin: -2
+      xMax: 44
+      yMin: -2
+      yMax: 54
+      xSchritt: 5
+      ySchritt: 6
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: sm, x: 40, y: 0, label: 'Sättigungsmenge', ax: -30, ay: -36 }
+        - { id: mg, x: 30, y: 21, label: 'Marktgleichgewicht', hilfslinie: true, ax: 40, ay: -40 }
+      flaechen:
+        - { id: umsatz, term: '21', von: 0, bis: 30, farbe: 'rgba(120,120,120,0.25)', name: 'Umsatz' }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>An den Achsen:</strong> Höchstpreis und Sättigungsmenge'
+        felder:
+          - { label: 'Höchstpreis', loesung: 48, toleranz: 1, einheit: 'GE/ME' }
+          - { label: 'Sättigungsmenge', loesung: 40, toleranz: 1, einheit: 'ME', zeige: { punkte: [sm] } }
+        hinweis: 'Beide Werte liest du am Graphen von $p_N$ ab: einmal an der $p$-Achse, einmal an der $x$-Achse.'
+      - typ: eingabe
+        frage: '<strong>Marktgleichgewicht:</strong> Lies die Koordinaten des Schnittpunkts ab.'
+        felder:
+          - { label: '$x_G=$', loesung: 30, toleranz: 1, einheit: 'ME' }
+          - { label: '$p_G=$', loesung: 21, toleranz: 1, einheit: 'GE/ME', zeige: { punkte: [mg] } }
+        hinweis: 'Gehe vom Schnittpunkt senkrecht nach unten und waagerecht nach links.'
+      - typ: eingabe
+        frage: '<strong>Umsatz im Marktgleichgewicht</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: 'Umsatz', loesung: 630, toleranz: 40, einheit: 'GE', zeige: { flaechen: [umsatz] } }
+        hinweis: 'Multipliziere die beiden abgelesenen Werte $x_G$ und $p_G$.'
+        danach: '<p>Geschafft: $30\cdot 21=630$ GE.</p>'
