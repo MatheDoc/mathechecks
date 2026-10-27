@@ -1,0 +1,146 @@
+# Warm-Up zu Check 05 „Abschöpfung der KR“ (Marktgleichgewicht - Vertiefung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__marktgleichgewicht-vertiefung__05
+abschluss: '<p>Im Training musst du zuerst selbst das Marktgleichgewicht berechnen und dann ungerundet weiterrechnen. Gefragt ist am Ende der Teilmarkt<em>preis</em> $p_2=p_N(x_2)$, nicht nur die Menge.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Ein zweiter Preis für dieselbe Ware'
+    text: '<p>Im Marktgleichgewicht zahlen alle nur $p_G$, obwohl manche mehr zahlen würden. Dieser Vorteil ist die Konsumentenrente. Ein Anbieter kann einen Teil davon abschöpfen, indem er zuerst einen <strong>Teilmarkt</strong> mit dem höheren Preis $p_2$ bedient.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '45.75*exp(-0.044x)-6.75', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 30 }
+        - { term: '0.016x^2+0.022x+6', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 30, color: '#d62728' }
+      xMin: -1
+      xMax: 32
+      yMin: -2
+      yMax: 44
+      xSchritt: 5
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 19.59, y: 12.57, label: 'Marktgleichgewicht', hilfslinie: true, sichtbar: true, ax: 64, ay: 26 }
+        - { id: t20, x: 12.1968, y: 20, label: 'p<sub>2</sub> = 20', ax: 56, ay: -24 }
+        - { id: t38, x: 0.5023, y: 38, label: 'p<sub>2</sub> = 38', ax: 60, ay: -10 }
+      flaechen:
+        - { id: kr, term: '45.75*exp(-0.044x)-6.75', von: 0, bis: 19.59, basis: 12.5715, farbe: 'rgba(31,119,180,0.3)', name: 'Konsumentenrente' }
+        - { id: r20, term: '20', von: 0, bis: 12.1968, basis: 12.5715, farbe: 'rgba(120,120,120,0.6)', schraffur: true, name: 'abgeschöpfter Betrag' }
+        - { id: r38, term: '38', von: 0, bis: 0.5023, basis: 12.5715, farbe: 'rgba(120,120,120,0.6)', schraffur: true, name: 'abgeschöpfter Betrag' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Teilmarkt mit p₂ = 20 zeigen'
+        text: '<p>Auf dem Teilmarkt kaufen alle, die mindestens $p_2$ zu zahlen bereit sind. Das sind $x_2$ ME mit $p_N(x_2)=p_2$, hier $x_2\approx 12{,}20$ ME.</p><p>Für diese Mengeneinheiten werden jeweils $p_2-p_G$ mehr gezahlt. Der <strong>abgeschöpfte Betrag</strong> ist das schraffierte Rechteck:</p>$$x_2\cdot(p_2-p_G)\approx 12{,}20\cdot(20-12{,}57)\approx 90{,}60$$'
+        zeige: { flaechen: [kr, r20] }
+      - typ: auswahl
+        frage: 'Jetzt verlangt der Anbieter $p_2=38$ GE/ME. Warum wird dabei so wenig abgeschöpft?'
+        optionen:
+          - 'Fast niemand zahlt so viel, die Teilmarktmenge $x_2$ ist winzig.'
+          - 'Der Aufschlag $p_2-p_G$ ist zu klein.'
+          - 'Der Gleichgewichtspreis $p_G$ sinkt dadurch.'
+        korrekt: 0
+        hinweis: 'Schau, wie breit das schraffierte Rechteck jetzt noch ist.'
+        danach: '<p>Das Rechteck ist hoch, aber extrem schmal: $x_2\approx 0{,}50$ ME und damit nur etwa $12{,}77$ GE. Ein sehr niedriger Teilmarktpreis macht es umgekehrt breit und flach – das Maximum liegt also <strong>dazwischen</strong>.</p>'
+        zeige: { flaechen: [kr, r38] }
+      - typ: aufdecken
+        frage: 'Wie findet man das Maximum?'
+        knopf: 'Zielfunktion zeigen'
+        text: '<p>Wegen $p_2=p_N(x_2)$ hängt der abgeschöpfte Betrag nur von $x_2$ ab:</p>$$A(x_2)=x_2\cdot\left(p_N(x_2)-p_G\right)$$<p><strong>Merke:</strong> Hochpunkt von $A$ suchen ($A''(x_2)=0$ und $A^{\prime\prime}(x_2)&lt;0$), danach den Teilmarktpreis mit $p_2=p_N(x_2)$ berechnen.</p>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Abschöpfung bei vorgegebenem Preis'
+    text: '<p>Gegeben sind</p>$$\begin{align*}p_N(x)&=-0{,}02x^2-0{,}5x+60\\ p_A(x)&=0{,}5x+10.\end{align*}$$<p>Auf dem Teilmarkt werden $40$ GE/ME verlangt.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Marktgleichgewicht'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}-0{,}02x^2-0{,}5x+60&=0{,}5x+10 \quad|\text{ CAS}\\ x_G&\approx 30{,}90\\ p_G&=p_A(30{,}90)\approx 25{,}45\end{align*}$$<p>Die Lösung $x\approx -80{,}90$ entfällt.</p>'
+      - typ: auswahl
+        frage: '<strong>Schritt 2:</strong> Wie bestimmt man die Teilmarktmenge $x_2$ zum Preis $40$ GE/ME?'
+        optionen:
+          - '$p_N(x)=40$ lösen'
+          - '$p_A(x)=40$ lösen'
+          - '$p_N(x)=p_A(x)$ lösen'
+        korrekt: 0
+        hinweis: 'Auf dem Teilmarkt kaufen die Konsumenten, deren Zahlungsbereitschaft mindestens $40$ GE/ME beträgt.'
+        danach: '$$-0{,}02x^2-0{,}5x+60=40 \;\Rightarrow\; x_2\approx 21{,}50$$<p>Die negative Lösung entfällt.</p>'
+      - typ: aufdecken
+        frage: '<strong>Schritt 3:</strong> Abgeschöpfter Betrag'
+        knopf: 'Rechteck berechnen'
+        text: '$$x_2\cdot(p_2-p_G)\approx 21{,}5037\cdot(40-25{,}4508)\approx 312{,}86$$<p>Es werden etwa $312{,}86$ GE der Konsumentenrente abgeschöpft.</p>'
+
+  - phase: vormachen
+    titel: 'Maximale Abschöpfung'
+    text: '<p>Gleicher Markt: Welcher Teilmarktpreis schöpft am meisten ab?</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Zielfunktion aufstellen'
+        knopf: 'Term einsetzen'
+        text: '$$\begin{align*}A(x_2)&=x_2\cdot\left(p_N(x_2)-p_G\right)\\ &=x_2\cdot\left(-0{,}02x_2^2-0{,}5x_2+60-25{,}45\right)\\ &=-0{,}02x_2^3-0{,}5x_2^2+34{,}55x_2\end{align*}$$'
+      - typ: aufdecken
+        frage: '<strong>Schritt 2:</strong> Hochpunkt bestimmen'
+        knopf: 'Bedingungen prüfen'
+        text: '$$\begin{align*}A''(x_2)=-0{,}06x_2^2-x_2+34{,}55&=0\\ x_2&\approx 17{,}07\end{align*}$$<p>Hinreichende Bedingung: $A^{\prime\prime}(x_2)=-0{,}12x_2-1$, also $A^{\prime\prime}(17{,}07)\approx -3{,}05&lt;0$. Es liegt ein Maximum vor.</p>'
+      - typ: auswahl
+        frage: '<strong>Schritt 3:</strong> Gefragt ist der Teilmarktpreis $p_2$. Was fehlt noch?'
+        optionen:
+          - '$x_2$ in $p_N$ einsetzen'
+          - '$x_2$ in $p_A$ einsetzen'
+          - 'nichts, $x_2$ ist bereits der Preis'
+        korrekt: 0
+        hinweis: 'Auf dem Teilmarkt richtet sich der Preis nach der Zahlungsbereitschaft.'
+        danach: '$$p_2=p_N(17{,}07)\approx 45{,}64$$<p>Bei $x_2\approx 17{,}07$ ME und $p_2\approx 45{,}64$ GE/ME wird maximal abgeschöpft, und zwar $A(17{,}07)\approx 344{,}58$ GE – mehr als die $312{,}86$ GE bei $40$ GE/ME.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Der Fahrplan'
+    text: '<p>Ordne jedem Schritt die passende Rechnung zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gesucht'
+        titel_rechts: 'Rechnung'
+        paare:
+          - { links: 'Marktgleichgewicht', rechts: '$p_N(x)=p_A(x)$ lösen' }
+          - { links: 'Teilmarktmenge zum Preis $p_2$', rechts: '$p_N(x)=p_2$ lösen' }
+          - { links: 'abgeschöpfter Betrag', rechts: '$x_2\cdot(p_2-p_G)$' }
+          - { links: 'Zielfunktion', rechts: '$A(x_2)=x_2\cdot\left(p_N(x_2)-p_G\right)$' }
+          - { links: 'Teilmarktpreis bei maximaler Abschöpfung', rechts: '$p_2=p_N(x_2)$' }
+        danach: '<p>Mit diesem Fahrplan rechnest du jetzt einen neuen Markt durch.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen – du rechnest mit'
+    text: '<p>Jetzt gilt $p_N(x)=60-2x$ und $p_A(x)=x+6$. Die Zahlen sind so gewählt, dass du ohne CAS auskommst.</p>'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Marktgleichgewicht</strong> – der Ansatz steht schon da: $60-2x=x+6$'
+        felder:
+          - { label: '$x_G=$', loesung: 18, einheit: 'ME' }
+          - { label: '$p_G=$', loesung: 24, einheit: 'GE/ME' }
+        hinweis: 'Aus $54=3x$ folgt $x_G$, danach $x_G$ in $p_N$ oder $p_A$ einsetzen.'
+      - typ: eingabe
+        frage: 'Auf dem Teilmarkt werden $48$ GE/ME verlangt. Bestimme $x_2$ und den abgeschöpften Betrag.'
+        felder:
+          - { label: '$x_2=$', loesung: 6, einheit: 'ME' }
+          - { label: 'Betrag $=$', loesung: 144, einheit: 'GE' }
+        hinweis: 'Löse $60-2x=48$, danach $x_2\cdot(48-p_G)$.'
+      - typ: auswahl
+        frage: 'Welche Zielfunktion gehört zur maximalen Abschöpfung?'
+        optionen:
+          - '$A(x_2)=36x_2-2x_2^2$'
+          - '$A(x_2)=60x_2-2x_2^2$'
+          - '$A(x_2)=24x_2-2x_2^2$'
+        korrekt: 0
+        hinweis: 'Setze $p_N(x_2)=60-2x_2$ und $p_G=24$ in $A(x_2)=x_2\cdot\left(p_N(x_2)-p_G\right)$ ein.'
+        danach: '$$A(x_2)=x_2\cdot\left(60-2x_2-24\right)=36x_2-2x_2^2$$'
+      - typ: eingabe
+        frage: 'Jetzt ohne Vorgabe: Bestimme die Maximalstelle und den zugehörigen Teilmarktpreis. (Es gilt $A''(x_2)=36-4x_2$.)'
+        felder:
+          - { label: '$x_2=$', loesung: 9, einheit: 'ME' }
+          - { label: '$p_2=$', loesung: 42, einheit: 'GE/ME' }
+        hinweis: 'Setze $36-4x_2=0$ und berechne danach $p_N(9)$.'
+        danach: '<p>Wegen $A^{\prime\prime}(x_2)=-4&lt;0$ liegt ein Maximum vor. Abgeschöpft werden $A(9)=162$ GE, also mehr als die $144$ GE bei $48$ GE/ME.</p>'

@@ -49,20 +49,28 @@ $10\cdot 15$ ist der Umsatz im Marktgleichgewicht, $\int_0^{10}p_A(x)\,dx$ die A
 
 **3. Schätzwert für die Konsumentenrente**
 
-Ein Kästchen ist $1$ ME breit und $2$ GE/ME hoch und steht damit für $1\cdot 2=2$ GE. Die blaue Fläche zwischen dem Graphen von $p_N$ und der Geraden $p=15$ umfasst etwa $50$ Kästchen:
+Die blaue Fläche ist fast ein Dreieck: Es ist $x_G=10$ ME breit und reicht vom Höchstpreis bis zum Gleichgewichtspreis, ist also $30-15=15$ GE/ME hoch:
 
 $$
-KR\approx 50\cdot 2=100 \text{ GE}
+\frac{1}{2}\cdot 10\cdot 15=75 \text{ GE}
 $$
+
+Der Graph von $p_N$ liegt über der schrägen Dreieckskante – in der Mitte bei $x=5$ bei $26{,}25$ statt bei $22{,}5$ –, die Fläche ist also größer. Mit den Höhen $h_0=15$ und $h_m=11{,}25$ ergibt sich
+
+$$
+KR\approx\frac{10}{4}\left(15+2\cdot 11{,}25\right)\approx 94 \text{ GE}.
+$$
+
+Die Konsumentenrente beträgt also etwa $95$ GE (exakt $100$ GE).
 
 **4. Schätzwert für die Produzentenrente**
 
-Die rote Fläche zwischen der Geraden $p=15$ und dem Graphen von $p_A$ ist ein Dreieck mit $30$ Kästchen:
+Hier ist $p_A$ eine Gerade, das Dreieck passt deshalb genau. Es ist $x_G=10$ ME breit und $15-3=12$ GE/ME hoch:
 
 $$
-PR\approx 30\cdot 2=60 \text{ GE}
+PR=\frac{1}{2}\cdot 10\cdot 12=60 \text{ GE}
 $$
 
 **5. Aussage prüfen**
 
-Das Doppelte der Produzentenrente ist $2\cdot 60=120$ GE. Wegen $100<120$ ist die Konsumentenrente nicht mehr als doppelt so groß. Die Aussage ist **falsch**.
+Das Doppelte der Produzentenrente ist $2\cdot 60=120$ GE. Wegen $95<120$ ist die Konsumentenrente nicht mehr als doppelt so groß. Die Aussage ist **falsch**.

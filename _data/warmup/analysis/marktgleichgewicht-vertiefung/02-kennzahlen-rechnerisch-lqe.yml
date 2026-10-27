@@ -1,0 +1,172 @@
+# Warm-Up zu Check 02 „MGG berechnen (allgemein)“ (Marktgleichgewicht - Vertiefung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__marktgleichgewicht-vertiefung__02
+abschluss: '<p>Im Training rechnest du alle Kennzahlen mit dem CAS, auf 2 Nachkommastellen. Rechne mit den ungerundeten Werten von $x_G$ und $p_G$ weiter und prüfe bei jeder Gleichung, welche Lösung ökonomisch sinnvoll ist.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Gleiche Ansätze, neues Werkzeug'
+    text: '<p>Gegeben sind jetzt die Terme statt eines Diagramms:</p>$$\begin{align*}p_N(x)&=80e^{-0{,}04x}-10\\ p_A(x)&=0{,}02x^2+0{,}5x+5\end{align*}$$<p>Jeder besondere Punkt des Diagramms wird zu einem Funktionswert oder zu einer Gleichung.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '80*exp(-0.04x)-10', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 52 }
+        - { term: '0.02x^2+0.5x+5', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 40, color: '#d62728' }
+      xMin: -2
+      xMax: 58
+      yMin: -4
+      yMax: 75
+      xSchritt: 10
+      ySchritt: 10
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: hp, x: 0, y: 70, label: 'Höchstpreis', ax: 70, ay: -6 }
+        - { id: map, x: 0, y: 5, label: 'Mindestangebotspreis', ax: 90, ay: 22 }
+        - { id: sm, x: 51.99, y: 0, label: 'Sättigungsmenge', ax: -24, ay: -40 }
+        - { id: mg, x: 21.08, y: 24.43, label: 'Marktgleichgewicht', hilfslinie: true, ax: 70, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir die Ansätze'
+        text: '<ul><li><strong>Höchstpreis:</strong> $p_N(0)$</li><li><strong>Mindestangebotspreis:</strong> $p_A(0)$</li><li><strong>Sättigungsmenge:</strong> $p_N(x)=0$ lösen</li><li><strong>Marktgleichgewicht:</strong> $p_N(x)=p_A(x)$ nach $x_G$ lösen, dann $p_G=p_N(x_G)$</li><li><strong>Umsatz:</strong> $x_G\cdot p_G$</li></ul>'
+        zeige: { punkte: [hp, map, sm, mg] }
+      - typ: aufdecken
+        frage: 'Neu gegenüber Geraden'
+        knopf: 'Was ändert sich?'
+        text: '<p>Gleichungen wie $80e^{-0{,}04x}-10=0{,}02x^2+0{,}5x+5$ lassen sich nicht mehr von Hand auflösen. Wir lösen sie mit dem <strong>CAS</strong>.</p><p>Das CAS liefert dabei oft <strong>mehrere Lösungen</strong>. Sinnvoll sind nur Mengen $x\geq 0$ mit nicht negativen Preisen, alles andere liegt nicht im ökonomischen Definitionsbereich.</p>'
+
+  - phase: orientierung
+    titel: 'Wenn der Preis festgelegt wird'
+    text: '<p>Legt der Staat einen Preis $P$ fest, der nicht der Gleichgewichtspreis ist, passen Angebot und Nachfrage nicht mehr zusammen. Im Diagramm ist $P=40$ GE/ME eingezeichnet.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '80*exp(-0.04x)-10', name: 'p<sub>N</sub>(x)', xmin: 0, xmax: 52 }
+        - { term: '0.02x^2+0.5x+5', name: 'p<sub>A</sub>(x)', xmin: 0, xmax: 40, color: '#d62728' }
+        - { term: '40+0*x', name: 'p = 40', color: '#6b7280', dash: 'dash' }
+      xMin: -2
+      xMax: 58
+      yMin: -4
+      yMax: 75
+      xSchritt: 10
+      ySchritt: 10
+      xAchse: 'x in ME'
+      yAchse: 'p in GE/ME'
+      punkte:
+        - { id: mg, x: 21.08, y: 24.43, label: 'Marktgleichgewicht', sichtbar: true, ax: 76, ay: 26 }
+        - { id: xn, x: 11.75, y: 40, label: 'x<sub>N</sub>', ax: -16, ay: -34 }
+        - { id: xa, x: 31.16, y: 40, label: 'x<sub>A</sub>', ax: 20, ay: -34 }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Die beiden Mengen zeigen'
+        text: '<p>Die waagerechte Gerade $p=40$ schneidet beide Graphen:</p><ul><li>$p_N(x)=40$ liefert die <strong>nachgefragte</strong> Menge $x_N$.</li><li>$p_A(x)=40$ liefert die <strong>angebotene</strong> Menge $x_A$.</li></ul>'
+        zeige: { punkte: [xn, xa] }
+      - typ: auswahl
+        frage: 'Schau dir die beiden Schnittstellen an. Welche Menge ist bei $P=40$ größer?'
+        optionen:
+          - 'die angebotene Menge $x_A$'
+          - 'die nachgefragte Menge $x_N$'
+          - 'beide sind gleich groß'
+        korrekt: 0
+        hinweis: 'Vergleiche, wie weit die beiden Schnittstellen auf der $x$-Achse rechts liegen.'
+        danach: '<p>Der festgelegte Preis liegt <strong>über</strong> $p_G$: Es wird mehr angeboten als nachgefragt, es entsteht ein <strong>Angebotsüberschuss</strong> der Höhe $x_A-x_N$.</p><p><strong>Merke:</strong> Preis über $p_G$ → Angebotsüberschuss, Preis unter $p_G$ → Nachfrageüberschuss. Die Höhe ist immer die Differenz der beiden Mengen.</p>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Die Kennzahlen berechnen'
+    text: '<p>Wir rechnen den Markt von eben durch: $p_N(x)=80e^{-0{,}04x}-10$ und $p_A(x)=0{,}02x^2+0{,}5x+5$.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Höchstpreis und Mindestangebotspreis</strong> – beides sind Funktionswerte an der Stelle $0$.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}p_N(0)&=80-10=70\\ p_A(0)&=5\end{align*}$$<p>Der Höchstpreis beträgt $70$ GE/ME, der Mindestangebotspreis $5$ GE/ME.</p>'
+      - typ: aufdecken
+        frage: '<strong>Sättigungsmenge</strong> – gesucht ist die Nullstelle von $p_N$.'
+        knopf: 'Mit CAS lösen'
+        text: '$$\begin{align*}80e^{-0{,}04x}-10&=0 \quad|\text{ CAS}\\ x&\approx 51{,}99\end{align*}$$<p>Die Sättigungsmenge beträgt etwa $51{,}99$ ME.</p>'
+      - typ: auswahl
+        frage: '<strong>Marktgleichgewicht</strong> – welcher Ansatz passt?'
+        optionen:
+          - '$p_N(x)=p_A(x)$ lösen'
+          - '$p_N(x)=0$ lösen'
+          - '$p_N(0)=p_A(0)$ berechnen'
+        korrekt: 0
+        hinweis: 'Im Gleichgewicht stimmen angebotene und nachgefragte Menge zum selben Preis überein.'
+        danach: '$$\begin{align*}80e^{-0{,}04x}-10&=0{,}02x^2+0{,}5x+5 \quad|\text{ CAS}\\ x_G&\approx 21{,}08\\ p_G&=p_N(21{,}08)\approx 24{,}43\end{align*}$$<p>Die Gleichgewichtsmenge beträgt etwa $21{,}08$ ME, der Gleichgewichtspreis etwa $24{,}43$ GE/ME.</p>'
+      - typ: aufdecken
+        frage: '<strong>Umsatz im Marktgleichgewicht</strong>'
+        knopf: 'Rechnung zeigen'
+        text: '$$x_G\cdot p_G\approx 21{,}0797\cdot 24{,}4269\approx 514{,}91$$<p>Der Umsatz beträgt etwa $514{,}91$ GE. Mit den auf zwei Stellen gerundeten Werten käme $514{,}98$ GE heraus – deshalb immer ungerundet weiterrechnen.</p>'
+
+  - phase: vormachen
+    titel: 'Überschuss bei festgelegtem Preis'
+    text: '<p>Der Preis wird auf $40$ GE/ME festgelegt. Gesucht sind Art und Höhe des Überschusses.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Zuerst die beiden Mengen zum Preis $40$'
+        knopf: 'Gleichungen lösen'
+        text: '$$\begin{align*}p_N(x)=40 \;&\Rightarrow\; x_N\approx 11{,}75\\ p_A(x)=40 \;&\Rightarrow\; x_A\approx 31{,}16\end{align*}$$<p>Bei $p_A$ liefert das CAS auch $x\approx -56{,}16$; diese Lösung entfällt.</p>'
+      - typ: auswahl
+        frage: 'Art und Höhe des Überschusses?'
+        optionen:
+          - 'Angebotsüberschuss von etwa $19{,}41$ ME'
+          - 'Nachfrageüberschuss von etwa $19{,}41$ ME'
+          - 'Angebotsüberschuss von etwa $42{,}91$ ME'
+        korrekt: 0
+        hinweis: 'Vergleiche $40$ GE/ME mit $p_G\approx 24{,}43$ GE/ME und bilde dann die Differenz der Mengen.'
+        danach: '<p>$40$ GE/ME liegt über dem Gleichgewichtspreis, also wird mehr angeboten als nachgefragt:</p>$$x_A-x_N\approx 31{,}16-11{,}75=19{,}41$$'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Ansatz gehört wozu?'
+    text: '<p>Ordne jeder Kennzahl ihren Ansatz zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gesucht'
+        titel_rechts: 'Ansatz'
+        paare:
+          - { links: 'Höchstpreis', rechts: '$p_N(0)$' }
+          - { links: 'Mindestangebotspreis', rechts: '$p_A(0)$' }
+          - { links: 'Sättigungsmenge', rechts: '$p_N(x)=0$ lösen' }
+          - { links: 'Gleichgewichtsmenge', rechts: '$p_N(x)=p_A(x)$ lösen' }
+          - { links: 'Gleichgewichtspreis', rechts: '$x_G$ in $p_N$ einsetzen' }
+          - { links: 'angebotene Menge zum Preis $P$', rechts: '$p_A(x)=P$ lösen' }
+        danach: '<p>Jetzt wendest du die Ansätze auf einen neuen Markt an.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen – du rechnest mit'
+    text: '<p>Jetzt gilt</p>$$\begin{align*}p_N(x)&=36-0{,}01x^2\\ p_A(x)&=0{,}6x+20\end{align*}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Für $p_N(x)=p_A(x)$ liefert das CAS $x=20$ und $x=-80$. Was ist die Gleichgewichtsmenge?'
+        optionen:
+          - '$x_G=20$ ME'
+          - '$x_G=-80$ ME'
+          - 'beide Werte zusammen'
+        korrekt: 0
+        hinweis: 'Eine Menge kann nicht negativ sein.'
+        danach: '<p>$x=-80$ liegt nicht im ökonomischen Definitionsbereich und entfällt.</p>'
+      - typ: eingabe
+        frage: '<strong>Gleichgewichtspreis und Umsatz</strong> – der Ansatz steht schon da: $p_G=p_N(20)$.'
+        felder:
+          - { label: '$p_G=$', loesung: 32, einheit: 'GE/ME' }
+          - { label: 'Umsatz $=$', loesung: 640, einheit: 'GE' }
+        hinweis: 'Erst $36-0{,}01\cdot 20^2$ berechnen, dann $x_G\cdot p_G$.'
+      - typ: eingabe
+        frage: 'Der Preis wird auf $35$ GE/ME festgelegt. Bestimme die beiden Mengen (die negative Lösung entfällt).'
+        felder:
+          - { label: '$x_N=$', loesung: 10, einheit: 'ME' }
+          - { label: '$x_A=$', loesung: 25, einheit: 'ME' }
+        hinweis: 'Löse $36-0{,}01x^2=35$ bzw. $0{,}6x+20=35$.'
+      - typ: auswahl
+        frage: 'Art und Höhe des Überschusses?'
+        optionen:
+          - 'Angebotsüberschuss von $15$ ME'
+          - 'Nachfrageüberschuss von $15$ ME'
+          - 'Angebotsüberschuss von $35$ ME'
+        korrekt: 0
+        hinweis: 'Vergleiche $35$ GE/ME mit $p_G=32$ GE/ME.'
+        danach: '<p>Der festgelegte Preis liegt über $p_G$, also entsteht ein Angebotsüberschuss von $25-10=15$ ME.</p>'
