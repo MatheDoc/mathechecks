@@ -20,9 +20,9 @@ Kurzer, interaktiver Einstieg in **einen** Check, so kurz wie möglich, so lang 
 |---|---|---|---|
 | `orientierung` | Idee | Worum geht es, Kernidee, nötige Begriffe/Formeln; am Ende ein bis drei Merksätze | 1–2 Karten, 2–4 Schritte |
 | `vormachen` | Zuschauen | Musterbeispiel aus `beispiele/<NN>-<sammlung>.md`, Schritt für Schritt mit kleinen Begleitfragen | 1–3 Karten |
-| `mitmachen` | Mitmachen | Neue Zahlen, Hilfe nimmt ab bis kurz vor die Trainingsaufgabe | 2–3 Karten, meist Zuordnung + eine Rechenkarte |
+| `mitmachen` | Mitmachen | Neue Zahlen, Hilfe nimmt ab bis kurz vor die Trainingsaufgabe | 1–3 Karten, meist Zuordnung + eine Rechenkarte |
 
-Insgesamt 4–8 Karten, Richtwert höchstens etwa 15 Schritte. Checks mit vielen Kennzahlen oder Lösungswegen dürfen begründet darüber liegen.
+Insgesamt 3–8 Karten, bei kurzen Checks ist auch 1 Karte pro Phase angebracht.Richtwert höchstens etwa 15 Schritte. Checks mit vielen Kennzahlen oder Lösungswegen dürfen begründet darüber liegen.
 
 1. **Idee: erst erklären, dann fragen.**
    - Jede Idee-Karte beginnt mit einer Erklärung (`aufdecken`/`text`).
@@ -39,17 +39,17 @@ Insgesamt 4–8 Karten, Richtwert höchstens etwa 15 Schritte. Checks mit vielen
      1. Der Ansatz ist vorgegeben.
      2. Der Ansatz wird ausgewählt oder zugeordnet.
      3. Ein Teilschritt wird ohne Vorgabe gerechnet.
-   - Unabhängige Teilaufgaben mit gleichem Muster (z. B. $p(0)$ für Höchstpreis und Mindestangebotspreis) einmal mit und einmal ohne Vorgabe.
+   - Unabhängige Teilaufgaben mit gleichem Muster z.B. einmal mit und einmal ohne Vorgabe.
    - Eine Zuordnung „Situation → Ansatz“ ist ein guter Start ins Mitmachen.
 4. **Kein Doppel zum Training.**
    - Es gibt keine Karte, die einer Trainingsaufgabe entspricht. Das Fading endet kurz davor.
    - Mitmachen lieber knapp halten: Was nur noch ein weiteres Ablesen oder Einsetzen wie im Training wäre, fällt weg. Eine Rechenkarte übt vor allem die wichtigste Falle bzw. den neuen Schritt.
-   - Bis zum Ende kommt jedes Eingabeformat des Trainings einmal vor (Rundung, $Bcd(\dots)$, „keine Lösung“ …).
-   - Der `abschluss` ist **kurz** (ein bis drei Sätze): was im Training kommt und die wichtigste Falle.
+   - Bis zum Ende kommt möglichst jedes Eingabeformat des Trainings einmal vor.
+   - Der `abschluss` ist **kurz** (ein bis drei Sätze): Prägnant das Wichtigste zusammengefasst (keine Erläuterungen zu Rundnungen o.Ä.). 
 5. **Kern vor Vollständigkeit.**
    - Der häufigste Aufgabentyp und die wichtigste Falle bekommen eigene Karten. Das gilt auch für häufige Informationstypen der Aufgabensammlung, die im Musterbeispiel fehlen.
    - Seltene Sonderfälle höchstens mit einem Halbsatz im `abschluss`.
-6. **Gleichwertige Lösungswege beide zeigen** (z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle mit $K'$). Beim Mitmachen wird jeder Weg einmal geübt.
+6. **Gleichwertige Lösungswege möglichst beide zeigen** (z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle mit $K'$). Beim Mitmachen wird jeder Weg einmal geübt.
 7. **Bezeichnungen wie im Skript.**
 8. **Für welche Checks?** Ein Warm-Up lohnt sich bei einer neuen Idee, einem neuen Verfahren oder einer typischen Fehlvorstellung, kaum bei Routine-Varianten.
 

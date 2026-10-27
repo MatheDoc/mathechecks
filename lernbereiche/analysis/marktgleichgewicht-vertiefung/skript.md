@@ -14,7 +14,7 @@ permalink: /lernbereiche/analysis/marktgleichgewicht-vertiefung/skript.html
 
 # Konsumentenrente und Produzentenrente am Marktgleichgewicht
 
-Ein neuer Fahrradhelm kostet im Laden etwa 125 €. Viele Kunden hätten für ihren Helm aber deutlich mehr bezahlt, andere hätten ihn nur zu einem geringeren Preis angeboten. Wer profitiert also davon, dass sich ein einheitlicher Marktpreis bildet, und um wie viel? Um diese Frage zu beantworten, beschreibt ein Marktforschungsinstitut den Markt für Fahrradhelme in einer Region durch die Nachfragefunktion $p_N$ und die Angebotsfunktion $p_A$ mit
+Ein neuer Fahrradhelm kostet im Laden etwa 125 €. Viele Kunden hätten für ihren Helm aber deutlich mehr bezahlt, andere hätten ihn nur zu einem geringeren Preis angeboten. Wer profitiert also davon, dass sich ein einheitlicher Marktpreis bildet, und um wie viel? Um Fragen dieser Art geht es in diesem Lernbereich. Zu Beginn wiederhohlen wir grundsätzliche Kennzahlen rund um Nachfragefunktion $p_N$ und die Angebotsfunktion $p_A$, beispielsweise
 
 $$
 \begin{align*}
@@ -22,6 +22,8 @@ p_N(x)&=45{,}75e^{-0{,}044x}-6{,}75\\
 p_A(x)&=0{,}016x^2+0{,}022x+6.
 \end{align*}
 $$
+
+Ihre Graphen sehen im Diagramm wie folgt aus:
 
 {% include graph.html
    funktionen='[
@@ -48,13 +50,14 @@ $$
 
 Dabei ist $x$ die Menge in Mengeneinheiten (ME, 1 ME = 100 Helme) und $p_N(x)$ bzw. $p_A(x)$ der Preis in Geldeinheiten pro Mengeneinheit (GE/ME, 1 GE = 1000 €).
 
-$p_N(x)$ ist der Preis, zu dem die Konsumenten insgesamt $x$ ME nachfragen. Je niedriger der Preis, desto mehr wird nachgefragt: $p_N$ ist monoton fallend. $p_A(x)$ ist der Preis, zu dem die Produzenten insgesamt $x$ ME anbieten. Je höher der Preis, desto mehr wird angeboten: $p_A$ ist monoton steigend. Anders als im Lernbereich [Marktgleichgewicht – Grundlagen](../marktgleichgewicht-grundlagen/skript.html) sind die Funktionen hier nicht linear, sondern zum Beispiel quadratisch oder exponentiell.
+$p_N(x)$ ist der Preis, zu dem die Konsumenten insgesamt $x$ ME nachfragen. Je niedriger der Preis, desto mehr wird nachgefragt: $p_N$ ist monoton fallend. $p_A(x)$ ist der Preis, zu dem die Produzenten insgesamt $x$ ME anbieten. Je höher der Preis, desto mehr wird angeboten: $p_A$ ist monoton steigend. 
 
-## Marktgleichgewicht bei nichtlinearen Funktionen
+
+## Marktgleichgewicht
 
 ### Kennzahlen graphisch bestimmen
 
-Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen. Im Diagramm des Leitbeispiels sind sie markiert:
+Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen:
 
 - **Höchstpreis** ($y$-Achsenabschnitt von $p_N$): Zu diesem oder einem höheren Preis kauft niemand mehr einen Helm.
 - **Sättigungsmenge** (Nullstelle von $p_N$): Mehr Helme würden selbst dann nicht nachgefragt, wenn sie verschenkt würden.
@@ -62,11 +65,7 @@ Die Kennzahlen des Marktes sind besondere Punkte der beiden Graphen. Im Diagramm
 - **Marktgleichgewicht** (Schnittpunkt der Graphen): Hier stimmen angebotene und nachgefragte Menge überein. Seine Koordinaten sind die **Gleichgewichtsmenge** $x_G$ und der **Gleichgewichtspreis** $p_G$.
 - **Umsatz im Marktgleichgewicht** $x_G\cdot p_G$: Das ist der Betrag, den die Konsumenten insgesamt bezahlen. Graphisch ist er die Fläche des grauen Rechtecks mit den Seitenlängen $x_G$ und $p_G$.
 
-
-
-Typische Fehler: Höchstpreis und Sättigungsmenge gehören zur Nachfragefunktion, der Mindestangebotspreis zur Angebotsfunktion. Beim Ablesen des Marktgleichgewichts werden $x$- und $y$-Koordinate vertauscht. Der Umsatz ist die Rechteckfläche $x_G\cdot p_G$, nicht die Fläche unter einem der Graphen.
-
-Warum wird der Graph von $p_N$ nach rechts immer flacher? Bei hohen Preisen kaufen nur wenige, die unbedingt einen Helm wollen; eine kleine Preissenkung gewinnt kaum neue Käufer. Bei niedrigen Preisen dagegen reicht schon eine kleine Preissenkung, damit viele zusätzliche Kunden zugreifen, die Menge wächst stark. Eine lineare Nachfragefunktion kann dieses Verhalten nicht abbilden.
+Warum betrachten wir, hier anders als im Lernbereich [Marktgleichgewicht – Grundlagen](../marktgleichgewicht-grundlagen/skript.html), neben linearen Funktionen auch quadratische oder exponentielle? Bei hohen Preisen kaufen nur wenige, die unbedingt einen Helm wollen; eine kleine Preissenkung gewinnt kaum neue Käufer. Bei niedrigen Preisen dagegen reicht schon eine kleine Preissenkung, damit viele zusätzliche Kunden zugreifen, die Menge wächst stark. Es wäre auch denkbar, dass keine Sättigungsmenge existiert, weil die Nachfrage nach Fahrradhelmen selbst bei sehr grpßen Preisen nie ganz auf null fällt. Eine lineare Nachfragefunktion kann solche Verhaltensweisen nicht abbilden.
 
 {% include check-anker.html nummer="1" %}
 
