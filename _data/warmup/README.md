@@ -6,7 +6,7 @@ Kurzer, interaktiver Einstieg in **einen** Check, so kurz wie möglich, so lang 
 - **Zuschauen:** Dann wird ein Beispiel vorgerechnet.
 - **Mitmachen:** Danach rechnen die Lernenden mit abnehmender Hilfe mit und wechseln ins Training.
 
-**Status:** Das Warm-Up ist nicht verlinkt (kein Feed, kein Reiter in `_includes/module/nav.html`, `noindex`, nicht in der Sitemap, kein Fortschritt-Speichern) und nur über die URL erreichbar: `…/<lb>/warmup.html#check-<Nummer>`. Die Übersicht `/warmup.html` (`warmup.md` im Wurzelverzeichnis) wird automatisch erzeugt.
+**Status:** Das Warm-Up ist nicht verlinkt (kein Feed, kein Reiter in `_includes/module/nav.html`, `noindex`, nicht in der Sitemap) und nur über die URL erreichbar: `…/<lb>/warmup.html#check-<Nummer>`. Die Übersicht `/warmup.html` (`warmup.md` im Wurzelverzeichnis) wird automatisch erzeugt. Für angemeldete Nutzer gibt jeder richtig gelöste bewertete Schritt (`auswahl`, `eingabe`, `zuordnen`, `markieren`) sofort XP; bei Abschluss wird zusätzlich ein Ereignis `warmup` mit den Versuchen je Schritt gespeichert (Grundlage einer späteren Warm-Up-Quote).
 
 **Gute Vorlagen:**
 - `analysis/ertragsgesetzliche-kostenfunktionen/05-…`: Idee am Graphen, zwei Lösungswege
@@ -140,7 +140,7 @@ Graph-Terme werden mit math.js ausgewertet (Dezimalpunkt, z. B. `0.5x^3-6x^2`).
 ### Test-Checkliste
 
 - [ ] Prüfskript ohne Fehler, Warnungen geprüft
-- [ ] Alles bis „Weiter zum Training“ durchspielbar, keine JS-Fehler; „Zum Training“ und Check-Wechsel per `#check-<Nummer>` funktionieren
+- [ ] Alles bis „Weiter zum Training“ durchspielbar, keine JS-Fehler; Check-Wechsel per `#check-<Nummer>` funktioniert
 - [ ] Jede Auswahl einmal falsch, jede Eingabe einmal falsch (Dezimalkomma, negative Zahlen); `zeige` an der richtigen Stelle
 - [ ] Keine MathJax-Fehler; Desktop (≥ 960 px) und Handy (360–390 px) ohne seitliches Scrollen; Hell- und Dunkelmodus
 - [ ] Fachlich nachgerechnet, Begriffe wie im Skript
@@ -151,4 +151,4 @@ Graph-Terme werden mit math.js ausgewertet (Dezimalpunkt, z. B. `0.5x^3-6x^2`).
 ## Offene Punkte
 
 - **Handy:** Das Bild steht über den Schritten; Änderungen sieht man beim Eintragen nicht sofort.
-- **Freischaltung** (Feed, Fortschritt, Verlinkung) steht aus. Dann auch den Hinweis „Prototyp“ in `buildCardHeader` (`warmup.js`) entfernen.
+- **Freischaltung** (Feed, Verlinkung) steht aus.

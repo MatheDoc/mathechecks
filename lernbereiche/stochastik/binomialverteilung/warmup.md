@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: binomialverteilung
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261026-warmup-listen
+page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
 permalink: /lernbereiche/stochastik/binomialverteilung/warmup.html
 ---
 

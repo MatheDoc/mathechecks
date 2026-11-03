@@ -1,4 +1,4 @@
-﻿---
+---
 layout: shell
 title: Dashboard
 description: Dashboard mit gemeinsamer Feed-Projektion fuer Session- und Wiederholungsaktivitaeten.
@@ -9,7 +9,7 @@ page_css: /assets/css/dashboard.css?v=20260924-session-share
 published: true
 noindex: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20261005-feed-no-locks
+module_script: /assets/js/modules/dashboard.js?v=20261103-xp-runs
 ---
 
 {% include dashboard/content.html %}

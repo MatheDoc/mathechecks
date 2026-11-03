@@ -1,4 +1,5 @@
-// Warm-Up: geführter Einstieg in einen Check mit Fading (nicht verlinkt, kein Fortschritt).
+// Warm-Up: geführter Einstieg in einen Check mit Fading (nicht verlinkt, kein Feed).
+// Bei Abschluss wird ein Ereignis 'warmup' mit den Versuchen je bewertetem Schritt gespeichert (Quote, XP).
 // Daten: <script type="application/json" id="warmup-data"> mit allen Warm-Ups des Lernbereichs
 // (aus _data/warmup/<gebiet>/<lernbereich>/*.yml). Titel, Kompetenz, Nummer und Trainingslink
 // kommen aus checks.json. Auswahl des Checks über #check-<Nummer> oder ?check_id=.
@@ -11,6 +12,7 @@ import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
+import { awardXp, recordUserActivity } from "../platform/progress-client.js?v=20261103-xp-runs";
 
 const DATA_ID = "warmup-data";
 const JUMP_NAV_ID = "warmup-jump-nav";
@@ -552,6 +554,7 @@ function buildChoiceStep(step, ctx) {
   const order = step.mischen === false
     ? options.map((_, index) => index)
     : shuffle(options.map((_, index) => index));
+  let wrongCount = 0;
   const buttons = order.map((index) => {
     const button = el("button", "cw-option", options[index]);
     button.type = "button";
@@ -560,9 +563,10 @@ function buildChoiceStep(step, ctx) {
         button.classList.add("is-correct");
         buttons.forEach((b) => { b.disabled = true; });
         feedback.hidden = true;
-        ctx.complete();
+        ctx.complete({ attempts: wrongCount + 1, revealed: false });
         return;
       }
+      wrongCount += 1;
       button.classList.add("is-wrong");
       button.disabled = true;
       showFeedback(feedback, step.hinweis || "Noch nicht – probier eine andere Antwort.", "wrong");
@@ -623,11 +627,11 @@ function buildInputStep(step, ctx) {
     if (field.spec.zeige) ctx.applyVisual(field.spec.zeige);
   }
 
-  function finish() {
+  function finish(revealed = false) {
     if (finished) return;
     finished = true;
     actions.remove();
-    ctx.complete();
+    ctx.complete({ attempts: revealed ? attempts : attempts + 1, revealed });
   }
 
   function check() {
@@ -669,7 +673,7 @@ function buildInputStep(step, ctx) {
   revealButton.addEventListener("click", () => {
     fields.forEach((field) => { if (!field.done) resolveField(field, "revealed"); });
     feedback.hidden = true;
-    finish();
+    finish(true);
   });
 
   body.append(fieldsWrap, actions, feedback);
@@ -696,6 +700,7 @@ function buildMatchStep(step, ctx) {
 
   const selected = { left: null, right: null };
   let matchedCount = 0;
+  let wrongCount = 0;
 
   const makeItem = (html, side, pairIndex) => {
     const button = el("button", "cw-match__item", html);
@@ -738,9 +743,10 @@ function buildMatchStep(step, ctx) {
         item.disabled = true;
         item.dataset.badge = String(matchedCount);
       });
-      if (matchedCount === pairs.length) ctx.complete();
+      if (matchedCount === pairs.length) ctx.complete({ attempts: wrongCount + 1, revealed: false });
       return;
     }
+    wrongCount += 1;
     [left, right].forEach((item) => item.classList.add("is-wrong"));
     setTimeout(() => {
       [left, right].forEach((item) => item.classList.remove("is-wrong", "is-selected"));
@@ -784,7 +790,7 @@ function buildMarkStep(step, ctx) {
       visual.apply({ zeilen: Array.from(correct), bereich: step.bereich });
       actions.remove();
       feedback.hidden = true;
-      ctx.complete();
+      ctx.complete({ attempts: attempts + 1, revealed: false });
       return;
     }
     attempts += 1;
@@ -794,7 +800,7 @@ function buildMarkStep(step, ctx) {
       visual.apply({ zeilen: Array.from(correct), bereich: step.bereich });
       showFeedback(feedback, `${step.hinweis || ""} Die richtigen Zeilen sind jetzt markiert.`, "neutral");
       actions.remove();
-      ctx.complete();
+      ctx.complete({ attempts, revealed: true });
     }
   });
 
@@ -812,7 +818,7 @@ const STEP_BUILDERS = {
 
 /* ───────────────────────── Seiten & Ablauf ───────────────────────── */
 
-function buildPage(card, pageIndex, { onComplete }) {
+function buildPage(card, pageIndex, { onComplete, onStepResult }) {
   const phase = PHASES.find((entry) => entry.key === card.phase) || PHASES[0];
   const page = el("section", `cw-page cw-page--${phase.key}`);
   page.dataset.index = String(pageIndex);
@@ -853,9 +859,18 @@ function buildPage(card, pageIndex, { onComplete }) {
     const ctx = {
       visual,
       applyVisual,
-      complete: () => {
+      // Bewertete Schritte übergeben { attempts, revealed }; Text- und Aufdeck-Schritte nichts.
+      complete: (result = null) => {
         if (done) return;
         done = true;
+        if (result) {
+          onStepResult?.({
+            key: `p${pageIndex}:s${current}`,
+            typ: spec.typ,
+            attempts: result.attempts,
+            revealed: Boolean(result.revealed),
+          });
+        }
         stepNode.classList.add("is-done");
         if (spec.zeige) applyVisual(spec.zeige);
         const finishStep = () => {
@@ -915,15 +930,6 @@ function buildCardHeader(data) {
     rowClass: "check-card__header-left",
     titleTag: "span",
   });
-  const actions = el("div", "check-card__header-actions");
-  actions.appendChild(el("span", "cw-proto", "Prototyp"));
-  if (data.training_url) {
-    const skip = el("a", "cw-skip", "<span class=\"cw-skip__long\">Zum </span>Training <span aria-hidden=\"true\">→</span>");
-    skip.href = data.training_url;
-    skip.title = "Warm-Up überspringen und direkt zum Training";
-    actions.appendChild(skip);
-  }
-  header.appendChild(actions);
   return header;
 }
 
@@ -960,7 +966,7 @@ function buildFinish(data) {
   return finish;
 }
 
-function renderPlayer(root, data) {
+function renderPlayer(root, data, { lernbereich = "" } = {}) {
   root.innerHTML = "";
   root.classList.add("cw-player");
 
@@ -989,10 +995,42 @@ function renderPlayer(root, data) {
 
   let active = 0;
   const cards = data.karten || [];
+  const stepResults = [];
+  let recorded = false;
+
+  function recordCompletion() {
+    if (recorded) return;
+    recorded = true;
+    void recordUserActivity({
+      activityType: "warmup",
+      lernbereichSlug: lernbereich,
+      checkId: data.check_id,
+      contextKey: "free",
+      details: {
+        steps: stepResults,
+        gradedCount: stepResults.length,
+        firstTryCount: stepResults.filter((step) => !step.revealed && step.attempts === 1).length,
+        revealedCount: stepResults.filter((step) => step.revealed).length,
+      },
+    });
+  }
+
   const pages = cards.map((entry, index) =>
     buildPage(entry, index, {
+      onStepResult: ({ key, ...result }) => {
+        stepResults.push(result);
+        if (!result.revealed && data.check_id) {
+          void awardXp({
+            activityType: "warmup",
+            lernbereichSlug: lernbereich,
+            checkId: data.check_id,
+            units: [{ key, attempts: result.attempts }],
+          });
+        }
+      },
       onComplete: (pageNode) => {
         if (index === cards.length - 1) {
+          recordCompletion();
           const finish = buildFinish(data);
           pageNode.appendChild(finish);
           typeset(finish).then(() => scrollIntoViewSoft(finish));
@@ -1123,7 +1161,7 @@ export async function initWarmupModule({ root, lernbereich, preferredCheckId = "
     if (!entry || entry.check_id === activeCheckId) return;
     activeCheckId = entry.check_id;
     renderJumpNav(navNode, entries, activeCheckId);
-    renderPlayer(root, entry);
+    renderPlayer(root, entry, { lernbereich });
   };
 
   show(resolveEntryFromLocation(entries, preferredCheckId));

@@ -53,6 +53,8 @@
 - **Frage-Score:** Bewertung einer einzelnen prüfbaren Frage; `s = max(0, 1 − (n−1)·p)` über die Versuchszahl `n` mit Straffaktor `p`, oder `0` bei eingeblendeter Lösung.
 - **Aufgaben-Score:** Mittelwert der Frage-Scores über alle prüfbaren Fragen einer abgeschlossenen Trainingsaufgabe.
 - **Quote:** Nutzerbezogene, recency-gewichtete Kennzahl je Check aus den jüngsten Aufgaben-Scores (`Quote = Σ(d^age·s)/Σ(d^age)`); Lernbereich-, Session- und Gesamt-Quote sind nur Sichtfilter über dieselbe Check-Quote. Read-Model, kein eigener Speicher.
+- **XP:** Nutzerweite, nur wachsende Erfahrungspunkte (nicht Flashcards). Training, Test und Warm-Up vergeben sie sofort je richtiger Teilantwort, Recall und Feynman sofort nach jeder KI-Auswertung (`award_xp`); `XP = Gewicht · Score · Faktor` mit Faktor für erstmals / mit Abstand wiederholt / gehäuft wiederholt. Nicht zu verwechseln mit dem Wiederholungslevel (`review_level`) der Quoten.
+- **Stufe:** Aus den XP abgeleitete, rein symbolische Rangstufe. Schritt von Stufe `L` zu `L+1` = `xp.level_step · min(L, xp.level_ramp_levels)` XP (Standard: 40, 80, … bis Stufe 10, danach konstant 400).
 - **Rolle:** Autorisierungsmerkmal eines Benutzers, z. B. `user` oder `admin`; im MVP möglichst klein halten.
 - **Skript-Widget:** Interaktive Slider-gesteuerte Visualisierung im Skript (Include aus `_includes/widgets/`, Logik in `skript-visuals.js`).
 

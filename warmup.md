@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-module
 noindex: true
 published: true
-page_css: /assets/css/warmup.css?v=20261017-warmup-formel-titel
+page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
 permalink: /warmup.html
 ---
 {% comment %}

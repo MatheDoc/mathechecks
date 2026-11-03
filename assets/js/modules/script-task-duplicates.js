@@ -17,7 +17,8 @@ import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/ta
 import { createCardMenuItem, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 import {
     attachTrainingFeedShell,
@@ -393,6 +394,12 @@ async function renderCheckTaskInHost(host, check, {
 
         let taskCompletionTracked = false;
         let initialProgressSeen = false;
+        let xpInitialSeen = false;
+        const xpTracker = createTrainingXpTracker(() => ({
+            lernbereich: trackingLernbereich,
+            checkId,
+            taskIndex,
+        }));
         let freeCompleteControl = null;
         let freeCompleteReady = false;
         let latestRates = null;
@@ -502,6 +509,8 @@ async function renderCheckTaskInHost(host, check, {
             shuffleNonce = String(Date.now());
             taskCompletionTracked = false;
             initialProgressSeen = false;
+            xpInitialSeen = false;
+            xpTracker.reset();
             latestRates = null;
             freeCompleteReady = false;
             saveCurrentTaskIndex(nextTaskIndex);
@@ -517,6 +526,11 @@ async function renderCheckTaskInHost(host, check, {
             if (nextTaskIndex === taskIndex) return;
             void loadTaskAtIndex(nextTaskIndex);
         };
+
+        host.addEventListener("task:question-checked", (event) => {
+            xpTracker.handle(event.detail, { initial: !xpInitialSeen });
+            xpInitialSeen = true;
+        });
 
         if (isFreeMode) {
             host.addEventListener("task:question-checked", (event) => {
