@@ -1,6 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { createRunXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
@@ -824,6 +825,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
     let completionRecordPromise = null;
     let latestRates = null;
     let itemStates = [];
+    const xpRun = createRunXpTracker("recall", () => ({ lernbereich, checkId }));
 
     function ensureItemStates(cueItemEls = Array.from(card.querySelectorAll("[data-recall-cue-item]"))) {
       if (itemStates.length !== cueItemEls.length) {
@@ -872,6 +874,11 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
     function publishCompletionState() {
       const evalState = buildEvalState();
+      xpRun.sync(ensureItemStates().map((state) => (
+        state?.revealed || !hasRecallEvaluationScore(state?.firstScore)
+          ? null
+          : computeRecallImprovementScore(state.firstScore, state.bestScore)
+      )));
       if (evalState.checkableCount > 0) {
         cardEvalState.set(card, evalState);
       } else {
@@ -988,6 +995,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       completionRecordPromise = null;
       latestRates = null;
       itemStates = [];
+      xpRun.reset();
       if (cueList) {
         cueList.querySelectorAll(".recall-input-slot").forEach((el) => { el.value = ""; });
         resetRecallInputEvaluation(cueList);
@@ -1073,6 +1081,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       completionRecordPromise = null;
       latestRates = null;
       itemStates = [];
+      xpRun.reset();
       section?.dispatchEvent(new CustomEvent("recall:evaluation-ready", { detail: { ready: false }, bubbles: true }));
       setStage("retrieve");
       ensureItemStates();

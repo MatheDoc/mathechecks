@@ -41,6 +41,34 @@
             </svg>
         </button>
         {% endif %}
+        <details class="topbar-xp" data-xp-indicator hidden>
+            <summary class="topbar-xp__summary" aria-label="Erfahrungspunkte und Stufe">
+                <span class="topbar-xp__ring" aria-hidden="true">
+                    <svg viewBox="0 0 36 36" focusable="false">
+                        <circle class="topbar-xp__track" cx="18" cy="18" r="15"></circle>
+                        <circle class="topbar-xp__progress" data-xp-ring cx="18" cy="18" r="15" pathLength="100"></circle>
+                    </svg>
+                    <span class="topbar-xp__level" data-xp-level>1</span>
+                </span>
+            </summary>
+            <div class="topbar-xp-popover" data-xp-popover></div>
+        </details>
+        <script>
+            // Letzten bekannten Stand sofort zeigen (kein Flackern bei Seitenwechsel); xp-indicator.js aktualisiert danach.
+            (function () {
+                try {
+                    var cached = JSON.parse(window.localStorage.getItem("mathechecks.xpIndicator.v1") || "null");
+                    var root = document.currentScript && document.currentScript.previousElementSibling;
+                    if (!cached || !root || !root.matches("[data-xp-indicator]")) return;
+                    root.querySelector("[data-xp-level]").textContent = String(cached.level);
+                    root.querySelector("[data-xp-ring]").style.strokeDasharray = cached.dash;
+                    var summary = root.querySelector("summary");
+                    summary.setAttribute("title", cached.label);
+                    summary.setAttribute("aria-label", cached.label);
+                    root.hidden = false;
+                } catch (error) { /* ohne Cache erscheint die Anzeige nach dem Laden */ }
+            })();
+        </script>
         <details class="topbar-actions-menu">
             <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
                 <span class="topbar-dots-vertical" aria-hidden="true">

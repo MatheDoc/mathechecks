@@ -1,7 +1,8 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { createRunXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261025-expression-parser";
@@ -1076,6 +1077,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
     let latestRates = null;
     let itemStates = [];
     let taskPicker = null;
+    const xpRun = createRunXpTracker("feynman", () => ({ lernbereich, checkId }));
 
     function ensureItemStates(itemEls = Array.from(card.querySelectorAll("[data-fy-question-item]"))) {
       if (itemStates.length !== itemEls.length) {
@@ -1120,6 +1122,11 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
 
     function publishCompletionState() {
       const evalState = buildEvalState();
+      xpRun.sync(ensureItemStates().map((state) => (
+        state?.revealed || !hasFeynmanEvaluationScore(state?.firstScore)
+          ? null
+          : computeFeynmanImprovementScore(state.firstScore, state.bestScore)
+      )));
       if (evalState.checkableCount > 0 && evalState.ready) {
         cardEvalState.set(card, evalState);
       } else {
@@ -1178,6 +1185,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       completionRecordPromise = null;
       latestRates = null;
       itemStates = [];
+      xpRun.reset();
       cardEvalState.delete(card);
       loadTask();
       card.querySelectorAll(".fy-explain-input").forEach((input) => { input.value = ""; });

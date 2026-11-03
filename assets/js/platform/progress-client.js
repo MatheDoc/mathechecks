@@ -1,7 +1,21 @@
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "./supabase-client.js?v=20260520-feed-loading";
 
+export const ACTIVITY_RECORDED_EVENT = "mathechecks:activity-recorded";
+export const XP_AWARDED_EVENT = "mathechecks:xp-awarded";
+
 function normalizeText(value) {
   return String(value || "").trim();
+}
+
+function notifyActivityRecorded(row, activityType) {
+  if (typeof window === "undefined") return;
+  try {
+    window.dispatchEvent(new CustomEvent(ACTIVITY_RECORDED_EVENT, {
+      detail: { eventId: row?.id || null, activityType },
+    }));
+  } catch {
+    // Ohne Event bleibt nur die XP-Anzeige unverändert.
+  }
 }
 
 async function getAuthenticatedSupabaseClient() {
@@ -104,6 +118,7 @@ export async function recordUserActivity({
       return { ok: false, error };
     }
 
+    notifyActivityRecorded(data, normalizedActivityType);
     return { ok: true, data };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Speichern der Nutzeraktivität.", error);
@@ -570,6 +585,75 @@ export async function getUserTestProficiency() {
     return { ok: true, data: data && typeof data === "object" ? data : null };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Laden der Test-Quoten.", error);
+    return { ok: false, error };
+  }
+}
+
+// Vergibt XP sofort für richtige Teilantworten (Training: Feld, Test: Frage, Warm-Up: Schritt)
+// bzw. den Zuwachs nach einer KI-Auswertung (Recall/Feynman).
+// units: [{ key, attempts }] bzw. [{ key, score, itemCount }]; Faktor und XP rechnet der Server.
+export async function awardXp({ activityType, checkId, units, lernbereichSlug = "" }) {
+  const normalizedActivityType = normalizeText(activityType).toLowerCase();
+  const normalizedCheckId = normalizeText(checkId);
+  const normalizedUnits = (Array.isArray(units) ? units : [])
+    .map((unit) => {
+      const normalized = {
+        key: normalizeText(unit?.key),
+        attempts: Math.max(1, Math.floor(Number(unit?.attempts) || 1)),
+      };
+      if (Number.isFinite(Number(unit?.score))) normalized.score = Math.max(0, Math.min(1, Number(unit.score)));
+      if (Number.isFinite(Number(unit?.itemCount))) normalized.itemCount = Math.max(1, Math.floor(Number(unit.itemCount)));
+      return normalized;
+    })
+    .filter((unit) => unit.key);
+
+  if (!normalizedActivityType || !normalizedCheckId || !normalizedUnits.length) {
+    return { ok: false, skipped: true, reason: "missing-input" };
+  }
+
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("award_xp", {
+      p_activity_type: normalizedActivityType,
+      p_check_id: normalizedCheckId,
+      p_units: normalizedUnits,
+      p_lernbereich_slug: normalizeText(lernbereichSlug) || null,
+    });
+
+    if (error) {
+      console.warn("MatheChecks: XP konnten nicht vergeben werden.", error);
+      return { ok: false, error };
+    }
+
+    if (typeof window !== "undefined" && data && typeof data === "object") {
+      window.dispatchEvent(new CustomEvent(XP_AWARDED_EVENT, { detail: data }));
+    }
+    return { ok: true, data };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Vergeben der XP.", error);
+    return { ok: false, error };
+  }
+}
+
+export async function getUserXpSummary({ eventId = null } = {}) {
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("get_user_xp_summary", {
+      p_event_id: eventId || null,
+    });
+
+    if (error) {
+      console.warn("MatheChecks: XP konnten nicht geladen werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: data && typeof data === "object" ? data : null };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Laden der XP.", error);
     return { ok: false, error };
   }
 }

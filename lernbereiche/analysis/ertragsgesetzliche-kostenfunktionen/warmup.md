@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261026-warmup-listen
+page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
 permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/warmup.html
 ---
 

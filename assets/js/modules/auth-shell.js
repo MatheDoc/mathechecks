@@ -1,5 +1,6 @@
 import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260826-test-module";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
+import { syncXpIndicator } from "../platform/xp-indicator.js?v=20261103-xp-runs";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -389,6 +390,8 @@ function updateTopbarButton(button, state) {
     user: state?.user || null,
     error: state?.error || null,
   };
+
+  syncXpIndicator(state?.configured ? state : null);
 
   const labelNode = button.querySelector("[data-auth-label]") || button.querySelector("span:last-child");
   const statusNode = document.querySelector("[data-auth-status]");

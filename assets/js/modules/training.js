@@ -22,7 +22,8 @@ import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, createCa
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const TR_BEISPIEL_CACHE = new Map();
@@ -1529,6 +1530,11 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   saveCurrentShuffleNonce(shuffleNonce);
   let taskCompletionTracked = false;
   let initialProgressSeen = false;
+  const xpTracker = createTrainingXpTracker(() => ({
+    lernbereich: check.Lernbereich || "",
+    checkId,
+    taskIndex,
+  }));
 
   const isFreeMode = !feedContext?.activityKey;
   let freeCompleteControl = null;
@@ -1585,6 +1591,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     shuffleNonce = String(Date.now());
     taskCompletionTracked = false;
     initialProgressSeen = false;
+    xpTracker.reset();
     latestRates = null;
     freeCompleteReady = false;
     saveCurrentShuffleNonce(shuffleNonce);
@@ -1632,6 +1639,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
 
   viewportNode.addEventListener("task:question-checked", (event) => {
     const isComplete = Boolean(event.detail?.isComplete);
+    xpTracker.handle(event.detail, { initial: !initialProgressSeen });
 
     if (!initialProgressSeen) {
       initialProgressSeen = true;

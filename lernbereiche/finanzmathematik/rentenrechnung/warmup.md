@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: rentenrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/warmup.css?v=20261026-warmup-listen
+page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
 permalink: /lernbereiche/finanzmathematik/rentenrechnung/warmup.html
 ---
 

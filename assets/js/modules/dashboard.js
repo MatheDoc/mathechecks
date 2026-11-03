@@ -1,5 +1,5 @@
 import { initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20260908-run-rate";
+import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20261103-xp-runs";
 import {
   FEED_STEP_ORDER,
   buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,

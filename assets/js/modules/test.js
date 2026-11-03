@@ -1,6 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { completeTestFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserTestProficiency, extractTestProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { awardXp, recordUserActivity, getUserTestProficiency, extractTestProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -618,6 +618,15 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
         skipped: false,
         timeMs,
       });
+
+      if (correct && checkId) {
+        void awardXp({
+          activityType: "test",
+          lernbereichSlug: lernbereich,
+          checkId,
+          units: [{ key: `q${entry.question.sourceIndex}` }],
+        });
+      }
 
       if (timerFill) {
         const width = window.getComputedStyle(timerFill).width;
