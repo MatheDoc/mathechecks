@@ -1,9 +1,12 @@
 <div id="calculator-overlay" class="calculator-overlay" aria-hidden="true">
+    <div class="calculator-dock-resizer" id="calculatorDockResizer" role="separator" tabindex="0"
+        aria-orientation="vertical" aria-controls="calculator-overlay" aria-label="Breite des Taschenrechners"
+        title="Ziehen zum Ändern der Breite, Doppelklick setzt zurück"></div>
     <div class="calculator-container">
         <section class="calculator" aria-label="Taschenrechner">
             <div class="calculator-shell">
                 <div class="calculator-workspace">
-                    <div class="calculator-topbar" id="calculatorDragHandle">
+                    <div class="calculator-topbar">
                         <div class="calculator-topbar__emoji" aria-hidden="true">🧮</div>
                         <div class="calculator-mode-picker calculator-mode-picker--compact" id="calculatorModePicker"
                             title="Eingabehilfe: Standard" aria-label="Eingabehilfe: Standard">
@@ -16,13 +19,6 @@
                                 <option value="graph">Graph</option>
                                 <option value="mat">Matrizen</option>
                             </select>
-                        </div>
-                        <div class="calculator-topbar__actions">
-                            <button class="calculator-topbar__button" id="resetCalculatorViewButton" type="button"
-                                aria-label="Standardansicht wiederherstellen"
-                                title="Standardansicht wiederherstellen">↺</button>
-                            <button class="close-calculator" id="closeCalculatorButton" type="button"
-                                aria-label="Taschenrechner schließen" title="Taschenrechner schließen">×</button>
                         </div>
                     </div>
 

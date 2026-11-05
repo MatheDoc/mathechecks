@@ -57,10 +57,6 @@
         setResultStaleState(false);
     }
 
-    function isDesktopDragEnabled() {
-        return window.innerWidth >= 520;
-    }
-
     function clamp(value, min, max) {
         return Math.min(Math.max(value, min), max);
     }
@@ -68,59 +64,6 @@
     function readBoundedInteger(value, fallback, min, max) {
         const parsed = Number.parseInt(value, 10);
         return Number.isFinite(parsed) ? clamp(parsed, min, max) : fallback;
-    }
-
-    function getCalculatorDragBounds({ width, handleHeight }) {
-        const visibleHandleHeight = Math.min(handleHeight || 0, 18);
-        const visibleWidth = Math.min(width || 0, 56);
-        return {
-            minLeft: visibleWidth - width,
-            maxLeft: window.innerWidth - visibleWidth,
-            minTop: visibleHandleHeight - handleHeight,
-            maxTop: window.innerHeight - visibleHandleHeight,
-        };
-    }
-
-    function clearDraggedCalculatorPosition() {
-        const calculator = getCalculator();
-        if (!calculator) return;
-        calculator.style.removeProperty('position');
-        calculator.style.removeProperty('left');
-        calculator.style.removeProperty('top');
-        calculator.style.removeProperty('right');
-        calculator.style.removeProperty('bottom');
-        calculator.style.removeProperty('transform');
-        calculator.style.removeProperty('margin');
-    }
-
-    function getSerializedDraggedCalculatorPosition() {
-        const calculator = getCalculator();
-        if (!calculator || calculator.style.position !== 'fixed') return null;
-        if (!calculator.style.left || !calculator.style.top) return null;
-
-        return {
-            left: calculator.style.left,
-            top: calculator.style.top,
-        };
-    }
-
-    function restoreDraggedCalculatorPosition(position) {
-        const calculator = getCalculator();
-        if (!calculator) return;
-
-        if (!position || !isDesktopDragEnabled()) {
-            clearDraggedCalculatorPosition();
-            return;
-        }
-
-        calculator.style.position = 'fixed';
-        calculator.style.left = position.left;
-        calculator.style.top = position.top;
-        calculator.style.right = 'auto';
-        calculator.style.bottom = 'auto';
-        calculator.style.transform = 'none';
-        calculator.style.margin = '0';
-        normalizeDraggedCalculatorPosition();
     }
 
     function sanitizeMatrixPanels(rawPanels) {
@@ -202,7 +145,6 @@
             matCols: { ...state.matCols },
             matCellValues: { ...state.matCellValues },
             fieldValues: getSerializableCalculatorFieldValues(),
-            draggedPosition: getSerializedDraggedCalculatorPosition(),
         };
     }
 
@@ -246,7 +188,6 @@
         setStandardTool(storedState.activeStandardTool, { focus: false });
         setStandardToolView(storedState.standardToolView, { focus: false });
         applySerializableCalculatorFieldValues(storedState.fieldValues);
-        restoreDraggedCalculatorPosition(storedState.draggedPosition);
 
         syncCalculatorInputMode();
         syncBinomPreview();
@@ -257,25 +198,6 @@
         syncResultStaleState();
 
         return true;
-    }
-
-    function normalizeDraggedCalculatorPosition() {
-        const calculator = getCalculator();
-        const dragHandle = byId('calculatorDragHandle');
-        if (!calculator || calculator.style.position !== 'fixed') return;
-        if (!isDesktopDragEnabled()) {
-            clearDraggedCalculatorPosition();
-            return;
-        }
-        if (!dragHandle) return;
-        const rect = calculator.getBoundingClientRect();
-        const handleRect = dragHandle.getBoundingClientRect();
-        const bounds = getCalculatorDragBounds({
-            width: rect.width,
-            handleHeight: handleRect.height,
-        });
-        calculator.style.left = `${clamp(rect.left, bounds.minLeft, bounds.maxLeft)}px`;
-        calculator.style.top = `${clamp(rect.top, bounds.minTop, bounds.maxTop)}px`;
     }
 
     function setActiveInput(input) {
@@ -334,31 +256,16 @@
         }
     }
 
-    function isProbablyMobileBrowser() {
-        if (typeof navigator === 'undefined') return false;
-        if (typeof navigator.userAgentData?.mobile === 'boolean') {
-            return navigator.userAgentData.mobile;
-        }
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent || ''
-        );
-    }
-
-    function isTouchDevice() {
-        if (window.matchMedia?.('(pointer: coarse)')?.matches) return true;
-        return Boolean(navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
-    }
-
-    function isFinePointerDevice() {
-        return Boolean(window.matchMedia?.('(pointer: fine)')?.matches);
-    }
-
+    // Auf Touch-Mobilgeräten ersetzt die Rechentastatur die Bildschirmtastatur.
     function shouldSuppressNativeKeyboard() {
-        return Boolean(
-            isProbablyMobileBrowser()
-            && isTouchDevice()
-            && !isFinePointerDevice()
-        );
+        const uaMobile = navigator.userAgentData?.mobile;
+        const isMobile = typeof uaMobile === 'boolean'
+            ? uaMobile
+            : /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || '');
+        if (!isMobile) return false;
+
+        const hasTouch = Boolean(window.matchMedia?.('(pointer: coarse)')?.matches || navigator.maxTouchPoints > 0);
+        return hasTouch && !window.matchMedia?.('(pointer: fine)')?.matches;
     }
 
     function hideVirtualKeyboard() {
@@ -1259,84 +1166,6 @@
         markResultFresh(mainInput.value || '');
     }
 
-    function resetCalculatorView() {
-        clearDraggedCalculatorPosition();
-        setMode('basic');
-        setStandardTool('sin', { focus: false });
-        setStandardToolView('overview', { focus: false });
-        document.querySelector('.calculator-panels')?.scrollTo({ top: 0 });
-        document.querySelector('.calculator-output-body')?.scrollTo({ top: 0 });
-        focusMainInputForCurrentDevice();
-    }
-
-    function bindCalculatorDrag() {
-        const calculator = getCalculator();
-        const dragHandle = byId('calculatorDragHandle');
-        if (!calculator || !dragHandle) return;
-
-        let dragState = null;
-
-        const finishDrag = (event) => {
-            if (!dragState) return;
-            if (dragHandle.releasePointerCapture) {
-                try {
-                    dragHandle.releasePointerCapture(event.pointerId);
-                } catch {
-                    // Ignore release errors if the pointer is already gone.
-                }
-            }
-            calculator.classList.remove('dragging');
-            dragState = null;
-        };
-
-        dragHandle.addEventListener('pointerdown', (event) => {
-            if (!isDesktopDragEnabled()) return;
-            if (event.button !== 0) return;
-            if (event.target.closest('button, input, select, textarea, a')) return;
-
-            const rect = calculator.getBoundingClientRect();
-            dragState = {
-                pointerId: event.pointerId,
-                offsetX: event.clientX - rect.left,
-                offsetY: event.clientY - rect.top,
-                width: rect.width,
-                height: rect.height,
-                handleHeight: dragHandle.getBoundingClientRect().height,
-            };
-
-            calculator.classList.add('dragging');
-            dragHandle.setPointerCapture?.(event.pointerId);
-            event.preventDefault();
-        });
-
-        dragHandle.addEventListener('pointermove', (event) => {
-            if (!dragState || event.pointerId !== dragState.pointerId) return;
-
-            const bounds = getCalculatorDragBounds(dragState);
-            const left = clamp(event.clientX - dragState.offsetX, bounds.minLeft, bounds.maxLeft);
-            const top = clamp(event.clientY - dragState.offsetY, bounds.minTop, bounds.maxTop);
-
-            calculator.style.position = 'fixed';
-            calculator.style.left = `${left}px`;
-            calculator.style.top = `${top}px`;
-            calculator.style.right = 'auto';
-            calculator.style.bottom = 'auto';
-            calculator.style.transform = 'none';
-            calculator.style.margin = '0';
-        });
-
-        dragHandle.addEventListener('pointerup', finishDrag);
-        dragHandle.addEventListener('pointercancel', finishDrag);
-        window.addEventListener('resize', normalizeDraggedCalculatorPosition);
-    }
-
-    function closeOverlay() {
-        cancelScheduledGraphLivePreview();
-        if (typeof window.toggleCalculatorOverlay === 'function') {
-            window.toggleCalculatorOverlay(false);
-        }
-    }
-
     function copyResult() {
         const calculator = getCalculator();
         const resultDisplay = byId('resultDisplay');
@@ -1606,8 +1435,6 @@
             }
         });
 
-        byId('closeCalculatorButton')?.addEventListener('click', closeOverlay);
-        byId('resetCalculatorViewButton')?.addEventListener('click', resetCalculatorView);
         byId('copyResultButton')?.addEventListener('click', copyResult);
 
         getMainInput()?.addEventListener('keydown', (event) => {
@@ -1655,33 +1482,19 @@
             applySelectedStandardTool();
         });
 
-        document.querySelector('[data-action="lgs-add-var"]')?.addEventListener('click', () => {
-            if (state.lgsVariables < 6) {
-                state.lgsVariables += 1;
+        [
+            ['lgs-add-var', 'lgsVariables', 1],
+            ['lgs-remove-var', 'lgsVariables', -1],
+            ['lgs-add-eq', 'lgsEquations', 1],
+            ['lgs-remove-eq', 'lgsEquations', -1],
+        ].forEach(([action, key, delta]) => {
+            document.querySelector(`[data-action="${action}"]`)?.addEventListener('click', () => {
+                const next = state[key] + delta;
+                if (next < 1 || next > 6) return;
+                state[key] = next;
                 renderLGSMatrix();
                 syncLGSCommandPreview();
-            }
-        });
-        document.querySelector('[data-action="lgs-remove-var"]')?.addEventListener('click', () => {
-            if (state.lgsVariables > 1) {
-                state.lgsVariables -= 1;
-                renderLGSMatrix();
-                syncLGSCommandPreview();
-            }
-        });
-        document.querySelector('[data-action="lgs-add-eq"]')?.addEventListener('click', () => {
-            if (state.lgsEquations < 6) {
-                state.lgsEquations += 1;
-                renderLGSMatrix();
-                syncLGSCommandPreview();
-            }
-        });
-        document.querySelector('[data-action="lgs-remove-eq"]')?.addEventListener('click', () => {
-            if (state.lgsEquations > 1) {
-                state.lgsEquations -= 1;
-                renderLGSMatrix();
-                syncLGSCommandPreview();
-            }
+            });
         });
 
         // Matrix panel events
@@ -1724,41 +1537,21 @@
             }
         });
 
-        document.querySelector('[data-action="mat-add-row"]')?.addEventListener('click', () => {
-            const name = state.matActiveTab;
-            if (state.matRows[name] < 6) {
+        [
+            ['mat-add-row', 'matRows', 1],
+            ['mat-remove-row', 'matRows', -1],
+            ['mat-add-col', 'matCols', 1],
+            ['mat-remove-col', 'matCols', -1],
+        ].forEach(([action, key, delta]) => {
+            document.querySelector(`[data-action="${action}"]`)?.addEventListener('click', () => {
+                const name = state.matActiveTab;
+                const next = state[key][name] + delta;
+                if (next < 1 || next > 6) return;
                 persistVisibleMatrixCells();
-                state.matRows[name] += 1;
+                state[key][name] = next;
                 renderMatrixTabContent(name);
                 syncMatrixPreview();
-            }
-        });
-        document.querySelector('[data-action="mat-remove-row"]')?.addEventListener('click', () => {
-            const name = state.matActiveTab;
-            if (state.matRows[name] > 1) {
-                persistVisibleMatrixCells();
-                state.matRows[name] -= 1;
-                renderMatrixTabContent(name);
-                syncMatrixPreview();
-            }
-        });
-        document.querySelector('[data-action="mat-add-col"]')?.addEventListener('click', () => {
-            const name = state.matActiveTab;
-            if (state.matCols[name] < 6) {
-                persistVisibleMatrixCells();
-                state.matCols[name] += 1;
-                renderMatrixTabContent(name);
-                syncMatrixPreview();
-            }
-        });
-        document.querySelector('[data-action="mat-remove-col"]')?.addEventListener('click', () => {
-            const name = state.matActiveTab;
-            if (state.matCols[name] > 1) {
-                persistVisibleMatrixCells();
-                state.matCols[name] -= 1;
-                renderMatrixTabContent(name);
-                syncMatrixPreview();
-            }
+            });
         });
         document.querySelector('[data-action="mat-add-panel"]')?.addEventListener('click', () => {
             const available = MAT_PANEL_NAMES.filter((n) => !state.matPanels.includes(n));
@@ -1800,7 +1593,6 @@
         markResultFresh('');
         const restoredPopupState = restoreCalculatorPopupState();
         bindEvents();
-        bindCalculatorDrag();
         window.addEventListener('pagehide', saveStoredCalculatorPopupState);
 
         if (!restoredPopupState) {
