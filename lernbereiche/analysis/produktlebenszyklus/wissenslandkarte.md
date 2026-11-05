@@ -14,7 +14,7 @@ module_script: /assets/js/modules/wissenslandkarte-prototype.js
 permalink: /lernbereiche/analysis/produktlebenszyklus/wissenslandkarte.html
 ---
 
-<div class="page-shell page-shell--fluid w-wide">
+<div class="page-shell w-work">
   <section
     id="wissenslandkarte-root"
     class="wl-prototype"

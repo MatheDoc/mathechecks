@@ -20,8 +20,8 @@
         {% if page.show_footer %}
         {% include site-footer.html %}
         {% endif %}
+        {% include calculator.html %}
     </div>
-    {% include calculator.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
     <script type="module"
@@ -31,7 +31,8 @@
     <script
         src="{{ '/assets/js/calculator/commands.js?v=20260512-calculator-integral-t-variable' | relative_url }}"></script>
     <script
-        src="{{ '/assets/js/calculator/app.js?v=20260512-calculator-integral-builder-t-button' | relative_url }}"></script>
+        src="{{ '/assets/js/calculator/app.js?v=20261105-calculator-cleanup' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator/dock.js?v=20261105-calculator-cleanup' | relative_url }}"></script>
     {% if page.module_script %}
     <script type="module" src="{{ page.module_script | relative_url }}"></script>
     {% endif %}

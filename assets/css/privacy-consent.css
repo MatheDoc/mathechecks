@@ -1,6 +1,6 @@
 .privacy-banner {
   position: fixed;
-  inset-inline: 20px;
+  inset-inline: 20px calc(20px + var(--calculator-dock-offset, 0px));
   inset-block-end: 20px;
   z-index: 1200;
   display: grid;

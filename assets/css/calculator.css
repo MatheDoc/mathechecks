@@ -1,10 +1,7 @@
 .calculator-overlay {
     --hauptfarbe: var(--accent);
     --hauptfarbe-hover: color-mix(in srgb, var(--accent) 82%, #ffffff 18%);
-    --hintergrundfarbe: var(--panel-solid);
-    --rechner-oberflaeche: linear-gradient(180deg,
-            color-mix(in srgb, var(--hintergrundfarbe) 92%, #ffffff 8%),
-            var(--hintergrundfarbe));
+    --hintergrundfarbe: var(--bg);
     --hintergrund-hell: var(--surface);
     --hintergrund-hell-hover: var(--surface-hi);
     --calculator-button-height: 40px;
@@ -18,11 +15,7 @@
     --borderfarbe: var(--border);
     --textfarbe: var(--text);
     --textfarbe-schwach: var(--text-dim);
-    --kopfzeile-hintergrund: transparent;
-    --kopfzeile-akzent: linear-gradient(135deg,
-            color-mix(in srgb, var(--hauptfarbe) 82%, #ffffff 18%),
-            color-mix(in srgb, var(--hauptfarbe) 92%, var(--surface-hi)));
-    --kopfzeile-trennlinie: color-mix(in srgb, var(--hauptfarbe) 16%, var(--borderfarbe));
+    --kopfzeile-trennlinie: var(--borderfarbe);
     --kopfzeile-steuerung-hintergrund: var(--dropdown-bg);
     --kopfzeile-steuerung-hintergrund-hover: color-mix(in srgb, var(--dropdown-bg) 82%, var(--surface-hi));
     --ok-farbe: var(--green);
@@ -60,31 +53,109 @@ html.light .calculator-overlay {
 
 /* Calculator Styles */
 
+/*
+ * Layout: unter dem Topbar-Header.
+ * Schmal (< 800px): Vollbild-Overlay. Breit (>= 800px): feste Spalte rechts,
+ * der Seiteninhalt rückt um --calculator-dock-offset ein.
+ * Breakpoint muss mit DOCK_MEDIA_QUERY in calculator/dock.js übereinstimmen.
+ * Das Overlay liegt im Stacking-Context von .shell: über Sidebar (60), unter Topbar (70),
+ * damit Topbar-Menüs (z. B. Drei-Punkte-Menü) über dem Rechner aufklappen.
+ */
+:root {
+    --calculator-dock-w: clamp(320px, 33.333vw, 480px);
+    --calculator-dock-top: var(--sticky-topbar-h, 72px);
+    --calculator-dock-offset: 0px;
+}
+
+@media (min-width: 800px) {
+    html.calculator-open {
+        --calculator-dock-offset: var(--calculator-dock-w);
+    }
+
+    html.calculator-open .shell > :not(.topbar, .calculator-overlay) {
+        margin-right: var(--calculator-dock-offset);
+    }
+}
+
+@media (max-width: 799px) {
+    html.calculator-open #pen-toolbar {
+        display: none;
+    }
+}
+
+html.calculator-resizing,
+html.calculator-resizing * {
+    cursor: col-resize !important;
+    user-select: none !important;
+}
+
 .calculator-overlay {
     position: fixed;
-    inset: 0;
+    top: var(--calculator-dock-top);
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: none;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    z-index: 3000;
-    pointer-events: none;
+    z-index: 65;
 }
 
 .calculator-overlay.open {
-    display: flex;
+    display: block;
 }
 
 .calculator-container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 10px;
-    pointer-events: none;
     font-size: 15px;
+}
+
+.calculator-dock-resizer {
+    display: none;
+}
+
+@media (min-width: 800px) {
+    .calculator-overlay {
+        left: auto;
+        width: var(--calculator-dock-w);
+    }
+
+    .calculator-overlay .calculator {
+        border-left: 1px solid var(--borderfarbe);
+    }
+
+    .calculator-dock-resizer {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -5px;
+        z-index: 2;
+        width: 10px;
+        cursor: col-resize;
+        touch-action: none;
+    }
+
+    .calculator-dock-resizer::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 4px;
+        width: 2px;
+        background: transparent;
+        transition: background-color 0.15s;
+    }
+
+    .calculator-dock-resizer:hover::after,
+    .calculator-dock-resizer:focus-visible::after,
+    html.calculator-resizing .calculator-dock-resizer::after {
+        background: var(--hauptfarbe);
+    }
+
+    .calculator-dock-resizer:focus-visible {
+        outline: none;
+    }
 }
 
 /* Shared input base styles */
@@ -246,18 +317,13 @@ html.light .calculator-overlay {
 }
 
 .calculator {
-    background: var(--rechner-oberflaeche);
-    border-radius: 18px;
-    width: min(470px, calc(100vw - 20px));
-    height: min(700px, calc(100vh - 20px));
-    height: min(700px, calc(100svh - 20px));
+    background: var(--hintergrundfarbe);
+    width: 100%;
+    height: 100%;
     display: block;
     overflow: hidden;
-    border: 1px solid var(--borderfarbe);
     scrollbar-width: auto;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    pointer-events: auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     position: relative;
     z-index: 1;
@@ -274,11 +340,6 @@ html.light .calculator-overlay {
 
 .calculator::-webkit-scrollbar-track {
     background: var(--scrollbar-track);
-}
-
-.calculator.dragging,
-.calculator.dragging * {
-    cursor: move !important;
 }
 
 .calculator .result-row {
@@ -635,16 +696,10 @@ html.light .calculator-overlay {
     align-items: center;
     gap: 12px;
     padding: 12px 14px 10px;
-    background:
-        var(--kopfzeile-akzent) top / 100% 3px no-repeat,
-        var(--kopfzeile-hintergrund);
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--textfarbe) 4%, transparent);
     color: var(--textfarbe);
     position: relative;
     user-select: none;
     -webkit-user-select: none;
-    touch-action: none;
-    cursor: move;
 }
 
 .calculator-topbar::after {
@@ -662,13 +717,9 @@ html.light .calculator-overlay {
     -webkit-user-select: none;
 }
 
-.calculator-topbar__emoji,
-.calculator-topbar__actions {
+.calculator-topbar__emoji {
     display: flex;
     align-items: center;
-}
-
-.calculator-topbar__emoji {
     flex: 0 0 auto;
     justify-content: center;
     border: 0;
@@ -677,11 +728,6 @@ html.light .calculator-overlay {
     font-size: 22px;
     line-height: 1;
     justify-self: start;
-}
-
-.calculator-topbar__actions {
-    gap: 2px;
-    justify-self: end;
 }
 
 .calculator-mode-picker--compact {
@@ -695,27 +741,6 @@ html.light .calculator-overlay {
     padding: 0;
     cursor: default;
     transition: none;
-}
-
-.calculator .calculator-topbar__button,
-.calculator .close-calculator {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 0;
-    border-radius: 10px;
-    background: transparent;
-    color: var(--textfarbe);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    line-height: 1;
-    box-shadow: none;
-    transform: none;
-    transition: background-color 0.18s ease, color 0.18s ease, opacity 0.18s ease;
-    opacity: 0.84;
 }
 
 .calculator-mode-picker--compact:hover,
@@ -734,53 +759,12 @@ html.light .calculator-overlay {
     box-shadow: none;
 }
 
-.calculator .calculator-topbar__button:hover,
-.calculator .close-calculator:hover {
-    background: var(--icon-button-hover-bg);
-    color: var(--textfarbe);
-    opacity: 1;
-    transform: none;
-}
-
-.calculator .calculator-topbar__button:active,
-.calculator .close-calculator:active {
-    background: var(--icon-button-active-bg);
-    color: var(--textfarbe);
-    opacity: 1;
-    transform: none;
-}
-
-.calculator .calculator-topbar__button:hover,
-.calculator .close-calculator:hover,
-.calculator .calculator-topbar__button:active,
-.calculator .close-calculator:active {
-    opacity: 1;
-    transform: none;
-}
-
-.calculator .calculator-topbar__button:focus-visible,
-.calculator .close-calculator:focus-visible {
-    outline: 1px solid var(--hauptfarbe-hover);
-    outline-offset: 2px;
-}
-
-html.light .calculator-mode-picker--compact,
-html.light .calculator .calculator-topbar__button,
-html.light .calculator .close-calculator {
-    color: var(--textfarbe);
-}
-
 html.light .calculator-mode-picker--compact {
+    color: var(--textfarbe);
     border-color: transparent;
 }
 
-html.light .calculator .calculator-topbar__button:hover,
-html.light .calculator .close-calculator:hover,
 html.light .calculator-mode-picker--compact:hover,
-html.light .calculator-mode-picker--compact:focus-within {
-    color: var(--textfarbe);
-}
-
 html.light .calculator-mode-picker--compact:focus-within {
     color: var(--textfarbe);
 }
@@ -1613,12 +1597,4 @@ html.light .calculator-mode-picker--compact:focus-within {
 
 .calculator .input-row .panel-text-input--equation {
     width: 58px;
-}
-
-/* Viewport-specific: drag is only enabled on wider layouts. */
-@media (max-width: 519px) {
-    .calculator-topbar {
-        touch-action: auto;
-        cursor: default;
-    }
 }

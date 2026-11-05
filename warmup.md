@@ -15,7 +15,7 @@ Isolierte Übersicht aller Warm-Ups: bewusst nirgends verlinkt, noindex, nicht i
 Wird vollständig aus _data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml und _data/checks.json erzeugt.
 Reihenfolge: Lernbereiche wie in _data/lernbereiche.yml, darin nach Check-Nummer.
 {% endcomment %}
-<div class="page-shell w-wide">
+<div class="page-shell w-read">
   <section class="cw-root">
     <header class="cw-index-head">
       <div><span class="cw-chip">Warm-Up pro Check</span> <span class="cw-proto">nicht verlinkt</span></div>

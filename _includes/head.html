@@ -53,9 +53,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="{{ '/assets/css/shared.css?v=20261103-xp-answers' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/calculator.css?v=20260512-dropdown-native' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/css/privacy-consent.css?v=20260513-ga-consent' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/shared.css?v=20261105-calculator-dock' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/calculator.css?v=20261105-calculator-cleanup' | relative_url }}">
+<script>
+	// Rechner-Dock vor dem ersten Rendern reservieren, damit der Inhalt nicht springt.
+	try {
+		if (localStorage.getItem('calculator-overlay-open-v1') === '1') {
+			document.documentElement.classList.add('calculator-open');
+		}
+		var storedCalculatorDockWidth = parseInt(localStorage.getItem('calculator-dock-width-v1'), 10);
+		if (storedCalculatorDockWidth > 0) {
+			document.documentElement.style.setProperty('--calculator-dock-w', storedCalculatorDockWidth + 'px');
+		}
+	} catch (error) {}
+</script>
+<link rel="stylesheet" href="{{ '/assets/css/privacy-consent.css?v=20261105-calculator-dock' | relative_url }}">
 {% if page.page_css %}
 <link rel="stylesheet" href="{{ page.page_css | relative_url }}">
 {% endif %}

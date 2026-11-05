@@ -62,6 +62,9 @@
   --dropdown-option-bg: #1a1a24;
   --sticky-topbar-h: 72px;
   --sticky-topbar-h-mobile: 64px;
+  /* Inhaltsbreiten: Lesen/Abfragen (eine Spalte) und Arbeiten (mehrspaltig, Widgets) */
+  --w-read: 720px;
+  --w-work: 1280px;
   --module-sticky-top: var(--sticky-topbar-h);
   --page-pad-inline: clamp(16px, 2.2vw, 28px);
   --page-pad-top: 12px;
@@ -587,7 +590,7 @@ body.page-shell .shell {
 body.module-fullscreen .fullscreen-exit-button {
   position: fixed;
   top: 8px;
-  right: 18px;
+  right: calc(18px + var(--calculator-dock-offset, 0px));
   z-index: 90;
   display: inline-flex;
   align-items: center;
@@ -905,7 +908,7 @@ body.module-fullscreen .topbar {
 .xp-toast-stack {
   position: fixed;
   top: 58px;
-  right: 16px;
+  right: calc(16px + var(--calculator-dock-offset, 0px));
   z-index: 200;
   display: grid;
   justify-items: end;
@@ -2206,6 +2209,7 @@ background: var(--bg);
 }
 
 .mod-script-content, .mod-start-content {
+  max-width: var(--w-work);
   margin: 0 auto;
   padding: 14px 54px 72px;
 }
@@ -2246,54 +2250,33 @@ html.light .mod-start-content {
 .page-shell {
   margin: 0 auto;
   box-sizing: border-box;
-
 }
 
-
-
-.w-wide {
-  max-width: 1060px;
+.w-read,
+.w-work {
   padding: 0 54px;
 }
 
-@media (max-width: 680px){
-  .w-wide{
+@media (max-width: 680px) {
+  .w-read,
+  .w-work {
     padding: 0 12px;
   }
 }
 
-.page-shell--fluid {
-  width: 100%;
+.w-read {
+  max-width: var(--w-read);
 }
 
-.page-shell--fluid.w-wide {
-  max-width: none;
+.w-work {
+  max-width: var(--w-work);
 }
 
-.page-shell--fluid #training-root,
-.page-shell--fluid #training-task,
-.page-shell--fluid #feynman-root {
+.w-work #training-root,
+.w-work #training-task,
+.w-work #feynman-root {
   width: 100%;
   min-width: 0;
-}
-
-.w-mid {
-  max-width: 820px;
-}
-
-.w-narrow {
-  max-width: 660px;
-  padding: 0 54px;
-}
-
-@media (max-width: 680px){
-  .w-narrow{
-    padding: 0 12px;
-  }
-}
-
-.w-card {
-  max-width: 540px;
 }
 
 .sect-label {
