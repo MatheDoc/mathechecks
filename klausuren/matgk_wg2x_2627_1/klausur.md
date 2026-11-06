@@ -1,7 +1,7 @@
 ---
 fach: 1. Klausur Mathematik
 klasse: WG2X
-datum: 06.10.2026
+datum: 06.11.2026
 thema: Ganz. ök. Funktionen und ertr. Kostenfunktionen
 bearbeitungszeit: 135 Minuten
 logo: klausuren/templates/logo.png
