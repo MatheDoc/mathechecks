@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: differentialrechnung-ganzrationaler-funktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
+page_css: /assets/css/warmup.css?v=20261108-fields
 permalink: /lernbereiche/analysis/differentialrechnung-ganzrationaler-funktionen/warmup.html
 ---
 

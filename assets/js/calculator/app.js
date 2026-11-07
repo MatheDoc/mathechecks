@@ -1606,6 +1606,25 @@
         focusMainInputForCurrentDevice();
     }
 
+    // Schnittstelle für Module außerhalb des Rechners (z. B. Spracheingabe).
+    // Alle Aktionen beziehen sich auf den Main-Input.
+    window.CalculatorApi = {
+        insert(text) {
+            insertIntoMainInput(String(text || ''));
+        },
+        execute() {
+            executeMainInput();
+        },
+        clear() {
+            setActiveInput(getMainInput());
+            clearActiveInput();
+        },
+        backspace() {
+            setActiveInput(getMainInput());
+            backspaceActiveInput();
+        },
+    };
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {

@@ -546,8 +546,8 @@
 }
 
 .check-card__runtime-task .answer-field-group .select2-container .select2-selection {
-    border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 26%, var(--border));
-    background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--dcc-accent-soft, var(--mt-training-soft, var(--accent-soft))) 10%);
+    border: 1px solid var(--field-border, var(--border));
+    background: var(--field-bg, var(--card-surface-2, #181824));
     color: var(--text);
 }
 
@@ -869,6 +869,10 @@ html.light .check-card__runtime-task {
     white-space: pre-line;
 }
 
+.check-card__runtime-task {
+    --field-accent: var(--dcc-accent, var(--mt-training, var(--accent)));
+}
+
 .check-card__runtime-task .answer-input,
 .check-card__runtime-task .answer-select {
     min-width: 0;
@@ -880,17 +884,18 @@ html.light .check-card__runtime-task {
     line-height: var(--mc-answer-field-line-height);
     min-height: var(--mc-answer-field-min-height);
     border-radius: var(--mc-answer-field-radius);
-    border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 26%, var(--border));
-    background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--dcc-accent-soft, var(--mt-training-soft, var(--accent-soft))) 10%);
+    border: 1px solid var(--field-border, var(--border));
+    background: var(--field-bg, var(--card-surface-2, #181824));
     color: var(--text);
     box-sizing: border-box;
     outline: none;
     transition: border-color 200ms, box-shadow 200ms;
 }
 
-.check-card__runtime-task .answer-input:focus {
-    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 60%, var(--border));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 14%, transparent);
+.check-card__runtime-task .answer-input:focus,
+.check-card__runtime-task .answer-numopt-input:focus {
+    border-color: color-mix(in srgb, var(--field-accent) 60%, var(--field-border, var(--border)));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--field-accent) 14%, transparent);
 }
 
 .check-card__runtime-task .answer-input::placeholder {
@@ -956,8 +961,8 @@ html.light .check-card__runtime-task {
     line-height: var(--mc-answer-field-line-height);
     min-height: var(--mc-answer-field-min-height);
     border-radius: var(--mc-answer-field-radius);
-    border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 26%, var(--border));
-    background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--dcc-accent-soft, var(--mt-training-soft, var(--accent-soft))) 10%);
+    border: 1px solid var(--field-border, var(--border));
+    background: var(--field-bg, var(--card-surface-2, #181824));
     color: var(--text);
     box-sizing: border-box;
 }

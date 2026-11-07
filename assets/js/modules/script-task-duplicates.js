@@ -13,10 +13,10 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261025-markt-vertiefung";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261108-speech-preview";
 import { createCardMenuItem, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
 import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";

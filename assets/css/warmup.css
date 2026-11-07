@@ -588,9 +588,9 @@
 .cw-input {
     width: 7.5rem;
     padding: 8px 10px;
-    border-radius: 10px;
-    border: 1px solid color-mix(in srgb, var(--cw-accent) 35%, var(--border));
-    background: var(--card-surface-1);
+    border-radius: var(--field-radius);
+    border: 1px solid var(--field-border);
+    background: var(--field-bg);
     color: var(--text);
     font: inherit;
     font-size: 0.98rem;
@@ -599,8 +599,8 @@
 
 .cw-input:focus {
     outline: none;
-    border-color: var(--cw-accent);
-    box-shadow: 0 0 0 3px var(--cw-accent-soft);
+    border-color: color-mix(in srgb, var(--cw-accent) 60%, var(--field-border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--cw-accent) 14%, transparent);
 }
 
 .cw-field__unit {

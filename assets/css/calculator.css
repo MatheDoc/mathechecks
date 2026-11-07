@@ -4,6 +4,9 @@
     --hintergrundfarbe: var(--bg);
     --hintergrund-hell: var(--surface);
     --hintergrund-hell-hover: var(--surface-hi);
+    /* Tasten wie erhöhte Elemente der Plattform (Kartenfläche) */
+    --rechner-taste: var(--card-surface-1);
+    --rechner-taste-hover: color-mix(in srgb, var(--card-surface-1) 88%, var(--text) 12%);
     --calculator-button-height: 40px;
     --calculator-panel-input-height: 34px;
     --calculator-panel-input-font-size: 13px;
@@ -47,7 +50,7 @@ html.light .calculator-overlay {
     width: 56px;
     min-width: 0;
     padding: 4px 6px;
-    background: var(--hintergrund-hell);
+    background: var(--field-bg);
     text-align: left;
 }
 
@@ -164,9 +167,9 @@ html.calculator-resizing * {
     font-size: inherit;
     font-family: inherit;
     font-weight: normal;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 6px;
-    background: var(--hintergrund-hell);
+    border: 1px solid var(--field-border);
+    border-radius: var(--field-radius);
+    background: var(--field-bg);
     color: var(--textfarbe);
     box-shadow: none;
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -180,15 +183,14 @@ html.calculator-resizing * {
     min-width: 0;
     min-height: var(--calculator-panel-input-height);
     padding: 6px 10px;
-    border-radius: 10px;
-    background: var(--hintergrund-hell);
+    border-radius: var(--field-radius);
+    background: var(--field-bg);
     color: var(--textfarbe);
     font-size: var(--calculator-panel-input-font-size);
 }
 
-.calculator-container .panel-text-input::placeholder,
-.calculator-container .math-composer input::placeholder {
-    color: var(--textfarbe-schwach);
+.calculator-container input::placeholder {
+    color: var(--field-placeholder);
     opacity: 0.9;
 }
 
@@ -287,9 +289,9 @@ html.calculator-resizing * {
     font-size: inherit;
     font-family: inherit;
     font-weight: 600;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 10px;
-    background: var(--hintergrund-hell);
+    border: 1px solid var(--field-border);
+    border-radius: var(--field-radius);
+    background: var(--field-bg);
     color: var(--textfarbe);
     min-height: 34px;
     padding: 0 10px;
@@ -311,9 +313,9 @@ html.calculator-resizing * {
 .calculator-container input:focus,
 .calculator-container select:focus {
     outline: none;
-    border-color: var(--hauptfarbe-hover);
-    box-shadow: inset 0 0 0 1px var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
+    border-color: color-mix(in srgb, var(--hauptfarbe) 60%, var(--field-border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--hauptfarbe) 14%, transparent);
+    background: var(--field-bg);
 }
 
 .calculator {
@@ -445,8 +447,34 @@ html.calculator-resizing * {
     width: 100%;
     min-height: 40px;
     padding: 6px 8px;
-    border-radius: 12px;
-    background: var(--hintergrund-hell);
+    border-radius: var(--field-radius);
+    background: var(--field-bg);
+}
+
+.calculator .main-input .speech-input-wrap > input {
+    padding-right: var(--speech-mic-space);
+}
+
+/* Mikrofon wie in den Antwortfeldern, nicht wie eine Rechnertaste. */
+.calculator .main-input .speech-mic,
+.calculator .main-input .speech-mic:hover,
+.calculator .main-input .speech-mic:active {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    transform: translateY(-50%);
+    box-shadow: none;
+}
+
+.calculator .main-input .speech-mic:hover {
+    color: var(--text-dim);
+    background: var(--icon-button-hover-bg);
+}
+
+.calculator .main-input .speech-mic--active,
+.calculator .main-input .speech-mic--active:hover {
+    color: var(--rose, #f76c6c);
 }
 
 .calculator-container .input-row {
@@ -554,7 +582,7 @@ html.calculator-resizing * {
     cursor: pointer;
     transition: all 0.15s;
     font-weight: 500;
-    background: var(--hintergrund-hell);
+    background: var(--rechner-taste);
     color: var(--textfarbe);
     line-height: 1;
     /* Tight line height to avoid extra vertical space */
@@ -570,7 +598,7 @@ html.calculator-resizing * {
 
 .calculator button:hover {
     transform: translateY(-1px);
-    background: var(--hintergrund-hell-hover);
+    background: var(--rechner-taste-hover);
 }
 
 .calculator button:active {
@@ -1092,7 +1120,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 
 .standard-tool-grid-button.is-active {
     border-color: color-mix(in srgb, var(--hauptfarbe) 28%, var(--borderfarbe));
-    background: color-mix(in srgb, var(--hauptfarbe) 10%, var(--hintergrund-hell) 90%);
+    background: color-mix(in srgb, var(--hauptfarbe) 10%, var(--rechner-taste) 90%);
 }
 
 .panel-apply-button--compact {

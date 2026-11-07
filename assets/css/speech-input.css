@@ -110,6 +110,47 @@
     min-width: 0;
 }
 
+/* ── Live-Vorschau des Zwischenergebnisses (nur Anzeige, nicht im Feldwert) ── */
+.speech-preview {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: var(--speech-mic-space);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--text-muted);
+    font-style: italic;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.speech-preview[hidden] {
+    display: none;
+}
+
+/* Vorschau überdeckt vorhandenen Text: abgesetzt darstellen. */
+.speech-preview--overlap {
+    padding-inline: 6px;
+    border-radius: 6px;
+    top: 4px;
+    bottom: 4px;
+    background: var(--panel-solid);
+}
+
+/* Textfeld: eine Zeile Platz reservieren, wenn die Vorschau nicht mehr in die letzte Zeile passt. */
+.speech-input-wrap--preview-below>textarea {
+    padding-bottom: calc(1.6em + 6px);
+}
+
+/* Während der Aufnahme stört der Platzhalter die Vorschau. */
+.speech-input-wrap.speech-input-wrap--listening>input::placeholder,
+.speech-input-wrap.speech-input-wrap--listening>textarea::placeholder {
+    color: transparent;
+    opacity: 0;
+}
+
 /* ── Light-mode adjustments ─────────────────────────────────── */
 html.light .speech-mic:hover {
     background: rgba(0, 0, 0, 0.06);

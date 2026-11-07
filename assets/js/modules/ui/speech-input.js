@@ -5,6 +5,10 @@
  *   import { enhanceSpeechInputs } from "./ui/speech-input.js";
  *   enhanceSpeechInputs(rootNode);               // all text inputs inside rootNode
  *   enhanceSpeechInputs(rootNode, ".my-input");   // only matching inputs
+ *   attachSpeechInput(input, { processTranscript }); // single input, custom handling
+ *
+ * Only one recognition runs at a time across all inputs. Import this module
+ * everywhere with the same URL (incl. ?v=) so that state stays shared.
  *
  * Inputs inside an existing wrapper (.answer-field-group) get the mic button
  * appended to that group. Standalone inputs are wrapped in .speech-input-wrap.
@@ -306,6 +310,11 @@ function requestTaskCheck(input) {
     input.dispatchEvent(new CustomEvent(TASK_CHECK_REQUEST_EVENT, { bubbles: true }));
 }
 
+function setListeningState(btn, listening) {
+    btn.classList.toggle("speech-mic--active", listening);
+    btn.closest(".speech-input-wrap")?.classList.toggle("speech-input-wrap--listening", listening);
+}
+
 function stopActiveRecognition() {
     clearActiveRecognitionTimer();
 
@@ -316,7 +325,8 @@ function stopActiveRecognition() {
     activeBtn = null;
 
     if (btn) {
-        btn.classList.remove("speech-mic--active");
+        setListeningState(btn, false);
+        hideSpeechPreview(btn.closest(".speech-input-wrap"));
     }
 
     if (recognition) {
@@ -326,6 +336,133 @@ function stopActiveRecognition() {
 
 export function stopActiveSpeechInput() {
     stopActiveRecognition();
+}
+
+/* ── Live-Vorschau: Zwischenergebnis grau im Feld, Feldinhalt bleibt unverändert ── */
+let measureContext = null;
+
+function measureTextWidth(field, text) {
+    if (!text) return 0;
+    measureContext ||= document.createElement("canvas").getContext("2d");
+    const styles = window.getComputedStyle(field);
+    measureContext.font = styles.font || `${styles.fontStyle} ${styles.fontWeight} ${styles.fontSize} ${styles.fontFamily}`;
+    const spacing = parseFloat(styles.letterSpacing) || 0;
+    return measureContext.measureText(text).width + spacing * text.length;
+}
+
+function hideSpeechPreview(wrap) {
+    const preview = wrap?.querySelector(":scope > .speech-preview");
+    if (!preview || preview.hidden) return;
+    preview.hidden = true;
+    preview.textContent = "";
+    setPreviewLineReserved(wrap, false);
+}
+
+// Reserviert unten im Textfeld eine Zeile, falls die Vorschau nicht mehr in die letzte Zeile passt.
+function setPreviewLineReserved(wrap, reserved) {
+    if (wrap.classList.contains("speech-input-wrap--preview-below") === reserved) return;
+    wrap.classList.toggle("speech-input-wrap--preview-below", reserved);
+    const field = wrap.querySelector(":scope > textarea");
+    if (field) resizeSpeechTextarea(field);
+}
+
+const MIRROR_STYLE_PROPS = [
+    "boxSizing", "width", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft",
+    "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth", "borderStyle",
+    "fontStyle", "fontVariant", "fontWeight", "fontStretch", "fontSize", "lineHeight", "fontFamily",
+    "textAlign", "textTransform", "textIndent", "letterSpacing", "wordSpacing", "tabSize",
+];
+
+// Cursorposition in einem Textfeld über ein unsichtbares Spiegel-Element mit gleichen Textmaßen.
+function getTextareaCaretPoint(field, position) {
+    const styles = window.getComputedStyle(field);
+    const mirror = document.createElement("div");
+    MIRROR_STYLE_PROPS.forEach((prop) => { mirror.style[prop] = styles[prop]; });
+    Object.assign(mirror.style, {
+        position: "absolute",
+        visibility: "hidden",
+        top: "0",
+        left: "-9999px",
+        height: "auto",
+        overflow: "hidden",
+        whiteSpace: "pre-wrap",
+        overflowWrap: "break-word",
+    });
+    mirror.textContent = field.value.slice(0, position);
+    const marker = document.createElement("span");
+    marker.textContent = "\u200b";
+    mirror.appendChild(marker);
+    document.body.appendChild(mirror);
+    const point = { left: marker.offsetLeft, top: marker.offsetTop, lineHeight: marker.offsetHeight };
+    mirror.remove();
+    return point;
+}
+
+function showSpeechPreview(input, text) {
+    const wrap = input.closest(".speech-input-wrap");
+    if (!wrap) return;
+    if (!text) {
+        hideSpeechPreview(wrap);
+        return;
+    }
+
+    let preview = wrap.querySelector(":scope > .speech-preview");
+    if (!preview) {
+        preview = document.createElement("span");
+        preview.className = "speech-preview";
+        preview.setAttribute("aria-hidden", "true");
+        wrap.appendChild(preview);
+    }
+    preview.hidden = false;
+    preview.textContent = text;
+    preview.style.font = window.getComputedStyle(input).font;
+    preview.style.fontStyle = "italic";
+
+    const styles = window.getComputedStyle(input);
+    const caret = Number.isInteger(input.selectionEnd) ? input.selectionEnd : input.value.length;
+    const originX = input.offsetLeft + input.clientLeft;
+    const textStart = originX + (parseFloat(styles.paddingLeft) || 0);
+    const contentRight = wrap.clientWidth - (parseFloat(styles.paddingRight) || 0);
+    const gap = caret > 0 ? 4 : 0;
+
+    if (input instanceof HTMLTextAreaElement) {
+        // Vorschau direkt hinter dem Text vor dem Cursor, notfalls am Anfang der nächsten Zeile.
+        const point = getTextareaCaretPoint(input, caret);
+        const originY = input.offsetTop + input.clientTop - input.scrollTop;
+        let left = originX + point.left - input.scrollLeft + gap;
+        let top = originY + point.top;
+        let reserveLine = false;
+
+        if (contentRight - left < 60) {
+            left = textStart;
+            top += point.lineHeight;
+            const contentBottom = input.offsetTop + input.clientTop + input.clientHeight - (parseFloat(styles.paddingBottom) || 0);
+            reserveLine = top + point.lineHeight > contentBottom + 1;
+        }
+        setPreviewLineReserved(wrap, reserveLine);
+
+        preview.classList.remove("speech-preview--overlap");
+        Object.assign(preview.style, {
+            left: `${left}px`,
+            top: `${top}px`,
+            bottom: "auto",
+            height: `${point.lineHeight}px`,
+        });
+        return;
+    }
+
+    // Einzeiliges Eingabefeld: Textbreite bis zum Cursor messen.
+    const textX = textStart + measureTextWidth(input, input.value.slice(0, caret)) - input.scrollLeft;
+    const maxLeft = contentRight - 32;
+    Object.assign(preview.style, {
+        left: `${Math.max(textStart, Math.min(textX + gap, maxLeft))}px`,
+        top: "",
+        bottom: "",
+        height: "",
+    });
+    preview.classList.toggle("speech-preview--overlap", textX + gap > maxLeft);
+    // Bei Überlänge das Ende des Gesprochenen zeigen.
+    preview.scrollLeft = preview.scrollWidth;
 }
 
 function createMicButton() {
@@ -392,7 +529,28 @@ function insertSpeechTextAtCursor(input, text) {
     return true;
 }
 
-function bindMic(btn, input) {
+/**
+ * Standardverarbeitung für Antwortfelder: Zahlwörter normalisieren, einfügen,
+ * abschließendes "check" löst die Aufgabenprüfung aus.
+ */
+function processAnswerTranscript(transcript, input) {
+    const { spokenText, shouldCheck } = splitSpeechCheckCommand(transcript);
+    const cleaned = normalizeSpeechTranscript(spokenText);
+    const inserted = cleaned ? insertSpeechTextAtCursor(input, cleaned) : false;
+    return {
+        inserted,
+        stop: shouldCheck,
+        afterStop: shouldCheck ? () => requestTaskCheck(input) : undefined,
+    };
+}
+
+function formatAnswerPreview(interim) {
+    const { spokenText, shouldCheck } = splitSpeechCheckCommand(interim);
+    const text = normalizeSpeechTranscript(spokenText);
+    return shouldCheck ? `${text} ✓`.trim() : text;
+}
+
+function bindMic(btn, input, processTranscript = processAnswerTranscript, formatPreview = formatAnswerPreview) {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -407,12 +565,12 @@ function bindMic(btn, input) {
         const recognition = new SpeechRecognition();
         recognition.lang = "de-DE";
         recognition.continuous = true;
-        recognition.interimResults = false;
+        recognition.interimResults = true;
 
         recognition.onstart = () => {
             activeRecognition = recognition;
             activeBtn = btn;
-            btn.classList.add("speech-mic--active");
+            setListeningState(btn, true);
             scheduleActiveRecognitionTimeout(recognition);
         };
 
@@ -440,7 +598,8 @@ function bindMic(btn, input) {
 
         recognition.onerror = () => {
             clearActiveRecognitionTimer();
-            btn.classList.remove("speech-mic--active");
+            setListeningState(btn, false);
+            hideSpeechPreview(btn.closest(".speech-input-wrap"));
             if (activeBtn === btn) {
                 activeRecognition = null;
                 activeBtn = null;
@@ -449,27 +608,34 @@ function bindMic(btn, input) {
 
         recognition.onresult = (event) => {
             let transcript = "";
+            let interim = "";
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 if (event.results[i].isFinal) {
                     transcript += event.results[i][0].transcript;
+                } else {
+                    interim += event.results[i][0].transcript;
                 }
             }
-            if (!transcript) return;
 
-            const { spokenText, shouldCheck } = splitSpeechCheckCommand(transcript);
-
-            const cleaned = normalizeSpeechTranscript(spokenText);
-            if (cleaned) {
-                insertSpeechTextAtCursor(input, cleaned);
+            if (interim) {
+                clearActiveRecognitionTimer();
             }
 
-            if (shouldCheck) {
-                stopActiveRecognition();
-                requestTaskCheck(input);
+            if (!transcript) {
+                showSpeechPreview(input, formatPreview(interim));
                 return;
             }
 
-            if (!cleaned) return;
+            showSpeechPreview(input, "");
+            const { inserted, stop, afterStop } = processTranscript(transcript, input) || {};
+            if (stop) {
+                stopActiveRecognition();
+                afterStop?.();
+                return;
+            }
+
+            showSpeechPreview(input, formatPreview(interim));
+            if (!inserted) return;
             scheduleActiveRecognitionTimeout(recognition);
         };
 
@@ -482,6 +648,40 @@ function bindMic(btn, input) {
 }
 
 /**
+ * Adds a speech-input mic button to a single input.
+ *
+ * @param {HTMLInputElement|HTMLTextAreaElement} input
+ * @param {object} [options]
+ * @param {(transcript: string, input: HTMLElement) => {inserted?: boolean, stop?: boolean, afterStop?: () => void}} [options.processTranscript]
+ *        Custom handling of final transcripts (default: answer-field behaviour).
+ * @param {(interimTranscript: string) => string} [options.formatPreview]
+ *        Text for the live preview of interim results (default: what would be inserted).
+ * @returns {boolean} Whether a mic button was attached.
+ */
+export function attachSpeechInput(input, { processTranscript, formatPreview } = {}) {
+    if (!input) return false;
+    if (input instanceof HTMLInputElement && ["checkbox", "radio", "hidden"].includes(input.type)) return false;
+
+    setupSpeechTextarea(input);
+    if (!SUPPORTED || input.hasAttribute(ENHANCED_ATTR)) return false;
+
+    input.setAttribute(ENHANCED_ATTR, "");
+
+    const btn = createMicButton();
+    bindMic(btn, input, processTranscript, formatPreview);
+
+    // Wrap the input + mic in a relative container so the mic sits inside.
+    // Works both standalone and inside .answer-field-group (training tasks),
+    // where the check button stays outside as a sibling.
+    const wrapper = document.createElement("span");
+    wrapper.className = "speech-input-wrap";
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+    wrapper.appendChild(btn);
+    return true;
+}
+
+/**
  * Enhance text inputs inside `root` with a speech-input mic button.
  *
  * @param {HTMLElement} root       Container to scan for inputs.
@@ -491,29 +691,10 @@ export function enhanceSpeechInputs(root, selector) {
     if (!root) return;
 
     const sel = selector || 'input[type="text"], input:not([type]), textarea';
-    const inputs = Array.from(root.querySelectorAll(sel));
-
-    inputs.forEach((input) => {
-        if (input instanceof HTMLInputElement && ["checkbox", "radio", "hidden"].includes(input.type)) return;
-
-        setupSpeechTextarea(input);
-        if (!SUPPORTED || input.hasAttribute(ENHANCED_ATTR)) return;
-
-        input.setAttribute(ENHANCED_ATTR, "");
-
-        const btn = createMicButton();
-        bindMic(btn, input);
-
-        // Wrap the input + mic in a relative container so the mic sits inside.
-        // Works both standalone and inside .answer-field-group (training tasks),
-        // where the check button stays outside as a sibling.
-        const wrapper = document.createElement("span");
-        wrapper.className = "speech-input-wrap";
-        input.parentNode.insertBefore(wrapper, input);
-        wrapper.appendChild(input);
-        wrapper.appendChild(btn);
-    });
+    root.querySelectorAll(sel).forEach((input) => attachSpeechInput(input));
 }
+
+export { parseGermanNumberPhrase, parseGermanCardinalWord };
 
 /** Whether the browser supports speech recognition. */
 export const speechInputSupported = SUPPORTED;

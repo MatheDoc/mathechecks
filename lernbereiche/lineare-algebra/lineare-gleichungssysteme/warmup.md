@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
-page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
+page_css: /assets/css/warmup.css?v=20261108-fields
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/warmup.html
 ---
 

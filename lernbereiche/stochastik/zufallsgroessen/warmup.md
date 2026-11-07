@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: zufallsgroessen
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
+page_css: /assets/css/warmup.css?v=20261108-fields
 permalink: /lernbereiche/stochastik/zufallsgroessen/warmup.html
 ---
 

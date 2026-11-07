@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-module
 noindex: true
 published: true
-page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
+page_css: /assets/css/warmup.css?v=20261108-fields
 permalink: /warmup.html
 ---
 {% comment %}

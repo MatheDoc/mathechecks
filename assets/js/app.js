@@ -1,9 +1,9 @@
-import { initTrainingModule } from "./modules/training.js?v=20261103-xp-runs";
-import { initRecallModule } from "./modules/recall.js?v=20261103-xp-runs";
-import { initFeynmanModule } from "./modules/feynman.js?v=20261103-xp-runs";
+import { initTrainingModule } from "./modules/training.js?v=20261108-speech-preview";
+import { initRecallModule } from "./modules/recall.js?v=20261108-speech-preview";
+import { initFeynmanModule } from "./modules/feynman.js?v=20261108-speech-preview";
 import { initTestModule } from "./modules/test.js?v=20261103-xp-runs";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20261103-xp-runs";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261103-xp-runs";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261108-speech-preview";
 import { initCheckAnker } from "./modules/check-anker.js?v=20261025-abschoepfung-widget";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js?v=20261025-abschoepfung-widget";

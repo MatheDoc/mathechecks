@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: bedingte-wahrscheinlichkeiten
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261103-ohne-prototyp
+page_css: /assets/css/warmup.css?v=20261108-fields
 permalink: /lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/warmup.html
 ---
 

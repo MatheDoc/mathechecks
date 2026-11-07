@@ -14,7 +14,8 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 
 - Die obere Leiste steuert genau eine aktive Eingabehilfe über ein gemeinsames Modus-Dropdown.
 - Sichtbare Modusnamen sind aktuell `Standard`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
-- Rechts in der oberen Leiste liegen nur globale Aktionen wie Standardansicht wiederherstellen und Schließen.
+- Die obere Leiste enthält keine globalen Aktions-Buttons. Ein- und Ausblenden des Rechners erfolgt über das Drei-Punkte-Menü der Topbar.
+- Ab 800 px Viewport-Breite ist der Rechner rechts unter der Topbar angedockt (Breite per Griff verstellbar), darunter Vollbild-Overlay unter der Topbar.
 - Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Standard-Menü betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`.
 - Der Wechsel eines solchen Unterwerkzeugs ändert nur die lokale Eingabehilfe im aktiven Panel, nicht die globale Rechner-Semantik.
 
@@ -25,6 +26,7 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 - Universeller Einstieg für normale Rechnungen, Gleichungen und Kommandos.
 - Bleibt der primäre Kanal für schnelle Eingabe.
 - Darf auch komplexere Ausdrücke enthalten, nicht nur reine Taschenrechner-Terme.
+- Hat eine Spracheingabe (Mikrofon im Feld), siehe Abschnitt „Spracheingabe“.
 
 ### 2. Ergebnisbereich
 
@@ -151,6 +153,17 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 - Ganzzahlige Matrixexponenten sind erlaubt, aber nur für quadratische Matrizen.
 - Dabei gilt insbesondere `A^0 = E`; negative ganzzahlige Exponenten laufen fachlich über die Inverse.
 - Matrixgleichungen mit freier Variable wie `x` sind ein separates späteres Thema und nicht Teil der aktuellen V1-Regel.
+
+## Spracheingabe
+
+- Nur im Main-Input (V1). Technik gemeinsam mit den Antwortfeldern (`assets/js/modules/ui/speech-input.js`), Übersetzung in `assets/js/calculator/speech.js`.
+- Gesprochene Mathematik wird wörtlich übersetzt und an der Cursorposition eingefügt, z. B. „drei mal x hoch zwei“ → `3*x^2`, „Klammer auf … Klammer zu“ → `( … )`.
+- Während des Sprechens zeigt eine graue Live-Vorschau im Feld den bereits übersetzten Term (z. B. `3*4 ✓`). Sie ist reine Anzeige; der Feldwert ändert sich erst mit dem Endergebnis.
+- Keine automatischen Klammern: „eins durch x plus eins“ → `1/x+1`. Einzige Ausnahme: Funktion mit genau einem Argument, „Sinus von dreißig“ → `sin(30)`, „Wurzel aus x“ → `sqrt(x)`. Für längere Argumente „Klammer auf/zu“ sprechen.
+- Ohne Signalwort wird nie ausgeführt. Abschließendes „check“, „ausrechnen“ oder „exe“ führt aus wie `EXE` und beendet die Aufnahme.
+- Einzelkommandos: „löschen“ leert den Main-Input, „zurück“ löscht ein Zeichen.
+- „gleich“ und „ist gleich“ sind das Zeichen `=`, keine Kommandos.
+- Andere Module steuern den Rechner nur über `window.CalculatorApi` (`insert`, `execute`, `clear`, `backspace`).
 
 ## Regel für neue Rechner-Features
 

@@ -7,7 +7,7 @@ import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js"
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
+import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";

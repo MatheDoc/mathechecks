@@ -166,7 +166,10 @@
         root.classList.toggle('calculator-open', shouldOpen);
         writeStorage(OPEN_STATE_KEY, shouldOpen ? '1' : '0');
         updateToggleButtons(shouldOpen);
-        if (shouldOpen !== wasOpen) notifyLayoutChange();
+        if (shouldOpen !== wasOpen) {
+            notifyLayoutChange();
+            window.dispatchEvent(new CustomEvent('calculator:visibility', { detail: { open: shouldOpen } }));
+        }
 
         if (!shouldOpen) {
             window.clearStoredCalculatorPopupState?.();

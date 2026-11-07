@@ -45,7 +45,11 @@ Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie durc
 Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:
 [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
-### 5. Google Analytics
+### 5. Spracheingabe
+
+Für Antwortfelder und den Taschenrechner steht eine optionale Spracheingabe über das Mikrofon-Symbol zur Verfügung. Sie nutzt die Spracherkennung Ihres Browsers. Je nach Browser wird die Sprachaufnahme dabei an den Browser-Anbieter (z. B. Google bei Chrome, Microsoft bei Edge, Apple bei Safari) übermittelt und dort in Text umgewandelt. MatheChecks selbst speichert keine Sprachaufnahmen. Die Spracheingabe startet nur, wenn Sie das Mikrofon-Symbol antippen und der Mikrofonnutzung zustimmen.
+
+### 6. Google Analytics
 
 Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
 Google Analytics wird ausschließlich zur statistischen Auswertung der Nutzung dieser Website eingesetzt. Ziel ist es, einen Überblick über die Häufigkeit von Seitenaufrufen und die allgemeine Nutzung der Website zu erhalten.
@@ -55,14 +59,14 @@ Die durch Google Analytics erhobenen Informationen werden in der Regel an Server
 Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:
 [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
-### 6. Einwilligung und Widerruf
+### 7. Einwilligung und Widerruf
 
 Ihre Auswahl wird im lokalen Speicher Ihres Browsers gespeichert, damit sie bei weiteren Besuchen berücksichtigt werden kann. Sie können Ihre Einwilligung zur Nutzung von Google Analytics jederzeit mit Wirkung für die Zukunft widerrufen oder ändern, indem Sie <a href="javascript:void(0);" onclick="return showCookieSettings();">die Tracking-Einstellungen erneut aufrufen</a>.
 
-### 7. Ihre Rechte
+### 8. Ihre Rechte
 
 Sie haben das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten sowie gegebenenfalls auf Berichtigung oder Löschung dieser Daten. Darüber hinaus haben Sie das Recht, eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft zu widerrufen.
 
-### 8. Änderung dieser Datenschutzerklärung
+### 9. Änderung dieser Datenschutzerklärung
 
 Diese Datenschutzerklärung kann bei Bedarf angepasst werden, um rechtliche Anforderungen oder Änderungen der Website zu berücksichtigen.

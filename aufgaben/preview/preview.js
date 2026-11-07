@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20261025-markt-vertiefung";
+import { renderTask } from "../runtime/task-render.js?v=20261108-speech-preview";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

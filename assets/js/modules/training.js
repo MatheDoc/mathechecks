@@ -14,13 +14,13 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261025-markt-vertiefung";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261108-speech-preview";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
 import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
