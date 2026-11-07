@@ -25,6 +25,8 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |
 
+**Private Ordner:** `muster-pruefungen/` und `klausuren/` sind eigene private Git-Repos (`MatheDoc/muster-pruefungen`, `MatheDoc/klausuren`), die in diese Ordner geklont werden. Sie sind im Hauptrepo gitignored und in `_config.yml` von Jekyll ausgeschlossen. Auf einem neuen Rechner nach dem Klonen des Hauptrepos: `git clone https://github.com/MatheDoc/muster-pruefungen.git` und `git clone https://github.com/MatheDoc/klausuren.git` im Repo-Wurzelverzeichnis ausführen.
+
 
 ## Beispiele
 
