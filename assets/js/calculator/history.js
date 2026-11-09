@@ -63,7 +63,7 @@
             inputButton.type = 'button';
             inputButton.className = 'calculator-history__input';
             inputButton.textContent = entry.input;
-            inputButton.title = 'Rechnung erneut in die Eingabe übernehmen';
+            inputButton.title = 'In Eingabe übernehmen';
             inputButton.addEventListener('click', () => window.CalculatorApi?.setInput(entry.input));
 
             const results = document.createElement('div');
@@ -73,7 +73,7 @@
                 values.forEach(({ label, value }) => {
                     const chip = createChip(
                         label ? `${label}=${value}` : value,
-                        'Ins markierte Antwortfeld übernehmen (ohne Antwortfeld: in die Eingabe)',
+                        'In Antwortfeld übernehmen',
                         () => {
                             if (window.CalculatorAnswerTarget?.transfer(value, chip)) return;
                             window.CalculatorApi?.insert(value);

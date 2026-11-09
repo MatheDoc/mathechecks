@@ -482,7 +482,7 @@ function renderFeynmanTaskMarkup(entry, cardAnchorId, aiAccess = null) {
         <li class="qa-item fy-question-item" data-fy-question-item data-fy-question-nr="${sourceIndex + 1}" data-question="${escapeHtml(questionText)}" data-answer="${escapeHtml(targetText)}">
           <div class="frage">${questionHtml}</div>
           <div class="fy-response-cell">
-              <textarea class="fy-explain-input answer-input" id="${escapeHtml(inputId)}" rows="1" maxlength="900" data-fy-response-slot="${sourceIndex}" aria-label="Erklärung zu Teilfrage ${sourceIndex + 1}" placeholder="Erkläre deinen Lösungsweg Schritt für Schritt ..."></textarea>
+              <textarea class="fy-explain-input answer-input" id="${escapeHtml(inputId)}" rows="1" maxlength="900" data-fy-response-slot="${sourceIndex}" aria-label="Erklärung zu Teilfrage ${sourceIndex + 1}" placeholder="Erklärung"></textarea>
             <div class="task-feedback fy-inline-feedback" data-fy-feedback hidden></div>
           </div>
         </li>

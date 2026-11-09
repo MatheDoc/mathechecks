@@ -340,7 +340,7 @@
 .check-card__runtime-task {
     --mc-answer-field-width: 104px;
     --mc-answer-field-radius: 10px;
-    --mc-answer-placeholder-color: color-mix(in srgb, var(--text-muted, #6b7280) 78%, var(--text, #253043) 22%);
+    --mc-answer-placeholder-color: var(--field-placeholder, color-mix(in srgb, var(--text-muted, #6b7280) 78%, var(--text, #253043) 22%));
     --mc-answer-placeholder-opacity: .78;
 }
 
@@ -898,7 +898,8 @@ html.light .check-card__runtime-task {
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--field-accent) 14%, transparent);
 }
 
-.check-card__runtime-task .answer-input::placeholder {
+.check-card__runtime-task .answer-input::placeholder,
+.check-card__runtime-task .answer-numopt-input::placeholder {
     color: var(--mc-answer-placeholder-color);
     font-weight: 400;
     opacity: var(--mc-answer-placeholder-opacity);
@@ -965,6 +966,8 @@ html.light .check-card__runtime-task {
     background: var(--field-bg, var(--card-surface-2, #181824));
     color: var(--text);
     box-sizing: border-box;
+    outline: none;
+    transition: border-color 200ms, box-shadow 200ms;
 }
 
 .check-card__runtime-task .answer-numopt-label {

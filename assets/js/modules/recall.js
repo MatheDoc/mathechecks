@@ -197,7 +197,7 @@ function renderCueItemsMarkup(items, cardAnchorId) {
         <div class="recall-cue-item recall-tipp" data-recall-cue-item data-cue="${escapeHtml(item.cue)}" data-response="${escapeHtml(item.response)}">
           <label class="recall-cue-item__label recall-tipp__cue" for="${inputId}">${label}</label>
           <div class="recall-response-cell">
-            <textarea class="recall-input-slot answer-input" id="${inputId}" rows="1" maxlength="240" data-recall-slot="${index}" placeholder="Deine Antwort ..."></textarea>
+            <textarea class="recall-input-slot answer-input" id="${inputId}" rows="1" maxlength="240" data-recall-slot="${index}" placeholder="Tipp"></textarea>
             <div class="task-feedback recall-inline-feedback" data-recall-feedback hidden></div>
             <div class="solution recall-inline-solution" data-recall-solution hidden><span class="solution-badge">${solutionText}</span></div>
             <button class="answer-reveal-request" type="button" data-recall-show-solution hidden>Lösung anzeigen</button>

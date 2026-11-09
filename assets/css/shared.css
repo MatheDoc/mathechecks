@@ -2,7 +2,7 @@
    MatheChecks – Shared Design System
    ═══════════════════════════════════════════════════════════════ */
 
-@import "../../../aufgaben/runtime/task-render.css?v=20261108-fields";
+@import "../../../aufgaben/runtime/task-render.css?v=20261109-numopt-focus";
 @import "./task-completion.css?v=20260908-run-rate";
 @import "./cards.css?v=20260925-session-scope-mono";
 @import "./dashboard.css?v=20260721-date-picker-cursor";
@@ -108,7 +108,9 @@ html.light {
   --panel-solid: #ffffff;
   --card-surface-1: rgba(255, 255, 255, 0.985);
   --card-surface-2: rgba(252, 253, 255, 0.975);
+  --field-bg: var(--card-surface-2);
   --field-border: rgba(0, 0, 0, 0.14);
+  --field-placeholder: color-mix(in srgb, var(--text-muted) 78%, var(--text) 22%);
   --nav-rail-bg: #f1f2f8;
   --nav-tab-bg: rgba(0, 0, 0, 0.06);
   --nav-tab-bg-active: #ffffff;
@@ -3215,7 +3217,6 @@ html.light .recall-list--user .recall-list__item {
   color: var(--text);
   outline: none;
   transition: border-color 200ms, box-shadow 200ms;
-  -webkit-text-fill-color: var(--text);
   resize: none;
   overflow: hidden;
 }
