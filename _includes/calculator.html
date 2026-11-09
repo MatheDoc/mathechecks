@@ -13,7 +13,8 @@
                             <select id="calculatorModeSelect"
                                 class="calculator-mode-select calculator-mode-select--compact"
                                 aria-label="Eingabehilfe wählen, aktuell Standard">
-                                <option value="basic" selected>Standard</option>
+                                <option value="history" selected>Verlauf</option>
+                                <option value="basic">Bausteine</option>
                                 <option value="lgs">Gleichungssystem</option>
                                 <option value="binom">Binomialverteilung</option>
                                 <option value="graph">Graph</option>
@@ -25,8 +26,21 @@
                     <div class="calculator-menu-window">
                         <div class="calculator-panel-window">
                             <div class="calculator-panels">
-                                <section class="calculator-panel is-active" data-panel="basic"
-                                    aria-label="Standardrechner">
+                                <section class="calculator-panel is-active" data-panel="history"
+                                    aria-label="Verlauf">
+                                    <div class="calculator-history" id="calculatorHistory">
+                                        <button type="button" class="calculator-history__clear"
+                                            id="calculatorHistoryClear" hidden>Verlauf leeren</button>
+                                        <p class="calculator-history__empty" id="calculatorHistoryEmpty">
+                                            Noch keine Rechnungen. Funktionen wie sin, Bruch oder Int findest du
+                                            oben unter „Bausteine“.
+                                        </p>
+                                        <ol class="calculator-history__list" id="calculatorHistoryList"></ol>
+                                    </div>
+                                </section>
+
+                                <section class="calculator-panel" data-panel="basic"
+                                    aria-label="Bausteine">
                                     <div class="standard-tool-layout">
                                         <div class="standard-tool-overview" id="standardToolOverview">
                                             <button type="button" class="standard-tool-grid-button"
@@ -552,16 +566,9 @@
                     </div>
 
                     <section class="calculator-output" aria-live="polite">
+                        <div class="calculator-echo" id="calculatorEcho" aria-hidden="true"></div>
                         <div class="result-row">
                             <div class="result-display" id="resultDisplay">0</div>
-                            <button class="copy-result" id="copyResultButton" type="button"
-                                aria-label="Ergebnis kopieren" title="Ergebnis kopieren">
-                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path
-                                        d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" />
-                                </svg>
-                                <span class="copy-check" aria-hidden="true">✓</span>
-                            </button>
                         </div>
                         <div class="calculator-output-body">
                             <div id="calculatorTextOutput" class="calculator-output-text"></div>
@@ -577,35 +584,37 @@
 
                     <div class="calculator-keypad" aria-label="Gemeinsame Rechentastatur">
                         <div class="buttons buttons--shared">
-                            <button type="button" data-action="clear">C</button>
-                            <button type="button" data-insert="x">x</button>
-                            <button type="button" data-insert="e">e</button>
-                            <button type="button" data-insert="^">^</button>
-                            <button type="button" data-action="backspace">⌫</button>
-                            <button type="button" data-insert="=">=</button>
-                            <button type="button" data-insert="π">π</button>
+                            <button type="button" class="calc-key--fn" data-insert="x">x</button>
+                            <button type="button" class="calc-key--fn" data-insert="=">=</button>
+                            <button type="button" class="calc-key--ctl" data-action="clear"
+                                aria-label="Eingabe löschen">C</button>
+                            <button type="button" class="calc-key--ctl" data-action="backspace"
+                                aria-label="Letztes Zeichen löschen">⌫</button>
 
-                            <button type="button" data-insert="/">÷</button>
+                            <button type="button" class="calc-key--fn" data-insert="π">π</button>
+                            <button type="button" class="calc-key--fn" data-insert="e">e</button>
+                            <button type="button" class="calc-key--fn" data-insert="^">^</button>
+                            <button type="button" class="calc-key--op" data-insert="/">÷</button>
 
                             <button type="button" data-insert="7">7</button>
                             <button type="button" data-insert="8">8</button>
                             <button type="button" data-insert="9">9</button>
-                            <button type="button" data-insert="*">×</button>
+                            <button type="button" class="calc-key--op" data-insert="*">×</button>
 
                             <button type="button" data-insert="4">4</button>
                             <button type="button" data-insert="5">5</button>
                             <button type="button" data-insert="6">6</button>
-                            <button type="button" data-insert="-">−</button>
+                            <button type="button" class="calc-key--op" data-insert="-">−</button>
 
                             <button type="button" data-insert="1">1</button>
                             <button type="button" data-insert="2">2</button>
                             <button type="button" data-insert="3">3</button>
-                            <button type="button" data-insert="+">+</button>
+                            <button type="button" class="calc-key--op" data-insert="+">+</button>
 
-                            <button type="button" data-insert="()">( )</button>
+                            <button type="button" class="calc-key--fn" data-insert="()">( )</button>
                             <button type="button" data-insert="0">0</button>
                             <button type="button" data-insert=",">,</button>
-                            <button type="button" data-action="execute">EXE</button>
+                            <button type="button" class="calc-key--exe" data-action="execute">EXE</button>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
         lgsVariables: 2,
         lgsEquations: 2,
         ans: '',
-        activeMode: 'basic',
+        activeMode: 'history',
         standardToolView: 'overview',
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
@@ -224,7 +224,8 @@
 
     function getModeDefinitions() {
         return {
-            basic: { icon: '∑', label: 'Standard' },
+            history: { icon: '↺', label: 'Verlauf' },
+            basic: { icon: '∑', label: 'Bausteine' },
             lgs: { icon: '▦', label: 'Gleichungssystem' },
             binom: { icon: '◎', label: 'Binomialverteilung' },
             graph: { icon: '↗', label: 'Graph' },
@@ -233,7 +234,7 @@
     }
 
     function getModeDefinition(mode = state.activeMode) {
-        return getModeDefinitions()[mode] || getModeDefinitions().basic;
+        return getModeDefinitions()[mode] || getModeDefinitions().history;
     }
 
     function updateModePicker(mode = state.activeMode) {
@@ -467,6 +468,8 @@
         emitInputEvent(target);
         if (target === getMainInput()) {
             outputApi.setText('0', { headline: 'Bereit' });
+            setEcho('');
+            window.dispatchEvent(new CustomEvent('calculator:cleared'));
             markResultFresh('');
         }
     }
@@ -488,7 +491,7 @@
     }
 
     function setMode(mode, { focus = true } = {}) {
-        state.activeMode = getModeDefinitions()[mode] ? mode : 'basic';
+        state.activeMode = getModeDefinitions()[mode] ? mode : 'history';
         if (state.activeMode !== 'graph' && state.graphPreviewTimeoutId !== null) {
             window.clearTimeout(state.graphPreviewTimeoutId);
             state.graphPreviewTimeoutId = null;
@@ -509,6 +512,10 @@
         if (!focus) return;
 
         queueMicrotask(() => {
+            if (state.activeMode === 'history') {
+                focusMainInputForCurrentDevice();
+                return;
+            }
             if (state.activeMode === 'basic') {
                 setStandardToolView('overview', { focus: false });
                 focusMainInputForCurrentDevice();
@@ -733,6 +740,7 @@
                 resultDisplay.textContent = text;
             }
             state.ans = text;
+            state.lastResult = { kind: 'text', text: String(text ?? ''), headline: options.headline || '' };
         },
 
         setMatrix(matrix) {
@@ -752,6 +760,7 @@
                 resultDisplay.appendChild(CalculatorCommands.renderMatrixGrid(matrix));
             }
             state.ans = CalculatorCommands.matSerialize(matrix);
+            state.lastResult = { kind: 'matrix', text: state.ans, headline: 'Matrix' };
         },
 
         setGraph({ targetId, funktionen, optionen, pointsHtml, panelFields, resultText = 'Graph' }) {
@@ -771,6 +780,7 @@
                 if (resultDisplay) resultDisplay.textContent = 'Graphfehler';
             }
             state.ans = '';
+            state.lastResult = { kind: 'graph', text: resultText, headline: 'Graph' };
         },
     };
 
@@ -1159,35 +1169,69 @@
         emitInputEvent(input);
     }
 
+    const RESULT_NUMBER_PATTERN = /^-?\d+(?:,\d+)?(?:E[+-]\d+)?$/;
+
+    // Zerlegt ein Kurzresultat in übertragbare Zahlenwerte, z. B. "x₁=3, x₂=-2,5" -> [{label: "x₁", value: "3"}, …].
+    function extractResultValues(result) {
+        if (!result || result.kind !== 'text') return [];
+        if (['Fehler', 'Bereit'].includes(result.headline)) return [];
+        return result.text
+            .split(/,\s+/)
+            .map((part) => {
+                const separator = part.lastIndexOf('=');
+                const label = separator >= 0 ? part.slice(0, separator).trim() : '';
+                const value = (separator >= 0 ? part.slice(separator + 1) : part).trim().replace(/−/g, '-');
+                return { label, value };
+            })
+            .filter(({ value }) => RESULT_NUMBER_PATTERN.test(value));
+    }
+
+    function setEcho(text) {
+        const echo = byId('calculatorEcho');
+        if (echo) echo.textContent = text || '';
+    }
+
     function executeMainInput() {
         const mainInput = getMainInput();
         if (!mainInput) return;
-        CalculatorCommands.execute(mainInput.value || '0', outputApi);
+        const input = String(mainInput.value || '').trim() || '0';
+        state.lastResult = null;
+        CalculatorCommands.execute(input, outputApi);
         markResultFresh(mainInput.value || '');
+
+        const result = state.lastResult;
+        if (!result || result.kind === 'graph') {
+            setEcho('');
+            return;
+        }
+        setEcho(input);
+        window.dispatchEvent(new CustomEvent('calculator:result', {
+            detail: {
+                input,
+                text: result.text,
+                headline: result.headline,
+                kind: result.kind,
+                isError: result.headline === 'Fehler' || /^Fehler/.test(result.text),
+                values: extractResultValues(result),
+            },
+        }));
     }
 
-    function copyResult() {
-        const calculator = getCalculator();
-        const resultDisplay = byId('resultDisplay');
-        const textOutput = byId('calculatorTextOutput');
-        const mainInput = getMainInput();
-        const visibleResult = resultDisplay && getComputedStyle(resultDisplay).display !== 'none'
-            ? resultDisplay.textContent?.trim()
-            : '';
-        const visibleDetail = textOutput?.classList.contains('is-active') ? textOutput.textContent?.trim() : '';
-        const fallback = mainInput?.value?.trim() || '';
-        const graphCommand = getGraphCommandFromPanel();
-        const resultText = calculator?.dataset.activeMode === 'graph'
-            ? graphCommand
-            : state.ans || visibleResult || visibleDetail || fallback;
-        if (!resultText) return;
-        navigator.clipboard?.writeText(resultText);
-        const button = byId('copyResultButton');
-        if (!button) return;
-        button.classList.remove('copied');
-        void button.offsetWidth;
-        button.classList.add('copied');
-        window.setTimeout(() => button.classList.remove('copied'), 1200);
+    // "pi" als eigenständiges Wort sofort als π anzeigen (Rechnung ist identisch).
+    function replacePiWord(input) {
+        const value = String(input.value || '');
+        if (!/pi/i.test(value)) return;
+        const pattern = /(^|[^a-zA-Z_])pi(?![a-zA-Z_])/gi;
+        const caret = Number.isInteger(input.selectionStart) ? input.selectionStart : value.length;
+        let removedBeforeCaret = 0;
+        const next = value.replace(pattern, (match, lead, offset) => {
+            if (offset + match.length <= caret) removedBeforeCaret += 1;
+            return `${lead}π`;
+        });
+        if (next === value) return;
+        input.value = next;
+        const nextCaret = caret - removedBeforeCaret;
+        applySelectionState(input, nextCaret, nextCaret);
     }
 
     // --- Matrizen-Panel ---
@@ -1435,7 +1479,6 @@
             }
         });
 
-        byId('copyResultButton')?.addEventListener('click', copyResult);
 
         getMainInput()?.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
@@ -1447,6 +1490,11 @@
         getMainInput()?.addEventListener('input', () => {
             syncResultStaleState();
         });
+
+        document.querySelector('#calculator-overlay')?.addEventListener('input', (event) => {
+            const input = getCalculatorTextInput(event.target);
+            if (input && !event.isComposing) replacePiWord(input);
+        }, true);
 
         byId('lgsMatrix')?.addEventListener('input', () => {
             syncLGSCommandPreview();
@@ -1611,6 +1659,12 @@
     window.CalculatorApi = {
         insert(text) {
             insertIntoMainInput(String(text || ''));
+        },
+        setInput(text) {
+            setMainInputValue(String(text || ''), { focusMainInput: true });
+        },
+        getInput() {
+            return String(getMainInput()?.value || '');
         },
         execute() {
             executeMainInput();

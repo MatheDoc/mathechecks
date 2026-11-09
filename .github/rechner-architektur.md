@@ -13,10 +13,12 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 ## Aktuelle Bedienform
 
 - Die obere Leiste steuert genau eine aktive Eingabehilfe über ein gemeinsames Modus-Dropdown.
-- Sichtbare Modusnamen sind aktuell `Standard`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
+- Sichtbare Modusnamen sind aktuell `Verlauf` (Standard beim ersten Öffnen), `Bausteine`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
 - Die obere Leiste enthält keine globalen Aktions-Buttons. Ein- und Ausblenden des Rechners erfolgt über das Drei-Punkte-Menü der Topbar.
 - Ab 800 px Viewport-Breite ist der Rechner rechts unter der Topbar angedockt (Breite per Griff verstellbar), darunter Vollbild-Overlay unter der Topbar.
-- Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Standard-Menü betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`.
+- Tastenfeld (4 Spalten): `x = C ⌫` / `π e ^ ÷` / Ziffernblock mit Operatoren rechts / `( ) 0 , EXE`. `=` ist das Gleichungszeichen und steht bewusst weit weg von `EXE`. Alle Tasten haben dieselbe Fläche; hervorgehoben sind nur die Operatoren (Textfarbe) und EXE (farbige Hauptaktion).
+- Angedockt wachsen Tasten und Schrift mit der Rechnerhöhe (Container-Query); mobil bleiben die Größen fest.
+- Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Menü `Bausteine` (intern `basic`) betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`. „Bausteine“ statt „Funktionen“, weil dort auch Nicht-Funktionen wie `Bruch` oder `Int` liegen.
 - Der Wechsel eines solchen Unterwerkzeugs ändert nur die lokale Eingabehilfe im aktiven Panel, nicht die globale Rechner-Semantik.
 
 ## Drei Kernbereiche
@@ -26,6 +28,9 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 - Universeller Einstieg für normale Rechnungen, Gleichungen und Kommandos.
 - Bleibt der primäre Kanal für schnelle Eingabe.
 - Darf auch komplexere Ausdrücke enthalten, nicht nur reine Taschenrechner-Terme.
+- Schlanke Code-Schreibweise (`x^2`, `sqrt(…)`, `int(…)`), keine hochgestellten Zeichen oder Integralsymbole. Grafische Hilfen gibt es nur in den Builder-Menüs hinter den Funktionstasten.
+- `pi` wird beim Tippen sofort als `π` angezeigt.
+- ↑/↓ blättern durch frühere Eingaben (Verlauf).
 - Hat eine Spracheingabe (Mikrofon im Feld), siehe Abschnitt „Spracheingabe“.
 
 ### 2. Ergebnisbereich
@@ -33,8 +38,15 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 - Zeigt kompakte Kurzresultate.
 - Darf Zahlenwerte, kurze Lösungen und kurze Statusmeldungen enthalten.
 - Ist keine allgemeine Ausgabefläche für große visuelle oder mehrschrittige Ergebnisse.
-- Die erste sichtbare Zeile bleibt eine kompakte Einzelzeile; eine Kopieraktion für das Kurzresultat ist dort sinnvoll.
+- Die erste sichtbare Zeile bleibt eine kompakte Einzelzeile. Statt einer Kopieraktion gibt es Verlauf und Übernahme in Antwortfelder.
 - Längere Hinweise dürfen darunter erscheinen, ersetzen aber nicht die eigentliche Panel-Ausgabe.
+- Über dem Ergebnis steht klein die ausgeführte Rechnung (ohne angehängtes `=`, da Gleichungen selbst ein `=` enthalten).
+
+### Verlauf und Übernahme in Antwortfelder
+
+- Jede erfolgreiche Ausführung landet im Verlauf (`assets/js/calculator/history.js`, pro Gerät, max. 20). Der Verlauf ist ein eigener Menüpunkt und beim ersten Öffnen aktiv. Die neueste Rechnung steht unten, direkt über Ergebnis und Eingabe. Klick auf die Rechnung setzt sie wieder in den Main-Input.
+- Übernahme (`assets/js/calculator/answer-transfer.js`): Ziel ist das zuletzt angeklickte Antwortfeld. Bei offenem Rechner trägt es oben links ein kleines 🧮-Abzeichen, der Rahmen bleibt unverändert. Jeder Wert-Chip im Verlauf (`x₁=3, x₂=5` → zwei Chips) schreibt den angezeigten Wert ins Zielfeld; ohne Zielfeld geht er in den Main-Input. Kurze Antwortfelder werden ersetzt, Freitextfelder (Recall, Feynman) bekommen den Wert an der Cursorposition.
+- Kopplung nur über Ereignisse: `calculator:result` (Eingabe, Text, Werte) und `calculator:cleared`.
 
 Typische Inhalte:
 
@@ -56,7 +68,7 @@ Builder-Menüs helfen beim Erzeugen oder Verstehen einer Eingabe, sind aber nich
 
 Aktuell:
 
-- Standard
+- Bausteine
 - Binom
 - LGS
 - Matrizen
@@ -163,7 +175,7 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 - Ohne Signalwort wird nie ausgeführt. Abschließendes „check“, „ausrechnen“ oder „exe“ führt aus wie `EXE` und beendet die Aufnahme.
 - Einzelkommandos: „löschen“ leert den Main-Input, „zurück“ löscht ein Zeichen.
 - „gleich“ und „ist gleich“ sind das Zeichen `=`, keine Kommandos.
-- Andere Module steuern den Rechner nur über `window.CalculatorApi` (`insert`, `execute`, `clear`, `backspace`).
+- Andere Module steuern den Rechner nur über `window.CalculatorApi` (`insert`, `setInput`, `getInput`, `execute`, `clear`, `backspace`).
 
 ## Regel für neue Rechner-Features
 
