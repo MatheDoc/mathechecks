@@ -736,6 +736,33 @@ html.calculator-resizing * {
     justify-self: start;
 }
 
+.calculator-topbar__close {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: color-mix(in srgb, var(--textfarbe) 65%, transparent);
+    cursor: pointer;
+    transition: background 0.14s, color 0.14s;
+}
+
+.calculator-topbar__close:hover,
+.calculator-topbar__close:focus-visible {
+    background: var(--kopfzeile-steuerung-hintergrund);
+    color: var(--textfarbe);
+}
+
+.calculator-topbar__close svg {
+    width: 20px;
+    height: 20px;
+}
+
 .calculator-mode-picker--compact {
     min-height: 0;
     border: 0;

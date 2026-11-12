@@ -194,6 +194,8 @@
         menuButton.addEventListener('click', () => toggleCalculatorOverlay());
     }
 
+    document.getElementById('calculatorCloseBtn')?.addEventListener('click', () => toggleCalculatorOverlay(false));
+
     syncTop();
     syncWidth();
     bindResizer();

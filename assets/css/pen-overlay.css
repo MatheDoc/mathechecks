@@ -18,9 +18,9 @@
 #pen-toolbar {
   position: fixed;
   right: calc(14px + var(--calculator-dock-offset, 0px));
-  /* unterhalb Topbar + Modul-Tab-Nav + optionaler Check-Nav */
+  /* unterhalb Topbar + Modul-Tab-Nav + optionaler Check-Nav (im Vollbild alle 0) */
   top: calc(
-    var(--sticky-topbar-h, 72px)
+    var(--module-top-row-h, var(--sticky-topbar-h, 72px))
     + var(--module-tab-nav-h, 52px)
     + var(--module-check-nav-h, 0px)
     + 24px
@@ -76,8 +76,9 @@
 #pen-btn-delete-sel svg,
 #pen-btn-clear svg { width: 17px; height: 17px; }
 
-/* ── Toggle (immer sichtbar) ── */
-#pen-btn-toggle {
+/* ── Toggle + Vollbild (immer sichtbar) ── */
+#pen-btn-toggle,
+#pen-toolbar .pen-fullscreen-btn {
   width: 44px;
   height: 44px;
   font-size: 18px;
@@ -128,6 +129,14 @@
 .pen-tool:nth-child(16) { transition-delay: 135ms; }
 .pen-tool:nth-child(17) { transition-delay: 137ms; }
 .pen-tool:nth-child(18) { transition-delay: 139ms; }
+
+/* ── Vollbild-Button: über dem Stift-Toggle, gleiche Optik; je nach Zustand Ein- oder Ausstieg ── */
+.pen-fullscreen-btn {
+  order: -1;
+}
+
+body.module-fullscreen #fullscreenEnterBtn,
+body:not(.module-fullscreen) #fullscreenExitBtn { display: none; }
 
 /* ── Laserstift: Icon in Leuchtfarbe ── */
 #pen-btn-laser { color: #ff4a26; }
@@ -268,7 +277,8 @@ html.light #pen-btn-toggle.active {
 
   .pen-fab svg { width: 18px; height: 18px; }
 
-  #pen-btn-toggle {
+  #pen-btn-toggle,
+  #pen-toolbar .pen-fullscreen-btn {
     width: 40px;
     height: 40px;
   }
@@ -288,9 +298,14 @@ html.light #pen-btn-toggle.active {
 
 /* ── Mobile ── */
 @media (max-width: 680px) {
+  /* Stift ist mobil aus; die Leiste bleibt nur für den Vollbild-Button sichtbar */
   #pen-toolbar {
     right: 8px;
     gap: 5px;
+  }
+
+  #pen-btn-toggle,
+  #pen-toolbar .pen-tool {
     display: none;
   }
 
@@ -300,10 +315,9 @@ html.light #pen-btn-toggle.active {
     font-size: 13px;
   }
 
-  #pen-btn-toggle {
+  #pen-toolbar .pen-fullscreen-btn {
     width: 40px;
     height: 40px;
-    font-size: 16px;
   }
 
   .pen-color-dot {

@@ -46,6 +46,16 @@
   <button class="pen-fab pen-tool"  id="pen-btn-clear"      title="Alles löschen">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
   </button>
+
+  <!-- Vollbild: steht per CSS (order) über dem Stift-Toggle; als letztes Kind, damit die nth-child-Staffelung der Werkzeuge stimmt -->
+  <button class="pen-fab pen-fullscreen-btn" id="fullscreenEnterBtn" data-fullscreen-enter="true" type="button"
+    aria-label="Vollbild: Leisten ausblenden" title="Vollbild">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+  </button>
+  <button class="pen-fab pen-fullscreen-btn" id="fullscreenExitBtn" data-fullscreen-exit="true" type="button"
+    aria-label="Vollbild beenden: Leisten einblenden" title="Vollbild beenden">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+  </button>
 </div>
 
 <div id="pen-lasso-hint" role="status" aria-live="polite"></div>
