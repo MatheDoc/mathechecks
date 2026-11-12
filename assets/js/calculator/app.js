@@ -1180,7 +1180,9 @@
             .map((part) => {
                 const separator = part.lastIndexOf('=');
                 const label = separator >= 0 ? part.slice(0, separator).trim() : '';
-                const value = (separator >= 0 ? part.slice(separator + 1) : part).trim().replace(/−/g, '-');
+                let value = (separator >= 0 ? part.slice(separator + 1) : part).trim().replace(/−/g, '-');
+                // Tausenderpunkte (5.518) entfernen, damit der Wert als Zahl übernommen werden kann.
+                if (/^-?\d{1,3}(?:\.\d{3})+(?:,\d+)?$/.test(value)) value = value.replace(/\./g, '');
                 return { label, value };
             })
             .filter(({ value }) => RESULT_NUMBER_PATTERN.test(value));
