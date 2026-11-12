@@ -1,0 +1,127 @@
+# Warm-Up zu Check 07 „Sondertilgung & Tilgungspause“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__07
+abschluss: '<p>Erst die Restschuld zum Zeitpunkt des Ereignisses bestimmen (Sondertilgung: minus Sonderbetrag, Tilgungspause: bleibt gleich), dann wie ein neues Darlehen weiterrechnen: Laufzeit fest → $A_{\text{neu}}$ mit der Restlaufzeit, Annuität fest → Laufzeit über $A=T_1''\cdot q^n$.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Ein Ereignis, dann neu starten'
+    text: '<p>Lisa zahlt ein Annuitätendarlehen über $10$ Jahre zu $5\,\%$ zurück. Nach $4$ Jahren beträgt ihre Restschuld $RK_4=20\,000$ €. Jetzt passiert etwas Außerplanmäßiges.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Sondertilgung:</strong> Zusammen mit der 4. Annuität zahlt Lisa zusätzlich $5\,000$ €.'
+        knopf: 'Restschuld zeigen'
+        text: '<p>Der Sonderbetrag geht komplett in die Tilgung. Die Restschuld sinkt sofort auf $20\,000-5\,000=15\,000$ €.</p>'
+      - typ: aufdecken
+        frage: '<strong>Tilgungspause:</strong> Stattdessen zahlt Lisa im 5. Jahr nur die Zinsen.'
+        knopf: 'Restschuld zeigen'
+        text: '<p>Sie zahlt $Z_5=20\,000\cdot 0{,}05=1\,000$ €. Getilgt wird nichts, die Restschuld bleibt bei $20\,000$ €.</p>'
+      - typ: aufdecken
+        frage: 'Und danach?'
+        knopf: 'Zwei Möglichkeiten'
+        text: '<p>Die aktuelle Restschuld ist das neue $K_0$. Dann gilt entweder:</p><ul><li><strong>Laufzeit fest</strong> → neue Annuität mit der Restlaufzeit $n$: $$A_{\text{neu}}=\frac{K_0\cdot q^n\cdot(q-1)}{q^n-1}$$</li><li><strong>Annuität fest</strong> → neue Laufzeit: $T_1''=A-K_0\cdot\frac{p}{100}$ und $$A=T_1''\cdot q^n$$</li></ul>'
+      - typ: auswahl
+        frage: 'Ohne Pause hätte Lisa nach dem 4. Jahr noch $6$ Jahre gezahlt. Nach der Pause zahlt sie die alte Annuität weiter. Wie lange dauert die Rückzahlung nach dem Pausenjahr noch?'
+        optionen:
+          - '$6$ Jahre'
+          - '$5$ Jahre'
+          - '$7$ Jahre'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Nach der Pause sind Restschuld und Annuität genau wie vor der Pause.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>Sondertilgung: Die Restschuld sinkt um den Sonderbetrag. Tilgungspause: Die Restschuld bleibt gleich.</li><li>Danach rechnest du mit der Restschuld wie mit einem neuen Darlehen.</li></ul>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Sondertilgung'
+    text: '<p><em>Ein Fahrradladen nimmt ein Annuitätendarlehen über $100\,000$ € zu $4\,\%$ mit einer Laufzeit von $15$ Jahren auf; die Annuität beträgt $8\,994{,}11$ €. Zusammen mit der 5. Annuität leistet er eine Sondertilgung von $20\,000$ €.</em></p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Zuerst die Restschuld nach 5 Jahren, vor und nach der Sondertilgung.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}RK_5&=100\,000\cdot 1{,}04^5\\&\quad-\frac{8\,994{,}11\cdot(1{,}04^5-1)}{0{,}04}\\&\approx 72\,950{,}29\,\text{€}\end{align*}$$<p>Nach der Sondertilgung: $72\,950{,}29-20\,000=52\,950{,}29$ €.</p>'
+      - typ: auswahl
+        frage: 'Die Gesamtlaufzeit von 15 Jahren bleibt. Mit welchem $n$ berechnest du $A_{\text{neu}}$?'
+        optionen:
+          - '$n=10$'
+          - '$n=15$'
+          - '$n=11$'
+        mischen: false
+        korrekt: 0
+        hinweis: '5 Jahre sind bezahlt. Es bleiben die Jahre 6 bis 15.'
+        danach: '$$\begin{align*}A_{\text{neu}}&=\frac{52\,950{,}29\cdot 1{,}04^{10}\cdot 0{,}04}{1{,}04^{10}-1}\\&\approx 6\,528{,}29\,\text{€}\end{align*}$$'
+      - typ: auswahl
+        frage: 'Stattdessen bleibt die Annuität. Wie groß ist die Tilgung $T_1''$ im ersten Jahr nach der Sondertilgung?'
+        optionen:
+          - '$8\,994{,}11-52\,950{,}29\cdot 0{,}04$'
+          - '$8\,994{,}11-72\,950{,}29\cdot 0{,}04$'
+          - '$8\,994{,}11-100\,000\cdot 0{,}04$'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Zinsen fallen nur noch auf die verringerte Restschuld an.'
+        danach: '$$\begin{align*}T_1''&\approx 6\,876{,}10\,\text{€}\\ 8\,994{,}11&=6\,876{,}10\cdot 1{,}04^n\\ 1{,}04^n&\approx 1{,}3080\\ n&=\frac{\ln 1{,}3080}{\ln 1{,}04}\approx 6{,}85\end{align*}$$<p>Ab der Sondertilgung dauert die Rückzahlung nur noch etwa $6{,}85$ statt $10$ Jahre.</p>'
+
+  - phase: vormachen
+    titel: 'Tilgungspause'
+    text: '<p><em>Derselbe Fahrradladen leistet keine Sondertilgung, sondern setzt im 6. Jahr die Tilgung aus und zahlt nur die Zinsen.</em> </p><p>Im 6. Jahr zahlt er nur die Zinsen auf $RK_5=72\,950{,}29$ €, also $Z_6=72\,950{,}29\cdot 0{,}04\approx 2\,918{,}01$ €. Die Restschuld bleibt bei $72\,950{,}29$ €.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Die Gesamtlaufzeit von 15 Jahren bleibt. Mit welchem $n$ berechnest du $A_{\text{neu}}$?'
+        optionen:
+          - '$n=9$'
+          - '$n=10$'
+          - '$n=15$'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Jahr 6 ist das Pausenjahr. Getilgt wird in den Jahren 7 bis 15.'
+        danach: '$$\begin{align*}A_{\text{neu}}&=\frac{72\,950{,}29\cdot 1{,}04^9\cdot 0{,}04}{1{,}04^9-1}\\&\approx 9\,811{,}30\,\text{€}\end{align*}$$<p>Die Annuität steigt, weil ein Tilgungsjahr fehlt.</p>'
+      - typ: aufdecken
+        frage: 'Stattdessen bleibt die Annuität. Wie lange dauert die Rückzahlung nach dem 6. Jahr noch?'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}T_1''&=8\,994{,}11-2\,918{,}01=6\,076{,}10\\ 1{,}04^n&=\frac{8\,994{,}11}{6\,076{,}10}\approx 1{,}4802\\ n&=\frac{\ln 1{,}4802}{\ln 1{,}04}\approx 10\end{align*}$$<p>Genau die $10$ Jahre, die vor der Pause noch offen waren. Die Gesamtlaufzeit verlängert sich auf $16$ Jahre.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt du: Sondertilgung'
+    text: '<p><em>Eine Bäckerei nimmt ein Annuitätendarlehen über $80\,000$ € zu $5\,\%$ mit einer Laufzeit von $10$ Jahren auf; die Annuität beträgt $10\,360{,}37$ €. Zusammen mit der 4. Annuität leistet sie eine Sondertilgung von $10\,000$ €.</em></p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne die Restschuld nach 4 Jahren vor und nach der Sondertilgung.'
+        felder:
+          - { label: 'vorher: $RK_4=$', loesung: 52586.01, toleranz: 1, einheit: '€' }
+          - { label: 'nachher:', loesung: 42586.01, toleranz: 1, einheit: '€' }
+        hinweis: 'Restschuldformel: $RK_4=80\,000\cdot 1{,}05^4-\frac{10\,360{,}37\cdot(1{,}05^4-1)}{0{,}05}$. Danach den Sonderbetrag abziehen.'
+      - typ: eingabe
+        frage: 'Die Gesamtlaufzeit von 10 Jahren bleibt. Berechne die neue Annuität.'
+        felder:
+          - { label: '$A_{\text{neu}}=$', loesung: 8390.19, toleranz: 1, einheit: '€' }
+        hinweis: 'Annuitätenformel mit $K_0=42\,586{,}01$ und der Restlaufzeit $n=6$ (Jahre 5 bis 10).'
+      - typ: eingabe
+        frage: 'Stattdessen bleibt die Annuität. Wie viele Jahre dauert die Rückzahlung ab der Sondertilgung noch? Runde auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$n\approx$', loesung: 4.72, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$T_1''=10\,360{,}37-42\,586{,}01\cdot 0{,}05\approx 8\,231{,}07$, dann $10\,360{,}37=T_1''\cdot 1{,}05^n$ mit dem Logarithmus lösen.'
+        danach: '$$\begin{align*}1{,}05^n&=\frac{10\,360{,}37}{8\,231{,}07}\approx 1{,}2587\\ n&=\frac{\ln 1{,}2587}{\ln 1{,}05}\approx 4{,}72\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Jetzt du: Tilgungspause'
+    text: '<p><em>Ein Handwerker nimmt ein Annuitätendarlehen über $50\,000$ € zu $5\,\%$ mit einer Laufzeit von $10$ Jahren auf; die Annuität beträgt $6\,475{,}23$ €. Im 4. Jahr setzt er die Tilgung aus und zahlt nur die Zinsen.</em> Die Restschuld nach 3 Jahren ist $RK_3=37\,468{,}09$ €.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Welche Zahlung ist im 4. Jahr zu leisten?'
+        felder:
+          - { label: '$Z_4=$', loesung: 1873.40, toleranz: 0.5, einheit: '€' }
+        hinweis: 'Im Pausenjahr werden nur die Zinsen auf die Restschuld gezahlt.'
+      - typ: eingabe
+        frage: 'Die Gesamtlaufzeit von 10 Jahren bleibt. Berechne die Annuität für die verbleibenden Jahre.'
+        felder:
+          - { label: '$A_{\text{neu}}=$', loesung: 7381.87, toleranz: 1, einheit: '€' }
+        hinweis: 'Die Restschuld bleibt $37\,468{,}09$ €. Getilgt wird nur noch in den Jahren 5 bis 10, also $n=6$.'
+      - typ: eingabe
+        frage: 'Stattdessen bleibt die Annuität. Wie viele Jahre dauert die Rückzahlung nach dem 4. Jahr noch?'
+        felder:
+          - { label: '$n=$', loesung: 7, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: 'Nach der Pause ist alles wie vor der Pause. Wie viele Jahre waren nach dem 3. Jahr noch offen?'

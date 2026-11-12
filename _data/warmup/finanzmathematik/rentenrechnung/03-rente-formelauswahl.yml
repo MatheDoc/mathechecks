@@ -1,0 +1,118 @@
+# Warm-Up zu Check 03 „Vor-/nachschüssig & Formelauswahl“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__03
+abschluss: '<p>Stell dir bei jeder Situation zwei Fragen: <strong>Wann wird gezahlt?</strong> (Anfang → vorschüssig, Ende → nachschüssig) und <strong>Wann ist der gesuchte Betrag fällig?</strong> (am Ende der Laufzeit → Endwert, heute → Barwert).</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Zwei Zeitpunkte, vier Formeln'
+    text: '<p>Jonas zahlt $5$ Jahre lang jedes Jahr $1\,200$ € auf ein Konto mit $2{,}5\,\%$ Zinsen. Welche Rentenformel passt, hängt an zwei Zeitpunkten:</p><ul><li><strong>Wann wird gezahlt?</strong> Am Jahresende → <strong>nachschüssig</strong>, am Jahresanfang → <strong>vorschüssig</strong> (Querstrich).</li><li><strong>Wann wird bewertet?</strong> Am Ende der Laufzeit → <strong>Endwert</strong> (Index $n$), heute → <strong>Barwert</strong> (Index $0$).</li></ul>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>1.</strong> Jonas zahlt jeweils am <strong>Jahresende</strong>. Wie hoch ist sein Guthaben <strong>nach 5 Jahren</strong>?'
+        knopf: 'Formel zeigen'
+        text: '<p>Nachschüssig, Endwert → <strong>nachschüssiger Rentenendwert</strong>:</p>$$R_n=\frac{r\cdot(q^n-1)}{q-1}$$'
+      - typ: aufdecken
+        frage: '<strong>2.</strong> Jonas zahlt jeweils am <strong>Jahresanfang</strong>. Wie hoch ist sein Guthaben <strong>nach 5 Jahren</strong>?'
+        knopf: 'Formel zeigen'
+        text: '<p>Vorschüssig, Endwert → <strong>vorschüssiger Rentenendwert</strong>. Jede Rate wird ein Jahr länger verzinst, daher der zusätzliche Faktor $q$:</p>$$\overline{R}_n=\frac{r\cdot q\cdot(q^n-1)}{q-1}$$'
+      - typ: aufdecken
+        frage: '<strong>3.</strong> Jonas zahlt am <strong>Jahresende</strong>. Seine Tante fragt: Welcher Betrag, <strong>heute</strong> einmal angelegt, wäre genauso viel wert?'
+        knopf: 'Formel zeigen'
+        text: '<p>Nachschüssig, Barwert → <strong>nachschüssiger Rentenbarwert</strong>. Der Endwert wird $n$ Jahre abgezinst, daher $q^n$ im Nenner:</p>$$R_0=\frac{r\cdot(q^n-1)}{q^n\cdot(q-1)}$$'
+      - typ: aufdecken
+        frage: '<strong>4.</strong> Jonas zahlt am <strong>Jahresanfang</strong>. Welcher Betrag <strong>heute</strong> wäre genauso viel wert?'
+        knopf: 'Formel zeigen'
+        text: '<p>Vorschüssig, Barwert → <strong>vorschüssiger Rentenbarwert</strong>:</p>$$\overline{R}_0=\frac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}$$'
+        danach: '<p><strong>Merke:</strong></p><ul><li>Zahlungszeitpunkt → Querstrich: vorschüssig $\overline{R}$, nachschüssig $R$.</li><li>Bewertungszeitpunkt → Index: Endwert $n$, Barwert $0$.</li></ul>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Auf Signalwörter achten'
+    text: '<p>In jeder Situation verraten zwei Signalwörter die Formel: eins zum Zahlungszeitpunkt, eins zum Bewertungszeitpunkt. Sie sind hier hervorgehoben.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>a)</strong> <em>„Ein Verein zahlt $10$ Jahre lang jeweils <strong>am Jahresende</strong> $1\,500$ € auf ein Konto ein. Gesucht ist das <strong>Guthaben unmittelbar nach der letzten Einzahlung</strong>.“</em>'
+        knopf: 'Formel bestimmen'
+        text: '<ul><li>„am Jahresende“ → nachschüssig</li><li>Nachschüssig fällt die letzte Einzahlung auf das Ende der Laufzeit. „Guthaben nach der letzten Einzahlung“ → Endwert</li></ul><p>Also: nachschüssiger Rentenendwert $R_n$.</p>'
+      - typ: auswahl
+        frage: '<strong>b)</strong> <em>„Eine Studentin soll $5$ Jahre lang jeweils zu Jahresbeginn $6\,000$ € erhalten, <strong>erstmals sofort</strong>. Gesucht ist der Betrag, der dafür <strong>heute angelegt</strong> werden muss.“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 3
+        hinweis: '„erstmals sofort“ → vorschüssig. „heute angelegt“ → Barwert.'
+      - typ: auswahl
+        frage: '<strong>c)</strong> <em>„Ein Handwerksbetrieb legt $8$ Jahre lang jeweils <strong>am Jahresanfang</strong> $4\,000$ € zurück. Gesucht ist das <strong>Guthaben am Ende des 8. Jahres</strong>.“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 1
+        hinweis: 'Gezahlt wird am <em>Anfang</em> jedes Jahres, bewertet am <em>Ende</em> der Laufzeit. Halte die beiden Zeitpunkte auseinander.'
+        danach: '<p>Dasselbe meint <em>„Guthaben ein Jahr nach der letzten Einzahlung“</em>: Vorschüssig wird die letzte Rate zu Beginn des letzten Jahres gezahlt, ein Jahr später endet die Laufzeit.</p>'
+      - typ: auswahl
+        frage: '<strong>d)</strong> <em>„Ein Ehepaar möchte $12$ Jahre lang jeweils <strong>zum Jahresende</strong> $9\,000$ € entnehmen. Gesucht ist der Betrag, der dafür <strong>heute angelegt</strong> werden muss.“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 2
+        hinweis: '„zum Jahresende“ sagt nur, wann gezahlt wird. Gesucht ist ein Betrag <em>heute</em>.'
+        danach: '<p>Ebenso ein Barwert: <em>„statt der Jahreszahlungen ein <strong>gleichwertiger einmaliger Betrag heute</strong>“</em>.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt ohne Hilfe'
+    text: '<p>Welche Formel passt jeweils?</p>'
+    schritte:
+      - typ: auswahl
+        frage: '<strong>1.</strong> <em>„Herr Petersen soll $11$ Jahre lang zum Jahresende jeweils $9\,500$ € erhalten. Welcher Betrag müsste heute einmalig bei $4{,}5\,\%$ bereitgestellt werden, damit alle Zahlungen geleistet werden können?“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 2
+        hinweis: '„zum Jahresende“ → nachschüssig. „heute bereitgestellt“ → Barwert.'
+      - typ: auswahl
+        frage: '<strong>2.</strong> <em>„Die Gärtnerei Wendland überweist $10$ Jahre lang jeweils am Jahresanfang $3\,000$ € auf ein Sparkonto ($3\,\%$). Wie hoch ist das Guthaben ein Jahr nach der letzten Einzahlung?“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 1
+        hinweis: '„am Jahresanfang“ → vorschüssig. Ein Jahr nach der letzten (vorschüssigen) Einzahlung endet die Laufzeit → Endwert.'
+      - typ: auswahl
+        frage: '<strong>3.</strong> <em>„Familie Berger bietet an, statt $6$ vorschüssiger Jahreszahlungen von $2\,000$ € einen einmaligen Betrag heute zu zahlen ($4\,\%$). Gesucht ist dieser gleichwertige Betrag.“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 3
+        hinweis: 'Die Zahlungsweise steht direkt da. „einmaliger Betrag heute“ → Barwert.'
+      - typ: auswahl
+        frage: '<strong>4.</strong> <em>„Eine Praxis legt $9$ Jahre lang zum Jahresende jeweils $2\,500$ € zurück ($2\,\%$). Welcher Betrag steht am Ende des letzten Jahres zur Verfügung?“</em>'
+        optionen:
+          - 'nachschüssiger Rentenendwert $R_n$'
+          - 'vorschüssiger Rentenendwert $\overline{R}_n$'
+          - 'nachschüssiger Rentenbarwert $R_0$'
+          - 'vorschüssiger Rentenbarwert $\overline{R}_0$'
+        mischen: false
+        korrekt: 0
+        hinweis: '„zum Jahresende“ → nachschüssig. „am Ende des letzten Jahres“ → Endwert.'

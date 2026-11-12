@@ -1,0 +1,104 @@
+# Warm-Up zu Check 06 „Zinssatzwechsel im Darlehen“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__06
+abschluss: '<p>Beim Zinssatzwechsel wird die Restschuld zum Zeitpunkt des Wechsels wie ein neues Darlehen behandelt: neues $K_0=RK_k$, neue Laufzeit $=$ Restlaufzeit, neuer Zinsfaktor. Ab dem Wechsel rechnest du auch die Zinsen mit dem neuen Zinssatz.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Ein neues Darlehen ab dem Wechsel'
+    text: '<p>Mara hat $60\,000$ € zu $5\,\%$ für $10$ Jahre aufgenommen und zahlt jährlich $A=7\,770{,}27$ €. Nach $5$ Jahren läuft die Zinsbindung aus, die Bank bietet für den Rest $4\,\%$ an. Die Gesamtlaufzeit von $10$ Jahren soll bleiben.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Was passiert beim Wechsel?'
+        knopf: 'Erklärung zeigen'
+        text: '<p>Nach $5$ Jahren schuldet Mara noch $RK_5\approx 33\,641{,}25$ € (Restschuldformel). Ab jetzt tut die Bank so, als würde Mara <strong>diesen Betrag neu leihen</strong>, zum neuen Zinssatz $4\,\%$.</p>'
+      - typ: auswahl
+        frage: 'Welche Laufzeit hat dieses „neue Darlehen“?'
+        optionen:
+          - '$5$ Jahre'
+          - '$10$ Jahre'
+          - '$15$ Jahre'
+        korrekt: 0
+        hinweis: 'Insgesamt sollen es $10$ Jahre bleiben, $5$ davon sind schon vorbei.'
+        danach: '<p>Also in die Annuitätenformel: $K_0=33\,641{,}25$, $q=1{,}04$, $n=5$:</p>$$A_{\text{neu}}=\frac{33\,641{,}25\cdot 1{,}04^5\cdot 0{,}04}{1{,}04^5-1}\approx 7\,556{,}74\,\text{€}$$<p><strong>Merke:</strong> Restschuld beim Wechsel → neues $K_0$, Restlaufzeit → neues $n$, neuer Zinssatz → neues $q$.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Schritt für Schritt durch den Wechsel'
+    text: '<p>Ein Pflegedienst nimmt ein Annuitätendarlehen über $250\,000$ € für $20$ Jahre auf, zunächst zu $3\,\%$. Nach $5$ Jahren steigt der Zinssatz auf $4{,}5\,\%$, die Gesamtlaufzeit bleibt.</p>'
+    visual:
+      typ: liste
+      titel: 'Ablauf'
+      eintraege:
+        - { id: a1, text: '1. ursprüngliche Annuität', gleichung: '$A=16\,803{,}93$ €' }
+        - { id: rk, text: '2. Restschuld beim Wechsel', gleichung: '$RK_5=200\,604{,}17$ €' }
+        - { id: a2, text: '3. neue Annuität', gleichung: '$A_{\text{neu}}=18\,679{,}02$ €' }
+        - { id: fj, text: '4. Zinsen und Tilgung im 6. Jahr', gleichung: '$Z_6=9\,027{,}19$ €, $T_6=9\,651{,}83$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>1.</strong> Ursprüngliche Annuität mit den Daten vom Anfang'
+        knopf: 'Rechnung zeigen'
+        text: '$$A=\frac{250\,000\cdot 1{,}03^{20}\cdot 0{,}03}{1{,}03^{20}-1}\approx 16\,803{,}93\,\text{€}$$'
+        zeige: { eintraege: [a1] }
+      - typ: auswahl
+        frage: '<strong>2.</strong> Restschuld nach $5$ Jahren: Welcher Ansatz passt?'
+        optionen:
+          - '$250\,000\cdot 1{,}03^5-$<br>$\dfrac{16\,803{,}93\cdot(1{,}03^5-1)}{0{,}03}$'
+          - '$250\,000\cdot 1{,}045^5-$<br>$\dfrac{16\,803{,}93\cdot(1{,}045^5-1)}{0{,}045}$'
+          - '$250\,000-5\cdot 16\,803{,}93$'
+        korrekt: 0
+        hinweis: 'In den ersten $5$ Jahren galten noch $3\,\%$. Und nicht die ganze Annuität tilgt, ein Teil sind Zinsen.'
+        danach: '$$RK_5\approx 200\,604{,}17\,\text{€}$$'
+        zeige: { eintraege: [rk] }
+      - typ: auswahl
+        frage: '<strong>3.</strong> Neue Annuität: Was setzt du in die Annuitätenformel ein?'
+        optionen:
+          - '$K_0=200\,604{,}17$, $q=1{,}045$, $n=15$'
+          - '$K_0=250\,000$, $q=1{,}045$, $n=15$'
+          - '$K_0=200\,604{,}17$, $q=1{,}045$, $n=20$'
+        korrekt: 0
+        hinweis: 'Neu geliehen wird nur die Restschuld, und zwar für die verbleibenden Jahre.'
+        danach: '$$A_{\text{neu}}=\frac{200\,604{,}17\cdot 1{,}045^{15}\cdot 0{,}045}{1{,}045^{15}-1}\approx 18\,679{,}02\,\text{€}$$'
+        zeige: { eintraege: [a2] }
+      - typ: aufdecken
+        frage: '<strong>4.</strong> Zinsen und Tilgung im 6. Jahr'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Ab dem Wechsel gilt der <strong>neue</strong> Zinssatz und die <strong>neue</strong> Annuität:</p>$$\begin{align*}Z_6&=200\,604{,}17\cdot 0{,}045\approx 9\,027{,}19\,\text{€}\\ T_6&=18\,679{,}02-9\,027{,}19=9\,651{,}83\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [fj] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt du: bis zum Wechsel'
+    text: '<p>Ein Bäcker nimmt $100\,000$ € für $20$ Jahre zu $3\,\%$ auf. Nach $10$ Jahren steigt der Zinssatz auf $4\,\%$, die Gesamtlaufzeit bleibt.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Wie hoch ist die ursprüngliche Annuität?'
+        felder:
+          - { label: '$A=$', loesung: 6721.57, toleranz: 1, einheit: '€' }
+        hinweis: '$A=\frac{100\,000\cdot 1{,}03^{20}\cdot 0{,}03}{1{,}03^{20}-1}$.'
+      - typ: eingabe
+        frage: 'Wie hoch ist die Restschuld nach $10$ Jahren?'
+        felder:
+          - { label: '$RK_{10}=$', loesung: 57336.37, toleranz: 5, einheit: '€' }
+        hinweis: '$RK_{10}=100\,000\cdot 1{,}03^{10}-\frac{6\,721{,}57\cdot(1{,}03^{10}-1)}{0{,}03}$, noch mit dem alten Zinssatz.'
+
+  - phase: mitmachen
+    titel: 'Jetzt du: nach dem Wechsel'
+    text: '<p>Der Bäcker schuldet beim Wechsel noch $RK_{10}=57\,336{,}37$ €. Ab jetzt gelten $4\,\%$.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Wie hoch ist die neue Annuität für die verbleibenden Jahre?'
+        felder:
+          - { label: '$A_{\text{neu}}=$', loesung: 7069.06, toleranz: 1, einheit: '€' }
+        hinweis: 'Restschuld als $K_0$, $q=1{,}04$ und die Restlaufzeit $n=10$.'
+        danach: '$$A_{\text{neu}}=\frac{57\,336{,}37\cdot 1{,}04^{10}\cdot 0{,}04}{1{,}04^{10}-1}\approx 7\,069{,}06\,\text{€}$$'
+      - typ: eingabe
+        layout: zeile
+        frage: 'Wie hoch sind Zinsen und Tilgung im 11. Jahr?'
+        felder:
+          - { label: '$Z_{11}=$', loesung: 2293.45, toleranz: 0.5, einheit: '€', aria: 'Zinsen im 11. Jahr' }
+          - { label: '$T_{11}=$', loesung: 4775.61, toleranz: 1, einheit: '€', aria: 'Tilgung im 11. Jahr' }
+        hinweis: 'Zinsen mit dem <em>neuen</em> Zinssatz: $Z_{11}=57\,336{,}37\cdot 0{,}04$. Tilgung mit der <em>neuen</em> Annuität: $T_{11}=7\,069{,}06-Z_{11}$.'

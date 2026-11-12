@@ -1,0 +1,102 @@
+# Warm-Up zu Check 03 „Restschuldformel und Gesamtzinsen“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__03
+abschluss: '<p>Restschuld nach $k$ Jahren: Darlehenssumme $k$ Jahre aufzinsen, Endwert der $k$ Annuitäten abziehen. Die Zinsen im Jahr $k+1$ berechnest du aus $RK_k$, die Gesamtzinsen sind $n\cdot A-K_0$.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Restschuld ohne Tilgungsplan'
+    text: '<p>Ben leiht sich $10\,000$ € zu $5\,\%$ und zahlt jedes Jahr am Jahresende die Annuität $2\,000$ €. Sein Tilgungsplan zeigt nach $2$ Jahren die Restschuld $RK_2=6\,925$ €.</p><p>Bei vielen Jahren ist der Tilgungsplan mühsam. Es geht auch ohne ihn.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>1.</strong> Angenommen, Ben zahlt gar nichts. Wie hoch wäre seine Schuld nach $2$ Jahren?'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Die Darlehenssumme wird $2$ Jahre aufgezinst:</p>$$10\,000\cdot 1{,}05^2=11\,025$$'
+      - typ: aufdecken
+        frage: '<strong>2.</strong> Stell dir vor, auch Bens Zahlungen werden mit $5\,\%$ verzinst. Wie viel sind sie nach $2$ Jahren wert?'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Die erste Zahlung bekommt ein Jahr Zinsen, die zweite keine:</p>$$2\,000\cdot 1{,}05+2\,000=4\,100$$<p>Das ist der Endwert einer nachschüssigen Rente:</p>$$\frac{2\,000\cdot(1{,}05^2-1)}{0{,}05}=4\,100$$'
+      - typ: auswahl
+        frage: 'Vergleiche mit der Restschuld aus dem Tilgungsplan, $RK_2=6\,925$. Was fällt auf?'
+        optionen:
+          - '$11\,025-4\,100=6\,925$'
+          - '$11\,025-2\cdot 2\,000=6\,925$'
+          - '$10\,000-4\,100=6\,925$'
+        korrekt: 0
+        hinweis: 'Rechne die Differenzen kurz nach.'
+        danach: '<p><strong>Restschuld = aufgezinste Darlehenssumme minus Endwert der gezahlten Annuitäten.</strong> Das ist die <strong>Restschuldformel</strong>:</p>$$RK_k=K_0\cdot q^k-\frac{A\cdot(q^k-1)}{q-1}$$'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Restschuld nach 10 Jahren'
+    text: '<p>Eine Kfz-Werkstatt nimmt ein Annuitätendarlehen über $200\,000$ € auf: $3{,}5\,\%$ Zinsen, Laufzeit $25$ Jahre, Annuität $12\,134{,}81$ €. Gesucht ist die Restschuld nach $10$ Jahren, also $k=10$ und $q=1{,}035$.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>1.</strong> Darlehenssumme $10$ Jahre aufzinsen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$200\,000\cdot 1{,}035^{10}\approx 282\,119{,}75$$'
+      - typ: aufdecken
+        frage: '<strong>2.</strong> Endwert der $10$ gezahlten Annuitäten berechnen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\frac{12\,134{,}81\cdot(1{,}035^{10}-1)}{0{,}035}\approx 142\,358{,}23$$<p>Die Potenz nicht runden, im Taschenrechner weiterrechnen.</p>'
+        danach: '<p><strong>3.</strong> Die Differenz ist die Restschuld:</p>$$\begin{align*}RK_{10}&\approx 282\,119{,}75-142\,358{,}23\\ &\approx 139\,761{,}53\,\text{€}\end{align*}$$'
+
+  - phase: vormachen
+    titel: 'Zinsen und Tilgung im Jahr danach'
+    text: '<p>Die Werkstatt schuldet nach $10$ Jahren noch $RK_{10}\approx 139\,761{,}53$ €. Gesucht sind Zinsen und Tilgung im <strong>11.</strong> Jahr.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Aus welcher Restschuld werden die Zinsen des 11. Jahres berechnet?'
+        optionen:
+          - '$RK_{10}$, Restschuld nach $10$ Jahren'
+          - '$RK_{11}$, Restschuld nach $11$ Jahren'
+          - '$K_0$, die Darlehenssumme'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Verzinst wird die Schuld, die zu Beginn des 11. Jahres besteht.'
+        danach: '<p><strong>Merke:</strong> $RK_{10}$ ist die Restschuld am Ende des 10. Jahres, also zu Beginn des 11. Jahres.</p>$$\begin{align*}Z_{11}&=139\,761{,}53\cdot 0{,}035\\ &\approx 4\,891{,}65\,\text{€}\\ T_{11}&=12\,134{,}81-4\,891{,}65\\ &=7\,243{,}16\,\text{€}\end{align*}$$'
+  - phase: vormachen
+    titel: 'Zinsen über die gesamte Laufzeit'
+    text: '<p>In $25$ Jahren zahlt die Werkstatt $25$-mal die Annuität $12\,134{,}81$ €. Damit zahlt sie die $200\,000$ € zurück und alle Zinsen.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Wie viel Zinsen sind das insgesamt?'
+        optionen:
+          - '$25\cdot 12\,134{,}81-200\,000$'
+          - '$25\cdot 4\,891{,}65$'
+          - '$25\cdot 12\,134{,}81$'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Die Zinsen ändern sich jedes Jahr. Zieh von allen Annuitäten zusammen die Darlehenssumme ab.'
+        danach: '$$\begin{align*}n\cdot A-K_0&=303\,370{,}25-200\,000\\ &=103\,370{,}25\,\text{€}\end{align*}$$'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt du: Restschuld'
+    text: '<p>Familie Haas nimmt ein Annuitätendarlehen über $50\,000$ € auf: $4\,\%$ Zinsen, Laufzeit $10$ Jahre, Annuität $6\,164{,}55$ €. Runde auf 2 Nachkommastellen und trage Beträge ohne Tausenderpunkt ein.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Wie hoch ist die Restschuld nach $4$ Jahren?'
+        felder:
+          - { label: '$RK_4=$', loesung: 32315.39, toleranz: 1, einheit: '€' }
+        hinweis: 'Aufzinsen minus Endwert der Annuitäten: $RK_4=50\,000\cdot 1{,}04^4-\frac{6\,164{,}55\cdot(1{,}04^4-1)}{0{,}04}$'
+        danach: '$$\begin{align*}RK_4&\approx 58\,492{,}93-26\,177{,}54\\ &\approx 32\,315{,}39\,\text{€}\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Jetzt du: Folgejahr und Gesamtzinsen'
+    text: '<p>Familie Haas schuldet nach $4$ Jahren noch $RK_4\approx 32\,315{,}39$ €. Zinssatz $4\,\%$, Laufzeit $10$ Jahre, Annuität $6\,164{,}55$ €.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Wie hoch sind Zinsen und Tilgung im $5.$ Jahr?'
+        felder:
+          - { label: '$Z_5=$', loesung: 1292.62, toleranz: 0.1, einheit: '€' }
+          - { label: '$T_5=$', loesung: 4871.93, toleranz: 0.1, einheit: '€' }
+        hinweis: 'Das 5. Jahr beginnt mit $RK_4$: $Z_5=RK_4\cdot 0{,}04$, dann $T_5=A-Z_5$.'
+      - typ: eingabe
+        frage: 'Wie viel Zinsen werden über die gesamte Laufzeit gezahlt?'
+        felder:
+          - { label: 'Gesamtzinsen:', loesung: 11645.5, toleranz: 0.01, einheit: '€' }
+        hinweis: '$10$ Annuitäten minus Darlehenssumme: $10\cdot 6\,164{,}55-50\,000$.'

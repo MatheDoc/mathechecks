@@ -1,0 +1,99 @@
+# Warm-Up zu Check 04 „Darlehen im Sachkontext“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__04
+abschluss: '<p>Lies zuerst die Frage: <strong>jährliche Belastung → $A$</strong>, <strong>möglicher Kredit bzw. Auszahlung der Bank → $K_0$</strong>, <strong>Dauer → $n$</strong> über $A=T_1\cdot q^n$, <strong>Schulden nach $k$ Jahren bzw. nach der $k$-ten Zahlung → $RK_k$</strong>.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Vier Fragen, vier Formeln'
+    text: '<p>Mara nimmt für ihr Café ein Annuitätendarlehen über $60\,000$ € zu $5\,\%$ auf. In Sachaufgaben geht es immer um dieselben Größen: Darlehenssumme $K_0$, Zinssatz $p$, Laufzeit $n$ und Annuität $A$. Welche Formel passt, verrät die Frage.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>1.</strong> Mara will das Darlehen in $10$ Jahren durch <strong>gleich hohe Jahresraten</strong> tilgen. Wie hoch ist die Rate?'
+        knopf: 'Formel zeigen'
+        text: '<p>Gesucht ist die <strong>Annuität $A$</strong> → Annuitätenformel:</p>$$A=\frac{K_0\cdot q^n\cdot(q-1)}{q^n-1}$$'
+      - typ: aufdecken
+        frage: '<strong>2.</strong> Mara kann $10$ Jahre lang jährlich höchstens $7\,000$ € zahlen. <strong>Welcher Kredit ist möglich?</strong>'
+        knopf: 'Formel zeigen'
+        text: '<p>Jetzt ist $A$ gegeben, gesucht ist die <strong>Darlehenssumme $K_0$</strong> → Annuitätenformel nach $K_0$ aufgelöst:</p>$$K_0=\frac{A\cdot(q^n-1)}{q^n\cdot(q-1)}$$'
+      - typ: aufdecken
+        frage: '<strong>3.</strong> Mara zahlt jährlich $9\,000$ €. <strong>Nach wie vielen Jahren</strong> ist das Darlehen getilgt?'
+        knopf: 'Formel zeigen'
+        text: '<p>Gesucht ist die <strong>Laufzeit $n$</strong>. Dafür brauchst du die Tilgung $T_1$ im 1. Jahr (Annuität minus Zinsen des 1. Jahres) und löst dann nach $n$ auf:</p>$$A=T_1\cdot q^n$$'
+      - typ: aufdecken
+        frage: '<strong>4.</strong> Mara zahlt jährlich $7\,770{,}27$ €. <strong>Wie viel schuldet sie noch nach $5$ Jahren?</strong>'
+        knopf: 'Formel zeigen'
+        text: '<p>Gesucht ist die <strong>Restschuld $RK_k$</strong> mit $k=5$ → Restschuldformel:</p>$$RK_k=K_0\cdot q^k-\frac{A\cdot(q^k-1)}{q-1}$$'
+        danach: '<p><strong>Merke:</strong> Erst klären, welche Größen gegeben sind und welche gesucht ist, dann die passende Formel wählen.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'a) Gesucht: die Annuität'
+    text: '<p>Ein Cateringbetrieb plant eine Investition. Die Signalwörter für die gesuchte Größe sind hervorgehoben.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>a)</strong> <em>„Der Betrieb nimmt ein Darlehen über $80\,000$ € zu $4\,\%$ auf, das in $10$ Jahren durch <strong>gleich hohe Jahresraten</strong> getilgt werden soll. Wie hoch ist die jährliche Rate?“</em>'
+        knopf: 'Lösung zeigen'
+        text: '<p>Gegeben: $K_0=80\,000$ €, $q=1{,}04$, $n=10$. „gleich hohe Jahresraten“ → Annuität $A$ gesucht:</p>$$\begin{align*}A&=\frac{80\,000\cdot 1{,}04^{10}\cdot 0{,}04}{1{,}04^{10}-1}\\ &\approx 9\,863{,}28\,\text{€}\end{align*}$$'
+
+  - phase: vormachen
+    titel: 'b) Gesucht: die Laufzeit'
+    text: '<p><em>„Der Betrieb nimmt ein Darlehen über $120\,000$ € zu $3\,\%$ auf und zahlt <strong>jährlich eine Annuität</strong> von $10\,000$ €. <strong>Nach wie vielen Jahren</strong> ist das Darlehen getilgt?“</em></p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Was ist gesucht?'
+        optionen:
+          - 'Annuität $A$'
+          - 'Darlehenssumme $K_0$'
+          - 'Laufzeit $n$'
+          - 'Restschuld $RK_k$'
+        mischen: false
+        korrekt: 2
+        hinweis: 'Die Annuität ist mit $10\,000$ € schon gegeben. „Nach wie vielen Jahren“ fragt nach einer Dauer.'
+      - typ: aufdecken
+        frage: '<strong>1. Tilgung im 1. Jahr:</strong> Annuität minus Zinsen des 1. Jahres.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}T_1&=10\,000-120\,000\cdot 0{,}03\\ &=6\,400\,\text{€}\end{align*}$$'
+      - typ: aufdecken
+        frage: '<strong>2. In $A=T_1\cdot q^n$ einsetzen und nach $n$ auflösen:</strong>'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}10\,000&=6\,400\cdot 1{,}03^n\quad|:6\,400\\ 1{,}03^n&=1{,}5625\\ n&=\frac{\ln 1{,}5625}{\ln 1{,}03}\approx 15{,}10\end{align*}$$<p>Das Darlehen ist nach etwa $15{,}10$ Jahren getilgt.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was ist gesucht?'
+    text: '<p>Ordne jeder Frage aus dem Training die gesuchte Größe zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Frage im Text'
+        titel_rechts: 'Gesucht'
+        paare:
+          - { links: '„Welcher Betrag ist jährlich für Zins und Tilgung zu zahlen?“', rechts: 'Annuität $A$' }
+          - { links: '„… dafür 22 Jahre lang jährlich 2.350 € zahlen. Welchen Betrag kann die Bank auszahlen?“', rechts: 'Darlehenssumme $K_0$' }
+          - { links: '„Wie lange dauert die Rückzahlung?“', rechts: 'Laufzeit $n$' }
+          - { links: '„Wie hoch ist die Restschuld nach der 2. Zahlung?“', rechts: 'Restschuld $RK_k$' }
+
+  - phase: mitmachen
+    titel: 'Gärtnerei 1: Darlehenssumme'
+    text: '<p><em>„Die Gärtnerei möchte für ein neues Gewächshaus ein Darlehen aufnehmen und dafür $10$ Jahre lang jährlich $6\,000$ € zahlen. Welchen Betrag kann die Bank bei einem Zinssatz von $4\,\%$ auszahlen?“</em></p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne den Betrag (ohne Tausenderpunkt).'
+        felder:
+          - { label: '$K_0=$', loesung: 48665.37, toleranz: 5, einheit: '€' }
+        hinweis: 'Die $6\,000$ € sind die Annuität $A$, gesucht ist die Darlehenssumme: $K_0=\frac{A\cdot(q^n-1)}{q^n\cdot(q-1)}$.'
+        danach: '$$\begin{align*}K_0&=\frac{6\,000\cdot(1{,}04^{10}-1)}{1{,}04^{10}\cdot 0{,}04}\\ &\approx 48\,665{,}37\,\text{€}\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Gärtnerei 2: Restschuld'
+    text: '<p><em>„Die Gärtnerei hat ein Darlehen über $50\,000$ € aufgenommen ($4\,\%$) und zahlt jährlich $6\,000$ €. Wie hoch ist die Restschuld nach der 5. Zahlung?“</em></p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne die Restschuld (ohne Tausenderpunkt).'
+        felder:
+          - { label: '$RK_5=$', loesung: 28334.71, toleranz: 5, einheit: '€' }
+        hinweis: 'Restschuldformel mit $k=5$: $RK_5=50\,000\cdot 1{,}04^5-\frac{6\,000\cdot(1{,}04^5-1)}{0{,}04}$. Zwischenergebnisse nicht runden.'
+        danach: '$$\begin{align*}RK_5&=50\,000\cdot 1{,}04^5\\ &\quad-\frac{6\,000\cdot(1{,}04^5-1)}{0{,}04}\\ &\approx 28\,334{,}71\,\text{€}\end{align*}$$'

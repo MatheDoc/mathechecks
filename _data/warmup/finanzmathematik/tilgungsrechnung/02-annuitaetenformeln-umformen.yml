@@ -1,0 +1,89 @@
+# Warm-Up zu Check 02 „Annuitätenformeln umformen“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__02
+abschluss: '<p>$A$ und $K_0$ bestimmst du mit der Annuitätenformel. Für die Laufzeit $n$ berechnest du zuerst $T_1=A-K_0\cdot\frac{p}{100}$ und löst dann $A=T_1\cdot q^n$ mit dem Logarithmus.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Die Annuitätenformel'
+    text: '<p>Mara nimmt ein Darlehen von $K_0=60\,000$ € zu $5\,\%$ auf. Sie zahlt jedes Jahr denselben Betrag, die <strong>Annuität</strong> $A$. Darin stecken die Zinsen und die Tilgung: $A=Z_k+T_k$.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Wie hoch muss $A$ sein, damit Mara nach $10$ Jahren schuldenfrei ist?'
+        knopf: 'Annuitätenformel zeigen'
+        text: '$$\begin{align*}A&=\frac{K_0\cdot q^n\cdot(q-1)}{q^n-1}\\ A&=\frac{60\,000\cdot 1{,}05^{10}\cdot 0{,}05}{1{,}05^{10}-1}\\ &\approx 7\,770{,}27\,\text{€}\end{align*}$$<p>Umgekehrt liefert dieselbe Formel die Darlehenssumme $K_0$, wenn $A$ bekannt ist.</p>'
+
+  - phase: orientierung
+    titel: 'Laufzeit: erst die Tilgung'
+    text: '<p>Mara könnte auch $9\,000$ € pro Jahr zahlen. Wie lange dauert es dann? In der Annuitätenformel steht $n$ zweimal. Einfacher geht es über die Tilgung.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Wie hängen Annuität und Tilgung zusammen?'
+        knopf: 'Formel zeigen'
+        text: '<p>Die Tilgung wächst jedes Jahr um den Faktor $q$. Daraus folgt</p>$$A=T_1\cdot q^n$$<p>Dafür brauchst du die Tilgung $T_1$ im ersten Jahr.</p>'
+      - typ: auswahl
+        frage: 'Wie viel von den $9\,000$ € ist im <strong>ersten Jahr</strong> Tilgung $T_1$?'
+        optionen:
+          - '$6\,000$ €'
+          - '$3\,000$ €'
+          - '$9\,000$ €'
+        korrekt: 0
+        hinweis: 'Im ersten Jahr fallen $5\,\%$ von $60\,000$ €, also $3\,000$ € Zinsen an. Nur der Rest tilgt die Schuld.'
+        danach: '<p>Damit ist $n$ wie bei der Zinseszinsformel bestimmbar:</p>$$\begin{align*}9\,000&=6\,000\cdot 1{,}05^n\\ 1{,}05^n&=1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}05}\approx 8{,}31\end{align*}$$<p><strong>Merke:</strong></p><ul><li>$A$ oder $K_0$ gesucht → Annuitätenformel.</li><li>$n$ gesucht → erst $T_1=A-Z_1$, dann $A=T_1\cdot q^n$ mit dem Logarithmus lösen.</li></ul>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Annuität und Darlehenssumme'
+    text: '<p>Ist $A$ oder $K_0$ gesucht, setzt du in die Annuitätenformel ein.</p>'
+    schritte:
+      - typ: auswahl
+        frage: '<strong>a)</strong> $K_0=150\,000$ €, $p=4\,\%$, $n=20$. Gesucht: $A$. $$A=\frac{150\,000\cdot 1{,}04^{20}\cdot 0{,}04}{1{,}04^{20}-1}$$ Nach $150000\cdot$ folgt der Rest. Wie tippst du ihn in den Taschenrechner?'
+        optionen:
+          - '$1{,}04^{20}\cdot 0{,}04:(1{,}04^{20}-1)$'
+          - '$1{,}04^{20}\cdot 0{,}04:1{,}04^{20}-1$'
+        mischen: false
+        korrekt: 0
+        hinweis: 'Ohne Klammer um den Nenner wird nur durch $1{,}04^{20}$ geteilt und danach $1$ abgezogen. Das ergäbe knapp $6\,000$ €.'
+        danach: '$$A\approx 11\,037{,}26\,\text{€}$$'
+      - typ: aufdecken
+        frage: '<strong>b)</strong> $A=12\,000$ €, $p=3\,\%$, $n=15$. Gesucht: $K_0$.'
+        knopf: 'Bruch ausrechnen und teilen'
+        text: '<p>Den Bruch ohne $K_0$ ausrechnen, dann $A$ durch diesen Faktor teilen:</p>$$\begin{align*}12\,000&=K_0\cdot\frac{1{,}03^{15}\cdot 0{,}03}{1{,}03^{15}-1}\\ 12\,000&\approx K_0\cdot 0{,}08377\quad|:0{,}08377\\ K_0&\approx 143\,255{,}22\,\text{€}\end{align*}$$<p>Am genauesten rechnest du mit dem ungerundeten Faktor weiter.</p>'
+  - phase: vormachen
+    titel: 'Laufzeit'
+    text: '<p><strong>c)</strong> $K_0=100\,000$ €, $A=9\,000$ €, $p=4\,\%$. Gesucht: $n$.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Tilgung im ersten Jahr = Annuität minus Zinsen.'
+        knopf: 'Tilgung berechnen'
+        text: '$$\begin{align*}T_1&=9\,000-100\,000\cdot 0{,}04\\ &=5\,000\,\text{€}\end{align*}$$'
+      - typ: auswahl
+        frage: '<strong>Schritt 2:</strong> Welche Gleichung löst du nach $n$ auf?'
+        optionen:
+          - '$9\,000=5\,000\cdot 1{,}04^n$'
+          - '$9\,000=100\,000\cdot 1{,}04^n$'
+          - '$5\,000=4\,000\cdot 1{,}04^n$'
+        korrekt: 0
+        hinweis: 'In $A=T_1\cdot q^n$ steht die Tilgung $T_1$, nicht die Darlehenssumme $K_0$.'
+        danach: '$$\begin{align*}1{,}04^n&=1{,}8\\ n&=\frac{\ln 1{,}8}{\ln 1{,}04}\approx 14{,}99\end{align*}$$<p>Das Darlehen ist nach etwa $15$ Jahren getilgt.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt du'
+    text: '<p>Runde Beträge auf 2 Nachkommastellen und trage sie ohne Tausenderpunkt ein.</p>'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>1.</strong> $A=6\,000$ €, $p=5\,\%$, $n=10$. Gesucht: $K_0$.'
+        felder:
+          - { label: '$K_0\approx$', loesung: 46330.41, toleranz: 5, einheit: '€' }
+        hinweis: 'Der Bruch ohne $K_0$ ergibt $\frac{1{,}05^{10}\cdot 0{,}05}{1{,}05^{10}-1}\approx 0{,}1295$. Rechne $6\,000:0{,}1295$.'
+      - typ: eingabe
+        frage: '<strong>2.</strong> $K_0=40\,000$ €, $A=4\,000$ €, $p=5\,\%$. Gesucht: $n$.'
+        felder:
+          - { label: '$T_1=$', loesung: 2000, einheit: '€' }
+          - { label: '$n\approx$', loesung: 14.21, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$T_1=4\,000-40\,000\cdot 0{,}05$. Dann $4\,000=T_1\cdot 1{,}05^n$ nach $1{,}05^n$ auflösen und logarithmieren.'
+        danach: '$$\begin{align*}T_1&=4\,000-2\,000=2\,000\\ 4\,000&=2\,000\cdot 1{,}05^n\\ 1{,}05^n&=2\\ n&=\frac{\ln 2}{\ln 1{,}05}\approx 14{,}21\end{align*}$$'

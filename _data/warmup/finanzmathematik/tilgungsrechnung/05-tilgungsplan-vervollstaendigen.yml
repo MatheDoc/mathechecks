@@ -1,0 +1,142 @@
+# Warm-Up zu Check 05 „Tilgungsplan vervollständigen“ (Tilgungsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__tilgungsrechnung__05
+abschluss: '<p>Jede Zeile hängt über $Z_k=RK_{k-1}\cdot\frac{p}{100}$, $T_k=A-Z_k$ und $RK_k=RK_{k-1}-T_k$ zusammen, und die Restschuld am Jahresende ist die Restschuld am Anfang des nächsten Jahres. Rückwärts über eine ganze Zeile hilft $RK_{k-1}=\frac{RK_k+A}{q}$.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Eine Zeile, drei Beziehungen'
+    text: '<p>Ben leiht sich $10\,000$ € zu $5\,\%$ und zahlt jedes Jahr die Annuität $A=3\,000$ €. Jede Zeile seines Tilgungsplans entsteht in drei kleinen Rechnungen.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Zinsen:</strong> Wie viel davon sind im 1. Jahr Zinsen?'
+        knopf: 'Zinsen zeigen'
+        text: '<p>$5\,\%$ der Restschuld am Jahresanfang:</p>$$Z_1=10\,000\cdot 0{,}05=500\,\text{€}$$'
+      - typ: aufdecken
+        frage: '<strong>Tilgung und Restschuld:</strong> Was bleibt für die Tilgung, und wie viel schuldet Ben danach noch?'
+        knopf: 'Tilgung und Restschuld zeigen'
+        text: '$$\begin{align*}T_1&=A-Z_1=3\,000-500=2\,500\,\text{€}\\ RK_1&=RK_0-T_1=10\,000-2\,500=7\,500\,\text{€}\end{align*}$$'
+      - typ: auswahl
+        frage: 'Mit welcher Restschuld beginnt die Zeile für das 2. Jahr?'
+        optionen:
+          - '$7\,500$ €'
+          - '$10\,000$ €'
+          - '$2\,500$ €'
+        korrekt: 0
+        hinweis: 'Was Ben am Ende des 1. Jahres noch schuldet, schuldet er auch am Anfang des 2. Jahres.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>In jeder Zeile gilt $Z_k=RK_{k-1}\cdot\frac{p}{100}$, $T_k=A-Z_k$ und $RK_k=RK_{k-1}-T_k$.</li><li>Die Restschuld am Jahresende ist die Restschuld am Anfang der nächsten Zeile.</li></ul>'
+
+  - phase: orientierung
+    titel: 'Die Beziehungen umgekehrt nutzen'
+    text: '<p>Bei einem lückenhaften Tilgungsplan fehlen meist andere Werte. Jede Beziehung lässt sich dann umstellen. Bens 2. Jahr: $RK_1=7\,500$ €, $Z_2=375$ €, Ende des Jahres $RK_2=4\,875$ €.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Zinssatz unbekannt?</strong> Restschuld am Jahresanfang und Zinsen derselben Zeile genügen.'
+        knopf: 'Zinssatz bestimmen'
+        text: '$$p=\frac{Z_2}{RK_1}\cdot 100=\frac{375}{7\,500}\cdot 100=5\,\%$$'
+      - typ: aufdecken
+        frage: '<strong>Rückwärts:</strong> Nur $RK_2=4\,875$ € und $A=3\,000$ € sind bekannt. Wie viel schuldete Ben zu Beginn des 2. Jahres?'
+        knopf: 'Rückwärts rechnen'
+        text: '<p>Im Laufe eines Jahres kommen zur Restschuld die Zinsen hinzu, die Annuität geht ab: $RK_k=RK_{k-1}\cdot q-A$. Umgestellt:</p>$$\begin{align*}RK_{k-1}&=\frac{RK_k+A}{q}\\ RK_1&=\frac{4\,875+3\,000}{1{,}05}=7\,500\,\text{€}\end{align*}$$'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Zwei Zeilen vervollständigen'
+    text: '<p>Von einem Tilgungsplan ist nur bekannt:</p><p><strong>Jahr 4:</strong> Restschuld am Jahresanfang $44\,682{,}76$ €, Zinsen $2\,010{,}72$ €, Annuität $7\,582{,}73$ €.<br><strong>Jahr 5:</strong> alles unbekannt.</p><p>Die Liste füllt sich nach und nach.</p>'
+    visual:
+      typ: liste
+      titel: 'Lücken'
+      eintraege:
+        - { id: p, text: 'Zinssatz $p$', gleichung: '$4{,}5\,\%$' }
+        - { id: t4, text: 'Tilgung $T_4$', gleichung: '$5\,572{,}01$ €' }
+        - { id: rk4, text: 'Restschuld $RK_4$', gleichung: '$39\,110{,}75$ €' }
+        - { id: z5, text: 'Zinsen $Z_5$', gleichung: '$1\,759{,}98$ €' }
+        - { id: t5, text: 'Tilgung $T_5$', gleichung: '$5\,822{,}75$ €' }
+        - { id: rk5, text: 'Restschuld $RK_5$', gleichung: '$33\,288{,}00$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Zinssatz:</strong> Restschuld am Jahresanfang und Zinsen stehen beide in Zeile 4.'
+        knopf: 'Zinssatz zeigen'
+        text: '$$p=\frac{2\,010{,}72}{44\,682{,}76}\cdot 100\approx 4{,}5\,\%$$'
+        zeige: { eintraege: [p] }
+      - typ: auswahl
+        frage: '<strong>Zeile 4:</strong> Wie bestimmst du die Tilgung $T_4$?'
+        optionen:
+          - '$T_4=A-Z_4$'
+          - '$T_4=RK_3-Z_4$'
+          - '$T_4=RK_3\cdot 0{,}045$'
+        korrekt: 0
+        hinweis: 'Die Annuität besteht aus Zinsen und Tilgung.'
+        danach: '$$\begin{align*}T_4&=7\,582{,}73-2\,010{,}72=5\,572{,}01\\ RK_4&=44\,682{,}76-5\,572{,}01=39\,110{,}75\end{align*}$$'
+        zeige: { eintraege: [t4, rk4] }
+      - typ: auswahl
+        frage: '<strong>Zeile 5:</strong> Von welcher Restschuld werden die Zinsen $Z_5$ berechnet?'
+        optionen:
+          - '$39\,110{,}75$ € (Ende von Jahr 4)'
+          - '$44\,682{,}76$ € (Anfang von Jahr 4)'
+          - '$7\,582{,}73$ € (Annuität)'
+        korrekt: 0
+        hinweis: 'Zinsen werden immer aus der Restschuld am Anfang <em>desselben</em> Jahres berechnet.'
+        danach: '$$\begin{align*}Z_5&=39\,110{,}75\cdot 0{,}045\approx 1\,759{,}98\\ T_5&=7\,582{,}73-1\,759{,}98=5\,822{,}75\\ RK_5&=39\,110{,}75-5\,822{,}75=33\,288{,}00\end{align*}$$'
+        zeige: { eintraege: [z5, t5, rk5] }
+
+  - phase: vormachen
+    titel: 'Eine Zeile zurück'
+    text: '<p>Gleicher Plan ($p=4{,}5\,\%$, $A=7\,582{,}73$ €). Gesucht ist die Restschuld zu Beginn des 3. Jahres, also $RK_2$. Bekannt ist $RK_3=44\,682{,}76$ €.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Rechnung liefert $RK_2$?'
+        optionen:
+          - '$RK_2=\dfrac{44\,682{,}76+7\,582{,}73}{1{,}045}$'
+          - '$RK_2=\dfrac{44\,682{,}76-7\,582{,}73}{1{,}045}$'
+          - '$RK_2=44\,682{,}76\cdot 1{,}045+7\,582{,}73$'
+        korrekt: 0
+        hinweis: 'Vorwärts gilt $RK_3=RK_2\cdot q-A$. Mach beide Schritte rückgängig: erst $+A$, dann $:q$.'
+        danach: '$$RK_2=\frac{52\,265{,}49}{1{,}045}\approx 50\,014{,}82\,\text{€}$$<p>Sind in einer Zeile Tilgung und Restschuld am Jahresende bekannt, geht es noch einfacher: $RK_{k-1}=RK_k+T_k$.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Jetzt du: vorwärts'
+    text: '<p>Bekannt ist nur:</p><p><strong>Jahr 6:</strong> Restschuld am Jahresanfang $20\,000$ €, Zinsen $800$ €, Annuität $3\,000$ €.<br><strong>Jahr 7:</strong> alles unbekannt.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Mit welchem Zinssatz wird das Darlehen verzinst?'
+        felder:
+          - { label: '$p=$', loesung: 4, toleranz: 0.01, einheit: '%' }
+        hinweis: '$p=\frac{Z_6}{RK_5}\cdot 100$.'
+      - typ: eingabe
+        layout: zeile
+        frage: 'Vervollständige Zeile 6.'
+        felder:
+          - { label: '$T_6=$', loesung: 2200, toleranz: 0.01, einheit: '€', aria: 'Tilgung im 6. Jahr' }
+          - { label: '$RK_6=$', loesung: 17800, toleranz: 0.01, einheit: '€', aria: 'Restschuld am Ende des 6. Jahres' }
+        hinweis: '$T_6=A-Z_6$, danach $RK_6=RK_5-T_6$.'
+      - typ: eingabe
+        layout: zeile
+        frage: 'Jetzt Zeile 7.'
+        felder:
+          - { label: '$Z_7=$', loesung: 712, toleranz: 0.01, einheit: '€', aria: 'Zinsen im 7. Jahr' }
+          - { label: '$RK_7=$', loesung: 15512, toleranz: 0.01, einheit: '€', aria: 'Restschuld am Ende des 7. Jahres' }
+        hinweis: 'Zeile 7 beginnt mit $RK_6=17\,800$ €. Also $Z_7=17\,800\cdot 0{,}04$, $T_7=3\,000-Z_7$ und $RK_7=17\,800-T_7$.'
+        danach: '$$\begin{align*}Z_7&=17\,800\cdot 0{,}04=712\\ T_7&=3\,000-712=2\,288\\ RK_7&=17\,800-2\,288=15\,512\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Jetzt du: rückwärts'
+    text: '<p>Ein Darlehen wird mit $5\,\%$ verzinst. Bekannt ist nur:</p><p><strong>Jahr 9:</strong> Zinsen $605$ €, Tilgung $1\,995$ €, Restschuld am Jahresende $10\,105$ €.<br><strong>Jahr 8:</strong> alles unbekannt.</p>'
+    schritte:
+      - typ: eingabe
+        layout: zeile
+        frage: 'Bestimme die Annuität und die Restschuld am Ende des 8. Jahres.'
+        felder:
+          - { label: '$A=$', loesung: 2600, toleranz: 0.01, einheit: '€', aria: 'Annuität' }
+          - { label: '$RK_8=$', loesung: 12100, toleranz: 0.01, einheit: '€', aria: 'Restschuld am Ende des 8. Jahres' }
+        hinweis: '$A=Z_9+T_9$. Das Ende von Jahr 8 ist der Anfang von Jahr 9: $RK_8=RK_9+T_9$.'
+      - typ: eingabe
+        frage: 'Wie hoch war die Restschuld zu Beginn des 8. Jahres?'
+        felder:
+          - { label: '$RK_7=$', loesung: 14000, toleranz: 0.05, einheit: '€' }
+        hinweis: '$RK_7=\frac{RK_8+A}{q}=\frac{12\,100+2\,600}{1{,}05}$.'
+        danach: '$$RK_7=\frac{12\,100+2\,600}{1{,}05}=14\,000\,\text{€}$$<p>Probe: $Z_8=700$ €, $T_8=1\,900$ €, $14\,000-1\,900=12\,100$ € ✓</p>'
