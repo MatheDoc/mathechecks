@@ -25,11 +25,18 @@
     --ok-farbe-hover: color-mix(in srgb, var(--green) 82%, #000000 18%);
     --warn-farbe: var(--rose);
     --warn-farbe-hover: color-mix(in srgb, var(--rose) 82%, #000000 18%);
+    --rechner-ausgabe-flaeche: color-mix(in srgb, var(--hintergrund-hell) 82%, transparent);
+    --rechner-ausgabe-text: var(--text);
+    --rechner-verlauf-text: var(--text-body);
     color-scheme: dark;
 }
 
 html.light .calculator-overlay {
     color-scheme: light;
+    /* Display (Ergebnis, Verlauf): leicht getönt, damit es sich von den weißen Tasten abhebt. */
+    --rechner-ausgabe-flaeche: color-mix(in srgb, var(--panel-solid) 55%, var(--bg));
+    --rechner-ausgabe-text: var(--text-body);
+    --rechner-verlauf-text: #4a4a58;
     --kopfzeile-steuerung-hintergrund: var(--dropdown-bg);
     --kopfzeile-steuerung-hintergrund-hover: color-mix(in srgb, var(--dropdown-bg) 88%, var(--surface-hi));
 }
@@ -355,7 +362,8 @@ html.calculator-resizing * {
     flex: 1;
     min-width: 0;
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
+    color: var(--rechner-ausgabe-text);
     min-height: 38px;
     padding: 0 0 2px;
     text-align: left;
@@ -879,7 +887,8 @@ html.light .calculator-mode-picker--compact:focus-within {
     margin: 0 8px;
     border: 1px solid var(--borderfarbe);
     border-radius: 18px;
-    background: color-mix(in srgb, var(--hintergrund-hell) 82%, transparent);
+    background: var(--rechner-ausgabe-flaeche);
+    color: var(--rechner-ausgabe-text);
 }
 
 .calculator-output {
@@ -891,7 +900,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator-output.is-stale {
-    opacity: 0.68;
+    opacity: 0.8;
 }
 
 .calculator-output.has-secondary-content {
@@ -1660,6 +1669,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator .buttons--shared > button {
+    color: var(--rechner-ausgabe-text);
     font-size: var(--calculator-key-font-size, 19px);
 }
 
@@ -1827,7 +1837,7 @@ html.calculator-open .calc-target-badge {
     min-width: 0;
     justify-content: flex-start;
     padding: 4px 6px;
-    color: var(--textfarbe-schwach);
+    color: var(--rechner-verlauf-text);
     font-family: 'Segoe UI', 'Courier New', monospace;
     font-size: 13px;
     font-weight: 400;
@@ -1837,7 +1847,7 @@ html.calculator-open .calc-target-badge {
 }
 
 .calculator .calculator-history__input:hover {
-    color: var(--textfarbe);
+    color: var(--rechner-ausgabe-text);
     background: var(--icon-button-hover-bg);
 }
 
@@ -1856,7 +1866,7 @@ html.calculator-open .calc-target-badge {
     border: 1px solid color-mix(in srgb, var(--hauptfarbe) 45%, var(--borderfarbe));
     border-radius: 999px;
     background: color-mix(in srgb, var(--hauptfarbe) 10%, var(--rechner-taste));
-    color: var(--textfarbe);
+    color: var(--rechner-ausgabe-text);
     font-size: 13px;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
@@ -1873,7 +1883,7 @@ html.calculator-open .calc-target-badge {
 }
 
 .calculator-history__text {
-    color: var(--textfarbe);
+    color: var(--rechner-ausgabe-text);
     font-size: 13px;
     white-space: nowrap;
 }
