@@ -225,7 +225,7 @@
     function getModeDefinitions() {
         return {
             history: { icon: '↺', label: 'Verlauf' },
-            basic: { icon: '∑', label: 'Bausteine' },
+            basic: { icon: '∑', label: 'Operationen' },
             lgs: { icon: '▦', label: 'Gleichungssystem' },
             binom: { icon: '◎', label: 'Binomialverteilung' },
             graph: { icon: '↗', label: 'Graph' },
@@ -488,6 +488,36 @@
         }
         focusInput(target, false);
         emitInputEvent(target);
+    }
+
+    function setupBackspaceRepeat(button) {
+        if (!button) return;
+        const REPEAT_DELAY_MS = 450;
+        const REPEAT_INTERVAL_MS = 70;
+        let delayId = null;
+        let repeatId = null;
+
+        const stop = () => {
+            window.clearTimeout(delayId);
+            window.clearInterval(repeatId);
+            delayId = null;
+            repeatId = null;
+        };
+
+        button.addEventListener('pointerdown', (event) => {
+            if (event.button !== 0) return;
+            // Verhindert, dass die Taste dem Eingabefeld den Fokus nimmt.
+            event.preventDefault();
+            stop();
+            backspaceActiveInput();
+            delayId = window.setTimeout(() => {
+                repeatId = window.setInterval(backspaceActiveInput, REPEAT_INTERVAL_MS);
+            }, REPEAT_DELAY_MS);
+        });
+        ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach((type) => {
+            button.addEventListener(type, stop);
+        });
+        button.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 
     function setMode(mode, { focus = true } = {}) {
@@ -1196,6 +1226,13 @@
     function executeMainInput() {
         const mainInput = getMainInput();
         if (!mainInput) return;
+        const rawInput = String(mainInput.value || '').trim();
+        // Offene Klammern (z. B. nach „^(“) beim Ausführen sichtbar schließen.
+        const missingClosers = countUnclosedParentheses(rawInput);
+        if (missingClosers > 0) {
+            mainInput.value = rawInput + ')'.repeat(missingClosers);
+            applySelectionState(mainInput, mainInput.value.length);
+        }
         const input = String(mainInput.value || '').trim() || '0';
         state.lastResult = null;
         CalculatorCommands.execute(input, outputApi);
@@ -1233,6 +1270,33 @@
         if (next === value) return;
         input.value = next;
         const nextCaret = caret - removedBeforeCaret;
+        applySelectionState(input, nextCaret, nextCaret);
+    }
+
+    // Macht die implizite Multiplikation des Parsers (utils.addImplicitMultiplication) als „*“ sichtbar.
+    // Großes E bleibt frei für die wissenschaftliche Schreibweise (2E+5).
+    function needsVisibleTimes(prev, cur, rest) {
+        if (/\d/.test(prev)) {
+            if (cur === 'e') return !/^[+\-\d]/.test(rest);
+            return /[a-df-zA-DF-Zπ(]/.test(cur);
+        }
+        return prev === ')' && /[\dA-Za-zπ(]/.test(cur);
+    }
+
+    function showImplicitMultiplication(input) {
+        const value = String(input.value || '');
+        const caret = Number.isInteger(input.selectionStart) ? input.selectionStart : value.length;
+        let next = value[0] || '';
+        let nextCaret = caret;
+        for (let i = 1; i < value.length; i++) {
+            if (needsVisibleTimes(value[i - 1], value[i], value.slice(i + 1))) {
+                next += '*';
+                if (i <= caret) nextCaret += 1;
+            }
+            next += value[i];
+        }
+        if (next === value) return;
+        input.value = next;
         applySelectionState(input, nextCaret, nextCaret);
     }
 
@@ -1450,6 +1514,8 @@
             button.addEventListener('click', () => setMode(button.dataset.openMode));
         });
 
+        setupBackspaceRepeat(document.querySelector('.buttons--shared [data-action="backspace"]'));
+
         document.querySelector('.buttons--shared')?.addEventListener('click', (event) => {
             const button = event.target.closest('button');
             if (!button) return;
@@ -1465,7 +1531,8 @@
                 return;
             }
             if (action === 'backspace') {
-                backspaceActiveInput();
+                // Zeiger-Klicks löscht bereits setupBackspaceRepeat; hier nur Tastatur-Aktivierung (detail 0).
+                if (event.detail === 0) backspaceActiveInput();
                 return;
             }
             if (action === 'insert-ans') {
@@ -1495,7 +1562,9 @@
 
         document.querySelector('#calculator-overlay')?.addEventListener('input', (event) => {
             const input = getCalculatorTextInput(event.target);
-            if (input && !event.isComposing) replacePiWord(input);
+            if (!input || event.isComposing) return;
+            replacePiWord(input);
+            if (input === getMainInput()) showImplicitMultiplication(input);
         }, true);
 
         byId('lgsMatrix')?.addEventListener('input', () => {

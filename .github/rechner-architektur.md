@@ -13,12 +13,14 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 ## Aktuelle Bedienform
 
 - Die obere Leiste steuert genau eine aktive Eingabehilfe über ein gemeinsames Modus-Dropdown.
-- Sichtbare Modusnamen sind aktuell `Verlauf` (Standard beim ersten Öffnen), `Bausteine`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
+- Sichtbare Modusnamen sind aktuell `Verlauf` (Standard beim ersten Öffnen), `Operationen`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
 - Die obere Leiste enthält keine globalen Aktions-Buttons. Ein- und Ausblenden des Rechners erfolgt über das Drei-Punkte-Menü der Topbar.
 - Ab 800 px Viewport-Breite ist der Rechner rechts unter der Topbar angedockt (Breite per Griff verstellbar), darunter Vollbild-Overlay unter der Topbar.
-- Tastenfeld (4 Spalten): `x = C ⌫` / `π e ^ ÷` / Ziffernblock mit Operatoren rechts / `( ) 0 , EXE`. `=` ist das Gleichungszeichen und steht bewusst weit weg von `EXE`. Alle Tasten haben dieselbe Fläche; hervorgehoben sind nur die Operatoren (Textfarbe) und EXE (farbige Hauptaktion).
+- Tastenfeld (4 Spalten): `x = C ⌫` / `π e ^ ÷` / Ziffernblock mit Operatoren rechts / `( ) 0 , EXE`. `=` ist das Gleichungszeichen und steht bewusst weit weg von `EXE`. Alle Tasten haben dieselbe Fläche; hervorgehoben sind nur die Operatoren (Textfarbe Akzent), die Löschtasten `C`/`⌫` (Textfarbe rot) und EXE (gedämpfte Akzentfläche).
+- `^` fügt `^(` ein, damit der Exponent eindeutig ist (`2^(2*π)` statt mehrdeutig `2^2π`). Bei `EXE` werden offene Klammern automatisch und sichtbar geschlossen.
+- `⌫` gedrückt halten löscht nach kurzer Verzögerung fortlaufend weiter.
 - Angedockt wachsen Tasten und Schrift mit der Rechnerhöhe (Container-Query); mobil bleiben die Größen fest.
-- Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Menü `Bausteine` (intern `basic`) betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`. „Bausteine“ statt „Funktionen“, weil dort auch Nicht-Funktionen wie `Bruch` oder `Int` liegen.
+- Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Menü `Operationen` (intern `basic`) betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`.
 - Der Wechsel eines solchen Unterwerkzeugs ändert nur die lokale Eingabehilfe im aktiven Panel, nicht die globale Rechner-Semantik.
 
 ## Drei Kernbereiche
@@ -30,6 +32,7 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 - Darf auch komplexere Ausdrücke enthalten, nicht nur reine Taschenrechner-Terme.
 - Schlanke Code-Schreibweise (`x^2`, `sqrt(…)`, `int(…)`), keine hochgestellten Zeichen oder Integralsymbole. Grafische Hilfen gibt es nur in den Builder-Menüs hinter den Funktionstasten.
 - `pi` wird beim Tippen sofort als `π` angezeigt.
+- Implizite Multiplikation wird beim Tippen sichtbar als `*` eingefügt, genau an den Stellen, an denen der Parser ohnehin multipliziert: `2e` → `2*e`, `2x` → `2*x`, `3(4)` → `3*(4)`, `(1+2)(3)` → `(1+2)*(3)`. Großes `E` bleibt für die wissenschaftliche Schreibweise (`2E+5`) frei.
 - ↑/↓ blättern durch frühere Eingaben (Verlauf).
 - Hat eine Spracheingabe (Mikrofon im Feld), siehe Abschnitt „Spracheingabe“.
 
@@ -68,7 +71,7 @@ Builder-Menüs helfen beim Erzeugen oder Verstehen einer Eingabe, sind aber nich
 
 Aktuell:
 
-- Bausteine
+- Operationen
 - Binom
 - LGS
 - Matrizen
@@ -169,9 +172,9 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 ## Spracheingabe
 
 - Nur im Main-Input (V1). Technik gemeinsam mit den Antwortfeldern (`assets/js/modules/ui/speech-input.js`), Übersetzung in `assets/js/calculator/speech.js`.
-- Gesprochene Mathematik wird wörtlich übersetzt und an der Cursorposition eingefügt, z. B. „drei mal x hoch zwei“ → `3*x^2`, „Klammer auf … Klammer zu“ → `( … )`.
+- Gesprochene Mathematik wird wörtlich übersetzt und an der Cursorposition eingefügt, z. B. „drei mal x hoch zwei“ → `3*x^(2)`, „Klammer auf … Klammer zu“ → `( … )`.
 - Während des Sprechens zeigt eine graue Live-Vorschau im Feld den bereits übersetzten Term (z. B. `3*4 ✓`). Sie ist reine Anzeige; der Feldwert ändert sich erst mit dem Endergebnis.
-- Keine automatischen Klammern: „eins durch x plus eins“ → `1/x+1`. Einzige Ausnahme: Funktion mit genau einem Argument, „Sinus von dreißig“ → `sin(30)`, „Wurzel aus x“ → `sqrt(x)`. Für längere Argumente „Klammer auf/zu“ sprechen.
+- Keine automatischen Klammern: „eins durch x plus eins“ → `1/x+1`. Einzige Ausnahme: Funktionen und „hoch“ (wie die `^`-Taste) klammern ihr Argument. Bei genau einem Argument wird geschlossen, „Sinus von dreißig“ → `sin(30)`, „x hoch zwei plus eins“ → `x^(2)+1`, „zum Quadrat“ → `^(2)`. Sonst bleibt die Klammer offen („zwei hoch Wurzel aus zwei“ → `2^(sqrt(2)`) und wird bei `EXE` geschlossen. Für längere Argumente „Klammer auf/zu“ sprechen.
 - Ohne Signalwort wird nie ausgeführt. Abschließendes „check“, „ausrechnen“ oder „exe“ führt aus wie `EXE` und beendet die Aufnahme.
 - Einzelkommandos: „löschen“ leert den Main-Input, „zurück“ löscht ein Zeichen.
 - „gleich“ und „ist gleich“ sind das Zeichen `=`, keine Kommandos.

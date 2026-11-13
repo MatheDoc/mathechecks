@@ -1,6 +1,6 @@
 // Spracheingabe für den Main-Input des Rechners.
 // Übersetzt gesprochene Mathematik wörtlich in Rechner-Syntax (keine automatischen Klammern),
-// Ausnahme: Funktion + einzelnes Argument ("Sinus von 30" -> sin(30)).
+// Ausnahme: Funktion oder "hoch" + einzelnes Argument ("Sinus von 30" -> sin(30), "x hoch 2" -> x^(2)).
 import {
     attachSpeechInput,
     parseGermanCardinalWord,
@@ -127,6 +127,8 @@ function tokenize(text) {
         flushNumber();
         if (token === "(") tokens.push({ type: "lparen", value: "(" });
         else if (token === ")") tokens.push({ type: "rparen", value: ")" });
+        // "^" klammert seinen Exponenten wie eine Funktion ihr Argument (wie die ^-Taste).
+        else if (token === "^") tokens.push({ type: "fn", value: "^" });
         else if (OPERATORS.has(token)) tokens.push({ type: "op", value: token });
         else if (FUNCTION_WORDS.has(token)) tokens.push({ type: "fn", value: FUNCTION_WORDS.get(token) });
         else if (FUNCTION_FILLERS.has(token)) tokens.push({ type: "filler", value: "" });
@@ -142,7 +144,7 @@ function isAtom(token) {
 
 /**
  * Übersetzt einen gesprochenen Term in Rechner-Syntax, z. B.
- * "drei mal x hoch zwei plus Wurzel aus sechzehn" -> "3*x^2+sqrt(16)".
+ * "drei mal x hoch zwei plus Wurzel aus sechzehn" -> "3*x^(2)+sqrt(16)".
  */
 export function speechToExpression(text) {
     const tokens = tokenize(text);

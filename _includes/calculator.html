@@ -14,7 +14,7 @@
                                 class="calculator-mode-select calculator-mode-select--compact"
                                 aria-label="Eingabehilfe wählen, aktuell Standard">
                                 <option value="history" selected>Verlauf</option>
-                                <option value="basic">Bausteine</option>
+                                <option value="basic">Operationen</option>
                                 <option value="lgs">Gleichungssystem</option>
                                 <option value="binom">Binomialverteilung</option>
                                 <option value="graph">Graph</option>
@@ -37,15 +37,14 @@
                                         <button type="button" class="calculator-history__clear"
                                             id="calculatorHistoryClear" hidden>Verlauf leeren</button>
                                         <p class="calculator-history__empty" id="calculatorHistoryEmpty">
-                                            Noch keine Rechnungen. Funktionen wie sin, Bruch oder Int findest du
-                                            oben unter „Bausteine“.
+                                            Noch keine Rechnungen.
                                         </p>
                                         <ol class="calculator-history__list" id="calculatorHistoryList"></ol>
                                     </div>
                                 </section>
 
                                 <section class="calculator-panel" data-panel="basic"
-                                    aria-label="Bausteine">
+                                    aria-label="Operationen">
                                     <div class="standard-tool-layout">
                                         <div class="standard-tool-overview" id="standardToolOverview">
                                             <button type="button" class="standard-tool-grid-button"
@@ -594,11 +593,12 @@
                             <button type="button" class="calc-key--ctl" data-action="clear"
                                 aria-label="Eingabe löschen">C</button>
                             <button type="button" class="calc-key--ctl" data-action="backspace"
-                                aria-label="Letztes Zeichen löschen">⌫</button>
+                                aria-label="Letztes Zeichen löschen (gedrückt halten löscht weiter)">⌫</button>
 
                             <button type="button" class="calc-key--fn" data-insert="π">π</button>
                             <button type="button" class="calc-key--fn" data-insert="e">e</button>
-                            <button type="button" class="calc-key--fn" data-insert="^">^</button>
+                            <button type="button" class="calc-key--fn" data-insert="^("
+                                aria-label="Hoch (öffnet Klammer für den Exponenten)">^</button>
                             <button type="button" class="calc-key--op" data-insert="/">÷</button>
 
                             <button type="button" data-insert="7">7</button>
