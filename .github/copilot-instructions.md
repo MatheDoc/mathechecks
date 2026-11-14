@@ -91,6 +91,9 @@ Warm-Up (geführter Einstieg pro Check, nicht verlinkt)
 Klausuren  
 → `klausuren/README.md`
 
+Erklärvideos (Kurzvideo pro Check, Pilot)  
+→ `videos/README.md`
+
 Glossar  
 → `.github/glossary.md`
 
