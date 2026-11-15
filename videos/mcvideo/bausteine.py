@@ -11,6 +11,7 @@ from manim import (
     UP,
     Animation,
     AnimationGroup,
+    ArcBetweenPoints,
     Circle,
     Create,
     DecimalNumber,
@@ -24,6 +25,7 @@ from manim import (
     RoundedRectangle,
     SVGMobject,
     Text,
+    Transform,
     UpdateFromAlphaFunc,
     VGroup,
     VMobject,
@@ -236,6 +238,100 @@ class Versuche(_Leiste):
     def markiere(self, *nummern: int, farbe: str = t.TUERKIS) -> Animation:
         """Hebt einzelne Versuche hervor."""
         return self._hervorheben(set(nummern), set(nummern), farbe)
+
+
+def _zahl(wert: float) -> str:
+    """Zahl als TeX mit Dezimalkomma."""
+    return f"{wert:g}".replace(".", "{,}")
+
+
+class ErweiterteMatrix(VGroup):
+    """Erweiterte Koeffizientenmatrix (A | b). Rechts stehen die Zeilennamen I, II, III und die Umformungen.
+
+    breiteste_umformung: längste Umformung des Videos als TeX. Sie reserviert rechts Platz, damit
+    die Matrix beim Einpassen nicht zu groß wird.
+    """
+
+    NAMEN = ("I", "II", "III", "IV", "V")
+
+    def __init__(
+        self,
+        zeilen: list[list[float]],
+        breiteste_umformung: str | None = None,
+        groesse: float = t.S_FORMEL,
+        spalte: float = 1.0,
+        zeile: float = 0.95,
+    ) -> None:
+        super().__init__()
+        self._groesse = groesse
+        self._spalte = spalte
+        anzahl = len(zeilen[0])
+        xs = [j * spalte for j in range(anzahl - 1)] + [(anzahl - 1) * spalte + 0.3]
+        ys = [-i * zeile for i in range(len(zeilen))]
+        self.eintraege = [
+            [formel(_zahl(wert), groesse=groesse).move_to([x, y, 0]) for wert, x in zip(werte, xs)]
+            for werte, y in zip(zeilen, ys)
+        ]
+        oben, unten = ys[0] + 0.5, ys[-1] - 0.5
+        links, rechts = xs[0] - 0.6, xs[-1] + 0.6
+        self.klammern = VGroup(
+            ArcBetweenPoints(np.array([links, oben, 0]), np.array([links, unten, 0]), angle=0.6),
+            ArcBetweenPoints(np.array([rechts, unten, 0]), np.array([rechts, oben, 0]), angle=0.6),
+        ).set_stroke(t.TEXT, width=3.5)
+        mitte = (xs[-2] + xs[-1]) / 2
+        self.strich = Line([mitte, oben - 0.12, 0], [mitte, unten + 0.12, 0], color=t.ACHSE, stroke_width=2.5)
+        self.namen = [
+            formel(self.zeilenname(i), groesse=0.8 * groesse, farbe=t.TEXT_LEISE).move_to([rechts + 0.5, y, 0], aligned_edge=LEFT)
+            for i, y in enumerate(ys)
+        ]
+        self.add(self.klammern, self.strich, *[eintrag for werte in self.eintraege for eintrag in werte], *self.namen)
+        if breiteste_umformung:
+            platz = formel(breiteste_umformung, groesse=0.8 * groesse).move_to(self.namen[0], aligned_edge=LEFT)
+            self.add(platz.set_opacity(0))
+
+    @classmethod
+    def zeilenname(cls, i: int) -> str:
+        """Name der Zeile i als TeX (aufrechte römische Zahl), auch als Baustein für Umformungen."""
+        return rf"\mathrm{{{cls.NAMEN[i]}}}"
+
+    def _massstab(self) -> float:
+        """Aktuelle Größe im Verhältnis zur Größe beim Anlegen."""
+        return (self.eintraege[0][1].get_x() - self.eintraege[0][0].get_x()) / self._spalte
+
+    def zeile(self, i: int) -> VGroup:
+        return VGroup(*self.eintraege[i])
+
+    def zahlenzeile(self, werte: list[float], y: float, farben: dict[int, str] | None = None) -> VGroup:
+        """Zahlen in den Spalten der Matrix auf der Höhe y, etwa für eine Nebenrechnung darunter."""
+        groesse = self._groesse * self._massstab()
+        return VGroup(*[
+            formel(_zahl(wert), groesse=groesse, farbe=(farben or {}).get(j, t.TEXT)).move_to([oben.get_x(), y, 0])
+            for j, (wert, oben) in enumerate(zip(werte, self.eintraege[0]))
+        ])
+
+    def randnotiz(self, tex: str, y: float, farbe: str = t.TEXT_LEISE) -> MathTex:
+        """Beschriftung in der Spalte der Zeilennamen auf der Höhe y."""
+        notiz = formel(tex, groesse=0.8 * self._groesse * self._massstab(), farbe=farbe)
+        return notiz.move_to([self.namen[0].get_left()[0], y, 0], aligned_edge=LEFT)
+
+    def umformung(self, i: int, tex: str) -> Animation:
+        """Schreibt eine Umformung an die Zeile i, z. B. zeilenname(1) + "-4\\cdot" + zeilenname(0)."""
+        return Transform(self.namen[i], self.randnotiz(tex, self.namen[i].get_y(), t.HERVOR))
+
+    def benennen(self, i: int) -> Animation:
+        """Setzt an die Zeile i wieder ihren Namen."""
+        return Transform(self.namen[i], self.randnotiz(self.zeilenname(i), self.namen[i].get_y()))
+
+    def umformen(self, i: int, werte: list[float], farben: dict[int, str] | None = None) -> Animation:
+        """Ersetzt die Zeile i durch neue Werte; farben färbt einzelne Spalten."""
+        neu = self.zahlenzeile(werte, self.eintraege[i][0].get_y(), farben)
+        return AnimationGroup(*[Transform(alt, ziel) for alt, ziel in zip(self.eintraege[i], neu)])
+
+    def betonen(self, i: int) -> Animation:
+        """Die Zeile i pulsiert kurz: „um diese Zeile geht es“."""
+        return AnimationGroup(*[
+            eintrag.animate(rate_func=rate_functions.there_and_back).scale(1.3) for eintrag in self.eintraege[i]
+        ])
 
 
 class Dezimalzahl(DecimalNumber):

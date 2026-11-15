@@ -2,26 +2,28 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit zwei Videos (Check 06 der Differentialrechnung: Rechenverfahren mit tragendem Graphen; Check 05 der Binomialverteilung: Textverständnis ohne tragendes Bild). Die Regeln unten sind ein Arbeitsstand; Agent und Skill folgen erst nach weiteren Pilotvideos. Die Videos sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen.
+Stand: Pilot mit drei Videos (Check 06 der Differentialrechnung: Rechenverfahren mit tragendem Graphen; Check 05 der Binomialverteilung: Textverständnis ohne tragendes Bild; Check 02 der linearen Gleichungssysteme: Algorithmus an einer Matrix). Die Regeln unten sind ein Arbeitsstand; Agent und Skill folgen erst nach weiteren Pilotvideos. Die Videos sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen.
 
 ## Aufbau
 
 ```text
 videos/
   render.py                 einziger Einstieg zum Rendern
+  aufnahme.py, aufnahme.html  eigene Stimme einsprechen (lokale Seite im Browser)
   requirements.txt
   mcvideo/                  gemeinsame Bibliothek
     theme.py                Farben, Schrift, Bildaufteilung, Auflösung
     szene.py                Basisszene MCSzene: Logo, Bereiche, Ton, Schlussbild, Randprüfung
-    bausteine.py            Frage, Schritt, Kurzfassung, Legende, Zahlenstrahl, Versuche, Dezimalzahl, …
-    stimme.py               Sprachdienst (zentral umschaltbar)
+    bausteine.py            Frage, Schritt, Kurzfassung, Legende, Zahlenstrahl, Versuche, ErweiterteMatrix, Dezimalzahl, …
+    stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
+  aufnahmen/<check_id>/     eigene Sprachaufnahmen je Sprechabschnitt (MP3, im Repo)
   media/                    Zwischenstände, Tonzwischenspeicher, Prüfbögen (gitignored)
   ausgabe/                  fertige Videos und Untertitel (gitignored)
 ```
 
-Die Szene heißt wie das Musterbeispiel des Checks und ist die einzige Quelle des Videos. Aus dem Pfad ergibt sich die `check_id`; `render.py` bricht ab, wenn es sie in `_data/checks.json` nicht gibt.
+Die Szene heißt wie das Musterbeispiel des Checks. Sie ist die Quelle des Videos, zusammen mit den eigenen Sprachaufnahmen, sobald es sie gibt. Aus dem Pfad ergibt sich die `check_id`; `render.py` bricht ab, wenn es sie in `_data/checks.json` nicht gibt.
 
 ## Einrichten
 
@@ -43,7 +45,8 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 
    Ausgegeben werden Dauer, Wortzahl und alle Objekte außerhalb des sichtbaren Bereichs.
 3. **Prüfbogen** durchsehen: `media/pruefung/<check_id>/pruefbogen.md` zeigt je Sprechabschnitt das Standbild mit Sprechtext und Untertitel (Überlappungen, Lesbarkeit, fachliche Richtigkeit). Er wird bei jedem Entwurf neu erzeugt.
-4. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Video und Untertiteldatei landen in `ausgabe/<check_id>.mp4` und `.srt`. Bei Randverstößen wird nichts ausgegeben.
+4. **Einsprechen** (wenn das Video die eigene Stimme bekommen soll): siehe „Eigene Stimme einsprechen“.
+5. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Video und Untertiteldatei landen in `ausgabe/<check_id>.mp4` und `.srt`. Bei Randverstößen oder unvollständigen Aufnahmen wird nichts ausgegeben.
 
 ## Regeln für ein Video
 
@@ -53,7 +56,7 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
   2. Dazu erscheint die Frage, gesprochen und geschrieben, weiß und ohne Farbcode. Sie steht in der Du-Form und benennt das Thema sofort, nach dem Muster „Wie bestimmst du Hoch- und Tiefpunkte?“ (der umgedrehte Kompetenzsatz des Checks).
   3. Begrüßung: Logo und Name erscheinen unter der Frage, gesprochen wird `MCSzene.begruessung`.
   4. Das Logo wandert in die Ecke und bleibt dort; erst jetzt erscheint die Kopfzeile.
-- Die Kopfzeile ist freiwillig. Sie zeigt das Gegebene, auf das sich die Rechnung durchgehend bezieht (etwa den Funktionsterm), sonst bleibt sie leer.
+- Die Kopfzeile ist freiwillig. Sie zeigt das Gegebene, auf das sich die Rechnung durchgehend bezieht (etwa den Funktionsterm). Steht das Gegebene schon auf der Bühne, bleibt sie zunächst leer und nimmt am Ende das Ergebnis auf (Check 02 der linearen Gleichungssysteme).
 - Ein Video trägt eine Kernidee. Das Musterbeispiel ist nur Orientierung: Sachzusammenhang und Zahlen werden möglichst übernommen, aber das Video zeigt nur so viele Fälle, wie die Kernidee braucht (Check 05 der Binomialverteilung: fünf von dreizehn Ereignissen, je eines pro Schwierigkeit, und ein Lösungsweg statt zwei).
 - Ein Check bekommt genau ein Video. Gehört zum Check auch die Abgrenzung (etwa „binomialverteilt oder nicht“), kommt sie als kurzer eigener Fall ins selbe Video.
 - Checks ohne festen Rechenweg (Textverständnis, viele Fallarten) bekommen keine nummerierten Schritte, sondern mehrere kurze Fälle nach demselben Muster: Wortlaut, Bild, Rechnung. Die nummerierte Kurzfassung am Ende nennt dann die Leitfragen.
@@ -79,6 +82,8 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Bildaufteilung von oben nach unten: Kopf (Logo, Titel), Bühne auf einer Karte (`self.buehne()`), Tafel (Rechnung, Text). `self.tafel(...)`, `self.achsen(...)` und `self.auf_buehne(...)` passen Inhalte in ihren Bereich ein.
 - Die Höhe der Bühne richtet sich nach dem Bild: volle Höhe für einen Graphen, flach (`self.buehne(hoehe=2.5)`) für ein Bild, das nur begleitet, etwa den `Zahlenstrahl`. Die Tafel rückt dann nach oben und bekommt mehr Platz; die Schrift darf dort größer sein. So bleibt auch bei textlastigen Checks ohne tragendes Bild die obere Bildhälfte nicht leer.
 - Ein Bild stützt jedes Video, auch textlastige: Auf dem `Zahlenstrahl` erscheint der Bereich, von dem der Text spricht; `Versuche` zeigt einzelne Versuche, wenn es nicht um eine Anzahl geht.
+- Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen. Umformungen stehen wie im Heft rechts neben der Zeile; die Nebenrechnung darunter steht in denselben Spalten (`zahlenzeile`), danach wird die Zeile ersetzt (`umformen`). Zeilennamen sind aufrechte römische Zahlen.
+- Ein Wert, der weiterverwendet wird, behält seine Farbe und wandert sichtbar an die Stelle, an der er eingesetzt wird (Rückwärtseinsetzen).
 - Bleibt unter der Rechnung Platz frei, rückt `self.tafel(...)` den Block ein Stück nach unten (`TAFEL_LAGE` in `theme.py`), damit das Bild gleichmäßiger gefüllt ist. Leere Flächen sind in Ordnung.
 - Zeichen und ihre Bedeutung stehen zweispaltig bündig (`legende`).
 - Sichtbarer Bereich: Der untere Rand und die Bedienleiste rechts unten bleiben frei, weil die Shorts-Oberfläche sie überdeckt. Die Werte in `theme.py` sind Richtwerte und noch nicht am Handy geprüft.
@@ -86,13 +91,35 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 
 ## Stimme
 
-Entwürfe sprechen mit gTTS (kostenlos, braucht Internet). Der Ton wird je Sprechabschnitt in `media/voiceovers/` zwischengespeichert; ändert sich ein Text, wird nur dieser Abschnitt neu erzeugt. Gewechselt wird die Stimme an einer Stelle, in `mcvideo/stimme.py`.
+Entwürfe sprechen mit gTTS (kostenlos, braucht Internet). Der Ton wird je Sprechabschnitt in `media/voiceovers/` zwischengespeichert; ändert sich ein Text, wird nur dieser Abschnitt neu erzeugt. Die Entwurfsstimme wird an einer Stelle gewechselt, in `mcvideo/stimme.py`.
 
-Selbst einsprechen geht mit dem `RecorderService` von `manim-voiceover`: Beim Rendern zeigt das Terminal je Abschnitt den Sprechtext, aufgenommen wird, solange die Taste `r` gedrückt ist, danach anhören, wiederholen oder annehmen. Auch diese Aufnahmen werden zwischengespeichert. Voraussetzungen: `pip install "manim-voiceover[recorder]"` (PyAudio gibt es derzeit nur bis Python 3.13) und `ffmpeg` im Pfad. Hier noch nicht eingerichtet und nicht getestet.
+### Eigene Stimme einsprechen
+
+Erst wenn Bild und Text stehen (Entwurf mit der Entwurfsstimme abgenommen), wird eingesprochen:
+
+```powershell
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\<gebiet>\<lernbereich>\<NN>-<sammlung>.py
+```
+
+Das öffnet eine lokale Seite im Browser (beim ersten Mal das Mikrofon freigeben). Sie zeigt je Sprechabschnitt den stummen Videoausschnitt und groß den Sprechtext.
+
+| Taste | Wirkung |
+|---|---|
+| Leertaste | Aufnahme starten; während der Aufnahme: speichern und direkt den nächsten Abschnitt aufnehmen |
+| Enter | Aufnahme beenden und speichern |
+| Esc | Aufnahme verwerfen |
+| A | Aufnahme des gewählten Abschnitts zum Videoausschnitt anhören |
+| ↑ ↓ | Abschnitt wählen (oder in der Liste anklicken) |
+
+- Ein Abschnitt lässt sich beliebig oft neu aufnehmen; die neue Aufnahme ersetzt die alte. Stille und Tastenanschlag an Anfang und Ende werden abgeschnitten, die Lautstärke wird angeglichen.
+- „Entwurf neu rendern“ baut das Video mit den Aufnahmen: Die Einblendungen richten sich dann nach der eigenen Sprechdauer. Danach „Ganzes Video ansehen“.
+- „Final rendern“ entspricht `render.py --final`. Ein finales Video entsteht nur mit einer Stimme: entweder sind alle Abschnitte eingesprochen oder keiner.
+- Die Aufnahmen liegen als MP3 unter `videos/aufnahmen/<check_id>/` und gehören ins Repo: Zusammen mit der Szene sind sie die Quelle des fertigen Videos. `render.py` verwendet sie automatisch.
+- Eine Aufnahme gehört zu genau einem Sprechtext (Kennung am Ende des Dateinamens). Wird der Text geändert, spricht diesen Abschnitt wieder die Entwurfsstimme, bis er neu aufgenommen ist; `render.py` nennt die betroffenen Abschnitte in der Zeile „Stimme“.
+- Begrüßung und Schluss werden für jedes Video neu gesprochen, nicht zentral gespeichert.
 
 ## Offen
 
 - sichtbaren Bereich mit einem Testvideo am Handy prüfen
-- endgültige Stimme
 - Ablage der fertigen Videos, Upload, Einbindung in die Website
 - `abspann.mp4` und `abspann.pptx` sind der frühere Abspann und werden von den neuen Videos nicht verwendet

@@ -5,6 +5,9 @@
 
 Die Szene liegt unter videos/checks/<gebiet>/<lernbereich>/<nr>-<name>.py,
 gleich benannt wie das Musterbeispiel des Checks.
+
+Gibt es zum Check eigene Aufnahmen (videos/aufnahme.py), werden sie verwendet; Abschnitte ohne
+passende Aufnahme spricht die Entwurfsstimme. Ein finales Video entsteht nur mit einer Stimme.
 """
 import argparse
 import json
@@ -94,10 +97,19 @@ def main() -> int:
     fehler = list(bericht["verstoesse"])
     if bericht["sekunden"] > MAX_SEKUNDEN:
         fehler.append(f"Video ist länger als {MAX_SEKUNDEN} s.")
+    eigene = [abschnitt["eigene_stimme"] for abschnitt in bericht["abschnitte"]]
+    if any(eigene) and not all(eigene):
+        fehlend = ", ".join(str(nr) for nr, eigen in enumerate(eigene, start=1) if not eigen)
+        stimme = f"eigene Aufnahmen für {sum(eigene)} von {len(eigene)} Abschnitten; Entwurfsstimme in Abschnitt {fehlend}"
+        if args.final:
+            fehler.append("Aufnahmen unvollständig: Entwurfsstimme in Abschnitt " + fehlend)
+    else:
+        stimme = "eigene Aufnahmen" if all(eigene) else "Entwurfsstimme"
 
     print(f"\n{check_id} ({qualitaet})")
     print(f"  Dauer:   {bericht['sekunden']} s (Ziel {ZIEL_SEKUNDEN[0]}–{ZIEL_SEKUNDEN[1]} s)")
     print(f"  Wörter:  {bericht['woerter']} (Richtwert höchstens {MAX_WOERTER})")
+    print(f"  Stimme:  {stimme}")
     print(f"  Ränder:  {'in Ordnung' if not bericht['verstoesse'] else 'Objekte außerhalb des sichtbaren Bereichs'}")
     for zeile in fehler:
         print(f"    - {zeile}")

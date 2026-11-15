@@ -2,6 +2,7 @@
 from . import theme
 from .bausteine import (
     Dezimalzahl,
+    ErweiterteMatrix,
     Versuche,
     Zahlenstrahl,
     auftritt,
@@ -25,6 +26,7 @@ from .szene import MCSzene
 
 __all__ = [
     "Dezimalzahl",
+    "ErweiterteMatrix",
     "MCSzene",
     "Versuche",
     "Zahlenstrahl",

@@ -30,7 +30,7 @@ from manim_voiceover.tracker import VoiceoverTracker
 
 from . import theme as t
 from .bausteine import auftritt, einpassen, formel, frage, lichthof, logo, reihe, text
-from .stimme import sprachdienst
+from .stimme import EIGEN, aufnahme_name, sprachdienst
 
 _TOLERANZ = 0.02
 _LOGO_KLEIN = 0.7
@@ -50,7 +50,7 @@ class MCSzene(VoiceoverScene):
     def construct(self) -> None:
         self.check_id = os.environ["MC_CHECK_ID"]  # setzt render.py aus dem Dateipfad
         self.camera.background_color = t.HINTERGRUND
-        self.set_speech_service(sprachdienst())
+        self.set_speech_service(sprachdienst(self.check_id))
         self._abschnitte: list[dict[str, object]] = []
         self._verstoesse: dict[str, float] = {}
         self._standbilder = bool(os.environ.get("MC_STANDBILDER"))
@@ -106,9 +106,12 @@ class MCSzene(VoiceoverScene):
         )
 
     # ---------- Aufbau ----------
-    def kopf(self, tex: str) -> MathTex:
-        """Kopfzeile neben dem Logo: das Gegebene, auf das sich die Rechnung bezieht, z. B. der Funktionsterm."""
-        titel = formel(tex, groesse=t.S_TITEL)
+    def kopf(self, *tex: str) -> MathTex:
+        """Kopfzeile neben dem Logo: das Gegebene, auf das sich die Rechnung bezieht, oder am Ende das Ergebnis.
+
+        Mehrere Teile lassen sich einzeln färben.
+        """
+        titel = formel(*tex, groesse=t.S_TITEL)
         einpassen(titel, t.BREITE - 4 * _LOGO_KLEIN)
         return titel.move_to([0, t.KOPF_Y, 0])
 
@@ -206,10 +209,12 @@ class MCSzene(VoiceoverScene):
         with self.voiceover(text=sprechtext, subcaption=untertitel) as verlauf:
             yield verlauf
         self._abschnitte.append({
-            "beginn": round(beginn, 1),
+            "beginn": round(beginn, 2),
             "sprechtext": sprechtext,
             "untertitel": untertitel,
             "bild": self._standbild(),
+            "aufnahme": aufnahme_name(len(self._abschnitte) + 1, sprechtext),
+            "eigene_stimme": (verlauf.data.get("input_data") or {}).get("service") == EIGEN,
         })
 
     def warte_bis(self, anteil: float) -> None:

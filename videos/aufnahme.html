@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Stimme aufnehmen</title>
+<style>
+  :root { color-scheme: dark; --bg: #0f0f14; --flaeche: #16161e; --rand: #2a2a36; --text: #f2f2f5; --leise: #a9a9b8; --marke: #7c6aff; --gut: #4ade80; --rot: #f76c6c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.45 Inter, system-ui, sans-serif; }
+  main { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; height: 100vh; padding: 20px 28px; }
+  video { height: calc(100vh - 40px); aspect-ratio: 9 / 16; background: #000; border-radius: 16px; }
+  section { display: flex; flex-direction: column; min-height: 0; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  #stand { color: var(--leise); margin-bottom: 14px; }
+  #hinweis { display: none; background: rgba(245, 166, 35, .12); border: 1px solid rgba(245, 166, 35, .5); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; }
+  #text { font-size: 30px; line-height: 1.35; font-weight: 600; min-height: 4.1em; padding: 18px 22px; background: var(--flaeche); border: 1px solid var(--rand); border-radius: 16px; }
+  #text.laeuft { border-color: var(--rot); }
+  #zustand { display: flex; align-items: center; gap: 14px; height: 40px; color: var(--leise); }
+  #zustand b { color: var(--rot); }
+  #pegel { width: 160px; height: 8px; border-radius: 4px; background: var(--rand); overflow: hidden; }
+  #pegel i { display: block; height: 100%; width: 0; background: var(--gut); }
+  .knoepfe { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  button { font: inherit; color: var(--text); background: var(--flaeche); border: 1px solid var(--rand); border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--marke); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.haupt { background: var(--marke); border-color: var(--marke); font-weight: 600; }
+  kbd { font: 12px ui-monospace, monospace; color: var(--leise); border: 1px solid var(--rand); border-radius: 5px; padding: 1px 5px; margin-left: 6px; }
+  ol { list-style: none; margin: 0; padding: 0; overflow: auto; flex: 1; border-top: 1px solid var(--rand); }
+  li { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; padding: 8px 10px; border-bottom: 1px solid var(--rand); cursor: pointer; color: var(--leise); }
+  li.aktuell { background: var(--flaeche); color: var(--text); }
+  li span:last-child { white-space: nowrap; font-size: 13px; }
+  li.fertig span:last-child { color: var(--gut); }
+  pre { margin: 10px 0 0; padding: 10px 14px; background: var(--flaeche); border-radius: 10px; color: var(--leise); font: 13px/1.5 ui-monospace, monospace; white-space: pre-wrap; display: none; }
+</style>
+</head>
+<body>
+<main>
+  <video id="video" muted playsinline></video>
+  <section>
+    <h1 id="titel">Stimme aufnehmen</h1>
+    <div id="stand"></div>
+    <div id="hinweis"></div>
+    <div id="text"></div>
+    <div id="zustand"><span id="meldung"></span><span id="pegel"><i></i></span></div>
+    <div class="knoepfe">
+      <button class="haupt" id="aufnehmen">Aufnehmen<kbd>Leertaste</kbd></button>
+      <button id="beenden">Beenden<kbd>Enter</kbd></button>
+      <button id="verwerfen">Verwerfen<kbd>Esc</kbd></button>
+      <button id="anhoeren">Anhören<kbd>A</kbd></button>
+    </div>
+    <div class="knoepfe">
+      <button id="ansehen">Ganzes Video ansehen</button>
+      <button id="rendern">Entwurf neu rendern</button>
+      <button id="final">Final rendern</button>
+    </div>
+    <ol id="liste"></ol>
+    <pre id="ausgabe"></pre>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const video = $("video"), ton = new Audio();
+let daten = null, aktuell = 0, stoppBei = null;
+let strom = null, rekorder = null, laeuft = false, startzeit = 0, beschaeftigt = false;
+
+// ---------- Daten und Anzeige ----------
+async function lade() {
+  daten = await (await fetch("/daten")).json();
+  $("titel").textContent = daten.titel;
+  const hinweis = $("hinweis");
+  if (daten.fehler) {
+    hinweis.textContent = daten.fehler + " Bitte zuerst den Entwurf rendern.";
+    hinweis.style.display = "block";
+    daten.abschnitte = [];
+  } else {
+    video.src = "/video?v=" + daten.version;
+    const nichtImVideo = daten.abschnitte.some(a => a.aufnahme && !a.im_video);
+    hinweis.textContent = daten.veraltet
+      ? "Die Szene wurde seit dem letzten Rendern geändert. Bitte den Entwurf neu rendern, bevor du aufnimmst."
+      : nichtImVideo ? "Es gibt neue Aufnahmen. Rendere den Entwurf neu, um sie im Video zu hören und zu sehen, ob die Zeiten passen." : "";
+    hinweis.style.display = hinweis.textContent ? "block" : "none";
+  }
+  aktuell = Math.min(aktuell, Math.max(0, daten.abschnitte.length - 1));
+  zeichne();
+  if (daten.abschnitte.length) video.addEventListener("loadedmetadata", () => zeige(aktuell), { once: true });
+}
+
+function zeichne() {
+  const a = daten.abschnitte, fertig = a.filter(x => x.aufnahme).length;
+  $("stand").textContent = a.length ? `${fertig} von ${a.length} Abschnitten aufgenommen` : "";
+  $("text").textContent = a.length ? a[aktuell].text : "";
+  $("text").classList.toggle("laeuft", laeuft);
+  $("liste").innerHTML = "";
+  a.forEach((x, i) => {
+    const li = document.createElement("li");
+    li.className = (i === aktuell ? "aktuell " : "") + (x.aufnahme ? "fertig" : "");
+    const laenge = (x.ende - x.beginn).toFixed(1).replace(".", ",");
+    const status = x.speichert ? "speichert …" : x.aufnahme ? `✓ ${x.dauer.toFixed(1).replace(".", ",")} s` : `offen · Entwurf ${laenge} s`;
+    for (const inhalt of [i + 1, x.text, status]) li.appendChild(Object.assign(document.createElement("span"), { textContent: inhalt }));
+    li.onclick = () => { if (!laeuft) zeige(i); };
+    $("liste").appendChild(li);
+  });
+  const leer = !a.length;
+  $("aufnehmen").disabled = leer || beschaeftigt;
+  $("aufnehmen").firstChild.textContent = laeuft ? "Weiter zum nächsten" : "Aufnehmen";
+  $("beenden").disabled = $("verwerfen").disabled = !laeuft;
+  $("anhoeren").disabled = leer || laeuft || !a[aktuell].aufnahme;
+  $("ansehen").disabled = leer || laeuft;
+  $("rendern").disabled = $("final").disabled = laeuft || beschaeftigt;
+  if (!laeuft) $("meldung").textContent = "";
+  document.querySelector("li.aktuell")?.scrollIntoView({ block: "nearest" });
+}
+
+function zeige(i) {
+  aktuell = i;
+  ton.pause(); video.pause(); stoppBei = null;
+  video.currentTime = daten.abschnitte[i].beginn + 0.03;
+  zeichne();
+}
+
+function spieleAusschnitt() {
+  const a = daten.abschnitte[aktuell];
+  video.muted = true;
+  video.currentTime = a.beginn;
+  stoppBei = a.ende - 0.05;
+  video.play().catch(() => {});
+}
+
+function takt() {
+  if (stoppBei !== null && video.currentTime >= stoppBei) { video.pause(); stoppBei = null; }
+  if (laeuft) {
+    const s = ((performance.now() - startzeit) / 1000).toFixed(1).replace(".", ",");
+    const a = daten.abschnitte[aktuell], entwurf = (a.ende - a.beginn).toFixed(1).replace(".", ",");
+    $("meldung").innerHTML = `<b>● Aufnahme</b> ${s} s · Ausschnitt ${entwurf} s`;
+  }
+}
+
+// ---------- Aufnahme ----------
+async function mikrofon() {
+  if (strom) return strom;
+  strom = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, autoGainControl: false, noiseSuppression: true } });
+  const kontext = new AudioContext(), messung = kontext.createAnalyser(), werte = new Float32Array(1024);
+  kontext.createMediaStreamSource(strom).connect(messung);
+  setInterval(() => {
+    messung.getFloatTimeDomainData(werte);
+    $("pegel").firstChild.style.width = Math.min(100, Math.max(...werte.map(Math.abs)) * 140) + "%";
+  }, 60);
+  return strom;
+}
+
+async function starte() {
+  try { await mikrofon(); } catch (fehler) { $("meldung").textContent = "Kein Zugriff auf das Mikrofon: " + fehler.message; return; }
+  const nummer = aktuell, teile = [];
+  const neu = new MediaRecorder(strom, { audioBitsPerSecond: 128000 });
+  neu.ondataavailable = e => teile.push(e.data);
+  neu.onstop = () => { if (!neu.verworfen) speichere(nummer, new Blob(teile, { type: neu.mimeType })); };
+  rekorder = neu;
+  rekorder.start();
+  laeuft = true; startzeit = performance.now();
+  ton.pause();
+  spieleAusschnitt();
+  zeichne();
+}
+
+function stoppe({ weiter = false, verwerfen = false } = {}) {
+  if (!laeuft) return;
+  laeuft = false;
+  rekorder.verworfen = verwerfen;
+  rekorder.stop();
+  video.pause(); stoppBei = null;
+  if (weiter && aktuell < daten.abschnitte.length - 1) { aktuell += 1; starte(); } else zeichne();
+}
+
+async function speichere(nummer, aufnahme) {
+  const abschnitt = daten.abschnitte[nummer];
+  abschnitt.speichert = true; zeichne();
+  const antwort = await fetch("/aufnahme/" + nummer, { method: "POST", body: aufnahme });
+  const ergebnis = await antwort.json();
+  abschnitt.speichert = false;
+  if (antwort.ok) { abschnitt.aufnahme = true; abschnitt.dauer = ergebnis.dauer; abschnitt.im_video = false; }
+  zeichne();
+  if (!antwort.ok) $("meldung").textContent = `Abschnitt ${nummer + 1} nicht gespeichert: ${ergebnis.fehler}`;
+  else if (!daten.veraltet) {
+    $("hinweis").textContent = "Es gibt neue Aufnahmen. Rendere den Entwurf neu, um sie im Video zu hören und zu sehen, ob die Zeiten passen.";
+    $("hinweis").style.display = "block";
+  }
+}
+
+function anhoeren() {
+  if (laeuft || !daten.abschnitte[aktuell]?.aufnahme) return;
+  ton.src = `/aufnahme/${aktuell}?t=${Date.now()}`;
+  spieleAusschnitt();
+  ton.play().catch(() => {});
+}
+
+function ansehen() {
+  if (laeuft) return;
+  ton.pause(); stoppBei = null;
+  video.muted = false; video.currentTime = 0; video.play().catch(() => {});
+}
+
+async function rendere(final) {
+  beschaeftigt = true; zeichne();
+  const ausgabe = $("ausgabe");
+  ausgabe.style.display = "block";
+  ausgabe.textContent = (final ? "Finales Video" : "Entwurf") + " wird gerendert, das dauert ein bis vier Minuten …";
+  try {
+    const ergebnis = await (await fetch("/rendern", { method: "POST", body: JSON.stringify({ final }) })).json();
+    ausgabe.textContent = ergebnis.ausgabe;
+  } catch (fehler) { ausgabe.textContent = "Rendern fehlgeschlagen: " + fehler.message; }
+  beschaeftigt = false;
+  await lade();
+}
+
+// ---------- Bedienung ----------
+$("aufnehmen").onclick = () => laeuft ? stoppe({ weiter: true }) : starte();
+$("beenden").onclick = () => stoppe();
+$("verwerfen").onclick = () => stoppe({ verwerfen: true });
+$("anhoeren").onclick = anhoeren;
+$("ansehen").onclick = ansehen;
+$("rendern").onclick = () => rendere(false);
+$("final").onclick = () => rendere(true);
+document.addEventListener("keydown", e => {
+  if (!daten?.abschnitte.length || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+  const tasten = {
+    Space: () => beschaeftigt || (laeuft ? stoppe({ weiter: true }) : starte()),
+    Enter: () => stoppe(),
+    Escape: () => stoppe({ verwerfen: true }),
+    KeyA: anhoeren,
+    ArrowUp: () => laeuft || zeige(Math.max(0, aktuell - 1)),
+    ArrowDown: () => laeuft || zeige(Math.min(daten.abschnitte.length - 1, aktuell + 1)),
+  };
+  if (tasten[e.code]) { e.preventDefault(); document.activeElement.blur(); tasten[e.code](); }
+});
+
+lade();
+setInterval(takt, 40);
+</script>
+</body>
+</html>
