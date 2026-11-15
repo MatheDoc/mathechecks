@@ -29,12 +29,12 @@ from manim_voiceover import VoiceoverScene
 from manim_voiceover.tracker import VoiceoverTracker
 
 from . import theme as t
-from .bausteine import auftritt, einpassen, formel, frage, lichthof, logo, reihe, text
+from .bausteine import auftritt, einpassen, formel, frage, lichthof, logo, text
 from .stimme import EIGEN, aufnahme_name, sprachdienst
 
 _TOLERANZ = 0.02
 _LOGO_KLEIN = 0.7
-_LOGO_GROSS = 1.3
+_LOGO_GROSS = 1.7  # in der Begrüßung; im Schlussbild ist das Logo noch größer
 
 
 class MCSzene(VoiceoverScene):
@@ -50,7 +50,7 @@ class MCSzene(VoiceoverScene):
     def construct(self) -> None:
         self.check_id = os.environ["MC_CHECK_ID"]  # setzt render.py aus dem Dateipfad
         self.camera.background_color = t.HINTERGRUND
-        self.set_speech_service(sprachdienst(self.check_id))
+        self.set_speech_service(sprachdienst(os.environ["MC_ABLAGE"]), create_subcaption=False)
         self._abschnitte: list[dict[str, object]] = []
         self._verstoesse: dict[str, float] = {}
         self._standbilder = bool(os.environ.get("MC_STANDBILDER"))
@@ -62,6 +62,7 @@ class MCSzene(VoiceoverScene):
         self.marke = logo(_LOGO_GROSS)
         self._karte_unten = t.KARTE_UNTEN
         self.schimmer = lichthof(8, t.MARKE, staerke=0.45).move_to([0, t.HOEHE / 2, 0])
+        self._hintergrund = [self.schimmer]  # Farbflächen ohne Inhalt, von der Randprüfung ausgenommen
         self.add(self.schimmer)
 
         self.inhalt()
@@ -76,7 +77,7 @@ class MCSzene(VoiceoverScene):
         kopf: Mobject | None = None,
         sprechtext: str | None = None,
     ) -> None:
-        """Fester Beginn: Das Bild entsteht, die Frage erscheint, dann die Begrüßung.
+        """Fester Beginn: Das Bild entsteht, die Frage erscheint, dann die Begrüßung mit Logo und Adresse.
 
         zeilen: die Frage, eine Bildzeile je Argument.
         bild: Animationen, die das kennzeichnende Bild des Videos aufbauen.
@@ -84,23 +85,27 @@ class MCSzene(VoiceoverScene):
         sprechtext: gesprochene Frage, falls sie von den Bildzeilen abweicht.
         """
         fragezeilen = frage(*zeilen)
-        name = text("MatheChecks", groesse=46, gewicht=BOLD)
-        self.tafel(fragezeilen, reihe(self.marke, name, abstand=0.35), abstand=0.9)
+        adresse = text("mathechecks.de", groesse=32, farbe=t.TEXT_LEISE, gewicht=SEMIBOLD)
+        self.tafel(fragezeilen, VGroup(self.marke, adresse).arrange(DOWN, buff=0.35), abstand=0.8)
+        hof = lichthof(1.3 * self.marke.height, t.MARKE).move_to(self.marke).set_z_index(-1)
+        self._hintergrund.append(hof)
         with self.sprich(sprechtext or " ".join(zeilen)):
             self.play(*bild, LaggedStart(*[auftritt(zeile) for zeile in fragezeilen], lag_ratio=0.5), run_time=1.4)
 
         with self.sprich(self.begruessung):
             self.play(
                 FadeIn(self.marke, scale=0.6, rate_func=rate_functions.ease_out_back),
-                auftritt(name),
+                FadeIn(hof),
                 run_time=0.6,
             )
+            self.play(FadeIn(adresse), run_time=0.4)
 
-        ecke = [t.RAND_LINKS + self.marke.width * _LOGO_KLEIN / _LOGO_GROSS / 2, t.KOPF_Y, 0]
+        breite_klein = self.marke.width / self.marke.height * _LOGO_KLEIN
         self.play(
             FadeOut(fragezeilen, shift=0.25 * UP),
-            FadeOut(name),
-            self.marke.animate.scale_to_fit_height(_LOGO_KLEIN).move_to(ecke),
+            FadeOut(adresse),
+            FadeOut(hof),
+            self.marke.animate.scale_to_fit_height(_LOGO_KLEIN).move_to([t.RAND_LINKS + breite_klein / 2, t.KOPF_Y, 0]),
             *([FadeIn(kopf)] if kopf is not None else []),
             run_time=0.6,
         )
@@ -199,19 +204,17 @@ class MCSzene(VoiceoverScene):
 
     # ---------- Ton ----------
     @contextmanager
-    def sprich(self, sprechtext: str, untertitel: str | None = None) -> Iterator[VoiceoverTracker]:
+    def sprich(self, sprechtext: str) -> Iterator[VoiceoverTracker]:
         """Spricht den Text; die Animationen im Block laufen dazu.
 
         sprechtext: so geschrieben, wie es gesprochen wird („f Strich von x“).
-        untertitel: Lesefassung für die Untertiteldatei, falls sie abweicht.
         """
         beginn = self.renderer.time
-        with self.voiceover(text=sprechtext, subcaption=untertitel) as verlauf:
+        with self.voiceover(text=sprechtext) as verlauf:
             yield verlauf
         self._abschnitte.append({
             "beginn": round(beginn, 2),
             "sprechtext": sprechtext,
-            "untertitel": untertitel,
             "bild": self._standbild(),
             "aufnahme": aufnahme_name(len(self._abschnitte) + 1, sprechtext),
             "eigene_stimme": (verlauf.data.get("input_data") or {}).get("service") == EIGEN,
@@ -237,6 +240,7 @@ class MCSzene(VoiceoverScene):
         mitte = (t.RAND_OBEN + t.RAND_UNTEN) / 2
         ziel = [0, mitte + 1.3, 0]
         hof = lichthof(3.2, t.MARKE).move_to(ziel).set_z_index(-1)
+        self._hintergrund.append(hof)
         ruf = text(self.schlussbild, groesse=54, gewicht=BOLD)
         adresse = text("mathechecks.de", groesse=38, farbe=t.TEXT_LEISE, gewicht=SEMIBOLD)
         VGroup(ruf, adresse).arrange(DOWN, buff=0.45).move_to([0, mitte - 1.6, 0])
@@ -256,7 +260,7 @@ class MCSzene(VoiceoverScene):
     # ---------- Prüfung ----------
     def _blaetter(self, mobs: list[Mobject]) -> Iterator[Mobject]:
         for mob in mobs:
-            if mob is self.schimmer:  # Hintergrund, darf über den Bildrand reichen
+            if any(mob is flaeche for flaeche in self._hintergrund):  # darf über den sichtbaren Bereich reichen
                 continue
             if type(mob) in (VGroup, Group):
                 yield from self._blaetter(mob.submobjects)

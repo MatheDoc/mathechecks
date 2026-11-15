@@ -91,10 +91,7 @@ class Video(MCSzene):
 
         kopf1 = schritt(1, "Matrixform")
         block1 = self.tafel(kopf1, text("nur die Zahlen aufschreiben", groesse=38, farbe=TEXT_LEISE), abstand=0.5)
-        with self.sprich(
-            "Schritt eins: die Matrixform. Wir schreiben nur noch die Zahlen auf.",
-            untertitel="Schritt 1: die Matrixform. Wir schreiben nur noch die Zahlen auf.",
-        ):
+        with self.sprich("Schritt eins: die Matrixform. Wir schreiben nur noch die Zahlen auf."):
             self.play(auftritt(kopf1), run_time=0.5)
             self.warte_bis(0.45)
             self.play(*uebergang, auftritt(block1[1]), run_time=1.5)
@@ -116,9 +113,7 @@ class Video(MCSzene):
 
         with self.sprich(
             "Schritt zwei: der Gauß-Algorithmus. Unter der Diagonale sollen Nullen stehen. "
-            "Das ist die obere Dreiecksform.",
-            untertitel="Schritt 2: der Gauß-Algorithmus. Unter der Diagonale sollen Nullen stehen. "
-                       "Das ist die obere Dreiecksform.",
+            "Das ist die obere Dreiecksform."
         ):
             self.play(auftritt(kopf2), run_time=0.5)
             self.warte_bis(0.35)
@@ -130,17 +125,14 @@ class Video(MCSzene):
         self.umformung(
             1, 4, 0,
             sprechtext="Zeile zwei minus viermal Zeile eins: Aus der Vier wird eine Null.",
-            untertitel="Zeile II minus 4-mal Zeile I: Aus der 4 wird eine 0.",
         )
         self.umformung(
             2, 16, 0,
             sprechtext="Genauso: Zeile drei minus sechzehnmal Zeile eins.",
-            untertitel="Genauso: Zeile III minus 16-mal Zeile I.",
         )
         self.umformung(
             2, 10, 1,
-            sprechtext="Jetzt die zweite Spalte: Zeile drei minus zehnmal Zeile zwei.",
-            untertitel="Jetzt die zweite Spalte: Zeile III minus 10-mal Zeile II.",
+            sprechtext="Jetzt noch -20 zu 0 machen: Zeile drei minus zehnmal Zeile zwei.",
         )
         erreicht = text("Obere Dreiecksform", groesse=42, gewicht=BOLD).move_to(ziel)
         with self.sprich("Fertig ist die obere Dreiecksform."):
@@ -152,7 +144,7 @@ class Video(MCSzene):
         self.play(FadeOut(VGroup(kopf2, erreicht), shift=0.25 * UP), run_time=0.4)
 
         # ---------- Schritt 3: Rückwärtseinsetzen ----------
-        kopf3 = schritt(3, "Rückwärtseinsetzen")
+        kopf3 = schritt(3, "Rückwärts einsetzen")
         g3 = formel("15", "x_3=", "-60", r"\ \Rightarrow\ x_3=", "-4", groesse=44)
         g2 = formel(r"-2x_2-3\cdot(", "-4", ")=2", r"\ \Rightarrow\ x_2=", "5", groesse=44)
         g1 = formel("x_1+", "5", "-4", "=3", r"\ \Rightarrow\ x_1=", "2", groesse=44)
@@ -171,8 +163,7 @@ class Video(MCSzene):
 
         with self.sprich(
             "Schritt drei: rückwärts einsetzen. Die letzte Zeile heißt: fünfzehn x drei gleich minus sechzig. "
-            "Also x drei gleich minus vier.",
-            untertitel="Schritt 3: rückwärts einsetzen. Die letzte Zeile heißt: 15x₃ = −60. Also x₃ = −4.",
+            "Also x drei gleich minus vier."
         ):
             self.play(
                 auftritt(kopf3), *[eintrag.animate.set_color(TEXT_LEISE) for eintrag in unter_diagonale], run_time=0.5,
@@ -185,18 +176,12 @@ class Video(MCSzene):
             )
             self.warte_bis(0.75)
             self.play(FadeIn(g3[3]), FadeIn(g3[4], scale=1.4), run_time=0.5)
-        with self.sprich(
-            "Das setzen wir in Zeile zwei ein: x zwei gleich fünf.",
-            untertitel="Das setzen wir in Zeile II ein: x₂ = 5.",
-        ):
+        with self.sprich("Das setzen wir in Zeile zwei ein: x zwei gleich fünf."):
             self.play(m.betonen(1), FadeIn(zeilen[1][0]), run_time=0.5)
             self.play(Write(g2[0]), TransformFromCopy(g3[4], g2[1]), Write(g2[2]), run_time=0.9)
             self.warte_bis(0.65)
             self.play(FadeIn(g2[3]), FadeIn(g2[4], scale=1.4), run_time=0.5)
-        with self.sprich(
-            "Und beides in Zeile eins: x eins gleich zwei.",
-            untertitel="Und beides in Zeile I: x₁ = 2.",
-        ):
+        with self.sprich("Und beides in Zeile eins: x eins gleich zwei."):
             self.play(m.betonen(0), FadeIn(zeilen[2][0]), run_time=0.5)
             self.play(
                 Write(g1[0]), TransformFromCopy(g2[4], g1[1]), TransformFromCopy(g3[4], g1[2]), Write(g1[3]),
@@ -257,7 +242,7 @@ class Video(MCSzene):
             m.zahlenzeile(ergebnis, y - 2 * ZEILENABSTAND - 0.2, farben),
         )
 
-    def umformung(self, zeile: int, faktor: int, basis: int, sprechtext: str, untertitel: str) -> None:
+    def umformung(self, zeile: int, faktor: int, basis: int, sprechtext: str) -> None:
         """Zeilenumformung „zeile − faktor · basis“: Nebenrechnung zeigen, dann die Zeile der Matrix ersetzen."""
         m = self.matrix
         alt = self.werte[zeile]
@@ -267,7 +252,7 @@ class Video(MCSzene):
         oben, mitte, strich, unten = rechnung = self.nebenrechnung(
             self.y_rechnung, alt, abzug, neu, zeilenname(zeile), rf"{faktor}\cdot" + zeilenname(basis), farben,
         )
-        with self.sprich(sprechtext, untertitel=untertitel):
+        with self.sprich(sprechtext):
             self.play(m.umformung(zeile, zeilenname(zeile) + rf"-{faktor}\cdot" + zeilenname(basis)), run_time=0.5)
             self.play(TransformFromCopy(m.zeile(zeile), oben[0]), FadeIn(oben[1]), run_time=0.7)
             self.play(FadeIn(mitte, shift=0.15 * DOWN), run_time=0.5)

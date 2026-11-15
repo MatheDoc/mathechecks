@@ -4,7 +4,8 @@
     videos\\.venv\\Scripts\\python videos\\render.py <szene.py> --final    1080 x 1920 nach videos/ausgabe/
 
 Die Szene liegt unter videos/checks/<gebiet>/<lernbereich>/<nr>-<name>.py,
-gleich benannt wie das Musterbeispiel des Checks.
+gleich benannt wie das Musterbeispiel des Checks. Das fertige Video und die eigenen Aufnahmen
+liegen unter demselben Teilpfad in videos/ausgabe/ und videos/aufnahmen/.
 
 Gibt es zum Check eigene Aufnahmen (videos/aufnahme.py), werden sie verwendet; Abschnitte ohne
 passende Aufnahme spricht die Entwurfsstimme. Ein finales Video entsteht nur mit einer Stimme.
@@ -38,11 +39,13 @@ def check_aus_pfad(szene: Path) -> dict:
     sys.exit(f"Kein Check mit der ID {check_id} in _data/checks.json.")
 
 
-def schreibe_pruefbogen(check: dict, bericht: dict, fehler: list[str]) -> Path:
-    """Standbild, Sprechtext und Untertitel je Abschnitt zum Durchsehen."""
+def ablage(szene: Path) -> Path:
+    """Teilpfad <gebiet>/<lernbereich>/<nr>-<name>, unter dem Aufnahmen und fertiges Video liegen."""
+    return szene.relative_to(VIDEOS / "checks").with_suffix("")
 
-    def zelle(inhalt: str | None) -> str:
-        return (inhalt or "").replace("|", "\\|")
+
+def schreibe_pruefbogen(check: dict, bericht: dict, fehler: list[str]) -> Path:
+    """Standbild und Sprechtext je Abschnitt zum Durchsehen."""
 
     zeilen = [
         f"# Prüfbogen: {check['Schlagwort']} (Check {check['Nummer']})",
@@ -52,16 +55,13 @@ def schreibe_pruefbogen(check: dict, bericht: dict, fehler: list[str]) -> Path:
         f"{bericht['sekunden']} s, {bericht['woerter']} Wörter, "
         + ("Ränder in Ordnung" if not fehler else "Fehler: " + "; ".join(fehler)),
         "",
-        "| Zeit | Bild | Sprechtext | Untertitel, falls abweichend |",
-        "|---|---|---|---|",
+        "| Zeit | Bild | Sprechtext |",
+        "|---|---|---|",
     ]
     for abschnitt in bericht["abschnitte"]:
         minuten, sekunden = divmod(int(abschnitt["beginn"]), 60)
-        untertitel = abschnitt["untertitel"] if abschnitt["untertitel"] != abschnitt["sprechtext"] else None
-        zeilen.append(
-            f"| {minuten}:{sekunden:02d} | <img src=\"{abschnitt['bild']}\" width=\"220\"> "
-            f"| {zelle(abschnitt['sprechtext'])} | {zelle(untertitel)} |"
-        )
+        sprechtext = abschnitt["sprechtext"].replace("|", "\\|")
+        zeilen.append(f"| {minuten}:{sekunden:02d} | <img src=\"{abschnitt['bild']}\" width=\"220\"> | {sprechtext} |")
     datei = VIDEOS / "media" / "pruefung" / check["check_id"] / "pruefbogen.md"
     datei.write_text("\n".join(zeilen) + "\n", encoding="utf-8")
     return datei
@@ -78,7 +78,10 @@ def main() -> int:
     check_id = check["check_id"]
     qualitaet = "final" if args.final else "entwurf"
 
-    umgebung = dict(os.environ, MC_CHECK_ID=check_id, MC_QUALITAET=qualitaet, PYTHONPATH=str(VIDEOS), PYTHONUTF8="1")
+    umgebung = dict(
+        os.environ, MC_CHECK_ID=check_id, MC_ABLAGE=ablage(szene).as_posix(), MC_QUALITAET=qualitaet,
+        PYTHONPATH=str(VIDEOS), PYTHONUTF8="1",
+    )
     if not args.final:
         umgebung["MC_STANDBILDER"] = "1"
     bericht_datei = VIDEOS / "media" / "berichte" / f"{check_id}.json"
@@ -120,12 +123,10 @@ def main() -> int:
     if fehler:
         return 1
     if args.final:
-        ziel = VIDEOS / "ausgabe"
-        ziel.mkdir(exist_ok=True)
-        shutil.copyfile(video, ziel / f"{check_id}.mp4")
-        if video.with_suffix(".srt").exists():
-            shutil.copyfile(video.with_suffix(".srt"), ziel / f"{check_id}.srt")
-        print(f"  Video:   {ziel / (check_id + '.mp4')}")
+        ziel = (VIDEOS / "ausgabe" / ablage(szene)).with_suffix(".mp4")
+        ziel.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(video, ziel)
+        print(f"  Video:   {ziel}")
     return 0
 
 

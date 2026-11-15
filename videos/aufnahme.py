@@ -4,7 +4,7 @@
 
 Voraussetzung ist ein gerenderter Entwurf der Szene (render.py). Die Seite zeigt je Abschnitt den
 stummen Videoausschnitt und den Sprechtext und nimmt dazu das Mikrofon auf. Die Aufnahmen landen als
-MP3 unter videos/aufnahmen/<check_id>/ und werden von render.py automatisch verwendet.
+MP3 unter videos/aufnahmen/<gebiet>/<lernbereich>/<nr>-<name>/ und werden von render.py automatisch verwendet.
 """
 import argparse
 import io
@@ -18,7 +18,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
-from render import VIDEOS, check_aus_pfad
+from render import VIDEOS, ablage, check_aus_pfad
 
 AUFNAHMEN = VIDEOS / "aufnahmen"
 RATE = 44100
@@ -80,6 +80,7 @@ def verarbeite(roh: bytes, ziel: Path) -> float:
 class Seite(BaseHTTPRequestHandler):
     szene: Path
     check: dict
+    ordner: Path  # Aufnahmen dieses Checks
     rendert = threading.Lock()
 
     def log_message(self, *args: object) -> None:
@@ -93,7 +94,7 @@ class Seite(BaseHTTPRequestHandler):
     def aufnahme(self, abschnitt: dict) -> Path | None:
         """Vorhandene Aufnahme zum Sprechtext des Abschnitts; die Kennung am Ende des Namens entscheidet."""
         kennung = abschnitt["aufnahme"].rsplit("-", 1)[1]
-        return next((AUFNAHMEN / self.check["check_id"]).glob("*-" + kennung), None)
+        return next(self.ordner.glob("*-" + kennung), None)
 
     def daten(self) -> dict:
         from mutagen.mp3 import MP3
@@ -216,7 +217,7 @@ class Seite(BaseHTTPRequestHandler):
                 self.sende_json({"fehler": "Diesen Abschnitt gibt es nicht."}, 404)
                 return
             try:
-                dauer = verarbeite(inhalt, AUFNAHMEN / self.check["check_id"] / abschnitt["aufnahme"])
+                dauer = verarbeite(inhalt, self.ordner / abschnitt["aufnahme"])
             except Exception as fehler:  # noqa: BLE001 – die Seite soll jede Ursache anzeigen
                 self.sende_json({"fehler": str(fehler) or type(fehler).__name__}, 400)
                 return
@@ -236,6 +237,7 @@ def main() -> int:
 
     Seite.szene = args.szene.resolve()
     Seite.check = check_aus_pfad(Seite.szene)
+    Seite.ordner = AUFNAHMEN / ablage(Seite.szene)
     server = ThreadingHTTPServer(("127.0.0.1", args.port), Seite)
     adresse = f"http://localhost:{args.port}/"
     print(f"Aufnahme für {Seite.check['check_id']}: {adresse}  (Beenden mit Strg+C)")

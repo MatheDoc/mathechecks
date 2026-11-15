@@ -1,0 +1,13 @@
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\lineare-algebra\lineare-gleichungssysteme\02-lgs-loesen-3x3.py
+
+Zeiten treffen: Du musst sie nicht treffen. Beim Neurendern richten sich die Einblendungen nach deiner Sprechdauer. Einzige Grenze: Sprichst du einen Abschnitt schneller, als seine Animationen dauern, entsteht dort eine kurze Sprechpause.
+Einzelne Passagen neu aufnehmen: Ja. Abschnitt in der Liste anklicken, Leertaste, sprechen, Enter. Die neue Aufnahme ersetzt die alte, danach neu rendern.
+Ausgabe und Ersetzen: Richtig verstanden. Nur --final (oder „Final rendern“) schreibt nach ausgabe; Entwürfe bleiben in media. Das finale Video mit deiner Stimme ersetzt die Google-Fassung, weil es dieselbe Datei ist.
+
+videos\.venv\Scripts\python videos\render.py videos\checks\stochastik\binomialverteilung\05-bereichswahrscheinlichkeiten-berechnung.py
+videos\.venv\Scripts\python videos\render.py videos\checks\stochastik\binomialverteilung\05-bereichswahrscheinlichkeiten-berechnung.py --final
+
+Neues Video nach kleinen Änderungen
+Derselbe Befehl wie bisher, erst als Entwurf, dann final:
+
+Solange es zu einem Check keine Aufnahmen gibt, spricht die Google-Stimme. Gibt es welche (wie beim LGS-Video), werden sie verwendet. Änderst du dort einen Sprechtext, spricht diesen Abschnitt wieder Google, und --final verweigert, bis er neu eingesprochen ist.

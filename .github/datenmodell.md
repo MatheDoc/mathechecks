@@ -21,7 +21,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Musterprüfungen** | `muster-pruefungen/abitur/pruefungen-md/` (gitignored) | pro Teilaufgabe | Abituraufgaben mit Erwartungshorizont; `_themen.json` = Index Thema → Teilaufgaben |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
 | **Warm-Up** *(nicht verlinkt)* | `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml` | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Titel, Kompetenz, Nummer, Trainingslink aus `checks.json`; Format → `_data/warmup/README.md` |
-| **Erklärvideos** *(Pilot, nicht eingebunden)* | `videos/checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py`, `videos/aufnahmen/<check_id>/*.mp3` | pro Check | Manim-Szene eines Kurzvideos im Hochformat und eigene Sprachaufnahmen je Sprechabschnitt (zusammen die Quelle des Videos); gerenderte Videos sind gitignored; Ablauf → `videos/README.md` |
+| **Erklärvideos** *(Pilot, nicht eingebunden)* | `videos/checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py`, `videos/aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/*.mp3` | pro Check | Manim-Szene eines Kurzvideos im Hochformat und eigene Sprachaufnahmen je Sprechabschnitt (zusammen die Quelle des Videos); gerenderte Videos sind gitignored; Ablauf → `videos/README.md` |
 | **Startseiten-Texte** | `_data/start/<lernbereich>.yml` | pro Lernbereich | „Worum geht es“, Vorkenntnisse, optional Podcast-Metadaten |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |

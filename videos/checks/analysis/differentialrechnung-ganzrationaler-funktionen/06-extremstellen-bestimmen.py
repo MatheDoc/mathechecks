@@ -100,25 +100,16 @@ class Video(MCSzene):
         block1 = self.tafel(kopf1, ableitung, gleichung, vereinfacht, kandidaten, hinweis)
         marken = {x: self.senkrechte(achsen, x) for x in (-1, 1)}
 
-        with self.sprich(
-            "Schritt eins: die notwendige Bedingung. Wir bilden die erste Ableitung",
-            untertitel="Schritt 1: die notwendige Bedingung. Wir bilden die erste Ableitung",
-        ):
+        with self.sprich("Schritt eins: die notwendige Bedingung. Wir bilden die erste Ableitung"):
             self.play(auftritt(kopf1), run_time=0.5)
             self.warte_bis(0.55)
             self.play(Write(ableitung), run_time=1.2)
         with self.sprich("und setzen sie gleich null."):
             self.play(Write(gleichung), run_time=1)
-        with self.sprich(
-            "Durch drei geteilt bleibt: x Quadrat minus eins gleich null.",
-            untertitel="Durch 3 geteilt bleibt: x² − 1 = 0.",
-        ):
+        with self.sprich("Durch drei geteilt bleibt: x Quadrat minus eins gleich null."):
             self.warte_bis(0.35)
             self.play(Write(vereinfacht), run_time=1)
-        with self.sprich(
-            "Also x gleich minus eins oder x gleich eins. Das sind unsere Kandidaten.",
-            untertitel="Also x = −1 oder x = 1. Das sind unsere Kandidaten.",
-        ):
+        with self.sprich("Also x gleich minus eins oder x gleich eins. Das sind unsere Kandidaten."):
             self.play(Write(kandidaten), run_time=1.2)
             self.play(Create(marken[-1]), Create(marken[1]), run_time=0.8)
             self.warte_bis(0.65)
@@ -133,23 +124,16 @@ class Video(MCSzene):
         block2 = self.tafel(kopf2, zweite, hoch, tief, abstand=0.5)
 
         with self.sprich(
-            "Schritt zwei: die hinreichende Bedingung. Hoch oder tief? Das verrät die zweite Ableitung.",
-            untertitel="Schritt 2: die hinreichende Bedingung. Hoch oder tief? Das verrät die zweite Ableitung.",
+            "Schritt zwei: die hinreichende Bedingung. Hoch oder tief? Das verrät die zweite Ableitung."
         ):
             self.play(auftritt(kopf2), run_time=0.5)
             self.warte_bis(0.6)
             self.play(Write(zweite), run_time=1.2)
-        with self.sprich(
-            "Bei minus eins ist sie negativ: Hochpunkt.",
-            untertitel="Bei x = −1 ist sie negativ: Hochpunkt.",
-        ):
+        with self.sprich("Bei minus eins ist sie negativ: Hochpunkt."):
             self.play(Write(hoch[0]), run_time=1.2)
             self.warte_bis(0.65)
             self.play(FadeIn(hoch[1:], shift=0.2 * RIGHT), marken[-1].animate.set_color(ROSE), run_time=0.6)
-        with self.sprich(
-            "Bei eins ist sie positiv: Tiefpunkt.",
-            untertitel="Bei x = 1 ist sie positiv: Tiefpunkt.",
-        ):
+        with self.sprich("Bei eins ist sie positiv: Tiefpunkt."):
             self.play(Write(tief[0]), run_time=1.2)
             self.warte_bis(0.65)
             self.play(FadeIn(tief[1:], shift=0.2 * RIGHT), marken[1].animate.set_color(BLAU), run_time=0.6)
@@ -167,19 +151,13 @@ class Video(MCSzene):
         punkt_h = Dot(ort_h, color=ROSE, radius=0.13)
         punkt_t = Dot(ort_t, color=BLAU, radius=0.13)
 
-        with self.sprich(
-            "Schritt drei: Fehlen noch die y-Werte. Minus eins in f eingesetzt ergibt drei.",
-            untertitel="Schritt 3: Fehlen noch die y-Werte. −1 in f eingesetzt ergibt 3.",
-        ):
+        with self.sprich("Schritt drei: Fehlen noch die y-Werte. Minus eins in f eingesetzt ergibt drei."):
             self.play(auftritt(kopf3), run_time=0.5)
             self.warte_bis(0.4)
             self.play(Write(einsetzen_h), run_time=1.3)
             self.play(Write(wert_h), run_time=1)
             self.play(GrowFromCenter(punkt_h), welle(ort_h, ROSE), run_time=0.6)
-        with self.sprich(
-            "Und f von eins ergibt minus eins.",
-            untertitel="Und f(1) ergibt −1.",
-        ):
+        with self.sprich("Und f von eins ergibt minus eins."):
             self.play(Write(einsetzen_t), run_time=1.1)
             self.play(Write(wert_t), run_time=0.9)
             self.play(GrowFromCenter(punkt_t), welle(ort_t, BLAU), run_time=0.6)
@@ -194,10 +172,7 @@ class Video(MCSzene):
         name_h = formel("H", groesse=40, farbe=ROSE).next_to(punkt_h, UP, buff=0.15)
         name_t = formel("T", groesse=40, farbe=BLAU).next_to(punkt_t, DOWN, buff=0.15)
 
-        with self.sprich(
-            "Fertig! Hochpunkt bei minus eins, drei. Tiefpunkt bei eins, minus eins.",
-            untertitel="Fertig! Hochpunkt H(−1 | 3), Tiefpunkt T(1 | −1).",
-        ):
+        with self.sprich("Fertig! Hochpunkt bei minus eins, drei. Tiefpunkt bei eins, minus eins."):
             self.warte_bis(0.12)
             self.play(auftritt(ergebnis[0]), FadeIn(name_h), welle(ort_h, ROSE), run_time=0.7)
             self.warte_bis(0.58)

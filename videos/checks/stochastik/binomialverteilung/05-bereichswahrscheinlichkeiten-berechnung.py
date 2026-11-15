@@ -56,8 +56,7 @@ class Video(MCSzene):
             abstand=0.5,
         )
         with self.sprich(
-            "Eine Basketballspielerin wirft zwanzigmal und trifft jeweils mit zehn Prozent. X zählt die Treffer.",
-            untertitel="Eine Basketballspielerin wirft 20-mal und trifft jeweils mit 10 %. X zählt die Treffer.",
+            "Eine Basketballspielerin wirft zwanzigmal und trifft jeweils mit zehn Prozent. X zählt die Treffer."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
             self.warte_bis(0.35)
@@ -99,7 +98,6 @@ class Video(MCSzene):
             [formel(r"P(X\leq 4)", groesse=G_FORMEL), eingabe("=", "0", "4"), naeherung("0{,}9568")],
             bereiche=[(0, 4)], bereich_ab=0.25, eingabe_ab=0.5,
             sprechtext="Höchstens vier Treffer: Das sind null bis vier. Also null und vier eintippen, dann n und p.",
-            untertitel="Höchstens 4 Treffer: Das sind 0 bis 4. Also 0 und 4 eintippen, dann n und p.",
         )
         self.fall(
             ereignis("weniger als 4 oder", "mehr als 7 Treffer", farben={"weniger als 4": HERVOR, "mehr als 7": HERVOR}),
@@ -113,8 +111,6 @@ class Video(MCSzene):
             ],
             bereiche=[(0, 3), (8, 20)], bereich_ab=0.4, eingabe_ab=0.6,
             sprechtext="Weniger als vier oder mehr als sieben Treffer: Vier und sieben zählen nicht mit. "
-                       "Zwei Bereiche, also beide berechnen und addieren.",
-            untertitel="Weniger als 4 oder mehr als 7 Treffer: 4 und 7 zählen nicht mit. "
                        "Zwei Bereiche, also beide berechnen und addieren.",
         )
 
@@ -131,7 +127,6 @@ class Video(MCSzene):
             bereiche=[(0, 2)], zwischen=umrechnung, zusatz=marke, zwischen_ab=0.3, bereich_ab=0.65, eingabe_ab=0.85,
             sprechtext="In höchstens dreizehn Prozent der Würfe: Das sind zwei Komma sechs Würfe. "
                        "Mehr ist nicht erlaubt, also null bis zwei.",
-            untertitel="In höchstens 13 % der Würfe: Das sind 2,6 Würfe. Mehr ist nicht erlaubt, also 0 bis 2.",
         )
 
         fehlwurf = eingabe("=", "0", "15", p="0{,}9")
@@ -148,7 +143,6 @@ class Video(MCSzene):
             bereiche=[(0, 15)], zwischen=gezaehlt, zwischen_ab=0.45, bereich_ab=0.75, eingabe_ab=0.9,
             sprechtext="Höchstens fünfzehn Fehlwürfe: Jetzt werden Fehlwürfe gezählt. "
                        "Deshalb ist p gleich null Komma neun.",
-            untertitel="Höchstens 15 Fehlwürfe: Jetzt werden Fehlwürfe gezählt. Deshalb ist p = 0,9.",
         )
 
         # ---------- Nicht binomialverteilt: bestimmte Würfe ----------
@@ -166,9 +160,7 @@ class Video(MCSzene):
         self.play(FadeOut(self.strahl), FadeIn(wuerfe), run_time=0.5)
         with self.sprich(
             "Im dritten und vierzehnten Wurf ein Treffer: Hier wird nichts gezählt, es geht um bestimmte Würfe. "
-            "Also keine Binomialverteilung, du multiplizierst einfach.",
-            untertitel="Im 3. und 14. Wurf ein Treffer: Hier wird nichts gezählt, es geht um bestimmte Würfe. "
-                       "Also keine Binomialverteilung, du multiplizierst einfach.",
+            "Also keine Binomialverteilung, du multiplizierst einfach."
         ):
             self.play(auftritt(sonderfall[0]), wuerfe.markiere(3, 14), run_time=0.9)
             self.warte_bis(0.35)
@@ -200,7 +192,6 @@ class Video(MCSzene):
         *,
         bereiche: list[tuple[int, int]],
         sprechtext: str,
-        untertitel: str,
         bereich_ab: float,
         eingabe_ab: float,
         zwischen: Mobject | None = None,
@@ -214,7 +205,7 @@ class Video(MCSzene):
         zusatz erscheint mit der Zwischenzeile auf der Bühne und verschwindet am Ende.
         """
         block = self.tafel(wortlaut, *([zwischen] if zwischen is not None else []), *zeilen, abstand=0.6)
-        with self.sprich(sprechtext, untertitel=untertitel):
+        with self.sprich(sprechtext):
             self.play(auftritt(wortlaut), run_time=0.5)
             if zwischen is not None:
                 self.warte_bis(zwischen_ab)

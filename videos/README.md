@@ -18,9 +18,9 @@ videos/
     stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
-  aufnahmen/<check_id>/     eigene Sprachaufnahmen je Sprechabschnitt (MP3, im Repo)
+  aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/   eigene Sprachaufnahmen je Sprechabschnitt (MP3, im Repo)
   media/                    Zwischenstände, Tonzwischenspeicher, Prüfbögen (gitignored)
-  ausgabe/                  fertige Videos und Untertitel (gitignored)
+  ausgabe/<gebiet>/<lernbereich>/<NN>-<sammlung>.mp4  fertige Videos (gitignored)
 ```
 
 Die Szene heißt wie das Musterbeispiel des Checks. Sie ist die Quelle des Videos, zusammen mit den eigenen Sprachaufnahmen, sobald es sie gibt. Aus dem Pfad ergibt sich die `check_id`; `render.py` bricht ab, wenn es sie in `_data/checks.json` nicht gibt.
@@ -44,9 +44,9 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
    ```
 
    Ausgegeben werden Dauer, Wortzahl und alle Objekte außerhalb des sichtbaren Bereichs.
-3. **Prüfbogen** durchsehen: `media/pruefung/<check_id>/pruefbogen.md` zeigt je Sprechabschnitt das Standbild mit Sprechtext und Untertitel (Überlappungen, Lesbarkeit, fachliche Richtigkeit). Er wird bei jedem Entwurf neu erzeugt.
+3. **Prüfbogen** durchsehen: `media/pruefung/<check_id>/pruefbogen.md` zeigt je Sprechabschnitt das Standbild mit dem Sprechtext (Überlappungen, Lesbarkeit, fachliche Richtigkeit). Er wird bei jedem Entwurf neu erzeugt.
 4. **Einsprechen** (wenn das Video die eigene Stimme bekommen soll): siehe „Eigene Stimme einsprechen“.
-5. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Video und Untertiteldatei landen in `ausgabe/<check_id>.mp4` und `.srt`. Bei Randverstößen oder unvollständigen Aufnahmen wird nichts ausgegeben.
+5. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Das Video landet unter demselben Teilpfad wie die Szene in `ausgabe/<gebiet>/<lernbereich>/<NN>-<sammlung>.mp4`; ein früheres Video des Checks wird ersetzt. Bei Randverstößen oder unvollständigen Aufnahmen wird nichts ausgegeben.
 
 ## Regeln für ein Video
 
@@ -54,7 +54,7 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 - Einstieg (für alle Videos gleich, `self.einstieg(...)`):
   1. Ein kennzeichnendes Bild entsteht, am besten eines, mit dem das Video weiterarbeitet (hier der Graph), sonst ein Bild mit Symbolcharakter. Das erste Bild ist nicht leer.
   2. Dazu erscheint die Frage, gesprochen und geschrieben, weiß und ohne Farbcode. Sie steht in der Du-Form und benennt das Thema sofort, nach dem Muster „Wie bestimmst du Hoch- und Tiefpunkte?“ (der umgedrehte Kompetenzsatz des Checks).
-  3. Begrüßung: Logo und Name erscheinen unter der Frage, gesprochen wird `MCSzene.begruessung`.
+  3. Begrüßung: Unter der Frage erscheint das Logo mit Lichtschein, darunter `mathechecks.de` (wie im Schlussbild, nur kleiner); gesprochen wird `MCSzene.begruessung`.
   4. Das Logo wandert in die Ecke und bleibt dort; erst jetzt erscheint die Kopfzeile.
 - Die Kopfzeile ist freiwillig. Sie zeigt das Gegebene, auf das sich die Rechnung durchgehend bezieht (etwa den Funktionsterm). Steht das Gegebene schon auf der Bühne, bleibt sie zunächst leer und nimmt am Ende das Ergebnis auf (Check 02 der linearen Gleichungssysteme).
 - Ein Video trägt eine Kernidee. Das Musterbeispiel ist nur Orientierung: Sachzusammenhang und Zahlen werden möglichst übernommen, aber das Video zeigt nur so viele Fälle, wie die Kernidee braucht (Check 05 der Binomialverteilung: fünf von dreizehn Ereignissen, je eines pro Schwierigkeit, und ein Lösungsweg statt zwei).
@@ -64,7 +64,7 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 - Vor dem Schluss fasst eine nummerierte Kurzfassung die Schritte zusammen (Baustein `kurzfassung`, ohne Überschrift). Sie folgt den Tipps des Checks.
 - Schluss: für alle Videos gleich und nicht je Video zu schreiben. Das Logo wandert aus der Ecke in die Bildmitte, dazu „Jetzt bist du dran.“ und die Adresse; gesprochen „Jetzt bist du dran. Bis zum nächsten Check!“. Text und Ton stehen in `MCSzene` (`schlussbild`, `schlusston`).
 - Sprache: direkt, verbindlich und motivierend; „du“ in Einstieg und Schluss, „wir“ beim Rechnen. Lockere Wendungen und Anglizismen sind erlaubt, Fachbegriffe bleiben exakt wie im Skript des Lernbereichs.
-- Das Bild muss ohne Ton verständlich sein. Der Sprechtext wird so geschrieben, wie er gesprochen wird („x Quadrat“); weicht die Lesefassung ab, steht sie als `untertitel` daneben.
+- Das Bild muss ohne Ton verständlich sein. Der Sprechtext wird so geschrieben, wie er gesprochen wird („x Quadrat“). Eine eigene Untertiteldatei gibt es nicht; die automatischen Untertitel von YouTube genügen.
 - Einblendungen hängen am Ton, nicht an festen Sekunden: `self.warte_bis(0.6)` wartet, bis 60 % des laufenden Sprechtexts gesprochen sind. So passen die Zeiten auch nach einem Stimmwechsel.
 - Keine Originalaufgaben aus `muster-pruefungen/`.
 
@@ -114,7 +114,7 @@ Das öffnet eine lokale Seite im Browser (beim ersten Mal das Mikrofon freigeben
 - Ein Abschnitt lässt sich beliebig oft neu aufnehmen; die neue Aufnahme ersetzt die alte. Stille und Tastenanschlag an Anfang und Ende werden abgeschnitten, die Lautstärke wird angeglichen.
 - „Entwurf neu rendern“ baut das Video mit den Aufnahmen: Die Einblendungen richten sich dann nach der eigenen Sprechdauer. Danach „Ganzes Video ansehen“.
 - „Final rendern“ entspricht `render.py --final`. Ein finales Video entsteht nur mit einer Stimme: entweder sind alle Abschnitte eingesprochen oder keiner.
-- Die Aufnahmen liegen als MP3 unter `videos/aufnahmen/<check_id>/` und gehören ins Repo: Zusammen mit der Szene sind sie die Quelle des fertigen Videos. `render.py` verwendet sie automatisch.
+- Die Aufnahmen liegen als MP3 unter `videos/aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/` (derselbe Teilpfad wie die Szene) und gehören ins Repo: Zusammen mit der Szene sind sie die Quelle des fertigen Videos. `render.py` verwendet sie automatisch.
 - Eine Aufnahme gehört zu genau einem Sprechtext (Kennung am Ende des Dateinamens). Wird der Text geändert, spricht diesen Abschnitt wieder die Entwurfsstimme, bis er neu aufgenommen ist; `render.py` nennt die betroffenen Abschnitte in der Zeile „Stimme“.
 - Begrüßung und Schluss werden für jedes Video neu gesprochen, nicht zentral gespeichert.
 
