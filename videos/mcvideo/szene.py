@@ -1,41 +1,50 @@
 """Basisszene: jedes Check-Video erbt von MCSzene und füllt nur inhalt()."""
 import json
 import os
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 
 from manim import (
+    BOLD,
     DOWN,
     RIGHT,
     SEMIBOLD,
     UP,
+    Animation,
     Axes,
-    Create,
     DashedLine,
     FadeIn,
     FadeOut,
     Group,
+    LaggedStart,
+    ManimColor,
     MathTex,
     Mobject,
     RoundedRectangle,
     VGroup,
-    VMobject,
+    interpolate_color,
+    rate_functions,
 )
 from manim_voiceover import VoiceoverScene
 from manim_voiceover.tracker import VoiceoverTracker
 
 from . import theme as t
-from .bausteine import einpassen, formel, logo, text
+from .bausteine import auftritt, einpassen, formel, frage, lichthof, logo, reihe, text
 from .stimme import sprachdienst
 
 _TOLERANZ = 0.02
+_LOGO_KLEIN = 0.7
+_LOGO_GROSS = 1.3
 
 
 class MCSzene(VoiceoverScene):
-    kompetenz = ""     # kurzer Kompetenzsatz der Schlusskarte, z. B. „Ich kann Extrempunkte bestimmen.“
-    schlusssatz = ""   # gesprochener Schluss, z. B. „Extrempunkte bestimmen? Check!“
+    # Begrüßung und Schluss aller Videos; hier ändern, dann neu rendern.
+    begruessung = "MatheChecks zeigt's dir."
+    schlussbild = "Jetzt bist du dran."
+    schlusston = "Jetzt bist du dran. Bis zum nächsten Check!"
 
     def inhalt(self) -> None:
+        """Inhalt des Videos; beginnt mit self.einstieg(...)."""
         raise NotImplementedError
 
     def construct(self) -> None:
@@ -50,20 +59,84 @@ class MCSzene(VoiceoverScene):
             for alt in self._bildordner.glob("*.png"):
                 alt.unlink()
 
-        self.marke = logo()
-        self.marke.move_to([t.RAND_LINKS + self.marke.width / 2, t.KOPF_Y, 0])
-        self.add(self.marke)
+        self.marke = logo(_LOGO_GROSS)
+        self._karte_unten = t.KARTE_UNTEN
+        self.schimmer = lichthof(8, t.MARKE, staerke=0.45).move_to([0, t.HOEHE / 2, 0])
+        self.add(self.schimmer)
 
         self.inhalt()
         self.abschluss()
         self._bericht()
 
+    # ---------- Einstieg ----------
+    def einstieg(
+        self,
+        *zeilen: str,
+        bild: Sequence[Animation],
+        kopf: Mobject | None = None,
+        sprechtext: str | None = None,
+    ) -> None:
+        """Fester Beginn: Das Bild entsteht, die Frage erscheint, dann die Begrüßung.
+
+        zeilen: die Frage, eine Bildzeile je Argument.
+        bild: Animationen, die das kennzeichnende Bild des Videos aufbauen.
+        kopf: Kopfzeile (self.kopf), die nach der Begrüßung eingeblendet wird.
+        sprechtext: gesprochene Frage, falls sie von den Bildzeilen abweicht.
+        """
+        fragezeilen = frage(*zeilen)
+        name = text("MatheChecks", groesse=46, gewicht=BOLD)
+        self.tafel(fragezeilen, reihe(self.marke, name, abstand=0.35), abstand=0.9)
+        with self.sprich(sprechtext or " ".join(zeilen)):
+            self.play(*bild, LaggedStart(*[auftritt(zeile) for zeile in fragezeilen], lag_ratio=0.5), run_time=1.4)
+
+        with self.sprich(self.begruessung):
+            self.play(
+                FadeIn(self.marke, scale=0.6, rate_func=rate_functions.ease_out_back),
+                auftritt(name),
+                run_time=0.6,
+            )
+
+        ecke = [t.RAND_LINKS + self.marke.width * _LOGO_KLEIN / _LOGO_GROSS / 2, t.KOPF_Y, 0]
+        self.play(
+            FadeOut(fragezeilen, shift=0.25 * UP),
+            FadeOut(name),
+            self.marke.animate.scale_to_fit_height(_LOGO_KLEIN).move_to(ecke),
+            *([FadeIn(kopf)] if kopf is not None else []),
+            run_time=0.6,
+        )
+
     # ---------- Aufbau ----------
     def kopf(self, tex: str) -> MathTex:
-        """Titelzeile neben dem Logo, z. B. der Funktionsterm."""
+        """Kopfzeile neben dem Logo: das Gegebene, auf das sich die Rechnung bezieht, z. B. der Funktionsterm."""
         titel = formel(tex, groesse=t.S_TITEL)
-        einpassen(titel, t.BREITE - 4 * self.marke.width)
+        einpassen(titel, t.BREITE - 4 * _LOGO_KLEIN)
         return titel.move_to([0, t.KOPF_Y, 0])
+
+    def buehne(self, hoehe: float | None = None) -> RoundedRectangle:
+        """Karte, auf der Graph, Diagramm oder Skizze liegen; oben in der Stimmungsfarbe getönt.
+
+        hoehe: Höhe der Karte. Eine flache Karte (etwa für einen Zahlenstrahl) lässt der
+        Tafel darunter mehr Platz. Vor achsen(), auf_buehne() und tafel() aufrufen.
+        """
+        if hoehe is not None:
+            self._karte_unten = t.KARTE_OBEN - hoehe
+        karte = RoundedRectangle(
+            width=t.RAND_RECHTS - t.RAND_LINKS, height=t.KARTE_OBEN - self._karte_unten, corner_radius=0.35,
+            stroke_color=interpolate_color(ManimColor(t.RAHMEN), ManimColor(t.MARKE), 0.35), stroke_width=2,
+        )
+        karte.set_fill(color=[self._kartenfarbe(t.KARTE_OBEN), self._kartenfarbe(self._karte_unten)], opacity=1)
+        karte.set_sheen_direction(DOWN)
+        return karte.move_to([0, (t.KARTE_OBEN + self._karte_unten) / 2, 0])
+
+    def auf_buehne(self, bild: Mobject) -> Mobject:
+        """Passt ein Bild in die Karte ein und setzt es in ihre Mitte."""
+        einpassen(bild, t.BUEHNE_BREITE, t.KARTE_OBEN - self._karte_unten - 2 * t.KARTE_INNENRAND)
+        return bild.move_to([0, (t.KARTE_OBEN + self._karte_unten) / 2, 0])
+
+    def _kartenfarbe(self, y: float) -> ManimColor:
+        """Farbe der Karte auf der Höhe y (Verlauf von getönt oben nach neutral unten)."""
+        hoehe = (y - self._karte_unten) / (t.KARTE_OBEN - self._karte_unten)
+        return interpolate_color(ManimColor(t.FLAECHE), ManimColor(t.MARKE), t.KARTE_TOENUNG * hoehe)
 
     def achsen(
         self,
@@ -77,11 +150,12 @@ class MCSzene(VoiceoverScene):
         x_zahlen, y_zahlen: nur diese Werte beschriften, etwa wenn der Graph sonst
         durch eine Achsenzahl läuft. Ohne Angabe wird jeder Teilstrich beschriftet.
         """
+        hoehe = t.KARTE_OBEN - self._karte_unten - 2 * t.KARTE_INNENRAND
         achsen = Axes(
             x_range=list(x),
             y_range=list(y),
             x_length=t.BUEHNE_BREITE,
-            y_length=t.BUEHNE_HOEHE,
+            y_length=hoehe,
             axis_config={
                 "color": t.ACHSE, "stroke_width": 3, "include_tip": False,
                 "include_numbers": True, "font_size": 32,
@@ -93,8 +167,7 @@ class MCSzene(VoiceoverScene):
             formel("x", groesse=36, farbe=t.ACHSE).next_to(achsen.x_axis.get_end(), UP, buff=0.15),
             formel("y", groesse=36, farbe=t.ACHSE).next_to(achsen.y_axis.get_end(), RIGHT, buff=0.2),
         )
-        einpassen(achsen, t.BUEHNE_BREITE, t.BUEHNE_HOEHE)
-        return achsen.move_to([0, t.BUEHNE_MITTE_Y, 0])
+        return self.auf_buehne(achsen)
 
     def senkrechte(self, achsen: Axes, x: float, farbe: str = t.HERVOR) -> DashedLine:
         """Gestrichelte Hilfslinie an der Stelle x; die Achsenzahl dort bleibt lesbar."""
@@ -102,15 +175,24 @@ class MCSzene(VoiceoverScene):
         linie = DashedLine(achsen.c2p(x, unten), achsen.c2p(x, oben), color=farbe, stroke_width=3, dash_length=0.12)
         for zahl in achsen.x_axis.numbers:
             if abs(zahl.number - x) < 1e-9:
-                zahl.add_background_rectangle(color=t.HINTERGRUND, opacity=1, buff=0.06)
+                zahl.add_background_rectangle(color=self._kartenfarbe(zahl.get_y()), opacity=1, buff=0.06)
                 zahl.set_z_index(1)
         return linie
 
     def tafel(self, *zeilen: Mobject, abstand: float = 0.38) -> VGroup:
-        """Ordnet Zeilen untereinander an und passt sie in den Rechenbereich ein."""
+        """Ordnet Zeilen untereinander an und setzt sie in den Rechenbereich unter der Karte.
+
+        Eine zu breite Zeile wird allein verkleinert; die übrigen behalten ihre Größe.
+        Bleibt Platz frei, rückt der Block ein Stück nach unten (theme.TAFEL_LAGE), damit das Bild
+        gleichmäßiger gefüllt ist.
+        """
+        oben = self._karte_unten - t.TAFEL_ABSTAND
+        for zeile in zeilen:
+            einpassen(zeile, t.TAFEL_BREITE)
         block = VGroup(*zeilen).arrange(DOWN, buff=abstand)
-        einpassen(block, t.TAFEL_BREITE, t.TAFEL_HOEHE)
-        return block.move_to([0, t.TAFEL_OBEN - block.height / 2, 0])
+        einpassen(block, hoehe=oben - t.RAND_UNTEN)
+        frei = oben - t.RAND_UNTEN - block.height
+        return block.move_to([0, oben - t.TAFEL_LAGE * frei - block.height / 2, 0])
 
     # ---------- Ton ----------
     @contextmanager
@@ -130,37 +212,47 @@ class MCSzene(VoiceoverScene):
             "bild": self._standbild(),
         })
 
+    def warte_bis(self, anteil: float) -> None:
+        """Wartet, bis dieser Anteil (0 bis 1) des laufenden Sprechtexts gesprochen ist.
+
+        So bleiben Einblendungen beim Wort, auch wenn die Stimme wechselt.
+        """
+        ton = self.current_tracker
+        vergangen = ton.duration - ton.get_remaining_duration()
+        self.safe_wait(ton.duration * anteil - vergangen)
+
     def play(self, *args: object, **kwargs: object) -> None:
         super().play(*args, **kwargs)
         self._pruefe_rand()
 
     # ---------- Schluss ----------
     def abschluss(self) -> None:
-        """Schlusskarte: Der Kompetenzsatz wird abgehakt."""
-        rest = [m for m in self.mobjects if m is not self.marke]
-        kasten = RoundedRectangle(width=1.8, height=1.8, corner_radius=0.38, color=t.TEXT_LEISE, stroke_width=7)
-        satz = einpassen(text(self.kompetenz, groesse=46, gewicht=SEMIBOLD), 7.8)
-        adresse = text("mathechecks.de", groesse=40, farbe=t.AKZENT, gewicht=SEMIBOLD)
-        VGroup(kasten, satz, adresse).arrange(DOWN, buff=0.8).move_to([0, (t.RAND_OBEN + t.RAND_UNTEN) / 2, 0])
-        b = kasten.width
-        haken = VMobject(color=t.GRUEN, stroke_width=16)
-        haken.set_points_as_corners([
-            kasten.get_center() + [-0.30 * b, 0.02 * b, 0],
-            kasten.get_center() + [-0.06 * b, -0.24 * b, 0],
-            kasten.get_center() + [0.44 * b, 0.40 * b, 0],
-        ])
+        """Schlussbild: Das Logo wandert aus der Ecke in die Bildmitte."""
+        rest = [m for m in self.mobjects if m is not self.marke and m is not self.schimmer]
+        mitte = (t.RAND_OBEN + t.RAND_UNTEN) / 2
+        ziel = [0, mitte + 1.3, 0]
+        hof = lichthof(3.2, t.MARKE).move_to(ziel).set_z_index(-1)
+        ruf = text(self.schlussbild, groesse=54, gewicht=BOLD)
+        adresse = text("mathechecks.de", groesse=38, farbe=t.TEXT_LEISE, gewicht=SEMIBOLD)
+        VGroup(ruf, adresse).arrange(DOWN, buff=0.45).move_to([0, mitte - 1.6, 0])
 
         if rest:
-            self.play(*[FadeOut(m) for m in rest], run_time=0.5)
-        with self.sprich(self.schlusssatz):
-            self.play(FadeIn(kasten), FadeIn(satz, shift=0.2 * UP), run_time=0.5)
-            self.play(Create(haken), run_time=0.4)
+            self.play(*[FadeOut(m) for m in rest], run_time=0.4)
+        with self.sprich(self.schlusston):
+            self.play(
+                self.marke.animate(rate_func=rate_functions.ease_out_back).scale_to_fit_height(2.6).move_to(ziel),
+                FadeIn(hof),
+                run_time=0.8,
+            )
+            self.play(auftritt(ruf), run_time=0.4)
             self.play(FadeIn(adresse), run_time=0.4)
-        self.wait(0.8)
+        self.wait(0.6)
 
     # ---------- Prüfung ----------
     def _blaetter(self, mobs: list[Mobject]) -> Iterator[Mobject]:
         for mob in mobs:
+            if mob is self.schimmer:  # Hintergrund, darf über den Bildrand reichen
+                continue
             if type(mob) in (VGroup, Group):
                 yield from self._blaetter(mob.submobjects)
             elif mob.family_members_with_points():

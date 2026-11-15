@@ -81,7 +81,10 @@ def main() -> int:
     bericht_datei = VIDEOS / "media" / "berichte" / f"{check_id}.json"
     bericht_datei.unlink(missing_ok=True)
 
-    befehl = [sys.executable, "-m", "manim", "render", "-v", "WARNING", "--progress_bar", "none", str(szene), "Video"]
+    # manim-voiceover lädt beim Start das Paket sox, das ohne installiertes SoX bei jedem Lauf warnt.
+    # SoX wird nur für ein verändertes Sprechtempo gebraucht, deshalb bleibt die Warnung stumm.
+    start = "import logging; logging.getLogger('sox').disabled = True; from manim.__main__ import main; main()"
+    befehl = [sys.executable, "-c", start, "render", "-v", "WARNING", "--progress_bar", "none", str(szene), "Video"]
     if subprocess.run(befehl, cwd=VIDEOS, env=umgebung).returncode != 0 or not bericht_datei.exists():
         print("Rendern fehlgeschlagen.")
         return 1

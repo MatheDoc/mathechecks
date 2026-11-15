@@ -101,8 +101,8 @@ Eine Basketballspielerin erzielt ($n=20$ und $p=0{,}1$)
 
     $$
     \begin{align*}
-    P(X > 6{,}7) &= P(X > 7) = 1 - P(X \leq 6) = 1 - 0{,}9986 = 0{,}0024 \\
-    P(X > 6{,}7) &= P(X > 7)= Bcd(7;20;20;0{,}1) = 0{,}0024
+    P(X > 6{,}7) &= P(X \geq 7) = 1 - P(X \leq 6) = 1 - 0{,}9976 = 0{,}0024 \\
+    P(X > 6{,}7) &= P(X \geq 7)= Bcd(7;20;20;0{,}1) = 0{,}0024
     \end{align*}
     $$
 

@@ -1,35 +1,48 @@
 """Gemeinsame Bibliothek der MatheChecks-Videos."""
-import logging
-
-# SoX wird nur für ein verändertes Sprechtempo gebraucht; ohne diese Zeile warnt jeder Lauf.
-logging.getLogger("sox").setLevel(logging.ERROR)
-
-from . import theme  # noqa: E402
-from .bausteine import (  # noqa: E402
+from . import theme
+from .bausteine import (
     Dezimalzahl,
+    Versuche,
+    Zahlenstrahl,
+    auftritt,
     einpassen,
     formel,
+    frage,
+    kurzfassung,
+    legende,
+    lichthof,
+    lichtpunkt,
     logo,
     nummer,
-    rezept,
+    reihe,
+    schein,
     schritt,
-    stolperstein,
     text,
-    ueberschrift,
+    welle,
+    zeichnen,
 )
-from .szene import MCSzene  # noqa: E402
+from .szene import MCSzene
 
 __all__ = [
     "Dezimalzahl",
     "MCSzene",
+    "Versuche",
+    "Zahlenstrahl",
+    "auftritt",
     "einpassen",
     "formel",
+    "frage",
+    "kurzfassung",
+    "legende",
+    "lichthof",
+    "lichtpunkt",
     "logo",
     "nummer",
-    "rezept",
+    "reihe",
+    "schein",
     "schritt",
-    "stolperstein",
     "text",
     "theme",
-    "ueberschrift",
+    "welle",
+    "zeichnen",
 ]
