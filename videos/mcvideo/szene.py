@@ -154,11 +154,13 @@ class MCSzene(VoiceoverScene):
         y: tuple[float, float, float],
         x_zahlen: tuple[float, ...] | None = None,
         y_zahlen: tuple[float, ...] | None = None,
+        namen: tuple[str, str] = ("x", "y"),
     ) -> Axes:
         """Beschriftetes Koordinatensystem, eingepasst in die Bühne.
 
         x_zahlen, y_zahlen: nur diese Werte beschriften, etwa wenn der Graph sonst
         durch eine Achsenzahl läuft. Ohne Angabe wird jeder Teilstrich beschriftet.
+        namen: Beschriftung der Achsen (LaTeX), etwa ("t", "a(t)") im Sachzusammenhang.
         """
         hoehe = t.KARTE_OBEN - self._karte_unten - 2 * t.KARTE_INNENRAND
         achsen = Axes(
@@ -174,8 +176,8 @@ class MCSzene(VoiceoverScene):
             y_axis_config={"numbers_to_include": y_zahlen},
         )
         achsen.add(
-            formel("x", groesse=36, farbe=t.ACHSE).next_to(achsen.x_axis.get_end(), UP, buff=0.15),
-            formel("y", groesse=36, farbe=t.ACHSE).next_to(achsen.y_axis.get_end(), RIGHT, buff=0.2),
+            formel(namen[0], groesse=36, farbe=t.ACHSE).next_to(achsen.x_axis.get_end(), UP, buff=0.15),
+            formel(namen[1], groesse=36, farbe=t.ACHSE).next_to(achsen.y_axis.get_end(), RIGHT, buff=0.2),
         )
         return self.auf_buehne(achsen)
 

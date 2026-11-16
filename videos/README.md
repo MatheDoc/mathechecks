@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit vier Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit fünf Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -14,6 +14,7 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Algorithmus an einer Matrix | `lineare-algebra/lineare-gleichungssysteme/02-lgs-loesen-3x3.py` |
 | Textverständnis, viele Fallarten, Bild begleitet nur | `stochastik/binomialverteilung/05-bereichswahrscheinlichkeiten-berechnung.py` |
 | Diagramm lesen ohne Ablauf, nach den Teilaufgaben des Trainings | `stochastik/bedingte-wahrscheinlichkeiten/03-baumdiagramm-folgern-mit-unabh.py` |
+| Graph im Sachzusammenhang lesen (Kennzahl ↔ Merkmal, jede Kennzahl eine Farbe) | `analysis/produktlebenszyklus/01-kennzahlen-graphisch-umsatz.py` |
 
 ## Aufbau
 
@@ -85,14 +86,14 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 
 Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern für alle Videos.
 
-- Schrift wie auf der Website (Inter), Formeln setzt LaTeX. Wörter stehen nicht in Formeln, sondern als Text daneben (`reihe`).
+- Schrift wie auf der Website (Inter), Formeln setzt LaTeX. Wörter stehen nicht in Formeln, sondern als Text daneben (`reihe`). Steht eine kleine Formel (etwa $a'$) mitten in einem Satz, sitzen Text und Formel mit `reihe(..., grundlinie=True)` auf einer gemeinsamen Schriftgrundlinie, sonst wirkt die Formel zu tief.
 - Zwei Farbebenen:
   - Stimmungsfarbe (`MARKE`, das Violett der Website), gedämpft und nur in Flächen und Rändern: Schimmer im Hintergrund, getönte Karte, Schrittnummern, Lichtpunkt beim Zeichnen, Schlussbild. Sie ist nie Schrift- oder Linienfarbe in der Rechnung und in allen Gebieten dieselbe, damit die Objektfarben in jedem Video dasselbe bedeuten.
   - Objektfarben, kräftig: Was zusammengehört, hat dieselbe Farbe, im Bild wie in der Rechnung. `HERVOR` (Orange) ist das Objekt, um das es gerade geht (Tangente und ihre Steigung, Kandidaten); `ROSE` und `BLAU` unterscheiden ein Paar (Hoch- und Tiefpunkt); `TUERKIS` und `GRUEN` stehen für weitere Objekte bereit. `BLAU` ist ein Himmelblau, damit es sich vom Violett absetzt.
 - Text, Überschriften und Rechnung sind weiß.
 - Objekte werden nur über die Schriftfarbe gekennzeichnet, ohne farbige Hinterlegung.
 - Bewegung mit Bedeutung: `zeichnen` baut eine Linie mit mitlaufendem Lichtpunkt auf; `welle` markiert die Stelle, an der gerade etwas passiert; `auftritt` blendet Text ein.
-- Bildaufteilung von oben nach unten: Kopf (Logo, Titel), Bühne auf einer Karte (`self.buehne()`), Tafel (Rechnung, Text). `self.tafel(...)`, `self.achsen(...)` und `self.auf_buehne(...)` passen Inhalte in ihren Bereich ein.
+- Bildaufteilung von oben nach unten: Kopf (Logo, Titel), Bühne auf einer Karte (`self.buehne()`), Tafel (Rechnung, Text). `self.tafel(...)`, `self.achsen(...)` und `self.auf_buehne(...)` passen Inhalte in ihren Bereich ein. `achsen` beschriftet die Achsen mit `namen=("x", "y")`; im Sachzusammenhang etwa `namen=("t", "a(t)")`.
 - Die Höhe der Bühne richtet sich nach dem Bild: volle Höhe für einen Graphen, flach (`self.buehne(hoehe=2.5)`) für ein Bild, das nur begleitet, etwa den `Zahlenstrahl`. Die Tafel rückt dann nach oben und bekommt mehr Platz; die Schrift darf dort größer sein. So bleibt auch bei textlastigen Checks ohne tragendes Bild die obere Bildhälfte nicht leer.
 - Ein Bild stützt jedes Video, auch textlastige: Auf dem `Zahlenstrahl` erscheint der Bereich, von dem der Text spricht; `Versuche` zeigt einzelne Versuche, wenn es nicht um eine Anzahl geht.
 - Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen. Umformungen stehen wie im Heft rechts neben der Zeile; die Nebenrechnung darunter steht in denselben Spalten (`zahlenzeile`), danach wird die Zeile ersetzt (`umformen`). Zeilennamen sind aufrechte römische Zahlen.

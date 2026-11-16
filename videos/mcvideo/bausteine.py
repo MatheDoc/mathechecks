@@ -1,4 +1,5 @@
 """Wiederkehrende Bildelemente der MatheChecks-Videos."""
+import re
 from collections.abc import Mapping
 
 import numpy as np
@@ -91,9 +92,28 @@ def frage(*zeilen: str, zusatz: str | None = None) -> VGroup:
     return einpassen(block, t.TAFEL_BREITE)
 
 
-def reihe(*teile: Mobject, abstand: float = 0.25) -> VGroup:
-    """Setzt Formeln und Wörter nebeneinander in eine Zeile."""
-    return VGroup(*teile).arrange(RIGHT, buff=abstand)
+def _grundlinie(teil: Mobject) -> float:
+    """Höhe der Schriftgrundlinie eines Teils. Bei einem Text zählen Unterlängen (g, p, y …) nicht mit."""
+    if not isinstance(teil, Text):
+        return teil.get_bottom()[1]
+    ohne_unterlaenge = Text(
+        re.sub(r"[gjpqy,;()]", "o", teil.text), font=teil.font, font_size=teil.font_size, weight=teil.weight,
+    )
+    return teil.get_top()[1] - (ohne_unterlaenge.get_top()[1] - ohne_unterlaenge.get_bottom()[1])
+
+
+def reihe(*teile: Mobject, abstand: float = 0.25, grundlinie: bool = False) -> VGroup:
+    """Setzt Formeln und Wörter nebeneinander in eine Zeile.
+
+    grundlinie: Teile sitzen auf einer gemeinsamen Schriftgrundlinie statt mittig; nötig, wenn eine kleine
+    Formel (etwa a') in einem Satz steht. Nur für einzeilige Texte.
+    """
+    zeile = VGroup(*teile).arrange(RIGHT, buff=abstand)
+    if grundlinie:
+        erste = _grundlinie(teile[0])
+        for teil in teile[1:]:
+            teil.shift((erste - _grundlinie(teil)) * UP)
+    return zeile
 
 
 def legende(*paare: tuple[Mobject, Mobject], abstand: float = 0.4) -> VGroup:
