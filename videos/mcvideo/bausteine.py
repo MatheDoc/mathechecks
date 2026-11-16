@@ -1,4 +1,6 @@
 """Wiederkehrende Bildelemente der MatheChecks-Videos."""
+from collections.abc import Mapping
+
 import numpy as np
 from manim import (
     BOLD,
@@ -80,9 +82,11 @@ def schritt(nr: int, titel: str) -> VGroup:
     return einpassen(zeile, t.TAFEL_BREITE)
 
 
-def frage(*zeilen: str) -> VGroup:
-    """Einstiegsfrage in großer weißer Schrift, eine Zeile je Argument."""
+def frage(*zeilen: str, zusatz: str | None = None) -> VGroup:
+    """Einstiegsfrage in großer weißer Schrift, eine Zeile je Argument; zusatz steht kleiner darunter."""
     block = VGroup(*[text(zeile, groesse=t.S_GROSS, gewicht=BOLD) for zeile in zeilen])
+    if zusatz:
+        block.add(text(zusatz, groesse=36, farbe=t.TEXT_LEISE, gewicht=SEMIBOLD))
     block.arrange(DOWN, buff=0.3)
     return einpassen(block, t.TAFEL_BREITE)
 
@@ -110,6 +114,25 @@ def kurzfassung(*zeilen: Mobject) -> VGroup:
     """Nummerierte Zusammenfassung der Schritte am Ende."""
     reihen = VGroup(*[reihe(nummer(i), zeile, abstand=0.35) for i, zeile in enumerate(zeilen, start=1)])
     reihen.arrange(DOWN, buff=0.45, aligned_edge=LEFT)
+    return einpassen(reihen, t.TAFEL_BREITE)
+
+
+def aufzaehlung(*zeilen: Mobject | tuple[Mobject, Mobject], abstand: float = 0.4) -> VGroup:
+    """Übersicht ohne Reihenfolge: wie kurzfassung, aber mit Punkten in der Stimmungsfarbe statt Nummern.
+
+    Eine Zeile kann ein Paar (Stichwort, Inhalt) sein; die Inhalte stehen dann bündig untereinander.
+    """
+    paare = [zeile if isinstance(zeile, tuple) else (zeile, None) for zeile in zeilen]
+    spalte = max((stichwort.width for stichwort, inhalt in paare if inhalt is not None), default=0)
+    reihen = VGroup()
+    for stichwort, inhalt in paare:
+        punkt = Circle(radius=0.11, color=t.MARKE, fill_opacity=1, stroke_width=0)
+        stichwort.next_to(punkt, RIGHT, buff=0.28)
+        zeile = VGroup(punkt, stichwort)
+        if inhalt is not None:
+            zeile.add(inhalt.next_to(punkt, RIGHT, buff=0.28 + spalte + 0.3))
+        reihen.add(zeile)
+    reihen.arrange(DOWN, buff=abstand, aligned_edge=LEFT)
     return einpassen(reihen, t.TAFEL_BREITE)
 
 
@@ -331,6 +354,97 @@ class ErweiterteMatrix(VGroup):
         """Die Zeile i pulsiert kurz: „um diese Zeile geht es“."""
         return AnimationGroup(*[
             eintrag.animate(rate_func=rate_functions.there_and_back).scale(1.3) for eintrag in self.eintraege[i]
+        ])
+
+
+class Baumdiagramm(VGroup):
+    """Zweistufiges Baumdiagramm zu zwei Ereignissen A und B, aufgebaut wie auf der Website.
+
+    Äste und Pfadenden heißen nach ihrem Pfad: "A" und "nA" (erste Stufe), "AB", "AnB", "nAB" und
+    "nAnB" (zweite Stufe und Pfadenden). An jedem Ast steht seine Wahrscheinlichkeit, rechts neben
+    jedem Pfadende das Produkt.
+    """
+
+    PFADE = ("AB", "AnB", "nAB", "nAnB")
+
+    def __init__(self, pa: float, pba: float, pbna: float, breite: float = t.BUEHNE_BREITE, hoehe: float = 4.3) -> None:
+        super().__init__()
+        aeste = {"A": pa, "nA": 1 - pa, "AB": pba, "AnB": 1 - pba, "nAB": pbna, "nAnB": 1 - pbna}
+        hoehen = {"A": 0.75, "nA": 0.25, "AB": 0.875, "AnB": 0.625, "nAB": 0.375, "nAnB": 0.125}
+        namen = {"A": "A", "nA": r"\overline{A}", "AB": "B", "AnB": r"\overline{B}", "nAB": "B", "nAnB": r"\overline{B}"}
+        orte = {"": np.array([0, hoehe / 2, 0])}
+        for ast, anteil in hoehen.items():
+            orte[ast] = np.array([(0.36 if ast in ("A", "nA") else 0.72) * breite, anteil * hoehe, 0])
+
+        self.wurzel = Dot(orte[""], radius=0.07, color=t.ACHSE)
+        self.kanten, self.werte, self.kreise, self.namen, self.enden = {}, {}, {}, {}, {}
+        for ast, p in aeste.items():
+            start, ziel = orte[self._vorgaenger(ast)], orte[ast]
+            richtung = (ziel - start) / np.linalg.norm(ziel - start)
+            aussen = np.array([-richtung[1], richtung[0], 0]) * (1 if richtung[1] > 0 else -1)
+            self.kanten[ast] = Line(start, ziel, color=t.ACHSE, stroke_width=3)
+            self.werte[ast] = formel(_zahl(p), groesse=38).move_to((start + ziel) / 2 + 0.38 * aussen)
+            self.kreise[ast] = Circle(
+                radius=0.36, stroke_color=t.ACHSE, stroke_width=3, fill_color=t.FELD, fill_opacity=1,
+            ).move_to(ziel).set_z_index(1)
+            self.namen[ast] = formel(namen[ast], groesse=36).move_to(ziel).set_z_index(2)
+        for pfad in self.PFADE:
+            produkt = aeste[self._vorgaenger(pfad)] * aeste[pfad]
+            self.enden[pfad] = formel(_zahl(produkt), groesse=42).next_to(self.kreise[pfad], RIGHT, buff=0.3)
+        self.add(
+            *self.kanten.values(), self.wurzel, *self.kreise.values(), *self.namen.values(),
+            *self.werte.values(), *self.enden.values(),
+        )
+
+    @staticmethod
+    def _vorgaenger(ast: str) -> str:
+        if ast in ("A", "nA"):
+            return ""
+        return "nA" if ast.startswith("n") else "A"
+
+    def aufbau(self) -> list[Animation]:
+        """Der Baum wächst von links nach rechts, ein Lichtpunkt läuft den obersten Pfad entlang."""
+
+        def stufe(aeste: tuple[str, ...]) -> Animation:
+            return AnimationGroup(
+                *[Create(self.kanten[ast]) for ast in aeste],
+                *[FadeIn(self.werte[ast]) for ast in aeste],
+                *[FadeIn(VGroup(self.kreise[ast], self.namen[ast]), scale=0.6) for ast in aeste],
+            )
+
+        spur = VMobject().set_points_as_corners(
+            [self.kanten["A"].get_start(), self.kanten["A"].get_end(), self.kanten["AB"].get_end()]
+        )
+        enden = FadeIn(VGroup(*self.enden.values()), shift=0.2 * RIGHT)
+        return [
+            FadeIn(self.wurzel),
+            LaggedStart(stufe(("A", "nA")), stufe(self.PFADE), enden, lag_ratio=0.6),
+            lichtpunkt(spur),
+        ]
+
+    def markiere(self, aeste: Mapping[str, str] | None = None, enden: Mapping[str, str] | None = None) -> Animation:
+        """Färbt Äste (mit ihrem Wert) und Pfadenden, jeweils Name → Farbe; alles Übrige tritt zurück.
+
+        Ohne Angaben kehrt der Baum in den Grundzustand zurück.
+        """
+        aeste, enden = aeste or {}, enden or {}
+        ruhig = t.TEXT_LEISE if aeste or enden else t.TEXT
+        schritte = []
+        for ast in self.kanten:
+            farbe = aeste.get(ast)
+            schritte += [
+                self.kanten[ast].animate.set_stroke(farbe or t.ACHSE, width=5 if farbe else 3),
+                self.werte[ast].animate.set_color(farbe or ruhig),
+                self.kreise[ast].animate.set_stroke(farbe or enden.get(ast) or t.ACHSE),
+            ]
+        schritte += [self.enden[pfad].animate.set_color(enden.get(pfad) or ruhig) for pfad in self.PFADE]
+        return AnimationGroup(*schritte)
+
+    def betone(self, *aeste: str) -> Animation:
+        """Die Knoten am Ende der genannten Äste pulsieren kurz."""
+        return AnimationGroup(*[
+            teil.animate(rate_func=rate_functions.there_and_back).scale(1.35)
+            for ast in aeste for teil in (self.kreise[ast], self.namen[ast])
         ])
 
 

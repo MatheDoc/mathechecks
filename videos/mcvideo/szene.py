@@ -75,6 +75,7 @@ class MCSzene(VoiceoverScene):
         *zeilen: str,
         bild: Sequence[Animation],
         kopf: Mobject | None = None,
+        zusatz: str | None = None,
         sprechtext: str | None = None,
     ) -> None:
         """Fester Beginn: Das Bild entsteht, die Frage erscheint, dann die Begrüßung mit Logo und Adresse.
@@ -82,14 +83,15 @@ class MCSzene(VoiceoverScene):
         zeilen: die Frage, eine Bildzeile je Argument.
         bild: Animationen, die das kennzeichnende Bild des Videos aufbauen.
         kopf: Kopfzeile (self.kopf), die nach der Begrüßung eingeblendet wird.
-        sprechtext: gesprochene Frage, falls sie von den Bildzeilen abweicht.
+        zusatz: Ergänzung zur Frage, kleiner darunter, etwa „(mit bedingten Wahrscheinlichkeiten)“.
+        sprechtext: gesprochene Frage, falls sie von den Bildzeilen (samt Zusatz) abweicht.
         """
-        fragezeilen = frage(*zeilen)
+        fragezeilen = frage(*zeilen, zusatz=zusatz)
         adresse = text("mathechecks.de", groesse=32, farbe=t.TEXT_LEISE, gewicht=SEMIBOLD)
         self.tafel(fragezeilen, VGroup(self.marke, adresse).arrange(DOWN, buff=0.35), abstand=0.8)
         hof = lichthof(1.3 * self.marke.height, t.MARKE).move_to(self.marke).set_z_index(-1)
         self._hintergrund.append(hof)
-        with self.sprich(sprechtext or " ".join(zeilen)):
+        with self.sprich(sprechtext or " ".join([*zeilen, *([zusatz] if zusatz else [])])):
             self.play(*bild, LaggedStart(*[auftritt(zeile) for zeile in fragezeilen], lag_ratio=0.5), run_time=1.4)
 
         with self.sprich(self.begruessung):

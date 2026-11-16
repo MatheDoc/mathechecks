@@ -11,3 +11,14 @@ Neues Video nach kleinen Änderungen
 Derselbe Befehl wie bisher, erst als Entwurf, dann final:
 
 Solange es zu einem Check keine Aufnahmen gibt, spricht die Google-Stimme. Gibt es welche (wie beim LGS-Video), werden sie verwendet. Änderst du dort einen Sprechtext, spricht diesen Abschnitt wieder Google, und --final verweigert, bis er neu eingesprochen ist.
+
+helpers-aufnahme:
+
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\lineare-algebra\lineare-gleichungssysteme\02-lgs-loesen-3x3.py
+
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\analysis\differentialrechnung-ganzrationaler-funktionen\06-extremstellen-bestimmen.py
+
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\stochastik\binomialverteilung\05-bereichswahrscheinlichkeiten-berechnung.py
+
+videos\.venv\Scripts\python videos\aufnahme.py videos\checks\stochastik\bedingte-wahrscheinlichkeiten\03-baumdiagramm-folgern-mit-unabh.py
+

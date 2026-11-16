@@ -71,11 +71,12 @@ Abrufhilfen für Skript-Anker, Recall (Antworten werden verdeckt abgefragt) und 
 - Inline-LaTeX ist erlaubt.
 
 
-## Training, Test, Warm-Up
+## Training, Test, Warm-Up, Erklärvideo
 
 - **Training:** Aufgaben werden per Generator erzeugt (`aufgaben/README.md`, `agent-python-aufgaben`). Sie sind bewusst nicht an das Skript-Szenario gebunden.
 - **Test:** 10 Single-Choice-Fragen pro Check ohne Hilfsmittel, Regeln in `test/README.md`.
 - **Warm-Up:** Regeln in `_data/warmup/README.md`, umgesetzt durch `agent-warmup`.
+- **Erklärvideo:** Regeln in `videos/README.md`, umgesetzt durch `agent-video` nach Skill `video-erstellen`.
 
 
 ## Fertig, wenn

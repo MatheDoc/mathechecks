@@ -80,11 +80,11 @@ Verantwortung: inhaltliche Felder → Content-Agent; `Sammlung` → Python-Agent
 |---|---|---|
 | `Gebiet` | Content | `analysis`, `lineare-algebra`, `stochastik` oder `finanzmathematik` |
 | `Lernbereich` | Content | Slug des Lernbereichs (z. B. `quadratische-funktionen`) |
-| `LernbereichAnzeigename` | Content | Anzeigename (z. B. „Quadratische Funktionen") |
+| `LernbereichAnzeigename` | Content | Anzeigename (z. B. „Quadratische Funktionen"); Teil des Videonamens, Zeichenregel wie bei `Schlagwort` |
 | `Nummer` | Content | Fortlaufend innerhalb des Lernbereichs, bestimmt Reihenfolge |
 | `check_id` | Content | Schema: `<gebiet>__<lernbereich>__<NN>` (zweistellig) |
 | `Ich kann` | Content | Kompetenzformulierung, endet mit Verb |
-| `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter) |
+| `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter). Muss als Dateiname und YouTube-Titel taugen: Das Erklärvideo heißt `<NN> <Schlagwort> <LernbereichAnzeigename>.mp4`. Deshalb keines der Zeichen `<` `>` `:` `"` `/` `\` `\|` `?` `*`, zusammen höchstens 100 Zeichen (`videos/render.py` bricht sonst ab). Statt „A/B“ also „A und B“. |
 | `Tipps` | Content | Array aus `{cue, response}`, Regeln in `inhalte.md` |
 | `tippOrder` | Content | `shuffle` oder `fixed` (Prozess-Tipps) |
 | `skript_anchor` | Content | Schema: `check-<gebiet>-<lernbereich>-<NN>` |

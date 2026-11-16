@@ -1,11 +1,13 @@
 """Gemeinsame Bibliothek der MatheChecks-Videos."""
 from . import theme
 from .bausteine import (
+    Baumdiagramm,
     Dezimalzahl,
     ErweiterteMatrix,
     Versuche,
     Zahlenstrahl,
     auftritt,
+    aufzaehlung,
     einpassen,
     formel,
     frage,
@@ -25,12 +27,14 @@ from .bausteine import (
 from .szene import MCSzene
 
 __all__ = [
+    "Baumdiagramm",
     "Dezimalzahl",
     "ErweiterteMatrix",
     "MCSzene",
     "Versuche",
     "Zahlenstrahl",
     "auftritt",
+    "aufzaehlung",
     "einpassen",
     "formel",
     "frage",

@@ -20,6 +20,8 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
    - Klausuren: automatisierte Erstellung aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml`
 7. `agent-lernbereich.md`
    - Einstieg für Arbeit an einem Lernbereich (vollständig oder gezielt): steuert den Ablauf aus Skill `lernbereich-erstellen` und delegiert an die Fachagenten
+8. `agent-video.md`
+   - Erklärvideo pro Check: Kurzvideo im Hochformat nach Skill `video-erstellen` (Inhalt vorstellen, Manim-Szene, Rendern, Prüfen)
 
 ## 4-Schichten-Modell
 
