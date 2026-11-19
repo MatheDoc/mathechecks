@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit fünf Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit sieben Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -15,6 +15,7 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Textverständnis, viele Fallarten, Bild begleitet nur | `stochastik/binomialverteilung/05-bereichswahrscheinlichkeiten-berechnung.py` |
 | Diagramm lesen ohne Ablauf, nach den Teilaufgaben des Trainings | `stochastik/bedingte-wahrscheinlichkeiten/03-baumdiagramm-folgern-mit-unabh.py` |
 | Graph im Sachzusammenhang lesen (Kennzahl ↔ Merkmal, jede Kennzahl eine Farbe) | `analysis/produktlebenszyklus/01-kennzahlen-graphisch-umsatz.py` |
+| Sachaufgabe: Größen im Text erkennen und in eine Formel einsetzen (Orange nur für die gesuchte Größe, Zeitstrahl) | `finanzmathematik/zinseszinsrechnung/02-zinseszins-sachaufgaben.py` |
 
 ## Aufbau
 
@@ -26,7 +27,7 @@ videos/
   mcvideo/                  gemeinsame Bibliothek
     theme.py                Farben, Schrift, Bildaufteilung, Auflösung
     szene.py                Basisszene MCSzene: Logo, Bereiche, Ton, Schlussbild, Randprüfung
-    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Zahlenstrahl, Versuche, ErweiterteMatrix, Baumdiagramm, Dezimalzahl, …
+    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Zahlenstrahl, Versuche, Zeitstrahl, ErweiterteMatrix, Baumdiagramm, Betrag, Dezimalzahl, …
     stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
@@ -89,8 +90,13 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Schrift wie auf der Website (Inter), Formeln setzt LaTeX. Wörter stehen nicht in Formeln, sondern als Text daneben (`reihe`). Steht eine kleine Formel (etwa $a'$) mitten in einem Satz, sitzen Text und Formel mit `reihe(..., grundlinie=True)` auf einer gemeinsamen Schriftgrundlinie, sonst wirkt die Formel zu tief.
 - Zwei Farbebenen:
   - Stimmungsfarbe (`MARKE`, das Violett der Website), gedämpft und nur in Flächen und Rändern: Schimmer im Hintergrund, getönte Karte, Schrittnummern, Lichtpunkt beim Zeichnen, Schlussbild. Sie ist nie Schrift- oder Linienfarbe in der Rechnung und in allen Gebieten dieselbe, damit die Objektfarben in jedem Video dasselbe bedeuten.
-  - Objektfarben, kräftig: Was zusammengehört, hat dieselbe Farbe, im Bild wie in der Rechnung. `HERVOR` (Orange) ist das Objekt, um das es gerade geht (Tangente und ihre Steigung, Kandidaten); `ROSE` und `BLAU` unterscheiden ein Paar (Hoch- und Tiefpunkt); `TUERKIS` und `GRUEN` stehen für weitere Objekte bereit. `BLAU` ist ein Himmelblau, damit es sich vom Violett absetzt.
-- Text, Überschriften und Rechnung sind weiß.
+  - Objektfarben, kräftig: Was zusammengehört, hat dieselbe Farbe, im Bild wie in der Rechnung. `HERVOR` (Orange) ist das Objekt, um das es gerade geht (Tangente und ihre Steigung, Kandidaten, die gesuchte Größe); `ROSE` und `BLAU` unterscheiden ein Paar (Hoch- und Tiefpunkt); `TUERKIS` und `GRUEN` stehen für weitere Objekte bereit. `BLAU` ist ein Himmelblau, damit es sich vom Violett absetzt.
+- Farben sparsam einsetzen, in dieser Rangfolge:
+  1. Weiß ist die Grundfarbe für Text, Überschriften und Rechnung, Grau für Nebensächliches.
+  2. Orange (`HERVOR`) ist die erste Betonungsfarbe; viele Videos kommen mit Weiß und Orange aus. Orange darf auch einzelne Wörter im Wortlaut einer Aufgabe markieren (Signalwörter).
+  3. Weitere Objektfarben kommen erst dazu, wenn mehrere Dinge gleichzeitig unterschieden werden müssen. Sie gehören zu einem Objekt im Bild (Punkt, Linie, Ast) und zu dem Wert, der daran abgelesen oder berechnet wird; erklärender Text bleibt weiß oder grau.
+  4. Das erste Bild kommt ohne Objektfarben aus. Farben kommen nach und nach dazu, in der Regel eine oder ein Paar pro Abschnitt; erst die Kurzfassung darf alle als Legende zeigen.
+  5. Größen, die in jedem Abschnitt alle zugleich vorkommen (etwa $K_0$, $K_n$, $p$ und $n$), bekommen keine eigenen Farben: Zugeordnet wird über den Ort im Bild, betont über Bewegung. Orange bleibt dann der gesuchten Größe vorbehalten (Check 02 der Zinseszinsrechnung).
 - Objekte werden nur über die Schriftfarbe gekennzeichnet, ohne farbige Hinterlegung.
 - Bewegung mit Bedeutung: `zeichnen` baut eine Linie mit mitlaufendem Lichtpunkt auf; `welle` markiert die Stelle, an der gerade etwas passiert; `auftritt` blendet Text ein.
 - Bildaufteilung von oben nach unten: Kopf (Logo, Titel), Bühne auf einer Karte (`self.buehne()`), Tafel (Rechnung, Text). `self.tafel(...)`, `self.achsen(...)` und `self.auf_buehne(...)` passen Inhalte in ihren Bereich ein. `achsen` beschriftet die Achsen mit `namen=("x", "y")`; im Sachzusammenhang etwa `namen=("t", "a(t)")`.
@@ -98,6 +104,8 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Ein Bild stützt jedes Video, auch textlastige: Auf dem `Zahlenstrahl` erscheint der Bereich, von dem der Text spricht; `Versuche` zeigt einzelne Versuche, wenn es nicht um eine Anzahl geht.
 - Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen. Umformungen stehen wie im Heft rechts neben der Zeile; die Nebenrechnung darunter steht in denselben Spalten (`zahlenzeile`), danach wird die Zeile ersetzt (`umformen`). Zeilennamen sind aufrechte römische Zahlen.
 - Baumdiagramme: `Baumdiagramm` zeigt zwei Ereignisse A und B wie auf der Website (von links nach rechts, Wahrscheinlichkeiten an den Ästen, Produkte an den Pfadenden). `markiere` färbt die Äste und Pfadenden, um die es gerade geht, in der Farbe der zugehörigen Zahlen in der Rechnung.
+- Zeitstrahl (Finanzmathematik): `Zeitstrahl` zeigt links den früheren und rechts den späteren Zeitpunkt. Über dem Strahl stehen die Zeitangaben, darunter Beträge und Zins. `zeige` ersetzt einzelne Angaben; `uebernimm` lässt ein Ergebnis aus der Rechnung an die Stelle des Fragezeichens wandern.
+- Geldbeträge: `betrag` setzt das Eurozeichen in der Hausschrift hinter die Formel, weil LaTeX hier kein Eurozeichen setzt (`\text{€}` bleibt leer).
 - Ein Wert, der weiterverwendet wird, behält seine Farbe und wandert sichtbar an die Stelle, an der er eingesetzt wird (Rückwärtseinsetzen).
 - Bleibt unter der Rechnung Platz frei, rückt `self.tafel(...)` den Block ein Stück nach unten (`TAFEL_LAGE` in `theme.py`), damit das Bild gleichmäßiger gefüllt ist. Leere Flächen sind in Ordnung.
 - Zeichen und ihre Bedeutung stehen zweispaltig bündig (`legende`).

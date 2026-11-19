@@ -54,6 +54,18 @@ def formel(*tex: str, groesse: float = t.S_FORMEL, farbe: str = t.TEXT) -> MathT
     return MathTex(*tex, font_size=groesse, color=farbe)
 
 
+def betrag(*tex: str, groesse: float = t.S_FORMEL, farbe: str = t.TEXT) -> VGroup:
+    """Geldbetrag: Formel, die mit einer Ziffer endet, und dahinter das Eurozeichen in der Hausschrift.
+
+    LaTeX setzt hier kein Eurozeichen. Ergebnis ist die Gruppe (Formel, Eurozeichen).
+    """
+    zahl = formel(*tex, groesse=groesse, farbe=farbe)
+    ziffer = zahl[-1][-1]
+    zeichen = text("€", groesse=groesse, farbe=farbe).scale_to_fit_height(ziffer.height)
+    zeichen.next_to(zahl, RIGHT, buff=0.4 * ziffer.height).align_to(ziffer, DOWN)
+    return VGroup(zahl, zeichen)
+
+
 def einpassen(mob: Mobject, breite: float | None = None, hoehe: float | None = None) -> Mobject:
     """Verkleinert ein Objekt, bis es in die angegebene Breite und Höhe passt."""
     if breite is not None and mob.width > breite:
@@ -281,6 +293,85 @@ class Versuche(_Leiste):
     def markiere(self, *nummern: int, farbe: str = t.TUERKIS) -> Animation:
         """Hebt einzelne Versuche hervor."""
         return self._hervorheben(set(nummern), set(nummern), farbe)
+
+
+class Zeitstrahl(VGroup):
+    """Zeitstrahl mit zwei Zeitpunkten: links der frühere, rechts der spätere.
+
+    Sechs Plätze nehmen Angaben auf. Über dem Strahl steht die Zeit ("frueher", "dauer", "spaeter"),
+    darunter stehen Beträge und Zins ("anfang", "zins", "ende"). Die äußeren Angaben schließen bündig
+    mit den Enden des Strahls ab, die mittleren stehen mittig. Eine Angabe unter dem Strahl darf
+    mehrzeilig sein, etwa der Name einer Größe und darunter ihr Wert.
+    """
+
+    _PLAETZE = {  # Name: (Anteil der Strahllänge, über dem Strahl)
+        "frueher": (0.0, True), "dauer": (0.5, True), "spaeter": (1.0, True),
+        "anfang": (0.0, False), "zins": (0.5, False), "ende": (1.0, False),
+    }
+
+    def __init__(self, breite: float = t.BUEHNE_BREITE, abstand: float = 0.32, **angaben: Mobject) -> None:
+        super().__init__()
+        self._abstand = abstand
+        radius = 0.11
+        self.strahl = Line([-breite / 2 + radius, 0, 0], [breite / 2, 0, 0], color=t.ACHSE, stroke_width=4)
+        self.strahl.add_tip(tip_length=0.26, tip_width=0.26)
+        self.beginn = Dot(self.strahl.get_start(), radius=radius, color=t.ACHSE)
+        self.angaben: dict[str, Mobject] = {}
+        self.add(self.strahl, self.beginn)
+        for platz, angabe in angaben.items():
+            self._setze(platz, angabe)
+
+    def _setze(self, platz: str, angabe: Mobject) -> None:
+        """Stellt eine Angabe an ihren Platz: oben auf gemeinsamer Grundlinie, unten mit gemeinsamer Oberkante."""
+        anteil, oben = self._PLAETZE[platz]
+        links, rechts, y = self.beginn.get_left()[0], self.strahl.get_end()[0], self.beginn.get_y()
+        if oben:
+            angabe.shift((y + self._abstand - _grundlinie(angabe)) * UP)
+        else:
+            angabe.shift((y - self._abstand - angabe.get_top()[1]) * UP)
+        stelle = interpolate(angabe.get_left()[0], angabe.get_right()[0], anteil)
+        angabe.shift((interpolate(links, rechts, anteil) - stelle) * RIGHT)
+        self.angaben[platz] = angabe
+        self.add(angabe)
+
+    def _entferne(self, platz: str) -> list[Animation]:
+        alt = self.angaben.pop(platz, None)
+        if alt is None:
+            return []
+        self.remove(alt)
+        return [FadeOut(alt)]
+
+    def aufbau(self) -> list[Animation]:
+        """Der Strahl entsteht von links nach rechts, ein Lichtpunkt läuft mit; die Angaben folgen."""
+        spur = Line(self.beginn.get_center(), self.strahl.get_end())
+        return [
+            FadeIn(self.beginn, scale=0.6),
+            Create(self.strahl),
+            lichtpunkt(spur),
+            LaggedStart(*[FadeIn(angabe) for angabe in self.angaben.values()], lag_ratio=0.15),
+        ]
+
+    def zeige(self, **angaben: Mobject | None) -> Animation:
+        """Ersetzt die Angaben der genannten Plätze (None leert den Platz); die übrigen bleiben stehen."""
+        schritte = []
+        for platz, angabe in angaben.items():
+            schritte += self._entferne(platz)
+            if angabe is not None:
+                self._setze(platz, angabe)
+                schritte.append(FadeIn(angabe))
+        return AnimationGroup(*schritte)
+
+    def uebernimm(self, platz: str, angabe: Mobject, quelle: Mobject) -> Animation:
+        """Ein Ergebnis wandert aus der Rechnung (quelle) an seinen Platz und ersetzt die bisherige Angabe."""
+        schritte = self._entferne(platz)
+        self._setze(platz, angabe)
+        return AnimationGroup(*schritte, FadeIn(angabe, target_position=quelle))
+
+    def betone(self, *plaetze: str) -> Animation:
+        """Die Angaben der genannten Plätze pulsieren kurz."""
+        return AnimationGroup(*[
+            self.angaben[platz].animate(rate_func=rate_functions.there_and_back).scale(1.3) for platz in plaetze
+        ])
 
 
 def _zahl(wert: float) -> str:
