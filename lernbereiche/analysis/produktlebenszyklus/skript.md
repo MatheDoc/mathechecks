@@ -55,10 +55,10 @@ Typisch für einen Produktlebenszyklus ist der Verlauf: Der Absatz steigt zunäc
 
 | Phase | Zeitraum | Verlauf des Absatzes | Graph von $a$ |
 |---|---|---|---|
-| Einführung | bis zum 1. Wendepunkt ($t\approx 1{,}48$) | steigt immer schneller (**progressiv**) | steigend, linksgekrümmt |
-| Wachstum | bis zum Hochpunkt ($t=8$) | steigt immer langsamer (**degressiv**) | steigend, rechtsgekrümmt |
-| Sättigung | bis zum 2. Wendepunkt ($t\approx 13{,}52$) | sinkt immer schneller | fallend, rechtsgekrümmt |
-| Rückgang | danach | sinkt immer langsamer | fallend, linksgekrümmt |
+| Einführung | bis zum 1. Wendepunkt ($t\approx 1{,}48$) | steigt immer schneller (**progressives Wachstum**) | steigend, linksgekrümmt |
+| Wachstum | bis zum Hochpunkt ($t=8$) | steigt immer langsamer (**degressives Wachstum**) | steigend, rechtsgekrümmt |
+| Sättigung | bis zum 2. Wendepunkt ($t\approx 13{,}52$) | sinkt immer schneller (**progressiver Rückgang**) | fallend, rechtsgekrümmt |
+| Rückgang | nach dem 2. Wendepunkt | sinkt immer langsamer (**degressiver Rückgang**) | fallend, linksgekrümmt |
 
 Die Namen und Grenzen der Phasen werden in der Literatur nicht einheitlich verwendet. In Aufgaben kommt es auf die zugehörigen **Kennzahlen** an, die wir im Folgenden graphisch und rechnerisch bestimmen.
 
