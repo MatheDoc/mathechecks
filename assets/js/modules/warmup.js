@@ -202,20 +202,22 @@ function formatDecimalComma(value, digits) {
 }
 
 // Binomialverteilung als Histogramm (Einzelwahrscheinlichkeiten oder kumuliert mit kumuliert: true).
-// zeige.bereiche / zeige.gegen ersetzen die Markierungen, zeige.werte blendet abgelesene Balkenwerte ein.
+// zeige.bereiche / zeige.gegen ersetzen die Markierungen, zeige.werte blendet abgelesene Balkenwerte ein,
+// zeige.p wechselt die Verteilung (z. B. von p0 zu p1). p_anzeigen: true beschriftet das aktuelle p.
 function createHistogramVisual(spec) {
   const node = el("div", "cw-plot cw-plot--histogramm");
   const kumuliert = Boolean(spec.kumuliert);
   const colors = kumuliert ? HISTOGRAM_COLORS_KUMULIERT : HISTOGRAM_COLORS;
   let ranges = normalizeRanges(spec.bereiche);
   let gegen = normalizeRanges(spec.gegen);
+  let p = Number(spec.p);
   const werte = new Set((spec.werte || []).map(Number));
 
   function render() {
     if (!node.isConnected || !window.Plotly) return;
     const n = Number(spec.n);
     const buildFigure = kumuliert ? buildHistogrammKumuliertFigure : buildHistogrammEinzelnFigure;
-    const figure = buildFigure({ n, p: Number(spec.p) });
+    const figure = buildFigure({ n, p });
     const kMin = Math.max(0, Number(spec.kMin ?? 0));
     const kMax = Math.min(n, Number(spec.kMax ?? n));
     const trace = figure.data[0];
@@ -261,6 +263,14 @@ function createHistogramVisual(spec) {
       range: [0, yMax * (werte.size ? 1.25 : 1.05)],
       ...(kumuliert ? { tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1] } : {}),
     };
+    if (spec.p_anzeigen) {
+      margin.t = 30;
+      figure.layout.annotations = [{
+        xref: "paper", yref: "paper", x: 1, y: 1, xanchor: "right", yanchor: "bottom",
+        text: `n = ${n}, p = ${formatNumber(p)}`, showarrow: false,
+        font: { color: themeTextColor(), size: 13 },
+      }];
+    }
     figure.layout.margin = margin;
     figure.layout.separators = ",.";
     plotlyRender(node, figure.data, figure.layout);
@@ -271,6 +281,7 @@ function createHistogramVisual(spec) {
     render,
     apply(zeige) {
       if (!zeige) return;
+      if ("p" in zeige) p = Number(zeige.p);
       if ("bereiche" in zeige) ranges = normalizeRanges(zeige.bereiche);
       if ("gegen" in zeige) gegen = normalizeRanges(zeige.gegen);
       (zeige.werte || []).forEach((k) => werte.add(Number(k)));

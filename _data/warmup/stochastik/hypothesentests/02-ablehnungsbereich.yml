@@ -1,0 +1,137 @@
+# Warm-Up zu Check 02 „E-Regel herleiten“ (Hypothesentests)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: Ā liegt auf der Seite von H1. Fehler 1. Art (Ā mit p0) höchstens α, Ā dabei so groß wie möglich.
+# Linksseitig größtes k mit P(X≤k)≤α, rechtsseitig kleinstes k mit P(X≥k)≤α.
+# Seiten nicht gemischt: Idee und Zuschauen linksseitig (Serien-Intro), Mitmachen nach der Zuordnung
+# rechtsseitig (Freiwürfe). Histogramm nur in der Idee-Karte, danach Probierliste bzw. kein Bild.
+# Mitmachen: Zuordnung → Rechnung mit Vorgabe (α = 5 %) → selbst (α = 10 %, Ā wird größer).
+# Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen:
+#   n=50, p=0,3:  P(X≤8)=0,0183  P(X≤9)=0,0402  P(X≤10)=0,0789  P(X≤12)=0,2229
+#   n=50, p=0,6:  P(X≥34)=0,1561  P(X≥35)=0,0955  P(X≥36)=0,0540  P(X≥37)=0,0280
+
+check_id: stochastik__hypothesentests__02
+abschluss: '<p>Der Ablehnungsbereich liegt auf der Seite der Gegenhypothese und wird mit $p_0$ so groß wie möglich gewählt, sodass seine Wahrscheinlichkeit höchstens $\alpha$ ist. Linksseitig suchst du das größte $k$ mit $P(X\leq k)\leq\alpha$, rechtsseitig das kleinste $k$ mit $P(X\geq k)\leq\alpha$.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Wie groß darf der Ablehnungsbereich sein?'
+    text: '<p>Bisher überspringen $30\,\%$ der Zuschauer das Intro einer Serie. Nach einem neuen Intro vermutet der Streamingdienst, dass der Anteil <strong>gesunken</strong> ist. $50$ Zuschauer werden zufällig beobachtet, $X$ zählt, wie viele das Intro überspringen.</p><p>Diesmal ist die Entscheidungsregel noch offen:</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}3$</td><td>$H_1: p&lt;0{,}3$</td></tr><tr><td>$A=\{k+1,\ldots,50\}$</td><td>$\overline{A}=\{0,\ldots,k\}$</td></tr></table>'
+    visual:
+      typ: histogramm
+      n: 50
+      p: 0.3
+      kMax: 26
+    schritte:
+      - typ: aufdecken
+        frage: 'Warum liegt $\overline{A}$ links?'
+        knopf: 'Zeigen'
+        text: '<p>Für einen gesunkenen Anteil sprechen <strong>wenige</strong> Zuschauer, die überspringen. Also liegt $\overline{A}$ am linken Rand: ein <strong>linksseitiger</strong> Test. Vermutet man dagegen einen gestiegenen Anteil ($H_1: p&gt;p_0$), liegt $\overline{A}$ am rechten Rand: ein <strong>rechtsseitiger</strong> Test.</p><p>Rechts ist $\overline{A}=\{0,\ldots,12\}$ markiert. Die markierte Fläche ist die Wahrscheinlichkeit für den Fehler 1. Art:</p>$$P(X\leq 12)\approx 0{,}2229$$<p>In mehr als jedem fünften Fall würde man zu Unrecht auf einen gesunkenen Anteil schließen. Das ist zu viel.</p>'
+        zeige: { bereiche: [[0, 12]] }
+      - typ: auswahl
+        frage: 'Schau ins Histogramm. Wie wird die Wahrscheinlichkeit für den Fehler 1. Art kleiner?'
+        optionen:
+          - '$k$ kleiner wählen, sodass $\overline{A}$ weniger Balken enthält.'
+          - '$k$ größer wählen, sodass $\overline{A}$ mehr Balken enthält.'
+          - 'Gar nicht, sie hängt nur von $p_0$ ab.'
+        korrekt: 0
+        hinweis: 'Die Wahrscheinlichkeit ist die Summe der markierten Balken.'
+        zeige: { bereiche: [[0, 9]] }
+        danach: '<p>Genau. Mit $k=9$ ist $P(X\leq 9)\approx 0{,}0402$. Aber Vorsicht: Wird $\overline{A}$ zu klein, verwirft man $H_0$ kaum noch, auch wenn der Anteil wirklich gesunken ist. Dann steigt die Wahrscheinlichkeit für den Fehler 2. Art.</p>'
+      - typ: aufdecken
+        frage: 'Wie findet man den passenden Kompromiss?'
+        knopf: 'Zeigen'
+        text: '<p>Vorab legt man fest, wie groß der Fehler 1. Art höchstens sein darf: das <strong>Signifikanzniveau</strong> $\alpha$, oft $5\,\%$. Dann wählt man $\overline{A}$ so groß wie möglich, ohne $\alpha$ zu überschreiten.</p><p><strong>Merke:</strong></p><ul><li>$\overline{A}$ liegt auf der Seite der Gegenhypothese.</li><li>Linksseitig: größtes $k$ mit $P(X\leq k)\leq\alpha$, berechnet mit $p_0$.</li></ul>'
+
+  # ── Phase B: Zuschauen (linksseitig) ───────────────────────
+  - phase: vormachen
+    titel: 'Linksseitig: k bestimmen'
+    text: '<p>Weiter mit dem Serien-Intro: $n=50$, $p_0=0{,}3$, Signifikanzniveau $\alpha=5\,\%$. Gesucht ist $\overline{A}=\{0,\ldots,k\}$.</p>'
+    visual:
+      typ: liste
+      titel: 'Probieren (n = 50, p₀ = 0,3)'
+      eintraege:
+        - { id: k8, text: 'k = 8', gleichung: '$Bcd(0;8;50;0{,}3)$<br>$\approx 0{,}0183\leq 0{,}05$' }
+        - { id: k9, text: 'k = 9', gleichung: '$Bcd(0;9;50;0{,}3)$<br>$\approx 0{,}0402\leq 0{,}05$' }
+        - { id: k10, text: 'k = 10', gleichung: '$Bcd(0;10;50;0{,}3)$<br>$\approx 0{,}0789&gt;0{,}05$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Bedingung muss $k$ erfüllen?'
+        optionen:
+          - '$P(X\leq k)\leq 0{,}05$'
+          - '$P(X\geq k)\leq 0{,}05$'
+          - '$P(X\leq k)\geq 0{,}05$'
+        korrekt: 0
+        hinweis: 'Linksseitig ist $\overline{A}=\{0,\ldots,k\}$, und seine Wahrscheinlichkeit darf höchstens $\alpha$ sein.'
+      - typ: aufdecken
+        frage: '<strong>Probieren</strong> mit dem Taschenrechner.'
+        knopf: 'Rechnen'
+        text: '<p>Man probiert verschiedene $k$, bis die Bedingung kippt. Bei $k=8$ und $k=9$ gilt sie noch, bei $k=10$ nicht mehr. Das größte passende $k$ ist also $9$.</p>'
+        zeige: { eintraege: [k8, k9, k10] }
+      - typ: eingabe
+        frage: 'Gib den Ablehnungsbereich an.'
+        layout: zeile
+        felder:
+          - { label: '$\overline{A}=\{$', einheit: '$,\ldots,$', loesung: 0, aria: 'untere Grenze des Ablehnungsbereichs' }
+          - { einheit: '$\}$', loesung: 9, aria: 'obere Grenze des Ablehnungsbereichs' }
+        hinweis: 'Linksseitig beginnt $\overline{A}$ bei $0$ und endet beim größten $k$ mit $P(X\leq k)\leq 0{,}05$.'
+        danach: '<p>Also $\overline{A}=\{0,\ldots,9\}$ und $A=\{10,\ldots,50\}$: Überspringen höchstens $9$ von $50$ Zuschauern das Intro, geht man von einem gesunkenen Anteil aus.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Links- und rechtsseitig im Vergleich'
+    text: '<p>Beim rechtsseitigen Test vermutet man einen <strong>gestiegenen</strong> Anteil, also $H_1: p&gt;p_0$. Dann liegt $\overline{A}$ am oberen Ende.</p>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Was gilt links-, was rechtsseitig?'
+        titel_links: 'Test'
+        titel_rechts: 'Ansatz'
+        paare:
+          - { links: 'linksseitig: $\overline{A}$', rechts: '$\{0,\ldots,k\}$' }
+          - { links: 'rechtsseitig: $\overline{A}$', rechts: '$\{k,\ldots,n\}$' }
+          - { links: 'linksseitig: $k$', rechts: 'größtes $k$ mit $P(X\leq k)\leq\alpha$' }
+          - { links: 'rechtsseitig: $k$', rechts: 'kleinstes $k$ mit $P(X\geq k)\leq\alpha$' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        danach: '<p>Rechtsseitig wächst $\overline{A}$, wenn $k$ kleiner wird. Gesucht ist deshalb das <strong>kleinste</strong> $k$, für das die Bedingung noch gilt.</p>'
+
+  - phase: mitmachen
+    titel: 'Rechtsseitig: Freiwürfe'
+    text: '<p>Eine Basketballerin trifft bisher $60\,\%$ ihrer Freiwürfe. Nach einem Wurftraining wird vermutet, dass ihre Quote <strong>gestiegen</strong> ist. Sie wirft $50$ Freiwürfe, $\alpha=5\,\%$.</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}6$</td><td>$H_1: p&gt;0{,}6$</td></tr><tr><td>$A=\{0,\ldots,k-1\}$</td><td>$\overline{A}=\{k,\ldots,50\}$</td></tr></table>'
+    schritte:
+      - typ: eingabe
+        frage: 'Die Bedingung kippt zwischen $k=36$ und $k=37$. Berechne beide Werte mit $p_0=0{,}6$ auf 4 Nachkommastellen.'
+        layout: zeile
+        felder:
+          - { label: '$P(X\geq 36)\approx$', loesung: 0.0540, aria: 'P(X größer gleich 36)' }
+          - { label: '$P(X\geq 37)\approx$', loesung: 0.0280, aria: 'P(X größer gleich 37)' }
+        hinweis: 'Gib $Bcd(36;50;50;0{,}6)$ und $Bcd(37;50;50;0{,}6)$ ein. Die obere Grenze ist $n=50$.'
+      - typ: eingabe
+        frage: 'Gib den Ablehnungsbereich an.'
+        layout: zeile
+        felder:
+          - { label: '$\overline{A}=\{$', einheit: '$,\ldots,$', loesung: 37, aria: 'untere Grenze des Ablehnungsbereichs' }
+          - { einheit: '$\}$', loesung: 50, aria: 'obere Grenze des Ablehnungsbereichs' }
+        hinweis: 'Bei $k=36$ ist $0{,}0540&gt;0{,}05$, knapp zu viel. Gesucht ist das kleinste $k$ mit $P(X\geq k)\leq 0{,}05$.'
+        danach: '<p>Also $\overline{A}=\{37,\ldots,50\}$: Trifft sie mindestens $37$ von $50$ Freiwürfen, geht man von einer gestiegenen Quote aus.</p>'
+
+  - phase: mitmachen
+    titel: 'Selbst: anderes Signifikanzniveau'
+    text: '<p>Dieselben $50$ Freiwürfe mit $p_0=0{,}6$, aber jetzt mit $\alpha=10\,\%$.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Was passiert mit dem Ablehnungsbereich?'
+        optionen:
+          - 'Er wird größer, $k$ wird kleiner.'
+          - 'Er wird kleiner, $k$ wird größer.'
+          - 'Er bleibt gleich.'
+        korrekt: 0
+        hinweis: 'Ein größerer Fehler 1. Art ist jetzt erlaubt. Darf $\overline{A}$ dann mehr oder weniger Anzahlen enthalten?'
+      - typ: eingabe
+        frage: 'Bestimme den Ablehnungsbereich.'
+        layout: zeile
+        felder:
+          - { label: '$\overline{A}=\{$', einheit: '$,\ldots,$', loesung: 35, aria: 'untere Grenze des Ablehnungsbereichs' }
+          - { einheit: '$\}$', loesung: 50, aria: 'obere Grenze des Ablehnungsbereichs' }
+        hinweis: 'Gesucht ist das kleinste $k$ mit $P(X\geq k)\leq 0{,}1$. Probiere $k=36$, $35$, $34$, … mit $Bcd(k;50;50;0{,}6)$.'
+        danach: '<p>$P(X\geq 35)\approx 0{,}0955\leq 0{,}1$, aber $P(X\geq 34)\approx 0{,}1561&gt;0{,}1$. Also $\overline{A}=\{35,\ldots,50\}$.</p>'

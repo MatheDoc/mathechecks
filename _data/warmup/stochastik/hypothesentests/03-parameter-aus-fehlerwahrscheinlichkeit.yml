@@ -1,0 +1,168 @@
+# Warm-Up zu Check 03 „p oder n aus Fehler-Wkt bestimmen“ (Hypothesentests)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: Fehlerwahrscheinlichkeit als Gleichung (Fehler 1. Art: Ā mit p0, Fehler 2. Art: A mit p1),
+# dann p oder n durch Probieren bestimmen, bis der gegebene Wert genau getroffen wird.
+# Seiten nicht gemischt: Idee und Zuschauen linksseitig (Fake-Follower), Mitmachen nach der Zuordnung
+# rechtsseitig (Bubble Tea). Histogramm nur in der p0-Karte (Verteilung wandert mit p), sonst Listen.
+# Alle vier Aufgabentypen des Trainings kommen vor: p0 aus α (häufigster Typ) und n aus β im Zuschauen,
+# n aus α und p1 aus β im Mitmachen.
+# Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen:
+#   Bcd(0;9;60;p):   p=0,15: 0,5877  0,20: 0,2132  0,24: 0,0641  0,25: 0,0452  0,26: 0,0312
+#   Bcd(11;n;n;0,15): n=60: 0,2837  64: 0,3626  65: 0,3828  66: 0,4031
+#   Bcd(22;n;n;0,3):  n=50: 0,0251  54: 0,0605  55: 0,0731  56: 0,0874
+#   Bcd(0;21;55;p):  p=0,40: 0,4489  0,44: 0,2326  0,45: 0,1896  0,46: 0,1519
+
+check_id: stochastik__hypothesentests__03
+abschluss: '<p>Stelle zuerst die Gleichung auf: Fehler 1. Art ist die Wahrscheinlichkeit von $\overline{A}$ mit $p_0$, Fehler 2. Art die von $A$ mit $p_1$. Dann probierst du $p$ in Schritten von $0{,}01$ oder $n$ in Einerschritten, bis der gegebene Wert genau herauskommt. Ist $n$ gesucht, wandert bei $Bcd(k;n;n;p)$ auch die obere Grenze mit.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Fehlerwahrscheinlichkeit rückwärts'
+    text: '<p>Eine Plattform testet einen neuen Bot-Filter. Vermutet wird, dass der Anteil der Fake-Accounts unter neuen Followern <strong>gesunken</strong> ist. Von $60$ neuen Followern gilt: Sind <strong>höchstens 9</strong> davon Fake-Accounts, wird $H_0$ verworfen.</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=p_0$</td><td>$H_1: p&lt;p_0$</td></tr><tr><td>$A=\{10,\ldots,60\}$</td><td>$\overline{A}=\{0,\ldots,9\}$</td></tr></table><p>Bisher war $p_0$ bekannt und die Fehlerwahrscheinlichkeit gesucht. Jetzt ist es umgekehrt: Bekannt ist die Wahrscheinlichkeit für den Fehler 1. Art, nämlich $0{,}0452$. Gesucht ist $p_0$.</p>'
+    visual:
+      typ: liste
+      titel: 'Fehlerwahrscheinlichkeit als Gleichung'
+      eintraege:
+        - { id: f1, text: 'Fehler 1. Art', gleichung: 'Wahrscheinlichkeit von $\overline{A}$ mit $p_0$<br>$Bcd(0;9;60;p_0)=0{,}0452$' }
+        - { id: f2, text: 'Fehler 2. Art', gleichung: 'Wahrscheinlichkeit von $A$ mit $p_1$<br>$Bcd(10;60;60;p_1)=\beta$' }
+        - { id: lo, text: 'Lösen', gleichung: '$p$ oder $n$ ausprobieren, bis der gegebene Wert genau herauskommt' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Welche Gleichung steckt im Fehler 1. Art?'
+        knopf: 'Zeigen'
+        text: '<p>Fehler 1. Art heißt: $H_0$ stimmt, das Ergebnis liegt aber in $\overline{A}$. Seine Wahrscheinlichkeit ist $P(X\leq 9)$, berechnet mit $p_0$. Die setzt man gleich dem gegebenen Wert:</p>$$Bcd(0;9;60;p_0)=0{,}0452$$'
+        zeige: { eintraege: [f1] }
+      - typ: aufdecken
+        frage: 'Und beim Fehler 2. Art?'
+        knopf: 'Zeigen'
+        text: '<p>Genauso: $H_1$ stimmt mit einem tatsächlichen Anteil $p_1$, das Ergebnis liegt aber in $A$. Ist $\beta$ gegeben, gilt</p>$$Bcd(10;60;60;p_1)=\beta$$<p>Gesucht kann dann $p_1$ sein oder auch der Stichprobenumfang $n$.</p>'
+        zeige: { eintraege: [f2] }
+      - typ: aufdecken
+        frage: 'Wie löst man so eine Gleichung?'
+        knopf: 'Zeigen'
+        text: '<p>Nach $p$ oder $n$ auflösen geht nicht. Wie bei der Binomialverteilung bleibt nur <strong>Probieren</strong>. Weil der gegebene Wert selbst mit dem gesuchten Parameter berechnet wurde, kommt er beim richtigen $p$ oder $n$ <strong>genau</strong> heraus.</p><p><strong>Merke:</strong></p><ul><li>Fehler 1. Art: $\overline{A}$ mit $p_0$. Fehler 2. Art: $A$ mit $p_1$.</li><li>Gleichsetzen und probieren, bis der gegebene Wert auf 4 Nachkommastellen stimmt.</li></ul>'
+        zeige: { eintraege: [lo] }
+
+  # ── Phase B: Zuschauen (linksseitig) ───────────────────────
+  - phase: vormachen
+    titel: 'p₀ aus dem Fehler 1. Art'
+    text: '<p>Weiter mit den Fake-Accounts: $n=60$, $\overline{A}=\{0,\ldots,9\}$, Fehler 1. Art $0{,}0452$. Gesucht ist $p_0$ auf 2 Nachkommastellen:</p>$$Bcd(0;9;60;p_0)=0{,}0452$$'
+    visual:
+      typ: histogramm
+      n: 60
+      p: 0.15
+      kMax: 26
+      p_anzeigen: true
+      bereiche: [[0, 9]]
+    schritte:
+      - typ: aufdecken
+        frage: 'Startwert: Bei welchem $p$ erwartet man genau $9$ von $60$?'
+        knopf: 'p = 0,15 testen'
+        text: '<p>Bei $p=9/60=0{,}15$. Dort ist</p>$$Bcd(0;9;60;0{,}15)\approx 0{,}5877$$<p>Das ist viel größer als $0{,}0452$. Rechts siehst du warum: Die markierte Fläche über $\overline{A}$ ist riesig.</p>'
+      - typ: auswahl
+        frage: 'Wie muss sich $p$ ändern, damit die markierte Fläche kleiner wird?'
+        optionen:
+          - '$p$ größer, dann wandert die Verteilung nach rechts.'
+          - '$p$ kleiner, dann wandert die Verteilung nach links.'
+          - '$p$ spielt keine Rolle, nur $\overline{A}$ zählt.'
+        korrekt: 0
+        hinweis: 'Bei großem $p$ erwartet man viele Fake-Accounts, also eher Ergebnisse weit rechts.'
+        zeige: { p: 0.25 }
+        danach: '<p>Probieren mit größerem $p$:</p>$$\begin{align*}&Bcd(0;9;60;0{,}20)\\&\approx 0{,}2132\\&Bcd(0;9;60;0{,}24)\\&\approx 0{,}0641\\&Bcd(0;9;60;0{,}25)\\&\approx 0{,}0452\quad\checkmark\end{align*}$$<p>Also $p_0=0{,}25$: Bisher waren $25\,\%$ der neuen Follower Fake-Accounts.</p>'
+
+  - phase: vormachen
+    titel: 'n aus dem Fehler 2. Art'
+    text: '<p>Der Filter wirkt: Tatsächlich sind nur noch $15\,\%$ Fake-Accounts. Ein zweiter Test mit $p_0=0{,}25$ verwirft $H_0$ bei höchstens $10$ Fake-Accounts. Es gilt $\beta=0{,}3828$. Wie viele Follower wurden untersucht?</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}25$</td><td>$H_1: p&lt;0{,}25$</td></tr><tr><td>$A=\{11,\ldots,n\}$</td><td>$\overline{A}=\{0,\ldots,10\}$</td></tr></table>'
+    visual:
+      typ: liste
+      titel: 'Probieren (p₁ = 0,15)'
+      eintraege:
+        - { id: n60, text: 'n = 60', gleichung: '$Bcd(11;60;60;0{,}15)$<br>$\approx 0{,}2837$: zu klein' }
+        - { id: n64, text: 'n = 64', gleichung: '$Bcd(11;64;64;0{,}15)$<br>$\approx 0{,}3626$: zu klein' }
+        - { id: n65, text: 'n = 65', gleichung: '$Bcd(11;65;65;0{,}15)$<br>$\approx 0{,}3828$: passt' }
+        - { id: n66, text: 'n = 66', gleichung: '$Bcd(11;66;66;0{,}15)$<br>$\approx 0{,}4031$: zu groß' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Gleichung gehört zum Fehler 2. Art?'
+        optionen:
+          - '$Bcd(11;n;n;0{,}15)=0{,}3828$'
+          - '$Bcd(0;10;n;0{,}15)=0{,}3828$'
+          - '$Bcd(11;n;n;0{,}25)=0{,}3828$'
+        korrekt: 0
+        hinweis: 'Fehler 2. Art: Das Ergebnis liegt in $A=\{11,\ldots,n\}$, gerechnet wird mit dem tatsächlichen Anteil $p_1=0{,}15$.'
+        danach: '<p>Richtig. Weil $A$ bis $n$ reicht, ändert sich beim Probieren die obere Grenze mit.</p>'
+      - typ: aufdecken
+        frage: 'Probieren, z. B. ab $n=60$.'
+        knopf: 'Rechnen'
+        text: '<p>Mit größerem $n$ erwartet man mehr Fake-Accounts, $P(X\geq 11)$ wächst also. Bei $n=60$ ist der Wert noch zu klein, also aufwärts, bis $0{,}3828$ genau herauskommt.</p><p>Bei $n=65$ passt es: Es wurden $65$ Follower untersucht.</p>'
+        zeige: { eintraege: [n60, n64, n65, n66] }
+
+  # ── Phase C: Mitmachen (Zuordnung, dann rechtsseitig) ──────
+  - phase: mitmachen
+    titel: 'Welche Gleichung?'
+    text: '<p>Beim rechtsseitigen Test liegt $\overline{A}=\{k,\ldots,n\}$ am oberen Ende, $A=\{0,\ldots,k-1\}$ davor. Beim linksseitigen ist $\overline{A}=\{0,\ldots,k\}$ und $A=\{k+1,\ldots,n\}$.</p>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Welche Gleichung gehört wozu?'
+        titel_links: 'Gegeben'
+        titel_rechts: 'Gleichung'
+        paare:
+          - { links: 'linksseitig, Fehler 1. Art', rechts: '$Bcd(0;k;n;p_0)$' }
+          - { links: 'linksseitig, Fehler 2. Art', rechts: '$Bcd(k+1;n;n;p_1)$' }
+          - { links: 'rechtsseitig, Fehler 1. Art', rechts: '$Bcd(k;n;n;p_0)$' }
+          - { links: 'rechtsseitig, Fehler 2. Art', rechts: '$Bcd(0;k-1;n;p_1)$' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        danach: '<p>Fehler 1. Art gehört immer zu $\overline{A}$ und $p_0$, Fehler 2. Art zu $A$ und $p_1$.</p>'
+
+  - phase: mitmachen
+    titel: 'Rechtsseitig: n aus dem Fehler 1. Art'
+    text: '<p>Bisher bestellen $30\,\%$ der Kunden eines Bubble-Tea-Ladens Extra-Perlen. Nach einer Werbeaktion wird vermutet, dass der Anteil <strong>gestiegen</strong> ist. Werden <strong>mindestens 22</strong> Bestellungen mit Extra-Perlen gezählt, wird $H_0$ verworfen. Die Wahrscheinlichkeit für den Fehler 1. Art beträgt $0{,}0731$. Gesucht ist $n$.</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}3$</td><td>$H_1: p&gt;0{,}3$</td></tr><tr><td>$A=\{0,\ldots,21\}$</td><td>$\overline{A}=\{22,\ldots,n\}$</td></tr></table><p>Gleichung: $Bcd(22;n;n;0{,}3)=0{,}0731$</p>'
+    visual:
+      typ: liste
+      titel: 'Probieren (p₀ = 0,3)'
+      eintraege:
+        - { id: n50, text: 'n = 50', gleichung: '$Bcd(22;50;50;0{,}3)$<br>$\approx 0{,}0251$: zu klein' }
+        - { id: n54, text: 'n = 54', gleichung: '$Bcd(22;54;54;0{,}3)$<br>$\approx 0{,}0605$: zu klein' }
+        - { id: n55, text: 'n = 55', gleichung: '$Bcd(22;55;55;0{,}3)$<br>$\approx 0{,}0731$: passt' }
+        - { id: n56, text: 'n = 56', gleichung: '$Bcd(22;56;56;0{,}3)$<br>$\approx 0{,}0874$: zu groß' }
+    schritte:
+      - typ: eingabe
+        frage: 'Teste $n=50$, auf 4 Nachkommastellen.'
+        felder:
+          - { label: '$Bcd(22;50;50;0{,}3)\approx$', loesung: 0.0251, aria: 'Wert für n gleich 50', zeige: { eintraege: [n50] } }
+        hinweis: 'Gib $Bcd(22;50;50;0{,}3)$ in den Taschenrechner ein.'
+      - typ: eingabe
+        frage: 'Der Wert ist kleiner als $0{,}0731$. Taste dich heran: Welches $n$ ist gesucht?'
+        felder:
+          - { label: '$n=$', loesung: 55, aria: 'gesuchtes n' }
+        hinweis: 'Mit größerem $n$ wird $P(X\geq 22)$ größer. Probiere $n=51$, $52$, … und ändere dabei auch die obere Grenze.'
+        zeige: { eintraege: [n54, n55, n56] }
+        danach: '<p>Bei $n=55$ kommt genau $0{,}0731$ heraus: Es wurden $55$ Bestellungen untersucht.</p>'
+
+  - phase: mitmachen
+    titel: 'Rechtsseitig: p₁ aus dem Fehler 2. Art'
+    text: '<p>Derselbe Test mit $n=55$ und $\overline{A}=\{22,\ldots,55\}$. Tatsächlich ist der Anteil auf einen unbekannten Wert $p_1$ gestiegen. Es gilt $\beta=0{,}1896$. Gesucht ist $p_1$ auf 2 Nachkommastellen.</p>'
+    visual:
+      typ: liste
+      titel: 'Probieren (n = 55)'
+      eintraege:
+        - { id: p40, text: 'p = 0,40', gleichung: '$Bcd(0;21;55;0{,}40)$<br>$\approx 0{,}4489$: zu groß' }
+        - { id: p44, text: 'p = 0,44', gleichung: '$Bcd(0;21;55;0{,}44)$<br>$\approx 0{,}2326$: zu groß' }
+        - { id: p45, text: 'p = 0,45', gleichung: '$Bcd(0;21;55;0{,}45)$<br>$\approx 0{,}1896$: passt' }
+        - { id: p46, text: 'p = 0,46', gleichung: '$Bcd(0;21;55;0{,}46)$<br>$\approx 0{,}1519$: zu klein' }
+    schritte:
+      - typ: eingabe
+        frage: 'Stelle die Gleichung auf.'
+        layout: zeile
+        felder:
+          - { label: '$Bcd(0;$', einheit: '$;55;p_1)=0{,}1896$', loesung: 21, aria: 'obere Grenze' }
+        hinweis: 'Fehler 2. Art: Das Ergebnis liegt in $A$. Wo endet $A$, wenn $\overline{A}$ bei $22$ beginnt?'
+      - typ: eingabe
+        frage: 'Taste dich heran. Welches $p_1$ ist gesucht?'
+        felder:
+          - { label: '$p_1=$', loesung: 0.45, aria: 'gesuchtes p1' }
+        hinweis: 'Starte z. B. bei $p=0{,}40$. Mit größerem $p$ wird $P(X\leq 21)$ kleiner.'
+        zeige: { eintraege: [p40, p44, p45, p46] }
+        danach: '<p>Bei $p_1=0{,}45$ kommt genau $0{,}1896$ heraus: Tatsächlich bestellen jetzt $45\,\%$ Extra-Perlen.</p>'

@@ -150,6 +150,8 @@ class Visual:
             if self.typ == "histogramm":
                 if "kumuliert" in spec and not isinstance(spec["kumuliert"], bool):
                     problems.append(f"{where}: histogramm.kumuliert muss true oder false sein")
+                if "p_anzeigen" in spec and not isinstance(spec["p_anzeigen"], bool):
+                    problems.append(f"{where}: histogramm.p_anzeigen muss true oder false sein")
                 k_min = spec.get("kMin", 0)
                 k_max = spec.get("kMax", n)
                 if not (is_index(k_min, n + 1) and is_index(k_max, n + 1) and k_min < k_max):
@@ -198,7 +200,7 @@ class Visual:
             "liste": {"eintraege"},
             "matrix": {"zeilen", "spalten", "bereich"},
             "baum": {"slots"},
-            "histogramm": {"bereiche", "gegen", "werte"},
+            "histogramm": {"bereiche", "gegen", "werte", "p"},
             "zahlenstrahl": {"bereiche", "marke", "p"},
         }.get(self.typ, set())
         for key in zeige:

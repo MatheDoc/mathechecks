@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: tilgungsrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/warmup.css?v=20261108-fields
+page_css: /assets/css/warmup.css?v=20261120-table
 permalink: /lernbereiche/finanzmathematik/tilgungsrechnung/warmup.html
 ---
 

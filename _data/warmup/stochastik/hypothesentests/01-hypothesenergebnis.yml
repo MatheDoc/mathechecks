@@ -1,0 +1,129 @@
+# Warm-Up zu Check 01 „E-Regel anwenden + Fehler-Wkt“ (Hypothesentests)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: Die Regel teilt 0…n in A und Ā. Fehler 1. Art = Ā mit p0, Fehler 2. Art = A mit p1.
+# Seiten nicht gemischt: Idee und Zuschauen linksseitig (Lootboxen), Mitmachen erst linksseitig (Dating-App),
+# dann rechtsseitig (Elfmeter). Histogramm nur in der Idee-Karte (p0 → p1), danach reichen die Tabellen.
+# Fallen: „höchstens 17“ → 17 liegt noch in Ā; „mindestens 15“ → A endet bei 14, ein Ergebnis von 14 liegt in A.
+# Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen:
+#   Bcd(0;5;50;0,2)=0,0480   Bcd(6;50;50;0,1)=0,3839
+#   Bcd(0;17;60;0,4)=0,0413   Bcd(18;60;60;0,25)=0,1486
+#   Bcd(15;40;40;0,25)=0,0544   Bcd(0;14;40;0,4)=0,3174
+
+check_id: stochastik__hypothesentests__01
+abschluss: '<p>Lies zuerst aus der Regel ab, was zu $\overline{A}$ gehört: „höchstens $k$“ heißt $\overline{A}=\{0,\ldots,k\}$, „mindestens $k$“ heißt $\overline{A}=\{k,\ldots,n\}$. Fehler 1. Art: Wahrscheinlichkeit von $\overline{A}$ mit $p_0$. Fehler 2. Art: Wahrscheinlichkeit von $A$ mit dem tatsächlichen $p_1$.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Eine Regel, zwei mögliche Fehler'
+    text: '<p>In einem Online-Spiel enthält laut Hersteller jede Lootbox mit $20\,\%$ ein seltenes Item. Die Spieler vermuten, dass der Anteil heimlich <strong>gesenkt</strong> wurde. Ein Spieler öffnet $50$ Lootboxen. $X$ zählt die seltenen Items.</p><p>Vorab wird festgelegt: Findet er <strong>höchstens 5</strong> seltene Items, geht man von einem gesunkenen Anteil aus.</p>'
+    visual:
+      typ: histogramm
+      n: 50
+      p: 0.2
+      kMax: 20
+      p_anzeigen: true
+    schritte:
+      - typ: aufdecken
+        frage: 'Was bedeutet die Regel?'
+        knopf: 'Zeigen'
+        text: '<p>Die Nullhypothese ist der bisherige Wert, die Gegenhypothese die Vermutung. Die Regel teilt die möglichen Anzahlen $0$ bis $50$ in den Annahmebereich $A$ und den Ablehnungsbereich $\overline{A}$:</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}2$</td><td>$H_1: p&lt;0{,}2$</td></tr><tr><td>$A=\{6,\ldots,50\}$</td><td>$\overline{A}=\{0,\ldots,5\}$</td></tr></table><p>Liegt das Ergebnis in $\overline{A}$, wird $H_0$ verworfen. Weil $\overline{A}$ links liegt, heißt der Test <strong>linksseitig</strong>.</p>'
+        zeige: { bereiche: [[0, 5]] }
+      - typ: auswahl
+        frage: 'Rechts siehst du die Verteilung für $p=0{,}2$, $\overline{A}$ ist markiert. Kann ein Ergebnis in $\overline{A}$ vorkommen, obwohl der Anteil weiterhin $20\,\%$ beträgt?'
+        optionen:
+          - 'Ja, die markierten Balken sind klein, aber nicht null.'
+          - 'Nein, bei $20\,\%$ erwartet man $10$ seltene Items.'
+          - 'Nein, dann wäre der Anteil ja gesunken.'
+        korrekt: 0
+        hinweis: 'Schau dir die Höhe der markierten Balken an.'
+        danach: '<p>Genau. Dann wird $H_0$ verworfen, obwohl sie stimmt: Der Hersteller wird zu Unrecht beschuldigt. Das ist der <strong>Fehler 1. Art</strong>. Seine Wahrscheinlichkeit ist die markierte Fläche, also die Wahrscheinlichkeit von $\overline{A}$ mit $p_0=0{,}2$.</p>'
+      - typ: aufdecken
+        frage: 'Und wenn der Anteil wirklich auf $10\,\%$ gesenkt wurde?'
+        knopf: 'Zeigen'
+        text: '<p>Jetzt gilt die Verteilung mit $p_1=0{,}1$. Landet das Ergebnis trotzdem in $A$, bleibt man bei $H_0$, obwohl $H_1$ stimmt: der <strong>Fehler 2. Art</strong>. Markiert ist jetzt $A$.</p><p><strong>Merke:</strong></p><ul><li>Fehler 1. Art: $H_0$ stimmt, wird aber verworfen. Wahrscheinlichkeit von $\overline{A}$ mit $p_0$.</li><li>Fehler 2. Art: $H_1$ stimmt, aber $H_0$ wird beibehalten. Wahrscheinlichkeit von $A$ mit $p_1$.</li></ul>'
+        zeige: { p: 0.1, bereiche: [[6, 50]] }
+
+  # ── Phase B: Zuschauen (linksseitig) ───────────────────────
+  - phase: vormachen
+    titel: 'Linksseitig: entscheiden und rechnen'
+    text: '<p>Weiter mit den $50$ Lootboxen:</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}2$</td><td>$H_1: p&lt;0{,}2$</td></tr><tr><td>$A=\{6,\ldots,50\}$</td><td>$\overline{A}=\{0,\ldots,5\}$</td></tr></table>'
+    schritte:
+      - typ: auswahl
+        frage: 'Der Spieler findet $4$ seltene Items. Wovon ist auszugehen?'
+        optionen:
+          - 'Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)'
+          - 'Von der Nullhypothese $H_0$ ausgehen'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Liegt $4$ in $A$ oder in $\overline{A}$?'
+        danach: '<p>Da $4\in\overline{A}$, wird $H_0$ verworfen: Man geht davon aus, dass der Anteil gesunken ist.</p>'
+      - typ: aufdecken
+        frage: '<strong>Fehler 1. Art:</strong> $\overline{A}$ mit $p_0=0{,}2$.'
+        knopf: 'Rechnen'
+        text: '$$\begin{align*}P(X\leq 5)&=Bcd(0;5;50;0{,}2)\\&\approx 0{,}0480\end{align*}$$<p>In etwa $4{,}8\,\%$ der Fälle beschuldigt man den Hersteller zu Unrecht.</p>'
+      - typ: auswahl
+        frage: '<strong>Fehler 2. Art:</strong> Tatsächlich wurde der Anteil auf $10\,\%$ gesenkt. Welche Eingabe passt?'
+        optionen:
+          - '$Bcd(6;50;50;0{,}1)$'
+          - '$Bcd(0;5;50;0{,}1)$'
+          - '$Bcd(6;50;50;0{,}2)$'
+        korrekt: 0
+        hinweis: 'Beim Fehler 2. Art bleibt man bei $H_0$, das Ergebnis liegt also in $A$. Gerechnet wird mit dem tatsächlichen Anteil.'
+        danach: '$$\begin{align*}P(X\geq 6)&=Bcd(6;50;50;0{,}1)\\&\approx 0{,}3839\end{align*}$$<p>In etwa $38\,\%$ der Fälle bemerkt der Test die Senkung also nicht.</p>'
+
+  # ── Phase C: Mitmachen (erst linksseitig, dann rechtsseitig) ─
+  - phase: mitmachen
+    titel: 'Linksseitig: Dating-App'
+    text: '<p>Eine Dating-App wirbt damit, dass $40\,\%$ aller Likes zu einem Match führen. Nutzer vermuten, dass der Anteil <strong>gesunken</strong> ist. Von $60$ Likes gilt: Gibt es <strong>höchstens 17</strong> Matches, geht man von einem gesunkenen Anteil aus.</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}4$</td><td>$H_1: p&lt;0{,}4$</td></tr><tr><td>$A=\{18,\ldots,60\}$</td><td>$\overline{A}=\{0,\ldots,17\}$</td></tr></table>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Was passt zusammen?'
+        titel_links: 'Situation'
+        titel_rechts: 'Folge'
+        paare:
+          - { links: 'Ergebnis: $17$ Matches', rechts: '$H_0$ verwerfen' }
+          - { links: 'Ergebnis: $18$ Matches', rechts: '$H_0$ beibehalten' }
+          - { links: 'Fehler 1. Art', rechts: '$Bcd(0;17;60;0{,}4)$' }
+          - { links: 'Fehler 2. Art, tatsächlich $p_1=0{,}25$', rechts: '$Bcd(18;60;60;0{,}25)$' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        danach: '<p>„Höchstens 17“ schließt die $17$ ein, sie liegt also noch in $\overline{A}$.</p>'
+      - typ: eingabe
+        frage: 'Berechne beide Fehlerwahrscheinlichkeiten auf 4 Nachkommastellen.'
+        layout: zeile
+        felder:
+          - { label: '1. Art:', loesung: 0.0413, aria: 'Wahrscheinlichkeit für den Fehler 1. Art' }
+          - { label: '2. Art:', loesung: 0.1486, aria: 'Wahrscheinlichkeit für den Fehler 2. Art' }
+        hinweis: 'Gib die beiden Ansätze aus der Zuordnung in den Taschenrechner ein.'
+
+  - phase: mitmachen
+    titel: 'Rechtsseitig: Elfmeter'
+    text: '<p>Ein Torwart hält bisher $25\,\%$ aller Elfmeter. Nach einem Spezialtraining wird vermutet, dass die Quote <strong>gestiegen</strong> ist. Von den nächsten $40$ Elfmetern gilt: Hält er <strong>mindestens 15</strong>, geht man von einer gestiegenen Quote aus.</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}25$</td><td>$H_1: p&gt;0{,}25$</td></tr><tr><td>$A=\{0,\ldots,\;?\;\}$</td><td>$\overline{A}=\{15,\ldots,40\}$</td></tr></table>'
+    schritte:
+      - typ: eingabe
+        frage: 'Wo endet der Annahmebereich?'
+        layout: zeile
+        felder:
+          - { label: '$A=\{0,\ldots,$', einheit: '$\}$', loesung: 14, aria: 'obere Grenze von A' }
+        hinweis: '„Mindestens 15“ gehört zu $\overline{A}$. $A$ enthält alle Anzahlen davor.'
+        danach: '<p>$A=\{0,\ldots,14\}$. Weil $\overline{A}$ jetzt rechts liegt, ist der Test <strong>rechtsseitig</strong>.</p>'
+      - typ: auswahl
+        frage: 'Der Torwart hält $14$ Elfmeter. Wovon ist auszugehen?'
+        optionen:
+          - 'Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)'
+          - 'Von der Nullhypothese $H_0$ ausgehen'
+        korrekt: 1
+        mischen: false
+        hinweis: '$14$ liegt knapp unter der Grenze $15$. In welchem Bereich liegt die $14$?'
+        danach: '<p>Da $14\in A$, wird $H_0$ beibehalten, auch wenn es knapp ist.</p>'
+      - typ: eingabe
+        frage: '<strong>Fehler 1. Art:</strong> Berechne die Wahrscheinlichkeit auf 4 Nachkommastellen.'
+        felder:
+          - { label: '$P\approx$', loesung: 0.0544, aria: 'Wahrscheinlichkeit für den Fehler 1. Art' }
+        hinweis: 'Fehler 1. Art: $\overline{A}=\{15,\ldots,40\}$ mit $p_0=0{,}25$, also $Bcd(15;40;40;0{,}25)$.'
+      - typ: eingabe
+        frage: '<strong>Fehler 2. Art:</strong> Tatsächlich hält der Torwart inzwischen $40\,\%$. Berechne die Wahrscheinlichkeit auf 4 Nachkommastellen.'
+        felder:
+          - { label: '$P\approx$', loesung: 0.3174, aria: 'Wahrscheinlichkeit für den Fehler 2. Art' }
+        hinweis: 'Fehler 2. Art: $A$ mit $p_1=0{,}4$, also $Bcd(0;14;40;0{,}4)$.'

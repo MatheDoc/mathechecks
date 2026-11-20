@@ -103,7 +103,7 @@ Gemeinsame Felder: `frage` (Kopfzeile), `hinweis` (bei falscher Antwort), `danac
 |---|---|---|
 | `graph` | `funktionen[] {term, name, xmin, xmax, color}`, `xMin`, `xMax`, `yMin`, `yMax`, `xSchritt`, `ySchritt` (Abstand der Achsenbeschriftung; `1`, wenn ganzzahlige Stellen abgelesen werden), `xAchse`, `yAchse`, `punkte[] {id, x, y, label, ax, ay, hilfslinie, sichtbar}`, `flaechen[] {id, term, von, bis, farbe, basis, schraffur, name, sichtbar}` (zwischen `term` und $x$-Achse, mit `basis` zwischen `term` und der Konstanten bzw. dem Term `basis`; `name` erzeugt einen Legendeneintrag) | `punkte: [id…]` blendet ein; `flaechen: [id…]` **ersetzt** die sichtbaren Flächen (`[]` = keine) |
 | `baum` | `pa`, `pba`, `pbna`, `gegeben[]` (Felder 1–10), `modus` (`slots`/`numeric`), `dezimal`, `dezimal_blatt` | `slots: [n…]` füllt Platzhalter |
-| `histogramm` | `n`, `p`, `kumuliert`, `bereiche[]` (je `[a, b]`), `gegen[]` (orange), `werte[]`, `kMin`, `kMax` | `bereiche`/`gegen` **ersetzen**, `werte: [k…]` beschriftet Balken |
+| `histogramm` | `n`, `p`, `kumuliert`, `bereiche[]` (je `[a, b]`), `gegen[]` (orange), `werte[]`, `kMin`, `kMax`, `p_anzeigen` (beschriftet $n$ und das aktuelle $p$) | `bereiche`/`gegen` **ersetzen**, `werte: [k…]` beschriftet Balken, `p` wechselt die Verteilung (z. B. $p_0\to p_1$) |
 | `zahlenstrahl` | `n`, `p` (dann automatisch $Bcd$-Zeile), `bereiche[]`, `marke` | `bereiche` ersetzt, `marke` setzt (`null` entfernt), `p` ändert |
 | `matrix` | `name`, `trenn`, `zeilen[][]` | `zeilen`, `spalten`, `bereich` (`A`/`Ay`) heben hervor |
 | `liste` | `titel`, `eintraege[] {id, text, gleichung, erledigt}` | `eintraege: [id…]` hakt ab, zeigt Gleichung |
