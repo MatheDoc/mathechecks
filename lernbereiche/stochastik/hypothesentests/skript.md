@@ -128,8 +128,6 @@ $$
 
 {% include check-anker.html nummer=1 %}
 
-{% include check-anker.html nummer=2 %}
-
 
 ## Herleitung der Entscheidungsregel
 
@@ -139,25 +137,20 @@ Das zentrale Prinzip lautet: Wir legen eine Schranke für die maximal tolerierte
 
 Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich im Rahmen des vorgegebenen Signifikanzniveaus möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
 
-Wir betrachten zunächst die Herleitung der Entscheidungsregel für einen linksseitigen Test, bevor wir uns dem rechtsseitigen Test zuwenden. In beiden Fällen werden wir die Entscheidungsregel zunächst mit Strukturhilfe herleiten, bevor wir sie ohne Strukturhilfe formulieren.
+Wo der Ablehnungsbereich liegt, hängt von der Testrichtung ab:
 
-{% include check-anker.html nummer=3 %}
+- **Linksseitiger Test:** Der Ablehnungsbereich liegt am unteren Ende, $\overline{A}=\\{0,1,\ldots,k\\}$. Gesucht ist das größte $k$ mit $P(X\leq k)\leq\alpha$.
+- **Rechtsseitiger Test:** Der Ablehnungsbereich liegt am oberen Ende, $\overline{A}=\\{k,k+1,\ldots,n\\}$. Gesucht ist das kleinste $k$ mit $P(X\geq k)\leq\alpha$.
 
-Analog gilt das Vorgehen für den rechtsseitigen Test: Hier wird der Ablehnungsbereich am oberen Ende gesucht, und die Bedingung lautet $P(X\geq k) < \alpha$.
+Die Wahrscheinlichkeiten werden dabei jeweils mit dem Wert $p_0$ der Nullhypothese berechnet.
 
-{% include check-anker.html nummer=4 %}
-
-Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen auch ohne zusätzliche Struktur durchgeführt werden.
-
-{% include check-anker.html nummer=5 %}
-
-{% include check-anker.html nummer=6 %}
+{% include check-anker.html nummer=2 %}
 
 ## Rekonstruktion von Testparametern aus Fehlerwahrscheinlichkeiten
 
 Sind die Entscheidungsregel und die Fehlerwahrscheinlichkeiten bekannt, lassen sich daraus unter Umständen die Testparameter rekonstruieren.
 
-{% include check-anker.html nummer=7 %}
+{% include check-anker.html nummer=3 %}
 
 ## Multiples-Testen-Problem
 

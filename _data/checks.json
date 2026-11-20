@@ -1345,33 +1345,29 @@
         "LernbereichAnzeigename": "Hypothesentests",
         "Nummer": 1,
         "check_id": "stochastik__hypothesentests__01",
-        "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und die Wahrscheinlichkeit für den Fehler 1. und 2. Art bestimmen.",
-        "Sammlung": "hypothesenergebnis-linksseitig",
-        "Schlagwort": "Linkss. E-Regel + Wkt Fehler 1. Art",
+        "Ich kann": "die Entscheidungsregel eines einseitigen Hypothesentests anwenden und die Wahrscheinlichkeiten für den Fehler 1. und 2. Art bestimmen.",
+        "Sammlung": "hypothesenergebnis",
+        "Schlagwort": "E-Regel anwenden + Fehler-Wkt",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-01",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {
+                "cue": "Entscheidungsregel lesen",
+                "response": "„höchstens \\(k\\)“: \\( \\overline{A}=\\{0,\\ldots,k\\} \\) (linksseitig), „mindestens \\(k\\)“: \\( \\overline{A}=\\{k,\\ldots,n\\} \\) (rechtsseitig)"
+            },
+            {
                 "cue": "Entscheidung",
-                "response": "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt"
+                "response": "Stichprobenergebnis in \\( \\overline{A} \\): \\( H_0 \\) verwerfen, sonst beibehalten"
             },
             {
-                "cue": "Fehler 1. Art im Allgemeinen",
-                "response": "\\( H_0 \\) wahr, \\( H_1 \\) gewählt"
+                "cue": "Fehler 1. Art",
+                "response": "\\( H_0 \\) wahr, aber verworfen: Wahrscheinlichkeit des Ablehnungsbereichs mit \\( p_0 \\)"
             },
             {
-                "cue": "Fehlerwahrscheinlichkeit 1. Art beim linksseitigen Test",
-                "response": "\\( P(X\\leq k) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art im Allgemeinen",
-                "response": "\\( H_1 \\) wahr, \\( H_0 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 2. Art beim linksseitigen Test",
-                "response": "\\( P(X\\geq k) \\)"
+                "cue": "Fehler 2. Art",
+                "response": "\\( H_1 \\) wahr, aber \\( H_0 \\) beibehalten: Wahrscheinlichkeit des Annahmebereichs mit \\( p_1 \\)"
             }
         ]
     },
@@ -1381,33 +1377,25 @@
         "LernbereichAnzeigename": "Hypothesentests",
         "Nummer": 2,
         "check_id": "stochastik__hypothesentests__02",
-        "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und die Wahrscheinlichkeit für den Fehler 1. und 2. Art bestimmen.",
-        "Sammlung": "hypothesenergebnis-rechtsseitig",
-        "Schlagwort": "Rechtss. E-Regel + Wkt Fehler 1. Art",
-        "Flashtyp": "einzeln",
+        "Ich kann": "die Entscheidungsregel eines einseitigen Hypothesentests zu einem gegebenen Signifikanzniveau herleiten.",
+        "Sammlung": "ablehnungsbereich",
+        "Schlagwort": "E-Regel herleiten",
+        "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-02",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Entscheidung",
-                "response": "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt"
+                "cue": "Hypothesen",
+                "response": "\\( H_0: p=p_0 \\), \\( H_1: p<p_0 \\) (linksseitig) oder \\( H_1: p>p_0 \\) (rechtsseitig)"
             },
             {
-                "cue": "Fehler 1. Art im Allgemeinen",
-                "response": "\\( H_0 \\) wahr, \\( H_1 \\) gewählt"
+                "cue": "Ablehnungsbereich",
+                "response": "\\( \\overline{A}=\\{0,\\ldots,k\\} \\) (linksseitig) oder \\( \\overline{A}=\\{k,\\ldots,n\\} \\) (rechtsseitig)"
             },
             {
-                "cue": "Fehlerwahrscheinlichkeit 1. Art beim rechtsseitigen Test",
-                "response": "\\( P(X\\geq k) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art im Allgemeinen",
-                "response": "\\( H_1 \\) wahr, \\( H_0 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 2. Art beim rechtsseitigen Test",
-                "response": "\\( P(X\\leq k) \\)"
+                "cue": "Bestimmung von \\( k \\)",
+                "response": "mit \\( p_0 \\): linksseitig größtes \\( k \\) mit \\( P(X\\leq k)\\leq\\alpha \\), rechtsseitig kleinstes \\( k \\) mit \\( P(X\\geq k)\\leq\\alpha \\)"
             }
         ]
     },
@@ -1417,165 +1405,21 @@
         "LernbereichAnzeigename": "Hypothesentests",
         "Nummer": 3,
         "check_id": "stochastik__hypothesentests__03",
-        "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe).",
-        "Sammlung": "ablehnungsbereich-linksseitig-mit-struktur",
-        "Schlagwort": "Linkss. E-Regel herleiten (mit Struktur)",
-        "Flashtyp": "gruppiert",
+        "Ich kann": "aus einer gegebenen Fehlerwahrscheinlichkeit einen unbekannten Parameter ($p$ oder $n$) eines Hypothesentests bestimmen.",
+        "Sammlung": "parameter-aus-fehlerwahrscheinlichkeit",
+        "Schlagwort": "p oder n aus Fehler-Wkt bestimmen",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-03",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "\\(H_0\\)",
-                "response": "das 'alte' $p$"
+                "cue": "Fehler 1. Art",
+                "response": "Wahrscheinlichkeit des Ablehnungsbereichs mit \\( p_0 \\)"
             },
             {
-                "cue": "\\(H_1\\)",
-                "response": "$p$ wird kleiner (linksseitig)"
-            },
-            {
-                "cue": "\\( A=\\{k+1,\\ldots, n\\}\\)",
-                "response": "Annahmebereich (linksseitig)"
-            },
-            {
-                "cue": "\\( \\overline{A}=\\{0,\\ldots,k\\}\\)",
-                "response": "Ablehnungsbereich (linksseitig)"
-            },
-            {
-                "cue": "Ansatz mit Signifikanzniveau (linksseitig)",
-                "response": "\\( P(X\\leq k)< \\alpha \\)"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "hypothesentests",
-        "LernbereichAnzeigename": "Hypothesentests",
-        "Nummer": 4,
-        "check_id": "stochastik__hypothesentests__04",
-        "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe).",
-        "Sammlung": "ablehnungsbereich-rechtsseitig-mit-struktur",
-        "Schlagwort": "Rechtss. E-Regel herleiten (mit Struktur)",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-hypothesentests-04",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "\\(H_0\\)",
-                "response": "das 'alte' $p$"
-            },
-            {
-                "cue": "\\(H_1\\)",
-                "response": "$p$ wird größer (rechtsseitig)"
-            },
-            {
-                "cue": "\\( A=\\{0,\\ldots, k-1\\}\\)",
-                "response": "Annahmebereich (rechtsseitig)"
-            },
-            {
-                "cue": "\\( \\overline{A}=\\{k,\\ldots,n\\}\\)",
-                "response": "Ablehnungsbereich (rechtsseitig)"
-            },
-            {
-                "cue": "Ansatz mit Signifikanzniveau (rechtsseitig)",
-                "response": "\\( P(X\\geq k)< \\alpha \\)"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "hypothesentests",
-        "LernbereichAnzeigename": "Hypothesentests",
-        "Nummer": 5,
-        "check_id": "stochastik__hypothesentests__05",
-        "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
-        "Sammlung": "ablehnungsbereich-linksseitig-ohne-struktur",
-        "Schlagwort": "Linkss. E-Regel herleiten (ohne Struktur)",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-hypothesentests-05",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "1. Hypothesen formulieren",
-                "response": "Wahrscheinlichkeiten für \\(H_0 \\) und \\( H_1\\) notieren"
-            },
-            {
-                "cue": "2. Annahme- und Ablehnungsbereich notieren",
-                "response": "\\( A=\\{k+1,\\ldots, n\\} \\) und \\( \\overline{A}=\\{0,\\ldots,k\\} \\) notieren"
-            },
-            {
-                "cue": "3. Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "hypothesentests",
-        "LernbereichAnzeigename": "Hypothesentests",
-        "Nummer": 6,
-        "check_id": "stochastik__hypothesentests__06",
-        "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
-        "Sammlung": "ablehnungsbereich-rechtsseitig-ohne-struktur",
-        "Schlagwort": "Rechtss. E-Regel herleiten (ohne Struktur)",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-hypothesentests-06",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "1. Hypothesen formulieren",
-                "response": "Wahrscheinlichkeiten für \\(H_0 \\) und \\( H_1\\) notieren"
-            },
-            {
-                "cue": "2. Annahme- und Ablehnungsbereich notieren",
-                "response": "\\( A=\\{0,\\ldots, k-1\\} \\) und \\( \\overline{A}=\\{k,\\ldots,n\\} \\) notieren"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "hypothesentests",
-        "LernbereichAnzeigename": "Hypothesentests",
-        "Nummer": 7,
-        "check_id": "stochastik__hypothesentests__07",
-        "Ich kann": "aus einer gegebenen Fehlerwahrscheinlichkeit einen unbekannten Parameter ($p$ oder $n$) eines Hypothesentests bestimmen.",
-        "Sammlung": "parameter-aus-fehlerwahrscheinlichkeit",
-        "Schlagwort": "p oder n aus Fehler-Wkt bestimmen",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-hypothesentests-07",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "Fehler 1. Art (linksseitig)",
-                "response": "\\( Bcd(0;k;n;p_0) \\)"
-            },
-            {
-                "cue": "Fehler 1. Art (rechtsseitig)",
-                "response": "\\( Bcd(k;n;n;p_0) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art (linksseitig)",
-                "response": "\\( Bcd(k;n;n;p_1)\\)"
-            },
-            {
-                "cue": "Fehler 2. Art (rechtsseitig)",
-                "response": "\\( Bcd(0;k;n;p_1) \\)"
+                "cue": "Fehler 2. Art",
+                "response": "Wahrscheinlichkeit des Annahmebereichs mit \\( p_1 \\)"
             },
             {
                 "cue": "Bestimmung von $p$ oder $n$",

@@ -4,8 +4,9 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.hypothesentests.shared import (
-    AblehnungsbereichCase,
+    balanced_sides,
     sample_ablehnungsbereich_links,
+    sample_ablehnungsbereich_rechts,
 )
 
 
@@ -27,13 +28,22 @@ _HISTORISCH = [
     "Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von {p0} tritt {acc} auf.",
 ]
 
-_VERMUTUNG = [
-    "Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat.",
-    "Man vermutet, dass die aktuelle Rate darunter liegt.",
-    "Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte.",
-    "Inzwischen wird vermutet, dass dieser Wert gesunken ist.",
-    "Es wird angenommen, dass der wahre Anteil heute kleiner ist.",
-]
+_VERMUTUNG = {
+    "links": [
+        "Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat.",
+        "Man vermutet, dass die aktuelle Rate darunter liegt.",
+        "Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte.",
+        "Inzwischen wird vermutet, dass dieser Wert gesunken ist.",
+        "Es wird angenommen, dass der wahre Anteil heute kleiner ist.",
+    ],
+    "rechts": [
+        "Es besteht nun die Vermutung, dass sich dieser Anteil erhöht hat.",
+        "Man vermutet, dass die aktuelle Rate darüber liegt.",
+        "Neuere Beobachtungen legen nahe, dass der Anteil gestiegen sein könnte.",
+        "Inzwischen wird vermutet, dass dieser Wert gestiegen ist.",
+        "Es wird angenommen, dass der wahre Anteil heute größer ist.",
+    ],
+}
 
 _STICHPROBE = [
     "Zur Überprüfung werden {n}\u00a0{sample} zufällig ausgewählt.",
@@ -49,41 +59,32 @@ _ALPHA_SATZ = [
 ]
 
 
-class AblehnungsbereichLinksseitigOhneStrukturGenerator(TaskGenerator):
-    generator_key = "stochastik.hypothesentests.ablehnungsbereich_linksseitig_ohne_struktur"
+class AblehnungsbereichGenerator(TaskGenerator):
+    generator_key = "stochastik.hypothesentests.ablehnungsbereich"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
         tasks: list[Task] = []
 
-        for _ in range(count):
-            case: AblehnungsbereichCase = sample_ablehnungsbereich_links(rng)
+        for side in balanced_sides(rng, count):
+            if side == "links":
+                case = sample_ablehnungsbereich_links(rng)
+            else:
+                case = sample_ablehnungsbereich_rechts(rng)
             sc = case.scenario
-            n = case.n
             k = case.critical_value
-            p0 = case.p0
-            alpha_req = case.alpha_requested
-            alpha = case.alpha  # P(X ≤ k)
 
-            p0_fmt = _p_fmt(p0, rng)
-            alpha_pct = _alpha_pct(alpha_req)
+            hist = rng.choice(_HISTORISCH).format(acc=sc.success_event_accusative, p0=_p_fmt(case.p0, rng))
+            vermutung = rng.choice(_VERMUTUNG[side])
+            stichprobe = rng.choice(_STICHPROBE).format(n=case.n, sample=sc.sample_object_plural)
+            alpha_satz = rng.choice(_ALPHA_SATZ).format(a=_alpha_pct(case.alpha_requested))
 
-            hist = rng.choice(_HISTORISCH).format(acc=sc.success_event_accusative, p0=p0_fmt)
-            vermutung = rng.choice(_VERMUTUNG)
-            stichprobe = rng.choice(_STICHPROBE).format(n=n, sample=sc.sample_object_plural)
-            alpha_satz = rng.choice(_ALPHA_SATZ).format(a=alpha_pct)
+            intro = f"{sc.intro_prefix} {hist} {vermutung} {stichprobe} {alpha_satz}"
 
-            intro = (
-                f"{sc.intro_prefix} "
-                f"{hist} "
-                f"{vermutung} "
-                f"{stichprobe} "
-                f"{alpha_satz}"
-            )
-
+            lower, upper = (0, k) if side == "links" else (k, case.n)
             answer = (
                 f"Der Ablehnungsbereich lautet: "
-                f"[ {numerical(0, tolerance=0, decimals=0)}, \u2026 , {numerical(k, tolerance=0, decimals=0)} ]."
+                f"[ {numerical(lower, tolerance=0, decimals=0)}, \u2026 , {numerical(upper, tolerance=0, decimals=0)} ]."
             )
 
             tasks.append(Task(
@@ -93,4 +94,3 @@ class AblehnungsbereichLinksseitigOhneStrukturGenerator(TaskGenerator):
             ))
 
         return tasks
-

@@ -25,6 +25,15 @@ class OneSidedTestCase:
 _DELTAS = [0.05, 0.07, 0.08, 0.10, 0.12, 0.15]
 
 
+def balanced_sides(rng: random.Random, count: int) -> list[str]:
+    """Je zur Hälfte links- und rechtsseitig (bei ungerader Anzahl eine Seite zufällig), gemischt."""
+    sides = ["links", "rechts"] * (count // 2)
+    if count % 2:
+        sides.append(rng.choice(["links", "rechts"]))
+    rng.shuffle(sides)
+    return sides
+
+
 def _sample_probability(rng: random.Random) -> float:
     return rng.choice([x / 100 for x in range(12, 69)])
 

@@ -103,20 +103,11 @@ _FEHLER2_GEGEBEN = [
     "Es gilt $\\beta = {ep}$.",
 ]
 
-_FRAGE_P0 = [
-    "Bestimmen Sie $p_0$ (auf 2 Nachkommastellen).",
-    "Welchen Wert hat die Wahrscheinlichkeit $p_0$ der Nullhypothese (auf 2 NKS)?",
-]
+_FRAGE_P0 = "Bestimmen Sie die Wahrscheinlichkeit $p_0$ der Nullhypothese auf zwei Nachkommastellen."
 
-_FRAGE_P1 = [
-    "Bestimmen Sie $p_1$ (die Wahrscheinlichkeit der Gegenhypothese, auf 2 NKS).",
-    "Welchen Wert hat $p_1$, also die tatsächliche Wahrscheinlichkeit (auf 2 NKS)?",
-]
+_FRAGE_P1 = "Bestimmen Sie die tatsächliche Wahrscheinlichkeit $p_1$ auf zwei Nachkommastellen."
 
-_FRAGE_N = [
-    "Bestimmen Sie den Stichprobenumfang $n$.",
-    "Wie groß ist der Stichprobenumfang $n$?",
-]
+_FRAGE_N = "Bestimmen Sie den Stichprobenumfang $n$."
 
 
 class ParameterAusFehlerwahrscheinlichkeitGenerator(TaskGenerator):
@@ -188,7 +179,7 @@ class ParameterAusFehlerwahrscheinlichkeitGenerator(TaskGenerator):
             parts.append(rng.choice(_STICHPROBE_N).format(n=n, sample_plural=sc.sample_object_plural))
             parts.append(_entsch(rng, side, k, sc.success_plural))
             parts.append(rng.choice(_FEHLER1_GEGEBEN).format(ep=ep_fmt))
-            question = rng.choice(_FRAGE_P0)
+            question = _FRAGE_P0
             answer = numerical(p0, tolerance=0, decimals=2)
 
         elif error_type == 1 and unknown == "n":
@@ -198,7 +189,7 @@ class ParameterAusFehlerwahrscheinlichkeitGenerator(TaskGenerator):
             parts.extend([hist, vermutung])
             parts.append(_entsch(rng, side, k, sc.success_plural))
             parts.append(rng.choice(_FEHLER1_GEGEBEN).format(ep=ep_fmt))
-            question = rng.choice(_FRAGE_N)
+            question = _FRAGE_N
             answer = numerical(n, tolerance=0, decimals=0)
 
         elif error_type == 2 and unknown == "p":
@@ -209,7 +200,7 @@ class ParameterAusFehlerwahrscheinlichkeitGenerator(TaskGenerator):
             parts.append(rng.choice(_STICHPROBE_N).format(n=n, sample_plural=sc.sample_object_plural))
             parts.append(_entsch(rng, side, k, sc.success_plural))
             parts.append(rng.choice(_FEHLER2_GEGEBEN).format(ep=ep_fmt))
-            question = rng.choice(_FRAGE_P1)
+            question = _FRAGE_P1
             answer = numerical(p1, tolerance=0, decimals=2)
 
         else:
@@ -222,7 +213,7 @@ class ParameterAusFehlerwahrscheinlichkeitGenerator(TaskGenerator):
             parts.extend([hist, vermutung, p1_info])
             parts.append(_entsch(rng, side, k, sc.success_plural))
             parts.append(rng.choice(_FEHLER2_GEGEBEN).format(ep=ep_fmt))
-            question = rng.choice(_FRAGE_N)
+            question = _FRAGE_N
             answer = numerical(n, tolerance=0, decimals=0)
 
         return Task(

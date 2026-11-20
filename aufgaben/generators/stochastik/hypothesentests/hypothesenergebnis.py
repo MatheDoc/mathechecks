@@ -1,15 +1,19 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
+from aufgaben.core.placeholders import mc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.hypothesentests.shared import sample_linksseitig
+from aufgaben.generators.stochastik.hypothesentests.shared import (
+    balanced_sides,
+    sample_linksseitig,
+    sample_rechtsseitig,
+)
 
 
 def _p_fmt(p: float, rng: random.Random) -> str:
     """Zeigt p entweder als Dezimalzahl (0,38) oder als Prozent (38 %)."""
     if rng.random() < 0.4:
-        return f"{round(p * 100)} %"
+        return f"{round(p * 100)} %"
     return f"{p:.2f}".replace(".", ",")
 
 
@@ -21,27 +25,39 @@ _HISTORISCH = [
     "Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von {p0} tritt {success_event_acc} auf.",
 ]
 
-_VERMUTUNG_LINKS = [
-    "Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat.",
-    "Man vermutet, dass die aktuelle Rate darunter liegt.",
-    "Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte.",
-    "Inzwischen wird vermutet, dass dieser Wert gesunken ist.",
-    "Es wird angenommen, dass der wahre Anteil heute kleiner ist.",
-]
+_VERMUTUNG = {
+    "links": [
+        "Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat.",
+        "Man vermutet, dass die aktuelle Rate darunter liegt.",
+        "Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte.",
+        "Inzwischen wird vermutet, dass dieser Wert gesunken ist.",
+        "Es wird angenommen, dass der wahre Anteil heute kleiner ist.",
+    ],
+    "rechts": [
+        "Es besteht nun die Vermutung, dass sich dieser Anteil erhöht hat.",
+        "Man vermutet, dass die aktuelle Rate darüber liegt.",
+        "Neuere Beobachtungen legen nahe, dass der Anteil gestiegen sein könnte.",
+        "Inzwischen wird vermutet, dass dieser Wert gestiegen ist.",
+        "Es wird angenommen, dass der wahre Anteil heute größer ist.",
+    ],
+}
 
 _STICHPROBE = [
-    "Daher werden {n} {sample_plural} zufällig untersucht.",
-    "Um dies zu prüfen, werden {n} {sample_plural} zufällig ausgewählt.",
-    "{n} {sample_plural} werden dafür zufällig ausgewählt und überprüft.",
-    "Zur Überprüfung werden {n} {sample_plural} stichprobenartig betrachtet.",
+    "Daher werden {n} {sample_plural} zufällig untersucht.",
+    "Um dies zu prüfen, werden {n} {sample_plural} zufällig ausgewählt.",
+    "{n} {sample_plural} werden dafür zufällig ausgewählt und überprüft.",
+    "Zur Überprüfung werden {n} {sample_plural} stichprobenartig betrachtet.",
 ]
 
-_ENTSCHEIDUNG_LINKS = [
-    "Werden dabei höchstens {k} {success_plural} festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
-    "Falls höchstens {k} {success_plural} auftreten, sieht man die Vermutung als bestätigt an.",
-    "Treten höchstens {k} {success_plural} auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
-    "Treten in der Stichprobe höchstens {k} {success_plural} auf, wird die Vermutung als richtig angesehen.",
+_ENTSCHEIDUNG = [
+    "Werden dabei {grenze} {k} {success_plural} festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "Falls {grenze} {k} {success_plural} auftreten, sieht man die Vermutung als bestätigt an.",
+    "Treten {grenze} {k} {success_plural} auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "Treten in der Stichprobe {grenze} {k} {success_plural} auf, wird die Vermutung als richtig angesehen.",
 ]
+
+_GRENZE = {"links": "höchstens", "rechts": "mindestens"}
+
 _ES_IST_BEKANNT = [
     "Es ist nun bekannt, dass die Wahrscheinlichkeit, {success_event_acc} anzutreffen, tatsächlich {p1} beträgt.",
     "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für {success_event_acc} gleich {p1} ist.",
@@ -49,34 +65,29 @@ _ES_IST_BEKANNT = [
     "Inzwischen ist bekannt, dass der wahre Wert der Wahrscheinlichkeit für {success_event_acc} bei {p1} liegt.",
 ]
 
-class HypothesenergebnisLinksseitigGenerator(TaskGenerator):
-    generator_key = "stochastik.hypothesentests.hypothesenergebnis_linksseitig"
+
+class HypothesenergebnisGenerator(TaskGenerator):
+    generator_key = "stochastik.hypothesentests.hypothesenergebnis"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
         tasks: list[Task] = []
 
-        for _ in range(count):
-            case = sample_linksseitig(rng)
+        for side in balanced_sides(rng, count):
+            case = sample_linksseitig(rng) if side == "links" else sample_rechtsseitig(rng)
             p0_fmt = _p_fmt(case.p0, rng)
             sc = case.scenario
 
             hist = rng.choice(_HISTORISCH).format(
                 success_event_acc=sc.success_event_accusative, p0=p0_fmt
             )
-            vermutung = rng.choice(_VERMUTUNG_LINKS)
+            vermutung = rng.choice(_VERMUTUNG[side])
             stichprobe = rng.choice(_STICHPROBE).format(n=case.n, sample_plural=sc.sample_object_plural)
-            entscheidung = rng.choice(_ENTSCHEIDUNG_LINKS).format(
-                k=case.critical_value, success_plural=sc.success_plural
+            entscheidung = rng.choice(_ENTSCHEIDUNG).format(
+                grenze=_GRENZE[side], k=case.critical_value, success_plural=sc.success_plural
             )
 
-            intro = (
-                f"{sc.intro_prefix} "
-                f"{hist} "
-                f"{vermutung} "
-                f"{stichprobe} "
-                f"{entscheidung}"
-            )
+            intro = f"{sc.intro_prefix} {hist} {vermutung} {stichprobe} {entscheidung}"
 
             questions = [
                 "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
@@ -108,4 +119,3 @@ class HypothesenergebnisLinksseitigGenerator(TaskGenerator):
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))
 
         return tasks
-
