@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Woran erkennt man einen linksseitigen Hypothesentest?",
-            "antworten": ["\\(H_1:p<p_0\\)", "\\(H_1:p>p_0\\)", "\\(H_0:p<p_0\\)", "\\(H_1:p=p_0\\)"],
-            "fehler": ["Rechtsseitige Testrichtung gewählt", "Ungleichung fälschlich der Nullhypothese zugeordnet", "Nullhypothese als Gegenhypothese verwendet"]
+            "frage": "Bei einem linksseitigen Test ist \\(\\overline{A}=\\{0,\\ldots,k\\}\\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \\(p_0\\)?",
+            "antworten": ["\\(P_{p_0}(X\\leq k)=\\alpha\\)", "\\(P_{p_0}(X\\geq k+1)=\\alpha\\)", "\\(P_{p_0}(X\\leq k)=\\beta\\)", "\\(P_{p_0}(X\\geq k)=\\alpha\\)"],
+            "fehler": ["Annahme- statt Ablehnungsbereich verwendet", "Fehler 1. und 2. Art vertauscht", "Grenze und Verteilungsschwanz vertauscht"]
         },
         {
-            "frage": "Bei einem linksseitigen Test bezeichnet \\(k\\) die größte Trefferzahl, bei der \\(H_0\\) verworfen wird. Welche Form hat der Ablehnungsbereich?",
-            "antworten": ["\\(\\overline{A}=\\{0,\\ldots,k\\}\\)", "\\(\\overline{A}=\\{k,\\ldots,n\\}\\)", "\\(\\overline{A}=\\{k+1,\\ldots,n\\}\\)", "\\(\\overline{A}=\\{0,\\ldots,k-1\\}\\)"],
-            "fehler": ["Oberen statt unteren Rand gewählt", "Annahmebereich des linksseitigen Tests gewählt", "Grenzwert \\(k\\) fälschlich ausgeschlossen"]
+            "frage": "Bei einem rechtsseitigen Test ist \\(\\overline{A}=\\{k,\\ldots,n\\}\\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \\(p_0\\)?",
+            "antworten": ["\\(P_{p_0}(X\\geq k)=\\alpha\\)", "\\(P_{p_0}(X\\leq k-1)=\\alpha\\)", "\\(P_{p_0}(X\\geq k)=\\beta\\)", "\\(P_{p_0}(X\\leq k)=\\alpha\\)"],
+            "fehler": ["Annahme- statt Ablehnungsbereich verwendet", "Fehler 1. und 2. Art vertauscht", "Grenze und Verteilungsschwanz vertauscht"]
         },
         {
-            "frage": "Welche Form hat der Annahmebereich eines linksseitigen Tests mit \\(\\overline{A}=\\{0,\\ldots,k\\}\\)?",
-            "antworten": ["\\(A=\\{k+1,\\ldots,n\\}\\)", "\\(A=\\{k,\\ldots,n\\}\\)", "\\(A=\\{0,\\ldots,k\\}\\)", "\\(A=\\{0,\\ldots,k-1\\}\\)"],
-            "fehler": ["Grenzwert \\(k\\) beiden Bereichen zugeordnet", "Ablehnungsbereich als Annahmebereich übernommen", "Annahmebereich eines rechtsseitigen Tests gewählt"]
+            "frage": "Bei einem linksseitigen Test ist \\(A=\\{k+1,\\ldots,n\\}\\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \\(p_1\\)?",
+            "antworten": ["\\(P_{p_1}(X\\geq k+1)=\\beta\\)", "\\(P_{p_1}(X\\leq k)=\\beta\\)", "\\(P_{p_0}(X\\geq k+1)=\\beta\\)", "\\(P_{p_1}(X\\geq k)=\\alpha\\)"],
+            "fehler": ["Ablehnungs- statt Annahmebereich verwendet", "Wahrscheinlichkeit unter der Nullhypothese berechnet", "Grenze und Fehlerart vertauscht"]
         },
         {
-            "frage": "Welcher Ansatz bestimmt die Grenze \\(k\\) bei einem linksseitigen Test zum Niveau \\(\\alpha\\)?",
-            "antworten": ["\\(P_{p_0}(X\\leq k)<\\alpha\\)", "\\(P_{p_0}(X\\geq k)<\\alpha\\)", "\\(P_{p_1}(X\\leq k)<\\alpha\\)", "\\(P_{p_0}(X\\leq k)>\\alpha\\)"],
-            "fehler": ["Falschen Verteilungsschwanz gewählt", "Wahrscheinlichkeit unter der Gegenhypothese berechnet", "Ungleichung zum Signifikanzniveau umgedreht"]
+            "frage": "Bei einem rechtsseitigen Test ist \\(A=\\{0,\\ldots,k-1\\}\\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \\(p_1\\)?",
+            "antworten": ["\\(P_{p_1}(X\\leq k-1)=\\beta\\)", "\\(P_{p_1}(X\\geq k)=\\beta\\)", "\\(P_{p_0}(X\\leq k-1)=\\beta\\)", "\\(P_{p_1}(X\\leq k)=\\alpha\\)"],
+            "fehler": ["Ablehnungs- statt Annahmebereich verwendet", "Wahrscheinlichkeit unter der Nullhypothese berechnet", "Grenze und Fehlerart vertauscht"]
         },
         {
-            "frage": "Unter welcher Hypothese wird das Signifikanzniveau geprüft?",
-            "antworten": ["Unter \\(H_0\\)", "Unter \\(H_1\\)", "Unter beiden Hypothesen gleichzeitig", "Ohne eine Hypothese"],
-            "fehler": ["Fehler 1. Art unter der Gegenhypothese berechnet", "Zwei verschiedene Verteilungen vermischt", "Parameter der Binomialverteilung offengelassen"]
+            "frage": "Welcher Parameterwert gehört in die Berechnung eines Fehlers 1. Art?",
+            "antworten": ["Der Wert \\(p_0\\) aus \\(H_0\\)", "Ein Wert \\(p_1\\) aus \\(H_1\\)", "Der beobachtete relative Anteil", "Immer \\(p=0{,}5\\)"],
+            "fehler": ["Fehler 1. Art unter der Gegenhypothese berechnet", "Stichprobenergebnis als Populationsparameter verwendet", "Parameter ohne Bezug zu den Hypothesen festgelegt"]
         },
         {
-            "frage": "Welche Grenze \\(k\\) wird beim linksseitigen Test gewählt?",
-            "antworten": ["Das größte \\(k\\), für das die Fehlerwahrscheinlichkeit unter \\(\\alpha\\) bleibt", "Das kleinste \\(k\\), für das die Fehlerwahrscheinlichkeit unter \\(\\alpha\\) bleibt", "Ein beliebiges \\(k\\) mit Fehlerwahrscheinlichkeit über \\(\\alpha\\)", "Immer \\(k=np_0\\)"],
-            "fehler": ["Ablehnungsbereich unnötig verkleinert", "Signifikanzniveau überschritten", "Erwartungswert ohne Wahrscheinlichkeitsprüfung als Grenze verwendet"]
+            "frage": "Welcher Parameterwert gehört in die Berechnung eines Fehlers 2. Art?",
+            "antworten": ["Ein konkreter Wert \\(p_1\\) aus \\(H_1\\)", "Der Wert \\(p_0\\) aus \\(H_0\\)", "Der beobachtete relative Anteil", "Immer \\(p=0{,}5\\)"],
+            "fehler": ["Fehler 2. Art unter der Nullhypothese berechnet", "Stichprobenergebnis als Populationsparameter verwendet", "Parameter ohne Bezug zu den Hypothesen festgelegt"]
         },
         {
-            "frage": "Linksseitiger Test: Unter \\(H_0\\) gilt \\(P(X\\leq14)=0{,}038\\), \\(P(X\\leq15)=0{,}061\\). Welche größte Ablehnungsgrenze passt zu \\(\\alpha=0{,}05\\)?",
-            "antworten": ["\\(k=14\\)", "\\(k=15\\)", "\\(k=13\\)", "\\(k=16\\)"],
-            "fehler": ["Signifikanzniveau überschritten", "Zulässigen Ablehnungsbereich unnötig verkleinert", "Grenze trotz bereits zu großer Wahrscheinlichkeit weiter erhöht"]
+            "frage": "Wie wird ein unbekanntes \\(p\\) aus einer gegebenen Binomialwahrscheinlichkeit typischerweise bestimmt?",
+            "antworten": ["Passende Werte für \\(p\\) systematisch probieren", "\\(p\\) stets durch \\(n\\) teilen", "Die Fehlerwahrscheinlichkeit von \\(1\\) abziehen", "Den Grenzwert \\(k\\) als \\(p\\) einsetzen"],
+            "fehler": ["Parameter und Stichprobenumfang ohne Grundlage verrechnet", "Gegenwahrscheinlichkeit mit gesuchtem Parameter verwechselt", "Ganzzahlige Grenze als Wahrscheinlichkeit verwendet"]
         },
         {
-            "frage": "Für einen linksseitigen Test wurde \\(k=14\\) bestimmt. Wie lautet der Annahmebereich?",
-            "antworten": ["\\(A=\\{15,\\ldots,n\\}\\)", "\\(A=\\{14,\\ldots,n\\}\\)", "\\(A=\\{0,\\ldots,14\\}\\)", "\\(A=\\{0,\\ldots,13\\}\\)"],
-            "fehler": ["Grenzwert \\(k\\) fälschlich in den Annahmebereich aufgenommen", "Ablehnungsbereich angegeben", "Bereichsrichtung und Grenzwert vertauscht"]
+            "frage": "Wie wird ein unbekannter Stichprobenumfang \\(n\\) aus einer gegebenen Fehlerwahrscheinlichkeit typischerweise bestimmt?",
+            "antworten": ["Ganzzahlige Werte für \\(n\\) systematisch probieren", "Die Fehlerwahrscheinlichkeit auf die nächste ganze Zahl runden", "\\(n=p\\cdot k\\) setzen", "Den Wert \\(p\\) als Stichprobenumfang verwenden"],
+            "fehler": ["Wahrscheinlichkeit fälschlich als Stichprobenumfang interpretiert", "Nicht vorhandene Produktformel verwendet", "Parameter und Stichprobenumfang vertauscht"]
         },
         {
-            "frage": "Warum prüft man beim linksseitigen Test nach einer zulässigen Ablehnungsgrenze \\(k\\) auch \\(k+1\\)?",
-            "antworten": ["Um sicherzustellen, dass \\(k\\) die größte zulässige Grenze ist", "Um den Stichprobenumfang zu bestimmen", "Um den Fehler 2. Art exakt zu berechnen", "Um \\(H_1\\) durch \\(H_0\\) zu ersetzen"],
-            "fehler": ["Nachbarprüfung mit Parameterbestimmung verwechselt", "Nachbarprüfung mit Berechnung des Fehlers 2. Art verwechselt", "Zweck der Hypothesen bei der Grenzprüfung vertauscht"]
+            "frage": "Bei \\(n=80\\) und \\(\\overline{A}=\\{0,\\ldots,22\\}\\) soll \\(P_{p_0}(X\\leq22)=0{,}0324\\) gelten. Probieren ergibt \\(P_{0{,}35}(X\\leq22)\\approx0{,}0971\\) und \\(P_{0{,}38}(X\\leq22)\\approx0{,}0324\\). Welcher Wert \\(p_0\\) ist gesucht?",
+            "antworten": ["\\(p_0=0{,}38\\)", "\\(p_0=0{,}35\\)", "\\(p_0=0{,}0324\\)", "\\(p_0=22\\)"],
+            "fehler": ["Kandidaten mit nicht passendem Prüfwert gewählt", "Fehlerwahrscheinlichkeit als Parameter übernommen", "Grenzwert als Parameter übernommen"]
         },
         {
-            "frage": "Was gibt das Signifikanzniveau \\(\\alpha\\) vor?",
-            "antworten": ["Die maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art", "Die maximal tolerierte Wahrscheinlichkeit für einen Fehler 2. Art", "Die Wahrscheinlichkeit, dass \\(H_0\\) wahr ist", "Den Anteil der Treffer in der Stichprobe"],
-            "fehler": ["Fehlerarten vertauscht", "Hypothesenwahrscheinlichkeit fälschlich aus dem Test abgeleitet", "Signifikanzniveau mit beobachtetem Anteil verwechselt"]
+            "frage": "Bei \\(p_0=0{,}28\\) und \\(\\overline{A}=\\{33,\\ldots,n\\}\\) soll \\(P_{0{,}28}(X\\geq33)=0{,}1580\\) gelten. Probieren ergibt für \\(n=90\\) den Wert \\(0{,}0459\\) und für \\(n=100\\) den Wert \\(0{,}1580\\). Welcher Stichprobenumfang ist gesucht?",
+            "antworten": ["Der Stichprobenumfang ist \\(n=100\\)", "Der Stichprobenumfang ist \\(n=90\\)", "Der Stichprobenumfang ist \\(n=33\\)", "Der Stichprobenumfang ist \\(n=0{,}28\\)"],
+            "fehler": ["Kandidaten mit nicht passendem Prüfwert gewählt", "Untere Grenze des Ablehnungsbereichs als Stichprobenumfang übernommen", "Parameter als Stichprobenumfang übernommen"]
         }
     ]
 }
