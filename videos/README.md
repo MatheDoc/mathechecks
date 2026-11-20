@@ -88,7 +88,7 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 
 Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern für alle Videos.
 
-- Schrift wie auf der Website (Inter), Formeln setzt LaTeX. Wörter stehen nicht in Formeln, sondern als Text daneben (`reihe`). Steht eine kleine Formel (etwa $a'$) mitten in einem Satz, sitzen Text und Formel mit `reihe(..., grundlinie=True)` auf einer gemeinsamen Schriftgrundlinie, sonst wirkt die Formel zu tief.
+- Schrift wie auf der Website (Inter), Formeln setzt LaTeX. Wörter stehen nicht in Formeln, sondern als Text daneben (`reihe`). Steht eine Formel mitten in einem Satz, sitzen Text und Formel mit `reihe(..., grundlinie=True)` auf einer gemeinsamen Schriftgrundlinie, sonst wirkt die Formel verschoben. Unterlängen werden dabei herausgerechnet, bei Text (g, p, y …) wie bei Formeln (Indizes wie $H_0$, Dezimalkomma wie $0{,}0287$); eine Zeile wie „Fehler 1. Art: 0,0287“ braucht deshalb keine Handkorrektur.
 - Zwei Farbebenen:
   - Stimmungsfarbe (`MARKE`, das Violett der Website), gedämpft und nur in Flächen und Rändern: Schimmer im Hintergrund, getönte Karte, Schrittnummern, Lichtpunkt beim Zeichnen, Schlussbild. Sie ist nie Schrift- oder Linienfarbe in der Rechnung und in allen Gebieten dieselbe, damit die Objektfarben in jedem Video dasselbe bedeuten.
   - Objektfarben, kräftig: Was zusammengehört, hat dieselbe Farbe, im Bild wie in der Rechnung. `HERVOR` (Orange) ist das Objekt, um das es gerade geht (Tangente und ihre Steigung, Kandidaten, die gesuchte Größe); `ROSE` und `BLAU` unterscheiden ein Paar (Hoch- und Tiefpunkt); `TUERKIS` und `GRUEN` stehen für weitere Objekte bereit. `BLAU` ist ein Himmelblau, damit es sich vom Violett absetzt.

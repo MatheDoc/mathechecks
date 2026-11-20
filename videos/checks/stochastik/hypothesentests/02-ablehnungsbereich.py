@@ -79,15 +79,15 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Ein Hersteller verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
+            "Ein Hersteller eines Computerspiels verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
             "Die Community vermutet weniger und testet fünfzig Boxen. Das Signifikanzniveau ist fünf Prozent."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
             self.warte_bis(0.15)
             self.play(auftritt(lage[1]), run_time=0.5)
-            self.warte_bis(0.5)
+            self.warte_bis(0.55)
             self.play(auftritt(lage[2]), auftritt(lage[3]), run_time=0.5)
-            self.warte_bis(0.75)
+            self.warte_bis(0.78)
             self.play(auftritt(lage[4]), run_time=0.5)
         self.play(FadeOut(lage, shift=0.25 * UP), run_time=0.4)
 
@@ -104,16 +104,18 @@ class Video(MCSzene):
             abstand=0.3, unter=tab,
         )
         with self.sprich(
-            "Die Gegenhypothese zeigt nach unten, also liegt der Ablehnungsbereich links: null bis k. "
+            "Die Gegenhypothese besagt, dass p kleiner ist als vom Hersteller behauptet. "
+            "Also liegt der Ablehnungsbereich links: null bis k. "
             "Seine Wahrscheinlichkeit ist der Fehler erster Art und darf höchstens fünf Prozent sein. "
             "Er soll aber möglichst groß sein. Gesucht ist also das größte k."
         ):
             self.play(auftritt(tab[0]), run_time=0.6)
-            self.warte_bis(0.2)
+            self.play(welle(tab[0][1], HERVOR), run_time=0.6)
+            self.warte_bis(0.26)
             self.play(auftritt(tab[1]), welle(hist.ort(0), ROSE), run_time=0.7)
-            self.warte_bis(0.45)
+            self.warte_bis(0.55)
             self.play(Write(bedingung), run_time=0.9)
-            self.warte_bis(0.85)
+            self.warte_bis(0.87)
             self.play(auftritt(ansatz[0]), run_time=0.5)
         self.wait(0.4)
         self.play(FadeOut(ansatz, shift=0.25 * UP), run_time=0.4)

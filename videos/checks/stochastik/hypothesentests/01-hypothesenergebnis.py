@@ -56,7 +56,7 @@ def titel(inhalt: str) -> Mobject:
 
 def fehlerfall(bereich_tex: str, p_tex: str) -> VGroup:
     """„Ergebnis in <Bereich>, aber <p> stimmt“; das Komma sitzt direkt am Bereich."""
-    zeile = satz("Ergebnis in", formel(bereich_tex), ", aber", formel(p_tex), "stimmt")
+    zeile = satz("Ergebnis in", formel(bereich_tex), ", obwohl", formel(p_tex), "stimmt")
     VGroup(*zeile[2:]).shift(0.14 * LEFT)
     return zeile
 
@@ -88,7 +88,7 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Ein Hersteller verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
+            "Ein Hersteller eines Computerspiels verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
             "Die Community vermutet weniger. Ein Spieler testet fünfzig Boxen."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
@@ -114,7 +114,7 @@ class Video(MCSzene):
             self.warte_bis(0.5)
             self.play(auftritt(tabelle_links[0][1]), run_time=0.5)
         with self.sprich(
-            "Die Regel: Bei höchstens fünf seltenen Items gehen wir von einem niedrigeren Anteil aus. "
+            "Angenommen es gibt folgende Regel: Bei höchstens fünf seltenen Items gehen wir von einem niedrigeren Anteil aus. "
             "Null bis fünf ist der Ablehnungsbereich, ab sechs der Annahmebereich. "
             "Der Ablehnungsbereich liegt links: ein linksseitiger Test."
         ):
@@ -137,18 +137,23 @@ class Video(MCSzene):
             satz("Ergebnis:", formel("4", groesse=G_FORMEL, farbe=HERVOR), "seltene Items"),
             lage_4,
             satz(formel("H_0", groesse=G_FORMEL), "wird verworfen"),
+            text("keine 100%ige Sicherheit", groesse=G_TEXT, farbe=TEXT_LEISE),
             abstand=0.45, unter=tabelle_links,
         )
+        entscheidung[3].shift(0.1 * DOWN)
         with self.sprich(
             "Der Spieler findet bei dem Test nun vier seltene Items. Vier liegt im Ablehnungsbereich, "
-            "also verwerfen wir die Nullhypothese."
+            "also verwerfen wir die Nullhypothese. "
+            "Wir können uns aber nicht hundertprozentig sicher sein, ob die Nullhypothese nicht doch stimmt."
         ):
             self.play(auftritt(entscheidung[0]), run_time=0.5)
             self.play(Write(zeiger), welle(hist.ort(4), HERVOR), run_time=0.6)
-            self.warte_bis(0.45)
+            self.warte_bis(0.35)
             self.play(Write(lage_4), run_time=0.7)
-            self.warte_bis(0.75)
+            self.warte_bis(0.55)
             self.play(auftritt(entscheidung[2]), run_time=0.5)
+            self.warte_bis(0.75)
+            self.play(auftritt(entscheidung[3]), run_time=0.5)
         self.wait(0.4)
         self.play(FadeOut(entscheidung, shift=0.25 * UP), FadeOut(zeiger), run_time=0.4)
 
@@ -158,19 +163,22 @@ class Video(MCSzene):
         fehler1 = self.tafel(
             titel("Fehler 1. Art"),
             satz(formel("H_0", groesse=G_FORMEL), "stimmt, wird aber verworfen"),
+            text("mit dem Taschenrechner:", groesse=28, farbe=TEXT_LEISE),
             f1_rechnung, f1_ergebnis,
             abstand=0.4, unter=tabelle_links,
         )
         with self.sprich(
             "Fehler erster Art: Die Nullhypothese stimmt, wird aber verworfen. "
-            "Das Ergebnis liegt also im Ablehnungsbereich, obwohl p gleich null Komma zwei ist."
+            "Das Ergebnis liegt also im Ablehnungsbereich, obwohl p gleich null Komma zwei ist. "
+            "Die entsprechende Intervallwahrscheinlichkeit kann mit dem Taschenrechner bestimmt werden."
         ):
             self.play(auftritt(fehler1[0]), run_time=0.5)
-            self.warte_bis(0.2)
+            self.warte_bis(0.12)
             self.play(auftritt(fehler1[1]), run_time=0.5)
-            self.warte_bis(0.6)
+            self.warte_bis(0.32)
             self.play(hist.faerbe((0, 5, ROSE)), welle(tabelle_links[1][1], ROSE), run_time=0.7)
-            self.warte_bis(0.8)
+            self.warte_bis(0.7)
+            self.play(auftritt(fehler1[2]), run_time=0.4)
             self.play(Write(f1_rechnung), run_time=0.9)
             self.play(auftritt(f1_ergebnis), run_time=0.4)
         self.wait(0.6)
@@ -187,7 +195,7 @@ class Video(MCSzene):
             abstand=0.4, unter=tabelle_links,
         )
         with self.sprich(
-            "Fehler zweiter Art: Der Anteil ist nun wirklich gesunken, und zwar auf zehn Prozent, "
+            "Es gibt auch den Fehler zweiter Art: Der Anteil ist nun wirklich gesunken, und zwar auf zehn Prozent, "
             "wir bleiben aber bei der Nullhypothese. Das Ergebnis liegt also im Annahmebereich, obwohl p gleich null Komma eins ist."
         ):
             self.play(auftritt(fehler2[0]), run_time=0.5)

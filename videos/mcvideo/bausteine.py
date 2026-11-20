@@ -108,7 +108,13 @@ def frage(*zeilen: str, zusatz: str | None = None) -> VGroup:
 
 
 def _grundlinie(teil: Mobject) -> float:
-    """Höhe der Schriftgrundlinie eines Teils. Bei einem Text zählen Unterlängen (g, p, y …) nicht mit."""
+    """Höhe der Schriftgrundlinie eines Teils. Unterlängen zählen nicht mit: bei Text g, p, y …,
+    bei Formeln Indizes (H_0) und das Dezimalkomma (0{,}2)."""
+    if isinstance(teil, MathTex):
+        # LaTeX setzt ein vorangestelltes x auf dieselbe Grundlinie; dessen Unterkante ist die Grundlinie.
+        probe = MathTex(r"\mathrm{x}", teil.get_tex_string())
+        massstab = teil.height / probe[1].height
+        return teil.get_bottom()[1] + (probe[0].get_bottom()[1] - probe[1].get_bottom()[1]) * massstab
     if not isinstance(teil, Text):
         return teil.get_bottom()[1]
     ohne_unterlaenge = Text(

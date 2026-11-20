@@ -1,13 +1,14 @@
 """Check 03 – p oder n aus Fehler-Wkt bestimmen.
 
-Kernidee: Die gegebene Fehlerwahrscheinlichkeit als Bcd mit der Unbekannten schreiben, gleichsetzen und probieren.
-Fehler 1. Art: Ablehnungsbereich mit p_0; Fehler 2. Art: Annahmebereich mit p_1.
+Kernidee: Die Intervallwahrscheinlichkeit mit der Unbekannten notieren, mit der gegebenen Fehlerwahrscheinlichkeit
+gleichsetzen und die Unbekannte durch Probieren bestimmen.
 Beispiel: Lootboxen wie in Check 01 und 02 (n = 80, Regel „höchstens 9“, Fehler 1. Art 0,0287, gesucht p_0 = 0,2)
-statt der Kronkorken im Musterbeispiel. Durchgerechnet wird nur p_0; n und der Fehler 2. Art nur als Hinweis.
+statt der Kronkorken im Musterbeispiel. Durchgerechnet wird nur p_0 (Probieren nur im Histogramm, nur der Treffer
+als Rechnung); n nur als kurzer Hinweis, der Fehler 2. Art fehlt.
 """
 from manim import BOLD, DOWN, LEFT, UP, FadeOut, MathTex, Mobject, VGroup, Write
 
-from mcvideo import Histogramm, MCSzene, auftritt, aufzaehlung, formel, reihe, text, welle
+from mcvideo import Histogramm, MCSzene, auftritt, formel, kurzfassung, reihe, text, welle
 from mcvideo.theme import HERVOR, ROSE, TEXT_LEISE
 
 G_FORMEL = 44
@@ -31,11 +32,6 @@ def eingabe(n: str, p: str, rechts: str, gesucht: int) -> MathTex:
     return zeile
 
 
-def punkt(stichwort: str, *zeilen: Mobject) -> VGroup:
-    """Punkt der Kurzfassung: Stichwort in Grau, darunter der Inhalt."""
-    return VGroup(text(stichwort, groesse=28, farbe=TEXT_LEISE), *zeilen).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
-
-
 class Video(MCSzene):
     def inhalt(self) -> None:
         karte = self.buehne(hoehe=4.0)
@@ -52,30 +48,45 @@ class Video(MCSzene):
         )
 
         # ---------- Sachzusammenhang ----------
+        frage_p0 = formel("p_0", "?", groesse=G_FORMEL)
+        frage_p0[0].set_color(HERVOR)
+        nullhypothese = formel("H_0:", r"\ p=", "p_0", groesse=G_FORMEL)
+        nullhypothese[2].set_color(HERVOR)
+        ablehnung_kurz = formel(r"\{0,\ldots,9\}", groesse=G_FORMEL, farbe=ROSE)
         lage = self.tafel(
-            text("Lootboxen: linksseitiger Test", groesse=42, gewicht=BOLD),
-            text("Test mit 80 Boxen", groesse=G_TEXT),
-            satz("höchstens 9 seltene Items:"),
-            satz(formel("H_0", groesse=G_FORMEL), "verwerfen"),
+            text("Lootboxen", groesse=46, gewicht=BOLD),
+            VGroup(
+                nullhypothese,
+                text("Wahrscheinlichkeit für ein seltenes Item", groesse=24, farbe=TEXT_LEISE),
+            ).arrange(DOWN, buff=0.15),
+            text("bekannt:", groesse=28, farbe=TEXT_LEISE),
             satz("Fehler 1. Art:", formel("0{,}0287", groesse=G_FORMEL)),
-            satz("Welcher Anteil", formel("p_0", groesse=G_FORMEL, farbe=HERVOR), "wurde getestet?"),
-            abstand=0.4,
+            satz("Stichprobenumfang:", formel("n=80", groesse=G_FORMEL)),
+            satz("Ablehnungsbereich:", ablehnung_kurz),
+            satz("Wie groß ist", frage_p0),
+            abstand=0.35,
         )
-        mitte = lage[2:4].get_center()
-        lage[2:4].arrange(DOWN, buff=0.15).move_to(mitte)
-        lage[5].shift(0.3 * DOWN)
+        lage[2:].shift(0.2 * DOWN)
+        lage[6].shift(0.3 * DOWN)
         with self.sprich(
-            "Ein linksseitiger Test mit achtzig Lootboxen: Bei höchstens neun seltenen Items wird die "
-            "Nullhypothese verworfen. Der Fehler erster Art hat die Wahrscheinlichkeit null Komma null zwei acht sieben. "
-            "Welcher Anteil p null wurde getestet?"
+            "Die Nullhypothese eines Tests besagt, dass Lootboxen in einem Computerspiel mit einer "
+            "Wahrscheinlichkeit von p null ein seltenes Item enthalten. "
+            "Bekannt ist der Fehler erster Art, der Stichprobenumfang und der Ablehnungsbereich. "
+            "Wie groß ist p null?"
         ):
-            self.play(auftritt(lage[0]), auftritt(lage[1]), run_time=0.5)
-            self.warte_bis(0.15)
-            self.play(auftritt(lage[2:4]), hist.faerbe((0, 9, ROSE)), run_time=0.7)
-            self.warte_bis(0.5)
+            self.play(auftritt(lage[0]), run_time=0.5)
+            self.warte_bis(0.1)
+            self.play(auftritt(lage[1]), run_time=0.6)
+            self.warte_bis(0.55)
+            self.play(auftritt(lage[2]), run_time=0.4)
+            self.warte_bis(0.62)
+            self.play(auftritt(lage[3]), run_time=0.5)
+            self.warte_bis(0.72)
             self.play(auftritt(lage[4]), run_time=0.5)
-            self.warte_bis(0.85)
-            self.play(auftritt(lage[5]), run_time=0.5)
+            self.warte_bis(0.8)
+            self.play(auftritt(lage[5]), hist.faerbe((0, 9, ROSE)), run_time=0.7)
+            self.warte_bis(0.9)
+            self.play(auftritt(lage[6]), run_time=0.5)
         self.wait(0.3)
         self.play(FadeOut(lage, shift=0.25 * UP), run_time=0.4)
 
@@ -89,48 +100,43 @@ class Video(MCSzene):
         gleichung[2].set_color(ROSE)
         gleichung[4].set_color(ROSE)
         gleichung[6].set_color(HERVOR)
-        ansatz = self.tafel(
-            satz("Fehler 1. Art: Ablehnungsbereich mit", formel("p_0", groesse=G_FORMEL, farbe=HERVOR)),
-            gleichung,
-            abstand=0.45, unter=oben,
-        )
+        erklaerung = VGroup(
+            satz("Fehler 1. Art:", formel("X", groesse=G_FORMEL), "im Ablehnungsbereich,"),
+            satz("obwohl", formel("p_0", groesse=G_FORMEL, farbe=HERVOR), "zutrifft"),
+        ).arrange(DOWN, buff=0.15)
+        ansatz = self.tafel(erklaerung, gleichung, abstand=0.5, unter=oben)
         with self.sprich(
-            "Fehler erster Art heißt: Ablehnungsbereich, gerechnet mit p null. "
-            "Das setzen wir gleich null Komma null zwei acht sieben."
+            "Der Fehler erster Art ist die Wahrscheinlichkeit, dass X im Ablehnungsbereich liegt, "
+            "obwohl p null zutrifft. Diese Wahrscheinlichkeit setzen wir gleich null Komma null zwei acht sieben."
         ):
             self.play(auftritt(oben), welle(hist.ort(9), ROSE), run_time=0.6)
-            self.warte_bis(0.15)
-            self.play(auftritt(ansatz[0]), run_time=0.5)
-            self.warte_bis(0.55)
+            self.warte_bis(0.1)
+            self.play(auftritt(erklaerung[0]), run_time=0.5)
+            self.warte_bis(0.4)
+            self.play(auftritt(erklaerung[1]), run_time=0.5)
+            self.warte_bis(0.6)
             self.play(Write(gleichung), run_time=1.1)
         self.wait(0.4)
 
         # ---------- Probieren ----------
-        versuche = [
-            ("0{,}15", r"\approx 0{,}2211", 0.15),
-            ("0{,}19", r"\approx 0{,}0459", 0.19),
-            ("0{,}2", r"\approx 0{,}0287\ \checkmark", 0.2),
-        ]
-        zeilen = [eingabe("80", p, rechts, gesucht=7) for p, rechts, _ in versuche]
+        treffer = eingabe("80", "0{,}2", r"\approx 0{,}0287\ \checkmark", gesucht=7)
         ergebnis = formel("p_0=0{,}2", groesse=60, farbe=HERVOR)
-        block = VGroup(gleichung.copy(), *zeilen, ergebnis)
-        probieren = self.tafel(*block, abstand=0.4, unter=oben)
+        probieren = self.tafel(gleichung.copy(), treffer, ergebnis, abstand=0.5, unter=oben)
         ergebnis.shift(0.2 * DOWN)
         with self.sprich(
-            "Jetzt probieren wir. Bei null Komma eins fünf ist der Ablehnungsbereich viel zu wahrscheinlich. "
-            "Ein größeres p schiebt die Verteilung nach rechts. "
-            "Bei null Komma eins neun noch etwas zu viel, bei null Komma zwei passt es genau."
+            "Jetzt probieren wir verschiedene Werte für p null aus, bis die Wahrscheinlichkeit passt. "
+            "Bei null Komma zwei stimmt sie genau."
         ):
             self.play(
                 FadeOut(ansatz[0], shift=0.25 * UP), gleichung.animate.move_to(probieren[0]), run_time=0.6,
             )
             self.remove(gleichung)
             self.add(probieren[0])
-            self.play(Write(zeilen[0]), hist.zu(0.15, "p_0=0{,}15"), run_time=0.9)
-            for zeile, (_, _, p), beginn in zip(zeilen[1:], versuche[1:], (0.5, 0.75)):
+            for p, beginn in ((0.15, 0.15), (0.17, 0.3), (0.19, 0.45), (0.2, 0.62)):
                 self.warte_bis(beginn)
-                self.play(hist.zu(p, f"p_0={p:g}".replace(".", "{,}")), run_time=0.9)
-                self.play(Write(zeile), run_time=0.8)
+                self.play(hist.zu(p, f"p_0={p:g}".replace(".", "{,}")), run_time=0.7)
+            self.warte_bis(0.75)
+            self.play(Write(treffer), run_time=0.9)
             self.play(auftritt(ergebnis), run_time=0.5)
         self.wait(0.6)
         self.play(FadeOut(probieren, shift=0.25 * UP), run_time=0.4)
@@ -153,20 +159,27 @@ class Video(MCSzene):
         self.play(FadeOut(hinweis, shift=0.25 * UP), FadeOut(oben, shift=0.25 * UP), run_time=0.4)
 
         # ---------- Kurzfassung ----------
-        punkte = aufzaehlung(
-            punkt("Fehler 1. Art", satz("Ablehnungsbereich mit", formel("p_0"))),
-            punkt("Fehler 2. Art", satz("Annahmebereich mit", formel("p_1"))),
-            punkt("dann", satz("gleichsetzen,", formel("p"), "oder", formel("n"), "probieren")),
-            abstand=0.6,
+        def p_oder_n(*davor: str, danach: str) -> VGroup:
+            return satz(
+                *davor, formel("p", groesse=G_FORMEL, farbe=HERVOR), "oder",
+                formel("n", groesse=G_FORMEL, farbe=HERVOR), danach,
+            )
+
+        schritte = kurzfassung(
+            VGroup(text("Intervallwahrscheinlichkeit mit", groesse=G_TEXT), p_oder_n("unbekanntem", danach="notieren"))
+            .arrange(DOWN, buff=0.15, aligned_edge=LEFT),
+            VGroup(text("mit gegebener Fehler-", groesse=G_TEXT), text("wahrscheinlichkeit gleichsetzen", groesse=G_TEXT))
+            .arrange(DOWN, buff=0.15, aligned_edge=LEFT),
+            p_oder_n(danach="durch Probieren bestimmen"),
         )
-        self.tafel(punkte)
+        self.tafel(schritte)
         with self.sprich(
-            "Kurz gesagt: Fehler erster Art heißt Ablehnungsbereich mit p null, "
-            "Fehler zweiter Art Annahmebereich mit p eins. Dann gleichsetzen und p oder n probieren."
+            "Kurz gesagt: Die Intervallwahrscheinlichkeit mit unbekanntem p oder n notieren, "
+            "mit der gegebenen Fehlerwahrscheinlichkeit gleichsetzen und dann p oder n durch Probieren bestimmen."
         ):
-            self.play(auftritt(punkte[0]), run_time=0.5)
-            self.warte_bis(0.4)
-            self.play(auftritt(punkte[1]), run_time=0.5)
+            self.play(auftritt(schritte[0]), run_time=0.5)
+            self.warte_bis(0.45)
+            self.play(auftritt(schritte[1]), run_time=0.5)
             self.warte_bis(0.75)
-            self.play(auftritt(punkte[2]), run_time=0.5)
+            self.play(auftritt(schritte[2]), run_time=0.5)
         self.wait(1.0)
