@@ -191,20 +191,28 @@ class MCSzene(VoiceoverScene):
                 zahl.set_z_index(1)
         return linie
 
-    def tafel(self, *zeilen: Mobject, abstand: float = 0.38) -> VGroup:
+    def tafel(self, *zeilen: Mobject, abstand: float = 0.38, unter: Mobject | None = None) -> VGroup:
         """Ordnet Zeilen untereinander an und setzt sie in den Rechenbereich unter der Karte.
 
         Eine zu breite Zeile wird allein verkleinert; die übrigen behalten ihre Größe.
         Bleibt Platz frei, rückt der Block ein Stück nach unten (theme.TAFEL_LAGE), damit das Bild
         gleichmäßiger gefüllt ist.
+        unter: Objekt, das oben auf der Tafel stehen bleibt (etwa die Hypothesen); der Block kommt darunter.
         """
         oben = self._karte_unten - t.TAFEL_ABSTAND
+        if unter is not None:
+            oben = unter.get_bottom()[1] - 1.2 * t.TAFEL_ABSTAND
         for zeile in zeilen:
             einpassen(zeile, t.TAFEL_BREITE)
         block = VGroup(*zeilen).arrange(DOWN, buff=abstand)
         einpassen(block, hoehe=oben - t.RAND_UNTEN)
         frei = oben - t.RAND_UNTEN - block.height
         return block.move_to([0, oben - t.TAFEL_LAGE * frei - block.height / 2, 0])
+
+    def oben_auf_tafel(self, mob: Mobject) -> Mobject:
+        """Setzt ein Objekt oben auf die Tafel, damit es stehen bleibt, während darunter gerechnet wird (tafel(unter=...))."""
+        einpassen(mob, t.TAFEL_BREITE)
+        return mob.move_to([0, self._karte_unten - t.TAFEL_ABSTAND - mob.height / 2, 0])
 
     # ---------- Ton ----------
     @contextmanager

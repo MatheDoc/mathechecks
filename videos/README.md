@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit sieben Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit zehn Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -16,6 +16,7 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Diagramm lesen ohne Ablauf, nach den Teilaufgaben des Trainings | `stochastik/bedingte-wahrscheinlichkeiten/03-baumdiagramm-folgern-mit-unabh.py` |
 | Graph im Sachzusammenhang lesen (Kennzahl ↔ Merkmal, jede Kennzahl eine Farbe) | `analysis/produktlebenszyklus/01-kennzahlen-graphisch-umsatz.py` |
 | Sachaufgabe: Größen im Text erkennen und in eine Formel einsetzen (Orange nur für die gesuchte Größe, Zeitstrahl) | `finanzmathematik/zinseszinsrechnung/02-zinseszins-sachaufgaben.py` |
+| Bereiche einer Verteilung im Histogramm, Tabelle bleibt oben stehen (Hypothesentest) | `stochastik/hypothesentests/01-hypothesenergebnis.py` |
 
 ## Aufbau
 
@@ -27,7 +28,7 @@ videos/
   mcvideo/                  gemeinsame Bibliothek
     theme.py                Farben, Schrift, Bildaufteilung, Auflösung
     szene.py                Basisszene MCSzene: Logo, Bereiche, Ton, Schlussbild, Randprüfung
-    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Zahlenstrahl, Versuche, Zeitstrahl, ErweiterteMatrix, Baumdiagramm, Betrag, Dezimalzahl, …
+    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Tabelle, Zahlenstrahl, Versuche, Histogramm, Zeitstrahl, ErweiterteMatrix, Baumdiagramm, Betrag, Dezimalzahl, …
     stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
@@ -104,6 +105,8 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Ein Bild stützt jedes Video, auch textlastige: Auf dem `Zahlenstrahl` erscheint der Bereich, von dem der Text spricht; `Versuche` zeigt einzelne Versuche, wenn es nicht um eine Anzahl geht.
 - Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen. Umformungen stehen wie im Heft rechts neben der Zeile; die Nebenrechnung darunter steht in denselben Spalten (`zahlenzeile`), danach wird die Zeile ersetzt (`umformen`). Zeilennamen sind aufrechte römische Zahlen.
 - Baumdiagramme: `Baumdiagramm` zeigt zwei Ereignisse A und B wie auf der Website (von links nach rechts, Wahrscheinlichkeiten an den Ästen, Produkte an den Pfadenden). `markiere` färbt die Äste und Pfadenden, um die es gerade geht, in der Farbe der zugehörigen Zahlen in der Rechnung.
+- Histogramme: `Histogramm` zeigt die Binomialverteilung mit dem Wert von p rechts oben. `faerbe` färbt Bereiche samt ihren Grenzen in der Beschriftung (Hypothesentests: Ablehnungsbereich `ROSE`, Annahmebereich `BLAU`), `zu` wechselt p bei gleichem Maßstab (etwa von $p_0$ zu $p_1$). Gesprochen wird „Annahmebereich“ und „Ablehnungsbereich“, nicht „A“ und „A quer“.
+- Was beim Rechnen stehen bleiben soll (etwa Hypothesen mit Annahme- und Ablehnungsbereich als `tabelle`), setzt `self.oben_auf_tafel(...)` oben auf die Tafel; `self.tafel(..., unter=...)` ordnet die Rechnung darunter an.
 - Zeitstrahl (Finanzmathematik): `Zeitstrahl` zeigt links den früheren und rechts den späteren Zeitpunkt. Über dem Strahl stehen die Zeitangaben, darunter Beträge und Zins. `zeige` ersetzt einzelne Angaben; `uebernimm` lässt ein Ergebnis aus der Rechnung an die Stelle des Fragezeichens wandern.
 - Geldbeträge: `betrag` setzt das Eurozeichen in der Hausschrift hinter die Formel, weil LaTeX hier kein Eurozeichen setzt (`\text{€}` bleibt leer).
 - Ein Wert, der weiterverwendet wird, behält seine Farbe und wandert sichtbar an die Stelle, an der er eingesetzt wird (Rückwärtseinsetzen).

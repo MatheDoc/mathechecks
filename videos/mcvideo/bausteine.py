@@ -1,4 +1,5 @@
 """Wiederkehrende Bildelemente der MatheChecks-Videos."""
+import math
 import re
 from collections.abc import Mapping
 
@@ -21,10 +22,12 @@ from manim import (
     Dot,
     FadeIn,
     FadeOut,
+    GrowFromEdge,
     LaggedStart,
     Line,
     MathTex,
     Mobject,
+    Rectangle,
     RoundedRectangle,
     SVGMobject,
     Text,
@@ -168,6 +171,17 @@ def aufzaehlung(*zeilen: Mobject | tuple[Mobject, Mobject], abstand: float = 0.4
     return einpassen(reihen, t.TAFEL_BREITE)
 
 
+def tabelle(*zeilen: tuple[Mobject, ...], abstand: tuple[float, float] = (0.9, 0.45)) -> VGroup:
+    """Zellen in Zeilen und Spalten, jede Spalte mittig ausgerichtet; Ergebnis ist die Gruppe der Zeilen.
+
+    abstand: (zwischen den Spalten, zwischen den Zeilen).
+    """
+    spalten = len(zeilen[0])
+    zellen = VGroup(*[zelle for zeile in zeilen for zelle in zeile])
+    zellen.arrange_in_grid(rows=len(zeilen), cols=spalten, buff=abstand)
+    return VGroup(*[VGroup(*zellen[i * spalten:(i + 1) * spalten]) for i in range(len(zeilen))])
+
+
 def schein(linie: VMobject) -> VGroup:
     """Weicher Lichtschein um eine Linie; vor der Linie einblenden."""
     breite = linie.get_stroke_width()
@@ -293,6 +307,126 @@ class Versuche(_Leiste):
     def markiere(self, *nummern: int, farbe: str = t.TUERKIS) -> Animation:
         """Hebt einzelne Versuche hervor."""
         return self._hervorheben(set(nummern), set(nummern), farbe)
+
+
+class Histogramm(VGroup):
+    """Histogramm der Binomialverteilung B(n; p) für die Anzahlen 0 bis bis.
+
+    Rechts oben steht der Wert von p, rechts neben der Grundlinie „… n“, wenn nicht alle Anzahlen zu sehen sind.
+    Beschriftet sind die Anzahlen in zahlen; beim Färben eines Bereichs kommen seine Grenzen dazu.
+    y_max legt die Höhe fest, damit beim Wechsel von p (zu) die Balken vergleichbar bleiben.
+    p_tex: Anzeige von p, falls sie vom Wert abweicht (etwa "p_0=\\,?").
+    """
+
+    def __init__(
+        self,
+        n: int,
+        p: float,
+        bis: int,
+        y_max: float,
+        zahlen: tuple[int, ...] = (0, 5, 10, 15, 20),
+        breite: float = t.BUEHNE_BREITE,
+        hoehe: float = 3.2,
+        p_tex: str | None = None,
+    ) -> None:
+        super().__init__()
+        self.n, self.p, self.y_max, self.hoehe = n, p, y_max, hoehe
+        self.werte = list(range(bis + 1))
+        self._zahlen = set(zahlen)
+        raster = breite / (len(self.werte) + (1.2 if bis < n else 0))
+        self.grundlinie = Line([-0.5 * raster, 0, 0], [(bis + 0.5) * raster, 0, 0], color=t.ACHSE, stroke_width=3)
+        self._laenge = self.grundlinie.get_length()
+        self.balken = VGroup(*[
+            Rectangle(
+                width=0.82 * raster, height=self._hoehe(k, p), fill_color=t.FELD, fill_opacity=1, stroke_width=0,
+            ).move_to([k * raster, 0, 0], aligned_edge=DOWN)
+            for k in self.werte
+        ])
+        groesse = 20 if raster > 0.3 else 16
+        self.zahlen = VGroup(*[
+            text(str(k), groesse=groesse, farbe=t.TEXT_LEISE).next_to(self.grundlinie, DOWN, buff=0.14).set_x(k * raster)
+            for k in self.werte
+        ])
+        for k, zahl in zip(self.werte, self.zahlen):
+            if k not in self._zahlen:
+                zahl.set_opacity(0)
+        self.add(self.grundlinie, self.balken, self.zahlen)
+        if bis < n:
+            self.ende = text(f"… {n}", groesse=groesse, farbe=t.TEXT_LEISE)
+            self.ende.next_to(self.grundlinie, RIGHT, buff=0.12).align_to(self.zahlen[0], DOWN)
+            self.add(self.ende)
+        self.p_text = self._p_text(p_tex or f"p={_zahl(p)}")
+        self.add(self.p_text)
+
+    def _massstab(self) -> float:
+        """Aktuelle Größe im Verhältnis zur Größe beim Anlegen (auf_buehne verkleinert das Histogramm)."""
+        return self.grundlinie.get_length() / self._laenge
+
+    def _hoehe(self, k: int, p: float) -> float:
+        hoehe = math.comb(self.n, k) * p**k * (1 - p) ** (self.n - k) / self.y_max * self.hoehe
+        return max(hoehe * self._massstab(), 0.002)
+
+    def _p_text(self, tex: str) -> MathTex:
+        massstab = self._massstab()
+        return formel(tex, groesse=40 * massstab).move_to(
+            [self.grundlinie.get_right()[0], self.grundlinie.get_y() + self.hoehe * massstab, 0],
+            aligned_edge=UP + RIGHT,
+        )
+
+    def aufbau(self) -> list[Animation]:
+        """Die Balken wachsen von links nach rechts aus der Grundlinie, ein Lichtpunkt läuft mit."""
+        sichtbar = [zahl for k, zahl in zip(self.werte, self.zahlen) if k in self._zahlen]
+        return [
+            Create(self.grundlinie),
+            LaggedStart(*[GrowFromEdge(balken, DOWN) for balken in self.balken], lag_ratio=0.04),
+            FadeIn(VGroup(*sichtbar, *([self.ende] if hasattr(self, "ende") else []), self.p_text)),
+            lichtpunkt(self.grundlinie.copy()),
+        ]
+
+    def faerbe(self, *bereiche: tuple[int, int, str]) -> Animation:
+        """Färbt Bereiche (von, bis, Farbe) samt ihren Grenzen in der Beschriftung; übrige Balken treten zurück.
+
+        Ohne Angaben kehrt das Histogramm in den Grundzustand zurück.
+        """
+        farben: dict[int, str] = {}
+        grenzen: dict[int, str] = {}
+        for von, bis, farbe in bereiche:
+            for k in range(von, bis + 1):
+                farben[k] = farbe
+            grenzen[von] = grenzen[bis] = farbe
+        schritte = []
+        for k, balken, zahl in zip(self.werte, self.balken, self.zahlen):
+            if not bereiche:
+                fuellung = t.FELD
+            else:
+                fuellung = farben.get(k, t.FELD_LEISE)
+            schritte.append(balken.animate.set_fill(fuellung))
+            if k in grenzen:
+                schritte.append(zahl.animate.set_color(grenzen[k]).set_opacity(1))
+            elif k in self._zahlen and not any(abs(k - g) <= 1 for g in grenzen):
+                schritte.append(zahl.animate.set_color(t.TEXT_LEISE).set_opacity(1))
+            else:
+                schritte.append(zahl.animate.set_opacity(0))
+        return AnimationGroup(*schritte)
+
+    def zu(self, p: float, p_tex: str | None = None) -> Animation:
+        """Wechselt zur Verteilung mit einem anderen p; die Färbung bleibt."""
+        self.p = p
+        neu = self._p_text(p_tex or f"p={_zahl(p)}")
+        alt, self.p_text = self.p_text, neu
+        self.remove(alt).add(neu)
+        return AnimationGroup(
+            *[
+                balken.animate.stretch_to_fit_height(self._hoehe(k, p), about_edge=DOWN)
+                for k, balken in zip(self.werte, self.balken)
+            ],
+            FadeOut(alt),
+            FadeIn(neu),
+        )
+
+    def ort(self, k: int) -> np.ndarray:
+        """Oberkante des Balkens zur Anzahl k."""
+        return self.balken[k].get_top()
 
 
 class Zeitstrahl(VGroup):
