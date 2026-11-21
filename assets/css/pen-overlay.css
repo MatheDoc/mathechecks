@@ -18,10 +18,9 @@
 #pen-toolbar {
   position: fixed;
   right: calc(14px + var(--calculator-dock-offset, 0px));
-  /* unterhalb Topbar + Modul-Tab-Nav + optionaler Check-Nav (im Vollbild alle 0) */
+  /* unterhalb Topbar + optionaler Check-Nav (im Vollbild alle 0) */
   top: calc(
     var(--module-top-row-h, var(--sticky-topbar-h, 72px))
-    + var(--module-tab-nav-h, 52px)
     + var(--module-check-nav-h, 0px)
     + 24px
   );

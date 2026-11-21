@@ -19,17 +19,65 @@
             </div>
         </div>
         {% if show_lb_switch %}
-        <div class="lb-row">
-            <select class="lb-switch filter-select lb-gebiet-filter" data-lb-nav="true"
-                aria-label="Lernbereich auswählen">
-                {% for lb in site.data.lernbereiche %}
-                {% assign target_url = '/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug |
-                append: '/start.html' %}
-                <option value="{{ target_url | relative_url }}" data-gebiet="{{ lb.gebiet }}" {% if
-                    page.lernbereich==lb.slug %}selected{% endif %}>{{ lb.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
+        {% assign current_lb = site.data.lernbereiche | where: "slug", page.lernbereich | first %}
+        {% assign current_gebiet = nil %}
+        {% if current_lb %}{% assign current_gebiet = site.data.gebiete | where: "key", current_lb.gebiet | first %}{% endif %}
+        {% assign current_mt = nil %}
+        {% if page.module_key %}{% assign current_mt = site.data.moduletypen | where: "key", page.module_key | first %}{% endif %}
+        {% assign lb_target_module = 'start' %}
+        {% if current_mt %}{% assign lb_target_module = current_mt.key %}{% endif %}
+        {% assign picker_chevron = '<svg class="topbar-picker__chevron" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6l4 4 4-4"></path></svg>' %}
+        <nav class="topbar-pickers" aria-label="Lernbereich und Modul">
+            <details class="topbar-picker topbar-picker--lb" data-topbar-picker>
+                <summary class="topbar-picker__trigger"
+                    aria-label="Lernbereich wechseln{% if current_lb %} (aktuell: {{ current_lb.name }}){% endif %}"
+                    title="Lernbereich wechseln"{% if current_gebiet %} style="--picker-accent: {{ current_gebiet.chip_color }};"{% endif %}>
+                    <span class="topbar-picker__icon" aria-hidden="true">{% if current_gebiet %}{{ current_gebiet.icon }}{% else %}🗂️{% endif %}</span>
+                    <span class="topbar-picker__label">{% if current_lb %}{{ current_lb.name }}{% else %}Lernbereich wählen{% endif %}</span>
+                    {{ picker_chevron }}
+                </summary>
+                <div class="topbar-picker__popover topbar-picker__popover--lb">
+                    {% assign gebiete_sorted = site.data.gebiete | sort: "order" %}
+                    {% for g in gebiete_sorted %}
+                    {% assign g_lbs = site.data.lernbereiche | where: "gebiet", g.key | sort: "didactic_order" %}
+                    {% if g_lbs.size > 0 %}
+                    <div class="topbar-picker__group" style="--picker-accent: {{ g.chip_color }};">
+                        <p class="topbar-picker__group-title"><span aria-hidden="true">{{ g.icon }}</span> {{ g.name }}</p>
+                        {% for lb in g_lbs %}
+                        {% assign lb_url = '/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append: '/' | append: lb_target_module | append: '.html' %}
+                        <a class="topbar-picker__item{% if page.lernbereich == lb.slug %} is-active{% endif %}"
+                            href="{{ lb_url | relative_url }}"{% if page.lernbereich == lb.slug %} aria-current="page"{% endif %}>
+                            <span class="topbar-picker__item-label">{{ lb.name }}</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </details>
+            {% if current_mt and current_lb %}
+            {% assign module_base = '/lernbereiche/' | append: current_lb.gebiet | append: '/' | append: current_lb.slug | append: '/' %}
+            <details class="topbar-picker topbar-picker--module" data-topbar-picker>
+                <summary class="topbar-picker__trigger"
+                    aria-label="Modul wechseln (aktuell: {{ current_mt.name }})" title="Modul wechseln"
+                    style="--picker-accent: var(--mt-{{ current_mt.key }});">
+                    <span class="topbar-picker__icon" aria-hidden="true">{{ current_mt.icon }}</span>
+                    <span class="topbar-picker__label">{{ current_mt.name }}</span>
+                    {{ picker_chevron }}
+                </summary>
+                <div class="topbar-picker__popover topbar-picker__popover--module">
+                    {% for mt in site.data.moduletypen %}
+                    <a class="topbar-picker__item{% if mt.key == current_mt.key %} is-active{% endif %}"
+                        href="{{ module_base | append: mt.key | append: '.html' | relative_url }}"
+                        style="--picker-accent: var(--mt-{{ mt.key }});"{% if mt.key == current_mt.key %} aria-current="page"{% endif %}>
+                        <span class="topbar-picker__item-icon" aria-hidden="true">{{ mt.icon }}</span>
+                        <span class="topbar-picker__item-label">{{ mt.name }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </details>
+            {% endif %}
+        </nav>
         {% endif %}
     </div>
     <div class="topbar-right">
@@ -171,10 +219,8 @@
         const rules = [];
         gebiete.forEach((g) => {
             if (!g || !g.key) return;
-            rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
             rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
             rules.push(`.mat-card--compact[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
-            rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
             rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
         });
 

@@ -57,24 +57,48 @@
 
     (function () {
         const actionsMenu = document.querySelector('.topbar-actions-menu');
-        if (!actionsMenu) return;
+        const pickers = Array.from(document.querySelectorAll('details[data-topbar-picker]'));
+        const menus = actionsMenu ? [...pickers, actionsMenu] : pickers;
+        if (!menus.length) return;
 
-        const menuItems = Array.from(actionsMenu.querySelectorAll('.topbar-actions-item'));
-        menuItems.forEach((item) => {
-            item.addEventListener('click', () => {
-                window.setTimeout(() => actionsMenu.removeAttribute('open'), 0);
+        const closeAll = (except) => {
+            menus.forEach((menu) => {
+                if (menu !== except) menu.removeAttribute('open');
+            });
+        };
+
+        menus.forEach((menu) => {
+            menu.addEventListener('toggle', () => {
+                if (!menu.open) return;
+                closeAll(menu);
+                const activeItem = menu.querySelector('.topbar-picker__item.is-active');
+                const popover = activeItem && activeItem.closest('.topbar-picker__popover');
+                if (popover) {
+                    popover.scrollTop = activeItem.offsetTop - (popover.clientHeight - activeItem.offsetHeight) / 2;
+                }
             });
         });
 
+        if (actionsMenu) {
+            actionsMenu.querySelectorAll('.topbar-actions-item').forEach((item) => {
+                item.addEventListener('click', () => {
+                    window.setTimeout(() => actionsMenu.removeAttribute('open'), 0);
+                });
+            });
+        }
+
         document.addEventListener('click', (event) => {
-            if (!actionsMenu.hasAttribute('open')) return;
-            if (actionsMenu.contains(event.target)) return;
-            actionsMenu.removeAttribute('open');
+            const openMenu = menus.find((menu) => menu.open);
+            if (!openMenu || openMenu.contains(event.target)) return;
+            openMenu.removeAttribute('open');
         });
 
         document.addEventListener('keydown', (event) => {
             if (event.key !== 'Escape') return;
-            actionsMenu.removeAttribute('open');
+            const openMenu = menus.find((menu) => menu.open);
+            if (!openMenu) return;
+            openMenu.removeAttribute('open');
+            openMenu.querySelector('summary')?.focus();
         });
     })();
 

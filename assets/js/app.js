@@ -12,7 +12,7 @@ import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826
 import { initWarmupModule } from "./modules/warmup.js?v=20261121-feed-simple";
 import { initVideoModule } from "./modules/video.js?v=20261121-video";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
-import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
+import { initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
 
 const SCROLL_STORAGE_PREFIX = "mathechecks.scrollPositions.v2";
@@ -411,10 +411,8 @@ function scrollToSkriptTargetId(targetId, retries = 8, behavior = "auto") {
       const navWrap = document
         .querySelector("#skript-h2-jump-nav")
         ?.closest(".check-jump-nav-wrap");
-      const modTabNav = document.querySelector(".mod-tab-nav");
       const navWrapH = navWrap ? navWrap.offsetHeight : 0;
-      const tabNavH = modTabNav ? modTabNav.offsetHeight : 0;
-      const offset = tabNavH + navWrapH + 12;
+      const offset = navWrapH + 12;
 
       if (scrollContainer) {
         const containerRect = scrollContainer.getBoundingClientRect();
@@ -464,49 +462,8 @@ function setManualScrollRestoration() {
   }
 }
 
-function bindLernbereichSwitchNavigation() {
-  const switches = Array.from(document.querySelectorAll("select.lb-switch[data-lb-nav='true']"));
-  if (!switches.length) return;
-
-  switches.forEach((selectNode) => {
-    if (selectNode.dataset.boundNav === "true") return;
-    selectNode.dataset.boundNav = "true";
-
-    selectNode.addEventListener("change", (event) => {
-      const value = String(event?.target?.value || "").trim();
-      if (!value) return;
-      if (value === window.location.pathname) return;
-      if (!confirmFeedActivityAbort()) {
-        selectNode.value = window.location.pathname;
-        return;
-      }
-      window.location.assign(value);
-    });
-  });
-}
-
-function bindLernbereichSwitchTheme() {
-  const switches = Array.from(document.querySelectorAll("select.lb-switch[data-lb-nav='true']"));
-  if (!switches.length) return;
-
-  const applyGebiet = (selectNode) => {
-    const selected = selectNode.selectedOptions?.[0] || null;
-    const gebiet = String(selected?.dataset?.gebiet || "").trim().toLowerCase();
-    selectNode.dataset.gebiet = gebiet;
-  };
-
-  switches.forEach((selectNode) => {
-    applyGebiet(selectNode);
-    if (selectNode.dataset.boundTheme === "true") return;
-    selectNode.dataset.boundTheme = "true";
-    selectNode.addEventListener("change", () => applyGebiet(selectNode));
-  });
-}
-
 async function bootstrap() {
   setManualScrollRestoration();
-  bindLernbereichSwitchTheme();
-  bindLernbereichSwitchNavigation();
   bindUserInteractionTracking();
   userScrolledSinceBootstrap = false;
   userInteractedSinceBootstrap = false;

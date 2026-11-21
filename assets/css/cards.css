@@ -1115,18 +1115,18 @@ html.light .check-card[data-session-scope="outside"] {
 }
 
 .check-viewport-item {
-    min-height: var(--check-stage-height, calc(100dvh - 184px));
+    min-height: var(--check-stage-height, calc(100dvh - 132px));
     display: flex;
     align-items: flex-start;
     justify-content: center;
     width: 100%;
-    max-height: var(--check-stage-height, calc(100dvh - 184px));
+    max-height: var(--check-stage-height, calc(100dvh - 132px));
     padding: var(--check-container-pad-y) 0;
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-gutter: stable;
-    scroll-margin-top: calc(var(--module-sticky-top) + 108px);
+    scroll-margin-top: calc(var(--module-sticky-top) + 56px);
 }
 
 .check-viewport-item>.check-card {
