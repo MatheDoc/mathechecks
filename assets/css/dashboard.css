@@ -493,6 +493,22 @@ body.page-dashboard .dashboard-panel__status-clock::after {
   transform: translate(-50%, -50%) rotate(55deg);
 }
 
+/* Start-Signal: Play-Dreieck statt Uhrzeigern */
+body.page-dashboard .dashboard-panel__status-clock--start::before {
+  width: 0;
+  height: 0;
+  background: none;
+  border-radius: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid currentColor;
+  transform: translate(-35%, -50%);
+}
+
+body.page-dashboard .dashboard-panel__status-clock--start::after {
+  display: none;
+}
+
 body.page-dashboard .dashboard-panel__status-clock-label {
   color: var(--dashboard-status-accent);
   font-size: 0.66rem;

@@ -2134,7 +2134,7 @@ function applyPrimaryFeedButtonState(context, {
   button.setAttribute("aria-label", accessibleLabel || "Nächste Aktion");
   button.title = accessibleLabel || "Nächste Aktion";
   if (elements.primaryFeedStatus) {
-    elements.primaryFeedStatus.innerHTML = statusMarkup || buildDashboardClockStatusMarkup(accessibleLabel || "Nächste Aktion", "available");
+    elements.primaryFeedStatus.innerHTML = statusMarkup || (normalizedHref ? buildDashboardStartStatusMarkup(accessibleLabel || "Nächste Aktion") : "");
   }
   if (elements.primaryFeedTitle) {
     elements.primaryFeedTitle.textContent = title || "Nächste Aktion";
@@ -2272,6 +2272,17 @@ function buildDashboardClockStatusMarkup(label, tone = "available") {
     <span class="dashboard-panel__action-status dashboard-panel__action-status--icon" data-tone="${escapeHtml(normalizedTone)}" role="img" aria-label="${escapeHtml(accessibleLabel)}" title="${escapeHtml(accessibleLabel)}">
       <span class="dashboard-panel__status-clock" aria-hidden="true"></span>
       <span class="dashboard-panel__status-clock-label" aria-hidden="true">${escapeHtml(accessibleLabel)}</span>
+    </span>
+  `;
+}
+
+// Session-Empfehlungen haben keinen Zeitstatus mehr; sichtbar nur ein kurzes Start-Signal.
+function buildDashboardStartStatusMarkup(accessibleLabel) {
+  const label = String(accessibleLabel || "").trim() || "Nächste Aktion";
+  return `
+    <span class="dashboard-panel__action-status dashboard-panel__action-status--icon" data-tone="available" role="img" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}">
+      <span class="dashboard-panel__status-clock dashboard-panel__status-clock--start" aria-hidden="true"></span>
+      <span class="dashboard-panel__status-clock-label" aria-hidden="true">Los</span>
     </span>
   `;
 }
