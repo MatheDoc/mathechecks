@@ -2,11 +2,12 @@
 
 Jeder Lernbereich besteht aus einem definierten Set an Seiten.
 
-Verbindliche Modultypen pro Lernbereich: `start`, `training`, `recall`, `feynman`, `test`, `kompetenzliste`, `skript`, `flashcards`.
+Verbindliche Modultypen pro Lernbereich: `start`, `kompetenzliste`, `warmup`, `training`, `recall`, `feynman`, `test`, `skript`, `flashcards`.
+
+`warmup` ist in jedem Lernbereich als Reiter vorhanden, enthält aber nur die Checks mit vorhandenen Warm-Up-Daten (→ `_data/warmup/README.md`).
 
 Zusätzlich, nicht verlinkt:
 
-- `warmup` – geführter Einstieg pro Check, nur in Lernbereichen mit Warm-Up (→ `_data/warmup/README.md`).
 - `vertiefung.md` – Platzhalter mit Ideen für weiterführende Fragen, ohne Navigation.
 
 → Ablage der Inhalte: `.github/datenmodell.md` · Inhaltliche Ziele: `.github/inhalte.md`
@@ -14,8 +15,8 @@ Zusätzlich, nicht verlinkt:
 | Modul | Zweck | Didaktischer Kern | Zusammenhang mit anderen Modulen |
 |---|---|---|---|
 | **Start** | Überblick, Vorwissen, optionaler Audio-Überblick | Orientierung, Motivation | Natürlicher Feed-Einstieg pro Lernbereich vor den ersten checkbezogenen Aktivitäten |
-| **Warm-Up** *(nicht verlinkt)* | Geführter Einstieg in einen Check | Lernen am vorgerechneten Beispiel, Fading | Pro Check vor dem Training; derzeit nicht verlinkt und nicht im Feed |
 | **Kompetenzliste** | Übersicht aller Kompetenzen des Lernbereichs | Lernziel-Orientierung | Jede Kompetenz ist mit Training und Skript verknüpft |
+| **Warm-Up** | Geführter Einstieg in einen Check | Lernen am vorgerechneten Beispiel, Fading | Pro Check vor dem Training; noch nicht für alle Checks vorhanden, nicht im Feed |
 | **Training** | Interaktive Aufgaben | Üben mit formativem Feedback | Zu jeder Kompetenz in der Kompetenzliste gibt es genau eine Aufgabensammlung im Training |
 | **Recall** | Geführter Abruf der Kernideen eines Checks | Active Recall mit Selbstüberprüfung | Zweites Glied der Check-Kette nach dem Training |
 | **Feynman** | Erklären einer Technik/eines Sachverhalts | Elaboration und tieferes Verständnis | Drittes Glied der Check-Kette nach dem Recall |

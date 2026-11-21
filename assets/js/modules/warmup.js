@@ -1,4 +1,4 @@
-// Warm-Up: geführter Einstieg in einen Check mit Fading (nicht verlinkt, kein Feed).
+// Warm-Up: geführter Einstieg in einen Check mit Fading (Modul-Reiter, kein Feed).
 // Bei Abschluss wird ein Ereignis 'warmup' mit den Versuchen je bewertetem Schritt gespeichert (Quote, XP).
 // Daten: <script type="application/json" id="warmup-data"> mit allen Warm-Ups des Lernbereichs
 // (aus _data/warmup/<gebiet>/<lernbereich>/*.yml). Titel, Kompetenz, Nummer und Trainingslink

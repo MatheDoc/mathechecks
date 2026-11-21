@@ -85,7 +85,7 @@ Skript-Widgets
 Test-Fragen  
 → `test/README.md`
 
-Warm-Up (geführter Einstieg pro Check, nicht verlinkt)  
+Warm-Up (geführter Einstieg pro Check)  
 → `_data/warmup/README.md`
 
 Klausuren  

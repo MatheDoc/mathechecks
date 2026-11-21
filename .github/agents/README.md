@@ -15,7 +15,7 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
 4. `agent-plattform-architektur.md`
    - Datenbank, Benutzerverwaltung, Session-State, Aktionsfeed, Rollen und Migration
 5. `agent-warmup.md`
-   - Warm-Up pro Check: geführter Einstieg (Erklärung wie im Erklärvideo, vorgerechnetes Beispiel, Fading), Übergabe ans Training (derzeit nicht verlinkt)
+   - Warm-Up pro Check: geführter Einstieg (Erklärung wie im Erklärvideo, vorgerechnetes Beispiel, Fading), Übergabe ans Training
 6. `agent-klausuren.md`
    - Klausuren: automatisierte Erstellung aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml`
 7. `agent-lernbereich.md`

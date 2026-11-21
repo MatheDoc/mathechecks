@@ -20,7 +20,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Test-Fragen** | `test/<gebiet>/<lb>/<check_id>.json` | pro Check | 10 Single-Choice-Fragen (handgepflegt) |
 | **Musterprüfungen** | `muster-pruefungen/abitur/pruefungen-md/` (gitignored) | pro Teilaufgabe | Abituraufgaben mit Erwartungshorizont; `_themen.json` = Index Thema → Teilaufgaben |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
-| **Warm-Up** *(nicht verlinkt)* | `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml` | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Titel, Kompetenz, Nummer, Trainingslink aus `checks.json`; Format → `_data/warmup/README.md` |
+| **Warm-Up** | `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml` | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Titel, Kompetenz, Nummer, Trainingslink aus `checks.json`; Format → `_data/warmup/README.md` |
 | **Erklärvideos** *(Pilot, nicht eingebunden)* | `videos/checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py`, `videos/aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/*.mp3` | pro Check | Manim-Szene eines Kurzvideos im Hochformat und eigene Sprachaufnahmen je Sprechabschnitt (zusammen die Quelle des Videos); gerenderte Videos sind gitignored; Ablauf → `videos/README.md` |
 | **Startseiten-Texte** | `_data/start/<lernbereich>.yml` | pro Lernbereich | „Worum geht es“, Vorkenntnisse, optional Podcast-Metadaten |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
@@ -47,7 +47,7 @@ Das Bild für die Materialkarte eines Lernbereichs steht im Feld `bild` in `_dat
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | `_data/start/<lernbereich>.yml`, `checks.json`, `medien/podcast.mp3` | Überblick, Vorkenntnisse, Lernpfad, optional Podcast |
-| Warm-Up *(nicht verlinkt)* | `warmup.md` | `_data/warmup/<gebiet>/<lernbereich>/*.yml` + `checks.json` | nur in Lernbereichen mit Warm-Up; Auswahl per `#check-<Nummer>`, via JS; `noindex`, kein Reiter in der Navigation |
+| Warm-Up | `warmup.md` | `_data/warmup/<gebiet>/<lernbereich>/*.yml` + `checks.json` | in jedem Lernbereich (Reiter zwischen Kompetenzliste und Training); zeigt nur Checks mit Warm-Up-Daten; Auswahl per `#check-<Nummer>`, via JS |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |

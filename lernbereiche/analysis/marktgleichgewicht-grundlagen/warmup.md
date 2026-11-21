@@ -6,7 +6,6 @@ page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: warmup
-noindex: true
 published: true
 lernbereich: marktgleichgewicht-grundlagen
 gebiet: analysis
