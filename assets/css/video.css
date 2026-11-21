@@ -260,14 +260,7 @@
     display: none;
 }
 
-/* ─── Knöpfe und Hinweis unter dem Video ──────────────────── */
-
-.vid-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
+/* ─── Knöpfe der Abschlussfläche ──────────────────────────── */
 
 .vid-btn {
     display: inline-flex;
@@ -315,21 +308,27 @@
     background: transparent;
 }
 
-.vid-note {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: .76rem;
-    text-align: center;
+/* ─── Link zu YouTube im Kartenkopf ───────────────────────── */
+
+.vid-card .check-card__header-left {
+    grid-template-columns: auto minmax(0, max-content) auto;
+    justify-content: start;
 }
 
-.vid-note a {
-    color: inherit;
+.vid-youtube-link {
+    margin-left: 4px;
+    color: var(--text-muted);
+    font-size: .74rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.vid-youtube-link:hover,
+.vid-youtube-link:focus-visible {
+    color: var(--text);
     text-decoration: underline;
     text-underline-offset: 2px;
-}
-
-.vid-note a:hover {
-    color: var(--text);
 }
 
 /* ─── Handy: Video so groß wie möglich ────────────────────── */

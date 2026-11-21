@@ -95,7 +95,7 @@ function buildNextLinks(entry) {
   return links;
 }
 
-function renderPlayer(root, entry, { vorschauBase, datenschutzUrl }) {
+function renderPlayer(root, entry, { vorschauBase }) {
   destroyActivePlayer();
   root.innerHTML = "";
 
@@ -108,6 +108,11 @@ function renderPlayer(root, entry, { vorschauBase, datenschutzUrl }) {
     rowClass: "check-card__header-left",
     titleTag: "span",
   });
+  const youtubeLink = el("a", "vid-youtube-link", 'Auf YouTube <span aria-hidden="true">↗</span>');
+  youtubeLink.href = `https://www.youtube.com/shorts/${entry.video}`;
+  youtubeLink.target = "_blank";
+  youtubeLink.rel = "noopener";
+  header.firstElementChild.appendChild(youtubeLink);
 
   const body = el("div", "check-card__body vid-body");
   const frame = el("div", "vid-frame");
@@ -127,17 +132,7 @@ function renderPlayer(root, entry, { vorschauBase, datenschutzUrl }) {
 
   frame.append(host, poster, ende, status);
 
-  const actions = el("div", "vid-actions");
-  actions.append(...buildNextLinks(entry));
-
-  const note = el(
-    "p",
-    "vid-note",
-    `Wiedergabe über YouTube (<a href="${escapeHtml(datenschutzUrl)}">Datenschutz</a>) · ` +
-      `<a href="https://www.youtube.com/shorts/${entry.video}" target="_blank" rel="noopener">Auf YouTube ansehen <span aria-hidden="true">↗</span></a>`
-  );
-
-  body.append(frame, actions, note);
+  body.appendChild(frame);
   card.append(header, body);
   root.appendChild(card);
   window.MathJax?.typesetPromise?.([card]).catch(() => {});
@@ -279,7 +274,6 @@ export async function initVideoModule({ root, lernbereich, preferredCheckId = ""
   const navNode = document.getElementById(JUMP_NAV_ID);
   const options = {
     vorschauBase: root.dataset.vorschauBase || "/assets/img/videos/",
-    datenschutzUrl: root.dataset.datenschutzUrl || "/datenschutz.html#youtube",
   };
 
   let checks = [];

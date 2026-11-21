@@ -156,7 +156,7 @@ Modul „Video“ in jedem Lernbereich (`lernbereiche/<gebiet>/<lb>/video.md`, R
 | `assets/css/video.css` | Styling (Präfix `vid-`) |
 | `assets/img/videos/<check_id>.webp` | Vorschaubild aus `render.py --final` |
 
-- **Datenschutz:** Beim Seitenaufruf wird nur das eigene Vorschaubild geladen, keine Verbindung zu YouTube. Erst der Klick auf das Bild lädt die YouTube-IFrame-API und den Player (`youtube-nocookie.com`, `rel=0`) und startet das Video; Hinweis unter dem Video und Abschnitt „YouTube-Videos“ in `datenschutz.md`.
+- **Datenschutz:** Beim Seitenaufruf wird nur das eigene Vorschaubild geladen, keine Verbindung zu YouTube. Erst der Klick auf das Bild lädt die YouTube-IFrame-API und den Player (`youtube-nocookie.com`, `rel=0`) und startet das Video; Abschnitt „YouTube-Videos“ in `datenschutz.md`. Im Kartenkopf steht hinter dem Schlagwort ein kleiner Link „Auf YouTube ↗“.
 - **Ein Klick:** Auf dem Desktop startet das Video direkt. Auf iPhone und iPad kann Safari den automatischen Start verweigern; dann bleibt der Play-Knopf von YouTube stehen und ein zweites Tippen ist nötig.
 - **Ende:** Statt der YouTube-Vorschläge erscheint eine eigene Fläche mit „Warm-Up“ (falls vorhanden), „Training“ und „Nochmal“.
 - Fehlt das Vorschaubild, zeigt die Karte stattdessen den Kompetenzsatz.
