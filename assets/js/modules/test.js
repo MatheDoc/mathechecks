@@ -1,14 +1,12 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { completeTestFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
-import { awardXp, recordUserActivity, getUserTestProficiency, extractTestProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { awardXp, recordUserActivity, getUserTestProficiency, extractTestProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261121-feed-simple";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
+import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
 
 const TEST_STATE_PREFIX = "test-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
-const TEST_FEED_STEP_KEY = "test";
 const TEST_QUESTION_SECONDS = 20;
 const testJumpNavScrollCleanup = new WeakMap();
 
@@ -378,131 +376,7 @@ function buildTestCompletionDetails(results, source = "complete") {
   };
 }
 
-function normalizeTestFeedContext(activityContext) {
-  if (!activityContext || activityContext.mode !== "feed") return null;
-  return String(activityContext.activityStep || "").trim() === TEST_FEED_STEP_KEY
-    ? {
-      mode: "feed",
-      activityKey: String(activityContext.activityKey || "").trim(),
-      activityStep: TEST_FEED_STEP_KEY,
-    }
-    : null;
-}
-
-function attachTestFeedShell(section, activityContext, { lernbereich = "" } = {}) {
-  const feedContext = normalizeTestFeedContext(activityContext);
-  if (!section || !feedContext) return;
-
-  const controls = attachFeedCardControls(section, {
-    cardSelector: "[data-test-card]",
-    stepLabel: "Test",
-  });
-  if (!controls) return;
-
-  let canPrepare = false;
-  let completed = false;
-  let busy = false;
-  let statusMessage = "Beantworte die 10 Testfragen. Danach kannst du den Check abschließen.";
-  let statusTone = "neutral";
-  let latestResults = null;
-
-  const checkId = section.dataset.checkId || "";
-
-  async function recordTestCompletion() {
-    await recordUserActivity({
-      activityType: "test",
-      lernbereichSlug: lernbereich,
-      checkId,
-      contextKey: "feed",
-      details: buildTestCompletionDetails(latestResults || [], "feed_complete"),
-    });
-
-    return completeTestFeedStep({
-      checkId,
-      activityKey: feedContext.activityKey,
-    });
-  }
-
-  const completeTestDecision = async () => {
-    if (busy) return;
-    busy = true;
-    statusMessage = "Der Feed-Schritt wird gespeichert.";
-    statusTone = "neutral";
-    renderControls();
-
-    try {
-      await recordTestCompletion();
-    } catch (error) {
-      console.error("Test-Aktivität konnte nicht abgeschlossen werden:", error);
-      busy = false;
-      statusMessage = "Die Test-Aktivität konnte gerade nicht gespeichert werden.";
-      statusTone = "error";
-      renderControls();
-      throw error;
-    }
-
-    completed = true;
-    statusMessage = "Der Check ist abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";
-    statusTone = "success";
-    renderControls();
-  };
-
-  const repeatTestDecision = () => {
-    canPrepare = false;
-    latestResults = null;
-    statusMessage = "Die Test-Aktivität bleibt im Feed offen.";
-    statusTone = "neutral";
-    section.dispatchEvent(new CustomEvent("test:reset-request", { bubbles: true }));
-    renderControls();
-  };
-
-  const openTestDecision = () => {
-    if (!controls?.openDecisionDialog || busy || completed || !canPrepare) return;
-
-    controls.openDecisionDialog({
-      title: "Test abschließen?",
-      detail: "Der Durchgang wird für deine Test-Quote gespeichert und der Check abgeschlossen.",
-      onComplete: completeTestDecision,
-      onRepeat: repeatTestDecision,
-    });
-  };
-
-  function renderControls() {
-    const items = [
-      {
-        icon: "❌",
-        label: "Aktivität abbrechen",
-        onClick: leaveFeedContext,
-      },
-      {
-        icon: "✅",
-        label: busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
-        disabled: busy || completed || !canPrepare,
-        iconPulse: canPrepare && !busy && !completed,
-        onClick: openTestDecision,
-      },
-    ];
-
-    controls.render({
-      status: statusMessage,
-      tone: statusTone,
-      items,
-      ready: canPrepare && !busy && !completed,
-    });
-  }
-
-  section.addEventListener("test:run-finished", (event) => {
-    latestResults = Array.isArray(event.detail?.results) ? event.detail.results : null;
-    canPrepare = Boolean(latestResults?.length);
-    if (canPrepare) {
-      statusMessage = "Alle Fragen sind beantwortet. Du kannst den Feed-Abschluss vorbereiten.";
-    }
-    renderControls();
-  });
-  renderControls();
-}
-
-function initInteractiveTestCards(root, lernbereich, activityContext) {
+function initInteractiveTestCards(root, lernbereich) {
   const cards = root.querySelectorAll("[data-test-card]");
 
   cards.forEach((card) => {
@@ -528,7 +402,6 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
     const summaryChipsEl = card.querySelector("[data-test-summary-chips]");
     const summaryListEl = card.querySelector("[data-test-summary-list]");
 
-    const isFreeMode = activityContext?.mode !== "feed";
     let freeCompletionControl = null;
     let completionRecordPromise = null;
     let latestRates = null;
@@ -763,7 +636,6 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
     }
 
     function ensureFreeCompletionControl(ready = false) {
-      if (!isFreeMode) return;
       if (!freeCompletionControl) {
         freeCompletionControl = attachFreeCompletionControl(section, {
           cardSelector: "[data-test-card]",
@@ -782,10 +654,8 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
         detail: { results: results.slice() },
         bubbles: true,
       }));
-      if (isFreeMode) {
-        void recordTestActivityOnce();
-        ensureFreeCompletionControl(true);
-      }
+      void recordTestActivityOnce();
+      ensureFreeCompletionControl(true);
     }
 
     function resetTestCard() {
@@ -873,7 +743,7 @@ function bindCheckPositionPersistence(root, lernbereich, state) {
   });
 }
 
-export async function initTestModule({ root, lernbereich, preferredCheckId = "", activityContext = null }) {
+export async function initTestModule({ root, lernbereich, preferredCheckId = "" }) {
   if (!lernbereich) {
     renderInfo(root, "Kein Lernbereich gesetzt (data-lernbereich fehlt).");
     return;
@@ -904,16 +774,13 @@ export async function initTestModule({ root, lernbereich, preferredCheckId = "",
 
   const selectedSection = Array.from(root.querySelectorAll("[data-test-check-viewport][data-check-id]"))
     .find((section) => section.dataset.checkId === selectedCheckId) || null;
-  if (selectedSection) {
-    attachTestFeedShell(selectedSection, activityContext, { lernbereich });
-    if (activityContext?.mode === "feed") {
-      setJumpNavActive(navNode, selectedCheckId);
-      scrollModMainToEl(selectedSection);
-    }
+  if (selectedSection && preferredSelected) {
+    setJumpNavActive(navNode, selectedCheckId);
+    scrollModMainToEl(selectedSection);
   }
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-test-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveTestCards(root, lernbereich, activityContext);
+  initInteractiveTestCards(root, lernbereich);
   getUserTestProficiency().then((proficiency) => {
     if (!proficiency.ok) return;
     root.querySelectorAll("[data-test-check-viewport][data-check-id]").forEach((section) => {
@@ -921,9 +788,6 @@ export async function initTestModule({ root, lernbereich, preferredCheckId = "",
       updateTestRateBadge(section.querySelector(".check-card__rate-badge"), rate);
     });
   });
-  if (activityContext?.mode === "feed" && selectedSection) {
-    applyFeedFocusScope(root, selectedSection);
-  }
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
 }

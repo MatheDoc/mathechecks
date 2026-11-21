@@ -2,9 +2,19 @@ import { getSupabaseClient, getSupabaseRuntimeConfig } from "./supabase-client.j
 
 export const ACTIVITY_RECORDED_EVENT = "mathechecks:activity-recorded";
 export const XP_AWARDED_EVENT = "mathechecks:xp-awarded";
+export const FEED_UPDATED_EVENT = "mathechecks:feed-updated";
 
 function normalizeText(value) {
   return String(value || "").trim();
+}
+
+function notifyFeedUpdated() {
+  if (typeof window === "undefined") return;
+  try {
+    window.dispatchEvent(new CustomEvent(FEED_UPDATED_EVENT));
+  } catch {
+    // Ohne Event aktualisiert sich der Feed-Badge erst beim nächsten Fokus.
+  }
 }
 
 function notifyActivityRecorded(row, activityType) {
@@ -16,6 +26,8 @@ function notifyActivityRecorded(row, activityType) {
   } catch {
     // Ohne Event bleibt nur die XP-Anzeige unverändert.
   }
+  // Jede Aktivität kann serverseitig einen Session-Schritt abschließen.
+  notifyFeedUpdated();
 }
 
 async function getAuthenticatedSupabaseClient() {
@@ -39,47 +51,6 @@ async function getAuthenticatedSupabaseClient() {
   }
 
   return { supabase, ok: true };
-}
-
-export async function recordCheckModuleAttempt({
-  lernbereichSlug,
-  checkId,
-  moduleKey,
-  outcomeKey,
-  activityKey,
-}) {
-  const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
-  const normalizedCheckId = normalizeText(checkId);
-  const normalizedModuleKey = normalizeText(moduleKey).toLowerCase();
-  const normalizedOutcomeKey = normalizeText(outcomeKey).toLowerCase();
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedLernbereichSlug || !normalizedCheckId || !normalizedModuleKey || !normalizedOutcomeKey || !normalizedActivityKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("record_check_module_attempt", {
-      p_lernbereich_slug: normalizedLernbereichSlug,
-      p_check_id: normalizedCheckId,
-      p_module_key: normalizedModuleKey,
-      p_outcome_key: normalizedOutcomeKey,
-      p_activity_key: normalizedActivityKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Fortschritt konnte nicht gespeichert werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Speichern des Fortschritts.", error);
-    return { ok: false, error };
-  }
 }
 
 export async function recordUserActivity({
@@ -126,69 +97,10 @@ export async function recordUserActivity({
   }
 }
 
-export async function completeTestStep({ checkId, activityKey }) {
-  const normalizedCheckId = normalizeText(checkId);
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedCheckId || !normalizedActivityKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("complete_test_step", {
-      p_check_id: normalizedCheckId,
-      p_activity_key: normalizedActivityKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Test-Schritt konnte nicht abgeschlossen werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen des Test-Schritts.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function completeCurrentTrainingStep({ checkId, activityKey }) {
-  const normalizedCheckId = normalizeText(checkId);
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedCheckId || !normalizedActivityKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("complete_current_training_step", {
-      p_check_id: normalizedCheckId,
-      p_activity_key: normalizedActivityKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Trainingsschritt konnte nicht abgeschlossen werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen des Trainingsschritts.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function completeStartActivity({ lernbereichSlug, activityKey }) {
+// Start-Aktivität eines Lernbereichs für die aktive Session abschließen (idempotent).
+export async function completeSessionStart({ lernbereichSlug }) {
   const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedLernbereichSlug || !normalizedActivityKey) {
+  if (!normalizedLernbereichSlug) {
     return { ok: false, skipped: true, reason: "missing-input" };
   }
 
@@ -196,9 +108,8 @@ export async function completeStartActivity({ lernbereichSlug, activityKey }) {
     const auth = await getAuthenticatedSupabaseClient();
     if (!auth.ok) return auth;
 
-    const { data, error } = await auth.supabase.rpc("complete_start_activity", {
+    const { data, error } = await auth.supabase.rpc("complete_session_start", {
       p_lernbereich_slug: normalizedLernbereichSlug,
-      p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
@@ -206,63 +117,10 @@ export async function completeStartActivity({ lernbereichSlug, activityKey }) {
       return { ok: false, error };
     }
 
-    return { ok: true, data };
+    notifyFeedUpdated();
+    return { ok: true, data: Boolean(data) };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen der Start-Aktivität.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function keepCurrentFeedActivity({ activityKey }) {
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedActivityKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("keep_current_feed_activity", {
-      p_activity_key: normalizedActivityKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Feed-Sperre konnte nicht erneuert werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data: Boolean(data) };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Erneuern der Feed-Sperre.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function releaseCurrentFeedActivity({ activityKey }) {
-  const normalizedActivityKey = normalizeText(activityKey);
-
-  if (!normalizedActivityKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("release_current_feed_activity", {
-      p_activity_key: normalizedActivityKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Feed-Cursor konnte nicht freigegeben werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data: Boolean(data) };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Freigeben des Feed-Cursors.", error);
     return { ok: false, error };
   }
 }
@@ -292,49 +150,6 @@ export async function setRetentionScopeStatus({ lernbereichSlug, status }) {
     return { ok: true, data };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Aktualisieren des Wiederholungsstatus.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function getOrCreateFlashcardRound({
-  lernbereichSlug,
-  cardIds,
-  checkIds,
-  taskIndices,
-  cardLimit = 20,
-}) {
-  const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
-  const normalizedCardIds = Array.isArray(cardIds) ? cardIds.map(normalizeText) : [];
-  const normalizedCheckIds = Array.isArray(checkIds) ? checkIds.map(normalizeText) : [];
-  const normalizedTaskIndices = Array.isArray(taskIndices)
-    ? taskIndices.map((value) => Math.max(0, Number(value) || 0))
-    : [];
-  const normalizedCardLimit = Math.max(1, Math.min(Number(cardLimit) || 20, 50));
-
-  if (!normalizedLernbereichSlug || normalizedCardIds.length === 0 || normalizedCardIds.length !== normalizedCheckIds.length) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("get_or_create_flashcard_round", {
-      p_lernbereich_slug: normalizedLernbereichSlug,
-      p_card_ids: normalizedCardIds,
-      p_check_ids: normalizedCheckIds,
-      p_task_indices: normalizedTaskIndices,
-      p_card_limit: normalizedCardLimit,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Flashcard-Durchgang konnte nicht geladen werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data: Array.isArray(data) ? data : [] };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Laden des Flashcard-Durchgangs.", error);
     return { ok: false, error };
   }
 }
@@ -393,37 +208,6 @@ export async function getOrCreateRetentionFlashcardRound({
   }
 }
 
-export async function recordFlashcardReview({ roundId, cardId, ratingKey }) {
-  const normalizedRoundId = normalizeText(roundId);
-  const normalizedCardId = normalizeText(cardId);
-  const normalizedRatingKey = normalizeText(ratingKey).toLowerCase();
-
-  if (!normalizedRoundId || !normalizedCardId || !normalizedRatingKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("record_flashcard_review", {
-      p_round_id: normalizedRoundId,
-      p_card_id: normalizedCardId,
-      p_rating_key: normalizedRatingKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Flashcard-Bewertung konnte nicht gespeichert werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Speichern der Flashcard-Bewertung.", error);
-    return { ok: false, error };
-  }
-}
-
 export async function recordRetentionFlashcardReview({ roundId, cardId, ratingKey }) {
   const normalizedRoundId = normalizeText(roundId);
   const normalizedCardId = normalizeText(cardId);
@@ -451,35 +235,6 @@ export async function recordRetentionFlashcardReview({ roundId, cardId, ratingKe
     return { ok: true, data };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Speichern der Retention-Flashcard-Bewertung.", error);
-    return { ok: false, error };
-  }
-}
-
-export async function resolveFlashcardRound({ roundId, decisionKey }) {
-  const normalizedRoundId = normalizeText(roundId);
-  const normalizedDecisionKey = normalizeText(decisionKey).toLowerCase();
-
-  if (!normalizedRoundId || !normalizedDecisionKey) {
-    return { ok: false, skipped: true, reason: "missing-input" };
-  }
-
-  try {
-    const auth = await getAuthenticatedSupabaseClient();
-    if (!auth.ok) return auth;
-
-    const { data, error } = await auth.supabase.rpc("resolve_flashcard_round", {
-      p_round_id: normalizedRoundId,
-      p_decision_key: normalizedDecisionKey,
-    });
-
-    if (error) {
-      console.warn("MatheChecks: Flashcard-Durchgang konnte nicht abgeschlossen werden.", error);
-      return { ok: false, error };
-    }
-
-    return { ok: true, data };
-  } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen des Flashcard-Durchgangs.", error);
     return { ok: false, error };
   }
 }

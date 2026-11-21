@@ -89,11 +89,12 @@ function prioritizeManualRetentionEntries(retentionEntries = []) {
   };
 }
 
+// Didaktische Kettenreihenfolge je Check (siehe .github/feed.md).
 export const FEED_STEP_ORDER = {
   training: 1,
-  recall: 2,
-  feynman: 3,
-  test: 4,
+  test: 2,
+  recall: 3,
+  feynman: 4,
 };
 
 export const FEED_STEP_META = {
@@ -131,7 +132,7 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-test-soft, var(--accent-soft));color:var(--mt-test, var(--accent));",
     badgeType: "test",
     badgeLabel: "Test",
-    description: "Beantworte die 10 Testfragen und schließe den Check damit ab.",
+    description: "Beantworte die 10 Testfragen zu diesem Check.",
   },
 };
 
@@ -371,22 +372,25 @@ function formatCompactCheckTitle(checkMeta) {
   return Number.isFinite(number) && number > 0 ? `${number} ${shortTitle}` : shortTitle;
 }
 
-function buildFeedActionHref(checkMeta, stepKey) {
+function buildModuleHref(gebietKey, lernbereichId, moduleKey, params = null) {
+  const query = params ? `?${params.toString()}` : "";
+  return `/lernbereiche/${encodeURIComponent(gebietKey)}/${encodeURIComponent(lernbereichId)}/${moduleKey}.html${query}`;
+}
+
+function buildCheckActionHref(checkMeta, stepKey) {
   const stepMeta = FEED_STEP_META[stepKey];
   if (!checkMeta || !stepMeta?.moduleKey) return "";
 
-  const params = new URLSearchParams({
-    check_id: checkMeta.checkId,
-    feed: "1",
-    activity_key: `check:${checkMeta.checkId}:${stepKey}`,
-    activity_step: stepKey,
-    activity_run: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
-  });
-
-  return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/${stepMeta.moduleKey}.html?${params.toString()}`;
+  return buildModuleHref(
+    checkMeta.gebietKey,
+    checkMeta.lernbereichId,
+    stepMeta.moduleKey,
+    new URLSearchParams({ check_id: checkMeta.checkId }),
+  );
 }
 
-function buildFlashcardsFeedActionHref(lernbereichMeta, entry) {
+// Nur Retention-Flashcards laufen noch im Feed-Kontext (eigene Serverrunden).
+function buildRetentionFlashcardsHref(lernbereichMeta, entry) {
   if (!lernbereichMeta || !entry?.activity_key) return "";
 
   const params = new URLSearchParams({
@@ -400,20 +404,7 @@ function buildFlashcardsFeedActionHref(lernbereichMeta, entry) {
     params.set("allow_early_retention_start", "1");
   }
 
-  return `/lernbereiche/${encodeURIComponent(lernbereichMeta.gebietKey)}/${encodeURIComponent(lernbereichMeta.lernbereichId)}/flashcards.html?${params.toString()}`;
-}
-
-function buildStartFeedActionHref(lernbereichMeta, entry) {
-  if (!lernbereichMeta || !entry?.activity_key) return "";
-
-  const params = new URLSearchParams({
-    feed: "1",
-    activity_key: entry.activity_key,
-    activity_step: "start",
-    activity_run: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
-  });
-
-  return `/lernbereiche/${encodeURIComponent(lernbereichMeta.gebietKey)}/${encodeURIComponent(lernbereichMeta.lernbereichId)}/start.html?${params.toString()}`;
+  return buildModuleHref(lernbereichMeta.gebietKey, lernbereichMeta.lernbereichId, "flashcards", params);
 }
 
 async function loadActiveSession(supabase) {
@@ -430,10 +421,10 @@ async function loadActiveSession(supabase) {
   return Array.isArray(data) ? data[0] || null : null;
 }
 
-async function pickCurrentFeedCursor(supabase, sessionId) {
+async function loadFeedRecommendation(supabase, sessionId) {
   if (!supabase || !sessionId) return null;
 
-  const { data, error } = await supabase.rpc("pick_feed_cursor", {
+  const { data, error } = await supabase.rpc("get_feed_recommendation", {
     p_session_id: sessionId,
   });
 
@@ -651,104 +642,13 @@ function createFeedItem({
   };
 }
 
-function parseTimestampMs(value) {
-  const timestamp = Date.parse(String(value || "").trim());
-  return Number.isFinite(timestamp) ? timestamp : null;
-}
-
-function resolveEffectivePlannedMs({
-  availableFrom = "",
-  dueAt = "",
-  plannedFrom = "",
-  effectivePlannedFrom = "",
-} = {}) {
-  const explicitEffectiveMs = parseTimestampMs(effectivePlannedFrom);
-  if (explicitEffectiveMs !== null) {
-    return explicitEffectiveMs;
-  }
-
-  const availableMs = parseTimestampMs(availableFrom || dueAt);
-  const plannedMs = parseTimestampMs(plannedFrom);
-
-  if (plannedMs === null) return availableMs;
-  if (availableMs === null) return plannedMs;
-  return Math.max(availableMs, plannedMs);
-}
-
-function resolveOpenFeedTimingStatus({
-  timingStatus = "",
-  availableFrom = "",
-  dueAt = "",
-  plannedFrom = "",
-  effectivePlannedFrom = "",
-  overdueFrom = "",
-} = {}) {
-  const normalizedTimingStatus = String(timingStatus || "").trim();
-  if (normalizedTimingStatus === "overdue" || normalizedTimingStatus === "due" || normalizedTimingStatus === "available") {
-    return normalizedTimingStatus;
-  }
-
-  const nowMs = Date.now();
-  const overdueMs = parseTimestampMs(overdueFrom);
-  if (overdueMs !== null && overdueMs <= nowMs) {
-    return "overdue";
-  }
-
-  const effectivePlannedMs = resolveEffectivePlannedMs({
-    availableFrom,
-    dueAt,
-    plannedFrom,
-    effectivePlannedFrom,
-  });
-  if (effectivePlannedMs !== null && effectivePlannedMs <= nowMs) {
-    return "due";
-  }
-
-  const availableMs = parseTimestampMs(availableFrom || dueAt);
-  if (availableMs !== null && availableMs <= nowMs) {
-    return "available";
-  }
-
-  return null;
-}
-
-function resolveCurrentFeedTimingBadge(cursorState) {
-  const timingStatus = resolveOpenFeedTimingStatus({
-    timingStatus: cursorState?.timing_status,
-    availableFrom: cursorState?.available_from,
-    dueAt: cursorState?.due_at,
-    effectivePlannedFrom: cursorState?.effective_planned_from,
-    overdueFrom: cursorState?.overdue_from,
-  });
-
-  if (timingStatus === "overdue") {
-    return { label: "Überfällig", type: "overdue" };
-  }
-  if (timingStatus === "due") {
-    return { label: "Fällig", type: "due" };
-  }
-  if (timingStatus === "available") {
-    return { label: "Verfügbar", type: "available" };
-  }
-
-  return null;
-}
-
-function appendFeedBadge(item, badge) {
-  if (!item || !badge) return item;
-
-  return {
-    ...item,
-    badges: [...(Array.isArray(item.badges) ? item.badges : []), badge],
-  };
-}
-
 function buildCheckFeedItem(contentMeta, entry) {
-  const stepMeta = FEED_STEP_META[entry?.current_step_key];
+  const stepKey = String(entry?.activity_type || "").trim();
+  const stepMeta = FEED_STEP_META[stepKey];
   const checkMeta = contentMeta?.checkMetaById?.get(entry?.check_id);
   if (!stepMeta || !checkMeta) return null;
 
-  const href = buildFeedActionHref(checkMeta, entry.current_step_key);
+  const href = buildCheckActionHref(checkMeta, stepKey);
   if (!href) return null;
 
   const primaryBadge = { label: stepMeta.badgeLabel, type: stepMeta.badgeType };
@@ -756,7 +656,7 @@ function buildCheckFeedItem(contentMeta, entry) {
     kind: "check",
     type: stepMeta.type,
     href,
-    activityKey: `check:${checkMeta.checkId}:${entry.current_step_key}`,
+    activityKey: `check:${checkMeta.checkId}:${stepKey}`,
     icon: stepMeta.icon,
     iconStyle: stepMeta.iconStyle,
     titleText: formatCompactCheckTitle(checkMeta),
@@ -769,42 +669,24 @@ function buildCheckFeedItem(contentMeta, entry) {
   });
 }
 
-function buildSessionActivityFeedItem(contentMeta, entry) {
+function buildLernbereichFeedItem(contentMeta, entry) {
   const lernbereichMeta = contentMeta?.lernbereichMetaById?.get(entry?.lernbereich_slug);
-  if (!lernbereichMeta) return null;
+  const activityType = String(entry?.activity_type || "").trim();
+  if (!lernbereichMeta || (activityType !== "start" && activityType !== "flashcards")) return null;
 
-  if (entry?.activity_type === "start") {
-    const href = buildStartFeedActionHref(lernbereichMeta, entry);
-    if (!href) return null;
-
-    const primaryBadge = { label: START_FEED_META.badgeLabel, type: START_FEED_META.badgeType };
-    return createFeedItem({
-      kind: "session-activity",
-      type: START_FEED_META.type,
-      href,
-      activityKey: entry.activity_key,
-      icon: START_FEED_META.icon,
-      iconStyle: START_FEED_META.iconStyle,
-      titleText: lernbereichMeta.lernbereichName,
-      descText: "",
-      badges: [primaryBadge],
-      primaryBadge,
-    });
-  }
-
-  if (entry?.activity_type !== "flashcards") return null;
-
-  const href = buildFlashcardsFeedActionHref(lernbereichMeta, entry);
-  if (!href) return null;
-
-  const primaryBadge = { label: "Flashcards", type: "flashcards" };
+  const isStart = activityType === "start";
+  const primaryBadge = isStart
+    ? { label: START_FEED_META.badgeLabel, type: START_FEED_META.badgeType }
+    : { label: "Flashcards", type: "flashcards" };
   return createFeedItem({
     kind: "session-activity",
-    type: "flashcards",
-    href,
+    type: activityType,
+    href: buildModuleHref(lernbereichMeta.gebietKey, lernbereichMeta.lernbereichId, activityType),
     activityKey: entry.activity_key,
-    icon: "📚",
-    iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
+    icon: isStart ? START_FEED_META.icon : "📚",
+    iconStyle: isStart
+      ? START_FEED_META.iconStyle
+      : "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
     badges: [primaryBadge],
@@ -812,34 +694,18 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
   });
 }
 
-function buildCurrentCursorFeedItem(contentMeta, cursorState) {
-  const activityKind = String(cursorState?.activity_kind || "").trim();
-  const timingBadge = resolveCurrentFeedTimingBadge(cursorState);
-
-  if (activityKind === "check") {
-    return appendFeedBadge(buildCheckFeedItem(contentMeta, {
-      check_id: cursorState?.check_id,
-      current_step_key: cursorState?.step_key,
-    }), timingBadge);
-  }
-
-  if (activityKind === "start" || activityKind === "flashcards") {
-    return appendFeedBadge(buildSessionActivityFeedItem(contentMeta, {
-      activity_key: cursorState?.current_activity_key,
-      activity_type: cursorState?.activity_type,
-      lernbereich_slug: cursorState?.lernbereich_slug,
-      target_module_key: cursorState?.target_module_key,
-    }), timingBadge);
-  }
-
-  return null;
+function buildRecommendationFeedItem(contentMeta, recommendation) {
+  if (!recommendation?.activity_key) return null;
+  return recommendation.check_id
+    ? buildCheckFeedItem(contentMeta, recommendation)
+    : buildLernbereichFeedItem(contentMeta, recommendation);
 }
 
 function buildRetentionFeedItem(contentMeta, entry) {
   const lernbereichMeta = contentMeta?.lernbereichMetaById?.get(entry?.lernbereich_slug);
   if (entry?.activity_type !== "flashcards" || !lernbereichMeta) return null;
 
-  const href = buildFlashcardsFeedActionHref(lernbereichMeta, entry);
+  const href = buildRetentionFlashcardsHref(lernbereichMeta, entry);
   if (!href) return null;
 
   const primaryBadge = { label: "Flashcards", type: "flashcards" };
@@ -874,9 +740,7 @@ export async function loadFeedAttentionSummary({ supabase } = {}) {
   let dueCount = 0;
 
   if (activeSession?.id) {
-    // Serverseitige Zeitklasse statt Browser-Rekonstruktion: vermeidet, dass
-    // frisch geplante (server-fällige) Schritte durch Uhrabweichungen aus dem
-    // Badge fallen.
+    // Badge = Tagesziel minus heute erledigte Session-Aktivitäten (serverseitig, Europe/Berlin).
     const { data, error } = await supabase.rpc("feed_attention_summary", {
       p_session_id: activeSession.id,
     });
@@ -906,27 +770,27 @@ export async function loadFeedProjection({
   limit = Infinity,
 } = {}) {
   if (!supabase || !contentMeta) {
-    return { activeSession: null, items: [], source: "empty", waiting: null };
+    return { activeSession: null, items: [], source: "empty" };
   }
 
   const activeSession = await loadActiveSession(supabase);
   let items = [];
   let source = "empty";
-  let waiting = null;
   let retentionEntries = [];
 
   if (activeSession?.id) {
-    const cursorState = await pickCurrentFeedCursor(supabase, activeSession.id);
-    const currentItem = buildCurrentCursorFeedItem(contentMeta, cursorState);
+    const recommendation = await loadFeedRecommendation(supabase, activeSession.id);
+    const currentItem = buildRecommendationFeedItem(contentMeta, recommendation);
     retentionEntries = await loadRetentionFeedEntries(supabase, { activeSession });
     const prioritizedRetention = prioritizeManualRetentionEntries(retentionEntries);
     const dueRetentionItems = prioritizedRetention.entries
       .filter((entry) => !entry?.allow_early_feed_start)
       .map((entry) => buildRetentionFeedItem(contentMeta, entry))
       .filter(Boolean);
+    // Fällige Wiederholung geht vor, wenn die Session nur einen vorgezogenen Folgeschritt (Klasse 3) hätte.
     const shouldPreferRetention = dueRetentionItems.length > 0 && (
       prioritizedRetention.hasManualPriorityMatch
-      || String(cursorState?.timing_status || "").trim() === "available"
+      || Number(recommendation?.priority_class) === 3
     );
 
     if (currentItem && !shouldPreferRetention) {
@@ -935,15 +799,10 @@ export async function loadFeedProjection({
     } else if (dueRetentionItems.length) {
       items = dueRetentionItems;
       source = "retention";
-    } else if (String(cursorState?.activity_kind || "").trim() === "waiting") {
-      source = "waiting";
-      waiting = {
-        nextAvailableFrom: String(cursorState?.next_available_from || "").trim(),
-      };
     }
   }
 
-  if (!items.length && !waiting) {
+  if (!items.length) {
     const fallbackRetentionEntries = activeSession?.id
       ? retentionEntries
       : await loadRetentionFeedEntries(supabase);
@@ -962,6 +821,5 @@ export async function loadFeedProjection({
     activeSession,
     items: visibleItems,
     source,
-    waiting,
   };
 }

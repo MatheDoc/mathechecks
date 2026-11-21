@@ -1,15 +1,15 @@
-import { initTrainingModule } from "./modules/training.js?v=20261108-speech-preview";
-import { initRecallModule } from "./modules/recall.js?v=20261108-speech-preview";
-import { initFeynmanModule } from "./modules/feynman.js?v=20261108-speech-preview";
-import { initTestModule } from "./modules/test.js?v=20261103-xp-runs";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20261103-xp-runs";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261108-speech-preview";
+import { initTrainingModule } from "./modules/training.js?v=20261121-feed-simple";
+import { initRecallModule } from "./modules/recall.js?v=20261121-feed-simple";
+import { initFeynmanModule } from "./modules/feynman.js?v=20261121-feed-simple";
+import { initTestModule } from "./modules/test.js?v=20261121-feed-simple";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20261121-feed-simple";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261121-feed-simple";
 import { initCheckAnker } from "./modules/check-anker.js?v=20261025-abschoepfung-widget";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js?v=20261025-abschoepfung-widget";
-import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
+import { initStartModule } from "./modules/start.js?v=20261121-feed-simple";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
-import { initWarmupModule } from "./modules/warmup.js?v=20261120-histogramm-p";
+import { initWarmupModule } from "./modules/warmup.js?v=20261121-feed-simple";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
@@ -81,15 +81,17 @@ function getPageContext() {
   const body = document.body;
   const params = new URLSearchParams(window.location.search);
   const checkIdFromQuery = params.get("check_id") || "";
-  const isFeedContext = params.get("feed") === "1";
+  const activityKey = params.get("activity_key") || "";
+  // Session-Aktivitäten laufen immer frei; nur Retention-Flashcards nutzen noch Serverrunden im Feed-Kontext.
+  const isRetentionFeedContext = params.get("feed") === "1" && activityKey.startsWith("retention:");
   return {
     lernbereich: body?.dataset?.lernbereich || "",
     moduleKey: body?.dataset?.moduleKey || "",
     checkId: checkIdFromQuery || body?.dataset?.checkId || "",
-    activityContext: isFeedContext
+    activityContext: isRetentionFeedContext
       ? {
         mode: "feed",
-        activityKey: params.get("activity_key") || "",
+        activityKey,
         activityStep: params.get("activity_step") || "",
         activityRun: params.get("activity_run") || "",
       }
@@ -547,7 +549,6 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
-      activityContext: context.activityContext,
       usePersistedState: true,
     });
     await typesetMath(root);
@@ -563,7 +564,6 @@ async function bootstrap() {
   if (context.moduleKey === "start") {
     await initStartModule({
       lernbereich: context.lernbereich,
-      activityContext: context.activityContext,
     });
     return;
   }
@@ -586,7 +586,6 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
-      activityContext: context.activityContext,
     });
     if (root) await typesetMath(root);
     return;
@@ -599,7 +598,6 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
-      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
@@ -617,7 +615,6 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
-      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
@@ -635,7 +632,6 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
-      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
@@ -686,8 +682,6 @@ async function bootstrap() {
         root: scriptContentRoot,
         lernbereich: context.lernbereich,
         usePersistedState: true,
-        activityContext: context.activityContext,
-        preferredCheckId: context.checkId,
       }),
     ]);
   }

@@ -2,12 +2,12 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Source of truth liegt in public.system_settings.
   // Das Frontend haelt hier nur noch den aktuell verwendeten Read-Only-Teilausschnitt vor.
   // Kein lokaler Zahlen-Fallback: fehlende Werte bleiben null und werden im UI explizit nicht ersetzt.
-  feedCoreGapNormalHours: null,
+  feedRecommendationGapHours: null,
   planningDefaultActivitiesPerDay: null,
 });
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
-  "feed.core_gap_normal_hours": "feedCoreGapNormalHours",
+  "feed.recommendation_gap_hours": "feedRecommendationGapHours",
   "planning.default_activities_per_day": "planningDefaultActivitiesPerDay",
 });
 

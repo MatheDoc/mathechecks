@@ -6,28 +6,23 @@ import {
     saveTaskIndexForCheck,
     loadShuffleNonce,
     saveShuffleNonce,
-    loadTrainingFeedTaskIndexForCheck,
-    saveTrainingFeedTaskIndexForCheck,
-    loadTrainingFeedShuffleNonce,
-    saveTrainingFeedShuffleNonce,
-} from "../state/check-state-store.js?v=20260516-feed-confirm";
-import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
+} from "../state/check-state-store.js?v=20261121-feed-simple";
+import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20261121-feed-simple";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261108-speech-preview";
 import { createCardMenuItem, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
+import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
-import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261121-feed-simple";
+import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
 import {
-    attachTrainingFeedShell,
     buildTrainingKiAgentPrompt,
     createTrainingCardHeader,
     updateCheckRateBadge,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20260910-field-scores";
+} from "./training.js?v=20261121-feed-simple";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;
@@ -158,11 +153,6 @@ function buildLookupKeys(check) {
     return Array.from(keys)
         .map((key) => normalizeLookupKey(key))
         .filter(Boolean);
-}
-
-function isTrainingFeedStep(activityStep) {
-    const normalized = String(activityStep || "").trim();
-    return normalized === "training" || /^training_\d+$/.test(normalized);
 }
 
 function findCheckForNote(noteNode, checksByLookupKey) {
@@ -298,7 +288,6 @@ function createTaskCard(
                 if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen einblenden";
             },
         });
-        solutionItem.dataset.trainingFeedControlled = "true";
         actionsPopover.appendChild(solutionItem);
     }
 
@@ -308,7 +297,6 @@ function createTaskCard(
             label: "Neue Aufgabe",
             onClick: () => runtimeReloadBtn.click(),
         });
-        reloadItem.dataset.trainingFeedControlled = "true";
         actionsPopover.appendChild(reloadItem);
     }
 
@@ -346,8 +334,6 @@ async function renderCheckTaskInHost(host, check, {
     lernbereich,
     usePersistedState,
     taskIndexByCheckId,
-    activityContext = null,
-    preferredCheckId = "",
 }) {
     try {
         const sammlung = await getAufgabenSammlung(check.Sammlung, {
@@ -356,25 +342,14 @@ async function renderCheckTaskInHost(host, check, {
         });
 
         const checkId = getCheckId(check);
-        const isActiveFeedTraining =
-            activityContext?.mode === "feed" &&
-            isTrainingFeedStep(activityContext?.activityStep) &&
-            (!preferredCheckId || preferredCheckId === checkId);
-        const isFreeMode = !isActiveFeedTraining;
         const totalTaskCount = Array.isArray(sammlung) ? sammlung.length : 0;
         const trackingLernbereich = check.Lernbereich || lernbereich || "";
-        const feedActivityKey = isActiveFeedTraining ? String(activityContext?.activityKey || "").trim() : "";
         const sharedTaskIndex = Number.isInteger(taskIndexByCheckId[checkId])
             ? loadTaskIndexForCheck(lernbereich, checkId, taskIndexByCheckId[checkId])
             : loadTaskIndexForCheck(lernbereich, checkId, 0);
-        const fallbackTaskIndex = isActiveFeedTraining
-            ? pickRandomTaskIndex(sharedTaskIndex, totalTaskCount)
+        let taskIndex = usePersistedState
+            ? loadTaskIndexForCheck(lernbereich, checkId, sharedTaskIndex)
             : sharedTaskIndex;
-        let taskIndex = isActiveFeedTraining && feedActivityKey
-            ? loadTrainingFeedTaskIndexForCheck(lernbereich, checkId, feedActivityKey, fallbackTaskIndex)
-            : usePersistedState
-                ? loadTaskIndexForCheck(lernbereich, checkId, fallbackTaskIndex)
-                : fallbackTaskIndex;
 
         if (!Array.isArray(sammlung) || sammlung.length === 0) {
             taskIndex = 0;
@@ -385,9 +360,7 @@ async function renderCheckTaskInHost(host, check, {
         host.dataset.checkId = checkId;
         host.dataset.lernbereich = check.Lernbereich || lernbereich || "";
 
-        let shuffleNonce = isActiveFeedTraining && feedActivityKey
-            ? loadTrainingFeedShuffleNonce(lernbereich, checkId, feedActivityKey)
-            : loadShuffleNonce(lernbereich, checkId);
+        let shuffleNonce = loadShuffleNonce(lernbereich, checkId);
         if (!shuffleNonce) {
             shuffleNonce = String(Date.now());
         }
@@ -405,7 +378,7 @@ async function renderCheckTaskInHost(host, check, {
         let latestRates = null;
 
         const attachFreeCompleteControl = () => {
-            if (!isFreeMode || totalTaskCount <= 0) return;
+            if (totalTaskCount <= 0) return;
             freeCompleteControl = attachFreeCompletionControl(host, {
                 cardSelector: ".check-card--training",
                 stepLabel: "Training",
@@ -417,7 +390,6 @@ async function renderCheckTaskInHost(host, check, {
         };
 
         const markFreeCompleteReady = () => {
-            if (!isFreeMode) return;
             freeCompleteReady = true;
             if (freeCompleteControl) freeCompleteControl.setReady(true);
         };
@@ -445,18 +417,10 @@ async function renderCheckTaskInHost(host, check, {
         };
 
         const saveCurrentTaskIndex = (nextTaskIndex) => {
-            if (isActiveFeedTraining && feedActivityKey) {
-                saveTrainingFeedTaskIndexForCheck(lernbereich, checkId, feedActivityKey, nextTaskIndex);
-                return;
-            }
             saveTaskIndexForCheck(lernbereich, checkId, nextTaskIndex);
         };
 
         const saveCurrentShuffleNonce = (nextNonce) => {
-            if (isActiveFeedTraining && feedActivityKey) {
-                saveTrainingFeedShuffleNonce(lernbereich, checkId, feedActivityKey, nextNonce);
-                return;
-            }
             saveShuffleNonce(lernbereich, checkId, nextNonce);
         };
 
@@ -475,9 +439,6 @@ async function renderCheckTaskInHost(host, check, {
                 lernbereich,
                 checkId,
                 taskIndex: normalizedTaskIndex,
-                activityKey: isActiveFeedTraining ? activityContext?.activityKey || "" : "",
-                activityStep: isActiveFeedTraining ? activityContext?.activityStep || "" : "",
-                activityRun: isActiveFeedTraining ? activityContext?.activityRun || "" : "",
             });
 
             host.innerHTML = "";
@@ -489,7 +450,7 @@ async function renderCheckTaskInHost(host, check, {
                 normalizedTaskIndex,
                 totalTaskCount,
                 `${taskUiStateKey}::${shuffleNonce}`,
-                isFreeMode ? selectTask : null
+                selectTask
             );
             host.appendChild(card);
             updateCheckRateBadge(card.querySelector(".check-card__rate-badge"), displayedRate);
@@ -532,54 +493,52 @@ async function renderCheckTaskInHost(host, check, {
             xpInitialSeen = true;
         });
 
-        if (isFreeMode) {
-            host.addEventListener("task:question-checked", (event) => {
-                const isComplete = Boolean(event.detail?.isComplete);
+        host.addEventListener("task:question-checked", (event) => {
+            const isComplete = Boolean(event.detail?.isComplete);
 
-                if (!initialProgressSeen) {
-                    initialProgressSeen = true;
-                    if (isComplete) {
-                        taskCompletionTracked = true;
-                        markFreeCompleteReady();
-                        return;
-                    }
+            if (!initialProgressSeen) {
+                initialProgressSeen = true;
+                if (isComplete) {
+                    taskCompletionTracked = true;
+                    markFreeCompleteReady();
+                    return;
                 }
+            }
 
-                if (taskCompletionTracked || !isComplete) return;
-                taskCompletionTracked = true;
+            if (taskCompletionTracked || !isComplete) return;
+            taskCompletionTracked = true;
 
-                const detail = event.detail || {};
-                Promise.resolve(
-                    recordTrainingTaskCompletion({
-                        lernbereich: trackingLernbereich,
-                        checkId,
-                        taskIndex,
-                        checkableCount: Number(detail.checkableCount) || (Number(detail.totalCount) || 0),
-                        revealedCount: Number(detail.revealedCount) || 0,
-                        questionAttempts: Array.isArray(detail.questionAttempts) ? detail.questionAttempts : [],
-                        solutionsRevealedGlobally: Boolean(detail.solutionsRevealedGlobally),
-                        contextKey: "free",
-                    })
-                )
-                    .then((rates) => {
-                        if (rates && typeof rates === "object") {
-                            latestRates = {
-                                previousRate: rates.previousRate ?? null,
-                                newRate: rates.newRate ?? null,
-                                runRate: rates.runRate ?? null,
-                                quoteUnchanged: Boolean(rates.quoteUnchanged),
-                            };
-                            // Badge sofort aktualisieren
-                            const badge = host.querySelector(".check-card__rate-badge");
-                            updateCheckRateBadge(badge, latestRates.newRate);
-                        }
-                        markFreeCompleteReady();
-                    })
-                    .catch(() => {
-                        markFreeCompleteReady();
-                    });
-            });
-        }
+            const detail = event.detail || {};
+            Promise.resolve(
+                recordTrainingTaskCompletion({
+                    lernbereich: trackingLernbereich,
+                    checkId,
+                    taskIndex,
+                    checkableCount: Number(detail.checkableCount) || (Number(detail.totalCount) || 0),
+                    revealedCount: Number(detail.revealedCount) || 0,
+                    questionAttempts: Array.isArray(detail.questionAttempts) ? detail.questionAttempts : [],
+                    solutionsRevealedGlobally: Boolean(detail.solutionsRevealedGlobally),
+                    contextKey: "free",
+                })
+            )
+                .then((rates) => {
+                    if (rates && typeof rates === "object") {
+                        latestRates = {
+                            previousRate: rates.previousRate ?? null,
+                            newRate: rates.newRate ?? null,
+                            runRate: rates.runRate ?? null,
+                            quoteUnchanged: Boolean(rates.quoteUnchanged),
+                        };
+                        // Badge sofort aktualisieren
+                        const badge = host.querySelector(".check-card__rate-badge");
+                        updateCheckRateBadge(badge, latestRates.newRate);
+                    }
+                    markFreeCompleteReady();
+                })
+                .catch(() => {
+                    markFreeCompleteReady();
+                });
+        });
 
         if (host.dataset.boundTrainingReload !== "true") {
             host.dataset.boundTrainingReload = "true";
@@ -589,10 +548,6 @@ async function renderCheckTaskInHost(host, check, {
         }
 
         await renderTaskCardForIndex(taskIndex);
-
-        if (isActiveFeedTraining) {
-            attachTrainingFeedShell(host, { activityContext, checkId, lernbereich });
-        }
 
         // Trainingsquote-Badge initial befüllen
         getUserCheckProficiency().then((proficiency) => {
@@ -614,8 +569,6 @@ export async function initScriptTaskDuplicatesModule({
     root,
     lernbereich,
     usePersistedState = true,
-    activityContext = null,
-    preferredCheckId = "",
 }) {
     if (!root || !lernbereich) return;
 
@@ -641,7 +594,7 @@ export async function initScriptTaskDuplicatesModule({
             ? trainingState.taskIndexByCheckId
             : {};
 
-    const opts = { lernbereich, usePersistedState, taskIndexByCheckId, activityContext, preferredCheckId };
+    const opts = { lernbereich, usePersistedState, taskIndexByCheckId };
 
     await Promise.all(
         noteNodes.map(async (noteNode) => {

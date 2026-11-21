@@ -1,6 +1,7 @@
-// Abschluss-Popup fuer freie Modulaufrufe (Training/Recall/Feynman).
-// Bewusst optisch anders als der Feed-Entscheidungsdialog: schlichtes, zentriertes Overlay.
-// Spezifikation: .github/quoten.md (Abschluss-Popup, Quotendelta).
+// Einheitliches Abschluss-Popup aller Session-Aktivitäten (Start/Training/Test/Recall/Feynman/Flashcards).
+// Spezifikation: .github/quoten.md (Abschluss-Popup, Quotendelta), .github/feed.md (Nächste Aktion).
+
+import { goToNextFeedActivity } from "./feed-card-controls.js?v=20261121-feed-simple";
 
 const OVERLAY_CLASS = "task-completion-overlay";
 
@@ -111,12 +112,12 @@ function buildDialogButton({ variant = "primary", icon = "", label = "", detail 
 /**
  * Zeigt das Abschluss-Popup.
  * @param {object} options
- * @param {("training"|"recall"|"feynman")} options.mode
- * @param {boolean} options.showQuote   Quotendelta anzeigen (nur Training).
+ * @param {("start"|"training"|"test"|"recall"|"feynman"|"flashcards")} options.mode
+ * @param {boolean} options.showQuote   Quotendelta anzeigen.
  * @param {number|null} options.previousRate
  * @param {number|null} options.newRate
  * @param {number|null} options.runRate    Score des aktuellen Durchgangs (Prozent).
- * @param {function} options.onRepeat   Callback fuer "Wiederholen".
+ * @param {function} options.onRepeat   Callback fuer "Wiederholen" (ohne Callback: Button entfaellt).
  * @param {function} options.onDashboard Callback fuer "Zum Dashboard".
  * @param {function} options.onStay     Callback fuer "Auf Seite bleiben" (Popup schliessen, Zustand behalten).
  */
@@ -154,7 +155,9 @@ export function showTaskCompletionPopup({
       ? "Recall abgeschlossen"
       : mode === "test"
         ? "Test abgeschlossen"
-        : "Durchgang abgeschlossen";
+        : mode === "start"
+          ? "Start abgeschlossen"
+          : "Durchgang abgeschlossen";
   popup.appendChild(heading);
 
   if (showQuote && !quoteUnchanged) {
@@ -173,7 +176,7 @@ export function showTaskCompletionPopup({
   if (quoteUnchanged) {
     const note = document.createElement("p");
     note.className = "task-completion-popup__void-note";
-    note.textContent = "Dieser Durchgang wurde nicht gewertet, da alle Lösungen angezeigt wurden. Deine Quote bleibt unverändert.";
+    note.textContent = "Dieser Durchgang wurde nicht gewertet, da alle Lösungen angezeigt wurden. Deine Quote bleibt unverändert, und er zählt nicht für deine Session.";
     popup.appendChild(note);
   }
 
@@ -182,18 +185,20 @@ export function showTaskCompletionPopup({
   const actions = document.createElement("div");
   actions.className = "task-completion-popup__actions";
 
-  const repeatDetail = mode === "training" ? "Neue Variante" : "Neuer Durchgang";
-  const repeatBtn = buildDialogButton({
-    variant: "primary",
-    icon: "\u21ba",
-    label: "Wiederholen",
-    detail: repeatDetail,
-  });
-  repeatBtn.addEventListener("click", () => {
-    close();
-    if (typeof onRepeat === "function") onRepeat();
-  });
-  actions.appendChild(repeatBtn);
+  // Ein ungewerteter Durchgang schreibt keine Session-Gutschrift; "Nächste Aktion" würde hierher zurückführen.
+  if (!quoteUnchanged) {
+    const nextBtn = buildDialogButton({
+      variant: "primary",
+      icon: "\u2705",
+      label: "N\u00e4chste Aktion",
+      detail: "Empfehlung aus deiner Session",
+    });
+    nextBtn.addEventListener("click", () => {
+      nextBtn.disabled = true;
+      void goToNextFeedActivity().finally(close);
+    });
+    actions.appendChild(nextBtn);
+  }
 
   const dashboardBtn = buildDialogButton({
     variant: "secondary",
@@ -211,19 +216,32 @@ export function showTaskCompletionPopup({
   });
   actions.appendChild(dashboardBtn);
 
-  if (typeof onStay === "function") {
-    const stayBtn = buildDialogButton({
-      variant: "tertiary",
-      icon: "\u2713",
-      label: "Auf Seite bleiben",
-      detail: "Antworten ansehen",
+  if (typeof onRepeat === "function") {
+    const repeatDetail = mode === "training" ? "Neue Variante" : "Neuer Durchgang";
+    const repeatBtn = buildDialogButton({
+      variant: "neutral",
+      icon: "\u21ba",
+      label: "Wiederholen",
+      detail: repeatDetail,
     });
-    stayBtn.addEventListener("click", () => {
+    repeatBtn.addEventListener("click", () => {
       close();
-      onStay();
+      onRepeat();
     });
-    actions.appendChild(stayBtn);
+    actions.appendChild(repeatBtn);
   }
+
+  const stayBtn = buildDialogButton({
+    variant: "neutral",
+    icon: "\u2713",
+    label: "Auf Seite bleiben",
+    detail: mode === "start" || mode === "flashcards" ? "Weiter ansehen" : "Antworten ansehen",
+  });
+  stayBtn.addEventListener("click", () => {
+    close();
+    if (typeof onStay === "function") onStay();
+  });
+  actions.appendChild(stayBtn);
 
   popup.appendChild(actions);
   overlay.appendChild(popup);

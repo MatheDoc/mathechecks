@@ -12,7 +12,7 @@ import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { awardXp, recordUserActivity } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { awardXp, recordUserActivity } from "../platform/progress-client.js?v=20261121-feed-simple";
 
 const DATA_ID = "warmup-data";
 const JUMP_NAV_ID = "warmup-jump-nav";

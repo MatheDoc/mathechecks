@@ -1,19 +1,17 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261103-xp-runs";
-import { createRunXpTracker } from "../platform/xp-awards.js?v=20261103-xp-runs";
+import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261121-feed-simple";
+import { createRunXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
-import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
+import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20261108-speech-preview";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
 const recallJumpNavScrollCleanup = new WeakMap();
-const RECALL_FEED_STEP_KEY = "recall";
 const RECALL_EVALUATION_TIMEOUT_MS = 30000;
 
 function scrollModMainToEl(el) {
@@ -645,151 +643,7 @@ function buildRecallCompletionDetails(evalState, source = "complete") {
   };
 }
 
-function normalizeRecallFeedContext(activityContext) {
-  if (!activityContext || activityContext.mode !== "feed") return null;
-  return String(activityContext.activityStep || "").trim() === RECALL_FEED_STEP_KEY
-    ? {
-      mode: "feed",
-      activityKey: String(activityContext.activityKey || "").trim(),
-      activityStep: RECALL_FEED_STEP_KEY,
-    }
-    : null;
-}
-
-function attachRecallFeedShell(section, activityContext, { lernbereich = "" } = {}) {
-  const feedContext = normalizeRecallFeedContext(activityContext);
-  if (!section || !feedContext) return;
-
-  const activityCard = section.querySelector("[data-recall-card]");
-  const controls = attachFeedCardControls(section, {
-    cardSelector: "[data-recall-card]",
-    stepLabel: "Recall",
-  });
-  if (!controls) return;
-
-  let canPrepare = false;
-  let completed = false;
-  let busy = false;
-  let statusMessage = "Prüfe die Antworten. Abschluss ist möglich, sobald alles richtig ist oder die Lösungen angezeigt wurden.";
-  let statusTone = "neutral";
-  let latestEvalState = null;
-
-  const checkId = section.dataset.checkId || "";
-
-  async function recordRecallCompletion() {
-    await recordUserActivity({
-      activityType: "recall",
-      lernbereichSlug: lernbereich,
-      checkId,
-      contextKey: "feed",
-      details: buildRecallCompletionDetails(latestEvalState, "feed_complete"),
-    });
-
-    return recordCheckFeedDecision({
-      lernbereichSlug: lernbereich,
-      checkId,
-      moduleKey: "recall",
-      outcomeKey: "can_do",
-      activityKey: feedContext.activityKey,
-    });
-  }
-
-  const enablePrepare = () => {
-    if (completed) return;
-    canPrepare = true;
-    statusMessage = "Alle Punkte sind abgeschlossen. Du kannst den Feed-Abschluss vorbereiten.";
-    statusTone = "neutral";
-    renderControls();
-  };
-
-  const disablePrepare = () => {
-    if (completed) return;
-    canPrepare = false;
-    statusMessage = "Noch nicht alle Punkte sind richtig oder aufgelöst.";
-    statusTone = "neutral";
-    renderControls();
-  };
-
-  const completeRecallDecision = async () => {
-    if (busy) return;
-    busy = true;
-    statusMessage = "Der Feed-Schritt wird gespeichert.";
-    statusTone = "neutral";
-    renderControls();
-
-    try {
-      await recordRecallCompletion();
-    } catch (error) {
-      console.error("Recall-Aktivität konnte nicht abgeschlossen werden:", error);
-      busy = false;
-      statusMessage = "Die Recall-Aktivität konnte gerade nicht gespeichert werden.";
-      statusTone = "error";
-      renderControls();
-      throw error;
-    }
-
-    completed = true;
-    statusMessage = "Die Recall-Aktivität wurde abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";
-    statusTone = "success";
-    renderControls();
-  };
-
-  const repeatRecallDecision = () => {
-    canPrepare = false;
-    latestEvalState = null;
-    statusMessage = "Die Recall-Aktivität bleibt im Feed offen.";
-    statusTone = "neutral";
-    section.dispatchEvent(new CustomEvent("recall:reset-request", { bubbles: true }));
-    renderControls();
-  };
-
-  const openRecallDecision = () => {
-    if (!controls?.openDecisionDialog || busy || completed || !canPrepare) return;
-
-    controls.openDecisionDialog({
-      title: "Recall abschließen?",
-      detail: "Der bewertete Durchgang wird für deine Recall-Quote gespeichert.",
-      onComplete: completeRecallDecision,
-      onRepeat: repeatRecallDecision,
-    });
-  };
-
-  function renderControls() {
-    const items = [
-      {
-        icon: "❌",
-        label: "Aktivität abbrechen",
-        onClick: leaveFeedContext,
-      },
-      {
-        icon: "✅",
-        label: busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
-        disabled: busy || completed || !canPrepare,
-        iconPulse: canPrepare && !busy && !completed,
-        onClick: openRecallDecision,
-      },
-    ];
-
-    controls.render({
-      status: statusMessage,
-      tone: statusTone,
-      items,
-      ready: canPrepare && !busy && !completed,
-    });
-  }
-
-  section.addEventListener("recall:evaluation-ready", (event) => {
-    latestEvalState = event.detail || null;
-    if (latestEvalState?.ready) {
-      enablePrepare();
-    } else {
-      disablePrepare();
-    }
-  });
-  renderControls();
-}
-
-function initInteractiveRecallCards(root, lernbereich, activityContext) {
+function initInteractiveRecallCards(root, lernbereich) {
   const cards = root.querySelectorAll("[data-recall-card]");
   const cardEvalState = new WeakMap();
 
@@ -820,7 +674,6 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       }
     }
 
-    const isFreeMode = activityContext?.mode !== "feed";
     let freeCompletionControl = null;
     let completionRecordPromise = null;
     let latestRates = null;
@@ -1010,7 +863,6 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
     }
 
     function ensureFreeCompletionControl(ready = false) {
-      if (!isFreeMode) return;
       if (!freeCompletionControl) {
         freeCompletionControl = attachFreeCompletionControl(section, {
           cardSelector: "[data-recall-card]",
@@ -1249,7 +1101,7 @@ function bindCheckPositionPersistence(root, lernbereich, state) {
   });
 }
 
-export async function initRecallModule({ root, lernbereich, preferredCheckId = "", activityContext = null }) {
+export async function initRecallModule({ root, lernbereich, preferredCheckId = "" }) {
   if (!lernbereich) {
     renderInfo(root, "Kein Lernbereich gesetzt (data-lernbereich fehlt).");
     return;
@@ -1278,16 +1130,13 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
   root.innerHTML = checks.map((check) => renderCard(check, aiAccess)).join("");
   const selectedSection = Array.from(root.querySelectorAll("[data-recall-check-viewport][data-check-id]"))
     .find((section) => section.dataset.checkId === selectedCheckId) || null;
-  if (selectedSection) {
-    attachRecallFeedShell(selectedSection, activityContext, { lernbereich });
-    if (activityContext?.mode === "feed") {
-      setJumpNavActive(navNode, selectedCheckId);
-      scrollModMainToEl(selectedSection);
-    }
+  if (selectedSection && preferredSelected) {
+    setJumpNavActive(navNode, selectedCheckId);
+    scrollModMainToEl(selectedSection);
   }
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-recall-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveRecallCards(root, lernbereich, activityContext);
+  initInteractiveRecallCards(root, lernbereich);
   getUserRecallProficiency().then((proficiency) => {
     if (!proficiency.ok) return;
     root.querySelectorAll("[data-recall-check-viewport][data-check-id]").forEach((section) => {
@@ -1296,9 +1145,6 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
     });
   });
   enhanceSpeechInputs(root, ".recall-input-slot");
-  if (activityContext?.mode === "feed" && selectedSection) {
-    applyFeedFocusScope(root, selectedSection);
-  }
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
 }

@@ -122,9 +122,8 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 - Die Folge-Migration `migrations/20260518170000_fix_save_active_learning_session_lernbereich_slug_ambiguity.sql` behebt die Laufzeitmehrdeutigkeit in `save_active_learning_session(...)`, damit das Speichern aktiver Sessions trotz Feed-/Flashcard-Sync wieder zuverlässig funktioniert.
 - `_config.yml` enthält `supabase_url` und `supabase_anon_key`; Topbar und `konto.html` lesen diese Werte zur Laufzeit.
 - `konto.html` deckt aktuell E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung über konfigurierte externe Provider, lokalen Logout, Passwortänderung und bestätigte Kontolöschung ab.
-- `dashboard.html` liest, speichert und löscht die aktive Lern-Session inzwischen über Supabase; die primäre Feed-Karte liest zuerst checkbezogene fällige Schritte aus `session_check_state` und danach lernbereichsweite Flashcards aus `session_activity_state`.
-- `training` schließt Feed-Schritte über `complete_current_training_step(...)` ab.
-- `recall` und `feynman` schreiben explizite Abschlussentscheidungen über `record_check_module_attempt(...)` in Supabase und bewegen passende Check-State-Zeilen weiter.
+- `dashboard.html` liest, speichert und löscht die aktive Lern-Session über Supabase; die primäre Feed-Karte zeigt die Empfehlung aus `get_feed_recommendation(...)`, der Session-Fortschritt kommt aus `session_activity_completions`.
+- Die Migration `migrations/20261121120000_feed_simplification.sql` vereinfacht den Feed: jede abgeschlossene Aktivität zählt über `record_user_activity(...)` bzw. `complete_session_start(...)` für die Session; Cursor, Lock und Zeitfenster entfallen (Spezifikation: `.github/feed.md`); `migrations/20261121130000_feed_legacy_cleanup.sql` entfernt die zugehörigen Tabellen, Spalten, Funktionen und Systemwerte.
 - `supabase start` ist noch nicht möglich, weil Docker lokal fehlt.
 
 ## Aktueller MVP-Stand
@@ -144,25 +143,19 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 - Die Frontend-Brücke liest `supabase_oauth_providers` aus `_config.yml`; aktuell werden `google` und `apple` als OAuth-Buttons in `konto.html` gerendert.
 - E-Mail-Link-, OAuth- und Recovery-Redirects führen auf `konto.html` zurück; ein separater Auth-Callback ist nicht nötig.
 - `dashboard.html` lädt, speichert und löscht die aktive Lern-Session inzwischen über Supabase; die Session-Auswahl arbeitet dort mit stabilen `check_id`-Werten.
-- Die erste checkbezogene Feed-Projektion ist aktiv: Dashboard öffnet `training`, `recall` und `feynman` im Feed-Kontext mit `activity_key`, `activity_step` und `activity_run`.
-- Flashcards sind als lernbereichsweite Feed-Aktivität angebunden und öffnen im Feed-Kontext ohne `check_id`.
-- Die gemeinsame Feed-Shell fragt beim Abbruch oder Seitenwechsel nach und schützt freie Modulaktionen vor Eingriffen in Feed-Aktivitäten.
+- Feed-Links öffnen Module normal (`?check_id=…`); nur Retention-Flashcards laufen mit Feed-Kontext und Serverrunden.
 
 ## Aktuelle Frontend-Feed-Semantik
 
-- `activity_key` ist die stabile Identität einer Feed-Aktivität, zum Beispiel `check:<check_id>:training_1`.
-- `activity_step` beschreibt den fachlichen Pipeline-Schritt.
-- `activity_run` ist nur ein flüchtiger UI-Durchlauf, damit neue Starts keine alten Eingaben oder Bewertungsmarkierungen zeigen.
-- Die Aufgabeninstanz im Feed-Training wird lokal nach `activity_key` stabil gehalten.
-- Freies Training und Feed-Training verwenden getrennte lokale Aufgabenindizes und Shuffle-Nonces.
-- Ein persistentes Start-/Abbruch-Log gibt es noch nicht.
+- `activity_key` identifiziert eine Session-Aktivität, zum Beispiel `check:<check_id>:training` oder `lernbereich:<slug>:start`.
+- Session-Aktivitäten haben keinen eigenen Feed-Kontext mehr; Abschluss läuft überall über das Haken-Icon und das einheitliche Abschluss-Popup.
+- Nur Retention-Flashcards nutzen noch `feed=1`, `activity_key=retention:…`, `activity_step` und `activity_run`.
 
 ## Noch offen
 
 - Docker ist lokal noch nicht installiert; `supabase start` funktioniert erst danach.
 - Die primäre checkbezogene Dashboard-Feed-Karte ist angebunden; vollständige Feed-Liste, Sidebar-Projektion und Fortschrittskarten lesen noch nicht vollständig aus persistenten Plattformdaten.
 - Automatisierte Trainingsversuche auf Fragenebene und das Warm-Up pro Check (`warmup`, derzeit nicht verlinkt) werden noch nicht persistiert.
-- `session_activity_state` ist in v1 nur für `flashcards` eingeführt; weitere Aktivitätstypen und eine vollständige Feed-Liste fehlen noch.
 - Gehostete Auth-Einstellungen wie SMTP, Redirect-URLs und Rate Limits liegen aktuell im Supabase-Dashboard und nicht versioniert im Repo.
 
 ## Remote-first: Aktueller Stand

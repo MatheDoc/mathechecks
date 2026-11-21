@@ -1,7 +1,7 @@
 // Erkennt im Training neu richtig beantwortete Antwortfelder (aus "task:question-checked")
 // und vergibt dafür sofort XP. Der erste Fortschritt nach dem Rendern ist der wiederhergestellte
 // Zustand und wird nur gemerkt, nicht vergeben.
-import { awardXp } from "./progress-client.js?v=20261103-xp-runs";
+import { awardXp } from "./progress-client.js?v=20261121-feed-simple";
 
 export function createTrainingXpTracker(getContext) {
   let awarded = new Set();

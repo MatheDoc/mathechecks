@@ -164,8 +164,17 @@ where lernbereich_slug = 'hypothesentests';
 
 -- 5. Feed-Zustand bereinigen -----------------------------------------------------------------
 
-delete from public.user_feed_activity_deferrals
-where activity_key like 'check:stochastik\_\_hypothesentests\_\_%';
+-- Die Tabelle wurde in 20260523200000_remove_feed_activity_deferrals.sql entfernt; nur bereinigen, falls vorhanden.
+do $$
+begin
+    if to_regclass('public.user_feed_activity_deferrals') is not null then
+        execute $sql$
+            delete from public.user_feed_activity_deferrals
+            where activity_key like 'check:stochastik\_\_hypothesentests\_\_%'
+        $sql$;
+    end if;
+end;
+$$;
 
 update public.session_feed_cursor
 set current_activity_key = null,

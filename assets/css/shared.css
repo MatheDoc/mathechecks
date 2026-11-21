@@ -3,9 +3,9 @@
    ═══════════════════════════════════════════════════════════════ */
 
 @import "../../../aufgaben/runtime/task-render.css?v=20261109-numopt-focus";
-@import "./task-completion.css?v=20260908-run-rate";
-@import "./cards.css?v=20260925-session-scope-mono";
-@import "./dashboard.css?v=20260721-date-picker-cursor";
+@import "./task-completion.css?v=20261121-feed-simple";
+@import "./cards.css?v=20261121-feed-simple";
+@import "./dashboard.css?v=20261121-feed-simple";
 @import "./speech-input.css?v=20261108-fields";
 
 /* ─────────────────────── Global scrollbar ──────────────────── */
@@ -2400,13 +2400,6 @@ html.light .mod-start-content {
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 2px 12px color-mix(in srgb, var(--s-start-accent) 25%, transparent));
-}
-
-.s-start-card__status {
-  margin: 0;
-  max-width: none;
-  line-height: 1.65;
-  color: var(--text-dim);
 }
 
 @media (max-width: 600px) {

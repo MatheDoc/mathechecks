@@ -4,7 +4,7 @@
 
 Diese Datei ist die kanonische Spezifikation für die check-, lernbereichs- und gebietsübergreifende Trefferquote in MatheChecks. Sie ist normativ für die Weiterentwicklung. Wo der aktuelle Code noch abweicht, gilt dieses Dokument.
 
-- Feed-Mechanik (Cursor, Sticky-Lock, Zeitfenster) bleibt in `.github/feed.md`.
+- Feed-Mechanik (Session-Fortschritt, Empfehlung, Tagesziel) bleibt in `.github/feed.md`.
 - Tabellen- und RPC-Grenzen zum produktiven System bleiben in `.github/benutzerverwaltung-mvp.md`.
 - Begriffe in `.github/glossary.md`.
 
@@ -101,18 +101,18 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 
 ### Abschluss-Controls
 
-- **Feed-Kontext:** Das pulsierende Feed-Icon mit Entscheidungsdialog (`jetzt wiederholen`, `später`, `abschließen`) bleibt unverändert für `training`, `recall`, `feynman`, `test`, `start` und `flashcards`. Es ist das visuelle Signal „du bist in einer Feed-Aktivität" und steuert den Cursor.
-- **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen korrekt beantwortet oder aufgelöst; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
+- Alle Aktivitäten (`start`, `training`, `test`, `recall`, `feynman`, `flashcards`) teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) im Karten-Header – egal ob aus dem Feed oder frei geöffnet. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen korrekt beantwortet oder aufgelöst; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor; `start`: sofort) und öffnet das Abschluss-Popup. Ein eigenes Feed-Icon gibt es auf Check-Karten nicht mehr. `kompetenzliste` bekommt **kein** Abschluss-Control.
+- Nur Retention-Flashcards nutzen noch den Feed-Entscheidungsdialog (eigene Serverrunden).
 
 ### Abschluss-Popup
 
 - Das Popup orientiert sich gestalterisch am Feed-Entscheidungsdialog (Eyebrow, Titel, zweispaltige Aktionsbuttons mit Icon, Label und Detailzeile).
-- Trainings-Abschluss zeigt das **Quotendelta** des Checks in allen drei Trainings-Modi: Feed-Training eines Session-Checks, freies Training eines Session-Checks, freies Training eines Nicht-Session-Checks.
+- Trainings-Abschluss zeigt das **Quotendelta** des Checks, egal ob der Check zur Session gehört.
 - Aufwärts-Delta (z. B. 60 % → 80 %) wird motivierend animiert dargestellt.
 - Abwärts-Delta wird sachlich und ohne Demotivation dargestellt.
-- Folge-Optionen sind ausschließlich `Wiederholen` und `Zum Dashboard`. `Wiederholen` lädt im Training eine neue Variante (neuer Taskscore); bei `recall` und `feynman` startet es einen neuen Durchgang. `Zum Dashboard` ist im freien Kontext reine Navigation und verändert den Feed nicht.
+- Folge-Optionen: `Nächste Aktion` (öffnet die aktuelle Feed-Empfehlung), `Zum Dashboard`, `Wiederholen` und `Auf Seite bleiben`. `Wiederholen` lädt im Training eine neue Variante (neuer Taskscore); bei `recall` und `feynman` startet es einen neuen Durchgang. Die Session-Gutschrift ist beim Öffnen des Popups bereits gespeichert; die Optionen sind reine Navigation.
 - `recall` und `feynman` zeigen ihr eigenes Quotendelta, aber verändern die Trainingsquote nicht.
-- **Ungewerteter Durchgang:** Wurde die globale Aktion „alle Lösungen einblenden" (Drei-Punkte-/Toolbar-Menü der Aufgabe) genutzt, zählt der **ganze Versuch nicht**. Es wird kein Trainings-Event geschrieben, die Quote bleibt unverändert, und statt des Quotendeltas erscheint ein kurzer Hinweis im Popup. Das gilt in Feed- wie freiem Training.
+- **Ungewerteter Durchgang:** Wurde die globale Aktion „alle Lösungen einblenden" (Drei-Punkte-/Toolbar-Menü der Aufgabe) genutzt, zählt der **ganze Versuch nicht**. Es wird kein Trainings-Event geschrieben, die Quote bleibt unverändert, und statt des Quotendeltas erscheint ein kurzer Hinweis im Popup. Ein solcher Durchgang zählt auch nicht für den Session-Fortschritt.
 
 ### Per-Frage-Fluss im Training
 
@@ -132,7 +132,7 @@ Bedienung und Wertung sind getrennt: Pro Teilfrage gibt es weiterhin genau **ein
 ### Dashboard-Worklist
 
 - Eine Box listet die Session-Checks (oder wahlweise alle Checks oder Auffrischen-Checks)als sortierte Fortschrittsbalken, die schwächsten oben.
-- Klick auf einen Check öffnet **freies Training** dieses Checks. Das verändert den Core-Feed nicht (kein Cursor, kein Lock) und hebt dennoch die Session-Quote, weil diese nur ein View-Filter auf die Check-Quote ist.
+- Klick auf einen Check öffnet das Training dieses Checks. Ein abgeschlossenes Training zählt für den Session-Fortschritt und hebt die Session-Quote, weil diese nur ein View-Filter auf die Check-Quote ist.
 
 ### Session-Hervorhebung
 
@@ -160,9 +160,9 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 3. „Lösung anzeigen" für eine Frage setzt nur deren noch offene Felder auf `0`; bereits korrekt geprüfte Felder und übrige Fragen behalten ihre Scores.
 4. Drei aufeinanderfolgende perfekte Varianten heben die Check-Quote auf `100 %`, auch nach schwachem Start.
 5. Ein alter schwacher Taskscore verliert mit jeder neuen Variante an Gewicht und fällt nach `N` Varianten aus dem Fenster.
-6. Freies Training eines Session-Checks hebt die Session-Quote, ohne den Feed-Cursor zu verändern.
+6. Freies Training eines Session-Checks hebt die Session-Quote und zählt als Session-Aktivität.
 7. Die Lernbereichs-Quote berücksichtigt nur trainierte Checks.
-8. Das Abschluss-Popup zeigt in allen drei Trainings-Modi ein Quotendelta; aufwärts motivierend, abwärts sachlich.
+8. Das Abschluss-Popup zeigt nach jedem Training ein Quotendelta; aufwärts motivierend, abwärts sachlich.
 9. `recall`/`feynman` erzeugen keine Quote und kein Delta **in diesem Training-Quote-Modell**. Beide haben eigene, separate Read-Models und ändern nichts am Training-Quote-Verhalten.
 10. Das automatische Einblenden der Einzellösung nach korrekter Antwort verändert die Wertung nicht.
 11. Eine Frage mit zwei Feldern, eines sofort richtig und eines aufgelöst, ergibt Fragescore `0.5`.

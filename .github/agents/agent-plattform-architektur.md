@@ -24,18 +24,15 @@ Du verantwortest die fachlich-technische Architektur rund um persistente Plattfo
 - Feed-Ereignisse sind nicht automatisch der einzige Source of Truth; abgeleitete Read-Modelle für Fortschritt und UI-Zugriffe sind ausdrücklich mitzudenken.
 - Die Begriffe `Session`, `Feed`, `Check-Status` und `Versuch` sind vor Tabellen- oder API-Entscheidungen fachlich sauber zu trennen.
 
-## Aktueller v1-Stand
+## Aktueller Stand (Feed-Vereinfachung 2026-11)
 
-- `session_check_state` ist als checkbezogene Pipeline-Projektion eingeführt und wird nicht direkt per Tabellen-CRUD vom Frontend geschrieben.
-- `training` wird in v1 über `complete_current_training_step(p_check_id)` manuell im Feed abgeschlossen; das ist noch kein automatisierter fehlerfreier Trainingsnachweis.
-- `recall` und `feynman` schreiben Rohversuche über `record_check_module_attempt(...)` und bewegen passende Check-State-Zeilen bei erfolgreichem Abschluss weiter.
-- `session_activity_state` ist als lernbereichsweite Feed-Projektion für `start` und `flashcards` eingeführt; `complete_start_activity(...)` schließt die einmalige Start-Aktivität pro Lernbereich ab.
-- Flashcards nutzen serverseitige Durchgänge, Durchgangskarten und Karten-Fälligkeiten; freier Flashcards-Aufruf bleibt ohne persistente Spaced-Repetition.
-- Retention-Flashcards aus abgeschlossenen Sessions laufen user-scoped über `user_retention_scopes` und `retention_flashcard_*`-Tabellen.
-- Ein `Nein, zum Dashboard` im Feed ändert die Aktivität nicht persistent; sie bleibt unverändert offen und erscheint weiter in der normalen Feed-Projektion.
-- Der Feed-Kontext im Frontend nutzt `activity_key` als stabile Aktivitätsidentität und `activity_run` nur für frische UI-Zustände.
-- Freier Modulzugriff und Feed-Kontext müssen getrennt bleiben; insbesondere darf freies Training die Feed-Aufgabeninstanz nicht verändern.
-- Feed-Historie, Start-/Abbruchereignisse, `warmup`-Persistenz, vollständige generische Aktivitätsschicht und automatisierte Trainingsnachweise sind noch Ausbaupunkte.
+- Session-Fortschritt = `session_activity_completions`: genau eine Gutschrift je Session-Aktivität (`start`, `training`, `test`, `recall`, `feynman`, `flashcards`), unabhängig von Reihenfolge und Einstieg (frei oder Feed).
+- Einziger Schreibweg: `record_user_activity(...)` bzw. `complete_session_start(...)` → `credit_session_activity(...)` (idempotent, erhöht den Retention-Aktivitätszähler, startet Retention nach vollständigem Lernbereich).
+- Feed = zustandslose Empfehlung `get_feed_recommendation(...)` (reife Folgeschritte > neuer Stoff > vorgezogene Folgeschritte); kein Cursor, kein Lock, keine gespeicherten Zeitfenster.
+- Badge = Tagesziel minus heute erledigt (`feed_attention_summary(...)`); keine Zustände fällig/überfällig.
+- `session_check_state` ist nur Mitgliedschaft; Cursor, Zeitfenster, `session_activity_state` und Replanning sind entfernt.
+- Retention-Flashcards bleiben user-scoped mit eigenen Serverrunden und eigenem Feed-Kontext.
+- Ausbaupunkte: Warm-Up als Session-Aktivität.
 
 ## Pflichtlektüre
 
@@ -73,8 +70,7 @@ Du verantwortest die fachlich-technische Architektur rund um persistente Plattfo
 - Welche Zustände werden direkt gespeichert, welche nur aus Events abgeleitet und welche zusätzlich als Projektion materialisiert?
 - Welche Daten bleiben Source of Truth im Repo, welche gehören in eine Datenbank?
 - Welche Feed-Ereignisse werden gespeichert, aggregiert oder nur abgeleitet?
-- Ist ein Zustand Teil der checkbezogenen Pipeline (`session_check_state`) oder braucht er bereits eine generische Aktivitätsschicht (`session_activity_state`)?
-- Ist eine Feed-Aktivität stabil (`activity_key`) oder nur ein UI-Durchlauf (`activity_run`)?
+- Ist etwas ein Fakt (Gutschrift in `session_activity_completions`) oder nur eine abgeleitete Empfehlung?
 - Welche Rollen, Rechte und Datenschutzgrenzen müssen von Anfang an mitgedacht werden?
 - Wie sieht ein sinnvoller Startumfang aus, ohne spätere Ausbaustufen zu verbauen?
 

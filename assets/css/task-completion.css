@@ -192,16 +192,13 @@
     background: color-mix(in srgb, var(--rose) 8%, transparent);
 }
 
-.task-completion-popup__button--tertiary {
-    grid-column: 1 / -1;
-    justify-content: center;
-    min-height: 44px;
-    color: var(--text-dim, #a5a5b5);
+.task-completion-popup__button--neutral {
+    color: var(--text-body, #e8e8f0);
 }
 
-.task-completion-popup__button--tertiary:hover,
-.task-completion-popup__button--tertiary:focus-visible {
-    color: var(--text);
+.task-completion-popup__button:disabled {
+    opacity: 0.6;
+    cursor: progress;
 }
 
 .task-completion-popup__button-icon {

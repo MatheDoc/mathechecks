@@ -771,39 +771,6 @@ html.light .check-card {
     display: none;
 }
 
-[data-feed-readonly="true"].check-card,
-[data-feed-readonly="true"] .check-card {
-    --dcc-readonly-overlay: color-mix(in srgb, var(--bg) 38%, transparent);
-    filter: grayscale(0.18) saturate(0.82);
-}
-
-[data-feed-readonly="true"].check-card:hover,
-[data-feed-readonly="true"] .check-card:hover {
-    border-color: color-mix(in srgb, var(--dcc-border) 86%, var(--border));
-    box-shadow: var(--shadow-card, none);
-}
-
-[data-feed-readonly="true"].check-card::after,
-[data-feed-readonly="true"] .check-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    border-radius: inherit;
-    background: var(--dcc-readonly-overlay);
-    pointer-events: none;
-}
-
-html.light [data-feed-readonly="true"].check-card,
-html.light [data-feed-readonly="true"] .check-card {
-    --dcc-readonly-overlay: color-mix(in srgb, white 48%, transparent);
-}
-
-[data-feed-readonly="true"].check-card :is(button, input, textarea, select, summary, [role="button"], [contenteditable="true"]),
-[data-feed-readonly="true"] .check-card :is(button, input, textarea, select, summary, [role="button"], [contenteditable="true"]) {
-    cursor: default;
-}
-
 .check-card__actions-item--disabled,
 .check-card__actions-item--disabled:disabled {
     cursor: not-allowed;

@@ -1,17 +1,8 @@
 import {
-  completeStartActivity,
-  completeCurrentTrainingStep,
-  completeTestStep,
-  getOrCreateFlashcardRound,
   getOrCreateRetentionFlashcardRound,
-  keepCurrentFeedActivity,
-  recordCheckModuleAttempt,
-  releaseCurrentFeedActivity,
-  recordFlashcardReview,
   recordRetentionFlashcardReview,
-  resolveFlashcardRound,
   resolveRetentionFlashcardRound,
-} from "./progress-client.js?v=20261103-xp-runs";
+} from "./progress-client.js?v=20261121-feed-simple";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 
@@ -43,96 +34,26 @@ function ensureFeedActionOk(result, fallbackReason, { emitsFeedUpdate = false } 
   return result;
 }
 
-export async function completeTrainingFeedStep({ checkId, activityKey }) {
-  return ensureFeedActionOk(
-    await completeCurrentTrainingStep({ checkId, activityKey }),
-    "training-not-saved",
-    { emitsFeedUpdate: true },
-  );
-}
-
-export async function completeStartFeedStep({ lernbereichSlug, activityKey }) {
-  return ensureFeedActionOk(
-    await completeStartActivity({ lernbereichSlug, activityKey }),
-    "start-not-saved",
-    { emitsFeedUpdate: true },
-  );
-}
-
-export async function recordCheckFeedDecision({
-  lernbereichSlug,
-  checkId,
-  moduleKey,
-  outcomeKey,
-  activityKey,
-}) {
-  return ensureFeedActionOk(
-    await recordCheckModuleAttempt({
-      lernbereichSlug,
-      checkId,
-      moduleKey,
-      outcomeKey,
-      activityKey,
-    }),
-    "progress-not-saved",
-    { emitsFeedUpdate: true },
-  );
-}
-
-export async function completeTestFeedStep({ checkId, activityKey }) {
-  return ensureFeedActionOk(
-    await completeTestStep({ checkId, activityKey }),
-    "test-step-not-saved",
-    { emitsFeedUpdate: true },
-  );
-}
-
-export async function keepCurrentFeedCursor({ activityKey }) {
-  return ensureFeedActionOk(
-    await keepCurrentFeedActivity({ activityKey }),
-    "feed-cursor-not-kept",
-  );
-}
-
-export async function releaseCurrentFeedCursor({ activityKey }) {
-  return ensureFeedActionOk(
-    await releaseCurrentFeedActivity({ activityKey }),
-    "feed-cursor-not-released",
-  );
-}
-
-export function getFlashcardsFeedApi(trackKind = "session") {
-  const usesRetentionTrack = String(trackKind || "").trim().toLowerCase() === "retention";
-  const api = usesRetentionTrack
-    ? {
-      getOrCreateRound: getOrCreateRetentionFlashcardRound,
-      recordReview: recordRetentionFlashcardReview,
-      resolveRound: resolveRetentionFlashcardRound,
-    }
-    : {
-      getOrCreateRound: getOrCreateFlashcardRound,
-      recordReview: recordFlashcardReview,
-      resolveRound: resolveFlashcardRound,
-    };
-
+// Serverrunden gibt es nur noch für Retention-Flashcards; Session-Aktivitäten laufen frei.
+export function getRetentionFlashcardsApi() {
   return {
     async getOrCreateRound(params) {
       return ensureFeedActionOk(
-        await api.getOrCreateRound(params),
+        await getOrCreateRetentionFlashcardRound(params),
         "flashcards-round-not-loaded",
       );
     },
 
     async recordReview(params) {
       return ensureFeedActionOk(
-        await api.recordReview(params),
+        await recordRetentionFlashcardReview(params),
         "flashcards-review-not-saved",
       );
     },
 
     async resolveRound(params) {
       return ensureFeedActionOk(
-        await api.resolveRound(params),
+        await resolveRetentionFlashcardRound(params),
         "flashcards-round-not-resolved",
         { emitsFeedUpdate: true },
       );

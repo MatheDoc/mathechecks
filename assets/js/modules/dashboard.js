@@ -1,14 +1,14 @@
 import { initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20261103-xp-runs";
+import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20261121-feed-simple";
 import {
   FEED_STEP_ORDER,
   buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,
   loadFeedProjection,
   rememberManualRetentionPriority,
-} from "../platform/feed-projection.js?v=20260826-test-module";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
+} from "../platform/feed-projection.js?v=20261121-feed-simple";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20261121-feed-simple";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
-import { loadDashboardWorklistFilter, saveDashboardWorklistFilter } from "../state/task-ui-state.js?v=20260904-dashboard-filter-state";
+import { loadDashboardWorklistFilter, saveDashboardWorklistFilter } from "../state/task-ui-state.js?v=20261121-feed-simple";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 const LERNBEREICH_ALIASES = {
@@ -731,9 +731,6 @@ function buildGreetingSnapshot(context, date = new Date()) {
     hasActiveSession: Boolean(context?.activeSession),
     progress,
     targetAssessment,
-    hasOverdueChecks: (Array.isArray(context?.sessionCheckStates) ? context.sessionCheckStates : []).some(
-      (row) => String(row?.current_step_status || "").trim() === "due" && row?.overdue_from && new Date(row.overdue_from).getTime() <= now.getTime(),
-    ),
   };
 }
 
@@ -795,7 +792,6 @@ function resolveGreetingProgressCandidate(snapshot) {
     && snapshot.progress
     && snapshot.progress.remainingStepCount > 0
     && snapshot.progress.percent >= GREETING_CONFIDENT_PROGRESS_PERCENT
-    && !snapshot.hasOverdueChecks
   ) {
     return buildGreetingCandidate("sessionSmooth", GREETING_PROGRESS_VARIANTS.sessionSmooth);
   }
@@ -1109,18 +1105,6 @@ function formatDateOnlyLabel(value) {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(date);
-}
-
-function formatDateTimeLabel(value) {
-  const date = new Date(String(value || ""));
-  if (Number.isNaN(date.getTime())) return "";
-
-  return new Intl.DateTimeFormat("de-DE", {
-    day: "numeric",
-    month: "long",
-    hour: "2-digit",
-    minute: "2-digit",
   }).format(date);
 }
 
@@ -2078,39 +2062,55 @@ async function refreshActivityOverview(context) {
   }
 }
 
-function getRemainingCheckStepCount(row) {
-  if (!row) return CHECK_PIPELINE_STEP_COUNT;
-
-  const status = String(row?.current_step_status || "").trim();
-  const stepKey = String(row?.current_step_key || "").trim();
-  if (status === "completed" || stepKey === "check_completed") {
-    return 0;
-  }
-
-  const order = FEED_STEP_ORDER[stepKey];
-  return Number.isFinite(order)
-    ? CHECK_PIPELINE_STEP_COUNT - order + 1
-    : CHECK_PIPELINE_STEP_COUNT;
+function getCheckLernbereichSlug(checkId) {
+  return String(checkId || "").split("__")[1] || "";
 }
 
-function getRemainingDidacticGapCount(row) {
-  const status = String(row?.current_step_status || "").trim();
-  const stepKey = String(row?.current_step_key || "").trim();
-  if (status === "completed" || stepKey === "check_completed") {
-    return 0;
-  }
+// Session-Fortschritt = abgeschlossene Aktivitäten (session_activity_completions), unabhängig von der Reihenfolge.
+function buildSessionCompletionIndex(context) {
+  const doneStepCountByCheckId = new Map();
+  const lastCompletedAtByCheckId = new Map();
+  const doneLernbereichActivityKeys = new Set();
 
-  switch (stepKey) {
-    case "recall":
-      return 2;
-    case "feynman":
-      return 1;
-    case "test":
-      return 0;
-    case "training":
-    default:
-      return 3;
-  }
+  (Array.isArray(context?.sessionCompletions) ? context.sessionCompletions : []).forEach((row) => {
+    const activityType = String(row?.activity_type || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    const completedAt = String(row?.completed_at || "");
+
+    if (checkId && FEED_STEP_ORDER[activityType]) {
+      doneStepCountByCheckId.set(checkId, (doneStepCountByCheckId.get(checkId) || 0) + 1);
+      if (completedAt > (lastCompletedAtByCheckId.get(checkId) || "")) {
+        lastCompletedAtByCheckId.set(checkId, completedAt);
+      }
+      return;
+    }
+
+    const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
+    if (lernbereichSlug && (activityType === "start" || activityType === "flashcards")) {
+      doneLernbereichActivityKeys.add(`${lernbereichSlug}:${activityType}`);
+    }
+  });
+
+  return { doneStepCountByCheckId, lastCompletedAtByCheckId, doneLernbereichActivityKeys };
+}
+
+function getRemainingCheckStepCount(completionIndex, checkId) {
+  const doneCount = completionIndex?.doneStepCountByCheckId?.get(checkId) || 0;
+  return Math.max(0, CHECK_PIPELINE_STEP_COUNT - doneCount);
+}
+
+// Zwischen zwei Schritten derselben Kette liegt der empfohlene Abstand G.
+function getRemainingDidacticGapCount(completionIndex, checkId) {
+  return Math.max(0, getRemainingCheckStepCount(completionIndex, checkId) - 1);
+}
+
+function isLernbereichActivityDone(completionIndex, lernbereichId, activityType) {
+  return Boolean(completionIndex?.doneLernbereichActivityKeys?.has(`${lernbereichId}:${activityType}`));
+}
+
+// Je Lernbereich: Start + Flashcards (nur mit Checks in der Session) + 4 Schritte je Check.
+function getLernbereichActivityTotal(checkCount) {
+  return 1 + (checkCount > 0 ? 1 : 0) + (checkCount * CHECK_PIPELINE_STEP_COUNT);
 }
 
 function applyPrimaryFeedButtonState(context, {
@@ -2120,7 +2120,6 @@ function applyPrimaryFeedButtonState(context, {
   moduleLabel = "Feed",
   type = "feed",
   accessibleLabel = "Nächste Aktion",
-  waiting = false,
   disabled = false,
 } = {}) {
   const { elements } = context;
@@ -2131,7 +2130,6 @@ function applyPrimaryFeedButtonState(context, {
   const normalizedModuleLabel = String(moduleLabel || "").trim();
   button.dataset.actionHref = normalizedHref;
   button.dataset.type = type || "feed";
-  button.classList.toggle("is-waiting", waiting);
   button.setAttribute("aria-disabled", disabled || !normalizedHref ? "true" : "false");
   button.setAttribute("aria-label", accessibleLabel || "Nächste Aktion");
   button.title = accessibleLabel || "Nächste Aktion";
@@ -2168,23 +2166,6 @@ function applyPrimaryFeedEmptyState(context) {
     moduleLabel: "Feed",
     type: "feed",
     accessibleLabel: "---",
-    disabled: true,
-  });
-}
-
-function applyPrimaryFeedWaitingState(context, waiting = null) {
-  const nextLabel = formatDateTimeLabel(waiting?.nextAvailableFrom);
-
-  applyPrimaryFeedButtonState(context, {
-    title: nextLabel
-      ? `Nächste Aktion ab ${nextLabel} verfügbar. In der Zwischenzeit kannst du deine Erfolgsquoten verbessern.`
-      : "Nächste Aktion wird später freigeschaltet.",
-    moduleLabel: "",
-    type: "feed",
-    accessibleLabel: nextLabel
-      ? "Wartend"
-      : "Wartend",
-    waiting: true,
     disabled: true,
   });
 }
@@ -2430,22 +2411,13 @@ function sortCompletedLernbereiche(entries) {
 }
 
 async function loadActiveSessionCompletedLernbereiche(context) {
-  if (!context.supabase || !context.activeSession?.id) return [];
+  if (!context.activeSession?.id) return [];
 
-  const { data, error } = await context.supabase
-    .from("session_check_state")
-    .select("check_id, current_step_status, last_completed_at")
-    .eq("session_id", context.activeSession.id);
+  if (context.supabase) {
+    context.sessionCompletions = await loadSessionCompletions(context.supabase, context.activeSession.id);
+  }
 
-  if (error) throw error;
-
-  const statusByCheckId = new Map();
-  (Array.isArray(data) ? data : []).forEach((row) => {
-    const checkId = String(row?.check_id || "").trim();
-    if (!checkId) return;
-    statusByCheckId.set(checkId, row);
-  });
-
+  const completionIndex = buildSessionCompletionIndex(context);
   const completedLernbereiche = [];
 
   context.lernbereiche.forEach((group) => {
@@ -2456,12 +2428,11 @@ async function loadActiveSessionCompletedLernbereiche(context) {
       const selectedChecks = lb.checks.filter((check) => isCheckSelected(lbState, check.id));
       if (!selectedChecks.length) return;
 
-      const rows = selectedChecks.map((check) => statusByCheckId.get(check.id));
-      const allCompleted = rows.every((row) => row?.current_step_status === "completed");
+      const allCompleted = selectedChecks.every((check) => getRemainingCheckStepCount(completionIndex, check.id) === 0);
       if (!allCompleted) return;
 
-      const completionDates = rows
-        .map((row) => String(row?.last_completed_at || ""))
+      const completionDates = selectedChecks
+        .map((check) => completionIndex.lastCompletedAtByCheckId.get(check.id) || "")
         .filter(Boolean)
         .sort((left, right) => right.localeCompare(left));
 
@@ -2747,11 +2718,6 @@ async function refreshPrimaryFeedCard(context) {
       return;
     }
 
-    if (projection?.waiting?.nextAvailableFrom) {
-      applyPrimaryFeedWaitingState(context, projection.waiting);
-      return;
-    }
-
     applyPrimaryFeedEmptyState(context);
   } catch (error) {
     console.error("Feed-Einstieg konnte nicht geladen werden:", error);
@@ -2860,7 +2826,7 @@ function buildActiveSessionProgress(context) {
   if (!context.activeSession) return null;
 
   const { selectedCheckIds, activeLernbereichIds } = summarizeActivePlan(context);
-  const totalStepCount = activeLernbereichIds.length + (selectedCheckIds.length * CHECK_PIPELINE_STEP_COUNT);
+  const totalStepCount = getSelectedSessionActivityTotal(selectedCheckIds, activeLernbereichIds);
   if (totalStepCount <= 0) {
     return null;
   }
@@ -2935,20 +2901,21 @@ function updatePlanProgress(context) {
   setPlanProgressFill(fillNode, progress.percent);
 }
 
-function buildSessionLernbereichProgressData(selectedCheckIds, checkStateById, startState) {
+function buildSessionLernbereichProgressData(lernbereichId, selectedCheckIds, completionIndex) {
   const normalizedCheckIds = Array.isArray(selectedCheckIds)
     ? selectedCheckIds.map((checkId) => String(checkId || "").trim()).filter(Boolean)
     : [];
-  const totalStepCount = 1 + (normalizedCheckIds.length * CHECK_PIPELINE_STEP_COUNT);
+  const totalStepCount = getLernbereichActivityTotal(normalizedCheckIds.length);
   if (totalStepCount <= 0) return null;
 
   const remainingCheckStepCount = normalizedCheckIds.reduce((sum, checkId) => {
-    return sum + getRemainingCheckStepCount(checkStateById.get(checkId));
+    return sum + getRemainingCheckStepCount(completionIndex, checkId);
   }, 0);
-  const startStepCompleted = String(startState?.status || "").trim() === "completed";
+  const remainingLernbereichActivityCount = (isLernbereichActivityDone(completionIndex, lernbereichId, "start") ? 0 : 1)
+    + (normalizedCheckIds.length > 0 && !isLernbereichActivityDone(completionIndex, lernbereichId, "flashcards") ? 1 : 0);
   const remainingStepCount = Math.max(
     0,
-    Math.min(totalStepCount, remainingCheckStepCount + (startStepCompleted ? 0 : 1)),
+    Math.min(totalStepCount, remainingCheckStepCount + remainingLernbereichActivityCount),
   );
   const completedStepCount = Math.max(0, totalStepCount - remainingStepCount);
   const percent = Math.round((completedStepCount / totalStepCount) * 100);
@@ -2963,8 +2930,7 @@ function buildSessionLernbereichProgressData(selectedCheckIds, checkStateById, s
 
 function collectActiveSessionLernbereiche(context) {
   const entries = [];
-  const checkStateById = buildSessionCheckStateById(context);
-  const startStateByLernbereichId = buildSessionStartStateByLernbereichId(context);
+  const completionIndex = buildSessionCompletionIndex(context);
 
   context.lernbereiche.forEach((group) => {
     group.items.forEach((lb) => {
@@ -2982,11 +2948,7 @@ function collectActiveSessionLernbereiche(context) {
         checkCount: selectedCheckIds.length,
         totalCheckCount: Array.isArray(lb.checks) ? lb.checks.length : 0,
         statusKind: "session-progress",
-        sessionProgress: buildSessionLernbereichProgressData(
-          selectedCheckIds,
-          checkStateById,
-          startStateByLernbereichId.get(lb.id),
-        ),
+        sessionProgress: buildSessionLernbereichProgressData(lb.id, selectedCheckIds, completionIndex),
       });
     });
   });
@@ -3024,39 +2986,29 @@ function buildPayloadFromState(context, draft, lernbereiche, draftConfig) {
   return basePayload;
 }
 
-function buildSessionCheckStateById(context) {
-  return new Map(
-    (Array.isArray(context.sessionCheckStates) ? context.sessionCheckStates : []).map((row) => [String(row?.check_id || "").trim(), row]),
-  );
+function getLernbereicheWithSelectedChecks(selectedCheckIds) {
+  return new Set(selectedCheckIds.map(getCheckLernbereichSlug).filter(Boolean));
 }
 
-function buildSessionStartStateByLernbereichId(context) {
-  return new Map(
-    (Array.isArray(context.sessionActivityStates) ? context.sessionActivityStates : [])
-      .filter((row) => String(row?.activity_type || "").trim() === "start")
-      .map((row) => [String(row?.lernbereich_slug || "").trim(), row]),
-  );
-}
-
-function getRemainingSelectedActivityCount(context, selectedCheckIds) {
-  const checkStateById = buildSessionCheckStateById(context);
-  return selectedCheckIds.reduce((sum, checkId) => {
-    return sum + getRemainingCheckStepCount(checkStateById.get(checkId));
-  }, 0);
-}
-
-function getRemainingSelectedStartActivityCount(context, selectedLernbereichIds) {
-  const startStateByLernbereichId = buildSessionStartStateByLernbereichId(context);
-  return selectedLernbereichIds.reduce((sum, lernbereichId) => {
-    const row = startStateByLernbereichId.get(String(lernbereichId || "").trim());
-    const status = String(row?.status || "").trim();
-    return sum + (status === "completed" ? 0 : 1);
-  }, 0);
+function getSelectedSessionActivityTotal(selectedCheckIds, selectedLernbereichIds) {
+  const lernbereicheWithChecks = getLernbereicheWithSelectedChecks(selectedCheckIds);
+  const flashcardsCount = selectedLernbereichIds.filter((id) => lernbereicheWithChecks.has(id)).length;
+  return selectedLernbereichIds.length + flashcardsCount + (selectedCheckIds.length * CHECK_PIPELINE_STEP_COUNT);
 }
 
 function getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds) {
-  return getRemainingSelectedActivityCount(context, selectedCheckIds)
-    + getRemainingSelectedStartActivityCount(context, selectedLernbereichIds);
+  const completionIndex = buildSessionCompletionIndex(context);
+  const lernbereicheWithChecks = getLernbereicheWithSelectedChecks(selectedCheckIds);
+  const remainingCheckSteps = selectedCheckIds.reduce((sum, checkId) => {
+    return sum + getRemainingCheckStepCount(completionIndex, checkId);
+  }, 0);
+  const remainingLernbereichActivities = selectedLernbereichIds.reduce((sum, lernbereichId) => {
+    const id = String(lernbereichId || "").trim();
+    const startOpen = isLernbereichActivityDone(completionIndex, id, "start") ? 0 : 1;
+    const flashcardsOpen = lernbereicheWithChecks.has(id) && !isLernbereichActivityDone(completionIndex, id, "flashcards") ? 1 : 0;
+    return sum + startOpen + flashcardsOpen;
+  }, 0);
+  return remainingCheckSteps + remainingLernbereichActivities;
 }
 
 function getConfiguredPositiveNumber(value) {
@@ -3068,7 +3020,7 @@ function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereich
   const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
   const activitiesPerDay = getConfiguredPositiveNumber(context.activeSession?.activities_per_day)
     ?? getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
-  const didacticGapHours = getConfiguredPositiveNumber(context.systemSettings?.feedCoreGapNormalHours);
+  const didacticGapHours = getConfiguredPositiveNumber(context.systemSettings?.feedRecommendationGapHours);
 
   if (!activitiesPerDay || !didacticGapHours) {
     return {
@@ -3082,11 +3034,11 @@ function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereich
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const now = new Date();
-  const checkStateById = buildSessionCheckStateById(context);
+  const completionIndex = buildSessionCompletionIndex(context);
 
   const workloadDate = addCalendarDays(today, remainingSteps > 0 ? Math.floor((remainingSteps - 1) / activitiesPerDay) : 0);
   const earliestCompletionTimestamp = selectedCheckIds.reduce((latestTimestamp, checkId) => {
-    const gapCount = getRemainingDidacticGapCount(checkStateById.get(checkId));
+    const gapCount = getRemainingDidacticGapCount(completionIndex, checkId);
     return Math.max(latestTimestamp, now.getTime() + (gapCount * didacticGapHours * 60 * 60 * 1000));
   }, today.getTime());
   const earliestCompletionDate = new Date(earliestCompletionTimestamp);
@@ -3264,6 +3216,16 @@ function updatePlanSummary(context) {
   updateGreetingHeading(context);
 }
 
+async function loadSessionCompletions(supabase, sessionId) {
+  const { data, error } = await supabase
+    .from("session_activity_completions")
+    .select("activity_key, activity_type, lernbereich_slug, check_id, completed_at")
+    .eq("session_id", sessionId);
+
+  if (error) throw error;
+  return Array.isArray(data) ? data : [];
+}
+
 async function loadPersistedState(supabase, lernbereiche) {
   const { data: sessions, error: sessionError } = await supabase
     .from("learning_sessions")
@@ -3278,14 +3240,13 @@ async function loadPersistedState(supabase, lernbereiche) {
 
   const activeSession = Array.isArray(sessions) ? sessions[0] || null : null;
   if (!activeSession?.id) {
-    return { state: {}, session: null, checkStates: [], activityStates: [] };
+    return { state: {}, session: null, completions: [] };
   }
 
   const [
     { data: lernbereicheRows, error: lernbereicheError },
     { data: exclusionRows, error: exclusionError },
-    { data: checkStateRows, error: checkStateError },
-    { data: activityStateRows, error: activityStateError },
+    completions,
   ] = await Promise.all([
     supabase
       .from("session_lernbereiche")
@@ -3295,27 +3256,16 @@ async function loadPersistedState(supabase, lernbereiche) {
       .from("session_check_exclusions")
       .select("check_id")
       .eq("session_id", activeSession.id),
-    supabase
-      .from("session_check_state")
-      .select("check_id, current_step_key, current_step_status, overdue_from, available_from")
-      .eq("session_id", activeSession.id),
-    supabase
-      .from("session_activity_state")
-      .select("lernbereich_slug, activity_type, status")
-      .eq("session_id", activeSession.id)
-      .eq("activity_type", "start"),
+    loadSessionCompletions(supabase, activeSession.id),
   ]);
 
   if (lernbereicheError) throw lernbereicheError;
   if (exclusionError) throw exclusionError;
-  if (checkStateError) throw checkStateError;
-  if (activityStateError) throw activityStateError;
 
   return {
     state: buildStateFromPersisted(lernbereiche, lernbereicheRows, exclusionRows),
     session: activeSession,
-    checkStates: Array.isArray(checkStateRows) ? checkStateRows : [],
-    activityStates: Array.isArray(activityStateRows) ? activityStateRows : [],
+    completions,
   };
 }
 
@@ -3596,7 +3546,7 @@ function mapSessionError(error) {
     code === "42P01"
     || code === "42703"
     || normalized.includes("session_check_state")
-    || normalized.includes("session_activity_state")
+    || normalized.includes("session_activity_completions")
     || normalized.includes("session_flashcard")
     || normalized.includes("refresh_flashcard_activity_for_lernbereich")
   ) {
@@ -3696,8 +3646,7 @@ async function handleSave(context) {
     const persisted = await loadPersistedState(context.supabase, context.lernbereiche);
     context.state = persisted.state;
     context.activeSession = persisted.session;
-    context.sessionCheckStates = persisted.checkStates;
-    context.sessionActivityStates = persisted.activityStates;
+    context.sessionCompletions = persisted.completions;
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
@@ -3744,8 +3693,7 @@ async function handleDelete(context) {
     context.draft = {};
     context.draftConfig = { name: "", targetDate: "" };
     context.activeSession = null;
-    context.sessionCheckStates = [];
-    context.sessionActivityStates = [];
+    context.sessionCompletions = [];
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
@@ -4487,8 +4435,7 @@ function createContext(root, lernbereiche) {
     authState: null,
     activeSession: null,
     activityOverview: null,
-    sessionCheckStates: [],
-    sessionActivityStates: [],
+    sessionCompletions: [],
     state: {},
     draft: {},
     draftConfig: { name: "", targetDate: "" },
@@ -4523,8 +4470,7 @@ async function refreshDashboardFromServer(context) {
     const persisted = await loadPersistedState(context.supabase, context.lernbereiche);
     context.state = persisted.state;
     context.activeSession = persisted.session;
-    context.sessionCheckStates = persisted.checkStates;
-    context.sessionActivityStates = persisted.activityStates;
+    context.sessionCompletions = persisted.completions;
     context.retentionCheckIds = await loadRetentionCheckIds(context);
     updatePlanSummary(context);
     updateSessionList(context);
@@ -4680,8 +4626,7 @@ export async function initDashboardModule() {
     const persisted = await loadPersistedState(context.supabase, lernbereiche);
     context.state = persisted.state;
     context.activeSession = persisted.session;
-    context.sessionCheckStates = persisted.checkStates;
-    context.sessionActivityStates = persisted.activityStates;
+    context.sessionCompletions = persisted.completions;
     context.persistedStateLoaded = true;
     context.lastRefreshAt = Date.now();
     updateSessionActionButtons(context, false);

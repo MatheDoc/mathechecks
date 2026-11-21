@@ -61,15 +61,15 @@ Das Bild für die Materialkarte eines Lernbereichs steht im Feld `bild` in `_dat
 Aktueller Stand mit v2-Grundlage:
 
 - `learning_sessions`: aktive Lernkonfiguration eines Benutzers plus Planungsparameter wie Zieltermin, Zeitzone, Freigabelimit und Parallelitätsgrenze.
-- `session_check_state`: checkbezogene Feed-Pipeline (`training`, `recall`, `feynman`, `test`) inklusive materialisiertem letztem erfolgreichem Abschlusszeitpunkt.
-- `session_activity_state`: lernbereichsweite Feed-Projektion für `start` und `flashcards` innerhalb einer Core-Session.
+- `session_check_state`: Mitgliedschaft der Checks in einer Session.
+- `session_activity_completions`: eine Gutschrift je abgeschlossener Session-Aktivität (`start`, `training`, `test`, `recall`, `feynman`, `flashcards`); Quelle des Session-Fortschritts (siehe `.github/feed.md`).
 - `user_retention_scopes`: nutzerweite Retention-Scope-Projektion für Flashcards nach Ende einer Core-Session.
-- `user_feed_activity_counters`: user-scoped Zähler abgeschlossener Feed-Aktivitäten; Referenzgröße für serverseitige Retention-Abstände.
-- Flashcard-Tabellen: sessionseitige Durchgänge plus additive user-scoped Retention-Zustände für Kartenfälligkeiten jenseits der Core-Session.
+- `user_feed_activity_counters`: user-scoped Zähler neuer Session-Gutschriften und Retention-Runden; Referenzgröße für serverseitige Retention-Abstände.
+- Flashcard-Tabellen: user-scoped Retention-Zustände für Kartenfälligkeiten; sessionseitige Kartenstände nur noch als Historie.
 - `user_activity_events`: ein Ereignis je abgeschlossenem Durchgang (`training` je Aufgabe, `recall`, `feynman`, `test`, `warmup` je Warm-Up, `flashcards` je Runde) mit Rohdaten in `details`; Grundlage für Quoten, Aktivitätsübersicht und XP.
 - XP und Stufen: Read-Model `get_user_xp_summary()`. Alle Aktivitäten vergeben XP sofort per `award_xp` und speichern sie unveränderlich in `user_xp_awards`: Training je Antwortfeld, Test je Frage, Warm-Up je Schritt, Recall/Feynman je Item nach jeder KI-Auswertung (nur der Zuwachs gegenüber dem bisherigen Beitrag; ein gemeinsamer Wiederholungsfaktor je Durchgang). Abschluss-Ereignisse aus `user_activity_events` zählen je Typ nur noch vor dessen erster Einzelvergabe (Altbestand). XP = Gewicht × Score × Faktor (erstmals, mit Abstand wiederholt, gehäuft wiederholt); Gewichte und Faktoren in `system_settings` (`xp.*`). Flashcards zählen nicht. Anzeige: `assets/js/platform/xp-indicator.js` (Ring mit Stufe in der Kopfzeile), Vergabe-Logik im Client: `assets/js/platform/xp-awards.js`.
 
-Der freie Flashcards-Aufruf persistiert keinen Spaced-Repetition-Zustand im Browser. Im Feed-Kontext werden nur Karten-IDs, Check-IDs, Aufgabenindex, Bewertung und Fälligkeit gespeichert; der eigentliche Aufgaben-/Karteninhalt bleibt in `aufgaben/exports/json/`. Die endliche Core-Session und die länger laufende Retention-Schicht bleiben dabei bewusst getrennt.
+Der freie Flashcards-Aufruf persistiert keinen Spaced-Repetition-Zustand. In Retention-Durchgängen werden nur Karten-IDs, Check-IDs, Aufgabenindex, Bewertung und Fälligkeit gespeichert; der eigentliche Aufgaben-/Karteninhalt bleibt in `aufgaben/exports/json/`. Die endliche Core-Session und die länger laufende Retention-Schicht bleiben dabei bewusst getrennt.
 
 
 ## `_data/checks.json` — Feldsemantik

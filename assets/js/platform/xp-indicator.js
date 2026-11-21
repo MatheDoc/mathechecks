@@ -3,7 +3,7 @@
 import {
   XP_AWARDED_EVENT,
   getUserXpSummary,
-} from "./progress-client.js?v=20261103-xp-runs";
+} from "./progress-client.js?v=20261121-feed-simple";
 
 const TYPE_LABELS = {
   feynman: "Feynman",

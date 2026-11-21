@@ -1,8 +1,6 @@
 const STATE_PREFIX = "training-state-v1";
 const CHECK_TASK_INDEX_PREFIX = "training-task-index-v1";
-const FEED_TASK_INDEX_PREFIX = "training-feed-task-index-v1";
 const SHUFFLE_NONCE_PREFIX = "training-shuffle-nonce-v1";
-const FEED_SHUFFLE_NONCE_PREFIX = "training-feed-shuffle-nonce-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
 
 function getTabScopeId() {
@@ -27,16 +25,8 @@ function getCheckTaskIndexKey(lernbereich, checkId) {
   return `${CHECK_TASK_INDEX_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}`;
 }
 
-function getFeedTaskIndexKey(lernbereich, checkId, activityKey) {
-  return `${FEED_TASK_INDEX_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}::${activityKey || "unknown"}`;
-}
-
 function getShuffleNonceKey(lernbereich, checkId) {
   return `${SHUFFLE_NONCE_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}`;
-}
-
-function getFeedShuffleNonceKey(lernbereich, checkId, activityKey) {
-  return `${FEED_SHUFFLE_NONCE_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}::${activityKey || "unknown"}`;
 }
 
 function getEmptyState() {
@@ -102,38 +92,6 @@ export function saveTaskIndexForCheck(lernbereich, checkId, taskIndex) {
   }
 }
 
-export function loadTrainingFeedTaskIndexForCheck(lernbereich, checkId, activityKey, fallback = 0) {
-  if (!checkId || typeof checkId !== "string" || !activityKey || typeof activityKey !== "string") {
-    return Number.isInteger(fallback) && fallback >= 0 ? fallback : 0;
-  }
-
-  try {
-    const raw = localStorage.getItem(getFeedTaskIndexKey(lernbereich, checkId, activityKey));
-    if (raw == null) {
-      return Number.isInteger(fallback) && fallback >= 0 ? fallback : 0;
-    }
-    const parsed = Number(raw);
-    if (Number.isInteger(parsed) && parsed >= 0) {
-      return parsed;
-    }
-  } catch {
-    // Fall through to fallback.
-  }
-
-  return Number.isInteger(fallback) && fallback >= 0 ? fallback : 0;
-}
-
-export function saveTrainingFeedTaskIndexForCheck(lernbereich, checkId, activityKey, taskIndex) {
-  if (!checkId || typeof checkId !== "string" || !activityKey || typeof activityKey !== "string") return;
-
-  const normalized = Number.isInteger(taskIndex) && taskIndex >= 0 ? taskIndex : 0;
-  try {
-    localStorage.setItem(getFeedTaskIndexKey(lernbereich, checkId, activityKey), String(normalized));
-  } catch {
-    // Ignore quota/storage errors.
-  }
-}
-
 export function clearTrainingTaskStateForCheck(lernbereich, checkId) {
   if (!checkId || typeof checkId !== "string") return;
 
@@ -168,28 +126,6 @@ export function saveShuffleNonce(lernbereich, checkId, nonce) {
 
   try {
     localStorage.setItem(getShuffleNonceKey(lernbereich, checkId), String(nonce));
-  } catch {
-    // Ignore quota/storage errors.
-  }
-}
-
-export function loadTrainingFeedShuffleNonce(lernbereich, checkId, activityKey) {
-  if (!checkId || typeof checkId !== "string" || !activityKey || typeof activityKey !== "string") return null;
-
-  try {
-    const raw = localStorage.getItem(getFeedShuffleNonceKey(lernbereich, checkId, activityKey));
-    if (raw != null && raw !== "") return raw;
-  } catch {
-    // Fall through.
-  }
-  return null;
-}
-
-export function saveTrainingFeedShuffleNonce(lernbereich, checkId, activityKey, nonce) {
-  if (!checkId || typeof checkId !== "string" || !activityKey || typeof activityKey !== "string") return;
-
-  try {
-    localStorage.setItem(getFeedShuffleNonceKey(lernbereich, checkId, activityKey), String(nonce));
   } catch {
     // Ignore quota/storage errors.
   }

@@ -1,5 +1,4 @@
-import { keepCurrentFeedCursor, releaseCurrentFeedCursor } from "../../platform/feed-actions.js?v=20260826-test-module";
-import { clearManualRetentionPriority, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260826-test-module";
+import { clearManualRetentionPriority, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20261121-feed-simple";
 import { getSupabaseClient } from "../../platform/supabase-client.js?v=20260520-feed-loading";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -21,106 +20,6 @@ const FEED_CONTENT_META_OPTIONS = {
   gebieteScriptId: "gebiete-feed-data",
   lernbereicheScriptId: "lernbereiche-feed-data",
 };
-const FEED_FOCUS_CARD_SELECTOR = ".check-card";
-const FEED_FOCUS_SECTION_SELECTOR = "[data-check-id], [data-recall-check-viewport], [data-fy-check-viewport], .check-viewport-item, .kl-card";
-const FEED_FOCUS_INTERACTIVE_SELECTOR = [
-  "button",
-  "input",
-  "textarea",
-  "select",
-  "a[href]",
-  "summary",
-  "[role='button']",
-  "[contenteditable='true']",
-].join(",");
-
-function getFeedFocusSection(card, root) {
-  if (!card) return null;
-  const section = card.closest(FEED_FOCUS_SECTION_SELECTOR) || card;
-  return root?.contains?.(section) ? section : card;
-}
-
-function storeOriginalInteractionState(node) {
-  if (node.dataset.feedFocusStored === "true") return;
-
-  node.dataset.feedFocusStored = "true";
-  node.dataset.feedFocusHadDisabled = node.disabled ? "true" : "false";
-  node.dataset.feedFocusTabindex = node.getAttribute("tabindex") ?? "";
-  node.dataset.feedFocusAriaDisabled = node.getAttribute("aria-disabled") ?? "";
-}
-
-function restoreInteractionState(node) {
-  if (node.dataset.feedFocusStored !== "true") return;
-
-  if (node.dataset.feedFocusHadDisabled === "false" && "disabled" in node) {
-    node.disabled = false;
-  }
-
-  const originalTabindex = node.dataset.feedFocusTabindex || "";
-  if (originalTabindex) {
-    node.setAttribute("tabindex", originalTabindex);
-  } else {
-    node.removeAttribute("tabindex");
-  }
-
-  const originalAriaDisabled = node.dataset.feedFocusAriaDisabled || "";
-  if (originalAriaDisabled) {
-    node.setAttribute("aria-disabled", originalAriaDisabled);
-  } else {
-    node.removeAttribute("aria-disabled");
-  }
-
-  delete node.dataset.feedFocusStored;
-  delete node.dataset.feedFocusHadDisabled;
-  delete node.dataset.feedFocusTabindex;
-  delete node.dataset.feedFocusAriaDisabled;
-}
-
-function setFeedReadonlyControls(section, readonly) {
-  section.querySelectorAll(FEED_FOCUS_INTERACTIVE_SELECTOR).forEach((node) => {
-    if (readonly) {
-      storeOriginalInteractionState(node);
-      if ("disabled" in node) node.disabled = true;
-      node.setAttribute("aria-disabled", "true");
-      node.setAttribute("tabindex", "-1");
-      return;
-    }
-
-    restoreInteractionState(node);
-  });
-}
-
-function bindFeedFocusGuard(root) {
-  if (!root || root.dataset.feedFocusGuardBound === "true") return;
-  root.dataset.feedFocusGuardBound = "true";
-
-  const blockReadonlyInteraction = (event) => {
-    const readonlySection = event.target?.closest?.('[data-feed-readonly="true"]');
-    if (!readonlySection || !root.contains(readonlySection)) return;
-    if (!event.target?.closest?.(FEED_FOCUS_INTERACTIVE_SELECTOR)) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  ["click", "submit", "input", "change", "keydown"].forEach((eventName) => {
-    root.addEventListener(eventName, blockReadonlyInteraction, true);
-  });
-}
-
-function createIcon(label) {
-  const node = document.createElement("span");
-  node.className = "check-card__actions-icon";
-  node.setAttribute("aria-hidden", "true");
-  node.textContent = label;
-  return node;
-}
-
-function createLabel(label) {
-  const node = document.createElement("span");
-  node.textContent = label;
-  return node;
-}
 
 function ensureHeaderActions(card) {
   const header = card?.querySelector?.(".check-card__header");
@@ -148,18 +47,6 @@ function getCurrentFeedActivityKey() {
   } catch {
     return "";
   }
-}
-
-async function keepCurrentFeedSelection() {
-  const currentActivityKey = String(getCurrentFeedActivityKey() || "").trim();
-  if (!currentActivityKey) return;
-  await keepCurrentFeedCursor({ activityKey: currentActivityKey });
-}
-
-async function releaseCurrentFeedSelection() {
-  const currentActivityKey = String(getCurrentFeedActivityKey() || "").trim();
-  if (!currentActivityKey) return;
-  await releaseCurrentFeedCursor({ activityKey: currentActivityKey });
 }
 
 function clampNumber(value, min, max) {
@@ -321,7 +208,7 @@ export async function goToNextFeedActivity({ currentActivityKey } = {}) {
     });
 
     if (nextItem?.href) {
-      window.location.replace(nextItem.href);
+      window.location.assign(nextItem.href);
       return;
     }
   } catch (error) {
@@ -470,16 +357,12 @@ function openFeedDecisionDialog({
   };
 
   const runRepeatNowDecision = async () => {
-    await keepCurrentFeedSelection();
-
     if (typeof onRepeat === "function") {
       await onRepeat();
     }
   };
 
   const runRepeatLaterDecision = async () => {
-    await releaseCurrentFeedSelection();
-
     if (typeof onRepeatLater === "function") {
       await onRepeatLater();
       return;
@@ -613,32 +496,6 @@ export function attachFeedCardControls(section, { cardSelector, stepLabel = "Fee
   }
 
   return { card, menu, trigger, render, openDecisionDialog: openFeedDecisionDialog };
-}
-
-export function applyFeedFocusScope(root, targetCardOrSection) {
-  if (!root || !targetCardOrSection) return;
-
-  const targetCard = targetCardOrSection.matches?.(FEED_FOCUS_CARD_SELECTOR)
-    ? targetCardOrSection
-    : targetCardOrSection.querySelector?.(FEED_FOCUS_CARD_SELECTOR);
-  if (!targetCard) return;
-
-  const targetSection = getFeedFocusSection(targetCard, root);
-  if (!targetSection) return;
-
-  bindFeedFocusGuard(root);
-  root.dataset.feedFocusActive = "true";
-
-  const sections = Array.from(root.querySelectorAll(FEED_FOCUS_CARD_SELECTOR))
-    .map((card) => getFeedFocusSection(card, root))
-    .filter(Boolean)
-    .filter((section, index, list) => list.indexOf(section) === index);
-
-  sections.forEach((section) => {
-    const isTarget = section === targetSection || section.contains(targetSection) || targetSection.contains(section);
-    section.dataset.feedReadonly = isTarget ? "false" : "true";
-    setFeedReadonlyControls(section, !isTarget);
-  });
 }
 
 /**

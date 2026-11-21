@@ -1,6 +1,6 @@
-import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260826-test-module";
+import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20261121-feed-simple";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
-import { syncXpIndicator } from "../platform/xp-indicator.js?v=20261103-xp-runs";
+import { syncXpIndicator } from "../platform/xp-indicator.js?v=20261121-feed-simple";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -129,20 +129,8 @@ function formatFeedBadgeCount(count) {
 }
 
 function buildFeedAttentionLabel(attentionSummary) {
-  const overdueCount = Math.max(0, Number(attentionSummary?.overdueCount) || 0);
-  const dueCount = Math.max(0, Number(attentionSummary?.dueCount) || 0);
-
-  if (overdueCount > 0 && dueCount > 0) {
-    return `${overdueCount} Überfällig, ${dueCount} fällig`;
-  }
-  if (overdueCount > 0) {
-    return `${overdueCount} Überfällig`;
-  }
-  if (dueCount > 0) {
-    return `${dueCount} Fällig`;
-  }
-
-  return "";
+  const totalCount = Math.max(0, Number(attentionSummary?.totalCount) || 0);
+  return totalCount > 0 ? `Heute noch ${totalCount} empfohlen` : "";
 }
 
 async function syncFeedAppBadge(attentionSummary) {
@@ -275,11 +263,7 @@ async function refreshFeedLauncher(state) {
       return;
     }
 
-    // Zuerst die Feed-Projektion laden: pick_feed_cursor ruft serverseitig
-    // replan_session auf und aktualisiert dabei die due/overdue-Status in den
-    // Projektionen. Die Aufmerksamkeitszahl muss danach gelesen werden, sonst
-    // zählt sie den nicht neu geplanten Vorstand und stimmt erst nach einem
-    // Seiten-Reload.
+    // Zuerst die Empfehlung laden, danach die Tagesziel-Zahl für den Badge.
     const contentMeta = await loadSharedFeedContentMeta().catch(() => null);
 
     let itemLoaded = false;
@@ -311,8 +295,8 @@ async function refreshFeedLauncher(state) {
       ? (item?.href ? item : null)
       : (lastFeedLauncherState.item?.href ? lastFeedLauncherState.item : null);
 
-    // Der Badge-Wert ist die einfach berechenbare Summe aus überfälligen und
-    // fälligen Feed-Schritten. Nur bei einem fehlgeschlagenen Laden greift der
+    // Der Badge-Wert ist das restliche Tagesziel der Session plus fällige
+    // Wiederholungen. Nur bei einem fehlgeschlagenen Laden greift der
     // letzte bekannte Stand als Fallback.
     const resolvedAttentionSummary = attentionSummaryResult?.ok
       ? normalizeFeedAttentionSummary(attentionSummaryResult.value)
