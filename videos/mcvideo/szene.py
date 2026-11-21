@@ -54,6 +54,7 @@ class MCSzene(VoiceoverScene):
         self._abschnitte: list[dict[str, object]] = []
         self._verstoesse: dict[str, float] = {}
         self._standbilder = bool(os.environ.get("MC_STANDBILDER"))
+        self._vorschau = os.environ.get("MC_VORSCHAU")  # Bild mit Frage als Vorschaubild der Website
         self._bildordner = t.VIDEOS / "media" / "pruefung" / self.check_id
         if self._standbilder and self._bildordner.exists():
             for alt in self._bildordner.glob("*.png"):
@@ -231,6 +232,9 @@ class MCSzene(VoiceoverScene):
             "aufnahme": aufnahme_name(len(self._abschnitte) + 1, sprechtext),
             "eigene_stimme": (verlauf.data.get("input_data") or {}).get("service") == EIGEN,
         })
+        if self._vorschau and len(self._abschnitte) == 1:
+            self.renderer.update_frame(self)
+            self.renderer.camera.get_image().save(self._vorschau)
 
     def warte_bis(self, anteil: float) -> None:
         """Wartet, bis dieser Anteil (0 bis 1) des laufenden Sprechtexts gesprochen ist.

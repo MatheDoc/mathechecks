@@ -1,0 +1,358 @@
+/* ════════════════════════════════════════════════════════════
+   Video – Erklärvideo pro Check im Hochformat (Präfix vid-)
+   Nur über page_css eingebunden: lernbereiche/<gebiet>/<lb>/video.md
+   Abspieler: assets/js/modules/video.js, Einbindung: videos/README.md
+   ════════════════════════════════════════════════════════════ */
+
+.vid-root {
+    --vid-accent: var(--mt-video, var(--accent));
+    --vid-accent-rgb: var(--mt-video-rgb, 124, 106, 255);
+    /* Hintergrund der Videos (videos/mcvideo/theme.py), in beiden Farbschemata gleich */
+    --vid-screen-bg: #0f0f14;
+    --vid-on-screen: #f2f2f5;
+    /* Höhe von Kopfleiste, Reitern, Check-Navigation und Kartenkopf: Das Video passt ohne Scrollen ins Bild */
+    --vid-chrome: 270px;
+    padding: 18px 0 48px;
+    color: var(--text-body);
+}
+
+.vid-body.check-card__body {
+    display: grid;
+    gap: 14px;
+    justify-items: center;
+}
+
+/* ─── Video im Hochformat ─────────────────────────────────── */
+
+.vid-frame {
+    position: relative;
+    width: min(100%, calc((100svh - var(--vid-chrome)) * 9 / 16));
+    min-width: 220px;
+    aspect-ratio: 9 / 16;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--vid-screen-bg);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, .07),
+        0 28px 70px -24px rgba(var(--vid-accent-rgb), .6);
+    isolation: isolate;
+}
+
+.vid-player,
+.vid-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ─── Vorschaubild mit Play-Knopf ─────────────────────────── */
+
+.vid-poster {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: var(--vid-screen-bg);
+    color: var(--vid-on-screen);
+    font: inherit;
+    cursor: pointer;
+    transition: opacity 260ms ease, visibility 0s linear 0s;
+}
+
+.vid-poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, .35));
+    pointer-events: none;
+}
+
+.vid-poster__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease, filter 260ms ease;
+}
+
+.vid-poster:hover .vid-poster__img {
+    transform: scale(1.02);
+    filter: brightness(.9);
+}
+
+.vid-poster__play {
+    position: absolute;
+    left: 50%;
+    /* untere Bildhälfte: Im Vorschaubild steht dort nichts (Bild und Frage oben) */
+    top: 72%;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 78px;
+    height: 78px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .14);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 14px 40px rgba(var(--vid-accent-rgb), .45), inset 0 1px 0 rgba(255, 255, 255, .25);
+    transform: translate(-50%, -50%);
+    transition: transform 200ms ease, background 200ms ease;
+}
+
+.vid-poster__play svg {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+    fill: #fff;
+}
+
+.vid-poster:hover .vid-poster__play,
+.vid-poster:focus-visible .vid-poster__play {
+    background: rgba(var(--vid-accent-rgb), .75);
+    transform: translate(-50%, -50%) scale(1.07);
+}
+
+.vid-poster:focus-visible {
+    outline: 3px solid rgba(var(--vid-accent-rgb), .8);
+    outline-offset: -3px;
+}
+
+/* Ohne Vorschaubild: Kompetenz als Titelbild */
+.vid-poster__text {
+    display: none;
+}
+
+.vid-poster--text .vid-poster__text {
+    position: absolute;
+    inset: 16% 10% auto;
+    display: grid;
+    gap: 10px;
+    text-align: center;
+}
+
+.vid-poster--text {
+    background:
+        radial-gradient(80% 45% at 50% 30%, rgba(var(--vid-accent-rgb), .3), transparent 70%),
+        var(--vid-screen-bg);
+}
+
+.vid-poster__kicker {
+    color: rgba(var(--vid-accent-rgb), 1);
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.vid-poster__kompetenz {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Laden: Knopf wird zum Ladekreis */
+.vid-frame.is-loading .vid-poster__play svg {
+    display: none;
+}
+
+.vid-frame.is-loading .vid-poster__play::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    border: 3px solid rgba(255, 255, 255, .3);
+    border-top-color: #fff;
+    animation: vidSpin 800ms linear infinite;
+}
+
+.vid-poster:disabled {
+    cursor: progress;
+}
+
+.vid-frame.is-active .vid-poster {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 260ms ease, visibility 0s linear 260ms;
+}
+
+@keyframes vidSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ─── Ende: eigene Abschlussfläche statt YouTube-Vorschlägen ─ */
+
+.vid-end {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background:
+        radial-gradient(80% 50% at 50% 40%, rgba(var(--vid-accent-rgb), .28), transparent 70%),
+        rgba(15, 15, 20, .9);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: var(--vid-on-screen);
+    animation: vidFadeIn 240ms ease;
+}
+
+.vid-end[hidden] {
+    display: none;
+}
+
+.vid-end__kicker {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.vid-end__links {
+    display: grid;
+    gap: 10px;
+    width: min(100%, 220px);
+}
+
+.vid-end .vid-btn {
+    justify-content: center;
+}
+
+.vid-end .vid-btn:not(.vid-btn--primary) {
+    border-color: rgba(255, 255, 255, .22);
+    background: rgba(255, 255, 255, .07);
+    color: var(--vid-on-screen);
+}
+
+@keyframes vidFadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+.vid-status {
+    position: absolute;
+    inset: auto 12px 12px;
+    z-index: 4;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .72);
+    color: var(--vid-on-screen);
+    font-size: .8rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.vid-status[hidden] {
+    display: none;
+}
+
+/* ─── Knöpfe und Hinweis unter dem Video ──────────────────── */
+
+.vid-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.vid-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, filter 160ms ease;
+}
+
+.vid-btn:hover {
+    transform: translateY(-1px);
+}
+
+.vid-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--vid-accent-rgb), .35);
+}
+
+.vid-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.vid-btn--primary {
+    border-color: transparent;
+    background: var(--vid-accent);
+    color: #fff;
+}
+
+.vid-btn--primary:hover {
+    filter: brightness(1.08);
+}
+
+.vid-btn--ghost {
+    background: transparent;
+}
+
+.vid-note {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: .76rem;
+    text-align: center;
+}
+
+.vid-note a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.vid-note a:hover {
+    color: var(--text);
+}
+
+/* ─── Handy: Video so groß wie möglich ────────────────────── */
+
+@media (max-width: 680px) {
+    .vid-root {
+        --vid-chrome: 130px;
+        padding-top: 12px;
+    }
+
+    .vid-frame {
+        border-radius: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .vid-poster,
+    .vid-poster__img,
+    .vid-poster__play,
+    .vid-btn,
+    .vid-end {
+        transition: none;
+        animation: none;
+    }
+}

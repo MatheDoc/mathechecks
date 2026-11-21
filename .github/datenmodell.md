@@ -21,7 +21,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Musterprüfungen** | `muster-pruefungen/abitur/pruefungen-md/` (gitignored) | pro Teilaufgabe | Abituraufgaben mit Erwartungshorizont; `_themen.json` = Index Thema → Teilaufgaben |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
 | **Warm-Up** | `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml` | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Titel, Kompetenz, Nummer, Trainingslink aus `checks.json`; Format → `_data/warmup/README.md` |
-| **Erklärvideos** *(Pilot, nicht eingebunden)* | `videos/checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py`, `videos/aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/*.mp3` | pro Check | Manim-Szene eines Kurzvideos im Hochformat und eigene Sprachaufnahmen je Sprechabschnitt (zusammen die Quelle des Videos); gerenderte Videos sind gitignored; Ablauf → `videos/README.md` |
+| **Erklärvideos** | `videos/checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py`, `videos/aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/*.mp3`; YouTube-ID im Feld `video` in `checks.json`; Vorschaubild `assets/img/videos/<check_id>.webp` | pro Check | Manim-Szene eines Kurzvideos im Hochformat und eigene Sprachaufnahmen je Sprechabschnitt (zusammen die Quelle des Videos); gerenderte Videos sind gitignored und liegen auf YouTube; Ablauf → `videos/README.md` |
 | **Startseiten-Texte** | `_data/start/<lernbereich>.yml` | pro Lernbereich | „Worum geht es“, Vorkenntnisse, optional Podcast-Metadaten |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |
@@ -47,7 +47,8 @@ Das Bild für die Materialkarte eines Lernbereichs steht im Feld `bild` in `_dat
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | `_data/start/<lernbereich>.yml`, `checks.json`, `medien/podcast.mp3` | Überblick, Vorkenntnisse, Lernpfad, optional Podcast |
-| Warm-Up | `warmup.md` | `_data/warmup/<gebiet>/<lernbereich>/*.yml` + `checks.json` | in jedem Lernbereich (Reiter zwischen Kompetenzliste und Training); zeigt nur Checks mit Warm-Up-Daten; Auswahl per `#check-<Nummer>`, via JS |
+| Video | `video.md` | `checks.json` (`video`) + `assets/img/videos/<check_id>.webp` | in jedem Lernbereich (Reiter zwischen Kompetenzliste und Warm-Up); zeigt nur Checks mit Video; YouTube-Player wird erst beim Klick geladen; kein Feed, kein Fortschritt; Auswahl per `#check-<Nummer>`, via JS |
+| Warm-Up | `warmup.md` | `_data/warmup/<gebiet>/<lernbereich>/*.yml` + `checks.json` | in jedem Lernbereich (Reiter zwischen Video und Training); zeigt nur Checks mit Warm-Up-Daten; Auswahl per `#check-<Nummer>`, via JS |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
@@ -91,3 +92,4 @@ Verantwortung: inhaltliche Felder → Content-Agent; `Sammlung` → Python-Agent
 | `Flashtyp` | Content | `einzeln` oder `gruppiert` |
 | `questionOrder` | Content | `shuffle` (Standard) oder `fixed` |
 | `Sammlung` | Python-Agent | Slug der Aufgabensammlung |
+| `video` | Content | Optional: YouTube-ID des Erklärvideos (11 Zeichen, z. B. aus `youtube.com/shorts/<ID>`); nur bei Checks mit hochgeladenem Video, steuert das Modul Video |

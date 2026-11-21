@@ -27,6 +27,8 @@ ZIEL_SEKUNDEN = (60, 90)
 MAX_SEKUNDEN = 180  # Obergrenze für Shorts
 MAX_TITEL = 100     # Zeichen eines YouTube-Titels
 VERBOTENE_ZEICHEN = '<>:"/\\|?*'  # in Windows-Dateinamen nicht erlaubt
+VORSCHAU_ORDNER = REPO / "assets" / "img" / "videos"  # Vorschaubilder für das Modul „Video“ der Website
+VORSCHAU_GROESSE = (720, 1280)
 
 
 def check_aus_pfad(szene: Path) -> dict:
@@ -87,6 +89,17 @@ def schreibe_pruefbogen(check: dict, bericht: dict, fehler: list[str]) -> Path:
     return datei
 
 
+def speichere_vorschau(roh: Path, check_id: str) -> Path:
+    """Bild und Frage am Ende des ersten Sprechabschnitts als Vorschaubild der Website (WebP)."""
+    from PIL import Image  # kommt mit Manim
+
+    ziel = VORSCHAU_ORDNER / f"{check_id}.webp"
+    ziel.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(roh) as bild:
+        bild.convert("RGB").resize(VORSCHAU_GROESSE, Image.Resampling.LANCZOS).save(ziel, "WEBP", quality=82, method=6)
+    return ziel
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check-Video rendern")
     parser.add_argument("szene", type=Path, help="Pfad zur Szenendatei")
@@ -108,6 +121,11 @@ def main() -> int:
         umgebung["MC_STANDBILDER"] = "1"
     bericht_datei = VIDEOS / "media" / "berichte" / f"{check_id}.json"
     bericht_datei.unlink(missing_ok=True)
+    vorschau_roh = VIDEOS / "media" / "berichte" / f"{check_id}-vorschau.png"
+    if args.final:
+        vorschau_roh.parent.mkdir(parents=True, exist_ok=True)
+        vorschau_roh.unlink(missing_ok=True)
+        umgebung["MC_VORSCHAU"] = str(vorschau_roh)
 
     # manim-voiceover lädt beim Start das Paket sox, das ohne installiertes SoX bei jedem Lauf warnt.
     # SoX wird nur für ein verändertes Sprechtempo gebraucht, deshalb bleibt die Warnung stumm.
@@ -151,6 +169,10 @@ def main() -> int:
                 alt.unlink()  # Video desselben Checks unter früherem Schlagwort
         shutil.copyfile(video, ziel)
         print(f"  Video:   {ziel}")
+        if vorschau_roh.exists():
+            print(f"  Vorschau: {speichere_vorschau(vorschau_roh, check_id)}")
+        else:
+            print("  Vorschau: nicht erzeugt (Szene ohne Sprechabschnitt?)")
     return 0
 
 

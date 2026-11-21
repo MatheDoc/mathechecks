@@ -959,6 +959,12 @@ html.light .check-card {
     --dcc-border: color-mix(in srgb, var(--mt-warmup) 18%, var(--border));
 }
 
+.check-card--video {
+    --dcc-accent: var(--mt-video, var(--accent));
+    --dcc-accent-soft: var(--mt-video-soft, var(--accent-soft));
+    --dcc-border: color-mix(in srgb, var(--mt-video, var(--accent)) 18%, var(--border));
+}
+
 .check-card--start {
     --dcc-accent: var(--mt-start, var(--accent));
     --dcc-accent-soft: var(--mt-start-soft, var(--accent-soft));
@@ -993,6 +999,10 @@ html.light .check-card {
     --mt-warmup-rgb: var(--dcc-neutral-rgb);
     --mt-warmup-soft: var(--dcc-neutral-soft);
     --mt-warmup-border: var(--dcc-neutral-border);
+    --mt-video: var(--dcc-neutral);
+    --mt-video-rgb: var(--dcc-neutral-rgb);
+    --mt-video-soft: var(--dcc-neutral-soft);
+    --mt-video-border: var(--dcc-neutral-border);
     --mt-kompetenzliste: var(--dcc-neutral);
     --mt-kompetenzliste-rgb: var(--dcc-neutral-rgb);
     --mt-kompetenzliste-soft: var(--dcc-neutral-soft);

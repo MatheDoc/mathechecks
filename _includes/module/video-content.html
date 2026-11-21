@@ -1,0 +1,17 @@
+{% comment %}
+Erklärvideo pro Check (Modul-Reiter zwischen Kompetenzliste und Warm-Up). Quelle: Feld `video` (YouTube-ID) in _data/checks.json,
+Vorschaubild assets/img/videos/<check_id>.webp (aus videos/render.py --final). Abspieler: assets/js/modules/video.js.
+Auswahl des Checks über #check-<Nummer>. Einbindung und Datenschutz: videos/README.md
+{% endcomment %}
+{%- assign vid_warmups = site.data.warmup[page.gebiet][page.lernbereich] -%}
+<div class="check-jump-nav-wrap">
+    <nav id="video-jump-nav" class="check-jump-nav" aria-label="Check-Navigation"></nav>
+</div>
+<div class="page-shell w-read">
+    <section id="video-root" class="vid-root" data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
+        data-datenschutz-url="{{ '/datenschutz.html#youtube' | relative_url }}"
+        data-vorschau-base="{{ '/assets/img/videos/' | relative_url }}">
+        <p class="module-status">Das Video wird geladen …</p>
+    </section>
+</div>
+<script type="application/json" id="video-warmup-ids">[{%- for pair in vid_warmups -%}{{ pair[1].check_id | jsonify }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]</script>

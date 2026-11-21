@@ -6,7 +6,7 @@ Kurzer, interaktiver Einstieg in **einen** Check, so kurz wie möglich, so lang 
 - **Zuschauen:** Dann wird ein Beispiel vorgerechnet.
 - **Mitmachen:** Danach rechnen die Lernenden mit abnehmender Hilfe mit und wechseln ins Training.
 
-**Status:** Das Warm-Up ist in jedem Lernbereich als Modul-Reiter zwischen Kompetenzliste und Training verlinkt (`_includes/module/nav.html`), aber nicht im Feed. Es zeigt nur die Checks, für die Warm-Up-Daten existieren; ohne Daten erscheint ein Hinweis. Direktaufruf eines Checks: `…/<lb>/warmup.html#check-<Nummer>`. Die Übersicht `/warmup.html` (`warmup.md` im Wurzelverzeichnis) wird automatisch erzeugt. Für angemeldete Nutzer gibt jeder richtig gelöste bewertete Schritt (`auswahl`, `eingabe`, `zuordnen`, `markieren`) sofort XP; bei Abschluss wird zusätzlich ein Ereignis `warmup` mit den Versuchen je Schritt gespeichert (Grundlage einer späteren Warm-Up-Quote).
+**Status:** Das Warm-Up ist in jedem Lernbereich als Modul-Reiter zwischen Video und Training verlinkt (`_includes/module/nav.html`), aber nicht im Feed. Es zeigt nur die Checks, für die Warm-Up-Daten existieren; ohne Daten erscheint ein Hinweis. Direktaufruf eines Checks: `…/<lb>/warmup.html#check-<Nummer>`. Die Übersicht `/warmup.html` (`warmup.md` im Wurzelverzeichnis) wird automatisch erzeugt. Für angemeldete Nutzer gibt jeder richtig gelöste bewertete Schritt (`auswahl`, `eingabe`, `zuordnen`, `markieren`) sofort XP; bei Abschluss wird zusätzlich ein Ereignis `warmup` mit den Versuchen je Schritt gespeichert (Grundlage einer späteren Warm-Up-Quote).
 
 **Gute Vorlagen:**
 - `analysis/ertragsgesetzliche-kostenfunktionen/05-…`: Idee am Graphen, zwei Lösungswege

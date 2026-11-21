@@ -7,7 +7,7 @@ permalink: /sitemap.xml
 {%- comment -%}
 Bewusst kuratierte Sitemap (statt jekyll-sitemap):
 nur Landingpages (start + skript je Lernbereich) und zentrale Seiten.
-App-Module (training, recall, feynman, flashcards, kompetenzliste, warmup)
+App-Module (training, recall, feynman, flashcards, kompetenzliste, warmup, video)
 haben Canonical auf start und gehören nicht hierher.
 {%- endcomment -%}
 {%- assign root_pages = "/,/index.html,/material.html,/konzept.html,/ueber-mich.html,/impressum.html,/datenschutz.html" | split: "," -%}

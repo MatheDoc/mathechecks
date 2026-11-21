@@ -10,6 +10,7 @@ import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals
 import { initStartModule } from "./modules/start.js?v=20261121-feed-simple";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { initWarmupModule } from "./modules/warmup.js?v=20261121-feed-simple";
+import { initVideoModule } from "./modules/video.js?v=20261121-video";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
@@ -564,6 +565,17 @@ async function bootstrap() {
   if (context.moduleKey === "start") {
     await initStartModule({
       lernbereich: context.lernbereich,
+    });
+    return;
+  }
+
+  if (context.moduleKey === "video") {
+    const root = document.getElementById("video-root");
+    if (!root) return;
+    await initVideoModule({
+      root,
+      lernbereich: context.lernbereich,
+      preferredCheckId: context.checkId,
     });
     return;
   }

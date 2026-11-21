@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit zehn Videos; sie sind noch nicht in die Website eingebunden, der Ordner ist von Jekyll ausgeschlossen. Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit zehn Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -60,7 +60,8 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
    Ausgegeben werden Dauer, Wortzahl und alle Objekte außerhalb des sichtbaren Bereichs.
 3. **Prüfbogen** durchsehen: `media/pruefung/<check_id>/pruefbogen.md` zeigt je Sprechabschnitt das Standbild mit dem Sprechtext (Überlappungen, Lesbarkeit, fachliche Richtigkeit). Er wird bei jedem Entwurf neu erzeugt.
 4. **Einsprechen** (wenn das Video die eigene Stimme bekommen soll): siehe „Eigene Stimme einsprechen“.
-5. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Das Video landet in `ausgabe/<gebiet>/<lernbereich>/` und heißt `<NN> <Schlagwort> <Lernbereichsname>.mp4`, etwa `02 LGS 3x3 Lineare Gleichungssysteme.mp4`. YouTube übernimmt den Dateinamen beim Hochladen als Titel und ersetzt Bindestriche durch Leerzeichen; Schlagwort und Lernbereichsname aus `_data/checks.json` müssen deshalb als Dateiname taugen (Regel in `.github/datenmodell.md`). Ein früheres Video des Checks wird ersetzt. Bei Randverstößen oder unvollständigen Aufnahmen wird nichts ausgegeben.
+5. **Final** rendern (1080 × 1920, 30 Bilder pro Sekunde) mit `--final`. Das Video landet in `ausgabe/<gebiet>/<lernbereich>/` und heißt `<NN> <Schlagwort> <Lernbereichsname>.mp4`, etwa `02 LGS 3x3 Lineare Gleichungssysteme.mp4`. YouTube übernimmt den Dateinamen beim Hochladen als Titel und ersetzt Bindestriche durch Leerzeichen; Schlagwort und Lernbereichsname aus `_data/checks.json` müssen deshalb als Dateiname taugen (Regel in `.github/datenmodell.md`). Ein früheres Video des Checks wird ersetzt. Bei Randverstößen oder unvollständigen Aufnahmen wird nichts ausgegeben. Zusätzlich entsteht das Vorschaubild der Website `assets/img/videos/<check_id>.webp` (Bild und Frage am Ende des ersten Sprechabschnitts, 720 × 1280); es gehört ins Repo.
+6. **Hochladen** auf YouTube (als Short) und die Video-ID im Feld `video` des Checks in `_data/checks.json` eintragen (die 11 Zeichen aus `youtube.com/shorts/<ID>`). Damit erscheint das Video im Modul „Video“.
 
 ## Regeln für ein Video
 
@@ -144,8 +145,23 @@ Das öffnet eine lokale Seite im Browser (beim ersten Mal das Mikrofon freigeben
 - Eine Aufnahme gehört zu genau einem Sprechtext (Kennung am Ende des Dateinamens). Wird der Text geändert, spricht diesen Abschnitt wieder die Entwurfsstimme, bis er neu aufgenommen ist; `render.py` nennt die betroffenen Abschnitte in der Zeile „Stimme“.
 - Begrüßung und Schluss werden für jedes Video neu gesprochen, nicht zentral gespeichert.
 
+## Einbindung in die Website
+
+Modul „Video“ in jedem Lernbereich (`lernbereiche/<gebiet>/<lb>/video.md`, Reiter zwischen Kompetenzliste und Warm-Up). Es zeigt nur Checks mit Feld `video` in `_data/checks.json`; Auswahl per `#check-<Nummer>`. Kein Feed, keine Quote, keine XP.
+
+| Datei | Rolle |
+|---|---|
+| `_includes/module/video-content.html` | Check-Navigation, Liste der Checks mit Warm-Up |
+| `assets/js/modules/video.js` | Abspieler |
+| `assets/css/video.css` | Styling (Präfix `vid-`) |
+| `assets/img/videos/<check_id>.webp` | Vorschaubild aus `render.py --final` |
+
+- **Datenschutz:** Beim Seitenaufruf wird nur das eigene Vorschaubild geladen, keine Verbindung zu YouTube. Erst der Klick auf das Bild lädt die YouTube-IFrame-API und den Player (`youtube-nocookie.com`, `rel=0`) und startet das Video; Hinweis unter dem Video und Abschnitt „YouTube-Videos“ in `datenschutz.md`.
+- **Ein Klick:** Auf dem Desktop startet das Video direkt. Auf iPhone und iPad kann Safari den automatischen Start verweigern; dann bleibt der Play-Knopf von YouTube stehen und ein zweites Tippen ist nötig.
+- **Ende:** Statt der YouTube-Vorschläge erscheint eine eigene Fläche mit „Warm-Up“ (falls vorhanden), „Training“ und „Nochmal“.
+- Fehlt das Vorschaubild, zeigt die Karte stattdessen den Kompetenzsatz.
+- **Cache:** nach Änderungen an `video.js` den `?v=` des Imports in `assets/js/app.js` und den von `app.js` in `_layouts/module.html` erhöhen; nach Änderungen an `video.css` `page_css` in allen `video.md`.
+
 ## Offen
 
-- sichtbaren Bereich mit einem Testvideo am Handy prüfen
-- Ablage der fertigen Videos, Upload, Einbindung in die Website
 - `abspann.mp4` und `abspann.pptx` sind der frühere Abspann und werden von den neuen Videos nicht verwendet
