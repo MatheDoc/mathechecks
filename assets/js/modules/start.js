@@ -12,6 +12,7 @@ function attachStartCompletion(root, { lernbereich = "" } = {}) {
     const control = attachFreeCompletionControl(root, {
         cardSelector: "[data-start-feed-card]",
         stepLabel: "Start",
+        persistKey: `start:${lernbereich}`,
         onComplete: () => {
             if (!completionPromise) {
                 completionPromise = completeSessionStart({ lernbereichSlug: lernbereich });

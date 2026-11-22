@@ -382,6 +382,7 @@ async function renderCheckTaskInHost(host, check, {
             freeCompleteControl = attachFreeCompletionControl(host, {
                 cardSelector: ".check-card--training",
                 stepLabel: "Training",
+                persistKey: () => `training:${trackingLernbereich}:${checkId}:${taskIndex}:${shuffleNonce}`,
                 onComplete: () => {
                     void openFreeCompletionPopup();
                 },

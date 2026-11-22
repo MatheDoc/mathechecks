@@ -500,6 +500,24 @@ export function attachFeedCardControls(section, { cardSelector, stepLabel = "Fee
   return { card, menu, trigger, render, openDecisionDialog: openFeedDecisionDialog };
 }
 
+function readPulseDone(storageKey) {
+  if (!storageKey) return false;
+  try {
+    return window.localStorage.getItem(storageKey) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function writePulseDone(storageKey) {
+  if (!storageKey) return;
+  try {
+    window.localStorage.setItem(storageKey, "1");
+  } catch {
+    // Speicher nicht verfügbar: Pulsieren bleibt nur bis zum Reload aus.
+  }
+}
+
 /**
  * Einheitliches Abschluss-Icon im Karten-Header fuer freie Modulaufrufe.
  * Spiegelt Platzierung und Pulsoptik des Feed-Icons, ist aber visuell ein
@@ -509,9 +527,10 @@ export function attachFeedCardControls(section, { cardSelector, stepLabel = "Fee
  * @param {string} options.cardSelector
  * @param {string} [options.stepLabel]
  * @param {function} [options.onComplete]
+ * @param {string|function(): string} [options.persistKey] Merkt den Klick dauerhaft (localStorage), damit das Pulsieren auch nach Reload aus bleibt.
  * @returns {{ menu: HTMLElement, trigger: HTMLButtonElement, setReady: (ready: boolean) => void } | null}
  */
-export function attachFreeCompletionControl(section, { cardSelector, stepLabel = "Abschluss", onComplete } = {}) {
+export function attachFreeCompletionControl(section, { cardSelector, stepLabel = "Abschluss", onComplete, persistKey = "" } = {}) {
   const card = section?.querySelector?.(cardSelector || ".check-card");
   if (!card) return null;
 
@@ -520,6 +539,12 @@ export function attachFreeCompletionControl(section, { cardSelector, stepLabel =
 
   const existing = headerActions.querySelector(".card-complete-menu");
   if (existing) existing.remove();
+
+  // persistKey darf eine Funktion sein, wenn sich die Aufgabeninstanz zur Laufzeit ändert.
+  const getStorageKey = () => {
+    const key = typeof persistKey === "function" ? persistKey() : persistKey;
+    return key ? `mc-complete-pulse-done:${key}` : "";
+  };
 
   const menu = document.createElement("div");
   menu.className = "check-card__actions-menu card-complete-menu";
@@ -538,6 +563,7 @@ export function attachFreeCompletionControl(section, { cardSelector, stepLabel =
     event.preventDefault();
     if (trigger.disabled || typeof onComplete !== "function") return;
     menu.dataset.pulseDone = "true";
+    writePulseDone(getStorageKey());
     onComplete(event);
   });
 
@@ -548,6 +574,7 @@ export function attachFreeCompletionControl(section, { cardSelector, stepLabel =
     const isReady = Boolean(ready);
     menu.dataset.completeReady = isReady ? "true" : "false";
     if (!isReady) delete menu.dataset.pulseDone;
+    else if (readPulseDone(getStorageKey())) menu.dataset.pulseDone = "true";
     trigger.disabled = !isReady;
     const label = isReady ? `${stepLabel} abschließen` : idleLabel;
     trigger.setAttribute("aria-label", label);

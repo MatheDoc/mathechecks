@@ -1287,6 +1287,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     freeCompleteControl = attachFreeCompletionControl(viewportNode, {
       cardSelector: ".check-card--training",
       stepLabel: "Training",
+      persistKey: () => `training:${check.Lernbereich || ""}:${checkId}:${taskIndex}:${shuffleNonce}`,
       onComplete: () => {
         void openFreeCompletionPopup();
       },
