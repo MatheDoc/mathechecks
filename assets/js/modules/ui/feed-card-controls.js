@@ -469,12 +469,14 @@ export function attachFeedCardControls(section, { cardSelector, stepLabel = "Fee
   trigger.addEventListener("click", (event) => {
     event.preventDefault();
     if (trigger.disabled || typeof directTriggerAction !== "function") return;
+    menu.dataset.pulseDone = "true";
     directTriggerAction(event);
   });
 
   function render({ status = "", tone = "neutral", items = [], ready = false } = {}) {
     card.dataset.feedTone = tone;
     menu.dataset.feedReady = ready ? "true" : "false";
+    if (!ready) delete menu.dataset.pulseDone;
     const activeItem = (Array.isArray(items) ? items : []).find((item) => {
       return item?.iconPulse && !item?.disabled && typeof item?.onClick === "function";
     }) || null;
@@ -535,6 +537,7 @@ export function attachFreeCompletionControl(section, { cardSelector, stepLabel =
   trigger.addEventListener("click", (event) => {
     event.preventDefault();
     if (trigger.disabled || typeof onComplete !== "function") return;
+    menu.dataset.pulseDone = "true";
     onComplete(event);
   });
 
@@ -544,6 +547,7 @@ export function attachFreeCompletionControl(section, { cardSelector, stepLabel =
   const setReady = (ready) => {
     const isReady = Boolean(ready);
     menu.dataset.completeReady = isReady ? "true" : "false";
+    if (!isReady) delete menu.dataset.pulseDone;
     trigger.disabled = !isReady;
     const label = isReady ? `${stepLabel} abschließen` : idleLabel;
     trigger.setAttribute("aria-label", label);

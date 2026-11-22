@@ -568,6 +568,19 @@ html.light .check-card {
     animation: feed-icon-ready-ring 900ms ease-out infinite;
 }
 
+/* Nach dem Klick (Popup geöffnet) ist die Aktivität abgeschlossen: Pulsieren stoppen */
+.feed-card-menu[data-pulse-done="true"] .feed-card-menu__svg,
+.card-complete-menu[data-pulse-done="true"] .card-complete-menu__svg {
+    animation: none;
+    filter: none;
+}
+
+.feed-card-menu[data-pulse-done="true"] .feed-card-menu__icon::after,
+.card-complete-menu[data-pulse-done="true"] .card-complete-menu__icon::after {
+    content: none;
+    animation: none;
+}
+
 .feed-decision-dialog {
     position: fixed;
     inset: 0;
