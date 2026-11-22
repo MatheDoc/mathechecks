@@ -1,22 +1,46 @@
 # K-Means: Inhalte und Aufgaben
 
+## Idee
+
+Der k-Means Algorithmus dienst dazu, Datenpunkte in Cluster zu gruppieren.
+
+## Bildungsplan
+
+> Sie nutzen das arithmetische Mittel zum Clustern von Daten mit einer Veränderlichen und verwenden dabei auch den k-Means Algorithmus (Z 5). Bei Daten mit zwei Veränderlichen visualisieren sie Cluster in Streudiagrammen (Z 6). Sie identifizieren die Bedeutung von Cluster-Algorithmen in privaten und beruflichen Kontexten (Z 7).
+
+## Einordnung
+
+Der k-Means Algorithmus schließt sich natürlich an die Idee des arithmetischen Mittels an. Möglich sind Bezüge zur Standardabweichung. Er bereitet auf iterative Optimierungsverfahren wie das Gradientenverfahren für neuronale Netze und den Simplex-Algorithmus vor.
+
 ## Hinweise
 
 - Konvention bei gleichem Abstand: Der Wert wird dem Cluster mit dem kleineren Index zugewiesen (bei A und B also Cluster A).
-- Mehrdimensionaler Fall: keine unterschiedlichen Achsenskalierungen, nur gleichartige Größen (z. B. Längen).
-- Mehrdimensionaler Fall: Abstandsdefinitiion nötig, Vektorbegriff einführen?, evtl adhoc Definition $d(X;P)=\sqrt{(p_1-x_1)^2 + (p_2-x_2)^2}$, Mittelwerte komponenetenweise berechnen, Abstandsquadrate für einfachere Rechnung (Bezug Fehlerfunktione)
-- Güte berechnen: Summe der Abstandsquadrate aller Punkte zu ihren zugeordneten Clustern.
-- Startzentren-Abhängigkeit: Gleiche Daten, zwei verschiedene Startzentren, zwei verschiedene Endergebnisse. Anschließend über die SSE entscheiden, welches besser ist. Das zeigt lokale Optima.
-- Ellenbogen-Methode wohl zu kompliziert.
+- Zweidimensionaler Fall: keine unterschiedlichen Achsenskalierungen, nur gleichartige Größen (z. B. Längen).
+- Zweidimensionaler Fall: nur graphisch, ansonsten zu klären: Abstandsdefinitiion nötig, Vektorbegriff einführen?, evtl adhoc Definition $d(X;P)=\sqrt{(p_1-x_1)^2 + (p_2-x_2)^2}$, Mittelwerte komponenetenweise berechnen, Abstandsquadrate für einfachere Rechnung (Bezug Fehlerfunktione)
+- Diskussion der "Güte" (Standardabweichung) / Bezug zu Regression und neuronalen Netzen, bei k-Means: Summe der Abstandsquadrate aller Punkte zu ihren zugeordneten Clustern.
+- Startzentren-Abhängigkeit: Gleiche Daten, zwei verschiedene Startzentren, zwei verschiedene Endergebnisse.
+- Ellenbogen-Methode unpassend (reine Heuristik, theoretisch nicht fundiert).
 - Graphisch: Mittelsenkechte
+- Wording für den Entzustand: Z.B. "stationärer Zustand"
+
+
+## Aufgabentypen
+
+- Eindimensional, rechnerisch, eigentlicher k-Means Algorithmus
+    - vollständige Durchführung bis zum stationären Zustand
+    - teilständige Durchführung
+    - prüfen, ob stationärer Zustand erreicht
+    - Abhängigkeit von den Startzentren untersuchen
+    - Güte berechnen
+    - Güte zweier stationärer Zustände vergleichen, Abhängigkeit von den Startzentren 
 
 ## Ablauf einer Iteration
 
-1. Abstände zu den Clusterzentren berechnen (kann übersprungen werden, wenn nur die Zuordnung relevant ist).
+1. Abstände zu den Clusterzentren berechnen.
 2. Jeden Wert dem nächstgelegenen Zentrum zuordnen.
 3. Neue Zentren als Mittelwerte der Cluster berechnen.
 
-Konvergenz: Die Zuordnung ändert sich nicht mehr (und damit bleiben auch die Zentren gleich).
+Stationärer Zustand: Die Zuordnung ändert sich nicht mehr (und damit bleiben auch die Zentren gleich).
 
 ## Eindimensional, 10 Werte, 2 Zentren
 
@@ -37,7 +61,7 @@ Führen Sie das K-Means-Verfahren bis zur Konvergenz durch.
 
 Alte Zentren: $z_A = 4$ und $z_B = 10$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|
 | 2    | 2    | 8    | A |
 | 4    | 0    | 6    | A |
@@ -60,7 +84,7 @@ $z_B = \frac{8+9+11{,}5+12+13{,}5+15}{6} = \frac{69}{6} = 11{,}5$
 
 Alte Zentren: $z_A = 4{,}5$ und $z_B = 11{,}5$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|
 | 2    | 2,5  | 9,5  | A |
 | 4    | 0,5  | 7,5  | A |
@@ -83,7 +107,7 @@ $z_B = \frac{9+11{,}5+12+13{,}5+15}{5} = \frac{61}{5} = 12{,}2$
 
 Alte Zentren: $z_A = 5{,}2$ und $z_B = 12{,}2$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|
 | 2    | 3,2  | 10,2 | A |
 | 4    | 1,2  | 8,2  | A |
@@ -121,7 +145,7 @@ Führe das K-Means-Verfahren bis zur Konvergenz durch.
 
 Alte Zentren: $z_A = 1$, $z_B = 4$ und $z_C = 7$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|:---:|
 | 1    | 0    | 3    | 6    | A |
 | 2,5  | 1,5  | 1,5  | 4,5  | A (Gleichstand) |
@@ -148,7 +172,7 @@ $z_C = \frac{6{,}5+7+7{,}5+8+11+11{,}5+14+16{,}5+17}{9} = \frac{99}{9} = 11$
 
 Alte Zentren: $z_A = 1{,}75$, $z_B = 4$ und $z_C = 11$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|:---:|
 | 1    | 0,75  | 3    | 10   | A |
 | 2,5  | 0,75  | 1,5  | 8,5  | A |
@@ -175,7 +199,7 @@ $z_C = \frac{8+11+11{,}5+14+16{,}5+17}{6} = \frac{78}{6} = 13$
 
 Alte Zentren: $z_A = 1{,}75$, $z_B = 6{,}25$ und $z_C = 13$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|:---:|
 | 1    | 0,75  | 5,25  | 12   | A |
 | 2,5  | 0,75  | 3,75  | 10,5 | A |
@@ -202,7 +226,7 @@ $z_C = \frac{11+11{,}5+14+16{,}5+17}{5} = \frac{70}{5} = 14$
 
 Alte Zentren: $z_A = 2{,}5$, $z_B = 7{,}25$ und $z_C = 14$
 
-| Wert | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
+| $x_i$ | $\mid x_i-z_A\mid$ | $\mid x_i-z_B\mid$ | $\mid x_i-z_C\mid$ | Cluster |
 |:---:|:---:|:---:|:---:|:---:|
 | 1    | 1,5  | 6,25 | 13   | A |
 | 2,5  | 0    | 4,75 | 11,5 | A |
@@ -223,7 +247,7 @@ Die endgültigen Clusterzentren sind:
 
 $\boxed{z_A = 2{,}5 \qquad z_B = 7{,}25 \qquad z_C = 14}$
 
-## Zweidimensional, 6 Werte, 2 Zentren
+## Optional: Zweidimensional, 6 Werte, 2 Zentren
 
 ### Aufgabe
 
