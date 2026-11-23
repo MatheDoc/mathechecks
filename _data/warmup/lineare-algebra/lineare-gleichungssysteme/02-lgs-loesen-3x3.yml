@@ -1,0 +1,144 @@
+# Warm-Up zu Check 02 „LGS 3x3“ (Lineare Gleichungssysteme)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: lineare-algebra__lineare-gleichungssysteme__02
+abschluss: '<p>Im Training löst du solche LGS vollständig: erst Spalte 1, dann Spalte 2 unter der Diagonalen auf $0$ bringen, dann von unten nach oben auflösen. Steht schon eine $0$ an der richtigen Stelle, sparst du dir diese Umformung.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Das Ziel: eine Treppe'
+    text: '<p>Bei drei Unbekannten hilft der <strong>Gauß-Algorithmus</strong>, ein systematisches Additionsverfahren. Er bringt das LGS in diese Form:</p>$$\begin{align*}I:\quad x_1+x_2+2x_3&=9\\ II:\quad x_2-x_3&=-1\\ III:\quad 3x_3&=9\end{align*}$$'
+    visual:
+      typ: matrix
+      trenn: 3
+      zeilen:
+        - [1, 1, 2, 9]
+        - [0, 1, -1, -1]
+        - [0, 0, 3, 9]
+    schritte:
+      - typ: aufdecken
+        frage: 'Im Bild steht dasselbe LGS in <strong>Matrixform</strong>.'
+        knopf: 'Erklären'
+        text: '<p>Nur die Koeffizienten bleiben stehen, jede Spalte gehört zu einer Unbekannten, rechts vom Strich steht die rechte Seite. Fehlt eine Unbekannte, steht dort eine $0$.</p><p>Unter der Diagonalen stehen nur Nullen. Diese <strong>obere Dreiecksform</strong> ist das Ziel.</p>'
+      - typ: auswahl
+        frage: 'Welche Gleichung kannst du sofort lösen?'
+        optionen:
+          - '$III$'
+          - '$II$'
+          - '$I$'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Suche die Gleichung mit nur einer Unbekannten.'
+        zeige: { zeilen: [2] }
+        danach: '<p>Von unten nach oben (<strong>Rückwärtseinsetzen</strong>):</p>$$\begin{align*}III:\quad 3x_3=9&\Rightarrow x_3=3\\ II:\quad x_2-3=-1&\Rightarrow x_2=2\\ I:\quad x_1+2+6=9&\Rightarrow x_1=1\end{align*}$$<p><strong>Merke:</strong> Erst mit Zeilenumformungen Nullen unter der Diagonalen erzeugen, dann von unten nach oben auflösen.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Nullen erzeugen, Spalte für Spalte'
+    text: '$$\begin{align*}x_1+x_2+x_3&=3\\ 4x_1+2x_2+x_3&=14\\ 16x_1-4x_2+x_3&=8\end{align*}$$<p>Im Bild steht die Matrixform. Erlaubt ist vor allem: ein Vielfaches einer Zeile zu einer anderen addieren oder davon abziehen.</p>'
+    visual:
+      typ: matrix
+      trenn: 3
+      zeilen:
+        - [1, 1, 1, 3]
+        - [4, 2, 1, 14]
+        - [16, -4, 1, 8]
+    schritte:
+      - typ: auswahl
+        frage: '<strong>Spalte 1:</strong> Unter der $1$ oben links sollen Nullen entstehen. Welche Umformung passt für Zeile $II$?'
+        optionen:
+          - '$II-4\cdot I$'
+          - '$II+4\cdot I$'
+          - '$II-2\cdot I$'
+        korrekt: 0
+        hinweis: 'In Zeile $II$ steht vorne eine $4$. Es soll $4-4\cdot 1=0$ herauskommen.'
+        zeige: { spalten: [0] }
+        danach: '<p>Mit $II-4\cdot I$ und ebenso $III-16\cdot I$:</p>$$\left(\begin{array}{ccc|c}1&1&1&3\\0&-2&-3&2\\0&-20&-15&-40\end{array}\right)$$'
+      - typ: auswahl
+        frage: '<strong>Spalte 2:</strong> Unter der $-2$ soll eine $0$ entstehen. Welche Umformung passt für Zeile $III$?'
+        optionen:
+          - '$III-10\cdot II$'
+          - '$III-10\cdot I$'
+          - '$III+10\cdot II$'
+        korrekt: 0
+        hinweis: 'Rechne nur mit Zeile $II$, sonst geht die $0$ in Spalte 1 wieder verloren. Es soll $-20-10\cdot(-2)=0$ herauskommen.'
+        zeige: { spalten: [1] }
+        danach: '$$\left(\begin{array}{ccc|c}1&1&1&3\\0&-2&-3&2\\0&0&15&-60\end{array}\right)$$<p>Die obere Dreiecksform ist erreicht.</p>'
+      - typ: aufdecken
+        frage: '<strong>Rückwärtseinsetzen</strong>'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}III:\quad 15x_3=-60&\Rightarrow x_3=-4\\ II:\quad -2x_2+12=2&\Rightarrow x_2=5\\ I:\quad x_1+5-4=3&\Rightarrow x_1=2\end{align*}$$'
+
+  - phase: vormachen
+    titel: 'Wenn oben links keine 1 steht'
+    text: '<p>Oft steht oben links eine andere Zahl:</p>$$\left(\begin{array}{ccc|c}2&3&1&11\\3&2&2&13\\4&-1&1&5\end{array}\right)$$<p>Für Zeile $III$ klappt es wie gewohnt: $III-2\cdot I$, denn $4-2\cdot 2=0$.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Für Zeile $II$ passt kein ganzzahliges Vielfaches von $I$. Welche Umformung erzeugt trotzdem eine $0$, ohne Brüche?'
+        optionen:
+          - '$2\cdot II-3\cdot I$'
+          - '$II-3\cdot I$'
+          - '$II-I$'
+        korrekt: 0
+        hinweis: 'Mache aus der $2$ und der $3$ zwei gleich große Zahlen: $2\cdot 3=6$ und $3\cdot 2=6$.'
+        danach: '<p>Mit $2\cdot II-3\cdot I$ und $III-2\cdot I$:</p>$$\left(\begin{array}{ccc|c}2&3&1&11\\0&-5&1&-7\\0&-7&-1&-17\end{array}\right)$$<p>Bei Spalte 2 hilft derselbe Trick: $5\cdot III-7\cdot II$.</p>'
+      - typ: aufdecken
+        frage: 'Und wenn oben links eine $0$ steht?'
+        knopf: 'Zeigen'
+        text: '<p>Dann zuerst zwei Zeilen <strong>tauschen</strong>, sodass oben links eine Zahl ungleich $0$ steht. Das ändert die Lösung nicht.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welche Umformung erzeugt die Null?'
+    text: '<p>Ordne zu. Gemeint ist jeweils die Zahl oben links und die Zahl darunter in Zeile $II$.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Spalte 1'
+        titel_rechts: 'Umformung'
+        paare:
+          - { links: 'oben $1$, darunter $3$', rechts: '$II-3\cdot I$' }
+          - { links: 'oben $-1$, darunter $4$', rechts: '$II+4\cdot I$' }
+          - { links: 'oben $2$, darunter $5$', rechts: '$2\cdot II-5\cdot I$' }
+          - { links: 'oben $0$', rechts: 'Zeilen tauschen' }
+        danach: '<p>Ziel ist immer: Die Zahl in Zeile $II$ wird $0$. Bei verschiedenen Vorzeichen addierst du, bei gleichen subtrahierst du.</p>'
+
+  - phase: mitmachen
+    titel: 'Jetzt du'
+    text: '$$\begin{align*}x_1+x_2+2x_3&=7\\ 2x_1+4x_2+x_3&=3\\ -x_1+2x_2+x_3&=-1\end{align*}$$<p>Das Bild zeigt die Matrix. $II-2\cdot I$ ergibt schon die neue Zeile $II$: $(0\;\;2\;\;{-3}\,|\,{-11})$.</p>'
+    visual:
+      typ: matrix
+      trenn: 3
+      zeilen:
+        - [1, 1, 2, 7]
+        - [2, 4, 1, 3]
+        - [-1, 2, 1, -1]
+    schritte:
+      - typ: eingabe
+        frage: 'Rechne $III+I$. Wie lautet die neue Zeile $III$?'
+        layout: zeile
+        felder:
+          - { label: '$0\,x_1\;+$', loesung: 3, einheit: '$x_2\;+$', aria: 'Vorfaktor von x_2' }
+          - { loesung: 3, einheit: '$x_3\;=$', aria: 'Vorfaktor von x_3' }
+          - { loesung: 6, aria: 'rechte Seite' }
+        hinweis: 'Addiere die Zahlen in Zeile $III$ und Zeile $I$ spaltenweise, z. B. $2+1=3$.'
+        zeige: { zeilen: [0, 2] }
+        danach: '$$\left(\begin{array}{ccc|c}1&1&2&7\\0&2&-3&-11\\0&3&3&6\end{array}\right)$$'
+      - typ: auswahl
+        frage: '<strong>Spalte 2:</strong> Unter der $2$ steht eine $3$. Welche Umformung passt für Zeile $III$?'
+        optionen:
+          - '$2\cdot III-3\cdot II$'
+          - '$III-II$'
+          - '$3\cdot III-2\cdot II$'
+        korrekt: 0
+        hinweis: 'Mache aus der $2$ und der $3$ zwei gleich große Zahlen.'
+        danach: '<p>$2\cdot III-3\cdot II$ ergibt die Zeile $(0\;\;0\;\;15\,|\,45)$:</p>$$\left(\begin{array}{ccc|c}1&1&2&7\\0&2&-3&-11\\0&0&15&45\end{array}\right)$$'
+      - typ: eingabe
+        frage: 'Löse von unten nach oben.'
+        felder:
+          - { label: '$x_3=$', loesung: 3 }
+          - { label: '$x_2=$', loesung: -1 }
+          - { label: '$x_1=$', loesung: 2 }
+        hinweis: 'Zuerst $15x_3=45$. Dann in $2x_2-3x_3=-11$ einsetzen, zuletzt in $x_1+x_2+2x_3=7$.'
+        danach: '<p>Die Lösung ist $x_1=2$, $x_2=-1$, $x_3=3$.</p>'

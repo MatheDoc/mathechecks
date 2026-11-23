@@ -1,0 +1,129 @@
+# Warm-Up zu Check 01 „LGS 2x2“ (Lineare Gleichungssysteme)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: lineare-algebra__lineare-gleichungssysteme__01
+abschluss: '<p>Im Training löst du solche LGS vollständig: eine Unbekannte eliminieren, die andere ausrechnen, dann einsetzen. Steht eine Unbekannte schon allein in einer Gleichung, rechnest du sie direkt aus.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Zwei Gleichungen, zwei Unbekannte'
+    text: '<p>Ein <strong>lineares Gleichungssystem</strong> (LGS) besteht aus mehreren Gleichungen, die alle <strong>zugleich</strong> erfüllt sein sollen:</p>$$\begin{align*}I:\quad 2x+y&=13\\ II:\quad 3x-y&=7\end{align*}$$<p>Gesucht sind die Werte von $x$ und $y$, die beide Gleichungen wahr machen.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Warum kann man $x$ nicht direkt ausrechnen?'
+        knopf: 'Idee zeigen'
+        text: '<p>In jeder Gleichung stehen <strong>zwei</strong> Unbekannte. Die Idee aller Verfahren: Die Gleichungen so kombinieren, dass nur noch <strong>eine</strong> Unbekannte übrig bleibt.</p>'
+      - typ: auswahl
+        frage: 'Schau dir die $y$-Terme an. Was passiert, wenn du die beiden Gleichungen addierst?'
+        optionen:
+          - '$y$ fällt weg'
+          - '$x$ fällt weg'
+          - 'keine Unbekannte fällt weg'
+        korrekt: 0
+        mischen: false
+        hinweis: 'In $I$ steht $+y$, in $II$ steht $-y$.'
+        danach: '$$\begin{align*}I+II:\quad 5x&=20\\ x&=4\end{align*}$$<p>Einsetzen in $I$: $2\cdot 4+y=13$, also $y=5$.</p><p><strong>Merke:</strong> Eine Unbekannte eliminieren, die andere ausrechnen, dann zurück einsetzen.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Drei Wege, ein Ergebnis'
+    text: '<p>Es gibt drei klassische Verfahren. Wir lösen damit dasselbe LGS:</p>$$\begin{align*}I:\quad x+2y&=21\\ II:\quad 4x-2y&=-6\end{align*}$$'
+    visual:
+      typ: liste
+      titel: 'Lösungsverfahren'
+      eintraege:
+        - { id: einsetz, text: 'Einsetzungsverfahren', gleichung: 'eine Unbekannte isolieren und in die andere Gleichung einsetzen' }
+        - { id: gleich, text: 'Gleichsetzungsverfahren', gleichung: 'beide Gleichungen nach derselben Unbekannten auflösen, dann gleichsetzen' }
+        - { id: add, text: 'Additionsverfahren', gleichung: 'Gleichungen so addieren, dass eine Unbekannte wegfällt' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Einsetzungsverfahren:</strong> In $I$ steht $x$ ohne Vorfaktor. Das lässt sich leicht isolieren.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Aus $I$ folgt $x=21-2y$. Das setzen wir in $II$ für $x$ ein:</p>$$\begin{align*}4(21-2y)-2y&=-6\\ 84-10y&=-6\quad|-84\\ -10y&=-90\quad|:(-10)\\ y&=9\end{align*}$$<p>Dann $x=21-2\cdot 9=3$.</p>'
+        zeige: { eintraege: [einsetz] }
+      - typ: auswahl
+        frage: '<strong>Gleichsetzungsverfahren:</strong> Beide Gleichungen sind nach $x$ aufgelöst: $$\begin{align*}I:\quad x&=21-2y\\ II:\quad x&=-1{,}5+0{,}5y\end{align*}$$ Was ist der nächste Schritt?'
+        optionen:
+          - 'die rechten Seiten gleichsetzen'
+          - '$x=21-2y$ in $I$ einsetzen'
+          - 'die beiden Gleichungen addieren'
+        korrekt: 0
+        hinweis: 'Zweimal steht links $x$. Also müssen auch die rechten Seiten gleich sein.'
+        danach: '$$\begin{align*}21-2y&=-1{,}5+0{,}5y\quad|-21-0{,}5y\\ -2{,}5y&=-22{,}5\quad|:(-2{,}5)\\ y&=9\end{align*}$$<p>Wieder $x=21-2\cdot 9=3$.</p>'
+        zeige: { eintraege: [gleich] }
+      - typ: aufdecken
+        frage: '<strong>Additionsverfahren:</strong> In $I$ steht $+2y$, in $II$ steht $-2y$.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}I+II:\quad 5x&=15\\ x&=3\end{align*}$$<p>Einsetzen in $I$: $3+2y=21$, also $y=9$.</p><p>Alle drei Wege liefern $x=3$ und $y=9$. Wähle das Verfahren, das am wenigsten Rechnung macht.</p>'
+        zeige: { eintraege: [add] }
+
+  - phase: vormachen
+    titel: 'Wenn nichts von selbst wegfällt'
+    text: '<p>Meist heben sich die Terme nicht direkt auf:</p>$$\begin{align*}I:\quad 3x+2y&=16\\ II:\quad 5x-3y&=14\end{align*}$$<p>Dann vervielfachst du die Gleichungen vorher so, dass bei einer Unbekannten <strong>Gegenzahlen</strong> entstehen.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Mit welchen Faktoren fällt $y$ beim Addieren weg?'
+        optionen:
+          - '$I\cdot 3$ und $II\cdot 2$'
+          - '$I\cdot 2$ und $II\cdot 3$'
+          - '$I\cdot 3$ und $II\cdot (-2)$'
+        korrekt: 0
+        hinweis: 'Aus $2y$ und $-3y$ sollen Gegenzahlen werden, z. B. $6y$ und $-6y$.'
+        danach: '<p>Jede Gleichung wird auf <strong>beiden Seiten</strong> multipliziert:</p>$$\begin{align*}3\cdot I:\quad 9x+6y&=48\\ 2\cdot II:\quad 10x-6y&=28\end{align*}$$'
+      - typ: eingabe
+        frage: 'Addiere die beiden neuen Gleichungen.'
+        layout: zeile
+        felder:
+          - { loesung: 19, einheit: '$x\;=$', aria: 'Vorfaktor von x' }
+          - { loesung: 76, aria: 'rechte Seite' }
+        hinweis: 'Addiere links $9x+10x$ und rechts $48+28$. Die $y$-Terme heben sich auf.'
+        danach: '<p>$19x=76$, also $x=4$.</p>'
+      - typ: aufdecken
+        frage: 'Jetzt fehlt noch $y$.'
+        knopf: 'Einsetzen'
+        text: '<p>Einsetzen in $I$:</p>$$\begin{align*}3\cdot 4+2y&=16\quad|-12\\ 2y&=4\quad|:2\\ y&=2\end{align*}$$<p>Probe in $II$: $5\cdot 4-3\cdot 2=14$. Stimmt.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Weg bietet sich an?'
+    text: '<p>Im Training heißen die Unbekannten $x_1$ und $x_2$. Jedes Verfahren führt immer zum Ziel, aber eines ist jeweils am bequemsten.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'LGS'
+        titel_rechts: 'Bequemster Weg'
+        paare:
+          - { links: '$x_2=2x_1+1$<br>$x_2=-x_1+7$', rechts: 'Gleichsetzungsverfahren' }
+          - { links: '$x_2=3x_1-2$<br>$4x_1+2x_2=16$', rechts: 'Einsetzungsverfahren' }
+          - { links: '$5x_1+2x_2=9$<br>$3x_1-2x_2=7$', rechts: 'Additionsverfahren' }
+          - { links: '$-x_2=-6$<br>$-x_1+2x_2=10$', rechts: '$x_2$ direkt ausrechnen, dann einsetzen' }
+        danach: '<p>Beide schon nach derselben Unbekannten aufgelöst → gleichsetzen. Eine aufgelöst → einsetzen. Gegenzahlen → addieren.</p>'
+
+  - phase: mitmachen
+    titel: 'Jetzt du'
+    text: '$$\begin{align*}I:\quad 2x_1+3x_2&=12\\ II:\quad 3x_1+5x_2&=19\end{align*}$$<p>Hier entstehen keine Gegenzahlen, denn alle Vorfaktoren sind positiv. Dann machst du die Terme gleich groß und <strong>subtrahierst</strong>.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Mit welchem Ansatz fällt $x_1$ weg?'
+        optionen:
+          - '$3\cdot I-2\cdot II$'
+          - '$3\cdot I+2\cdot II$'
+          - '$2\cdot I-3\cdot II$'
+        korrekt: 0
+        hinweis: 'Aus $2x_1$ und $3x_1$ wird mit den Faktoren $3$ und $2$ jeweils $6x_1$. Gleich große Terme fallen beim Subtrahieren weg.'
+        danach: '$$\begin{align*}3\cdot I:\quad 6x_1+9x_2&=36\\ 2\cdot II:\quad 6x_1+10x_2&=38\end{align*}$$'
+      - typ: eingabe
+        frage: 'Rechne $3\cdot I-2\cdot II$.'
+        layout: zeile
+        felder:
+          - { loesung: -1, einheit: '$x_2\;=$', aria: 'Vorfaktor von x_2' }
+          - { loesung: -2, aria: 'rechte Seite' }
+        hinweis: 'Links $9x_2-10x_2$, rechts $36-38$.'
+        danach: '<p>$-x_2=-2$, also $x_2=2$.</p>'
+      - typ: eingabe
+        frage: 'Setze $x_2=2$ in $I$ ein und bestimme $x_1$.'
+        felder:
+          - { label: '$x_1=$', loesung: 3 }
+        hinweis: '$2x_1+3\cdot 2=12$, also $2x_1=6$.'
+        danach: '<p>Die Lösung ist $x_1=3$, $x_2=2$. Probe in $II$: $3\cdot 3+5\cdot 2=19$. Stimmt.</p>'
