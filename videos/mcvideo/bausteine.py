@@ -28,6 +28,7 @@ from manim import (
     MathTex,
     Mobject,
     Rectangle,
+    ReplacementTransform,
     RoundedRectangle,
     SVGMobject,
     Text,
@@ -539,6 +540,7 @@ class ErweiterteMatrix(VGroup):
         super().__init__()
         self._groesse = groesse
         self._spalte = spalte
+        self.werte = [list(werte) for werte in zeilen]  # aktueller Stand, umformen() hält ihn mit
         anzahl = len(zeilen[0])
         xs = [j * spalte for j in range(anzahl - 1)] + [(anzahl - 1) * spalte + 0.3]
         ys = [-i * zeile for i in range(len(zeilen))]
@@ -598,6 +600,7 @@ class ErweiterteMatrix(VGroup):
 
     def umformen(self, i: int, werte: list[float], farben: dict[int, str] | None = None) -> Animation:
         """Ersetzt die Zeile i durch neue Werte; farben färbt einzelne Spalten."""
+        self.werte[i] = list(werte)
         neu = self.zahlenzeile(werte, self.eintraege[i][0].get_y(), farben)
         return AnimationGroup(*[Transform(alt, ziel) for alt, ziel in zip(self.eintraege[i], neu)])
 
@@ -606,6 +609,84 @@ class ErweiterteMatrix(VGroup):
         return AnimationGroup(*[
             eintrag.animate(rate_func=rate_functions.there_and_back).scale(1.3) for eintrag in self.eintraege[i]
         ])
+
+    @classmethod
+    def vielfaches(cls, faktor: int, i: int) -> str:
+        """Vielfaches der Zeile i als TeX, etwa „4·I“; der Faktor 1 entfällt."""
+        return (rf"{faktor}\cdot" if faktor != 1 else "") + cls.zeilenname(i)
+
+    def gleichungen(self, groesse: float = 52) -> VGroup:
+        """Das LGS der Matrix als Gleichungen, am Gleichheitszeichen ausgerichtet; Lage wie die Matrix setzen.
+
+        Gegenstück zu aus_gleichungen(): Die Koeffizienten wandern von dort in die Matrix.
+        """
+        zeilen = VGroup()
+        self._quellen: list[list[VGroup | None]] = []
+        for werte in self.werte:
+            teile: list[str] = []
+            stellen: list[list[int] | None] = []
+            for j, a in enumerate(werte[:-1], start=1):
+                vorzeichen = []
+                if a < 0:
+                    teile.append("-")
+                    vorzeichen = [len(teile) - 1]
+                elif j > 1:
+                    teile.append("+")
+                if abs(a) == 1:
+                    stellen.append(None)
+                else:
+                    teile.append(_zahl(abs(a)))
+                    stellen.append([*vorzeichen, len(teile) - 1])
+                teile.append(f"x_{j}")
+            zeile = formel(*teile, "=", _zahl(werte[-1]), groesse=groesse)
+            zeilen.add(zeile)
+            self._quellen.append([VGroup(*[zeile[k] for k in stelle]) if stelle else None for stelle in stellen])
+        zeilen.arrange(DOWN, buff=0.5)
+        for zeile in zeilen:
+            zeile.shift((zeilen[0][-2].get_x() - zeile[-2].get_x()) * RIGHT)
+        self._gleichungen = zeilen
+        return zeilen
+
+    def aus_gleichungen(self) -> list[Animation]:
+        """Übergang von gleichungen() zur Matrix: Klammern und Strich entstehen, die Koeffizienten wandern hinein."""
+        animationen: list[Animation] = [Create(self.klammern), Create(self.strich), *[FadeIn(n) for n in self.namen]]
+        for i, (zeile, quellen) in enumerate(zip(self._gleichungen, self._quellen)):
+            benutzt = {id(zeile[-1])}
+            for j, quelle in enumerate(quellen):
+                if quelle is None:
+                    animationen.append(FadeIn(self.eintraege[i][j], scale=0.5))
+                else:
+                    animationen.append(ReplacementTransform(quelle, self.eintraege[i][j]))
+                    benutzt |= {id(teil) for teil in quelle}
+            animationen.append(ReplacementTransform(zeile[-1], self.eintraege[i][-1]))
+            animationen.append(FadeOut(VGroup(*[teil for teil in zeile if id(teil) not in benutzt])))
+        return animationen
+
+    def nebenrechnung(
+        self,
+        y: float,
+        zeile: int,
+        faktor: int,
+        basis: int,
+        farben: dict[int, str] | None = None,
+        zeilenabstand: float = 0.8,
+    ) -> VGroup:
+        """Schriftliche Rechnung „zeile − faktor · basis“ in den Spalten der Matrix; y ist die Höhe der oberen Zeile.
+
+        Ergibt vier Teile: obere Zeile (mit Namen), abgezogene Zeile (mit Minus und Namen), Rechenstrich, Ergebnis.
+        """
+        oben = self.werte[zeile]
+        abzug = [faktor * wert for wert in self.werte[basis]]
+        ergebnis = [a - b for a, b in zip(oben, abzug)]
+        links, rechts = self.klammern.get_left()[0], self.klammern.get_right()[0]
+        y_abzug = y - zeilenabstand
+        minus = self.randnotiz("-", y_abzug, t.TEXT).set_x(links)
+        return VGroup(
+            VGroup(self.zahlenzeile(oben, y, farben), self.randnotiz(self.zeilenname(zeile), y)),
+            VGroup(minus, self.zahlenzeile(abzug, y_abzug), self.randnotiz(self.vielfaches(faktor, basis), y_abzug)),
+            Line([links - 0.15, y_abzug - 0.5, 0], [rechts + 0.15, y_abzug - 0.5, 0], color=t.ACHSE, stroke_width=2.5),
+            self.zahlenzeile(ergebnis, y - 2 * zeilenabstand - 0.2, farben),
+        )
 
 
 class Baumdiagramm(VGroup):

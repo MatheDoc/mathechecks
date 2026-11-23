@@ -7,14 +7,10 @@ Beispiel: unverändert aus dem Musterbeispiel des Checks.
 from manim import (
     BOLD,
     DOWN,
-    RIGHT,
     UP,
-    Create,
     FadeIn,
     FadeOut,
     LaggedStart,
-    Line,
-    MathTex,
     ReplacementTransform,
     TransformFromCopy,
     VGroup,
@@ -23,7 +19,7 @@ from manim import (
 )
 
 from mcvideo import ErweiterteMatrix, MCSzene, auftritt, einpassen, formel, kurzfassung, legende, schritt, text
-from mcvideo.theme import ACHSE, BLAU, GRUEN, HERVOR, ROSE, TAFEL_BREITE, TEXT_LEISE
+from mcvideo.theme import BLAU, GRUEN, HERVOR, ROSE, TAFEL_BREITE, TEXT_LEISE
 
 LGS = [
     [1, 1, 1, 3],
@@ -34,40 +30,13 @@ ZEILENABSTAND = 0.8  # in der Nebenrechnung
 zeilenname = ErweiterteMatrix.zeilenname
 
 
-def gleichung(koeffizienten: list[int], rechts: int) -> tuple[MathTex, list[VGroup | None]]:
-    """Eine Gleichung des LGS und zu jedem Koeffizienten die Teile, die ihn zeigen (None, wenn er nicht dasteht)."""
-    teile: list[str] = []
-    stellen: list[list[int] | None] = []
-    for j, a in enumerate(koeffizienten, start=1):
-        vorzeichen = []
-        if a < 0:
-            teile.append("-")
-            vorzeichen = [len(teile) - 1]
-        elif j > 1:
-            teile.append("+")
-        if abs(a) == 1:
-            stellen.append(None)
-        else:
-            teile.append(str(abs(a)))
-            stellen.append([*vorzeichen, len(teile) - 1])
-        teile.append(f"x_{j}")
-    zeile = formel(*teile, "=", str(rechts), groesse=52)
-    return zeile, [VGroup(*[zeile[k] for k in stelle]) if stelle else None for stelle in stellen]
-
-
 class Video(MCSzene):
     def inhalt(self) -> None:
         karte = self.buehne(hoehe=3.8)
-        self.matrix = m = self.auf_buehne(
+        m = self.auf_buehne(
             ErweiterteMatrix(LGS, breiteste_umformung=zeilenname(2) + r"-16\cdot" + zeilenname(0))
         )
-        self.werte = [list(zeile) for zeile in LGS]
-
-        paare = [gleichung(zeile[:-1], zeile[-1]) for zeile in LGS]
-        gleichungen = VGroup(*[zeile for zeile, _ in paare]).arrange(DOWN, buff=0.5)
-        for zeile in gleichungen:  # am Gleichheitszeichen ausrichten
-            zeile.shift((gleichungen[0][-2].get_x() - zeile[-2].get_x()) * RIGHT)
-        self.auf_buehne(gleichungen)
+        gleichungen = self.auf_buehne(m.gleichungen())
         self.add(karte)
 
         self.einstieg(
@@ -77,17 +46,7 @@ class Video(MCSzene):
         )
 
         # ---------- Schritt 1: Matrixform ----------
-        uebergang = [Create(m.klammern), Create(m.strich), *[FadeIn(name) for name in m.namen]]
-        for i, (zeile, quellen) in enumerate(paare):
-            benutzt = {id(zeile[-1])}
-            for j, quelle in enumerate(quellen):
-                if quelle is None:
-                    uebergang.append(FadeIn(m.eintraege[i][j], scale=0.5))
-                else:
-                    uebergang.append(ReplacementTransform(quelle, m.eintraege[i][j]))
-                    benutzt |= {id(teil) for teil in quelle}
-            uebergang.append(ReplacementTransform(zeile[-1], m.eintraege[i][-1]))
-            uebergang.append(FadeOut(VGroup(*[teil for teil in zeile if id(teil) not in benutzt])))
+        uebergang = m.aus_gleichungen()
 
         kopf1 = schritt(1, "Matrixform")
         block1 = self.tafel(kopf1, text("nur die Zahlen aufschreiben", groesse=38, farbe=TEXT_LEISE), abstand=0.5)
@@ -100,7 +59,7 @@ class Video(MCSzene):
 
         # ---------- Schritt 2: Gauß-Algorithmus ----------
         kopf2 = schritt(2, "Gauß-Algorithmus")
-        probe = self.nebenrechnung(0, LGS[1], LGS[1], LGS[1], zeilenname(1), zeilenname(0), {})  # legt nur die Höhe fest
+        probe = m.nebenrechnung(0, 1, 1, 0)  # legt nur die Höhe fest
         self.tafel(kopf2, probe, abstand=0.6)
         kopf2.set_x(0)
         self.y_rechnung = probe[0][0][0].get_y()
@@ -122,16 +81,16 @@ class Video(MCSzene):
             self.play(auftritt(ziel[0]), run_time=0.5)
         self.play(FadeOut(ziel, shift=0.25 * UP), run_time=0.4)
 
-        self.umformung(
-            1, 4, 0,
+        self.zeilenumformung(
+            m, 1, 4, 0, y=self.y_rechnung,
             sprechtext="Zeile zwei minus viermal Zeile eins: Aus der Vier wird eine Null.",
         )
-        self.umformung(
-            2, 16, 0,
+        self.zeilenumformung(
+            m, 2, 16, 0, y=self.y_rechnung,
             sprechtext="Genauso: Zeile drei minus sechzehnmal Zeile eins.",
         )
-        self.umformung(
-            2, 10, 1,
+        self.zeilenumformung(
+            m, 2, 10, 1, y=self.y_rechnung,
             sprechtext="Jetzt noch -20 zu 0 machen: Zeile drei minus zehnmal Zeile zwei.",
         )
         erreicht = text("Obere Dreiecksform", groesse=42, gewicht=BOLD).move_to(ziel)
@@ -216,50 +175,3 @@ class Video(MCSzene):
             for zeile, beginn in zip(liste, (0.15, 0.4, 0.75)):
                 self.warte_bis(beginn)
                 self.play(auftritt(zeile), run_time=0.5)
-
-    def nebenrechnung(
-        self,
-        y: float,
-        oben: list[int],
-        abzug: list[int],
-        ergebnis: list[int],
-        name_oben: str,
-        name_abzug: str,
-        farben: dict[int, str],
-    ) -> VGroup:
-        """Schriftliche Subtraktion zweier Zeilen in den Spalten der Matrix; y ist die Höhe der oberen Zeile.
-
-        Ergibt vier Teile: obere Zeile, abgezogene Zeile, Rechenstrich, Ergebnis.
-        """
-        m = self.matrix
-        links, rechts = m.klammern.get_left()[0], m.klammern.get_right()[0]
-        y_abzug = y - ZEILENABSTAND
-        minus = m.randnotiz("-", y_abzug, m.zeile(0)[0].get_color()).set_x(links)
-        return VGroup(
-            VGroup(m.zahlenzeile(oben, y, farben), m.randnotiz(name_oben, y)),
-            VGroup(minus, m.zahlenzeile(abzug, y_abzug), m.randnotiz(name_abzug, y_abzug)),
-            Line([links - 0.15, y_abzug - 0.5, 0], [rechts + 0.15, y_abzug - 0.5, 0], color=ACHSE, stroke_width=2.5),
-            m.zahlenzeile(ergebnis, y - 2 * ZEILENABSTAND - 0.2, farben),
-        )
-
-    def umformung(self, zeile: int, faktor: int, basis: int, sprechtext: str) -> None:
-        """Zeilenumformung „zeile − faktor · basis“: Nebenrechnung zeigen, dann die Zeile der Matrix ersetzen."""
-        m = self.matrix
-        alt = self.werte[zeile]
-        abzug = [faktor * wert for wert in self.werte[basis]]
-        neu = [a - b for a, b in zip(alt, abzug)]
-        farben = {j: HERVOR for j in range(zeile)}  # die Spalten unter der Diagonale
-        oben, mitte, strich, unten = rechnung = self.nebenrechnung(
-            self.y_rechnung, alt, abzug, neu, zeilenname(zeile), rf"{faktor}\cdot" + zeilenname(basis), farben,
-        )
-        with self.sprich(sprechtext):
-            self.play(m.umformung(zeile, zeilenname(zeile) + rf"-{faktor}\cdot" + zeilenname(basis)), run_time=0.5)
-            self.play(TransformFromCopy(m.zeile(zeile), oben[0]), FadeIn(oben[1]), run_time=0.7)
-            self.play(FadeIn(mitte, shift=0.15 * DOWN), run_time=0.5)
-            self.warte_bis(0.7)
-            self.play(Create(strich), FadeIn(unten, shift=0.15 * DOWN), run_time=0.6)
-        self.wait(0.6)
-        self.play(
-            m.umformen(zeile, neu, farben), m.benennen(zeile), FadeOut(rechnung, shift=0.25 * UP), run_time=0.8,
-        )
-        self.werte[zeile] = neu

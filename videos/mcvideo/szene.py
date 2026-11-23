@@ -12,6 +12,7 @@ from manim import (
     UP,
     Animation,
     Axes,
+    Create,
     DashedLine,
     FadeIn,
     FadeOut,
@@ -21,6 +22,7 @@ from manim import (
     MathTex,
     Mobject,
     RoundedRectangle,
+    TransformFromCopy,
     VGroup,
     interpolate_color,
     rate_functions,
@@ -29,7 +31,7 @@ from manim_voiceover import VoiceoverScene
 from manim_voiceover.tracker import VoiceoverTracker
 
 from . import theme as t
-from .bausteine import auftritt, einpassen, formel, frage, lichthof, logo, text
+from .bausteine import ErweiterteMatrix, auftritt, einpassen, formel, frage, lichthof, logo, text
 from .stimme import EIGEN, aufnahme_name, sprachdienst
 
 _TOLERANZ = 0.02
@@ -214,6 +216,41 @@ class MCSzene(VoiceoverScene):
         """Setzt ein Objekt oben auf die Tafel, damit es stehen bleibt, während darunter gerechnet wird (tafel(unter=...))."""
         einpassen(mob, t.TAFEL_BREITE)
         return mob.move_to([0, self._karte_unten - t.TAFEL_ABSTAND - mob.height / 2, 0])
+
+    # ---------- Matrix ----------
+    def zeilenumformung(
+        self,
+        matrix: ErweiterteMatrix,
+        zeile: int,
+        faktor: int,
+        basis: int,
+        sprechtext: str,
+        y: float,
+        farben: dict[int, str] | None = None,
+    ) -> None:
+        """Zeilenumformung „zeile − faktor · basis“: Umformung an die Zeile schreiben, Nebenrechnung auf der Höhe y
+        zeigen, dann die Zeile der Matrix ersetzen.
+
+        farben: Spalten des Ergebnisses färben; ohne Angabe die Spalten unter der Diagonale in HERVOR.
+        """
+        if farben is None:
+            farben = {j: t.HERVOR for j in range(zeile)}
+        oben, mitte, strich, unten = rechnung = matrix.nebenrechnung(y, zeile, faktor, basis, farben)
+        neu = [a - faktor * b for a, b in zip(matrix.werte[zeile], matrix.werte[basis])]
+        with self.sprich(sprechtext):
+            self.play(
+                matrix.umformung(zeile, matrix.zeilenname(zeile) + "-" + matrix.vielfaches(faktor, basis)),
+                run_time=0.5,
+            )
+            self.play(TransformFromCopy(matrix.zeile(zeile), oben[0]), FadeIn(oben[1]), run_time=0.7)
+            self.play(FadeIn(mitte, shift=0.15 * DOWN), run_time=0.5)
+            self.warte_bis(0.7)
+            self.play(Create(strich), FadeIn(unten, shift=0.15 * DOWN), run_time=0.6)
+        self.wait(0.6)
+        self.play(
+            matrix.umformen(zeile, neu, farben), matrix.benennen(zeile), FadeOut(rechnung, shift=0.25 * UP),
+            run_time=0.8,
+        )
 
     # ---------- Ton ----------
     @contextmanager

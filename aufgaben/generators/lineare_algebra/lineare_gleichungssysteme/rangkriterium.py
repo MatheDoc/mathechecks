@@ -158,7 +158,7 @@ class LgsRangkriteriumGenerator(TaskGenerator):
                 tasks.append(
                     Task(
                         einleitung=(
-                            "Gegeben ist die bereits in Zahlenstufenform vorliegende "
+                            "Gegeben ist die bereits in Zeilenstufenform vorliegende "
                             "erweiterte Koeffizientenmatrix $$(A|y)="
                             + _matrix_latex(matrix=matrix, cols=cols)
                         ),
