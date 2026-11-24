@@ -2,7 +2,7 @@
 
 ## Idee
 
-Der k-Means Algorithmus dienst dazu, Datenpunkte in Cluster zu gruppieren.
+Der k-Means Algorithmus gruppiert Datenpunkte zu Clustern.
 
 ## Bildungsplan
 
@@ -14,25 +14,35 @@ Der k-Means Algorithmus schließt sich natürlich an die Idee des arithmetischen
 
 ## Hinweise
 
-- Konvention bei gleichem Abstand: Der Wert wird dem Cluster mit dem kleineren Index zugewiesen (bei A und B also Cluster A).
+- Konvention bei gleichem Abstand: Der Wert wird dem Zentrum mit dem kleineren Index zugewiesen.
 - Zweidimensionaler Fall: keine unterschiedlichen Achsenskalierungen, nur gleichartige Größen (z. B. Längen).
-- Zweidimensionaler Fall: nur graphisch, ansonsten zu klären: Abstandsdefinitiion nötig, Vektorbegriff einführen?, evtl adhoc Definition $d(X;P)=\sqrt{(p_1-x_1)^2 + (p_2-x_2)^2}$, Mittelwerte komponenetenweise berechnen, Abstandsquadrate für einfachere Rechnung (Bezug Fehlerfunktione)
-- Diskussion der "Güte" (Standardabweichung) / Bezug zu Regression und neuronalen Netzen, bei k-Means: Summe der Abstandsquadrate aller Punkte zu ihren zugeordneten Clustern.
-- Startzentren-Abhängigkeit: Gleiche Daten, zwei verschiedene Startzentren, zwei verschiedene Endergebnisse.
+- Zweidimensionaler Fall: nur graphisch, ansonsten zu klären: Abstandsdefinitiion nötig, Vektorbegriff einführen?, evtl adhoc Definition $d(X;P)=\sqrt{(p_1-x_1)^2 + (p_2-x_2)^2}$, Mittelwerte komponenetenweise berechnen
+- Diskussion der "Güte" (Standardabweichung) / Bezug zu Regression und neuronalen Netzen, bei k-Means: Summe der Abstandsquadrate aller Punkte zu ihren zugeordneten Clusterzentren.
+- beachte Startzentren-Abhängigkeit: Gleiche Daten, zwei verschiedene Startzentren, zwei verschiedene Endergebnisse.
 - Ellenbogen-Methode unpassend (reine Heuristik, theoretisch nicht fundiert).
-- Graphisch: Mittelsenkechte
-- Wording für den Entzustand: Z.B. "stationärer Zustand"
+- Beaachte im graphischen Fall: keine Farbkopien, mögliche Symbole: Kreis, Kreuz, Raute, Quadrat etc., Alternative: Clustergrenzen einzeichnen
+- Wording
+    - Cluster: gruppierte Menge von Datenpunkten
+    - (Cluster-)Zentrum: Mittelwerte der Punkte im Cluster (unsauber)
+    - für den Entzustand: Z.B. "stationärer Zustand"
 
 
 ## Aufgabentypen
 
-- Eindimensional, rechnerisch, eigentlicher k-Means Algorithmus
+- Eindimensional, rechnerisch
     - vollständige Durchführung bis zum stationären Zustand
-    - teilständige Durchführung
+    - teiweise Durchführung
     - prüfen, ob stationärer Zustand erreicht
     - Abhängigkeit von den Startzentren untersuchen
-    - Güte berechnen
-    - Güte zweier stationärer Zustände vergleichen, Abhängigkeit von den Startzentren 
+    - Güte (Summe der Abstandsquadrate aller Punkte zu ihren zugeordneten Clusterzentren) berechnen
+    - Güte zweier stationärer Zustände vergleichen, Abhängigkeit von den Startzentren
+- Eindimensional, (zweidimensional) graphisch
+    - eigentlich keine skalierung nötig
+    - Punkte und Clusterzentren einzeichnen lassen? 
+    - Punkte den Clustern zuordnen
+        - eindimensional: Abtände messen und vergleichen
+        - zweidimensional: Mittelsekrechten zwischen Clusterzentren einzeichnen und Punkte entsprechend zuordnen, geht gut bei 2, aber auch 3 Zentren
+    - keine Bestimmung der neuen Clusterzentren möglich
 
 ## Ablauf einer Iteration
 

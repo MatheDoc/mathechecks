@@ -20,6 +20,8 @@ c) Die Wirkung lässt spürbar nach, sobald die Konzentration unter 25 mg/l fäl
 Zunächst wird die Abweichungssumme aufgestellt – für jeden Datenpunkt die quadrierte Abweichung zwischen Messwert und Funktionswert:
 
 $$\begin{aligned}
+S(a,b,c)=\;&\big(0-K(0)\big)^2+\big(28-K(2)\big)^2 \\
++\;&\big(30-K(4)\big)^2+\big(26-K(6)\big)^2\\
 S(a,b,c)=\;&\big(0-(a\cdot 0^2+b\cdot 0+c)\big)^2+\big(28-(a\cdot 2^2+b\cdot 2+c)\big)^2 \\
 +\;&\big(30-(a\cdot 4^2+b\cdot 4+c)\big)^2+\big(26-(a\cdot 6^2+b\cdot 6+c)\big)^2
 \end{aligned}$$

@@ -14,6 +14,8 @@ Die quadratische Regressionsfunktion mit dem Ansatz $f(x)=ax^2+bx+c$ soll durch 
 Für jeden Datenpunkt wird die Abweichung zwischen gemessenem Wert $y_i$ und Funktionswert $f(x_i)$ quadriert und aufsummiert:
 
 $$\begin{aligned}
+S(a,b,c)=\;&\big(34-f(0)\big)^2+\big(14-f(1)\big)^2 \\
++\;&\big(0-f(2)\big)^2+\big(12-f(3)\big)^2\\
 S(a,b,c)=\;&\big(34-(a\cdot 0^2+b\cdot 0+c)\big)^2+\big(14-(a\cdot 1^2+b\cdot 1+c)\big)^2 \\
 +\;&\big(0-(a\cdot 2^2+b\cdot 2+c)\big)^2+\big(12-(a\cdot 3^2+b\cdot 3+c)\big)^2
 \end{aligned}$$
