@@ -9,7 +9,7 @@ module_key: video
 published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
-page_css: /assets/css/video.css?v=20261121-video
+page_css: /assets/css/video.css?v=20261124-video-play
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/video.html
 ---
 
