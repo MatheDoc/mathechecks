@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit dreizehn Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit fünfzehn Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -15,6 +15,8 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Kennzahlen einer Matrix ablesen und vergleichen, Fälle durch Ändern einer Zeile | `lineare-algebra/lineare-gleichungssysteme/05-lgs-rangkriterium.py` |
 | Textverständnis, viele Fallarten, Bild begleitet nur | `stochastik/binomialverteilung/05-bereichswahrscheinlichkeiten-berechnung.py` |
 | Diagramm lesen ohne Ablauf, nach den Teilaufgaben des Trainings | `stochastik/bedingte-wahrscheinlichkeiten/03-baumdiagramm-folgern-mit-unabh.py` |
+| Diagramm mit Lücken vervollständigen, Werte wandern aus der Rechnung ins Feld | `stochastik/bedingte-wahrscheinlichkeiten/02-baumdiagramm-erstellen-mit-unabh.py` |
+| Symbole in Worte übersetzen, Wahrscheinlichkeit als Teil durch Ganzes (Punktefeld mit Ereigniskästen) | `stochastik/bedingte-wahrscheinlichkeiten/01-interpretationen-mit-bedingt.py` |
 | Graph im Sachzusammenhang lesen (Kennzahl ↔ Merkmal, jede Kennzahl eine Farbe) | `analysis/produktlebenszyklus/01-kennzahlen-graphisch-umsatz.py` |
 | Sachaufgabe: Größen im Text erkennen und in eine Formel einsetzen (Orange nur für die gesuchte Größe, Zeitstrahl) | `finanzmathematik/zinseszinsrechnung/02-zinseszins-sachaufgaben.py` |
 | Bereiche einer Verteilung im Histogramm, Tabelle bleibt oben stehen (Hypothesentest) | `stochastik/hypothesentests/01-hypothesenergebnis.py` |
@@ -29,7 +31,7 @@ videos/
   mcvideo/                  gemeinsame Bibliothek
     theme.py                Farben, Schrift, Bildaufteilung, Auflösung
     szene.py                Basisszene MCSzene: Logo, Bereiche, Ton, Schlussbild, Randprüfung
-    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Tabelle, Zahlenstrahl, Versuche, Histogramm, Zeitstrahl, ErweiterteMatrix, Baumdiagramm, Betrag, Dezimalzahl, …
+    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Tabelle, Zahlenstrahl, Versuche, Histogramm, Zeitstrahl, ErweiterteMatrix, Baumdiagramm, Punktefeld, Betrag, Dezimalzahl, …
     stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
@@ -106,7 +108,8 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Die Höhe der Bühne richtet sich nach dem Bild: volle Höhe für einen Graphen, flach (`self.buehne(hoehe=2.5)`) für ein Bild, das nur begleitet, etwa den `Zahlenstrahl`. Die Tafel rückt dann nach oben und bekommt mehr Platz; die Schrift darf dort größer sein. So bleibt auch bei textlastigen Checks ohne tragendes Bild die obere Bildhälfte nicht leer.
 - Ein Bild stützt jedes Video, auch textlastige: Auf dem `Zahlenstrahl` erscheint der Bereich, von dem der Text spricht; `Versuche` zeigt einzelne Versuche, wenn es nicht um eine Anzahl geht.
 - Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen und hält den aktuellen Stand der Zahlen (`werte`). `gleichungen()` setzt das LGS als Gleichungen, `aus_gleichungen()` lässt die Koeffizienten von dort in die Matrix wandern. Umformungen stehen wie im Heft rechts neben der Zeile; `self.zeilenumformung(matrix, zeile, faktor, basis, ...)` zeigt darunter die Nebenrechnung in denselben Spalten (`nebenrechnung`) und ersetzt danach die Zeile. Zeilennamen sind aufrechte römische Zahlen.
-- Baumdiagramme: `Baumdiagramm` zeigt zwei Ereignisse A und B wie auf der Website (von links nach rechts, Wahrscheinlichkeiten an den Ästen, Produkte an den Pfadenden). `markiere` färbt die Äste und Pfadenden, um die es gerade geht, in der Farbe der zugehörigen Zahlen in der Rechnung.
+- Baumdiagramme: `Baumdiagramm` zeigt zwei Ereignisse A und B wie auf der Website (von links nach rechts, Wahrscheinlichkeiten an den Ästen, Produkte an den Pfadenden). `markiere` färbt die Äste und Pfadenden, um die es gerade geht, in der Farbe der zugehörigen Zahlen in der Rechnung; mit `knoten=False` bleiben die Kreise ungefärbt, wenn nur Werte verglichen werden (Check 02: zweite Stufe oben und unten gleich). Mit `luecken=(…)` stehen in offenen Feldern die Feldnummern ① bis ⑩ wie auf der Website (Baustein `feldnummer`, auch für die Rechnung); `fuelle(nr, quelle=…)` lässt den Wert aus der Rechnung (oder von einem anderen Ast) in das Feld wandern.
+- Punktefeld: `Punktefeld` zeigt Personen (oder Ergebnisse) als Gitter, Ereignisse als durchsichtige Kästen in ihrer Farbe wie im Kontextbild, den Namen außen daneben (`zeige`). `markiere(ganzes, teil, kasten)` lässt alle außerhalb des Ganzen zurücktreten, färbt den Teil und hebt den Kasten der Bedingung hervor: Wahrscheinlichkeit als Teil durch Ganzes. Kästen, die über das ganze Feld reichen, machen die Ereignisse unabhängig; für bedingte Wahrscheinlichkeiten deshalb Kästen wählen, die das nicht tun.
 - Histogramme: `Histogramm` zeigt die Binomialverteilung mit dem Wert von p rechts oben. `faerbe` färbt Bereiche samt ihren Grenzen in der Beschriftung (Hypothesentests: Ablehnungsbereich `ROSE`, Annahmebereich `BLAU`), `zu` wechselt p bei gleichem Maßstab (etwa von $p_0$ zu $p_1$). Gesprochen wird „Annahmebereich“ und „Ablehnungsbereich“, nicht „A“ und „A quer“.
 - Was beim Rechnen stehen bleiben soll (etwa Hypothesen mit Annahme- und Ablehnungsbereich als `tabelle`), setzt `self.oben_auf_tafel(...)` oben auf die Tafel; `self.tafel(..., unter=...)` ordnet die Rechnung darunter an.
 - Zeitstrahl (Finanzmathematik): `Zeitstrahl` zeigt links den früheren und rechts den späteren Zeitpunkt. Über dem Strahl stehen die Zeitangaben, darunter Beträge und Zins. `zeige` ersetzt einzelne Angaben; `uebernimm` lässt ein Ergebnis aus der Rechnung an die Stelle des Fragezeichens wandern.

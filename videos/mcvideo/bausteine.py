@@ -1,7 +1,7 @@
 """Wiederkehrende Bildelemente der MatheChecks-Videos."""
 import math
 import re
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 
 import numpy as np
 from manim import (
@@ -22,6 +22,7 @@ from manim import (
     Dot,
     FadeIn,
     FadeOut,
+    GrowFromCenter,
     GrowFromEdge,
     LaggedStart,
     Line,
@@ -29,6 +30,7 @@ from manim import (
     Mobject,
     Rectangle,
     ReplacementTransform,
+    TransformFromCopy,
     RoundedRectangle,
     SVGMobject,
     Text,
@@ -689,17 +691,122 @@ class ErweiterteMatrix(VGroup):
         )
 
 
+class Punktefeld(VGroup):
+    """Gitter aus Punkten (etwa Personen); Ereignisse sind durchsichtige Kästen in ihrer Farbe, ihr Name steht
+    außen daneben (wie im Kontextbild aus Ergebnissen und Ereignissen).
+
+    Damit lässt sich eine Wahrscheinlichkeit als Teil durch Ganzes zeigen: markiere(ganzes, teil, kasten) lässt
+    alle Punkte außerhalb des Ganzen zurücktreten, färbt den Teil und hebt den Kasten der Bedingung hervor.
+    Punkte heißen nach ihrer Lage (zeile, spalte), gezählt ab 0 von links oben.
+    """
+
+    def __init__(
+        self,
+        zeilen: int,
+        spalten: int,
+        mengen: Mapping[str, tuple[range, range, str, str]],
+        abstand: float = 0.8,
+    ) -> None:
+        """mengen: Name (LaTeX) → (Zeilen, Spalten, Farbe, Seite des Namens: "links" oder "rechts")."""
+        super().__init__()
+        self.punkte = {
+            (z, s): Circle(radius=0.17, stroke_width=0, fill_color=t.TEXT, fill_opacity=1).move_to(
+                [s * abstand, -z * abstand, 0]).set_z_index(1)  # vor den Kästen
+            for z in range(zeilen) for s in range(spalten)
+        }
+        self.mengen: dict[str, set[tuple[int, int]]] = {}
+        self.kaesten: dict[str, VGroup] = {}
+        rand = 0.36 * abstand
+        for i, (name, (z_bereich, s_bereich, farbe, seite)) in enumerate(mengen.items()):
+            self.mengen[name] = {(z, s) for z in z_bereich for s in s_bereich}
+            versatz = 0.06 * (1 if i % 2 else -1)  # Kästen, die an derselben Kante enden, liegen nicht aufeinander
+            links, rechts = s_bereich[0] * abstand - rand + versatz, s_bereich[-1] * abstand + rand + versatz
+            oben, unten = -z_bereich[0] * abstand + rand + versatz, -z_bereich[-1] * abstand - rand + versatz
+            kasten = RoundedRectangle(
+                width=rechts - links, height=oben - unten, corner_radius=0.12,
+                stroke_color=farbe, stroke_width=3, fill_color=farbe, fill_opacity=0.16,
+            ).move_to([(links + rechts) / 2, (oben + unten) / 2, 0])
+            schild = formel(name, groesse=56, farbe=farbe)
+            schild.next_to(kasten, LEFT if seite == "links" else RIGHT, buff=0.2)
+            self.kaesten[name] = VGroup(kasten, schild)
+        self.add(*self.kaesten.values(), *self.punkte.values())
+
+    @property
+    def alle(self) -> set[tuple[int, int]]:
+        return set(self.punkte)
+
+    def ohne(self, name: str) -> set[tuple[int, int]]:
+        """Das Gegenereignis: alle Punkte außerhalb des Kastens."""
+        return self.alle - self.mengen[name]
+
+    def aufbau(self) -> list[Animation]:
+        """Die Punkte erscheinen Zeile für Zeile."""
+        return [LaggedStart(*[FadeIn(punkt, scale=0.4) for punkt in self.punkte.values()], lag_ratio=0.02)]
+
+    def zeige(self, name: str) -> Animation:
+        """Der Kasten eines Ereignisses erscheint mit seinem Namen."""
+        kasten, schild = self.kaesten[name]
+        return AnimationGroup(GrowFromCenter(kasten), FadeIn(schild, scale=0.6))
+
+    def markiere(
+        self,
+        ganzes: Iterable[tuple[int, int]] | None = None,
+        teil: Iterable[tuple[int, int]] = (),
+        kasten: str | None = None,
+        farbe: str = t.HERVOR,
+    ) -> Animation:
+        """Punkte außerhalb des Ganzen treten zurück, der Teil wird gefärbt; der Kasten der Bedingung tritt
+        hervor, die übrigen Kästen zurück. Ohne Angaben: Grundzustand."""
+        ganzes = self.alle if ganzes is None else set(ganzes)
+        teil = set(teil)
+        schritte = [
+            punkt.animate.set_fill(farbe if person in teil else t.TEXT if person in ganzes else t.TEXT_SCHWACH)
+            for person, punkt in self.punkte.items()
+        ]
+        for name, (rahmen, schild) in self.kaesten.items():
+            staerke = 1.0 if kasten is None else (1.8 if name == kasten else 0.35)
+            schritte += [
+                rahmen.animate.set_fill(opacity=min(0.16 * staerke, 0.3)).set_stroke(
+                    width=3 * min(staerke, 1.6), opacity=min(staerke, 1)),
+                schild.animate.set_opacity(min(staerke, 1)),
+            ]
+        return AnimationGroup(*schritte)
+
+
+def feldnummer(nr: int, groesse: float = 30, farbe: str = t.TEXT_LEISE) -> VGroup:
+    """Nummer eines Feldes im Baumdiagramm wie ① auf der Website: Ziffer im Kreis."""
+    ziffer = text(str(nr), groesse=groesse, farbe=farbe, gewicht=SEMIBOLD)
+    kreis = Circle(radius=0.5 * groesse / 48 + 0.07 * len(str(nr)), color=farbe, stroke_width=2.5).move_to(ziffer)
+    return VGroup(kreis, ziffer)
+
+
 class Baumdiagramm(VGroup):
     """Zweistufiges Baumdiagramm zu zwei Ereignissen A und B, aufgebaut wie auf der Website.
 
     Äste und Pfadenden heißen nach ihrem Pfad: "A" und "nA" (erste Stufe), "AB", "AnB", "nAB" und
     "nAnB" (zweite Stufe und Pfadenden). An jedem Ast steht seine Wahrscheinlichkeit, rechts neben
     jedem Pfadende das Produkt.
+
+    luecken: Felder (Nummern 1 bis 10 wie auf der Website), deren Wert noch fehlt; dort steht die
+    Feldnummer, bis fuelle() den Wert einsetzt.
     """
 
     PFADE = ("AB", "AnB", "nAB", "nAnB")
+    # Feldnummern wie auf der Website: 1–6 die Äste, 7–10 die Pfadenden.
+    FELDER = {
+        1: ("ast", "A"), 2: ("ast", "nA"), 3: ("ast", "AB"), 4: ("ast", "AnB"), 5: ("ast", "nAB"),
+        6: ("ast", "nAnB"), 7: ("ende", "AB"), 8: ("ende", "AnB"), 9: ("ende", "nAB"), 10: ("ende", "nAnB"),
+    }
 
-    def __init__(self, pa: float, pba: float, pbna: float, breite: float = t.BUEHNE_BREITE, hoehe: float = 4.3) -> None:
+    def __init__(
+        self,
+        pa: float,
+        pba: float,
+        pbna: float,
+        breite: float = t.BUEHNE_BREITE,
+        hoehe: float = 4.3,
+        luecken: tuple[int, ...] = (),
+    ) -> None:
         super().__init__()
         aeste = {"A": pa, "nA": 1 - pa, "AB": pba, "AnB": 1 - pba, "nAB": pbna, "nAnB": 1 - pbna}
         hoehen = {"A": 0.75, "nA": 0.25, "AB": 0.875, "AnB": 0.625, "nAB": 0.375, "nAnB": 0.125}
@@ -723,10 +830,40 @@ class Baumdiagramm(VGroup):
         for pfad in self.PFADE:
             produkt = aeste[self._vorgaenger(pfad)] * aeste[pfad]
             self.enden[pfad] = formel(_zahl(produkt), groesse=42).next_to(self.kreise[pfad], RIGHT, buff=0.3)
+        # Offene Felder: Die Nummer steht an der Stelle des Werts. Der Wert gehört unsichtbar zum Baum, damit er
+        # beim Einpassen mitwandert, und wird erst mit fuelle() sichtbar.
+        self.nummern: dict[int, VGroup] = {}
+        for nr in luecken:
+            art, name = self.FELDER[nr]
+            wert = self.werte[name] if art == "ast" else self.enden[name]
+            marke = feldnummer(nr)
+            if art == "ast":
+                marke.move_to(wert)
+            else:
+                marke.next_to(self.kreise[name], RIGHT, buff=0.3)
+            self.nummern[nr] = marke
+            wert.set_opacity(0)
         self.add(
             *self.kanten.values(), self.wurzel, *self.kreise.values(), *self.namen.values(),
-            *self.werte.values(), *self.enden.values(),
+            *[self.feld(nr) for nr in self.FELDER], *[self.wert(nr) for nr in luecken],
         )
+
+    def wert(self, nr: int) -> MathTex:
+        """Der Wert eines Feldes, auch wenn er noch nicht eingesetzt ist."""
+        art, name = self.FELDER[nr]
+        return self.werte[name] if art == "ast" else self.enden[name]
+
+    def feld(self, nr: int) -> Mobject:
+        """Was im Feld gerade zu sehen ist: die Nummer, solange es offen ist, sonst der Wert."""
+        return self.nummern.get(nr) or self.wert(nr)
+
+    def fuelle(self, nr: int, quelle: Mobject | None = None, farbe: str = t.HERVOR) -> Animation:
+        """Setzt den Wert in ein offenes Feld ein; mit quelle wandert er sichtbar aus der Rechnung dorthin."""
+        marke, wert = self.nummern.pop(nr), self.wert(nr)
+        self.remove(marke)
+        wert.set_opacity(1).set_color(farbe)
+        ankunft = TransformFromCopy(quelle, wert) if quelle is not None else FadeIn(wert, scale=1.4)
+        return AnimationGroup(FadeOut(marke, scale=0.6), ankunft)
 
     @staticmethod
     def _vorgaenger(ast: str) -> str:
@@ -740,24 +877,28 @@ class Baumdiagramm(VGroup):
         def stufe(aeste: tuple[str, ...]) -> Animation:
             return AnimationGroup(
                 *[Create(self.kanten[ast]) for ast in aeste],
-                *[FadeIn(self.werte[ast]) for ast in aeste],
+                *[FadeIn(self.feld(nr)) for nr, (art, name) in self.FELDER.items() if art == "ast" and name in aeste],
                 *[FadeIn(VGroup(self.kreise[ast], self.namen[ast]), scale=0.6) for ast in aeste],
             )
 
         spur = VMobject().set_points_as_corners(
             [self.kanten["A"].get_start(), self.kanten["A"].get_end(), self.kanten["AB"].get_end()]
         )
-        enden = FadeIn(VGroup(*self.enden.values()), shift=0.2 * RIGHT)
+        enden = FadeIn(VGroup(*[self.feld(nr) for nr in range(7, 11)]), shift=0.2 * RIGHT)
         return [
             FadeIn(self.wurzel),
             LaggedStart(stufe(("A", "nA")), stufe(self.PFADE), enden, lag_ratio=0.6),
             lichtpunkt(spur),
         ]
 
-    def markiere(self, aeste: Mapping[str, str] | None = None, enden: Mapping[str, str] | None = None) -> Animation:
+    def markiere(
+        self, aeste: Mapping[str, str] | None = None, enden: Mapping[str, str] | None = None, knoten: bool = True,
+    ) -> Animation:
         """Färbt Äste (mit ihrem Wert) und Pfadenden, jeweils Name → Farbe; alles Übrige tritt zurück.
 
         Ohne Angaben kehrt der Baum in den Grundzustand zurück.
+        knoten: die Kreise am Ende gefärbter Äste mitfärben; ohne, wenn nur die Werte verglichen werden.
+        Offene Felder behalten ihre Nummer; ist ihr Ast oder Pfadende markiert, nimmt die Nummer die Farbe an.
         """
         aeste, enden = aeste or {}, enden or {}
         ruhig = t.TEXT_LEISE if aeste or enden else t.TEXT
@@ -766,10 +907,12 @@ class Baumdiagramm(VGroup):
             farbe = aeste.get(ast)
             schritte += [
                 self.kanten[ast].animate.set_stroke(farbe or t.ACHSE, width=5 if farbe else 3),
-                self.werte[ast].animate.set_color(farbe or ruhig),
-                self.kreise[ast].animate.set_stroke(farbe or enden.get(ast) or t.ACHSE),
+                self.kreise[ast].animate.set_stroke((farbe if knoten else None) or enden.get(ast) or t.ACHSE),
             ]
-        schritte += [self.enden[pfad].animate.set_color(enden.get(pfad) or ruhig) for pfad in self.PFADE]
+        for nr, (art, name) in self.FELDER.items():
+            farbe = (aeste if art == "ast" else enden).get(name)
+            offen = nr in self.nummern
+            schritte.append(self.feld(nr).animate.set_color(farbe or (t.TEXT_LEISE if offen else ruhig)))
         return AnimationGroup(*schritte)
 
     def betone(self, *aeste: str) -> Animation:

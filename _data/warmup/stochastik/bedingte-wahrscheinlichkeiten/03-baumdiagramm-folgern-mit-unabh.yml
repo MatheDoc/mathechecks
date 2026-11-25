@@ -1,0 +1,146 @@
+# Warm-Up zu Check 03 „Baumdiagramm interpretieren (mit bed Wkt)“ (Bedingte Wahrscheinlichkeiten)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: A-Bedingungen stehen auf der zweiten Stufe (ablesen), B-Bedingungen nicht (Formel
+# P_B(A) = P(A∩B)/P(B): Pfadende durch Summe zweier Pfadenden). Unabhängig genau dann, wenn die
+# zweite Stufe oben und unten gleich ist; bei der Behauptung auf die Formulierung achten.
+# Training: 7 Teilfragen, 1–4 wie in mehrstufige-zufallsexperimente Check 4, 5 = A-Bedingung,
+# 6 = B-Bedingung, 7 = Behauptung Richtig/Falsch (12× unabhängig, 8× abhängig, teils knapp
+# wie 0,34/0,37; Behauptungen mal „hat Einfluss“, mal „hat keinen Einfluss“).
+# Zahlen (per Python nachgerechnet):
+#   Zähne   pa=0,5 pba=0,4 pbna=0,1:   Enden 0,2/0,3/0,05/0,45; P(B)=0,25; P_B(A)=0,8
+#   Kantine pa=0,4 pba=0,3 pbna=0,35:  Enden 0,12/0,28/0,21/0,39; P(B)=0,33; P_B(A)=0,3636; P_B̄(Ā)=0,39/0,67=0,5821
+#   Park    pa=0,6 pba=0,25 pbna=0,25: Enden 0,15/0,45/0,1/0,3; P(B̄)=0,75; P_B̄(A)=0,45/0,75=0,6=P(A)
+
+check_id: stochastik__bedingte-wahrscheinlichkeiten__03
+abschluss: '<p>Im Training bestimmst du sieben Werte aus einem fertigen Baum. Bedingung $A$ oder $\overline{A}$: auf der zweiten Stufe ablesen. Bedingung $B$ oder $\overline{B}$: Pfadende durch die Summe zweier Pfadenden. Bei der Behauptung erst die zweite Stufe oben und unten vergleichen, dann prüfen, ob die Behauptung einen Einfluss oder keinen Einfluss behauptet.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Was steht im Baum und was nicht?'
+    text: '<p>Ein Baumdiagramm teilt zuerst nach $A$ und $\overline{A}$, dann nach $B$ und $\overline{B}$. Jede Stelle im Baum hat ihre feste Bedeutung.</p>'
+    visual:
+      typ: baum
+      modus: symbol
+      pa: 0.5
+      pba: 0.5
+      pbna: 0.5
+    schritte:
+      - typ: text
+        text: '<p>Erste Stufe: $P(A)$ und $P(\overline{A})$. Zweite Stufe: Wahrscheinlichkeiten <strong>unter der Bedingung</strong> $A$ bzw. $\overline{A}$. Pfadenden: Schnitte wie $P(A\cap B)$.</p>'
+      - typ: auswahl
+        frage: 'Suche $P_B(A)$ im Baum. Was fällt dir auf?'
+        optionen:
+          - '$P_B(A)$ steht auf der zweiten Stufe oben.'
+          - '$P_B(A)$ steht nirgends im Baum.'
+          - '$P_B(A)$ steht an einem Pfadende.'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Schau auf die kleinen Buchstaben unten im Index: Auf der zweiten Stufe steht dort nur $A$ oder $\overline{A}$.'
+        danach: '<p>Genau. Der Baum ist nach $A$ sortiert, deshalb stehen nur Bedingungen $A$ oder $\overline{A}$ darin. Für die Bedingung $B$ hilft die Formel „Teil durch Ganzes“:</p>$$P_B(A)=\frac{P(A\cap B)}{P(B)}$$<p>Der Teil ist ein Pfadende. Das Ganze $P(B)$ ist die Summe der beiden Pfadenden mit $B$.</p><p><strong>Merke:</strong></p><ul><li>Bedingung $A$ oder $\overline{A}$: auf der zweiten Stufe ablesen.</li><li>Bedingung $B$ oder $\overline{B}$: Pfadende durch Summe zweier Pfadenden.</li></ul>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Ablesen, rechnen, prüfen'
+    text: '<p>Wir betrachten die Ereignisse</p><ul><li>$A$: Eine Person putzt sich regelmäßig die Zähne.</li><li>$B$: Eine Person hat gesunde Zähne.</li></ul>'
+    visual:
+      typ: baum
+      modus: numeric
+      pa: 0.5
+      pba: 0.4
+      pbna: 0.1
+      dezimal: 2
+    schritte:
+      - typ: aufdecken
+        frage: '$P_A(B)$: Bedingung $A$, also zweite Stufe.'
+        knopf: 'Wert zeigen'
+        text: '<p>Oberer Ast nach $B$: $P_A(B)=0{,}4$. Eine Person, die sich regelmäßig die Zähne putzt, hat mit $40\,\%$ Wahrscheinlichkeit gesunde Zähne.</p>'
+      - typ: aufdecken
+        frage: '$P_B(A)$: Bedingung $B$, also die Formel.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}P_B(A)&=\frac{P(A\cap B)}{P(B)}\\&=\frac{0{,}2}{0{,}2+0{,}05}\\&=0{,}8\end{align*}$$<p>Im Nenner stehen beide Pfadenden mit $B$: über $A$ und über $\overline{A}$.</p>'
+      - typ: auswahl
+        frage: 'Behauptung: „Ob sich eine Person regelmäßig die Zähne putzt, hat <strong>keinen</strong> Einfluss darauf, ob sie gesunde Zähne hat.“'
+        optionen:
+          - 'Richtig'
+          - 'Falsch'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Vergleiche die zweite Stufe oben und unten: $P_A(B)$ und $P_{\overline{A}}(B)$.'
+        danach: '<p>$P_A(B)=0{,}4\neq 0{,}1=P_{\overline{A}}(B)$. Also sind $A$ und $B$ <strong>abhängig</strong>: Das Zähneputzen hat einen Einfluss. Die Behauptung sagt „keinen Einfluss“ und ist deshalb falsch.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Ablesen oder rechnen?'
+    text: '<p>Bevor du rechnest, entscheidest du: Steht der Wert im Baum, oder brauchst du die Formel?</p>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Ordne jeder Wahrscheinlichkeit zu, wie du sie bestimmst.'
+        titel_links: 'Gesucht'
+        titel_rechts: 'So geht es'
+        paare:
+          - { links: '$P_{\overline{A}}(B)$', rechts: 'zweite Stufe ablesen' }
+          - { links: '$P(\overline{A}\cap B)$', rechts: 'Pfadende ablesen' }
+          - { links: '$P_B(\overline{A})$', rechts: '$\dfrac{P(\overline{A}\cap B)}{P(B)}$' }
+          - { links: '$P_{\overline{B}}(A)$', rechts: '$\dfrac{P(A\cap\overline{B})}{P(\overline{B})}$' }
+        hinweis: 'Schau zuerst auf den Index: $A$ oder $\overline{A}$ steht im Baum, $B$ oder $\overline{B}$ nicht.'
+
+  - phase: mitmachen
+    titel: 'Rechnen und prüfen'
+    text: '<p>In einer Kantine betrachten wir die Ereignisse</p><ul><li>$A$: Ein Gast wählt das vegetarische Gericht.</li><li>$B$: Ein Gast nimmt einen Nachtisch.</li></ul><p>Runde auf vier Nachkommastellen.</p>'
+    visual:
+      typ: baum
+      modus: numeric
+      pa: 0.4
+      pba: 0.3
+      pbna: 0.35
+      dezimal: 2
+    schritte:
+      - typ: eingabe
+        frage: 'Der Ansatz für $P_B(A)$ steht schon da.'
+        felder:
+          - { label: '$P_B(A)=\dfrac{0{,}12}{0{,}12+0{,}21}=$', loesung: 0.3636 }
+        hinweis: 'Teile $0{,}12$ durch $0{,}33$.'
+      - typ: eingabe
+        frage: 'Jetzt ohne Vorgabe: die Wahrscheinlichkeit, dass ein Gast <strong>ohne</strong> Nachtisch <strong>nicht</strong> vegetarisch isst.'
+        felder:
+          - { label: '$P_{\overline{B}}(\overline{A})=$', loesung: 0.5821 }
+        hinweis: 'Teil: Pfadende $\overline{A}\cap\overline{B}$. Ganzes: beide Pfadenden mit $\overline{B}$, also $0{,}28+0{,}39$.'
+        danach: '<p>$P_{\overline{B}}(\overline{A})=\frac{0{,}39}{0{,}67}\approx 0{,}5821$</p>'
+      - typ: auswahl
+        frage: 'Behauptung: „Ob ein Gast vegetarisch isst, hat einen Einfluss darauf, ob er einen Nachtisch nimmt.“'
+        optionen:
+          - 'Richtig'
+          - 'Falsch'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Vergleiche $P_A(B)$ und $P_{\overline{A}}(B)$ genau.'
+        danach: '<p>$0{,}3\neq 0{,}35$: Auch ein kleiner Unterschied bedeutet <strong>abhängig</strong>. Die Behauptung sagt „hat einen Einfluss“ und ist deshalb richtig.</p>'
+
+  - phase: mitmachen
+    titel: 'Der unabhängige Fall'
+    text: '<p>In einem Freizeitpark betrachten wir die Ereignisse</p><ul><li>$A$: Ein Besucher hat eine Jahreskarte.</li><li>$B$: Ein Besucher fährt Achterbahn.</li></ul>'
+    visual:
+      typ: baum
+      modus: numeric
+      pa: 0.6
+      pba: 0.25
+      pbna: 0.25
+      dezimal: 2
+    schritte:
+      - typ: eingabe
+        frage: 'Bestimme die Wahrscheinlichkeit, dass ein Besucher, der nicht Achterbahn fährt, eine Jahreskarte hat.'
+        felder:
+          - { label: '$P_{\overline{B}}(A)=$', loesung: 0.6 }
+        hinweis: 'Bedingung $\overline{B}$, also die Formel: $\frac{P(A\cap\overline{B})}{P(\overline{B})}$.'
+        danach: '<p>$P_{\overline{B}}(A)=\frac{0{,}45}{0{,}45+0{,}3}=0{,}6$</p>'
+      - typ: auswahl
+        frage: 'Behauptung: „Ob ein Besucher eine Jahreskarte hat, hat keinen Einfluss darauf, ob er Achterbahn fährt.“'
+        optionen:
+          - 'Richtig'
+          - 'Falsch'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Vergleiche die zweite Stufe oben und unten.'
+        danach: '<p>$P_A(B)=P_{\overline{A}}(B)=0{,}25$: $A$ und $B$ sind unabhängig, die Behauptung ist richtig. Deshalb ist auch $P_{\overline{B}}(A)=0{,}6=P(A)$: Bei Unabhängigkeit ändert die Bedingung nichts.</p>'

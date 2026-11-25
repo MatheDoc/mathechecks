@@ -1,0 +1,106 @@
+# Warm-Up zu Check 01 „Bedingte Wkt symbolisch“ (Bedingte Wahrscheinlichkeiten)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: Der Index ist die Bedingung und legt fest, über wen gesprochen wird (das Ganze); die Klammer sagt,
+# was über diese Gruppe gefragt ist. P(A∩B) = beides, bezogen auf alle („und“). P_A(B) ≠ P_B(A).
+# Training: 6 Teilfragen, davon 4 wie in mehrstufige-zufallsexperimente Check 4 (einfach, Schnitt, oder,
+# Summe/entweder-oder), Teilfragen 5 und 6 immer bedingt. Die Bedingung steht dort oft im Subjekt
+# („ein Kleinkunde …“, „ein Auftrag in Premium-Qualität …“); Gegenereignisse haben eigene Namen.
+# Zahlen Karte 1: 100 Besucher, |A|=25, |B|=50, |A∩B|=20 → 20 %, 20/25 = 80 %, 20/50 = 40 %.
+
+check_id: stochastik__bedingte-wahrscheinlichkeiten__01
+abschluss: '<p>Im Training übersetzt du sechs Wahrscheinlichkeiten in Worte, die letzten beiden sind bedingt. Lies dort zuerst den Index: Er nennt die Gruppe, über die gesprochen wird. Achte auf Gegenereignisse mit eigenem Namen, z. B. Kleinkunde statt „kein Großkunde“.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Gleicher Teil, anderes Ganzes'
+    text: '<p>Von $100$ Kinobesuchern kaufen $25$ Popcorn ($A$) und $50$ ein Getränk ($B$). $20$ Besucher kaufen beides.</p><p>Jede Wahrscheinlichkeit ist hier ein Anteil: Teil durch Ganzes.</p>'
+    visual:
+      typ: liste
+      titel: 'Popcorn (A) und Getränk (B)'
+      eintraege:
+        - { id: schnitt, text: '$P(A\cap B)$: Popcorn und Getränk', gleichung: '$\frac{20}{100}=20\,\%$' }
+        - { id: pab, text: '$P_A(B)$: Getränk bei den Popcornkäufern', gleichung: '$\frac{20}{25}=80\,\%$' }
+        - { id: pba, text: '$P_B(A)$: Popcorn bei den Getränkekäufern', gleichung: '$\frac{20}{50}=40\,\%$' }
+    schritte:
+      - typ: aufdecken
+        frage: '$P(A\cap B)$: Das Ganze sind <strong>alle</strong> Besucher.'
+        knopf: 'Deutung zeigen'
+        text: '<p>$P(A\cap B)$ ist die Wahrscheinlichkeit, dass ein Besucher Popcorn <strong>und</strong> ein Getränk kauft: $20$ von allen $100$.</p>'
+        zeige: { eintraege: [schnitt] }
+      - typ: aufdecken
+        frage: '$P_A(B)$: Unten im Index steht die <strong>Bedingung</strong> $A$. Jetzt zählen nur die Popcornkäufer.'
+        knopf: 'Deutung zeigen'
+        text: '<p>$P_A(B)$ ist die Wahrscheinlichkeit, dass ein Besucher, <strong>der Popcorn kauft</strong>, ein Getränk kauft. Das Ganze sind nur die $25$ Popcornkäufer, davon kaufen $20$ ein Getränk.</p>'
+        zeige: { eintraege: [pab] }
+      - typ: auswahl
+        frage: 'Und bei $P_B(A)$? Was ist jetzt das Ganze?'
+        optionen:
+          - 'alle $100$ Besucher'
+          - 'die $25$ Popcornkäufer'
+          - 'die $50$ Getränkekäufer'
+        korrekt: 2
+        mischen: false
+        hinweis: 'Das Ganze legt der Index fest.'
+        danach: '<p>Genau: $P_B(A)$ ist die Wahrscheinlichkeit, dass ein Getränkekäufer Popcorn kauft, $20$ von $50$.</p><p><strong>Merke:</strong></p><ul><li>Der Index ist die Bedingung. Er legt fest, <strong>über wen</strong> gesprochen wird. In der Klammer steht, was über diese Gruppe gefragt ist.</li><li>$P(A\cap B)$: beides zugleich, bezogen auf alle („und“).</li><li>$P_A(B)$ und $P_B(A)$ sind verschieden: Bedingung und Gefragtes tauschen die Rollen.</li></ul>'
+        zeige: { eintraege: [pba] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Vom Symbol zum Satz'
+    text: '<p>Wir betrachten die Ereignisse</p><ul><li>$A$: Eine Person putzt sich regelmäßig die Zähne.</li><li>$B$: Eine Person hat gesunde Zähne.</li></ul>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Was bedeutet $P_{\overline{B}}(A)$? Erst den Index lesen, dann die Klammer.'
+        knopf: 'Deutung zeigen'
+        text: '<p>Index $\overline{B}$: Wir betrachten nur Personen <strong>ohne gesunde Zähne</strong>. Klammer $A$: Gefragt ist, ob sie sich regelmäßig die Zähne putzen.</p><p>$P_{\overline{B}}(A)$ ist die Wahrscheinlichkeit, dass</p><ul><li>eine Person, die keine gesunden Zähne hat, sich regelmäßig die Zähne putzt, oder kürzer</li><li>eine Person ohne gesunde Zähne sich regelmäßig die Zähne putzt, oder</li><li>sich eine Person regelmäßig die Zähne putzt, wenn sie keine gesunden Zähne hat.</li></ul><p>Die Bedingung steckt oft im Subjekt („eine Person ohne …“) oder in einem Nebensatz mit „die …“, „wenn …“.</p>'
+      - typ: auswahl
+        frage: 'Was bedeutet $P_{\overline{A}}(B)$? Es ist die Wahrscheinlichkeit, dass …'
+        optionen:
+          - 'eine Person, die sich nicht regelmäßig die Zähne putzt, gesunde Zähne hat.'
+          - 'eine Person sich nicht regelmäßig die Zähne putzt und gesunde Zähne hat.'
+          - 'eine Person mit gesunden Zähnen sich nicht regelmäßig die Zähne putzt.'
+        korrekt: 0
+        hinweis: 'Lies zuerst den Index: Über welche Personen wird gesprochen?'
+        danach: '<p>Die anderen Sätze beschreiben andere Wahrscheinlichkeiten: „… und …“ ist $P(\overline{A}\cap B)$, „eine Person mit gesunden Zähnen …“ ist $P_B(\overline{A})$.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Satz und Symbol zuordnen'
+    text: '<p>Ein Onlineshop verschickt Bestellungen per Express oder per Standardversand. Wir betrachten die Ereignisse</p><ul><li>$A$: Eine Bestellung wird per Express verschickt.</li><li>$B$: Eine Bestellung kommt verspätet an.</li></ul>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Ordne zu. Es ist die Wahrscheinlichkeit, dass …'
+        titel_links: 'Satz'
+        titel_rechts: 'Symbol'
+        paare:
+          - { links: 'eine Expressbestellung verspätet ankommt.', rechts: '$P_A(B)$' }
+          - { links: 'eine verspätete Bestellung per Express verschickt wurde.', rechts: '$P_B(A)$' }
+          - { links: 'eine Bestellung per Express verschickt wird und verspätet ankommt.', rechts: '$P(A\cap B)$' }
+          - { links: 'eine Bestellung im Standardversand pünktlich ankommt.', rechts: '$P_{\overline{A}}(\overline{B})$' }
+        hinweis: 'Welche Gruppe wird betrachtet? Sie gehört in den Index. Steht „und“ da, ist es ein Schnitt.'
+
+  - phase: mitmachen
+    titel: 'Index oder Schnitt?'
+    text: '<p>In einem Fitnessstudio gibt es Jahres- und Monatsverträge. Wir betrachten die Ereignisse</p><ul><li>$A$: Ein Mitglied hat einen Jahresvertrag.</li><li>$B$: Ein Mitglied trainiert mindestens zweimal pro Woche.</li></ul>'
+    schritte:
+      - typ: auswahl
+        frage: '$P_B(\overline{A})$ ist die Wahrscheinlichkeit, dass …'
+        optionen:
+          - 'ein Mitglied, das mindestens zweimal pro Woche trainiert, einen Monatsvertrag hat.'
+          - 'ein Mitglied mit Monatsvertrag mindestens zweimal pro Woche trainiert.'
+          - 'ein Mitglied einen Monatsvertrag hat und mindestens zweimal pro Woche trainiert.'
+          - 'ein Mitglied, das mindestens zweimal pro Woche trainiert, einen Jahresvertrag hat.'
+        korrekt: 0
+        hinweis: 'Der Index $B$ legt die Gruppe fest: Mitglieder, die mindestens zweimal pro Woche trainieren.'
+      - typ: auswahl
+        frage: '$P(\overline{A}\cap\overline{B})$ ist die Wahrscheinlichkeit, dass …'
+        optionen:
+          - 'ein Mitglied einen Monatsvertrag hat und seltener als zweimal pro Woche trainiert.'
+          - 'ein Mitglied mit Monatsvertrag seltener als zweimal pro Woche trainiert.'
+          - 'ein Mitglied, das seltener als zweimal pro Woche trainiert, einen Monatsvertrag hat.'
+          - 'ein Mitglied einen Monatsvertrag hat oder seltener als zweimal pro Woche trainiert.'
+        korrekt: 0
+        hinweis: 'Hier gibt es keinen Index, also keine Bedingung. Beides soll zugleich gelten, bezogen auf alle Mitglieder.'
+        danach: '<p>Genau. „Ein Mitglied mit Monatsvertrag …“ wäre dagegen die bedingte Wahrscheinlichkeit $P_{\overline{A}}(\overline{B})$.</p>'

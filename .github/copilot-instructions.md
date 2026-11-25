@@ -1,12 +1,12 @@
 ﻿# MatheChecks – Copilot Instructions
 
 ## Projektkontext
-Jekyll-Lernplattform für Mathematik (Sekundarstufe II).
+Lernplattform für Mathematik (Sekundarstufe II).
 
 Mathematische Aussagen müssen fachlich korrekt und konsistent sein.
 
 Sprache: Deutsch  
-Priorität: fachliche Korrektheit vor Stil.
+Priorität: fachliche Korrektheit und didaktische Wirksamkeit
 
 Änderungsprinzip:
 - Kleine, gezielte Änderungen bevorzugen
@@ -35,7 +35,9 @@ Finanzmathematik
 Jeder Lernbereich enthält mindestens folgende Dateien:
 
 `start.md`  
-`kompetenzliste.md`  
+`kompetenzliste.md`
+`video.md`  
+`warmup.md`  
 `training.md`  
 `recall.md`  
 `feynman.md`  
