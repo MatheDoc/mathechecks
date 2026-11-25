@@ -1226,6 +1226,7 @@
     function executeMainInput() {
         const mainInput = getMainInput();
         if (!mainInput) return;
+        window.dispatchEvent(new CustomEvent('calculator:execute'));
         const rawInput = String(mainInput.value || '').trim();
         // Offene Klammern (z. B. nach „^(“) beim Ausführen sichtbar schließen.
         const missingClosers = countUnclosedParentheses(rawInput);

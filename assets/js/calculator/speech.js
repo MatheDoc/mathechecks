@@ -243,6 +243,13 @@ if (mainInput) {
         formatPreview: formatCalculatorPreview,
     });
 
+    // EXE (Taste/Enter) beendet eine laufende Spracheingabe.
+    window.addEventListener("calculator:execute", () => {
+        if (mainInput.parentElement?.querySelector(".speech-mic--active")) {
+            stopActiveSpeechInput();
+        }
+    });
+
     window.addEventListener("calculator:visibility", (event) => {
         if (event.detail?.open) return;
         if (mainInput.parentElement?.querySelector(".speech-mic--active")) {

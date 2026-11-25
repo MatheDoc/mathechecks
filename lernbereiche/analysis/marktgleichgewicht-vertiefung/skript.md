@@ -308,6 +308,6 @@ Typische Fehler: $p_A$ statt $p_N$ einsetzen, $p_G$ nicht abziehen, oder $x_2$ a
 
 {% include check-anker.html nummer="5" %}
 
-## Rückblick
+<!--## Rückblick
 
-Alle Größen dieses Skripts sind Flächen im selben Diagramm: der Umsatz als Rechteck unter dem Gleichgewichtspunkt, die Zahlungs- und Angebotsbereitschaft als Flächen unter den Graphen, die beiden Renten als Flächen zwischen Graph und Gleichgewichtspreis und die Abschöpfung als Rechteck innerhalb der Konsumentenrente. Damit ist auch die Eingangsfrage beantwortet: Vom Marktgleichgewicht profitieren Konsumenten und Produzenten, und wie stark, zeigen die beiden Renten. Denkt man die Preisdifferenzierung weiter, mit immer mehr Teilmärkten, so wird schließlich fast die gesamte Konsumentenrente abgeschöpft.
+Alle Größen dieses Skripts sind Flächen im selben Diagramm: der Umsatz als Rechteck unter dem Gleichgewichtspunkt, die Zahlungs- und Angebotsbereitschaft als Flächen unter den Graphen, die beiden Renten als Flächen zwischen Graph und Gleichgewichtspreis und die Abschöpfung als Rechteck innerhalb der Konsumentenrente. Damit ist auch die Eingangsfrage beantwortet: Vom Marktgleichgewicht profitieren Konsumenten und Produzenten, und wie stark, zeigen die beiden Renten. Denkt man die Preisdifferenzierung weiter, mit immer mehr Teilmärkten, so wird schließlich fast die gesamte Konsumentenrente abgeschöpft.-->
