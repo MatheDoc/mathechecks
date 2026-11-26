@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\mu=2\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(4\\)","\\(1\\)","\\(2\\)","\\(0{,}25\\)"],
-            "fehler": ["\\(\\mu p\\) statt \\(\\mu/p\\) berechnet","Erwartungswert als Versuchsanzahl übernommen","Wahrscheinlichkeiten multipliziert statt \\(n\\) bestimmt"]
+            "frage": "Wie wird \\(\\sigma^2=np(1-p)\\) nach \\(n\\) umgestellt?",
+            "antworten": ["\\(n=\\frac{\\sigma^2}{p(1-p)}\\)","\\(n=\\frac{\\sigma}{p(1-p)}\\)","\\(n=\\sigma^2p(1-p)\\)","\\(n=\\frac{p(1-p)}{\\sigma^2}\\)"],
+            "fehler": ["Standardabweichung nicht quadriert","Multipliziert statt dividiert","Quotient umgekehrt"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\mu=2\\). Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(1\\)","\\(2\\)","\\(0{,}5\\)","\\(\\sqrt{2}\\)"],
-            "fehler": ["Erwartungswert gewählt","Trefferwahrscheinlichkeit gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\sigma=1\\). Wie groß ist \\(n\\)?",
+            "antworten": ["\\(4\\)","\\(2\\)","\\(1\\)","\\(0{,}25\\)"],
+            "fehler": ["Nur durch \\(p\\) geteilt","Standardabweichung als Versuchsanzahl übernommen","\\(p(1-p)\\) statt Quotient berechnet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}2\\), \\(\\mu=5\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(25\\)","\\(1\\)","\\(5\\)","\\(4\\)"],
-            "fehler": ["\\(\\mu p\\) statt \\(\\mu/p\\) berechnet","Erwartungswert übernommen","\\(\\mu(1-p)\\) statt \\(\\mu/p\\) berechnet"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\sigma=1\\). Wie groß ist \\(\\mu\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(1\\)","\\(0{,}5\\)"],
+            "fehler": ["Versuchsanzahl statt Erwartungswert gewählt","Standardabweichung übernommen","Trefferwahrscheinlichkeit übernommen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}2\\), \\(\\mu=5\\). Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(2\\)","\\(4\\)","\\(5\\)","\\(\\sqrt{5}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\sigma=2\\). Wie groß ist \\(n\\)?",
+            "antworten": ["\\(16\\)","\\(8\\)","\\(4\\)","\\(2\\)"],
+            "fehler": ["Nur durch \\(p\\) geteilt","Varianz als Versuchsanzahl übernommen","Standardabweichung als Versuchsanzahl übernommen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\mu=8\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(16\\)","\\(4\\)","\\(8\\)","\\(2\\)"],
-            "fehler": ["\\(\\mu p\\) statt \\(\\mu/p\\) berechnet","Erwartungswert übernommen","\\(1/p\\) ohne Faktor \\(\\mu\\) berechnet"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\sigma=2\\). Wie groß ist \\(\\mu\\)?",
+            "antworten": ["\\(8\\)","\\(16\\)","\\(4\\)","\\(2\\)"],
+            "fehler": ["Versuchsanzahl übernommen","Varianz statt Erwartungswert gewählt","Standardabweichung übernommen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\mu=8\\). Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(2\\)","\\(4\\)","\\(8\\)","\\(\\sqrt{8}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}2\\), \\(\\sigma=2\\). Wie groß ist \\(n\\)?",
+            "antworten": ["\\(25\\)","\\(20\\)","\\(5\\)","\\(4\\)"],
+            "fehler": ["Durch \\(p\\) geteilt, aber \\(1-p\\) vergessen","Späteren Erwartungswert statt \\(n\\) gewählt","Varianz als Versuchsanzahl übernommen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=\\frac{1}{3}\\), \\(\\mu=3\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(9\\)","\\(1\\)","\\(3\\)","\\(4{,}5\\)"],
-            "fehler": ["\\(\\mu p\\) statt \\(\\mu/p\\) berechnet","Erwartungswert übernommen","Durch \\(1-p\\) statt durch \\(p\\) geteilt"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}2\\), \\(\\sigma=2\\). Wie groß ist \\(\\mu\\)?",
+            "antworten": ["\\(5\\)","\\(25\\)","\\(4\\)","\\(20\\)"],
+            "fehler": ["Versuchsanzahl übernommen","Varianz statt Erwartungswert gewählt","Erwartete Nieten statt Treffer berechnet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=\\frac{1}{3}\\), \\(\\mu=3\\). Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(\\sqrt{2}\\)","\\(2\\)","\\(3\\)","\\(\\sqrt{3}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=\\frac{1}{3}\\), \\(\\sigma=\\sqrt{2}\\). Wie groß ist \\(n\\)?",
+            "antworten": ["\\(9\\)","\\(6\\)","\\(3\\)","\\(2\\)"],
+            "fehler": ["Durch \\(p\\) statt durch \\(p(1-p)\\) geteilt","Späteren Erwartungswert statt \\(n\\) gewählt","Varianz als Versuchsanzahl übernommen"]
         },
         {
-            "frage": "Wie wird \\(\\mu=np\\) nach \\(n\\) umgestellt?",
-            "antworten": ["\\(n=\\frac{\\mu}{p}\\)","\\(n=\\frac{p}{\\mu}\\)","\\(n=\\mu p\\)","\\(n=\\mu-p\\)"],
-            "fehler": ["Quotient umgekehrt","Multipliziert statt dividiert","Subtrahiert statt dividiert"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=\\frac{1}{3}\\), \\(\\sigma=\\sqrt{2}\\). Wie groß ist \\(\\mu\\)?",
+            "antworten": ["\\(3\\)","\\(9\\)","\\(6\\)","\\(\\sqrt{2}\\)"],
+            "fehler": ["Versuchsanzahl übernommen","Erwartete Nieten statt Treffer berechnet","Standardabweichung als Erwartungswert übernommen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(p=1\\), \\(\\mu=6\\). Welches Paar \\((n;\\sigma)\\) folgt?",
-            "antworten": ["\\((6;0)\\)","\\((1;6)\\)","\\((6;1)\\)","\\((0;6)\\)"],
-            "fehler": ["\\(p\\) als \\(n\\) und \\(\\mu\\) als \\(\\sigma\\) verwendet","Bei sicherem Treffer eine Streuung 1 angenommen","Versuchsanzahl und Standardabweichung vertauscht"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}75\\), \\(\\sigma=\\sqrt{3}\\). Welches Paar \\((n;\\mu)\\) folgt?",
+            "antworten": ["\\((16;12)\\)","\\((12;16)\\)","\\((4;3)\\)","\\((16;4)\\)"],
+            "fehler": ["Versuchsanzahl und Erwartungswert vertauscht","Varianz fälschlich direkt durch \\(p\\) geteilt","Erwartete Nieten statt Treffer als \\(\\mu\\) verwendet"]
         }
     ]
 }

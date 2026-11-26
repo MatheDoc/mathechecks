@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\) und \\(p\\) bekannt. Gesucht ist, wie viele Treffer mindestens mit 80 % Wahrscheinlichkeit auftreten. Welche Größe ist gesucht?",
-            "antworten": ["Die Treffergrenze \\(k\\)","Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Der Erwartungswert \\(\\mu\\)"],
-            "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(p\\) als gesucht behandelt","Abgeleitete Kennzahl statt Grenze gewählt"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=4\\), \\(\\mu=2\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(2\\)","\\(4\\)","\\(0{,}25\\)"],
+            "fehler": ["\\(\\mu\\) unverändert als Wahrscheinlichkeit verwendet","\\(n\\) statt \\(\\mu/n\\) verwendet","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
         },
         {
-            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)\\geq0{,}80\\). Prüfwerte: \\(k=4:0{,}84\\), \\(k=5:0{,}76\\). Ergebnis?",
-            "antworten": ["\\(k=4\\)","\\(k=5\\)","\\(k=0{,}80\\)","\\(k=3\\)"],
-            "fehler": ["Prüfwert unter 0,80 akzeptiert","Wahrscheinlichkeitsschranke als Trefferzahl gewählt","Größten zulässigen Wert unterschritten"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=4\\), \\(\\mu=2\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(1\\)","\\(2\\)","\\(0{,}5\\)","\\(\\sqrt{2}\\)"],
+            "fehler": ["Erwartungswert statt Standardabweichung gewählt","Zuvor berechnetes \\(p\\) übernommen","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\geq k)\\), wenn \\(k\\) wächst?",
-            "antworten": ["Sie sinkt oder bleibt gleich.","Sie wächst immer.","Sie bleibt stets gleich.","Sie wird gleich \\(k/n\\)."],
-            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Intervallwahrscheinlichkeit als einfachen Anteil gedeutet"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=16\\), \\(\\mu=8\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(2\\)","\\(8\\)","\\(0{,}125\\)"],
+            "fehler": ["\\(n/\\mu\\) statt \\(\\mu/n\\) berechnet","Erwartungswert als Wahrscheinlichkeit verwendet","Kehrwert des Erwartungswerts gebildet"]
         },
         {
-            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\leq k)\\), wenn \\(k\\) wächst?",
-            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird gleich \\(p\\)."],
-            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Kumulierte Wahrscheinlichkeit mit \\(p\\) gleichgesetzt"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=16\\), \\(\\mu=8\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(8\\)","\\(\\sqrt{8}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(k\\) mit \\(P(X\\leq k)\\geq0{,}90\\). Prüfwerte: \\(k=7:0{,}88\\), \\(k=8:0{,}93\\). Ergebnis?",
-            "antworten": ["\\(k=8\\)","\\(k=7\\)","\\(k=9\\)","\\(k=0{,}90\\)"],
-            "fehler": ["Prüfwert unter 0,90 akzeptiert","Kleinsten bestätigten Wert überschritten","Wahrscheinlichkeitsschranke als Trefferzahl gewählt"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=25\\), \\(\\mu=5\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}2\\)","\\(5\\)","\\(0{,}8\\)","\\(0{,}04\\)"],
+            "fehler": ["Erwartungswert als Wahrscheinlichkeit verwendet","Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit gewählt","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
         },
         {
-            "frage": "Welcher Ansatz passt zu „höchstens wie viele Treffer mit Wahrscheinlichkeit mindestens \\(0{,}75\\)“?",
-            "antworten": ["Kleinstes \\(k\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(n\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(p\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Größtes \\(k\\) mit \\(P(X\\geq k)\\geq0{,}75\\)"],
-            "fehler": ["Gesuchte Grenze durch Versuchsanzahl ersetzt","Gesuchte Grenze durch Trefferwahrscheinlichkeit ersetzt","Höchstens-Ereignis mit Mindestens-Ereignis vertauscht"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=25\\), \\(\\mu=5\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(5\\)","\\(\\sqrt{5}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)>0{,}50\\). Prüfwerte (exakt): \\(k=6:0{,}51\\), \\(k=7:0{,}50\\). Ergebnis?",
-            "antworten": ["\\(k=6\\)","\\(k=7\\)","\\(k=0{,}51\\)","\\(k=5\\)"],
-            "fehler": ["Strenge Schranke \\(>0{,}5\\) als inklusive gelesen","Prüfwahrscheinlichkeit als Treffergrenze gewählt","Größten zulässigen Wert unterschritten"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=9\\), \\(\\mu=3\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(\\frac{1}{3}\\)","\\(3\\)","\\(\\frac{2}{3}\\)","\\(\\frac{1}{9}\\)"],
+            "fehler": ["Erwartungswert als Wahrscheinlichkeit verwendet","Nietenwahrscheinlichkeit gewählt","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
         },
         {
-            "frage": "Für eine feste Binomialverteilung wird die Treffergrenze \\(k\\) variiert. Welche Größen bleiben unverändert?",
-            "antworten": ["Die vorgegebenen Parameter \\(n\\) und \\(p\\)","Die Treffergrenze \\(k\\)","Alle kumulierten Wahrscheinlichkeiten","Die Ereignisse trotz verändertem \\(k\\)"],
-            "fehler": ["Gesuchte Grenze fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Veränderung des Ereignisses durch \\(k\\) bestritten"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=9\\), \\(\\mu=3\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(\\sqrt{2}\\)","\\(2\\)","\\(3\\)","\\(\\sqrt{3}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Für \\(X\\sim B(12;p)\\): Welcher Wert kann keine Treffergrenze \\(k\\) sein?",
-            "antworten": ["\\(13\\)","\\(0\\)","\\(6\\)","\\(12\\)"],
-            "fehler": ["Zulässige Untergrenze 0 ausgeschlossen","Zulässigen inneren Wert 6 ausgeschlossen","Maximal mögliche Trefferzahl 12 ausgeschlossen"]
+            "frage": "Für eine Binomialverteilung sind \\(n\\) und \\(\\mu\\) bekannt. Welche Formel liefert \\(p\\)?",
+            "antworten": ["\\(p=\\frac{\\mu}{n}\\)","\\(p=\\frac{n}{\\mu}\\)","\\(p=n\\mu\\)","\\(p=1-\\mu\\)"],
+            "fehler": ["Quotient umgekehrt","Multipliziert statt dividiert","Erwartungswert fälschlich direkt von 1 abgezogen"]
         },
         {
-            "frage": "Für dieselbe Trefferzahl \\(X\\) gilt \\(P(X\\geq9)=0{,}85\\), \\(P(X\\geq10)=0{,}75\\). Welches größte \\(k\\) erfüllt \\(P(X\\geq k)\\geq0{,}8\\)?",
-            "antworten": ["\\(k=9\\)","\\(k=10\\)","\\(k=19\\)","\\(k=1\\)"],
-            "fehler": ["Nicht erfüllenden Nachbarwert gewählt","Prüfgrenzen addiert","Differenz der Prüfgrenzen statt Grenzwert gewählt"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=10\\), \\(\\mu=0\\). Welches Paar \\((p;\\sigma)\\) folgt?",
+            "antworten": ["\\((0;0)\\)","\\((1;0)\\)","\\((0;10)\\)","\\((1;10)\\)"],
+            "fehler": ["Trefferwahrscheinlichkeit 1 statt 0 gewählt","Standardabweichung mit Versuchsanzahl verwechselt","Sowohl \\(p\\) als auch \\(\\sigma\\) falsch übernommen"]
         }
     ]
 }

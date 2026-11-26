@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Ein kumulierter Balken bei \\(k=4\\) hat die Höhe \\(0{,}70\\). Was bedeutet sie?",
-            "antworten": ["\\(P(X\\leq4)=0{,}70\\)","\\(P(X=4)=0{,}70\\)","\\(P(X\\geq4)=0{,}70\\)","\\(P(X<4)=0{,}70\\)"],
-            "fehler": ["Kumulierte mit Einzelwahrscheinlichkeit verwechselt","Kumulierte Unterseite als Oberseite gedeutet","Wert 4 fälschlich ausgeschlossen"]
+            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\), \\(k\\) und \\(P(X\\leq k)\\) gegeben. Welcher Verteilungsparameter ist noch gesucht?",
+            "antworten": ["Die Trefferwahrscheinlichkeit \\(p\\)","Die Versuchsanzahl \\(n\\)","Die Treffergrenze \\(k\\)","Die Standardabweichung \\(\\sigma\\)"],
+            "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(k\\) als gesucht behandelt","Abgeleitete Kennzahl statt Parameter gewählt"]
         },
         {
-            "frage": "Kumulierte Höhen: bei \\(k=3\\) \\(0{,}55\\), bei \\(k=4\\) \\(0{,}75\\). Wie groß ist \\(P(X=4)\\)?",
-            "antworten": ["\\(0{,}20\\)","\\(0{,}75\\)","\\(0{,}55\\)","\\(1{,}30\\)"],
-            "fehler": ["Kumulierte Höhe bei 4 direkt als Einzelwert verwendet","Vorherige kumulierte Höhe als Einzelwert verwendet","Kumulierte Höhen addiert"]
+            "frage": "Gesucht ist das kleinste \\(p\\) in Hundertstelschritten mit \\(P(X\\leq10)\\leq0{,}30\\). Prüfwerte: \\(p=0{,}40:0{,}34\\), \\(p=0{,}41:0{,}28\\). Ergebnis?",
+            "antworten": ["\\(p=0{,}41\\)","\\(p=0{,}40\\)","\\(p=0{,}30\\)","\\(p=0{,}42\\)"],
+            "fehler": ["Prüfwert über 0,30 akzeptiert","Schranke als Trefferwahrscheinlichkeit übernommen","Kleinsten bestätigten Wert überschritten"]
         },
         {
-            "frage": "Die kumulierte Höhe bei \\(k=5\\) ist \\(0{,}82\\). Wie groß ist \\(P(X\\geq6)\\)?",
-            "antworten": ["\\(0{,}18\\)","\\(0{,}82\\)","\\(0{,}23\\)","\\(1\\)"],
-            "fehler": ["Kumulierte Wahrscheinlichkeit statt Gegenwahrscheinlichkeit gewählt","\\(1-0{,}82\\) falsch berechnet","Mindestens 6 als sicher angenommen"]
+            "frage": "Bei festem \\(n,k\\): Wie verändert sich \\(P(X\\leq k)\\), wenn \\(p\\) wächst?",
+            "antworten": ["Sie sinkt oder bleibt gleich.","Sie wächst immer.","Sie bleibt stets gleich.","Sie wird gleich \\(k\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss von \\(p\\) bestritten","Wahrscheinlichkeit mit Treffergrenze gleichgesetzt"]
         },
         {
-            "frage": "Kumulierte Höhen: bei \\(k=1\\) \\(0{,}25\\), bei \\(k=4\\) \\(0{,}80\\). Wie groß ist \\(P(2\\leq X\\leq4)\\)?",
-            "antworten": ["\\(0{,}55\\)","\\(1{,}05\\)","\\(0{,}80\\)","\\(0{,}25\\)"],
-            "fehler": ["Kumulierte Höhen addiert","Nur obere kumulierte Höhe verwendet","Nur abzuziehende untere Höhe verwendet"]
+            "frage": "Bei festem \\(n,k\\): Wie verändert sich \\(P(X\\geq k)\\), wenn \\(p\\) wächst?",
+            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird gleich \\(n\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss von \\(p\\) bestritten","Wahrscheinlichkeit mit Versuchsanzahl gleichgesetzt"]
         },
         {
-            "frage": "Welche Höhen braucht man für \\(P(X=7)\\) in einer kumulierten Darstellung?",
-            "antworten": ["Die Höhen bei \\(7\\) und \\(6\\)","Nur die Höhe bei \\(7\\)","Die Höhen bei \\(8\\) und \\(7\\)","Die Höhen bei \\(7\\) und \\(0\\)"],
-            "fehler": ["Kumulierten Wert direkt als Einzelwert verwendet","Einzelwahrscheinlichkeit für 8 vorbereitet","Falsche Ausgangshöhe 0 gewählt"]
+            "frage": "Gesucht ist das größte \\(p\\) in Hundertstelschritten mit \\(P(X\\geq7)\\leq0{,}25\\). Prüfwerte: \\(p=0{,}30:0{,}22\\), \\(p=0{,}31:0{,}27\\). Ergebnis?",
+            "antworten": ["\\(p=0{,}30\\)","\\(p=0{,}31\\)","\\(p=0{,}25\\)","\\(p=0{,}29\\)"],
+            "fehler": ["Prüfwert über 0,25 akzeptiert","Schranke als \\(p\\) übernommen","Größten zulässigen Prüfwert unterschritten"]
         },
         {
-            "frage": "Die kumulierte Höhe bei \\(k=2\\) ist \\(0{,}40\\). Wie groß ist \\(P(X>2)\\)?",
-            "antworten": ["\\(0{,}60\\)","\\(0{,}40\\)","\\(0{,}20\\)","\\(1\\)"],
-            "fehler": ["Kumulierten Anteil unverändert übernommen","Gegenwahrscheinlichkeit falsch berechnet","Mehr als 2 als sicher angenommen"]
+            "frage": "Welcher Ansatz bestimmt den Mindestanteil \\(p\\), sodass höchstens 12 Treffer mit Wahrscheinlichkeit höchstens \\(0{,}2\\) auftreten?",
+            "antworten": ["Kleinstes \\(p\\) mit \\(P(X\\leq12)\\leq0{,}2\\)","Kleinstes \\(n\\) mit \\(P(X\\leq12)\\leq0{,}2\\)","Größtes \\(k\\) mit \\(P(X\\leq k)\\leq0{,}2\\)","Kleinstes \\(p\\) mit \\(P(X\\geq12)\\leq0{,}2\\)"],
+            "fehler": ["Gesuchtes \\(p\\) durch \\(n\\) ersetzt","Gegebene Grenze als gesucht behandelt","Höchstens mit mindestens verwechselt"]
         },
         {
-            "frage": "Kumulierte Höhen: bei \\(k=0\\) \\(0{,}10\\), bei \\(k=1\\) \\(0{,}35\\). Wie groß ist \\(P(X=1)\\)?",
-            "antworten": ["\\(0{,}25\\)","\\(0{,}35\\)","\\(0{,}10\\)","\\(0{,}45\\)"],
-            "fehler": ["Höhe bei 1 direkt verwendet","Höhe bei 0 statt Differenz verwendet","Kumulierte Höhen addiert"]
+            "frage": "Gesucht ist das kleinste \\(p\\) in Zehntelschritten mit \\(P(X\\geq5)>0{,}60\\). Prüfwerte (exakt): \\(p=0{,}2:0{,}60\\), \\(p=0{,}3:0{,}72\\). Ergebnis?",
+            "antworten": ["\\(p=0{,}3\\)","\\(p=0{,}2\\)","\\(p=0{,}6\\)","\\(p=0{,}4\\)"],
+            "fehler": ["Strenge Schranke als inklusive Schranke gelesen","Zielwahrscheinlichkeit als \\(p\\) übernommen","Kleinsten bestätigten Tabellenwert überschritten"]
         },
         {
-            "frage": "Kumulierte Höhen: bei \\(k=4\\) \\(0{,}60\\), bei \\(k=8\\) \\(0{,}95\\). Wie groß ist \\(P(5\\leq X\\leq8)\\)?",
-            "antworten": ["\\(0{,}35\\)","\\(1{,}55\\)","\\(0{,}95\\)","\\(0{,}60\\)"],
-            "fehler": ["Kumulierte Höhen addiert","Nur obere kumulierte Höhe verwendet","Nur untere kumulierte Höhe verwendet"]
+            "frage": "Bei einer Binomialverteilung wird nur \\(p\\) variiert. Welcher Verteilungsparameter bleibt unverändert?",
+            "antworten": ["Die vorgegebene Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Alle berechneten Wahrscheinlichkeiten","Die Verteilung trotz verändertem \\(p\\)"],
+            "fehler": ["Gesuchte Größe fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Abhängigkeit der Verteilung von \\(p\\) bestritten"]
         },
         {
-            "frage": "Warum nehmen kumulierte Balkenhöhen mit wachsendem \\(k\\) nicht ab?",
-            "antworten": ["Zu \\(P(X\\leq k)\\) kommen nur weitere Einzelwahrscheinlichkeiten hinzu.","Jede Einzelwahrscheinlichkeit wird größer.","Alle Balken haben dieselbe Höhe.","Die Trefferwahrscheinlichkeit \\(p\\) wächst mit \\(k\\)."],
-            "fehler": ["Monotonie fälschlich jeder Einzelwahrscheinlichkeit zugeschrieben","Kumulierte Darstellung als konstant gedeutet","Parameter \\(p\\) fälschlich von \\(k\\) abhängig gemacht"]
+            "frage": "Prüfwerte: \\(p=0{,}54\\) verfehlt die Bedingung, \\(p=0{,}55\\) erfüllt sie. Gesucht ist das kleinste \\(p\\) in Hundertstelschritten. Ergebnis?",
+            "antworten": ["\\(0{,}55\\)","\\(0{,}54\\)","\\(0{,}01\\)","\\(1{,}09\\)"],
+            "fehler": ["Nicht erfüllenden Prüfwert gewählt","Schrittweite statt Trefferwahrscheinlichkeit gewählt","Benachbarte Prüfwerte addiert"]
         },
         {
-            "frage": "Die kumulierte Höhe bei \\(k=6\\) ist \\(0{,}92\\). Welcher Ausdruck liefert \\(P(X\\geq7)\\)?",
-            "antworten": ["\\(1-0{,}92\\)","\\(0{,}92\\)","\\(1+0{,}92\\)","\\(0{,}92-1\\)"],
-            "fehler": ["Kumulierten unteren Anteil direkt übernommen","Gegenwahrscheinlichkeit addiert statt subtrahiert","Subtraktionsreihenfolge vertauscht"]
+            "frage": "Welcher Wertebereich ist für eine gesuchte Trefferwahrscheinlichkeit \\(p\\) zulässig?",
+            "antworten": ["\\(0\\leq p\\leq1\\)","\\(p>1\\)","\\(p<0\\)","Nur ganzzahlige \\(p\\)"],
+            "fehler": ["Wahrscheinlichkeit größer als 1 zugelassen","Negative Wahrscheinlichkeit zugelassen","Wahrscheinlichkeiten fälschlich auf ganze Zahlen beschränkt"]
         }
     ]
 }

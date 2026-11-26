@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Bei fester Trefferchance soll eine Mindestwahrscheinlichkeit für mindestens \\(k\\) Treffer erreicht werden. Welcher Parameter beschreibt die nötige Versuchsanzahl?",
-            "antworten": ["Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Die Treffergrenze \\(k\\)","Der Erwartungswert \\(\\mu\\)"],
-            "fehler": ["Gegebenes \\(p\\) als gesucht behandelt","Gegebenes \\(k\\) als gesucht behandelt","Abgeleitete Kennzahl statt Modellparameter gewählt"]
+            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\) und \\(p\\) bekannt. Gesucht ist, wie viele Treffer mindestens mit 80 % Wahrscheinlichkeit auftreten. Welche Größe ist gesucht?",
+            "antworten": ["Die Treffergrenze \\(k\\)","Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Der Erwartungswert \\(\\mu\\)"],
+            "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(p\\) als gesucht behandelt","Abgeleitete Kennzahl statt Grenze gewählt"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(n\\) mit \\(P(X\\geq12)\\geq0{,}30\\). Für \\(n=20\\) gilt \\(0{,}27\\), für \\(n=21\\) gilt \\(0{,}33\\). Welches \\(n\\) passt?",
-            "antworten": ["\\(21\\)","\\(20\\)","\\(12\\)","\\(22\\)"],
-            "fehler": ["Prüfwert unter 0,30 akzeptiert","Treffergrenze statt Versuchsanzahl gewählt","Kleinsten bestätigten Wert unnötig überschritten"]
+            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)\\geq0{,}80\\). Prüfwerte: \\(k=4:0{,}84\\), \\(k=5:0{,}76\\). Ergebnis?",
+            "antworten": ["\\(k=4\\)","\\(k=5\\)","\\(k=0{,}80\\)","\\(k=3\\)"],
+            "fehler": ["Prüfwert unter 0,80 akzeptiert","Wahrscheinlichkeitsschranke als Trefferzahl gewählt","Größten zulässigen Wert unterschritten"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(n\\) mit \\(P(X\\geq8)\\geq0{,}60\\). Prüfwerte: \\(n=14:0{,}58\\), \\(n=15:0{,}64\\). Ergebnis?",
-            "antworten": ["\\(n=15\\)","\\(n=14\\)","\\(n=8\\)","\\(n=16\\)"],
-            "fehler": ["Zu kleinen Wahrscheinlichkeitswert akzeptiert","Treffergrenze als \\(n\\) eingesetzt","Minimalität trotz bestätigtem 15 ignoriert"]
+            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\geq k)\\), wenn \\(k\\) wächst?",
+            "antworten": ["Sie sinkt oder bleibt gleich.","Sie wächst immer.","Sie bleibt stets gleich.","Sie wird gleich \\(k/n\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Intervallwahrscheinlichkeit als einfachen Anteil gedeutet"]
         },
         {
-            "frage": "Bei festem \\(p\\) und festem \\(k\\): Wie verändert sich \\(P(X\\geq k)\\) typischerweise, wenn \\(n\\) wächst?",
-            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird zu \\(p\\)."],
-            "fehler": ["Monotonierichtung vertauscht","Zusätzliche Versuche als wirkungslos behandelt","Intervallwahrscheinlichkeit mit Einzelparameter gleichgesetzt"]
+            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\leq k)\\), wenn \\(k\\) wächst?",
+            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird gleich \\(p\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Kumulierte Wahrscheinlichkeit mit \\(p\\) gleichgesetzt"]
         },
         {
-            "frage": "Gesucht ist das größte \\(n\\) mit \\(P(X\\leq5)\\geq0{,}70\\). Prüfwerte: \\(n=9:0{,}74\\), \\(n=10:0{,}68\\). Ergebnis?",
-            "antworten": ["\\(n=9\\)","\\(n=10\\)","\\(n=5\\)","\\(n=8\\)"],
-            "fehler": ["Prüfwert unter 0,70 akzeptiert","Treffergrenze statt Versuchsanzahl gewählt","Größten zulässigen Wert unnötig unterschritten"]
+            "frage": "Gesucht ist das kleinste \\(k\\) mit \\(P(X\\leq k)\\geq0{,}90\\). Prüfwerte: \\(k=7:0{,}88\\), \\(k=8:0{,}93\\). Ergebnis?",
+            "antworten": ["\\(k=8\\)","\\(k=7\\)","\\(k=9\\)","\\(k=0{,}90\\)"],
+            "fehler": ["Prüfwert unter 0,90 akzeptiert","Kleinsten bestätigten Wert überschritten","Wahrscheinlichkeitsschranke als Trefferzahl gewählt"]
         },
         {
-            "frage": "Welcher Ansatz passt zur Frage: Wie oft muss bei Trefferchance \\(0{,}4\\) mindestens versucht werden, damit mindestens 6 Treffer mit Wahrscheinlichkeit mindestens \\(0{,}5\\) auftreten?",
-            "antworten": ["Kleinstes \\(n\\) mit \\(P(X\\geq6)\\geq0{,}5\\)","Kleinstes \\(p\\) mit \\(P(X\\geq6)\\geq0{,}5\\)","Größtes \\(k\\) mit \\(P(X\\geq k)\\geq0{,}5\\)","Kleinstes \\(n\\) mit \\(P(X\\leq6)\\geq0{,}5\\)"],
-            "fehler": ["Gesuchtes \\(n\\) durch \\(p\\) ersetzt","Gegebene Grenze 6 als gesucht behandelt","Mindestens 6 mit höchstens 6 verwechselt"]
+            "frage": "Welcher Ansatz passt zu „höchstens wie viele Treffer mit Wahrscheinlichkeit mindestens \\(0{,}75\\)“?",
+            "antworten": ["Kleinstes \\(k\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(n\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(p\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Größtes \\(k\\) mit \\(P(X\\geq k)\\geq0{,}75\\)"],
+            "fehler": ["Gesuchte Grenze durch Versuchsanzahl ersetzt","Gesuchte Grenze durch Trefferwahrscheinlichkeit ersetzt","Höchstens-Ereignis mit Mindestens-Ereignis vertauscht"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(n\\) mit \\(P(X\\geq4)>0{,}8\\). Prüfwerte (exakt): \\(n=7:0{,}80\\), \\(n=8:0{,}85\\). Welches \\(n\\)?",
-            "antworten": ["\\(8\\)","\\(7\\)","\\(4\\)","\\(9\\)"],
-            "fehler": ["Strenge Schranke \\(>0{,}8\\) als \\(\\geq0{,}8\\) gelesen","Treffergrenze statt Versuchsanzahl gewählt","Kleinsten bestätigten Wert überschritten"]
+            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)>0{,}50\\). Prüfwerte (exakt): \\(k=6:0{,}51\\), \\(k=7:0{,}50\\). Ergebnis?",
+            "antworten": ["\\(k=6\\)","\\(k=7\\)","\\(k=0{,}51\\)","\\(k=5\\)"],
+            "fehler": ["Strenge Schranke \\(>0{,}5\\) als inklusive gelesen","Prüfwahrscheinlichkeit als Treffergrenze gewählt","Größten zulässigen Wert unterschritten"]
         },
         {
-            "frage": "Bei einer Binomialverteilung wird nur \\(n\\) variiert. Welcher Verteilungsparameter bleibt unverändert?",
-            "antworten": ["Die vorgegebene Trefferwahrscheinlichkeit \\(p\\)","Die Versuchsanzahl \\(n\\)","Jeder berechnete Wahrscheinlichkeitswert","Die Verteilung unabhängig von \\(n\\)"],
-            "fehler": ["Gesuchte Größe fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Abhängigkeit der Binomialverteilung von \\(n\\) bestritten"]
+            "frage": "Für eine feste Binomialverteilung wird die Treffergrenze \\(k\\) variiert. Welche Größen bleiben unverändert?",
+            "antworten": ["Die vorgegebenen Parameter \\(n\\) und \\(p\\)","Die Treffergrenze \\(k\\)","Alle kumulierten Wahrscheinlichkeiten","Die Ereignisse trotz verändertem \\(k\\)"],
+            "fehler": ["Gesuchte Grenze fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Veränderung des Ereignisses durch \\(k\\) bestritten"]
         },
         {
-            "frage": "Bei fester Trefferchance wird die Mindestwahrscheinlichkeit für mindestens \\(k\\) Treffer erst mit 31 statt 30 Versuchen erreicht. Welches \\(n\\) ist mindestens nötig?",
-            "antworten": ["\\(n=31\\)","\\(n=30\\)","\\(n=61\\)","Die Trefferwahrscheinlichkeit ist 31."],
-            "fehler": ["Nicht erfüllenden Grenzwert gewählt","Benachbarte Versuchsanzahlen addiert","Versuchsanzahl als Wahrscheinlichkeit gedeutet"]
+            "frage": "Für \\(X\\sim B(12;p)\\): Welcher Wert kann keine Treffergrenze \\(k\\) sein?",
+            "antworten": ["\\(13\\)","\\(0\\)","\\(6\\)","\\(12\\)"],
+            "fehler": ["Zulässige Untergrenze 0 ausgeschlossen","Zulässigen inneren Wert 6 ausgeschlossen","Maximal mögliche Trefferzahl 12 ausgeschlossen"]
         },
         {
-            "frage": "Warum muss für \\(P(X\\geq k)>0\\) stets \\(n\\geq k\\) gelten?",
-            "antworten": ["Mehr Treffer als Versuche sind unmöglich.","Weil \\(p=n/k\\) gilt.","Weil \\(P(X\\geq k)=k/n\\) gilt.","Weil immer genau \\(k\\) Treffer auftreten."],
-            "fehler": ["Eine falsche Parameterformel verwendet","Intervallwahrscheinlichkeit als Anteil \\(k/n\\) gedeutet","Trefferzahl fälschlich als sicher angenommen"]
+            "frage": "Für dieselbe Trefferzahl \\(X\\) gilt \\(P(X\\geq9)=0{,}85\\), \\(P(X\\geq10)=0{,}75\\). Welches größte \\(k\\) erfüllt \\(P(X\\geq k)\\geq0{,}8\\)?",
+            "antworten": ["\\(k=9\\)","\\(k=10\\)","\\(k=19\\)","\\(k=1\\)"],
+            "fehler": ["Nicht erfüllenden Nachbarwert gewählt","Prüfgrenzen addiert","Differenz der Prüfgrenzen statt Grenzwert gewählt"]
         }
     ]
 }

@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für eine Binomialverteilung sind \\(\\mu\\) und \\(\\sigma\\) bekannt. Welche Identität hilft, \\(p\\) zu bestimmen?",
-            "antworten": ["\\(\\sigma^2=\\mu(1-p)\\)","\\(\\sigma=\\mu(1-p)\\)","\\(\\sigma^2=\\mu p\\)","\\(\\sigma^2=\\mu/p\\)"],
-            "fehler": ["Quadrat der Standardabweichung vergessen","Faktor \\(1-p\\) durch \\(p\\) ersetzt","Multiplikation mit \\(1-p\\) durch Division durch \\(p\\) ersetzt"]
+            "frage": "Es ist \\(\\mu=7{,}5\\). Welche reelle absolute Umgebung beschreibt „Abweichung höchstens 2“?",
+            "antworten": ["\\(5{,}5\\leq X\\leq9{,}5\\)","\\(5\\leq X\\leq10\\)","\\(2\\leq X\\leq7{,}5\\)","\\(7{,}5\\leq X\\leq9{,}5\\)"],
+            "fehler": ["Grenzen bereits nach außen gerundet","Abweichung 2 als untere Grenze verwendet","Nur die obere Hälfte der Umgebung betrachtet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=2\\), \\(\\sigma=1\\). Wie groß ist \\(p\\)?",
-            "antworten": ["\\(0{,}5\\)","\\(1\\)","\\(2\\)","\\(0{,}25\\)"],
-            "fehler": ["\\(\\sigma\\) direkt als \\(p\\) verwendet","Erwartungswert als Wahrscheinlichkeit verwendet","\\(\\sigma^2/\\mu^2\\) statt \\(1-\\sigma^2/\\mu\\) berechnet"]
+            "frage": "Für ganzzahliges \\(X\\): Welche Grenzen folgen aus \\(5{,}5\\leq X\\leq9{,}5\\)?",
+            "antworten": ["\\(6\\leq X\\leq9\\)","\\(5\\leq X\\leq10\\)","\\(6\\leq X\\leq10\\)","\\(5\\leq X\\leq9\\)"],
+            "fehler": ["Beide Grenzen nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=2\\), \\(\\sigma=1\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(4\\)","\\(2\\)","\\(1\\)","\\(0{,}5\\)"],
-            "fehler": ["Erwartungswert als Versuchsanzahl übernommen","Standardabweichung als Versuchsanzahl verwendet","Trefferwahrscheinlichkeit statt Versuchsanzahl gewählt"]
+            "frage": "Es ist \\(\\mu=10\\). Welches Ereignis bedeutet „höchstens 3 vom Erwartungswert abweichen“?",
+            "antworten": ["\\(7\\leq X\\leq13\\)","\\(3\\leq X\\leq10\\)","\\(X\\leq7\\)","\\(X\\geq13\\)"],
+            "fehler": ["Abweichung als untere Grenze verwendet","Nur Werte unterhalb der Umgebung gewählt","Nur Werte oberhalb der Umgebung gewählt"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=5\\), \\(\\sigma=2\\). Wie groß ist \\(p\\)?",
-            "antworten": ["\\(0{,}2\\)","\\(0{,}8\\)","\\(0{,}4\\)","\\(4\\)"],
-            "fehler": ["\\(\\sigma^2/\\mu\\) als \\(p\\) statt als \\(1-p\\) verwendet","\\(\\sigma/\\mu\\) statt \\(1-\\sigma^2/\\mu\\) berechnet","Varianz als Wahrscheinlichkeit verwendet"]
+            "frage": "Es ist \\(\\mu=8{,}2\\). Welche ganzzahlige Umgebung gehört zur absoluten Abweichung höchstens \\(1{,}5\\)?",
+            "antworten": ["\\(7\\leq X\\leq9\\)","\\(6\\leq X\\leq10\\)","\\(7\\leq X\\leq10\\)","\\(6\\leq X\\leq9\\)"],
+            "fehler": ["Beide reellen Grenzen nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=5\\), \\(\\sigma=2\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(25\\)","\\(5\\)","\\(10\\)","\\(4\\)"],
-            "fehler": ["Erwartungswert übernommen","Mit \\(\\sigma\\) multipliziert statt durch \\(p\\) geteilt","Varianz als Versuchsanzahl verwendet"]
+            "frage": "Die Wahrscheinlichkeit der absoluten Umgebung \\(\\mu\\pm2\\) ist \\(0{,}62\\). Wie groß ist die Wahrscheinlichkeit für eine Abweichung von mehr als 2?",
+            "antworten": ["\\(0{,}38\\)","\\(0{,}62\\)","\\(1{,}62\\)","\\(0{,}24\\)"],
+            "fehler": ["Wahrscheinlichkeit der Umgebung statt Gegenereignis gewählt","Umgebungswahrscheinlichkeit zu 1 addiert","Umgebungswahrscheinlichkeit verdoppelt und davon 1 abgezogen"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=8\\), \\(\\sigma=2\\). Wie groß ist \\(p\\)?",
-            "antworten": ["\\(0{,}5\\)","\\(0{,}25\\)","\\(0{,}75\\)","\\(4\\)"],
-            "fehler": ["\\(\\sigma/\\mu\\) statt \\(1-\\sigma^2/\\mu\\) berechnet","\\(1-\\sigma/\\mu\\) statt \\(1-\\sigma^2/\\mu\\) berechnet","Varianz als Wahrscheinlichkeit verwendet"]
+            "frage": "Welches Ereignis ist das Gegenereignis zu \\(|X-\\mu|\\leq4\\)?",
+            "antworten": ["\\(|X-\\mu|>4\\)","\\(|X-\\mu|\\geq4\\)","\\(|X-\\mu|<4\\)","\\(|X-\\mu|=4\\)"],
+            "fehler": ["Randwerte 4 fälschlich beiden Ereignissen zugeordnet","Inneres Ereignis nur streng formuliert","Nur die Randwerte statt des gesamten Gegenereignisses gewählt"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=8\\), \\(\\sigma=2\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(16\\)","\\(8\\)","\\(4\\)","\\(32\\)"],
-            "fehler": ["Erwartungswert übernommen","Varianz als Versuchsanzahl verwendet","Mit \\(1/p\\) doppelt multipliziert"]
+            "frage": "Es ist \\(\\mu=12\\). Welche Grenzen gehören zur absoluten Umgebung mit Radius 5?",
+            "antworten": ["\\(7\\) und \\(17\\)","\\(5\\) und \\(12\\)","\\(7\\) und \\(12\\)","\\(12\\) und \\(17\\)"],
+            "fehler": ["Radius als untere Grenze verwendet","Nur untere Hälfte angegeben","Nur obere Hälfte angegeben"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=3\\), \\(\\sigma=\\sqrt{2}\\). Wie groß ist \\(p\\)?",
-            "antworten": ["\\(\\frac{1}{3}\\)","\\(\\frac{2}{3}\\)","\\(\\frac{\\sqrt{2}}{3}\\)","\\(2\\)"],
-            "fehler": ["\\(\\sigma^2/\\mu\\) als \\(p\\) statt als \\(1-p\\) verwendet","\\(\\sigma/\\mu\\) statt Varianz durch Erwartungswert verwendet","Varianz als Wahrscheinlichkeit verwendet"]
+            "frage": "Welche Rechnung bildet eine absolute Umgebung mit Radius \\(d\\)?",
+            "antworten": ["\\(\\mu-d\\) und \\(\\mu+d\\)","\\((1-d)\\mu\\) und \\((1+d)\\mu\\)","\\(\\mu-d\\sigma\\) und \\(\\mu+d\\sigma\\)","\\(d-\\mu\\) und \\(d+\\mu\\)"],
+            "fehler": ["Relative statt absolute Umgebung gebildet","Sigma- statt absolute Umgebung gebildet","Untere Differenz in falscher Reihenfolge gebildet"]
         },
         {
-            "frage": "Für eine Binomialverteilung gilt \\(\\mu=3\\), \\(\\sigma=\\sqrt{2}\\). Wie groß ist \\(n\\)?",
-            "antworten": ["\\(9\\)","\\(3\\)","\\(4{,}5\\)","\\(\\sqrt{6}\\)"],
-            "fehler": ["Erwartungswert übernommen","Durch \\(1-p\\) statt durch \\(p\\) geteilt","Kennzahlen fälschlich multipliziert und Wurzel gezogen"]
+            "frage": "Für \\(X\\sim B(n;p)\\) ist \\(\\mu=6\\). Welche Schreibweise bedeutet eine absolute Abweichung von höchstens 1?",
+            "antworten": ["\\(P(5\\leq X\\leq7)\\)","\\(P(0{,}99\\mu\\leq X\\leq1{,}01\\mu)\\)","\\(P(\\mu-\\sigma\\leq X\\leq\\mu+\\sigma)\\)","\\(P(X\\leq1)\\)"],
+            "fehler": ["Relative Ein-Prozent-Umgebung gewählt","Sigma-Umgebung gewählt","Abweichungsradius als obere Treffergrenze gedeutet"]
         },
         {
-            "frage": "Für eine Binomialverteilung sind \\(p>0\\) und \\(\\mu\\) bekannt. Welche Formel liefert \\(n\\)?",
-            "antworten": ["\\(n=\\frac{\\mu}{p}\\)","\\(n=\\mu p\\)","\\(n=\\frac{p}{\\mu}\\)","\\(n=\\mu(1-p)\\)"],
-            "fehler": ["Multipliziert statt dividiert","Quotient umgekehrt","Erwartete Nieten statt Versuchsanzahl berechnet"]
+            "frage": "Die innere absolute Umgebung hat Wahrscheinlichkeit \\(0{,}73\\). Welcher Ausdruck berechnet die Wahrscheinlichkeit außerhalb?",
+            "antworten": ["\\(1-0{,}73\\)","\\(0{,}73\\)","\\(1+0{,}73\\)","\\(0{,}73-1\\)"],
+            "fehler": ["Inneres Ereignis unverändert übernommen","Gegenereignis addiert statt subtrahiert","Subtraktionsreihenfolge vertauscht"]
         }
     ]
 }

@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(X=4)\\) durch kumulierte Wahrscheinlichkeiten ausgedrückt?",
-            "antworten": ["\\(P(X\\leq4)-P(X\\leq3)\\)","\\(P(X\\leq4)-P(X\\leq4)\\)","\\(P(X\\leq5)-P(X\\leq4)\\)","\\(1-P(X\\leq4)\\)"],
-            "fehler": ["Dieselbe kumulierte Wahrscheinlichkeit subtrahiert","Einzelwahrscheinlichkeit für 5 statt 4 gebildet","Gegenereignis zu höchstens 4 gebildet"]
+            "frage": "Für \\(X\\sim B(1;0{,}3)\\): Wie groß ist \\(P(X=1)\\)?",
+            "antworten": ["\\(0{,}3\\)","\\(0{,}7\\)","\\(1\\)","\\(0\\)"],
+            "fehler": ["Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit gewählt","Sicheres Ereignis angenommen","Treffer fälschlich für unmöglich gehalten"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(X\\geq5)\\) kumuliert angegeben?",
-            "antworten": ["\\(1-P(X\\leq4)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq5)\\)","\\(P(X\\leq5)-P(X\\leq4)\\)"],
-            "fehler": ["Grenze 5 fälschlich aus dem Ereignis ausgeschlossen","Mindestens mit höchstens verwechselt","Nur die Einzelwahrscheinlichkeit für 5 gebildet"]
+            "frage": "Für \\(X\\sim B(1;0{,}3)\\): Wie groß ist \\(P(X=0)\\)?",
+            "antworten": ["\\(0{,}7\\)","\\(0{,}3\\)","\\(1\\)","\\(0\\)"],
+            "fehler": ["Trefferwahrscheinlichkeit statt Nietenwahrscheinlichkeit gewählt","Niete als sicheres Ereignis gedeutet","Niete fälschlich für unmöglich gehalten"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(3\\leq X\\leq7)\\) kumuliert angegeben?",
-            "antworten": ["\\(P(X\\leq7)-P(X\\leq2)\\)","\\(P(X\\leq7)-P(X\\leq3)\\)","\\(P(X\\leq7)+P(X\\leq2)\\)","\\(P(X\\leq3)-P(X\\leq7)\\)"],
-            "fehler": ["Untere Grenze 3 fälschlich ausgeschlossen","Kumulierte Anteile addiert statt subtrahiert","Subtraktionsreihenfolge vertauscht"]
+            "frage": "Für \\(X\\sim B(2;0{,}5)\\): Wie groß ist \\(P(X=2)\\)?",
+            "antworten": ["\\(0{,}25\\)","\\(0{,}5\\)","\\(0{,}75\\)","\\(1\\)"],
+            "fehler": ["Nur eine Trefferwahrscheinlichkeit berücksichtigt","Gegenwahrscheinlichkeit zu null Treffern gebildet","Zwei Treffer als sicher angenommen"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Welche kumulierte Wahrscheinlichkeit ist gleich \\(P(X<6)\\)?",
-            "antworten": ["\\(P(X\\leq5)\\)","\\(P(X\\leq6)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq4)\\)"],
-            "fehler": ["Strenge Grenze 6 eingeschlossen","Gegenereignis gebildet","Grenze um zwei statt um eins verringert"]
+            "frage": "Für \\(X\\sim B(2;0{,}5)\\): Wie groß ist \\(P(X\\geq1)\\)?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}25\\)","\\(0{,}5\\)","\\(1\\)"],
+            "fehler": ["Nur zwei Treffer statt mindestens eines berechnet","Nur genau einen der beiden Pfade berücksichtigt","Mindestens einen Treffer als sicher angenommen"]
         },
         {
-            "frage": "Wie wird \\(P(X>6)\\) kumuliert angegeben?",
-            "antworten": ["\\(1-P(X\\leq6)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq6)\\)","\\(P(X\\leq7)-P(X\\leq6)\\)"],
-            "fehler": ["Den Wert 6 fälschlich eingeschlossen","Mehr als mit höchstens verwechselt","Nur die Einzelwahrscheinlichkeit für 7 gebildet"]
+            "frage": "Für \\(X\\sim B(2;0{,}5)\\): Wie groß ist \\(P(X=1)\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(0{,}25\\)","\\(0{,}75\\)","\\(1\\)"],
+            "fehler": ["Nur eine der zwei möglichen Anordnungen gezählt","Mindestens einen statt genau einen Treffer berechnet","Genau einen Treffer als sicher angenommen"]
         },
         {
-            "frage": "Wie wird \\(P(2<X\\leq8)\\) kumuliert angegeben?",
-            "antworten": ["\\(P(X\\leq8)-P(X\\leq2)\\)","\\(P(X\\leq8)-P(X\\leq1)\\)","\\(P(X\\leq8)-P(X\\leq3)\\)","\\(1-P(X\\leq8)\\)"],
-            "fehler": ["Den ausgeschlossenen Wert 2 wieder eingeschlossen","Den eingeschlossenen Wert 3 ausgeschlossen","Nur das Gegenereignis zur Obergrenze gebildet"]
+            "frage": "Für \\(X\\sim B(3;1)\\): Wie groß ist \\(P(2\\leq X\\leq3)\\)?",
+            "antworten": ["\\(1\\)","\\(0\\)","\\(\\frac{2}{3}\\)","\\(\\frac{1}{3}\\)"],
+            "fehler": ["Den sicheren Wert \\(X=3\\) ausgeschlossen","Intervalllänge durch Versuchsanzahl geteilt","Nur einen von drei Versuchen als Treffer gezählt"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(4\\leq X<9)\\) kumuliert angegeben?",
-            "antworten": ["\\(P(X\\leq8)-P(X\\leq3)\\)","\\(P(X\\leq9)-P(X\\leq3)\\)","\\(P(X\\leq8)-P(X\\leq4)\\)","\\(P(X\\leq9)-P(X\\leq4)\\)"],
-            "fehler": ["Ausgeschlossene Obergrenze 9 eingeschlossen","Eingeschlossene Untergrenze 4 ausgeschlossen","Beide Randwerte falsch behandelt"]
+            "frage": "Für \\(X\\sim B(4;0)\\): Wie groß ist \\(P(X\\leq1)\\)?",
+            "antworten": ["\\(1\\)","\\(0\\)","\\(0{,}25\\)","\\(0{,}75\\)"],
+            "fehler": ["Den sicheren Wert \\(X=0\\) ausgeschlossen","Grenze 1 durch \\(n=4\\) geteilt","Gegenanteil zur Grenze verwendet"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Welche Differenz ergibt \\(P(X=1)\\)?",
-            "antworten": ["\\(P(X\\leq1)-P(X\\leq0)\\)","\\(P(X\\leq2)-P(X\\leq1)\\)","\\(P(X\\leq1)-P(X\\leq1)\\)","\\(1-P(X\\leq1)\\)"],
-            "fehler": ["Einzelwahrscheinlichkeit für 2 gebildet","Identische Werte subtrahiert","Gegenereignis zu höchstens 1 gebildet"]
+            "frage": "Bei 20 Würfen bedeutet Treffer „Sechs“. Gesucht ist die Wahrscheinlichkeit für höchstens drei Sechsen. Welcher Ansatz passt?",
+            "antworten": ["\\(P(X\\leq3)\\) mit \\(n=20\\) und \\(p=\\frac{1}{6}\\)","\\(P(X\\leq3)\\) mit \\(n=3\\) und \\(p=\\frac{1}{6}\\)","\\(P(X\\geq3)\\) mit \\(n=20\\) und \\(p=\\frac{1}{6}\\)","\\(P(X\\leq3)\\) mit \\(n=20\\) und \\(p=\\frac{5}{6}\\)"],
+            "fehler": ["Intervallgrenze als Versuchsanzahl eingesetzt","Höchstens mit mindestens verwechselt","Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit verwendet"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(X\\geq1)\\) kumuliert angegeben?",
-            "antworten": ["\\(1-P(X\\leq0)\\)","\\(1-P(X\\leq1)\\)","\\(P(X\\leq1)\\)","\\(P(X\\leq1)-P(X\\leq0)\\)"],
-            "fehler": ["Trefferzahl 1 fälschlich ausgeschlossen","Mindestens 1 mit höchstens 1 verwechselt","Nur genau einen Treffer berechnet"]
+            "frage": "Bei 10 Schüssen sind höchstens \\(26\\%\\) Treffer gesucht. Welche ganzzahlige Grenze gilt?",
+            "antworten": ["\\(X\\leq2\\)","\\(X\\leq3\\)","\\(X\\geq2\\)","\\(X\\geq3\\)"],
+            "fehler": ["\\(2{,}6\\) für höchstens nach außen aufgerundet","Höchstens als mindestens gedeutet und abgerundet","Höchstens als mindestens gedeutet und aufgerundet"]
         },
         {
-            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(2{,}4\\leq X\\leq6{,}8)\\) kumuliert angegeben?",
-            "antworten": ["\\(P(X\\leq6)-P(X\\leq2)\\)","\\(P(X\\leq7)-P(X\\leq2)\\)","\\(P(X\\leq6)-P(X\\leq3)\\)","\\(P(X\\leq7)-P(X\\leq3)\\)"],
-            "fehler": ["Obere Grenze nach außen aufgerundet","Untere Grenze 3 fälschlich ausgeschlossen","Beide Grenzen nach außen gerundet"]
+            "frage": "Bei \\(X\\sim B(2;0{,}5)\\) ist \\(P(X\\leq0)=0{,}25\\). Wie groß ist \\(P(X\\geq1)\\)?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}25\\)","\\(0{,}5\\)","\\(1\\)"],
+            "fehler": ["Wahrscheinlichkeit des Gegenereignisses unverändert übernommen","Nur die Differenz zu \\(0{,}75\\) falsch gebildet","Gegenereignis als sicher angenommen"]
         }
     ]
 }

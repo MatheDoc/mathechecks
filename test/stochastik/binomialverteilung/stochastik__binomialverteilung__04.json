@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(X=3)\\)?",
-            "antworten": ["\\(Bcd(3;3;20;0{,}1)\\)","\\(Bcd(0;3;20;0{,}1)\\)","\\(Bcd(3;20;20;0{,}1)\\)","\\(Bcd(3;3;0{,}1;20)\\)"],
-            "fehler": ["Untere Grenze 0 statt 3 eingesetzt","Obere Grenze \\(n\\) statt 3 eingesetzt","\\(n\\) und \\(p\\) vertauscht"]
+            "frage": "Ein Einzelwahrscheinlichkeits-Histogramm hat bei \\(k=3\\) die Balkenhöhe \\(0{,}24\\). Was ist \\(P(X=3)\\)?",
+            "antworten": ["\\(0{,}24\\)","\\(0{,}76\\)","\\(0{,}48\\)","\\(0{,}08\\)"],
+            "fehler": ["Gegenwahrscheinlichkeit gebildet","Balkenhöhe verdoppelt","Balkenhöhe durch Trefferzahl geteilt"]
         },
         {
-            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(X\\leq4)\\)?",
-            "antworten": ["\\(Bcd(0;4;20;0{,}1)\\)","\\(Bcd(4;4;20;0{,}1)\\)","\\(Bcd(4;20;20;0{,}1)\\)","\\(Bcd(0;20;4;0{,}1)\\)"],
-            "fehler": ["Nur genau 4 eingegeben","Mindestens 4 statt höchstens 4 eingegeben","Obergrenze und Versuchsanzahl vertauscht"]
+            "frage": "Die Einzelbalken bei \\(k=2,3,4\\) haben die Höhen \\(0{,}15;0{,}25;0{,}20\\). Wie groß ist \\(P(2\\leq X\\leq4)\\)?",
+            "antworten": ["\\(0{,}60\\)","\\(0{,}25\\)","\\(0{,}40\\)","\\(0{,}10\\)"],
+            "fehler": ["Nur den mittleren Balken verwendet","Balken bei 4 vergessen","Größten und kleinsten Balken subtrahiert"]
         },
         {
-            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(X\\geq6)\\)?",
-            "antworten": ["\\(Bcd(6;20;20;0{,}1)\\)","\\(Bcd(0;6;20;0{,}1)\\)","\\(Bcd(5;20;20;0{,}1)\\)","\\(Bcd(6;6;20;0{,}1)\\)"],
-            "fehler": ["Höchstens 6 statt mindestens 6 eingegeben","Untere Grenze um eins zu klein gewählt","Nur genau 6 eingegeben"]
+            "frage": "Die Einzelbalken bei \\(k=5,6,7\\) sind \\(0{,}18;0{,}12;0{,}05\\). Wie groß ist \\(P(X\\geq6)\\), wenn für größere \\(k\\) keine Balkenhöhe mehr positiv ist?",
+            "antworten": ["\\(0{,}17\\)","\\(0{,}30\\)","\\(0{,}12\\)","\\(0{,}95\\)"],
+            "fehler": ["Balken bei 5 statt bei 7 einbezogen","Nur den Balken bei 6 verwendet","Gegenwahrscheinlichkeit zum Balken bei 7 gebildet"]
         },
         {
-            "frage": "Für \\(X\\sim B(12;0{,}25)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(2\\leq X\\leq5)\\)?",
-            "antworten": ["\\(Bcd(2;5;12;0{,}25)\\)","\\(Bcd(1;5;12;0{,}25)\\)","\\(Bcd(2;6;12;0{,}25)\\)","\\(Bcd(2;5;0{,}25;12)\\)"],
-            "fehler": ["Untere Grenze um eins zu klein gewählt","Obere Grenze um eins zu groß gewählt","\\(n\\) und \\(p\\) vertauscht"]
+            "frage": "Die Einzelbalken bei \\(k=0,1,2\\) sind \\(0{,}10;0{,}30;0{,}40\\). Wie groß ist \\(P(X<2)\\)?",
+            "antworten": ["\\(0{,}40\\)","\\(0{,}80\\)","\\(0{,}30\\)","\\(0{,}20\\)"],
+            "fehler": ["Balken bei 2 trotz strenger Grenze einbezogen","Nur den Balken bei 1 verwendet","Restwahrscheinlichkeit statt Balkensumme gebildet"]
         },
         {
-            "frage": "Für \\(X\\sim B(15;0{,}4)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(X<5)\\)?",
-            "antworten": ["\\(Bcd(0;4;15;0{,}4)\\)","\\(Bcd(0;5;15;0{,}4)\\)","\\(Bcd(5;15;15;0{,}4)\\)","\\(Bcd(4;4;15;0{,}4)\\)"],
-            "fehler": ["Strenge Grenze 5 eingeschlossen","Mindestens 5 statt weniger als 5 eingegeben","Nur genau 4 eingegeben"]
+            "frage": "Was gibt die Höhe eines Balkens über \\(k\\) in einem Histogramm der Einzelwahrscheinlichkeiten an?",
+            "antworten": ["\\(P(X=k)\\)","\\(P(X\\leq k)\\)","\\(P(X\\geq k)\\)","\\(P(X<k)\\)"],
+            "fehler": ["Einzel- mit kumulierter Wahrscheinlichkeit verwechselt","Balken als obere Restwahrscheinlichkeit gedeutet","Wert \\(k\\) fälschlich ausgeschlossen"]
         },
         {
-            "frage": "Für \\(X\\sim B(15;0{,}4)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(X>5)\\)?",
-            "antworten": ["\\(Bcd(6;15;15;0{,}4)\\)","\\(Bcd(5;15;15;0{,}4)\\)","\\(Bcd(0;5;15;0{,}4)\\)","\\(Bcd(6;6;15;0{,}4)\\)"],
-            "fehler": ["Ausgeschlossenen Wert 5 eingeschlossen","Höchstens 5 statt mehr als 5 eingegeben","Nur genau 6 eingegeben"]
+            "frage": "Einzelbalken: bei \\(k=1\\) Höhe \\(0{,}2\\), bei \\(k=2\\) Höhe \\(0{,}3\\). Wie groß ist \\(P(1\\leq X<3)\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(0{,}3\\)","\\(0{,}1\\)","\\(0{,}06\\)"],
+            "fehler": ["Nur den Balken bei 2 verwendet","Balkenhöhen subtrahiert","Balkenhöhen multipliziert"]
         },
         {
-            "frage": "Für \\(X\\sim B(10;0{,}3)\\): Welche Eingabe \\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\) passt zu \\(P(1<X\\leq4)\\)?",
-            "antworten": ["\\(Bcd(2;4;10;0{,}3)\\)","\\(Bcd(1;4;10;0{,}3)\\)","\\(Bcd(2;5;10;0{,}3)\\)","\\(Bcd(0;4;10;0{,}3)\\)"],
-            "fehler": ["Ausgeschlossene Untergrenze 1 eingeschlossen","Obere Grenze um eins zu groß gewählt","Alle Werte ab 0 statt ab 2 eingegeben"]
+            "frage": "Einzelbalken: \\(P(X=0)=0{,}1\\), \\(P(X=1)=0{,}4\\), \\(P(X=2)=0{,}3\\). Wie groß ist \\(P(X\\leq1)\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(0{,}4\\)","\\(0{,}8\\)","\\(0{,}3\\)"],
+            "fehler": ["Nur den Balken bei 1 verwendet","Balken bei 2 zusätzlich einbezogen","Nur den Balken bei 2 verwendet"]
         },
         {
-            "frage": "Bei \\(Bcd(a;b;n;p)\\): Wofür steht \\(a\\)?",
-            "antworten": ["Untere ganzzahlige Intervallgrenze","Obere ganzzahlige Intervallgrenze","Versuchsanzahl","Trefferwahrscheinlichkeit"],
-            "fehler": ["\\(a\\) mit \\(b\\) verwechselt","\\(a\\) mit \\(n\\) verwechselt","\\(a\\) mit \\(p\\) verwechselt"]
+            "frage": "Einzelbalken bei \\(k=3\\) und \\(k=4\\) haben die Höhen \\(0{,}22\\) und \\(0{,}18\\). Welche Summe liefert \\(P(3\\leq X\\leq4)\\)?",
+            "antworten": ["\\(0{,}22+0{,}18\\)","\\(0{,}22-0{,}18\\)","\\(1-0{,}22\\)","\\(0{,}22\\cdot0{,}18\\)"],
+            "fehler": ["Einzelbalken subtrahiert","Gegenwahrscheinlichkeit eines Balkens gebildet","Einzelbalken multipliziert"]
         },
         {
-            "frage": "Bei \\(Bcd(a;b;n;p)\\): Wofür steht \\(b\\)?",
-            "antworten": ["Obere ganzzahlige Intervallgrenze","Untere ganzzahlige Intervallgrenze","Versuchsanzahl","Nietenwahrscheinlichkeit"],
-            "fehler": ["\\(b\\) mit \\(a\\) verwechselt","\\(b\\) mit \\(n\\) verwechselt","\\(b\\) mit \\(1-p\\) verwechselt"]
+            "frage": "Die einzigen positiven Einzelbalken liegen bei \\(k=0,1,2\\) mit Höhen \\(0{,}25;0{,}50;0{,}25\\). Wie groß ist \\(P(X>0)\\)?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}25\\)","\\(0{,}50\\)","\\(1\\)"],
+            "fehler": ["Nur den ausgeschlossenen Balken bei 0 gewählt","Nur den Balken bei 1 gewählt","Balken bei 0 trotz strenger Grenze einbezogen"]
         },
         {
-            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Höchstens \\(33\\%\\) Treffer. Welche Eingabegrenzen passen, da \\(0{,}33\\cdot20=6{,}6\\)?",
-            "antworten": ["\\(a=0,\\ b=6\\)","\\(a=0,\\ b=7\\)","\\(a=6,\\ b=20\\)","\\(a=7,\\ b=20\\)"],
-            "fehler": ["Obere Grenze nach außen auf 7 gerundet","Höchstens als mindestens 6 gedeutet","Höchstens als mindestens 7 gedeutet"]
+            "frage": "Welche Balken werden für \\(P(2<X\\leq5)\\) in einer Einzeldarstellung addiert?",
+            "antworten": ["Die Balken bei \\(3,4,5\\)","Die Balken bei \\(2,3,4,5\\)","Die Balken bei \\(3,4\\)","Nur der Balken bei \\(5\\)"],
+            "fehler": ["Ausgeschlossene Untergrenze 2 einbezogen","Eingeschlossene Obergrenze 5 ausgelassen","Intervallwahrscheinlichkeit auf einen Einzelbalken reduziert"]
         }
     ]
 }
