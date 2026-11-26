@@ -447,7 +447,9 @@ class Zeitstrahl(VGroup):
     mehrzeilig sein, etwa der Name einer Größe und darunter ihr Wert.
     """
 
-    _PLAETZE = {  # Name: (Anteil der Strahllänge, über dem Strahl)
+    # Name: (Anteil der Strahllänge, über dem Strahl[, Bezugspunkt der Angabe]). Der Bezugspunkt (0 links,
+    # 0,5 Mitte, 1 rechts) liegt an der Stelle; ohne Angabe ist er gleich dem Anteil (außen bündig, innen mittig).
+    _PLAETZE: dict[str, tuple] = {
         "frueher": (0.0, True), "dauer": (0.5, True), "spaeter": (1.0, True),
         "anfang": (0.0, False), "zins": (0.5, False), "ende": (1.0, False),
     }
@@ -466,13 +468,13 @@ class Zeitstrahl(VGroup):
 
     def _setze(self, platz: str, angabe: Mobject) -> None:
         """Stellt eine Angabe an ihren Platz: oben auf gemeinsamer Grundlinie, unten mit gemeinsamer Oberkante."""
-        anteil, oben = self._PLAETZE[platz]
+        anteil, oben, *bezug = self._PLAETZE[platz]
         links, rechts, y = self.beginn.get_left()[0], self.strahl.get_end()[0], self.beginn.get_y()
         if oben:
             angabe.shift((y + self._abstand - _grundlinie(angabe)) * UP)
         else:
             angabe.shift((y - self._abstand - angabe.get_top()[1]) * UP)
-        stelle = interpolate(angabe.get_left()[0], angabe.get_right()[0], anteil)
+        stelle = interpolate(angabe.get_left()[0], angabe.get_right()[0], bezug[0] if bezug else anteil)
         angabe.shift((interpolate(links, rechts, anteil) - stelle) * RIGHT)
         self.angaben[platz] = angabe
         self.add(angabe)
@@ -515,6 +517,179 @@ class Zeitstrahl(VGroup):
         return AnimationGroup(*[
             self.angaben[platz].animate(rate_func=rate_functions.there_and_back).scale(1.3) for platz in plaetze
         ])
+
+
+class Phasenstrahl(Zeitstrahl):
+    """Zeitstrahl mit zwei Zinsphasen (Zinssatzwechsel): ein Teilstrich am Übergang trennt die Phasen.
+
+    Plätze über dem Strahl: "phase1", "phase2" (mittig über ihrer Phase, etwa Dauer und Zinssatz).
+    Plätze darunter: "anfang" (bündig links), "mitte" (mittig am Übergang, der Zwischenwert), "ende" (bündig rechts).
+    teilung: Lage des Übergangs als Anteil der Strahllänge. Der Strahl ist schematisch, nicht maßstäblich,
+    damit die drei Beträge darunter nebeneinander Platz haben.
+    """
+
+    def __init__(self, teilung: float = 0.45, breite: float = t.BUEHNE_BREITE, abstand: float = 0.32,
+                 **angaben: Mobject) -> None:
+        self._PLAETZE = {
+            "phase1": (teilung / 2, True, 0.5), "phase2": ((1 + teilung) / 2, True, 0.5),
+            "anfang": (0.0, False), "mitte": (teilung, False, 0.5), "ende": (1.0, False),
+        }
+        self.teilung = teilung
+        super().__init__(breite=breite, abstand=abstand, **angaben)
+        self.trenner = Line(0.16 * UP, 0.16 * DOWN, color=t.ACHSE, stroke_width=4).move_to(self._ort(teilung))
+        self.band: Mobject | None = None
+        self.add(self.trenner)
+
+    def _ort(self, anteil: float) -> np.ndarray:
+        links, rechts = self.beginn.get_center()[0], self.strahl.get_end()[0]
+        return np.array([interpolate(links, rechts, anteil), self.beginn.get_y(), 0])
+
+    def aufbau(self) -> list[Animation]:
+        return [*super().aufbau(), FadeIn(self.trenner)]
+
+    def phase(self, nr: int | None) -> Animation:
+        """Legt eine Fläche in der Stimmungsfarbe unter die Phase nr (1 oder 2), in der gerade gerechnet wird.
+
+        None nimmt sie wieder weg.
+        """
+        schritte = []
+        if self.band is not None:
+            self.remove(self.band)
+            schritte.append(FadeOut(self.band))
+            self.band = None
+        if nr is not None:
+            von, bis = (0.0, self.teilung) if nr == 1 else (self.teilung, 1.0)
+            start, ende = self._ort(von), self._ort(bis)
+            self.band = RoundedRectangle(
+                width=ende[0] - start[0], height=0.36, corner_radius=0.18,
+                fill_color=t.MARKE, fill_opacity=0.3, stroke_width=0,
+            ).move_to((start + ende) / 2)
+            self.add_to_back(self.band)  # unter Strahl und Angaben, aber über der Karte
+            schritte.append(FadeIn(self.band))
+        return AnimationGroup(*schritte)
+
+
+class Zahlungsplan(VGroup):
+    """Angebote mit Einmalzahlungen zu verschiedenen Zeitpunkten (Kapitalvergleich).
+
+    Eine Zeile je Angebot: links der Name, dann ein Strahl über die Jahre mit den Zahlungen an ihren Jahren,
+    rechts eine Spalte für den Barwert. Oben stehen die Jahre („heute“, 1, 2, …) und der Spaltenkopf „Barwert“.
+    angebote: Name → Liste von (Betrag als TeX, Jahr), etwa {"B": [(r"20\\,000", 0), (r"35\\,000", 4)]}.
+    """
+
+    def __init__(
+        self,
+        angebote: Mapping[str, list[tuple[str, int]]],
+        jahre: int,
+        jahr_breite: float = 1.05,
+        zeilen_abstand: float = 1.05,
+        barwert_breite: float = 2.6,
+        groesse: float = 30,
+    ) -> None:
+        super().__init__()
+        self._groesse = groesse
+        self._x0 = 0.9                                # Strahlbeginn rechts der Namen
+        self._jahr = jahr_breite
+        self._spalte = self._x0 + jahre * jahr_breite + 0.6 + barwert_breite / 2  # Mitte der Barwert-Spalte
+        self.namen: dict[str, Mobject] = {}
+        self.strahlen: dict[str, VGroup] = {}
+        self.zahlungen: dict[str, list[VGroup]] = {}
+        self.barwerte: dict[str, Mobject] = {}
+
+        kopf_y = 0.0
+        self.kopf = VGroup(
+            *[
+                text("heute" if j == 0 else str(j), groesse=24, farbe=t.TEXT_LEISE).move_to([self._x(j), kopf_y, 0])
+                for j in range(jahre + 1)
+            ],
+            text("Barwert", groesse=24, farbe=t.TEXT_LEISE).move_to([self._spalte, kopf_y, 0]),
+        )
+        self._kopf_hoehe = self.kopf[-1].height
+        self.add(self.kopf)
+
+        for i, (name, zahlungen) in enumerate(angebote.items()):
+            y = kopf_y - 0.75 - i * zeilen_abstand
+            self.namen[name] = text(name, groesse=36, gewicht=BOLD).move_to([0.25, y, 0])
+            linie = Line([self._x(0), y, 0], [self._x(jahre) + 0.3, y, 0], color=t.ACHSE, stroke_width=3)
+            striche = VGroup(*[
+                Line([self._x(j), y + 0.08, 0], [self._x(j), y - 0.08, 0], color=t.ACHSE, stroke_width=3)
+                for j in range(jahre + 1)
+            ])
+            self.strahlen[name] = VGroup(linie, striche)
+            self.zahlungen[name] = []
+            for betrag_tex, jahr in zahlungen:
+                punkt = Dot([self._x(jahr), y, 0], radius=0.08, color=t.TEXT)
+                wert = betrag(betrag_tex, groesse=groesse).next_to(punkt, UP, buff=0.12)
+                if jahr == 0:
+                    wert.align_to(punkt, LEFT).shift(0.12 * LEFT)
+                self.zahlungen[name].append(VGroup(punkt, wert))
+            self.add(self.namen[name], self.strahlen[name], *self.zahlungen[name])
+
+    def _x(self, jahr: float) -> float:
+        return self._x0 + jahr * self._jahr
+
+    def aufbau(self, *namen: str, kopf: bool = True) -> list[Animation]:
+        """Die genannten Zeilen (ohne Angabe: alle) erscheinen, mit kopf auch die Jahre und der Spaltenkopf."""
+        namen = namen or tuple(self.namen)
+        return [
+            *([FadeIn(self.kopf)] if kopf else []),
+            *[
+                AnimationGroup(
+                    FadeIn(self.namen[name]), Create(self.strahlen[name]),
+                    LaggedStart(*[FadeIn(z, shift=0.15 * DOWN) for z in self.zahlungen[name]], lag_ratio=0.3),
+                )
+                for name in namen
+            ],
+        ]
+
+    def bogen(self, name: str, nr: int, farbe: str = t.HERVOR) -> VMobject:
+        """Pfeil von der Zahlung nr eines Angebots unter dem Strahl zurück auf heute: abzinsen."""
+        # Lagen aus den Objekten selbst lesen: Der Plan wird nach dem Bau noch eingepasst und verschoben.
+        punkt = self.zahlungen[name][nr][0].get_center()
+        heute = self.strahlen[name][1][0].get_center()  # Teilstrich bei Jahr 0
+        abstand = 1.5 * self.zahlungen[name][nr][0].height * DOWN
+        pfeil = ArcBetweenPoints(punkt + abstand, heute + abstand, angle=-0.8, color=farbe, stroke_width=4)
+        pfeil.add_tip(tip_length=0.18, tip_width=0.18)
+        return pfeil
+
+    def faerbe(self, name: str, nr: int, farbe: str = t.HERVOR) -> Animation:
+        """Färbt eine Zahlung (Punkt und Betrag)."""
+        return self.zahlungen[name][nr].animate.set_color(farbe)
+
+    def barwert(self, name: str, angabe: Mobject, quelle: Mobject | None = None) -> Animation:
+        """Setzt den Barwert eines Angebots in die rechte Spalte; mit quelle wandert er aus der Rechnung dorthin."""
+        massstab = self.kopf[-1].height / self._kopf_hoehe  # wie stark der Plan seit dem Bau verkleinert wurde
+        angabe.scale(massstab).move_to([0, self.namen[name].get_y(), 0])
+        angabe.shift((self.kopf[-1].get_right()[0] - angabe.get_right()[0]) * RIGHT)  # rechtsbündig unter dem Kopf
+        alt = self.barwerte.pop(name, None)
+        self.barwerte[name] = angabe
+        self.add(angabe)
+        schritte = [FadeIn(angabe, target_position=quelle) if quelle is not None else FadeIn(angabe)]
+        if alt is not None:
+            self.remove(alt)
+            schritte.append(FadeOut(alt))
+        return AnimationGroup(*schritte)
+
+    def betone(self, name: str) -> Animation:
+        """Name und Barwert eines Angebots pulsieren kurz."""
+        teile = [self.namen[name], *([self.barwerte[name]] if name in self.barwerte else [])]
+        return AnimationGroup(*[
+            teil.animate(rate_func=rate_functions.there_and_back).scale(1.25) for teil in teile
+        ])
+
+
+def wortlaut(*zeilen: str, signal: tuple[str, ...] = (), groesse: float = 32) -> VGroup:
+    """Wortlaut einer Aufgabe in Anführungszeichen, eine Bildzeile je Argument, linksbündig.
+
+    signal: Wörter, die orange erscheinen (Signalwörter). In Zahlen wie 12 000 wird ein schmales Leerzeichen gesetzt.
+    """
+    zeilen = (f"„{zeilen[0]}", *zeilen[1:-1], f"{zeilen[-1]}“") if len(zeilen) > 1 else (f"„{zeilen[0]}“",)
+    farben = {wort: t.HERVOR for wort in signal}
+    bild = [
+        text(re.sub(r"(?<=\d) (?=\d{3})", " ", zeile), groesse=groesse, gewicht=BOLD, farben=farben)
+        for zeile in zeilen
+    ]
+    return VGroup(*bild).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
 
 
 def _zahl(wert: float) -> str:

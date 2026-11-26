@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
-page_css: /assets/css/warmup.css?v=20261120-table
+page_css: /assets/css/warmup.css?v=20261126-spalten
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/warmup.html
 ---
 

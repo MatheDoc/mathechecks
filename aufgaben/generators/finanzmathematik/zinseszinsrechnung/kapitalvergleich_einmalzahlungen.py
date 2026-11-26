@@ -94,7 +94,7 @@ class KapitalvergleichEinmalzahlungenGenerator(TaskGenerator):
                 f"Angebot C: {_angebot_text(c)}.<br>"
                 f"Für den Vergleich wird ein Zinssatz von {prozent(p)} zugrunde gelegt."
             )
-            entscheidung = f"Für welches Angebot sollte sich {sz.subjekt} aus finanzmathematischer Sicht entscheiden?"
+            entscheidung = f"Für welches Angebot sollte sich {sz.subjekt_im_satz} aus finanzmathematischer Sicht entscheiden?"
         else:
             intro = (
                 f"{sz.subjekt} kauft {sz.kauf_akk}. Der Verkäufer bietet drei Zahlungsvarianten an:<br>"
@@ -103,7 +103,7 @@ class KapitalvergleichEinmalzahlungenGenerator(TaskGenerator):
                 f"Angebot C: {_angebot_text(c)}.<br>"
                 f"Für den Vergleich wird ein Zinssatz von {prozent(p)} zugrunde gelegt."
             )
-            entscheidung = f"Welche Zahlungsvariante ist für {sz.subjekt} aus finanzmathematischer Sicht am günstigsten?"
+            entscheidung = f"Welche Zahlungsvariante ist für {sz.subjekt_akk} aus finanzmathematischer Sicht am günstigsten?"
 
         return Task(
             einleitung=intro,

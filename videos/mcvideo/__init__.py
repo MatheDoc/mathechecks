@@ -5,9 +5,11 @@ from .bausteine import (
     Dezimalzahl,
     ErweiterteMatrix,
     Histogramm,
+    Phasenstrahl,
     Punktefeld,
     Versuche,
     Zahlenstrahl,
+    Zahlungsplan,
     Zeitstrahl,
     auftritt,
     aufzaehlung,
@@ -28,6 +30,7 @@ from .bausteine import (
     tabelle,
     text,
     welle,
+    wortlaut,
     zeichnen,
 )
 from .szene import MCSzene
@@ -38,9 +41,11 @@ __all__ = [
     "ErweiterteMatrix",
     "Histogramm",
     "MCSzene",
+    "Phasenstrahl",
     "Punktefeld",
     "Versuche",
     "Zahlenstrahl",
+    "Zahlungsplan",
     "Zeitstrahl",
     "auftritt",
     "aufzaehlung",
@@ -62,5 +67,6 @@ __all__ = [
     "text",
     "theme",
     "welle",
+    "wortlaut",
     "zeichnen",
 ]

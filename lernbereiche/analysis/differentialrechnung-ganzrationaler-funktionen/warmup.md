@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: differentialrechnung-ganzrationaler-funktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261120-table
+page_css: /assets/css/warmup.css?v=20261126-spalten
 permalink: /lernbereiche/analysis/differentialrechnung-ganzrationaler-funktionen/warmup.html
 ---
 

@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261120-table
+page_css: /assets/css/warmup.css?v=20261126-spalten
 permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/warmup.html
 ---
 

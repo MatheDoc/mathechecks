@@ -91,10 +91,10 @@ class KapitalvergleichRentenGenerator(TaskGenerator):
 
         if verkauf:
             kopf = f"{sz.subjekt} verkauft {sz.verkauf_akk}. Drei Interessenten machen folgende Angebote:<br>"
-            entscheidung = f"Für welches Angebot sollte sich {sz.subjekt} aus finanzmathematischer Sicht entscheiden?"
+            entscheidung = f"Für welches Angebot sollte sich {sz.subjekt_im_satz} aus finanzmathematischer Sicht entscheiden?"
         else:
             kopf = f"{sz.subjekt} kauft {sz.kauf_akk}. Der Verkäufer bietet drei Zahlungsvarianten an:<br>"
-            entscheidung = f"Welche Zahlungsvariante ist für {sz.subjekt} aus finanzmathematischer Sicht am günstigsten?"
+            entscheidung = f"Welche Zahlungsvariante ist für {sz.subjekt_akk} aus finanzmathematischer Sicht am günstigsten?"
 
         intro = (
             kopf

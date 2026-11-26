@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: binomialverteilung
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261120-table
+page_css: /assets/css/warmup.css?v=20261126-spalten
 permalink: /lernbereiche/stochastik/binomialverteilung/warmup.html
 ---
 

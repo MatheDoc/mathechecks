@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: rentenrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/warmup.css?v=20261120-table
+page_css: /assets/css/warmup.css?v=20261126-spalten
 permalink: /lernbereiche/finanzmathematik/rentenrechnung/warmup.html
 ---
 

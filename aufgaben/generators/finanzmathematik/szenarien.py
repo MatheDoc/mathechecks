@@ -1,8 +1,9 @@
 """Gemeinsamer Szenario-Pool der Finanzmathematik (privat und Unternehmen).
 
 Alle Texte sind ohne Zahlenwerte; die Zahlen kommen in den Teilfragen.
-Sätze in den Generatoren beginnen stets mit ``subjekt`` (Nominativ, Singular),
-danach wird nur das Pronomen ``pron`` benötigt.
+Sätze in den Generatoren beginnen stets mit ``subjekt`` (Nominativ, Singular);
+mitten im Satz stehen ``subjekt_im_satz`` (Nominativ) bzw. ``subjekt_akk`` (Akkusativ).
+Danach wird nur das Pronomen ``pron`` benötigt.
 """
 
 from __future__ import annotations
@@ -28,6 +29,27 @@ class Szenario:
     @property
     def stufe(self) -> Stufe:
         return STUFEN[self.stufe_name]
+
+    @property
+    def subjekt_im_satz(self) -> str:
+        """Subjekt im Nominativ mitten im Satz: Artikel klein („sollte sich die Bäckerei …“)."""
+        artikel, _, rest = self.subjekt.partition(" ")
+        if artikel in _ARTIKEL_AKK:
+            return f"{artikel.lower()} {rest}"
+        return self.subjekt
+
+    @property
+    def subjekt_akk(self) -> str:
+        """Subjekt im Akkusativ mitten im Satz („für den Sportverein …“, „für Herrn Nowak“)."""
+        artikel, _, rest = self.subjekt.partition(" ")
+        if artikel in _ARTIKEL_AKK:
+            return f"{_ARTIKEL_AKK[artikel]} {rest}"
+        if artikel == "Herr":
+            return f"Herrn {rest}"
+        return self.subjekt
+
+
+_ARTIKEL_AKK = {"Der": "den", "Die": "die", "Das": "das"}
 
 
 SZENARIEN: tuple[Szenario, ...] = (
