@@ -31,14 +31,14 @@
             "fehler": ["Zinsen werden abgezogen", "Von der Annuität, nicht von der Restschuld", "Tilgung und Zinsen sind verschieden"]
         },
         {
-            "frage": "Wie berechnet man die Gesamtzinsen über die Laufzeit?",
-            "antworten": ["\\(n \\cdot A - K_0\\)", "\\(n \\cdot A\\)", "\\(K_0 \\cdot \\frac{p}{100} \\cdot n\\)", "\\(A - K_0\\)"],
-            "fehler": ["Das ist die Gesamtzahlung inklusive Tilgung", "Die Zinsen sinken jährlich, das wäre zu viel", "Es werden n Annuitäten gezahlt"]
+            "frage": "Die Restschuld zu Beginn des letzten Jahres ist \\(RK_{n-1}\\). Wie hoch ist die letzte Annuität?",
+            "antworten": ["\\(RK_{n-1} \\cdot q\\)", "\\(A\\)", "\\(RK_{n-1}\\)", "\\(RK_{n-1} \\cdot \\frac{p}{100}\\)"],
+            "fehler": ["Die letzte Annuität weicht wegen der Rundung meist etwas von A ab", "Die Zinsen des letzten Jahres fehlen", "Das sind nur die Zinsen, die Tilgung fehlt"]
         },
         {
-            "frage": "Ein Darlehen über 100 000 € wird mit 15 Annuitäten von je 9 000 € zurückgezahlt. Wie hoch sind die Gesamtzinsen?",
-            "antworten": ["\\(35\\,000\\) €", "\\(135\\,000\\) €", "\\(9\\,000\\) €", "\\(60\\,000\\) €"],
-            "fehler": ["Das ist die Gesamtzahlung, die Darlehenssumme muss abgezogen werden", "Das ist eine einzelne Annuität", "Rechenfehler"]
+            "frage": "Warum weicht die letzte Annuität meist um einige Cent von der vereinbarten Annuität \\(A\\) ab?",
+            "antworten": ["Weil \\(A\\) auf Cent gerundet ist", "Weil im letzten Jahr keine Zinsen anfallen", "Weil sich der Zinssatz im letzten Jahr ändert", "Wegen eines Rechenfehlers im Plan"],
+            "fehler": ["Auch im letzten Jahr wird die Restschuld verzinst", "Der Zinssatz bleibt gleich", "Die Abweichung ist eine Folge der Rundung, kein Fehler"]
         },
         {
             "frage": "Warum wird bei der Restschuld nach 10 Jahren die Formel und nicht der Tilgungsplan verwendet?",

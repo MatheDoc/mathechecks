@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/18-umgebungen-sigma.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/16-umgebungen-sigma.html
 ---
 Es seien $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens die doppelte Standardabweichung vom Erwartungswert abweicht?"
 

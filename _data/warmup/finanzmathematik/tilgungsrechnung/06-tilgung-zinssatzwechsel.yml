@@ -3,7 +3,7 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: finanzmathematik__tilgungsrechnung__06
-abschluss: '<p>Beim Zinssatzwechsel wird die Restschuld zum Zeitpunkt des Wechsels wie ein neues Darlehen behandelt: neues $K_0=RK_k$, neue Laufzeit $=$ Restlaufzeit, neuer Zinsfaktor. Ab dem Wechsel rechnest du auch die Zinsen mit dem neuen Zinssatz.</p>'
+abschluss: '<p>Beim Zinssatzwechsel wird die Restschuld zum Zeitpunkt des Wechsels wie ein neues Darlehen behandelt: neues $K_0=RK_k$, neue Laufzeit $=$ Restlaufzeit, neuer Zinsfaktor. Die Restschuld beim Wechsel berechnest du noch mit dem alten Zinssatz.</p>'
 karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
@@ -36,7 +36,6 @@ karten:
         - { id: a1, text: '1. ursprüngliche Annuität', gleichung: '$A=16\,803{,}93$ €' }
         - { id: rk, text: '2. Restschuld beim Wechsel', gleichung: '$RK_5=200\,604{,}17$ €' }
         - { id: a2, text: '3. neue Annuität', gleichung: '$A_{\text{neu}}=18\,679{,}02$ €' }
-        - { id: fj, text: '4. Zinsen und Tilgung im 6. Jahr', gleichung: '$Z_6=9\,027{,}19$ €, $T_6=9\,651{,}83$ €' }
     schritte:
       - typ: aufdecken
         frage: '<strong>1.</strong> Ursprüngliche Annuität mit den Daten vom Anfang'
@@ -63,11 +62,6 @@ karten:
         hinweis: 'Neu geliehen wird nur die Restschuld, und zwar für die verbleibenden Jahre.'
         danach: '$$A_{\text{neu}}=\frac{200\,604{,}17\cdot 1{,}045^{15}\cdot 0{,}045}{1{,}045^{15}-1}\approx 18\,679{,}02\,\text{€}$$'
         zeige: { eintraege: [a2] }
-      - typ: aufdecken
-        frage: '<strong>4.</strong> Zinsen und Tilgung im 6. Jahr'
-        knopf: 'Rechnung zeigen'
-        text: '<p>Ab dem Wechsel gilt der <strong>neue</strong> Zinssatz und die <strong>neue</strong> Annuität:</p>$$\begin{align*}Z_6&=200\,604{,}17\cdot 0{,}045\approx 9\,027{,}19\,\text{€}\\ T_6&=18\,679{,}02-9\,027{,}19=9\,651{,}83\,\text{€}\end{align*}$$'
-        zeige: { eintraege: [fj] }
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -95,10 +89,3 @@ karten:
           - { label: '$A_{\text{neu}}=$', loesung: 7069.06, toleranz: 1, einheit: '€' }
         hinweis: 'Restschuld als $K_0$, $q=1{,}04$ und die Restlaufzeit $n=10$.'
         danach: '$$A_{\text{neu}}=\frac{57\,336{,}37\cdot 1{,}04^{10}\cdot 0{,}04}{1{,}04^{10}-1}\approx 7\,069{,}06\,\text{€}$$'
-      - typ: eingabe
-        layout: zeile
-        frage: 'Wie hoch sind Zinsen und Tilgung im 11. Jahr?'
-        felder:
-          - { label: '$Z_{11}=$', loesung: 2293.45, toleranz: 0.5, einheit: '€', aria: 'Zinsen im 11. Jahr' }
-          - { label: '$T_{11}=$', loesung: 4775.61, toleranz: 1, einheit: '€', aria: 'Tilgung im 11. Jahr' }
-        hinweis: 'Zinsen mit dem <em>neuen</em> Zinssatz: $Z_{11}=57\,336{,}37\cdot 0{,}04$. Tilgung mit der <em>neuen</em> Annuität: $T_{11}=7\,069{,}06-Z_{11}$.'

@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/10-npk-k.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/08-npk-k.html
 ---
 Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 158 User teil. Man weiß, dass jeder 2. User der Influencerin folgt. Wie viele Follower der Influencerin dürfen höchstens in der Stichprobe vorhanden sein, damit die Wahrscheinlichkeit für mindestens diese Anzahl der Follower der Influencerin mindestens 87% beträgt?
 

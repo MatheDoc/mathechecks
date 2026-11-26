@@ -1090,1076 +1090,6 @@
       <text>stochastik__binomialverteilung__03-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X=4)\) durch kumulierte Wahrscheinlichkeiten ausgedrückt?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Dieselbe kumulierte Wahrscheinlichkeit subtrahiert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Einzelwahrscheinlichkeit für 5 statt 4 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis zu höchstens 4 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-02</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X\geq5)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Grenze 5 fälschlich aus dem Ereignis ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mindestens mit höchstens verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur die Einzelwahrscheinlichkeit für 5 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-03</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(3\leq X\leq7)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq2)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze 3 fälschlich ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)+P(X\leq2)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Kumulierte Anteile addiert statt subtrahiert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq3)-P(X\leq7)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-04</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Welche kumulierte Wahrscheinlichkeit ist gleich \(P(X<6)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Strenge Grenze 6 eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis gebildet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Grenze um zwei statt um eins verringert</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-05</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Wie wird \(P(X>6)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq6)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Den Wert 6 fälschlich eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mehr als mit höchstens verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq6)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur die Einzelwahrscheinlichkeit für 7 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-06</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Wie wird \(P(2<X\leq8)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq2)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Den ausgeschlossenen Wert 2 wieder eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Den eingeschlossenen Wert 3 ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq8)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur das Gegenereignis zur Obergrenze gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-07</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(4\leq X<9)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq9)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Ausgeschlossene Obergrenze 9 eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Eingeschlossene Untergrenze 4 ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq9)-P(X\leq4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Beide Randwerte falsch behandelt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-08</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Differenz ergibt \(P(X=1)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq0)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq2)-P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Einzelwahrscheinlichkeit für 2 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Identische Werte subtrahiert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis zu höchstens 1 gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-09</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X\geq1)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq0)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Trefferzahl 1 fälschlich ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mindestens 1 mit höchstens 1 verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq0)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur genau einen Treffer berechnet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__03-10</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(2{,}4\leq X\leq6{,}8)\) kumuliert angegeben?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)-P(X\leq2)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq2)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze nach außen aufgerundet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze 3 fälschlich ausgeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Beide Grenzen nach außen gerundet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="category">
-    <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__04</text>
-    </category>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-01</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(20;0{,}1)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(X=3)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(3;3;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;3;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze 0 statt 3 eingesetzt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(3;20;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze \(n\) statt 3 eingesetzt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(3;3;0{,}1;20)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(n\) und \(p\) vertauscht</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-02</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(20;0{,}1)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(X\leq4)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(0;4;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(4;4;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur genau 4 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(4;20;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mindestens 4 statt höchstens 4 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;20;4;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obergrenze und Versuchsanzahl vertauscht</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-03</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(20;0{,}1)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(X\geq6)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(6;20;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;6;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höchstens 6 statt mindestens 6 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(5;20;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze um eins zu klein gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(6;6;20;0{,}1)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur genau 6 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-04</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(12;0{,}25)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(2\leq X\leq5)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(2;5;12;0{,}25)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(1;5;12;0{,}25)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze um eins zu klein gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(2;6;12;0{,}25)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze um eins zu groß gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(2;5;0{,}25;12)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(n\) und \(p\) vertauscht</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-05</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(15;0{,}4)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(X<5)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(0;4;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;5;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Strenge Grenze 5 eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(5;15;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Mindestens 5 statt weniger als 5 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(4;4;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur genau 4 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-06</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(15;0{,}4)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(X>5)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(6;15;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(5;15;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Ausgeschlossenen Wert 5 eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;5;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höchstens 5 statt mehr als 5 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(6;6;15;0{,}4)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Nur genau 6 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-07</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(10;0{,}3)\): Welche Eingabe \(Bcd(a;b;n;p)=P(a\leq X\leq b)\) passt zu \(P(1<X\leq4)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(Bcd(2;4;10;0{,}3)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(1;4;10;0{,}3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Ausgeschlossene Untergrenze 1 eingeschlossen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(2;5;10;0{,}3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze um eins zu groß gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(Bcd(0;4;10;0{,}3)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Alle Werte ab 0 statt ab 2 eingegeben</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-08</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Bei \(Bcd(a;b;n;p)\): Wofür steht \(a\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>Untere ganzzahlige Intervallgrenze</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Obere ganzzahlige Intervallgrenze</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(a\) mit \(b\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Versuchsanzahl</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(a\) mit \(n\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Trefferwahrscheinlichkeit</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(a\) mit \(p\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-09</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Bei \(Bcd(a;b;n;p)\): Wofür steht \(b\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>Obere ganzzahlige Intervallgrenze</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Untere ganzzahlige Intervallgrenze</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(b\) mit \(a\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Versuchsanzahl</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(b\) mit \(n\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Nietenwahrscheinlichkeit</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(b\) mit \(1-p\) verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__04-10</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(20;0{,}1)\): Höchstens \(33\%\) Treffer. Welche Eingabegrenzen passen, da \(0{,}33\cdot20=6{,}6\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(a=0,\ b=6\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(a=0,\ b=7\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze nach außen auf 7 gerundet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(a=6,\ b=20\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höchstens als mindestens 6 gedeutet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(a=7,\ b=20\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Höchstens als mindestens 7 gedeutet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="category">
-    <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__05</text>
-    </category>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__05-01</text>
-    </name>
-    <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(1;0{,}3)\): Wie groß ist \(P(X=1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
@@ -2210,7 +1140,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-02</text>
+      <text>stochastik__binomialverteilung__03-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(1;0{,}3)\): Wie groß ist \(P(X=0)\)?</p>]]></text>
@@ -2263,7 +1193,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-03</text>
+      <text>stochastik__binomialverteilung__03-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X=2)\)?</p>]]></text>
@@ -2316,7 +1246,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-04</text>
+      <text>stochastik__binomialverteilung__03-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X\geq1)\)?</p>]]></text>
@@ -2369,7 +1299,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-05</text>
+      <text>stochastik__binomialverteilung__03-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X=1)\)?</p>]]></text>
@@ -2422,7 +1352,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-06</text>
+      <text>stochastik__binomialverteilung__03-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(3;1)\): Wie groß ist \(P(2\leq X\leq3)\)?</p>]]></text>
@@ -2475,7 +1405,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-07</text>
+      <text>stochastik__binomialverteilung__03-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(4;0)\): Wie groß ist \(P(X\leq1)\)?</p>]]></text>
@@ -2528,7 +1458,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-08</text>
+      <text>stochastik__binomialverteilung__03-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei 20 Würfen bedeutet Treffer „Sechs“. Gesucht ist die Wahrscheinlichkeit für höchstens drei Sechsen. Welcher Ansatz passt?</p>]]></text>
@@ -2581,7 +1511,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-09</text>
+      <text>stochastik__binomialverteilung__03-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei 10 Schüssen sind höchstens \(26\%\) Treffer gesucht. Welche ganzzahlige Grenze gilt?</p>]]></text>
@@ -2634,7 +1564,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__05-10</text>
+      <text>stochastik__binomialverteilung__03-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei \(X\sim B(2;0{,}5)\) ist \(P(X\leq0)=0{,}25\). Wie groß ist \(P(X\geq1)\)?</p>]]></text>
@@ -2687,12 +1617,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__06</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__04</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-01</text>
+      <text>stochastik__binomialverteilung__04-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Ein Einzelwahrscheinlichkeits-Histogramm hat bei \(k=3\) die Balkenhöhe \(0{,}24\). Was ist \(P(X=3)\)?</p>]]></text>
@@ -2745,7 +1675,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-02</text>
+      <text>stochastik__binomialverteilung__04-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die Einzelbalken bei \(k=2,3,4\) haben die Höhen \(0{,}15;0{,}25;0{,}20\). Wie groß ist \(P(2\leq X\leq4)\)?</p>]]></text>
@@ -2798,7 +1728,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-03</text>
+      <text>stochastik__binomialverteilung__04-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die Einzelbalken bei \(k=5,6,7\) sind \(0{,}18;0{,}12;0{,}05\). Wie groß ist \(P(X\geq6)\), wenn für größere \(k\) keine Balkenhöhe mehr positiv ist?</p>]]></text>
@@ -2851,7 +1781,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-04</text>
+      <text>stochastik__binomialverteilung__04-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die Einzelbalken bei \(k=0,1,2\) sind \(0{,}10;0{,}30;0{,}40\). Wie groß ist \(P(X<2)\)?</p>]]></text>
@@ -2904,7 +1834,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-05</text>
+      <text>stochastik__binomialverteilung__04-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Was gibt die Höhe eines Balkens über \(k\) in einem Histogramm der Einzelwahrscheinlichkeiten an?</p>]]></text>
@@ -2957,7 +1887,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-06</text>
+      <text>stochastik__binomialverteilung__04-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Einzelbalken: bei \(k=1\) Höhe \(0{,}2\), bei \(k=2\) Höhe \(0{,}3\). Wie groß ist \(P(1\leq X<3)\)?</p>]]></text>
@@ -3010,7 +1940,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-07</text>
+      <text>stochastik__binomialverteilung__04-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Einzelbalken: \(P(X=0)=0{,}1\), \(P(X=1)=0{,}4\), \(P(X=2)=0{,}3\). Wie groß ist \(P(X\leq1)\)?</p>]]></text>
@@ -3063,7 +1993,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-08</text>
+      <text>stochastik__binomialverteilung__04-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Einzelbalken bei \(k=3\) und \(k=4\) haben die Höhen \(0{,}22\) und \(0{,}18\). Welche Summe liefert \(P(3\leq X\leq4)\)?</p>]]></text>
@@ -3116,7 +2046,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-09</text>
+      <text>stochastik__binomialverteilung__04-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die einzigen positiven Einzelbalken liegen bei \(k=0,1,2\) mit Höhen \(0{,}25;0{,}50;0{,}25\). Wie groß ist \(P(X>0)\)?</p>]]></text>
@@ -3169,7 +2099,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__06-10</text>
+      <text>stochastik__binomialverteilung__04-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Balken werden für \(P(2<X\leq5)\) in einer Einzeldarstellung addiert?</p>]]></text>
@@ -3222,12 +2152,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__07</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__05</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-01</text>
+      <text>stochastik__binomialverteilung__05-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Ein kumulierter Balken bei \(k=4\) hat die Höhe \(0{,}70\). Was bedeutet sie?</p>]]></text>
@@ -3280,7 +2210,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-02</text>
+      <text>stochastik__binomialverteilung__05-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Kumulierte Höhen: bei \(k=3\) \(0{,}55\), bei \(k=4\) \(0{,}75\). Wie groß ist \(P(X=4)\)?</p>]]></text>
@@ -3333,7 +2263,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-03</text>
+      <text>stochastik__binomialverteilung__05-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die kumulierte Höhe bei \(k=5\) ist \(0{,}82\). Wie groß ist \(P(X\geq6)\)?</p>]]></text>
@@ -3386,7 +2316,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-04</text>
+      <text>stochastik__binomialverteilung__05-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Kumulierte Höhen: bei \(k=1\) \(0{,}25\), bei \(k=4\) \(0{,}80\). Wie groß ist \(P(2\leq X\leq4)\)?</p>]]></text>
@@ -3439,7 +2369,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-05</text>
+      <text>stochastik__binomialverteilung__05-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Höhen braucht man für \(P(X=7)\) in einer kumulierten Darstellung?</p>]]></text>
@@ -3492,7 +2422,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-06</text>
+      <text>stochastik__binomialverteilung__05-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die kumulierte Höhe bei \(k=2\) ist \(0{,}40\). Wie groß ist \(P(X>2)\)?</p>]]></text>
@@ -3545,7 +2475,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-07</text>
+      <text>stochastik__binomialverteilung__05-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Kumulierte Höhen: bei \(k=0\) \(0{,}10\), bei \(k=1\) \(0{,}35\). Wie groß ist \(P(X=1)\)?</p>]]></text>
@@ -3598,7 +2528,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-08</text>
+      <text>stochastik__binomialverteilung__05-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Kumulierte Höhen: bei \(k=4\) \(0{,}60\), bei \(k=8\) \(0{,}95\). Wie groß ist \(P(5\leq X\leq8)\)?</p>]]></text>
@@ -3651,7 +2581,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-09</text>
+      <text>stochastik__binomialverteilung__05-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Warum nehmen kumulierte Balkenhöhen mit wachsendem \(k\) nicht ab?</p>]]></text>
@@ -3704,7 +2634,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__07-10</text>
+      <text>stochastik__binomialverteilung__05-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die kumulierte Höhe bei \(k=6\) ist \(0{,}92\). Welcher Ausdruck liefert \(P(X\geq7)\)?</p>]]></text>
@@ -3757,12 +2687,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__08</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__06</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-01</text>
+      <text>stochastik__binomialverteilung__06-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei fester Trefferchance soll eine Mindestwahrscheinlichkeit für mindestens \(k\) Treffer erreicht werden. Welcher Parameter beschreibt die nötige Versuchsanzahl?</p>]]></text>
@@ -3815,7 +2745,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-02</text>
+      <text>stochastik__binomialverteilung__06-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq12)\geq0{,}30\). Für \(n=20\) gilt \(0{,}27\), für \(n=21\) gilt \(0{,}33\). Welches \(n\) passt?</p>]]></text>
@@ -3868,7 +2798,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-03</text>
+      <text>stochastik__binomialverteilung__06-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq8)\geq0{,}60\). Prüfwerte: \(n=14:0{,}58\), \(n=15:0{,}64\). Ergebnis?</p>]]></text>
@@ -3921,7 +2851,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-04</text>
+      <text>stochastik__binomialverteilung__06-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei festem \(p\) und festem \(k\): Wie verändert sich \(P(X\geq k)\) typischerweise, wenn \(n\) wächst?</p>]]></text>
@@ -3974,7 +2904,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-05</text>
+      <text>stochastik__binomialverteilung__06-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das größte \(n\) mit \(P(X\leq5)\geq0{,}70\). Prüfwerte: \(n=9:0{,}74\), \(n=10:0{,}68\). Ergebnis?</p>]]></text>
@@ -4027,7 +2957,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-06</text>
+      <text>stochastik__binomialverteilung__06-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welcher Ansatz passt zur Frage: Wie oft muss bei Trefferchance \(0{,}4\) mindestens versucht werden, damit mindestens 6 Treffer mit Wahrscheinlichkeit mindestens \(0{,}5\) auftreten?</p>]]></text>
@@ -4080,7 +3010,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-07</text>
+      <text>stochastik__binomialverteilung__06-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq4)>0{,}8\). Prüfwerte (exakt): \(n=7:0{,}80\), \(n=8:0{,}85\). Welches \(n\)?</p>]]></text>
@@ -4133,7 +3063,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-08</text>
+      <text>stochastik__binomialverteilung__06-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei einer Binomialverteilung wird nur \(n\) variiert. Welcher Verteilungsparameter bleibt unverändert?</p>]]></text>
@@ -4186,7 +3116,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-09</text>
+      <text>stochastik__binomialverteilung__06-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei fester Trefferchance wird die Mindestwahrscheinlichkeit für mindestens \(k\) Treffer erst mit 31 statt 30 Versuchen erreicht. Welches \(n\) ist mindestens nötig?</p>]]></text>
@@ -4239,7 +3169,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__08-10</text>
+      <text>stochastik__binomialverteilung__06-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Warum muss für \(P(X\geq k)>0\) stets \(n\geq k\) gelten?</p>]]></text>
@@ -4292,12 +3222,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__09</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__07</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-01</text>
+      <text>stochastik__binomialverteilung__07-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(n;p)\) sind \(n\), \(k\) und \(P(X\leq k)\) gegeben. Welcher Verteilungsparameter ist noch gesucht?</p>]]></text>
@@ -4350,7 +3280,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-02</text>
+      <text>stochastik__binomialverteilung__07-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(p\) in Hundertstelschritten mit \(P(X\leq10)\leq0{,}30\). Prüfwerte: \(p=0{,}40:0{,}34\), \(p=0{,}41:0{,}28\). Ergebnis?</p>]]></text>
@@ -4403,7 +3333,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-03</text>
+      <text>stochastik__binomialverteilung__07-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei festem \(n,k\): Wie verändert sich \(P(X\leq k)\), wenn \(p\) wächst?</p>]]></text>
@@ -4456,7 +3386,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-04</text>
+      <text>stochastik__binomialverteilung__07-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei festem \(n,k\): Wie verändert sich \(P(X\geq k)\), wenn \(p\) wächst?</p>]]></text>
@@ -4509,7 +3439,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-05</text>
+      <text>stochastik__binomialverteilung__07-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das größte \(p\) in Hundertstelschritten mit \(P(X\geq7)\leq0{,}25\). Prüfwerte: \(p=0{,}30:0{,}22\), \(p=0{,}31:0{,}27\). Ergebnis?</p>]]></text>
@@ -4562,7 +3492,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-06</text>
+      <text>stochastik__binomialverteilung__07-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welcher Ansatz bestimmt den Mindestanteil \(p\), sodass höchstens 12 Treffer mit Wahrscheinlichkeit höchstens \(0{,}2\) auftreten?</p>]]></text>
@@ -4615,7 +3545,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-07</text>
+      <text>stochastik__binomialverteilung__07-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(p\) in Zehntelschritten mit \(P(X\geq5)>0{,}60\). Prüfwerte (exakt): \(p=0{,}2:0{,}60\), \(p=0{,}3:0{,}72\). Ergebnis?</p>]]></text>
@@ -4668,7 +3598,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-08</text>
+      <text>stochastik__binomialverteilung__07-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei einer Binomialverteilung wird nur \(p\) variiert. Welcher Verteilungsparameter bleibt unverändert?</p>]]></text>
@@ -4721,7 +3651,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-09</text>
+      <text>stochastik__binomialverteilung__07-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Prüfwerte: \(p=0{,}54\) verfehlt die Bedingung, \(p=0{,}55\) erfüllt sie. Gesucht ist das kleinste \(p\) in Hundertstelschritten. Ergebnis?</p>]]></text>
@@ -4774,7 +3704,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__09-10</text>
+      <text>stochastik__binomialverteilung__07-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welcher Wertebereich ist für eine gesuchte Trefferwahrscheinlichkeit \(p\) zulässig?</p>]]></text>
@@ -4827,12 +3757,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__10</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__08</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-01</text>
+      <text>stochastik__binomialverteilung__08-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(n;p)\) sind \(n\) und \(p\) bekannt. Gesucht ist, wie viele Treffer mindestens mit 80 % Wahrscheinlichkeit auftreten. Welche Größe ist gesucht?</p>]]></text>
@@ -4885,7 +3815,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-02</text>
+      <text>stochastik__binomialverteilung__08-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das größte \(k\) mit \(P(X\geq k)\geq0{,}80\). Prüfwerte: \(k=4:0{,}84\), \(k=5:0{,}76\). Ergebnis?</p>]]></text>
@@ -4938,7 +3868,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-03</text>
+      <text>stochastik__binomialverteilung__08-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei festem \(n,p\): Wie verändert sich \(P(X\geq k)\), wenn \(k\) wächst?</p>]]></text>
@@ -4991,7 +3921,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-04</text>
+      <text>stochastik__binomialverteilung__08-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei festem \(n,p\): Wie verändert sich \(P(X\leq k)\), wenn \(k\) wächst?</p>]]></text>
@@ -5044,7 +3974,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-05</text>
+      <text>stochastik__binomialverteilung__08-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das kleinste \(k\) mit \(P(X\leq k)\geq0{,}90\). Prüfwerte: \(k=7:0{,}88\), \(k=8:0{,}93\). Ergebnis?</p>]]></text>
@@ -5097,7 +4027,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-06</text>
+      <text>stochastik__binomialverteilung__08-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welcher Ansatz passt zu „höchstens wie viele Treffer mit Wahrscheinlichkeit mindestens \(0{,}75\)“?</p>]]></text>
@@ -5150,7 +4080,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-07</text>
+      <text>stochastik__binomialverteilung__08-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Gesucht ist das größte \(k\) mit \(P(X\geq k)>0{,}50\). Prüfwerte (exakt): \(k=6:0{,}51\), \(k=7:0{,}50\). Ergebnis?</p>]]></text>
@@ -5203,7 +4133,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-08</text>
+      <text>stochastik__binomialverteilung__08-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine feste Binomialverteilung wird die Treffergrenze \(k\) variiert. Welche Größen bleiben unverändert?</p>]]></text>
@@ -5256,7 +4186,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-09</text>
+      <text>stochastik__binomialverteilung__08-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(12;p)\): Welcher Wert kann keine Treffergrenze \(k\) sein?</p>]]></text>
@@ -5309,7 +4239,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__10-10</text>
+      <text>stochastik__binomialverteilung__08-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für dieselbe Trefferzahl \(X\) gilt \(P(X\geq9)=0{,}85\), \(P(X\geq10)=0{,}75\). Welches größte \(k\) erfüllt \(P(X\geq k)\geq0{,}8\)?</p>]]></text>
@@ -5362,12 +4292,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__11</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__09</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-01</text>
+      <text>stochastik__binomialverteilung__09-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(4;0{,}5)\): Wie groß ist \(\mu\)?</p>]]></text>
@@ -5420,7 +4350,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-02</text>
+      <text>stochastik__binomialverteilung__09-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(4;0{,}5)\): Wie groß ist \(\sigma\)?</p>]]></text>
@@ -5473,7 +4403,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-03</text>
+      <text>stochastik__binomialverteilung__09-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(16;0{,}5)\): Wie groß ist \(\mu\)?</p>]]></text>
@@ -5526,7 +4456,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-04</text>
+      <text>stochastik__binomialverteilung__09-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(16;0{,}5)\): Wie groß ist \(\sigma\)?</p>]]></text>
@@ -5579,7 +4509,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-05</text>
+      <text>stochastik__binomialverteilung__09-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(25;0{,}2)\): Wie groß ist \(\mu\)?</p>]]></text>
@@ -5632,7 +4562,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-06</text>
+      <text>stochastik__binomialverteilung__09-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(25;0{,}2)\): Wie groß ist \(\sigma\)?</p>]]></text>
@@ -5685,7 +4615,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-07</text>
+      <text>stochastik__binomialverteilung__09-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(9;\frac{1}{3})\): Wie groß ist \(\mu\)?</p>]]></text>
@@ -5738,7 +4668,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-08</text>
+      <text>stochastik__binomialverteilung__09-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(9;\frac{1}{3})\): Wie groß ist \(\sigma\)?</p>]]></text>
@@ -5791,7 +4721,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-09</text>
+      <text>stochastik__binomialverteilung__09-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel berechnet den Erwartungswert einer Binomialverteilung?</p>]]></text>
@@ -5844,7 +4774,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-10</text>
+      <text>stochastik__binomialverteilung__09-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel berechnet die Standardabweichung einer Binomialverteilung?</p>]]></text>
@@ -5897,12 +4827,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__12</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__10</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-01</text>
+      <text>stochastik__binomialverteilung__10-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=4\), \(\mu=2\). Wie groß ist \(p\)?</p>]]></text>
@@ -5955,7 +4885,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-02</text>
+      <text>stochastik__binomialverteilung__10-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=4\), \(\mu=2\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6008,7 +4938,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-03</text>
+      <text>stochastik__binomialverteilung__10-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=16\), \(\mu=8\). Wie groß ist \(p\)?</p>]]></text>
@@ -6061,7 +4991,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-04</text>
+      <text>stochastik__binomialverteilung__10-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=16\), \(\mu=8\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6114,7 +5044,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-05</text>
+      <text>stochastik__binomialverteilung__10-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=25\), \(\mu=5\). Wie groß ist \(p\)?</p>]]></text>
@@ -6167,7 +5097,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-06</text>
+      <text>stochastik__binomialverteilung__10-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=25\), \(\mu=5\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6220,7 +5150,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-07</text>
+      <text>stochastik__binomialverteilung__10-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=9\), \(\mu=3\). Wie groß ist \(p\)?</p>]]></text>
@@ -6273,7 +5203,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-08</text>
+      <text>stochastik__binomialverteilung__10-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=9\), \(\mu=3\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6326,7 +5256,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-09</text>
+      <text>stochastik__binomialverteilung__10-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung sind \(n\) und \(\mu\) bekannt. Welche Formel liefert \(p\)?</p>]]></text>
@@ -6379,7 +5309,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__12-10</text>
+      <text>stochastik__binomialverteilung__10-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(n=10\), \(\mu=0\). Welches Paar \((p;\sigma)\) folgt?</p>]]></text>
@@ -6432,12 +5362,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__13</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__11</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-01</text>
+      <text>stochastik__binomialverteilung__11-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=2\). Wie groß ist \(n\)?</p>]]></text>
@@ -6490,7 +5420,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-02</text>
+      <text>stochastik__binomialverteilung__11-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=2\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6543,7 +5473,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-03</text>
+      <text>stochastik__binomialverteilung__11-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\mu=5\). Wie groß ist \(n\)?</p>]]></text>
@@ -6596,7 +5526,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-04</text>
+      <text>stochastik__binomialverteilung__11-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\mu=5\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6649,7 +5579,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-05</text>
+      <text>stochastik__binomialverteilung__11-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=8\). Wie groß ist \(n\)?</p>]]></text>
@@ -6702,7 +5632,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-06</text>
+      <text>stochastik__binomialverteilung__11-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=8\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6755,7 +5685,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-07</text>
+      <text>stochastik__binomialverteilung__11-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\mu=3\). Wie groß ist \(n\)?</p>]]></text>
@@ -6808,7 +5738,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-08</text>
+      <text>stochastik__binomialverteilung__11-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\mu=3\). Wie groß ist \(\sigma\)?</p>]]></text>
@@ -6861,7 +5791,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-09</text>
+      <text>stochastik__binomialverteilung__11-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Wie wird \(\mu=np\) nach \(n\) umgestellt?</p>]]></text>
@@ -6914,7 +5844,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__13-10</text>
+      <text>stochastik__binomialverteilung__11-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=1\), \(\mu=6\). Welches Paar \((n;\sigma)\) folgt?</p>]]></text>
@@ -6967,12 +5897,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__14</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__12</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-01</text>
+      <text>stochastik__binomialverteilung__12-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung sind \(\mu\) und \(\sigma\) bekannt. Welche Identität hilft, \(p\) zu bestimmen?</p>]]></text>
@@ -7025,7 +5955,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-02</text>
+      <text>stochastik__binomialverteilung__12-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=2\), \(\sigma=1\). Wie groß ist \(p\)?</p>]]></text>
@@ -7078,7 +6008,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-03</text>
+      <text>stochastik__binomialverteilung__12-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=2\), \(\sigma=1\). Wie groß ist \(n\)?</p>]]></text>
@@ -7131,7 +6061,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-04</text>
+      <text>stochastik__binomialverteilung__12-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(p\)?</p>]]></text>
@@ -7184,7 +6114,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-05</text>
+      <text>stochastik__binomialverteilung__12-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
@@ -7237,7 +6167,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-06</text>
+      <text>stochastik__binomialverteilung__12-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=8\), \(\sigma=2\). Wie groß ist \(p\)?</p>]]></text>
@@ -7290,7 +6220,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-07</text>
+      <text>stochastik__binomialverteilung__12-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=8\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
@@ -7343,7 +6273,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-08</text>
+      <text>stochastik__binomialverteilung__12-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=3\), \(\sigma=\sqrt{2}\). Wie groß ist \(p\)?</p>]]></text>
@@ -7396,7 +6326,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-09</text>
+      <text>stochastik__binomialverteilung__12-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=3\), \(\sigma=\sqrt{2}\). Wie groß ist \(n\)?</p>]]></text>
@@ -7449,7 +6379,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__14-10</text>
+      <text>stochastik__binomialverteilung__12-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung sind \(p>0\) und \(\mu\) bekannt. Welche Formel liefert \(n\)?</p>]]></text>
@@ -7502,12 +6432,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__15</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__13</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-01</text>
+      <text>stochastik__binomialverteilung__13-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Wie wird \(\sigma^2=np(1-p)\) nach \(n\) umgestellt?</p>]]></text>
@@ -7560,7 +6490,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-02</text>
+      <text>stochastik__binomialverteilung__13-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=1\). Wie groß ist \(n\)?</p>]]></text>
@@ -7613,7 +6543,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-03</text>
+      <text>stochastik__binomialverteilung__13-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=1\). Wie groß ist \(\mu\)?</p>]]></text>
@@ -7666,7 +6596,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-04</text>
+      <text>stochastik__binomialverteilung__13-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
@@ -7719,7 +6649,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-05</text>
+      <text>stochastik__binomialverteilung__13-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=2\). Wie groß ist \(\mu\)?</p>]]></text>
@@ -7772,7 +6702,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-06</text>
+      <text>stochastik__binomialverteilung__13-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
@@ -7825,7 +6755,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-07</text>
+      <text>stochastik__binomialverteilung__13-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\sigma=2\). Wie groß ist \(\mu\)?</p>]]></text>
@@ -7878,7 +6808,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-08</text>
+      <text>stochastik__binomialverteilung__13-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\sigma=\sqrt{2}\). Wie groß ist \(n\)?</p>]]></text>
@@ -7931,7 +6861,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-09</text>
+      <text>stochastik__binomialverteilung__13-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\sigma=\sqrt{2}\). Wie groß ist \(\mu\)?</p>]]></text>
@@ -7984,7 +6914,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__15-10</text>
+      <text>stochastik__binomialverteilung__13-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}75\), \(\sigma=\sqrt{3}\). Welches Paar \((n;\mu)\) folgt?</p>]]></text>
@@ -8037,12 +6967,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__16</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__14</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-01</text>
+      <text>stochastik__binomialverteilung__14-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=7{,}5\). Welche reelle absolute Umgebung beschreibt „Abweichung höchstens 2“?</p>]]></text>
@@ -8095,7 +7025,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-02</text>
+      <text>stochastik__binomialverteilung__14-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Grenzen folgen aus \(5{,}5\leq X\leq9{,}5\)?</p>]]></text>
@@ -8148,7 +7078,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-03</text>
+      <text>stochastik__binomialverteilung__14-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=10\). Welches Ereignis bedeutet „höchstens 3 vom Erwartungswert abweichen“?</p>]]></text>
@@ -8201,7 +7131,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-04</text>
+      <text>stochastik__binomialverteilung__14-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=8{,}2\). Welche ganzzahlige Umgebung gehört zur absoluten Abweichung höchstens \(1{,}5\)?</p>]]></text>
@@ -8254,7 +7184,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-05</text>
+      <text>stochastik__binomialverteilung__14-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die Wahrscheinlichkeit der absoluten Umgebung \(\mu\pm2\) ist \(0{,}62\). Wie groß ist die Wahrscheinlichkeit für eine Abweichung von mehr als 2?</p>]]></text>
@@ -8307,7 +7237,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-06</text>
+      <text>stochastik__binomialverteilung__14-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welches Ereignis ist das Gegenereignis zu \(|X-\mu|\leq4\)?</p>]]></text>
@@ -8360,7 +7290,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-07</text>
+      <text>stochastik__binomialverteilung__14-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=12\). Welche Grenzen gehören zur absoluten Umgebung mit Radius 5?</p>]]></text>
@@ -8413,7 +7343,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-08</text>
+      <text>stochastik__binomialverteilung__14-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Rechnung bildet eine absolute Umgebung mit Radius \(d\)?</p>]]></text>
@@ -8466,7 +7396,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-09</text>
+      <text>stochastik__binomialverteilung__14-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für \(X\sim B(n;p)\) ist \(\mu=6\). Welche Schreibweise bedeutet eine absolute Abweichung von höchstens 1?</p>]]></text>
@@ -8519,7 +7449,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__16-10</text>
+      <text>stochastik__binomialverteilung__14-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die innere absolute Umgebung hat Wahrscheinlichkeit \(0{,}73\). Welcher Ausdruck berechnet die Wahrscheinlichkeit außerhalb?</p>]]></text>
@@ -8572,12 +7502,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__17</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__15</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-01</text>
+      <text>stochastik__binomialverteilung__15-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=10\). Welche reelle Umgebung beschreibt eine relative Abweichung von höchstens \(20\%\)?</p>]]></text>
@@ -8630,7 +7560,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-02</text>
+      <text>stochastik__binomialverteilung__15-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=7{,}5\). Wie groß ist der Radius einer relativen \(10\%\)-Umgebung?</p>]]></text>
@@ -8683,7 +7613,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-03</text>
+      <text>stochastik__binomialverteilung__15-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Grenzen folgen bei \(\mu=7{,}5\) und höchstens \(10\%\) Abweichung?</p>]]></text>
@@ -8736,7 +7666,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-04</text>
+      <text>stochastik__binomialverteilung__15-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=20\). Welche Grenzen gehören zur relativen Abweichung von höchstens \(15\%\)?</p>]]></text>
@@ -8789,7 +7719,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-05</text>
+      <text>stochastik__binomialverteilung__15-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Faktoren begrenzen eine relative \(r\)-Umgebung von \(\mu\)?</p>]]></text>
@@ -8842,7 +7772,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-06</text>
+      <text>stochastik__binomialverteilung__15-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die relative \(25\%\)-Umgebung hat Wahrscheinlichkeit \(0{,}80\). Wie groß ist die Wahrscheinlichkeit für mehr als \(25\%\) Abweichung?</p>]]></text>
@@ -8895,7 +7825,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-07</text>
+      <text>stochastik__binomialverteilung__15-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=12\). Welche ganzzahlige Umgebung gehört zu höchstens \(25\%\) Abweichung?</p>]]></text>
@@ -8948,7 +7878,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-08</text>
+      <text>stochastik__binomialverteilung__15-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welches Ereignis ist das Gegenereignis zu \(|X-\mu|\leq0{,}1\mu\)?</p>]]></text>
@@ -9001,7 +7931,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-09</text>
+      <text>stochastik__binomialverteilung__15-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Angabe kennzeichnet eine relative statt absolute Umgebung?</p>]]></text>
@@ -9054,7 +7984,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__17-10</text>
+      <text>stochastik__binomialverteilung__15-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=30\). Wie groß ist der Radius einer relativen \(20\%\)-Umgebung?</p>]]></text>
@@ -9107,12 +8037,12 @@
   </question>
   <question type="category">
     <category>
-      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__18</text>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__16</text>
     </category>
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-01</text>
+      <text>stochastik__binomialverteilung__16-01</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=10\) und \(\sigma=2\). Welche Grenzen hat die \(1\sigma\)-Umgebung?</p>]]></text>
@@ -9165,7 +8095,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-02</text>
+      <text>stochastik__binomialverteilung__16-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=10\) und \(\sigma=2\). Welche Grenzen hat die \(2\sigma\)-Umgebung?</p>]]></text>
@@ -9218,7 +8148,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-03</text>
+      <text>stochastik__binomialverteilung__16-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=7{,}5\) und \(\sigma=2{,}29\). Welche reellen Grenzen hat näherungsweise die \(2\sigma\)-Umgebung?</p>]]></text>
@@ -9271,7 +8201,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-04</text>
+      <text>stochastik__binomialverteilung__16-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Grenzen folgen aus \(2{,}92\leq X\leq12{,}08\)?</p>]]></text>
@@ -9324,7 +8254,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-05</text>
+      <text>stochastik__binomialverteilung__16-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=12{,}5\) und \(\sigma=1{,}5\). Welche ganzzahligen Grenzen hat die \(2\sigma\)-Umgebung?</p>]]></text>
@@ -9377,7 +8307,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-06</text>
+      <text>stochastik__binomialverteilung__16-06</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Rechnung bildet eine \(c\sigma\)-Umgebung?</p>]]></text>
@@ -9430,7 +8360,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-07</text>
+      <text>stochastik__binomialverteilung__16-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Die \(2\sigma\)-Umgebung hat Wahrscheinlichkeit \(0{,}96\). Wie groß ist die Wahrscheinlichkeit außerhalb?</p>]]></text>
@@ -9483,7 +8413,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-08</text>
+      <text>stochastik__binomialverteilung__16-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welches Ereignis ist das Gegenereignis zu \(|X-\mu|\leq2\sigma\)?</p>]]></text>
@@ -9536,7 +8466,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-09</text>
+      <text>stochastik__binomialverteilung__16-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es ist \(\mu=8\) und \(\sigma=\sqrt{2}\). Welche ganzzahligen Grenzen hat die \(1\sigma\)-Umgebung?</p>]]></text>
@@ -9589,7 +8519,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__18-10</text>
+      <text>stochastik__binomialverteilung__16-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Angabe kennzeichnet eine Sigma-Umgebung?</p>]]></text>

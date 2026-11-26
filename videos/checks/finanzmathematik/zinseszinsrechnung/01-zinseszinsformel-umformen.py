@@ -2,9 +2,10 @@
 
 Kernidee: Wo die Unbekannte in K_n = K_0 · q^n steht, entscheidet über das Werkzeug:
 allein → ausrechnen, Faktor → teilen, Basis → Wurzel, Exponent → Logarithmus.
-Beispiel: Musterbeispiel a) bis d) ohne Abweichung.
+Beispiel: Musterbeispiel a), b) und d). In c) andere Zahlen (K_n = 6 400 €, n = 10), damit der Zinssatz glatt
+herauskommt: q^10 = 1,28, p ≈ 2,50 % (genau 2,4993 %).
 """
-from manim import BOLD, DOWN, LEFT, RIGHT, UP, FadeIn, FadeOut, MathTex, Mobject, VGroup, Write
+from manim import BOLD, DOWN, RIGHT, UP, FadeIn, FadeOut, MathTex, Mobject, VGroup, Write
 
 from mcvideo import MCSzene, auftritt, aufzaehlung, betrag, formel, reihe, text, welle
 from mcvideo.theme import HERVOR, TEXT, TEXT_LEISE
@@ -97,8 +98,7 @@ class Video(MCSzene):
                 ergebnis("K_6", r"9\,552{,}42", euro=True),
             ],
             rechnung_ab=(0.62, 0.85),
-            sprechtext="Achttausend Euro, drei Prozent, sechs Jahre: Gesucht ist K n. "
-                       "K n steht schon allein. Also nur einsetzen und ausrechnen.",
+            sprechtext="Ist K n gesucht, steht es schon allein. Also nur einsetzen und ausrechnen.",
         )
 
         # ---------- K_0 gesucht ----------
@@ -118,20 +118,20 @@ class Video(MCSzene):
         # ---------- p gesucht ----------
         self.fall(
             "q", "Basis",
-            gegeben((r"K_0", r"5\,000", True), (r"K_n", r"6\,500", True), ("n", "8", False)),
+            gegeben((r"K_0", r"5\,000", True), (r"K_n", r"6\,400", True), ("n", "10", False)),
             [
                 reihe(
-                    hervor(formel(r"6\,500", "=", r"5\,000\cdot", "q", "^{8}", groesse=G_FORMEL), 3),
+                    hervor(formel(r"6\,400", "=", r"5\,000\cdot", "q", "^{10}", groesse=G_FORMEL), 3),
                     nebenbei(r"\mid :5\,000"), abstand=0.4,
                 ),
-                hervor(formel("q", "^{8}", "=", "1{,}3", groesse=G_FORMEL), 0),
-                hervor(formel("q", "=", r"\sqrt[8]{1{,}3}", r"\approx", "1{,}0333", groesse=G_FORMEL), 0, 4),
-                ergebnis("p", r"3{,}33\,\%"),
+                hervor(formel("q", "^{10}", "=", "1{,}28", groesse=G_FORMEL), 0),
+                hervor(formel("q", "=", r"\sqrt[10]{1{,}28}", r"\approx", "1{,}0250", groesse=G_FORMEL), 0, 4),
+                ergebnis("p", r"2{,}50\,\%"),
             ],
             rechnung_ab=(0.2, 0.45, 0.6, 0.85),
             sprechtext="Ist p gesucht, steht die Unbekannte in der Basis. "
-                       "Wir teilen durch K null und ziehen die achte Wurzel. "
-                       "Aus q gleich eins Komma null drei drei drei wird p gleich drei Komma drei drei Prozent.",
+                       "Wir teilen durch K null und ziehen die zehnte Wurzel. "
+                       "Aus q gleich eins Komma null zwei fünf wird p gleich zweieinhalb Prozent.",
         )
 
         # ---------- n gesucht ----------
@@ -146,16 +146,28 @@ class Video(MCSzene):
                 ),
                 hervor(formel("1{,}04", "^{n}", "=", "1{,}5", groesse=G_FORMEL), 1),
                 log,
+                reihe(
+                    text("im TR auch:", groesse=G_TEXT, farbe=TEXT_LEISE),
+                    hervor(formel("n", "=", r"\log_{1{,}04}(1{,}5)", groesse=G_FORMEL), 0),
+                    abstand=0.35, grundlinie=True,
+                ),
             ],
-            rechnung_ab=(0.2, 0.45, 0.72),
+            rechnung_ab=(0.16, 0.34, 0.52, 0.8),
             sprechtext="Bei n steht die Unbekannte im Exponenten. Auch hier teilen wir zuerst durch K null. "
                        "Dann holt der Logarithmus n herunter: Nach etwa zehn Komma drei vier Jahren "
-                       "sind es fünfzehntausend Euro.",
+                       "sind es fünfzehntausend Euro. Im Taschenrechner geht auch: "
+                       "Logarithmus zur Basis eins Komma null vier von eins Komma fünf.",
         )
 
         # ---------- Kurzfassung ----------
-        def gesucht(tex: str) -> MathTex:
-            return formel(tex, groesse=60, farbe=HERVOR)
+        groessen = [formel(tex, groesse=60, farbe=HERVOR) for tex in ("K_n", "K_0", "p", "n")]
+        breite = max(groesse.width for groesse in groessen)
+
+        def gesucht(groesse: MathTex) -> VGroup:
+            """Gesuchte Größe in Orange, dahinter ein weißer Doppelpunkt; die Doppelpunkte stehen bündig untereinander."""
+            zeile = reihe(groesse, text(":", groesse=44), abstand=0.08, grundlinie=True)
+            zeile[1].shift((groesse.get_left()[0] + breite + 0.08 - zeile[1].get_left()[0]) * RIGHT)
+            return zeile
 
         def schritt(*teile: str) -> VGroup:
             """Kurzer Satz; Teile mit Formelzeichen werden als Formel gesetzt."""
@@ -165,20 +177,17 @@ class Video(MCSzene):
             ], abstand=0.16, grundlinie=True)
 
         punkte = aufzaehlung(
-            (gesucht("K_n"), schritt("einsetzen")),
-            (gesucht("K_0"), schritt("durch", "q^n", "teilen")),
-            (gesucht("p"), schritt("durch", "K_0", "teilen, Wurzel")),
-            (gesucht("n"), schritt("durch", "K_0", "teilen, Logarithmus")),
+            (gesucht(groessen[0]), schritt("einsetzen")),
+            (gesucht(groessen[1]), schritt("durch", "q^n", "teilen")),
+            (gesucht(groessen[2]), schritt("durch", "K_0", "teilen, Wurzel")),
+            (gesucht(groessen[3]), schritt("durch", "K_0", "teilen, Logarithmus")),
             abstand=0.6,
         )
-        titel = text("gesucht:", groesse=G_TEXT, farbe=TEXT_LEISE)
-        self.tafel(titel, punkte, abstand=0.5)
-        titel.align_to(punkte, LEFT)
+        self.tafel(punkte)
         with self.sprich(
             "Kurz gesagt: K n gesucht: einsetzen. K null gesucht: durch q hoch n teilen. "
             "Bei p und n erst durch K null teilen, dann Wurzel oder Logarithmus."
         ):
-            self.play(FadeIn(titel), run_time=0.3)
             for zeile, teil, beginn in zip(punkte, ("K_n", "K_0", "q", "n"), (0.1, 0.32, 0.58, 0.7)):
                 self.warte_bis(beginn)
                 self.play(auftritt(zeile), welle(self.zzf[TEILE[teil]], HERVOR), run_time=0.5)

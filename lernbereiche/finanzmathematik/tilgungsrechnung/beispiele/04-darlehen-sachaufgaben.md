@@ -8,13 +8,16 @@ a) Der Betrieb nimmt ein Darlehen über $80\,000$ € zu $4\,\%$ auf, das in 10
 
 b) Der Betrieb nimmt ein Darlehen über $120\,000$ € zu $3\,\%$ auf und zahlt jährlich eine Annuität von $10\,000$ €. Nach wie vielen Jahren ist das Darlehen getilgt?
 
+c) Wie viel Zinsen zahlt der Betrieb für das Darlehen aus a) über die gesamte Laufzeit?
+
 **Schritt 1: Gegeben und gesucht klären**
 
 | Teilaufgabe | $K_0$ | $p$ | $n$ | $A$ | Formel |
 | a) | $80\,000$ € | $4\,\%$ | $10$ | gesucht | Annuitätenformel |
 | b) | $120\,000$ € | $3\,\%$ | gesucht | $10\,000$ € | $A = T_1 \cdot q^n$ |
+| c) | $80\,000$ € | $4\,\%$ | $10$ | aus a) | $n \cdot A - K_0$ |
 
-„Gleich hohe Jahresraten“ ist das Signalwort für die Annuität; „nach wie vielen Jahren getilgt“ fragt nach der Laufzeit.
+„Gleich hohe Jahresraten“ ist das Signalwort für die Annuität; „nach wie vielen Jahren getilgt“ fragt nach der Laufzeit; „Zinsen über die gesamte Laufzeit“ fragt nach allen Annuitäten abzüglich der Darlehenssumme.
 
 **Lösung zu a): Annuität**
 
@@ -34,3 +37,11 @@ n &= \frac{\ln 1{,}5625}{\ln 1{,}03} \approx 15{,}10
 Das Darlehen ist nach etwa $15{,}1$ Jahren getilgt: 15 volle Annuitäten und eine kleine Restzahlung im 16. Jahr.
 
 Kontrolle: Die Annuität muss größer sein als die Zinsen des ersten Jahres ($3\,600$ €), sonst würde die Schuld nie sinken.
+
+**Lösung zu c): Gesamtzinsen**
+
+In 10 Jahren zahlt der Betrieb 10 Annuitäten aus a). Davon ist alles, was über die Darlehenssumme hinausgeht, Zins:
+
+$$Z_{\text{gesamt}} = 10 \cdot 9\,863{,}28 - 80\,000 = 98\,632{,}80 - 80\,000 = 18\,632{,}80\,\text{€}$$
+
+Wegen der Rundungsdifferenz im letzten Jahr kann der tatsächliche Wert um wenige Cent abweichen.

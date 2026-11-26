@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/05-bereichswahrscheinlichkeiten-berechnung.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/03-bereichswahrscheinlichkeiten-berechnung.html
 ---
 Wir suchen die Wahrscheinlichkeiten der angegebenen Ereignisse
 

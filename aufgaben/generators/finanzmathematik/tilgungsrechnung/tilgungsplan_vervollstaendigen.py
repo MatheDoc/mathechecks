@@ -65,16 +65,12 @@ class TilgungsplanVervollstaendigenGenerator(TaskGenerator):
                 )
                 fragen = [
                     "Mit welchem Zinssatz wird das Darlehen verzinst?",
-                    f"Wie hoch ist die Tilgung im {k}. Jahr?",
                     f"Wie hoch ist die Restschuld am Ende des {k}. Jahres?",
-                    f"Wie hoch sind die Zinsen im {k + 1}. Jahr?",
                     f"Wie hoch ist die Restschuld am Ende des {k + 1}. Jahres?",
                 ]
                 antworten = [
                     numerical_finanz_zinssatz(p),
-                    numerical_finanz_tilgungsplan(z1.tilgung),
                     numerical_finanz_tilgungsplan(z1.rk_ende),
-                    numerical_finanz_tilgungsplan(z2.zinsen),
                     numerical_finanz_tilgungsplan(z2.rk_ende),
                 ]
             else:
@@ -91,15 +87,11 @@ class TilgungsplanVervollstaendigenGenerator(TaskGenerator):
                     f"Vervollständigen Sie die fehlenden Werte – auch rückwärts." + tabelle
                 )
                 fragen = [
-                    "Wie hoch ist die Annuität?",
-                    f"Wie hoch ist die Restschuld am Ende des {k}. Jahres?",
                     f"Wie hoch ist die Restschuld zu Beginn des {k}. Jahres?",
                     f"Wie hoch sind die Zinsen im {k}. Jahr?",
                     f"Wie hoch ist die Tilgung im {k}. Jahr?",
                 ]
                 antworten = [
-                    numerical_finanz_tilgungsplan(z2.annuitaet),
-                    numerical_finanz_tilgungsplan(z2.rk_anfang),
                     _rueckwaerts(z1.rk_anfang),
                     _rueckwaerts(z1.zinsen),
                     _rueckwaerts(z1.tilgung),

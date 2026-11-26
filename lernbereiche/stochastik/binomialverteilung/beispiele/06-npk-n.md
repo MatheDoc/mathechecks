@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/08-npk-n.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/06-npk-n.html
 ---
 Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Allgemeine Statistiken zeigen, dass 61% aller Gäste vegetarische Gerichte bestellen. Wie viele Gerichte müssen mindestens untersucht werden, damit die Wahrscheinlichkeit für mindestens 144 vegetarische Gerichte mindestens 29% beträgt?
 

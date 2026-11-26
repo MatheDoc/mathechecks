@@ -1,14 +1,14 @@
-# Warm-Up zu Check 09 „p mit Intervall-Wkt bestimmen“ (Binomialverteilung)
+# Warm-Up zu Check 07 „p mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Aufbau wie Check 08 (n bestimmen), nur mit p: p lässt sich nur ausprobieren, P(X≥k) steigt, P(X≤k) fällt mit p,
+# Aufbau wie Check 06 (n bestimmen), nur mit p: p lässt sich nur ausprobieren, P(X≥k) steigt, P(X≤k) fällt mit p,
 # Nachbarn-Paar im Raster 0,01 (Ergebnis auf 2 Nachkommastellen).
 # „kleinster Wert“ = kleinstes p, für das die Bedingung gilt; „größter Wert“ = größtes p, für das sie gilt.
-# Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 08 bleiben a, b und n gleich, nur p wechselt.
+# Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 06 bleiben a, b und n gleich, nur p wechselt.
 # Alle vier Kombinationen des Trainings kommen vor: Zuschauen (kleinster/≥/≥, größter/≤/≥), Mitmachen (größter/≥/≤, kleinster/≤/≤).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
-check_id: stochastik__binomialverteilung__09
+check_id: stochastik__binomialverteilung__07
 abschluss: '<p>Im Training stehen $n$, $k$ und eine Bedingung wie $P(X\leq 142)\leq 0{,}31$, und du suchst $p$ auf 2 Nachkommastellen. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $p\approx k/n$, prüfe, ob $P$ zu groß oder zu klein ist, und taste dich mit dem Taschenrechner in Schritten von $0{,}01$ an die Schwelle heran. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Bei „kleinster Wert von $p$“ gibst du das kleinste $p$ an, bei dem sie gilt, bei „größter Wert“ das größte. Gib $p$ im Taschenrechner als Dezimalzahl ein, nicht in Prozent.</p>'
 karten:
 

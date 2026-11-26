@@ -20,7 +20,7 @@
       <text>stochastik__binomialverteilung__11-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(4;0{,}5)\): Wie groß ist \(\mu\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=2\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Versuchsanzahl unverändert übernommen</p>]]></text>
+        <text><![CDATA[<p>\(\mu p\) statt \(\mu/p\) berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Trefferwahrscheinlichkeit statt Erwartungswert gewählt</p>]]></text>
+        <text><![CDATA[<p>Erwartungswert als Versuchsanzahl übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Durch \(p\) geteilt statt mit \(p\) multipliziert</p>]]></text>
+        <text><![CDATA[<p>Wahrscheinlichkeiten multipliziert statt \(n\) bestimmt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__binomialverteilung__11-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(4;0{,}5)\): Wie groß ist \(\sigma\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=2\). Wie groß ist \(\sigma\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -105,19 +105,19 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert statt Standardabweichung gewählt</p>]]></text>
+        <text><![CDATA[<p>Erwartungswert gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur \(1-p\) verwendet</p>]]></text>
+        <text><![CDATA[<p>Trefferwahrscheinlichkeit gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(\sqrt{2}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Faktor \(1-p\) unter der Wurzel vergessen</p>]]></text>
+        <text><![CDATA[<p>Faktor \(1-p\) vergessen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__binomialverteilung__11-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(16;0{,}5)\): Wie groß ist \(\mu\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\mu=5\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <text><![CDATA[<p>\(25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(16\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(n\) statt \(np\) verwendet</p>]]></text>
+        <text><![CDATA[<p>\(\mu p\) statt \(\mu/p\) berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Standardabweichung statt Erwartungswert gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(32\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Durch \(p\) geteilt</p>]]></text>
+        <text><![CDATA[<p>\(\mu(1-p)\) statt \(\mu/p\) berechnet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,113 +179,7 @@
       <text>stochastik__binomialverteilung__11-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(16;0{,}5)\): Wie groß ist \(\sigma\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(2\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Varianz statt Standardabweichung gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert statt Standardabweichung gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sqrt{8}\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Faktor \(1-p\) vergessen</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__11-05</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(25;0{,}2)\): Wie groß ist \(\mu\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(5\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(20\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>\(n(1-p)\) statt \(np\) berechnet</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(25\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Versuchsanzahl übernommen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Trefferwahrscheinlichkeit statt Erwartungswert gewählt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>stochastik__binomialverteilung__11-06</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(25;0{,}2)\): Wie groß ist \(\sigma\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\mu=5\). Wie groß ist \(\sigma\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -323,7 +217,7 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert statt Standardabweichung gewählt</p>]]></text>
+        <text><![CDATA[<p>Erwartungswert gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
@@ -335,10 +229,10 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>stochastik__binomialverteilung__11-07</text>
+      <text>stochastik__binomialverteilung__11-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(9;\frac{1}{3})\): Wie groß ist \(\mu\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=8\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +256,133 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <text><![CDATA[<p>\(16\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(6\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartete Nieten statt Treffer berechnet</p>]]></text>
+        <text><![CDATA[<p>\(\mu p\) statt \(\mu/p\) berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>\(1/p\) ohne Faktor \(\mu\) berechnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__11-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\mu=8\). Wie groß ist \(\sigma\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Varianz statt Standardabweichung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erwartungswert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\sqrt{8}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Faktor \(1-p\) vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__11-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\mu=3\). Wie groß ist \(n\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
       <text><![CDATA[<p>\(9\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Versuchsanzahl übernommen</p>]]></text>
+        <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\frac{1}{3}\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Trefferwahrscheinlichkeit statt Erwartungswert gewählt</p>]]></text>
+        <text><![CDATA[<p>\(\mu p\) statt \(\mu/p\) berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Durch \(1-p\) statt durch \(p\) geteilt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__binomialverteilung__11-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(9;\frac{1}{3})\): Wie groß ist \(\sigma\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=\frac{1}{3}\), \(\mu=3\). Wie groß ist \(\sigma\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -444,7 +444,7 @@
       <text>stochastik__binomialverteilung__11-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welche Formel berechnet den Erwartungswert einer Binomialverteilung?</p>]]></text>
+      <text><![CDATA[<p>Wie wird \(\mu=np\) nach \(n\) umgestellt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\mu=np\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\frac{\mu}{p}\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\mu=n(1-p)\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\frac{p}{\mu}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartete Nieten statt Treffer berechnet</p>]]></text>
+        <text><![CDATA[<p>Quotient umgekehrt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\mu=\sqrt{np(1-p)}\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\mu p\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Standardabweichungsformel gewählt</p>]]></text>
+        <text><![CDATA[<p>Multipliziert statt dividiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\mu=n/p\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\mu-p\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Multiplikation durch Division ersetzt</p>]]></text>
+        <text><![CDATA[<p>Subtrahiert statt dividiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__binomialverteilung__11-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welche Formel berechnet die Standardabweichung einer Binomialverteilung?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=1\), \(\mu=6\). Welches Paar \((n;\sigma)\) folgt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\sigma=\sqrt{np(1-p)}\)</p>]]></text>
+      <text><![CDATA[<p>\((6;0)\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma=np(1-p)\)</p>]]></text>
+      <text><![CDATA[<p>\((1;6)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz statt Standardabweichung angegeben</p>]]></text>
+        <text><![CDATA[<p>\(p\) als \(n\) und \(\mu\) als \(\sigma\) verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma=np\)</p>]]></text>
+      <text><![CDATA[<p>\((6;1)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswertformel gewählt</p>]]></text>
+        <text><![CDATA[<p>Bei sicherem Treffer eine Streuung 1 angenommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma=\sqrt{np}\)</p>]]></text>
+      <text><![CDATA[<p>\((0;6)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Faktor \(1-p\) vergessen</p>]]></text>
+        <text><![CDATA[<p>Versuchsanzahl und Standardabweichung vertauscht</p>]]></text>
       </feedback>
     </answer>
   </question>

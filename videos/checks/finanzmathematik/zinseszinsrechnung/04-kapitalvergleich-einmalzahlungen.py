@@ -137,23 +137,20 @@ class Video(MCSzene):
             reihe(text("B: insgesamt", groesse=G_TEXT), betrag(r"55\,000", groesse=44), abstand=0.25),
             text("heute aber weniger wert als A", groesse=G_TEXT),
         ).arrange(DOWN, buff=0.2)
-        zahlt = text("Wer zahlt, wählt den niedrigsten.", groesse=G_TEXT, farbe=TEXT_LEISE)
-        block = self.tafel(VGroup(bekommt, wahl).arrange(DOWN, buff=0.3), summe, zahlt, abstand=0.7)
+        block = self.tafel(VGroup(bekommt, wahl).arrange(DOWN, buff=0.3), summe, abstand=0.7)
         with self.sprich(
             "Die Fahrschule bekommt das Geld, sie wählt also den höchsten Barwert: Angebot C. "
-            "B bringt zwar mehr als A, ist heute aber weniger wert. Wer zahlt, nimmt den niedrigsten Barwert."
+            "B bringt zwar mehr als A, ist heute aber weniger wert."
         ):
             self.play(auftritt(bekommt), run_time=0.5)
-            self.warte_bis(0.3)
+            self.warte_bis(0.4)
             self.play(
                 auftritt(wahl), self.plan.barwerte["C"].animate.set_color(HERVOR),
                 self.plan.namen["C"].animate.set_color(HERVOR), run_time=0.6,
             )
             self.play(self.plan.betone("C"), run_time=0.6)
-            self.warte_bis(0.5)
+            self.warte_bis(0.66)
             self.play(auftritt(summe), self.plan.betone("B"), run_time=0.6)
-            self.warte_bis(0.78)
-            self.play(auftritt(zahlt), run_time=0.5)
         self.wait(0.6)
         self.play(FadeOut(block, shift=0.25 * UP), run_time=0.4)
 

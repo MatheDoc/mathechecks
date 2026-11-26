@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/11-kennzahlen-n-p-gegeben.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/09-kennzahlen-n-p-gegeben.html
 ---
 Eine Münze wird 20-mal geworfen. Dann ist die Anzahl der Kopf-Würfe eine binomialverteilte Zufallsgröße mit den Parametern $n=20$ und $p=0{,}5$. Wir erhalten so:
 

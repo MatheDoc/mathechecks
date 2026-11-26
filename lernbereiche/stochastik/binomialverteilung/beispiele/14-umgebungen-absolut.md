@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/16-umgebungen-absolut.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/14-umgebungen-absolut.html
 ---
 Es seien $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $2$ vom Erwartungswert abweicht?
 

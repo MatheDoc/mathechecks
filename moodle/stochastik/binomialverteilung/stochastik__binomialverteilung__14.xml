@@ -20,7 +20,7 @@
       <text>stochastik__binomialverteilung__14-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung sind \(\mu\) und \(\sigma\) bekannt. Welche Identität hilft, \(p\) zu bestimmen?</p>]]></text>
+      <text><![CDATA[<p>Es ist \(\mu=7{,}5\). Welche reelle absolute Umgebung beschreibt „Abweichung höchstens 2“?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\sigma^2=\mu(1-p)\)</p>]]></text>
+      <text><![CDATA[<p>\(5{,}5\leq X\leq9{,}5\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma=\mu(1-p)\)</p>]]></text>
+      <text><![CDATA[<p>\(5\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Quadrat der Standardabweichung vergessen</p>]]></text>
+        <text><![CDATA[<p>Grenzen bereits nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma^2=\mu p\)</p>]]></text>
+      <text><![CDATA[<p>\(2\leq X\leq7{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Faktor \(1-p\) durch \(p\) ersetzt</p>]]></text>
+        <text><![CDATA[<p>Abweichung 2 als untere Grenze verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sigma^2=\mu/p\)</p>]]></text>
+      <text><![CDATA[<p>\(7{,}5\leq X\leq9{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Multiplikation mit \(1-p\) durch Division durch \(p\) ersetzt</p>]]></text>
+        <text><![CDATA[<p>Nur die obere Hälfte der Umgebung betrachtet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__binomialverteilung__14-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=2\), \(\sigma=1\). Wie groß ist \(p\)?</p>]]></text>
+      <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Grenzen folgen aus \(5{,}5\leq X\leq9{,}5\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(6\leq X\leq9\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <text><![CDATA[<p>\(5\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma\) direkt als \(p\) verwendet</p>]]></text>
+        <text><![CDATA[<p>Beide Grenzen nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <text><![CDATA[<p>\(6\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert als Wahrscheinlichkeit verwendet</p>]]></text>
+        <text><![CDATA[<p>Obere Grenze nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <text><![CDATA[<p>\(5\leq X\leq9\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma^2/\mu^2\) statt \(1-\sigma^2/\mu\) berechnet</p>]]></text>
+        <text><![CDATA[<p>Untere Grenze nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__binomialverteilung__14-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=2\), \(\sigma=1\). Wie groß ist \(n\)?</p>]]></text>
+      <text><![CDATA[<p>Es ist \(\mu=10\). Welches Ereignis bedeutet „höchstens 3 vom Erwartungswert abweichen“?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(7\leq X\leq13\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <text><![CDATA[<p>\(3\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert als Versuchsanzahl übernommen</p>]]></text>
+        <text><![CDATA[<p>Abweichung als untere Grenze verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <text><![CDATA[<p>\(X\leq7\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Standardabweichung als Versuchsanzahl verwendet</p>]]></text>
+        <text><![CDATA[<p>Nur Werte unterhalb der Umgebung gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(X\geq13\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Trefferwahrscheinlichkeit statt Versuchsanzahl gewählt</p>]]></text>
+        <text><![CDATA[<p>Nur Werte oberhalb der Umgebung gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>stochastik__binomialverteilung__14-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(p\)?</p>]]></text>
+      <text><![CDATA[<p>Es ist \(\mu=8{,}2\). Welche ganzzahlige Umgebung gehört zur absoluten Abweichung höchstens \(1{,}5\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
+      <text><![CDATA[<p>\(7\leq X\leq9\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}8\)</p>]]></text>
+      <text><![CDATA[<p>\(6\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma^2/\mu\) als \(p\) statt als \(1-p\) verwendet</p>]]></text>
+        <text><![CDATA[<p>Beide reellen Grenzen nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <text><![CDATA[<p>\(7\leq X\leq10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma/\mu\) statt \(1-\sigma^2/\mu\) berechnet</p>]]></text>
+        <text><![CDATA[<p>Obere Grenze nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(6\leq X\leq9\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz als Wahrscheinlichkeit verwendet</p>]]></text>
+        <text><![CDATA[<p>Untere Grenze nach außen gerundet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>stochastik__binomialverteilung__14-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
+      <text><![CDATA[<p>Die Wahrscheinlichkeit der absoluten Umgebung \(\mu\pm2\) ist \(0{,}62\). Wie groß ist die Wahrscheinlichkeit für eine Abweichung von mehr als 2?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(25\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}38\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}62\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
+        <text><![CDATA[<p>Wahrscheinlichkeit der Umgebung statt Gegenereignis gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <text><![CDATA[<p>\(1{,}62\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Mit \(\sigma\) multipliziert statt durch \(p\) geteilt</p>]]></text>
+        <text><![CDATA[<p>Umgebungswahrscheinlichkeit zu 1 addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz als Versuchsanzahl verwendet</p>]]></text>
+        <text><![CDATA[<p>Umgebungswahrscheinlichkeit verdoppelt und davon 1 abgezogen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>stochastik__binomialverteilung__14-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=8\), \(\sigma=2\). Wie groß ist \(p\)?</p>]]></text>
+      <text><![CDATA[<p>Welches Ereignis ist das Gegenereignis zu \(|X-\mu|\leq4\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(|X-\mu|>4\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <text><![CDATA[<p>\(|X-\mu|\geq4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma/\mu\) statt \(1-\sigma^2/\mu\) berechnet</p>]]></text>
+        <text><![CDATA[<p>Randwerte 4 fälschlich beiden Ereignissen zugeordnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(|X-\mu|<4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(1-\sigma/\mu\) statt \(1-\sigma^2/\mu\) berechnet</p>]]></text>
+        <text><![CDATA[<p>Inneres Ereignis nur streng formuliert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(|X-\mu|=4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz als Wahrscheinlichkeit verwendet</p>]]></text>
+        <text><![CDATA[<p>Nur die Randwerte statt des gesamten Gegenereignisses gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>stochastik__binomialverteilung__14-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=8\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
+      <text><![CDATA[<p>Es ist \(\mu=12\). Welche Grenzen gehören zur absoluten Umgebung mit Radius 5?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(16\)</p>]]></text>
+      <text><![CDATA[<p>\(7\) und \(17\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <text><![CDATA[<p>\(5\) und \(12\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
+        <text><![CDATA[<p>Radius als untere Grenze verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <text><![CDATA[<p>\(7\) und \(12\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz als Versuchsanzahl verwendet</p>]]></text>
+        <text><![CDATA[<p>Nur untere Hälfte angegeben</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(32\)</p>]]></text>
+      <text><![CDATA[<p>\(12\) und \(17\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Mit \(1/p\) doppelt multipliziert</p>]]></text>
+        <text><![CDATA[<p>Nur obere Hälfte angegeben</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__binomialverteilung__14-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=3\), \(\sigma=\sqrt{2}\). Wie groß ist \(p\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Rechnung bildet eine absolute Umgebung mit Radius \(d\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\frac{1}{3}\)</p>]]></text>
+      <text><![CDATA[<p>\(\mu-d\) und \(\mu+d\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\frac{2}{3}\)</p>]]></text>
+      <text><![CDATA[<p>\((1-d)\mu\) und \((1+d)\mu\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma^2/\mu\) als \(p\) statt als \(1-p\) verwendet</p>]]></text>
+        <text><![CDATA[<p>Relative statt absolute Umgebung gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\frac{\sqrt{2}}{3}\)</p>]]></text>
+      <text><![CDATA[<p>\(\mu-d\sigma\) und \(\mu+d\sigma\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>\(\sigma/\mu\) statt Varianz durch Erwartungswert verwendet</p>]]></text>
+        <text><![CDATA[<p>Sigma- statt absolute Umgebung gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <text><![CDATA[<p>\(d-\mu\) und \(d+\mu\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Varianz als Wahrscheinlichkeit verwendet</p>]]></text>
+        <text><![CDATA[<p>Untere Differenz in falscher Reihenfolge gebildet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__binomialverteilung__14-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=3\), \(\sigma=\sqrt{2}\). Wie groß ist \(n\)?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(n;p)\) ist \(\mu=6\). Welche Schreibweise bedeutet eine absolute Abweichung von höchstens 1?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(9\)</p>]]></text>
+      <text><![CDATA[<p>\(P(5\leq X\leq7)\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <text><![CDATA[<p>\(P(0{,}99\mu\leq X\leq1{,}01\mu)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
+        <text><![CDATA[<p>Relative Ein-Prozent-Umgebung gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(P(\mu-\sigma\leq X\leq\mu+\sigma)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Durch \(1-p\) statt durch \(p\) geteilt</p>]]></text>
+        <text><![CDATA[<p>Sigma-Umgebung gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\sqrt{6}\)</p>]]></text>
+      <text><![CDATA[<p>\(P(X\leq1)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kennzahlen fälschlich multipliziert und Wurzel gezogen</p>]]></text>
+        <text><![CDATA[<p>Abweichungsradius als obere Treffergrenze gedeutet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__binomialverteilung__14-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine Binomialverteilung sind \(p>0\) und \(\mu\) bekannt. Welche Formel liefert \(n\)?</p>]]></text>
+      <text><![CDATA[<p>Die innere absolute Umgebung hat Wahrscheinlichkeit \(0{,}73\). Welcher Ausdruck berechnet die Wahrscheinlichkeit außerhalb?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(n=\frac{\mu}{p}\)</p>]]></text>
+      <text><![CDATA[<p>\(1-0{,}73\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(n=\mu p\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}73\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Multipliziert statt dividiert</p>]]></text>
+        <text><![CDATA[<p>Inneres Ereignis unverändert übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(n=\frac{p}{\mu}\)</p>]]></text>
+      <text><![CDATA[<p>\(1+0{,}73\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Quotient umgekehrt</p>]]></text>
+        <text><![CDATA[<p>Gegenereignis addiert statt subtrahiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(n=\mu(1-p)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}73-1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartete Nieten statt Versuchsanzahl berechnet</p>]]></text>
+        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
       </feedback>
     </answer>
   </question>

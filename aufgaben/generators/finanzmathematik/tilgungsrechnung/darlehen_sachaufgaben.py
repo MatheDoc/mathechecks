@@ -1,4 +1,4 @@
-"""Check 04 – Darlehen im Sachkontext (vier Teilfragen: A, K_0, n, RK_k; zufällige Reihenfolge)."""
+"""Check 04 – Darlehen im Sachkontext (fünf Teilfragen: A, K_0, n, RK_k, Gesamtzinsen; zufällige Reihenfolge)."""
 
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ from aufgaben.generators.finanzmathematik.shared import (
     prozent,
     q_of,
     restschuld,
+    rund2,
     sample_darlehen,
     sample_zinssatz,
     schoen,
@@ -37,6 +38,11 @@ _T_N = (
 _T_RK = (
     "{S} tilgt ein Darlehen über {k0} zu {p} mit einer jährlichen Annuität von {a}. Welche Restschuld besteht nach {k} Jahren?",
     "{S} hat {zweck} ein Darlehen über {k0} aufgenommen ({p}) und zahlt jährlich {a}. Wie hoch ist die Restschuld nach der {k}. Zahlung?",
+)
+
+_T_ZG = (
+    "{S} nimmt {zweck} ein Darlehen über {k0} zu {p} auf, das in {n} Jahren durch gleich hohe Annuitäten getilgt wird. Wie viel Zinsen zahlt {pron} über die gesamte Laufzeit?",
+    "{S} nimmt {zweck} ein Annuitätendarlehen über {k0} auf ({p}, Laufzeit {n} Jahre). Wie hoch sind die Zinsen insgesamt?",
 )
 
 
@@ -93,6 +99,14 @@ class DarlehenSachaufgabenGenerator(TaskGenerator):
             paare.append((
                 _fill(rng.choice(_T_RK), sz, k0=geld(k0), p=prozent(p), a=geld(a), k=k),
                 numerical_finanz_geld(rk),
+            ))
+
+            # Gesamtzinsen gesucht (Annuität zuerst bestimmen, auf Cent gerundet)
+            k0, p, n = sample_darlehen(rng, stufe), sample_zinssatz(rng), rng.randint(4, 30)
+            a = rund2(annuitaet(k0, q_of(p), n))
+            paare.append((
+                _fill(rng.choice(_T_ZG), sz, k0=geld(k0), p=prozent(p), n=n),
+                numerical_finanz_geld(n * a - k0),
             ))
 
             fragen, antworten = mische_teilfragen(rng, paare)

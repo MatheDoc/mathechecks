@@ -1,4 +1,4 @@
-"""Check 05 – Intervall-Wkt berechnen.
+"""Check 03 – Intervall-Wkt berechnen.
 
 Kernidee: Der Text beschreibt einen Bereich von Anzahlen. Der Taschenrechner braucht davon die
 kleinste und die größte, dazu n und p: Bcd(a;b;n;p).

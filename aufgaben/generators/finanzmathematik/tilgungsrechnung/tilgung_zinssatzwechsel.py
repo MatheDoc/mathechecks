@@ -1,4 +1,4 @@
-"""Check 06 – Zinssatzwechsel im Annuitätendarlehen (Restschuld, neue Annuität bei unveränderter Laufzeit)."""
+"""Check 06 – Zinssatzwechsel im Annuitätendarlehen (ursprüngliche Annuität, Restschuld, neue Annuität bei unveränderter Laufzeit)."""
 
 from __future__ import annotations
 
@@ -38,7 +38,6 @@ class TilgungZinssatzwechselGenerator(TaskGenerator):
             a1 = rund2(annuitaet(k0, q1, n))
             rk = restschuld(k0, a1, q1, k)
             a2 = annuitaet(rk, q2, n - k)
-            zinsen_neu = rk * (q2 - 1.0)
 
             intro = (
                 f"{sz.subjekt} nimmt {sz.zweck_darlehen} ein Annuitätendarlehen über {geld(k0)} mit einer Laufzeit "
@@ -49,15 +48,11 @@ class TilgungZinssatzwechselGenerator(TaskGenerator):
                 "Wie hoch ist die ursprüngliche Annuität?",
                 f"Wie hoch ist die Restschuld nach {k} Jahren?",
                 f"Wie hoch ist die neue Annuität für die verbleibenden {n - k} Jahre?",
-                f"Wie hoch sind die Zinsen im {k + 1}. Jahr?",
-                f"Wie hoch ist die Tilgung im {k + 1}. Jahr?",
             ]
             antworten = [
                 numerical_finanz_geld(a1),
                 numerical_finanz_geld(rk),
                 numerical_finanz_geld(a2),
-                numerical_finanz_geld(zinsen_neu),
-                numerical_finanz_geld(a2 - zinsen_neu),
             ]
             tasks.append(Task(einleitung=intro, fragen=fragen, antworten=antworten))
 

@@ -136,22 +136,23 @@ Damit wir die Bernoulli-Formel geeignet anwenden können, müssen wir gut auf di
 
 ### Berechnungen
 
-Für Bereichswahrscheinlichkeiten werden die Bernoulli-Formeln mehrfach nacheinander angewendet. Dies kann bei vielen Summanden aufwendig und fehleranfällig sein. Typischerweise werden Bereichswahrscheinlichkeiten daher mit Tafelwerken oder Taschenrechnern bestimmt. In Tafelwerken befinden sich in der Regel die **kumulierten Wahrscheinlichkeiten** $P(X\leq k)$. Daher müssen die gesuchten Bereichswahrscheinlichkeiten in Ausdrücke umgeformt werden, die nur kumulierte Wahrscheinlichkeiten enthalten. 
+Für Bereichswahrscheinlichkeiten wird die Bernoulli-Formel mehrfach nacheinander angewendet. Das ist bei vielen Summanden aufwendig und fehleranfällig. Bereichswahrscheinlichkeiten werden daher mit dem Taschenrechner oder einem Tafelwerk bestimmt:
 
-Typische Umformungen sind dabei:
+- **Taschenrechner:** Eine Funktion wie $Bcd(a;b;n;p)$ liefert direkt $P(a\leq X\leq b)$. Dafür muss der Bereich nur als kleinste Trefferanzahl $a$ und größte Trefferanzahl $b$ geschrieben werden.
+- **Tafelwerk:** Hier stehen in der Regel nur die **kumulierten Wahrscheinlichkeiten** $P(X\leq k)$. Der Bereich muss daher in Ausdrücke umgeformt werden, die nur kumulierte Wahrscheinlichkeiten enthalten.
 
-- genau $k$ Treffer: $P(X=k)=P(X\leq k)-P(X\leq k-1)$
-- mindestens $k$ Treffer: $P(X\geq k)=1-P(X\leq k-1)$
-- Treffer zwischen $a$ und $b$: $P(a\leq X\leq b)=P(X\leq b)-P(X\leq a-1)$
+| Bereich | mit kumulierten Wahrscheinlichkeiten | mit dem Taschenrechner |
+| ------- | ------------------------------------ | ---------------------- |
+| genau $k$ Treffer | $P(X=k)=P(X\leq k)-P(X\leq k-1)$ | $Bcd(k;k;n;p)$ |
+| höchstens $k$ Treffer | $P(X\leq k)$ | $Bcd(0;k;n;p)$ |
+| mindestens $k$ Treffer | $P(X\geq k)=1-P(X\leq k-1)$ | $Bcd(k;n;n;p)$ |
+| zwischen $a$ und $b$ Treffer | $P(a\leq X\leq b)=P(X\leq b)-P(X\leq a-1)$ | $Bcd(a;b;n;p)$ |
 
-Genau diese Übersetzungen stehen im Mittelpunkt des nächsten Checks. Das Beispiel zeigt die Struktur an einem konkreten Sachzusammenhang, und die Aufgaben variieren anschließend nur die sprachliche Formulierung des Bereichs.
+Beide Wege führen zum selben Ergebnis. Für die Basketballspielerin mit $n=20$ und $p=0{,}1$ gilt etwa
 
-{% include check-anker.html nummer=3 %}
-
-Wenn statt Tafelwerk ein Taschenrechner mit einer Funktion wie $Bcd(a;b;n;p)$ verwendet wird, muss dieselbe Bereichsidee in Eingabegrenzen übersetzt werden. Dann sind nicht mehr Differenzen kumulierter Wahrscheinlichkeiten gefragt, sondern passende untere und obere Intervallgrenzen.
-
-{% include check-anker.html nummer=4 %}
-
+$$
+P(X\geq 6)=1-P(X\leq 5)=Bcd(6;20;20;0{,}1)=0{,}0113.
+$$
 
 ### Weitere Hinweise
 
@@ -161,13 +162,13 @@ Bevor wir Bereichswahrscheinlichkeiten bestimmen können, müssen wir die folgen
 - Wie lauten die Bernoulli-Parameter $n$ und $p$?
 - Was ist im Sachzusammenhang ein Treffer, was ist eine Niete?
 - Müssen die Intervallgrenzen des angegebenen Bereichs eventuell noch berechnet werden?
-- Möglicherweise entstehen Ausdrücke mit nicht-ganzzahligen Intervallgrenzen. Hier müssen wir richtig runden: Ist z.B. $X\leq 3{,}8$ so darf $X$ auf keinen Fall größer als $3{,}8$ sein, es gilt also $P(X\leq 3{,}8)=P(X\leq 3)$. Ist z.B. $X> 5{,}1$, so darf $X$ auf keinen Fall kleiner oder gleich als $5{,}1$ sein, es gilt also $P(X> 5{,}1)=P(X\geq 6)$.
+- Möglicherweise entstehen Ausdrücke mit nicht-ganzzahligen Intervallgrenzen. Hier müssen wir richtig runden: Ist z.B. $X\leq 3{,}8$ so darf $X$ auf keinen Fall größer als $3{,}8$ sein, es gilt also $P(X\leq 3{,}8)=P(X\leq 3)$. Ist z.B. $X> 5{,}1$, so darf $X$ auf keinen Fall kleiner oder gleich $5{,}1$ sein, es gilt also $P(X> 5{,}1)=P(X\geq 6)$.
 
 Genau dieser Fragenkatalog ist der Kern des nächsten Checks. Die Aufgaben mischen bewusst Standardfälle, Prozentangaben, Vereinigungen von Ereignissen und Situationen, die gar nicht binomialverteilt sind.
 
 
 
-{% include check-anker.html nummer=5 %}
+{% include check-anker.html nummer=3 %}
 
 
 ## Histogramme
@@ -183,12 +184,12 @@ Die folgende Übersicht zeigt die Histogramme und zugehörigen Intervallwahrsche
 
 Damit können wir auch mit Hilfe von Histogrammen Intervallwahrscheinlichkeiten bestimmen. Im Histogramm der Einzelwahrscheinlichkeiten liest man einzelne Balkenhöhen als Werte von $P(X=k)$ ab und addiert passende Balken für ein Intervall.
 
-{% include check-anker.html nummer=6 %}
+{% include check-anker.html nummer=4 %}
 
 
 Im Histogramm der kumulierten Wahrscheinlichkeiten bedeutet die Balkenhöhe bei $k$ dagegen direkt $P(X\leq k)$. Bereichswahrscheinlichkeiten entstehen dort typischerweise durch Differenzen zweier Balkenhöhen.
 
-{% include check-anker.html nummer=7 %}
+{% include check-anker.html nummer=5 %}
 
 
 ## Bestimmung von n, p und k
@@ -280,15 +281,15 @@ Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist al
 
 Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarten Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
 
-{% include check-anker.html nummer=8 %}
+{% include check-anker.html nummer=6 %}
 
 Dasselbe Vorgehen lässt sich auf die Trefferwahrscheinlichkeit $p$ übertragen: Jetzt sind $a$, $b$ und $n$ bekannt, und $p$ wird durch systematisches Probieren bestimmt.
 
-{% include check-anker.html nummer=9 %}
+{% include check-anker.html nummer=7 %}
 
 Die dritte Variante fragt nach einer Intervallgrenze $k$, wenn $n$, $p$ und eine Wahrscheinlichkeitsbedingung vorgegeben sind.
 
-{% include check-anker.html nummer=10 %}
+{% include check-anker.html nummer=8 %}
 
 
 
@@ -340,7 +341,7 @@ Sind $n$ und $p$ gegeben, so können wir mit den Formeln $\mu=n\cdot p$ und $\si
 
 Der erste Check in diesem Abschnitt trainiert genau diesen Standardfall: gegebene Versuchsanzahl, gegebene Trefferwahrscheinlichkeit, daraus $\mu$ und $\sigma$ bestimmen.
 
-{% include check-anker.html nummer=11 %}
+{% include check-anker.html nummer=9 %}
 
 
 In den beiden Gleichungen
@@ -360,13 +361,13 @@ Es lohnt sich dabei ein klarer Ablauf:
 
 Genau dieser Perspektivwechsel steckt in den nächsten vier Checks. Die Formeln bleiben gleich, aber die gegebenen und gesuchten Größen wechseln.
 
+{% include check-anker.html nummer=10 %}
+
+{% include check-anker.html nummer=11 %}
+
 {% include check-anker.html nummer=12 %}
 
 {% include check-anker.html nummer=13 %}
-
-{% include check-anker.html nummer=14 %}
-
-{% include check-anker.html nummer=15 %}
 
 
 
@@ -410,7 +411,7 @@ $$
 
 Da $X$ nur ganzzahlige Werte annehmen kann, müssen die Intervallgrenzen danach gegebenfalls noch passend auf ganze Trefferzahlen gerundet werden. Außerdem müssen wir beachten, ob nach Werten **innerhalb** oder **außerhalb** der Umgebung gefragt ist.
 
-{% include check-anker.html nummer=16 %}
+{% include check-anker.html nummer=14 %}
 
 ### Relative Umgebungen
 
@@ -418,7 +419,7 @@ Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir alt
 
 Hier wird also nicht um eine feste Zahl $d$, sondern um einen prozentualen Anteil des Erwartungswerts erweitert. Auch daraus entsteht am Ende wieder ein Intervall, dessen Grenzen anschließend auf sinnvolle ganzzahlige Trefferzahlen übersetzt werden.
 
-{% include check-anker.html nummer=17 %}
+{% include check-anker.html nummer=15 %}
 
 ### Sigma-Umgebungen
 
@@ -432,7 +433,7 @@ $$
 
 wobei $c$ festlegt, wie breit die Umgebung ist. 
 
-{% include check-anker.html nummer=18 %}
+{% include check-anker.html nummer=16 %}
 
 
 

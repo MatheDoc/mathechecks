@@ -31,19 +31,19 @@
             "fehler": ["Die Restschuld sinkt, also sinken die Zinsen", "Nur die Annuität bleibt konstant", "Die Tilgung steigt, weil A konstant bleibt"]
         },
         {
-            "frage": "Was steht in der letzten Zeile eines Tilgungsplans in der Spalte Tilgung?",
-            "antworten": ["Die gesamte verbliebene Restschuld", "Die Annuität", "Null", "Die Zinsen"],
-            "fehler": ["Die Annuität enthält auch Zinsen", "Am Ende wird die Restschuld vollständig getilgt", "Zinsen sind eine eigene Spalte"]
+            "frage": "Ein Darlehen über 20 000 € wird mit 4 % verzinst. Wie hoch sind die Zinsen im 1. Jahr?",
+            "antworten": ["\\(800\\) €", "\\(8\\,000\\) €", "\\(80\\) €", "\\(20\\,800\\) €"],
+            "fehler": ["Mit 0,4 statt 0,04 gerechnet", "Mit 0,004 statt 0,04 gerechnet", "Das ist die aufgezinste Schuld, nicht die Zinsen"]
         },
         {
-            "frage": "Wie entsteht die Rundungsdifferenz in der letzten Zeile?",
-            "antworten": ["Durch das zeilenweise Runden auf Cent, das sich bis zur letzten Zeile aufsummiert", "Durch einen Rechenfehler", "Weil der Zinssatz falsch ist", "Sie entsteht nicht"],
-            "fehler": ["Sie ist kein Fehler, sondern eine Folge der Rundung", "Der Zinssatz ist korrekt", "Bei gerundeten Zwischenwerten tritt sie fast immer auf"]
+            "frage": "Darlehen 20 000 €, Restschuld am Ende des 1. Jahres 15 000 €, Zinssatz 4 %. Wie hoch sind die Zinsen im 2. Jahr?",
+            "antworten": ["\\(600\\) €", "\\(800\\) €", "\\(200\\) €", "\\(15\\,600\\) €"],
+            "fehler": ["Zinsen aus der Darlehenssumme statt aus der aktuellen Restschuld", "Zinsen aus der Tilgung des 1. Jahres berechnet", "Das ist die aufgezinste Restschuld, nicht die Zinsen"]
         },
         {
-            "frage": "Wie groß ist die Rundungsdifferenz typischerweise?",
-            "antworten": ["Wenige Cent", "Mehrere hundert Euro", "Genau eine Annuität", "Genau die Zinsen des letzten Jahres"],
-            "fehler": ["Rundung auf Cent erzeugt nur kleine Abweichungen", "Die Differenz ist sehr klein im Vergleich zur Annuität", "Die Differenz hat nichts mit den Zinsen zu tun"]
+            "frage": "Restschuld zu Jahresbeginn 20 000 €, Zinssatz 5 %, Annuität 5 000 €. Wie hoch ist die Restschuld am Jahresende?",
+            "antworten": ["\\(16\\,000\\) €", "\\(15\\,000\\) €", "\\(19\\,000\\) €", "\\(21\\,000\\) €"],
+            "fehler": ["Die ganze Annuität abgezogen statt nur der Tilgung", "Die Zinsen statt der Tilgung abgezogen", "Zinsen addiert, Zahlung vergessen"]
         },
         {
             "frage": "Woher stammt der Wert in der Spalte „Restschuld (Jahresanfang)“ der zweiten Zeile?",

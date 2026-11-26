@@ -20,7 +20,7 @@
       <text>stochastik__binomialverteilung__03-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X=4)\) durch kumulierte Wahrscheinlichkeiten ausgedrückt?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(1;0{,}3)\): Wie groß ist \(P(X=1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Dieselbe kumulierte Wahrscheinlichkeit subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einzelwahrscheinlichkeit für 5 statt 4 gebildet</p>]]></text>
+        <text><![CDATA[<p>Sicheres Ereignis angenommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis zu höchstens 4 gebildet</p>]]></text>
+        <text><![CDATA[<p>Treffer fälschlich für unmöglich gehalten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__binomialverteilung__03-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X\geq5)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(1;0{,}3)\): Wie groß ist \(P(X=0)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Grenze 5 fälschlich aus dem Ereignis ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Trefferwahrscheinlichkeit statt Nietenwahrscheinlichkeit gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Mindestens mit höchstens verwechselt</p>]]></text>
+        <text><![CDATA[<p>Niete als sicheres Ereignis gedeutet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die Einzelwahrscheinlichkeit für 5 gebildet</p>]]></text>
+        <text><![CDATA[<p>Niete fälschlich für unmöglich gehalten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__binomialverteilung__03-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(3\leq X\leq7)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X=2)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq2)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze 3 fälschlich ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Nur eine Trefferwahrscheinlichkeit berücksichtigt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)+P(X\leq2)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kumulierte Anteile addiert statt subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Gegenwahrscheinlichkeit zu null Treffern gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq3)-P(X\leq7)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
+        <text><![CDATA[<p>Zwei Treffer als sicher angenommen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>stochastik__binomialverteilung__03-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Welche kumulierte Wahrscheinlichkeit ist gleich \(P(X<6)\)?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X\geq1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq5)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Strenge Grenze 6 eingeschlossen</p>]]></text>
+        <text><![CDATA[<p>Nur zwei Treffer statt mindestens eines berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis gebildet</p>]]></text>
+        <text><![CDATA[<p>Nur genau einen der beiden Pfade berücksichtigt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Grenze um zwei statt um eins verringert</p>]]></text>
+        <text><![CDATA[<p>Mindestens einen Treffer als sicher angenommen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>stochastik__binomialverteilung__03-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Wie wird \(P(X>6)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(2;0{,}5)\): Wie groß ist \(P(X=1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq6)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq5)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Den Wert 6 fälschlich eingeschlossen</p>]]></text>
+        <text><![CDATA[<p>Nur eine der zwei möglichen Anordnungen gezählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Mehr als mit höchstens verwechselt</p>]]></text>
+        <text><![CDATA[<p>Mindestens einen statt genau einen Treffer berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq6)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die Einzelwahrscheinlichkeit für 7 gebildet</p>]]></text>
+        <text><![CDATA[<p>Genau einen Treffer als sicher angenommen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>stochastik__binomialverteilung__03-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Wie wird \(P(2<X\leq8)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(3;1)\): Wie groß ist \(P(2\leq X\leq3)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq2)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Den ausgeschlossenen Wert 2 wieder eingeschlossen</p>]]></text>
+        <text><![CDATA[<p>Den sicheren Wert \(X=3\) ausgeschlossen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{2}{3}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Den eingeschlossenen Wert 3 ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Intervalllänge durch Versuchsanzahl geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq8)\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{3}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur das Gegenereignis zur Obergrenze gebildet</p>]]></text>
+        <text><![CDATA[<p>Nur einen von drei Versuchen als Treffer gezählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>stochastik__binomialverteilung__03-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(4\leq X<9)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Für \(X\sim B(4;0)\): Wie groß ist \(P(X\leq1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq9)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Ausgeschlossene Obergrenze 9 eingeschlossen</p>]]></text>
+        <text><![CDATA[<p>Den sicheren Wert \(X=0\) ausgeschlossen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq8)-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Eingeschlossene Untergrenze 4 ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Grenze 1 durch \(n=4\) geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq9)-P(X\leq4)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Beide Randwerte falsch behandelt</p>]]></text>
+        <text><![CDATA[<p>Gegenanteil zur Grenze verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__binomialverteilung__03-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Welche Differenz ergibt \(P(X=1)\)?</p>]]></text>
+      <text><![CDATA[<p>Bei 20 Würfen bedeutet Treffer „Sechs“. Gesucht ist die Wahrscheinlichkeit für höchstens drei Sechsen. Welcher Ansatz passt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq0)\)</p>]]></text>
+      <text><![CDATA[<p>\(P(X\leq3)\) mit \(n=20\) und \(p=\frac{1}{6}\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq2)-P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(P(X\leq3)\) mit \(n=3\) und \(p=\frac{1}{6}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einzelwahrscheinlichkeit für 2 gebildet</p>]]></text>
+        <text><![CDATA[<p>Intervallgrenze als Versuchsanzahl eingesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(P(X\geq3)\) mit \(n=20\) und \(p=\frac{1}{6}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Identische Werte subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Höchstens mit mindestens verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(P(X\leq3)\) mit \(n=20\) und \(p=\frac{5}{6}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenereignis zu höchstens 1 gebildet</p>]]></text>
+        <text><![CDATA[<p>Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__binomialverteilung__03-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(X\geq1)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Bei 10 Schüssen sind höchstens \(26\%\) Treffer gesucht. Welche ganzzahlige Grenze gilt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq0)\)</p>]]></text>
+      <text><![CDATA[<p>\(X\leq2\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(X\leq3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Trefferzahl 1 fälschlich ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>\(2{,}6\) für höchstens nach außen aufgerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)\)</p>]]></text>
+      <text><![CDATA[<p>\(X\geq2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Mindestens 1 mit höchstens 1 verwechselt</p>]]></text>
+        <text><![CDATA[<p>Höchstens als mindestens gedeutet und abgerundet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq1)-P(X\leq0)\)</p>]]></text>
+      <text><![CDATA[<p>\(X\geq3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur genau einen Treffer berechnet</p>]]></text>
+        <text><![CDATA[<p>Höchstens als mindestens gedeutet und aufgerundet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__binomialverteilung__03-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für ganzzahliges \(X\): Wie wird \(P(2{,}4\leq X\leq6{,}8)\) kumuliert angegeben?</p>]]></text>
+      <text><![CDATA[<p>Bei \(X\sim B(2;0{,}5)\) ist \(P(X\leq0)=0{,}25\). Wie groß ist \(P(X\geq1)\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)-P(X\leq2)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq2)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Obere Grenze nach außen aufgerundet</p>]]></text>
+        <text><![CDATA[<p>Wahrscheinlichkeit des Gegenereignisses unverändert übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq6)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Untere Grenze 3 fälschlich ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Nur die Differenz zu \(0{,}75\) falsch gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq7)-P(X\leq3)\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Beide Grenzen nach außen gerundet</p>]]></text>
+        <text><![CDATA[<p>Gegenereignis als sicher angenommen</p>]]></text>
       </feedback>
     </answer>
   </question>

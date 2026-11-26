@@ -1,6 +1,6 @@
 ﻿---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/07-histogramme-kumuliert.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/05-histogramme-kumuliert.html
 ---
 Hier sehen wir ein Histogramm der kumulierten Wahrscheinlichkeiten. 
 

@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/12-kennzahlen-n-mu-gegeben.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/10-kennzahlen-n-mu-gegeben.html
 ---
 Polizisten kontrollieren in der Nähe einer Diskothek insgesamt 200 Autofahrer. Sie gehen davon aus, dass unter diesen etwa 25 alkoholisierte Personen am Steuer sitzen. Mit welcher Wahrscheinlichkeit ist ein kontrollierter Autofahrer alkoholisiert? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl alkoholisierter Fahrer beschreibt?
 

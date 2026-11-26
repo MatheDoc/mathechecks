@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/09-npk-p.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/07-npk-p.html
 ---
 Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt. Wie hoch muss der Anteil der zufriedenen Mitarbeiter mindestens sein, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)?
 

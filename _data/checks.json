@@ -73,76 +73,12 @@
         "LernbereichAnzeigename": "Binomialverteilung",
         "Nummer": 3,
         "check_id": "stochastik__binomialverteilung__03",
-        "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben.",
-        "Sammlung": "bereichsparameter-kumuliert",
-        "Schlagwort": "Intervall-Wkt durch Kumul-Wkt ausdrücken",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-03",
-        "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
-        "Tipps": [
-            {
-                "cue": "\\(P(X\\leq k)\\)",
-                "response": "ist kumulierte Wahrscheinlichkeit bis einschließlich \\(k\\)"
-            },
-            {
-                "cue": "\\(P(X=k)\\)",
-                "response": "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)"
-            },
-            {
-                "cue": "\\(P(X\\geq k)\\)",
-                "response": "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)"
-            },
-            {
-                "cue": "\\(P(a\\leq X\\leq b)\\)",
-                "response": "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "binomialverteilung",
-        "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 4,
-        "check_id": "stochastik__binomialverteilung__04",
-        "Ich kann": "die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben.",
-        "Sammlung": "bereichsparameter-gtr",
-        "Schlagwort": "Intervall-Wkt mit GTR",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-04",
-        "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
-        "Tipps": [
-            {
-                "cue": "\\(n\\)",
-                "response": "Anzahl der Versuche"
-            },
-            {
-                "cue": "\\(p\\)",
-                "response": "Trefferwahrscheinlichkeit pro Versuch"
-            },
-            {
-                "cue": "\\(a\\), \\(b\\)",
-                "response": "untere und obere ganzzahlige Intervallgrenze"
-            },
-            {
-                "cue": "\\(Bcd(a;b;n;p)\\)",
-                "response": "Wahrscheinlichkeit für \\(a \\leq X \\leq b\\)"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "binomialverteilung",
-        "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 5,
-        "check_id": "stochastik__binomialverteilung__05",
         "video": "0nNKNfMDNrw",
         "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung berechnen.",
         "Sammlung": "bereichswahrscheinlichkeiten-berechnung",
         "Schlagwort": "Intervall-Wkt berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-05",
+        "skript_anchor": "check-stochastik-binomialverteilung-03",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -168,13 +104,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 6,
-        "check_id": "stochastik__binomialverteilung__06",
+        "Nummer": 4,
+        "check_id": "stochastik__binomialverteilung__04",
         "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen.",
         "Sammlung": "histogramme-einzeln",
         "Schlagwort": "Histogramm Einzel-Wkt",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-06",
+        "skript_anchor": "check-stochastik-binomialverteilung-04",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
@@ -196,13 +132,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 7,
-        "check_id": "stochastik__binomialverteilung__07",
+        "Nummer": 5,
+        "check_id": "stochastik__binomialverteilung__05",
         "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen.",
         "Sammlung": "histogramme-kumuliert",
         "Schlagwort": "Histogramm Kumul-Wkt",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-07",
+        "skript_anchor": "check-stochastik-binomialverteilung-05",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
@@ -228,13 +164,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 8,
-        "check_id": "stochastik__binomialverteilung__08",
+        "Nummer": 6,
+        "check_id": "stochastik__binomialverteilung__06",
         "Ich kann": "Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen.",
         "Sammlung": "npk-n",
         "Schlagwort": "n mit Intervall-Wkt bestimmen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-08",
+        "skript_anchor": "check-stochastik-binomialverteilung-06",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -256,13 +192,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 9,
-        "check_id": "stochastik__binomialverteilung__09",
+        "Nummer": 7,
+        "check_id": "stochastik__binomialverteilung__07",
         "Ich kann": "Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen.",
         "Sammlung": "npk-p",
         "Schlagwort": "p mit Intervall-Wkt bestimmen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-09",
+        "skript_anchor": "check-stochastik-binomialverteilung-07",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -284,13 +220,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 10,
-        "check_id": "stochastik__binomialverteilung__10",
+        "Nummer": 8,
+        "check_id": "stochastik__binomialverteilung__08",
         "Ich kann": "Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen.",
         "Sammlung": "npk-k",
         "Schlagwort": "Intervallgrenzen mit Intervall-Wkt bestimmen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-10",
+        "skript_anchor": "check-stochastik-binomialverteilung-08",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -312,13 +248,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 11,
-        "check_id": "stochastik__binomialverteilung__11",
+        "Nummer": 9,
+        "check_id": "stochastik__binomialverteilung__09",
         "Ich kann": "bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
         "Sammlung": "kennzahlen-n-p-gegeben",
         "Schlagwort": "μ,σ  aus n,p berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-11",
+        "skript_anchor": "check-stochastik-binomialverteilung-09",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -340,13 +276,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 12,
-        "check_id": "stochastik__binomialverteilung__12",
+        "Nummer": 10,
+        "check_id": "stochastik__binomialverteilung__10",
         "Ich kann": "bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
         "Sammlung": "kennzahlen-n-mu-gegeben",
         "Schlagwort": "p,σ aus n,μ berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-12",
+        "skript_anchor": "check-stochastik-binomialverteilung-10",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -368,13 +304,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 13,
-        "check_id": "stochastik__binomialverteilung__13",
+        "Nummer": 11,
+        "check_id": "stochastik__binomialverteilung__11",
         "Ich kann": "bei gegebener Trefferwahrscheinlichkeit  und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
         "Sammlung": "kennzahlen-p-mu-gegeben",
         "Schlagwort": "n,σ aus p,μ berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-13",
+        "skript_anchor": "check-stochastik-binomialverteilung-11",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -396,13 +332,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 14,
-        "check_id": "stochastik__binomialverteilung__14",
+        "Nummer": 12,
+        "check_id": "stochastik__binomialverteilung__12",
         "Ich kann": "bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
         "Sammlung": "kennzahlen-mu-sigma-gegeben",
         "Schlagwort": "n,p aus μ,σ berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-14",
+        "skript_anchor": "check-stochastik-binomialverteilung-12",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -424,13 +360,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 15,
-        "check_id": "stochastik__binomialverteilung__15",
+        "Nummer": 13,
+        "check_id": "stochastik__binomialverteilung__13",
         "Ich kann": "bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen.",
         "Sammlung": "kennzahlen-p-sigma-gegeben",
         "Schlagwort": "n,μ aus p,σ berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-15",
+        "skript_anchor": "check-stochastik-binomialverteilung-13",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -452,13 +388,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 16,
-        "check_id": "stochastik__binomialverteilung__16",
+        "Nummer": 14,
+        "check_id": "stochastik__binomialverteilung__14",
         "Ich kann": "Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen.",
         "Sammlung": "umgebungen-absolut",
         "Schlagwort": "Wkt absolute Umgebung",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-16",
+        "skript_anchor": "check-stochastik-binomialverteilung-14",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -480,13 +416,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 17,
-        "check_id": "stochastik__binomialverteilung__17",
+        "Nummer": 15,
+        "check_id": "stochastik__binomialverteilung__15",
         "Ich kann": "Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen.",
         "Sammlung": "umgebungen-relativ",
         "Schlagwort": "Wkt relative Umgebung",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-17",
+        "skript_anchor": "check-stochastik-binomialverteilung-15",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -508,13 +444,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
         "LernbereichAnzeigename": "Binomialverteilung",
-        "Nummer": 18,
-        "check_id": "stochastik__binomialverteilung__18",
+        "Nummer": 16,
+        "check_id": "stochastik__binomialverteilung__16",
         "Ich kann": "Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen.",
         "Sammlung": "umgebungen-sigma",
         "Schlagwort": "Wkt σ-Umgebung",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-binomialverteilung-18",
+        "skript_anchor": "check-stochastik-binomialverteilung-16",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -4554,7 +4490,7 @@
         "LernbereichAnzeigename": "Tilgungsrechnung",
         "Nummer": 1,
         "check_id": "finanzmathematik__tilgungsrechnung__01",
-        "Ich kann": "einen Tilgungsplan bei Annuitätentilgung zeilenweise aufstellen, einschließlich letzter Zeile und Rundungsdifferenz.",
+        "Ich kann": "einen Tilgungsplan bei Annuitätentilgung zeilenweise aufstellen.",
         "Sammlung": "tilgungsplan-aufstellen",
         "Schlagwort": "Tilgungsplan aufstellen",
         "Flashtyp": "gruppiert",
@@ -4585,10 +4521,6 @@
             {
                 "cue": "Restschuld am Jahresende",
                 "response": "Restschuld am Jahresanfang - Tilgung"
-            },
-            {
-                "cue": "Letzte Zeile",
-                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht evtl. von vereinbarter Annuität ab (Rundungsdifferenz)"
             }
         ]
     },
@@ -4626,9 +4558,9 @@
         "LernbereichAnzeigename": "Tilgungsrechnung",
         "Nummer": 3,
         "check_id": "finanzmathematik__tilgungsrechnung__03",
-        "Ich kann": "die Restschuld nach $k$ Jahren mit der Restschuldformel bestimmen und daraus Zins- und Tilgungsanteil des Folgejahres sowie die Gesamtzinsen berechnen.",
+        "Ich kann": "die Restschuld nach $k$ Jahren mit der Restschuldformel bestimmen und daraus Zins- und Tilgungsanteil des Folgejahres sowie die Rundungsdifferenz im letzten Jahr berechnen.",
         "Sammlung": "restschuldformel",
-        "Schlagwort": "Restschuldformel und Gesamtzinsen",
+        "Schlagwort": "Restschuldformel und letzte Annuität",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-finanzmathematik-tilgungsrechnung-03",
         "questionOrder": "fixed",
@@ -4643,8 +4575,12 @@
                 "response": "$Z_{k+1} = RK_k \\cdot \\frac{p}{100}$, $T_{k+1} = A - Z_{k+1}$"
             },
             {
-                "cue": "Gesamtzinsen",
-                "response": "Summe aller Annuitäten minus Darlehenssumme"
+                "cue": "Letzte Zeile",
+                "response": "Tilgung $T_n = RK_{n-1}$; letzte Annuität $= RK_{n-1} \\cdot q$"
+            },
+            {
+                "cue": "Rundungsdifferenz",
+                "response": "Abweichung der letzten Annuität von $A$ (wegen Rundung auf Cent)"
             }
         ]
     },
@@ -4668,11 +4604,11 @@
             },
             {
                 "cue": "Gesuchte Größe identifizieren",
-                "response": "jährliche Belastung → $A$; mögliche Darlehenssumme → $K_0$; Dauer → $n$; Schulden nach $k$ Jahren → $RK_k$"
+                "response": "jährliche Belastung → $A$; mögliche Darlehenssumme → $K_0$; Dauer → $n$; Schulden nach $k$ Jahren → $RK_k$; Zinsen insgesamt → $n \\cdot A - K_0$"
             },
             {
                 "cue": "Rechnen",
-                "response": "passende Formel wählen, Werte einsetzen, nach der gescuhten Größe auflösen"
+                "response": "passende Formel wählen, Werte einsetzen, nach der gesuchten Größe auflösen"
             }
         ]
     },
@@ -4726,7 +4662,7 @@
         "LernbereichAnzeigename": "Tilgungsrechnung",
         "Nummer": 6,
         "check_id": "finanzmathematik__tilgungsrechnung__06",
-        "Ich kann": "einen Tilgungsplan nach einem Zinssatzwechsel fortführen und die neue Annuität bei unveränderter Restlaufzeit berechnen.",
+        "Ich kann": "bei einem Zinssatzwechsel die Restschuld zum Zeitpunkt des Wechsels und die neue Annuität bei unveränderter Restlaufzeit berechnen.",
         "Sammlung": "tilgung-zinssatzwechsel",
         "Schlagwort": "Zinssatzwechsel im Darlehen",
         "Flashtyp": "gruppiert",

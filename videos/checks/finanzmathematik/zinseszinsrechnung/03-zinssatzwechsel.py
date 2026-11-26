@@ -221,19 +221,20 @@ class Video(MCSzene):
 
         # ---------- Kurzfassung ----------
         schritte = kurzfassung(
-            text("Beide Phasen eintragen", groesse=G_TEXT),
+            text("Phase der Unbekannten erkennen", groesse=G_TEXT),
+            reihe(formel("K_{n_1}", groesse=50), text("in der anderen Phase berechnen", groesse=G_TEXT), abstand=0.2,
+                  grundlinie=True),
             VGroup(
-                reihe(formel("K_{n_1}", groesse=50), text("aus der bekannten Phase", groesse=G_TEXT), abstand=0.2,
-                      grundlinie=True),
-                text("vorwärts oder rückwärts", groesse=G_TEXT, farbe=TEXT_LEISE),
+                text("Nach der Unbekannten auflösen", groesse=G_TEXT),
+                text("3 von 4 Größen sind jetzt bekannt", groesse=G_TEXT, farbe=TEXT_LEISE),
             ).arrange(DOWN, buff=0.18, aligned_edge=LEFT),
-            text("In der anderen Phase auflösen", groesse=G_TEXT),
         )
         self.tafel(schritte)
         with self.sprich(
-            "Kurz gesagt: Beide Phasen eintragen. Den Zwischenwert aus der bekannten Phase berechnen, "
-            "vorwärts oder rückwärts. Dann in der anderen Phase auflösen."
+            "Kurz gesagt: Erkennen, in welcher Phase die Unbekannte steckt. "
+            "Den Zwischenwert in der anderen Phase berechnen. "
+            "Dann sind drei von vier Größen bekannt, und wir lösen nach der Unbekannten auf."
         ):
-            for zeile, beginn in zip(schritte, (0.12, 0.35, 0.8)):
+            for zeile, beginn in zip(schritte, (0.1, 0.4, 0.68)):
                 self.warte_bis(beginn)
                 self.play(auftritt(zeile), run_time=0.5)

@@ -1,11 +1,11 @@
-# Warm-Up zu Check 11 „μ,σ  aus n,p berechnen“ (Binomialverteilung)
+# Warm-Up zu Check 09 „μ,σ  aus n,p berechnen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 # Kern: μ = n·p (Erwartungswert, auch bei Formulierungen „im Durchschnitt / im Mittel zu erwarten“,
 # exakt mit Nachkommastellen angeben) und σ = √(n·p·(1−p)) (Standardabweichung, auf 2 NKS).
 # Alle Zahlen per Python-Skript nachgerechnet.
 
-check_id: stochastik__binomialverteilung__11
+check_id: stochastik__binomialverteilung__09
 abschluss: '<p>Im Training bekommst du $n$ und eine Prozentangabe für $p$. Gefragt ist nach dem Erwartungswert $\mu$ (oft formuliert als „wie viele … im Durchschnitt / im Mittel zu erwarten sind“) und der Standardabweichung $\sigma$. Die Reihenfolge der beiden Fragen wechselt zufällig.</p><p><strong>Drei Dinge für die Eingabe:</strong> Schreibe $p$ als Dezimalzahl, gib $\mu=n\cdot p$ <strong>exakt mit Nachkommastellen</strong> an (nicht auf ganze Anzahlen runden) und runde $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ auf <strong>2 Nachkommastellen</strong>.</p><p>Abkürzung: Weil $\mu=n\cdot p$ ist, gilt auch $\sigma=\sqrt{\mu\cdot (1-p)}$.</p>'
 karten:
 

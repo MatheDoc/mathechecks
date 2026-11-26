@@ -1,422 +1,382 @@
 [
   {
-    "einleitung": "Die Bäckerei Konrad nimmt für den Umbau der Backstube ein Darlehen über 1.950.000 € auf. Der Zinssatz beträgt 2 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 676.171,61 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Bäckerei Konrad nimmt für den Umbau der Backstube ein Darlehen über 1.950.000 € auf. Der Zinssatz beträgt 2 %, die Rückzahlung erfolgt durch Annuitätentilgung in 6 Jahren mit einer Annuität von 348.125,33 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>1.950.000,00 €</td><td>?</td><td>?</td><td>348.125,33 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>348.125,33 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
       "{1:NUMERICAL:=39000,00:0,01}",
-      "{1:NUMERICAL:=637171,61:0,01}",
-      "{1:NUMERICAL:=662913,35:0,01}",
-      "{1:NUMERICAL:=13258,27:0,01}",
-      "{1:NUMERICAL:=662913,35:0,01}",
-      "{1:NUMERICAL:=676171,62:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=309125,33:0,01}",
+      "{1:NUMERICAL:=1640874,67:0,01}",
+      "{1:NUMERICAL:=32817,49:0,01}",
+      "{1:NUMERICAL:=315307,84:0,01}",
+      "{1:NUMERICAL:=1325566,83:0,01}"
     ]
   },
   {
-    "einleitung": "Die Zahnarztpraxis Dr. Steinbach nimmt für eine neue Behandlungseinheit ein Darlehen über 2.950.000 € auf. Der Zinssatz beträgt 4,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 1.068.075,96 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Zahnarztpraxis Dr. Steinbach nimmt für eine neue Behandlungseinheit ein Darlehen über 800.000 € auf. Der Zinssatz beträgt 2,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 10 Jahren mit einer Annuität von 91.407,01 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>800.000,00 €</td><td>?</td><td>?</td><td>91.407,01 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>91.407,01 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=125375,00:0,01}",
-      "{1:NUMERICAL:=942700,96:0,01}",
-      "{1:NUMERICAL:=1024533,29:0,01}",
-      "{1:NUMERICAL:=43542,66:0,01}",
-      "{1:NUMERICAL:=1024533,29:0,01}",
-      "{1:NUMERICAL:=1068075,95:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=20000,00:0,01}",
+      "{1:NUMERICAL:=71407,01:0,01}",
+      "{1:NUMERICAL:=728592,99:0,01}",
+      "{1:NUMERICAL:=18214,82:0,01}",
+      "{1:NUMERICAL:=73192,19:0,01}",
+      "{1:NUMERICAL:=655400,80:0,01}"
     ]
   },
   {
-    "einleitung": "Familie Osterloh nimmt für den Kauf einer Eigentumswohnung ein Darlehen über 250.000 € auf. Der Zinssatz beträgt 6,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 94.393,93 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Familie Osterloh nimmt für den Kauf einer Eigentumswohnung ein Darlehen über 180.000 € auf. Der Zinssatz beträgt 4,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 7 Jahren mit einer Annuität von 30.267,40 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>180.000,00 €</td><td>?</td><td>?</td><td>30.267,40 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>30.267,40 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=16250,00:0,01}",
-      "{1:NUMERICAL:=78143,93:0,01}",
-      "{1:NUMERICAL:=88632,78:0,01}",
-      "{1:NUMERICAL:=5761,13:0,01}",
-      "{1:NUMERICAL:=88632,78:0,01}",
-      "{1:NUMERICAL:=94393,91:0,01}",
-      "{1:NUMERICAL:=0,020:0,001}"
+      "{1:NUMERICAL:=7650,00:0,01}",
+      "{1:NUMERICAL:=22617,40:0,01}",
+      "{1:NUMERICAL:=157382,60:0,01}",
+      "{1:NUMERICAL:=6688,76:0,01}",
+      "{1:NUMERICAL:=23578,64:0,01}",
+      "{1:NUMERICAL:=133803,96:0,01}"
     ]
   },
   {
-    "einleitung": "Das Hotel Seeblick nimmt für den Bau eines Wellnessbereichs ein Darlehen über 1.150.000 € auf. Der Zinssatz beträgt 2 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 398.767,87 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Das Hotel Seeblick nimmt für den Bau eines Wellnessbereichs ein Darlehen über 2.550.000 € auf. Der Zinssatz beträgt 6,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 7 Jahren mit einer Annuität von 464.944,99 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>2.550.000,00 €</td><td>?</td><td>?</td><td>464.944,99 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>464.944,99 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=23000,00:0,01}",
-      "{1:NUMERICAL:=375767,87:0,01}",
-      "{1:NUMERICAL:=390948,90:0,01}",
-      "{1:NUMERICAL:=7818,98:0,01}",
-      "{1:NUMERICAL:=390948,90:0,01}",
-      "{1:NUMERICAL:=398767,88:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=165750,00:0,01}",
+      "{1:NUMERICAL:=299194,99:0,01}",
+      "{1:NUMERICAL:=2250805,01:0,01}",
+      "{1:NUMERICAL:=146302,33:0,01}",
+      "{1:NUMERICAL:=318642,66:0,01}",
+      "{1:NUMERICAL:=1932162,35:0,01}"
     ]
   },
   {
-    "einleitung": "Herr Petersen nimmt für den Kauf einer Ferienwohnung ein Darlehen über 330.000 € auf. Der Zinssatz beträgt 4 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 118.915,02 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Herr Petersen nimmt für den Kauf einer Ferienwohnung ein Darlehen über 100.000 € auf. Der Zinssatz beträgt 5,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 10 Jahren mit einer Annuität von 13.266,78 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>100.000,00 €</td><td>?</td><td>?</td><td>13.266,78 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>13.266,78 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=13200,00:0,01}",
-      "{1:NUMERICAL:=105715,02:0,01}",
-      "{1:NUMERICAL:=114341,36:0,01}",
-      "{1:NUMERICAL:=4573,65:0,01}",
-      "{1:NUMERICAL:=114341,36:0,01}",
-      "{1:NUMERICAL:=118915,01:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=5500,00:0,01}",
+      "{1:NUMERICAL:=7766,78:0,01}",
+      "{1:NUMERICAL:=92233,22:0,01}",
+      "{1:NUMERICAL:=5072,83:0,01}",
+      "{1:NUMERICAL:=8193,95:0,01}",
+      "{1:NUMERICAL:=84039,27:0,01}"
     ]
   },
   {
-    "einleitung": "Der Sportverein Blau-Weiß Hartmannsdorf nimmt für einen neuen Rasentraktor ein Darlehen über 18.000 € auf. Der Zinssatz beträgt 5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 6.609,75 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Der Sportverein Blau-Weiß Hartmannsdorf nimmt für einen neuen Rasentraktor ein Darlehen über 15.000 € auf. Der Zinssatz beträgt 4 %, die Rückzahlung erfolgt durch Annuitätentilgung in 7 Jahren mit einer Annuität von 2.499,14 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>15.000,00 €</td><td>?</td><td>?</td><td>2.499,14 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>2.499,14 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=900,00:0,01}",
-      "{1:NUMERICAL:=5709,75:0,01}",
-      "{1:NUMERICAL:=6295,01:0,01}",
-      "{1:NUMERICAL:=314,75:0,01}",
-      "{1:NUMERICAL:=6295,01:0,01}",
-      "{1:NUMERICAL:=6609,76:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=600,00:0,01}",
+      "{1:NUMERICAL:=1899,14:0,01}",
+      "{1:NUMERICAL:=13100,86:0,01}",
+      "{1:NUMERICAL:=524,03:0,01}",
+      "{1:NUMERICAL:=1975,11:0,01}",
+      "{1:NUMERICAL:=11125,75:0,01}"
     ]
   },
   {
-    "einleitung": "Die Schülerfirma „Grüne Kiste“ nimmt für einen Kühlschrank am Verkaufsstand ein Darlehen über 23.000 € auf. Der Zinssatz beträgt 4,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 8.366,79 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Schülerfirma „Grüne Kiste“ nimmt für einen Kühlschrank am Verkaufsstand ein Darlehen über 23.000 € auf. Der Zinssatz beträgt 6,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 8 Jahren mit einer Annuität von 3.777,46 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>23.000,00 €</td><td>?</td><td>?</td><td>3.777,46 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>3.777,46 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=1035,00:0,01}",
-      "{1:NUMERICAL:=7331,79:0,01}",
-      "{1:NUMERICAL:=8006,49:0,01}",
-      "{1:NUMERICAL:=360,29:0,01}",
-      "{1:NUMERICAL:=8006,49:0,01}",
-      "{1:NUMERICAL:=8366,78:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=1495,00:0,01}",
+      "{1:NUMERICAL:=2282,46:0,01}",
+      "{1:NUMERICAL:=20717,54:0,01}",
+      "{1:NUMERICAL:=1346,64:0,01}",
+      "{1:NUMERICAL:=2430,82:0,01}",
+      "{1:NUMERICAL:=18286,72:0,01}"
     ]
   },
   {
-    "einleitung": "Die Gärtnerei Wendland nimmt für eine Bewässerungsanlage ein Darlehen über 1.700.000 € auf. Der Zinssatz beträgt 3 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 601.001,62 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Gärtnerei Wendland nimmt für eine Bewässerungsanlage ein Darlehen über 2.000.000 € auf. Der Zinssatz beträgt 5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 9 Jahren mit einer Annuität von 281.380,16 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>2.000.000,00 €</td><td>?</td><td>?</td><td>281.380,16 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>281.380,16 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=51000,00:0,01}",
-      "{1:NUMERICAL:=550001,62:0,01}",
-      "{1:NUMERICAL:=583496,71:0,01}",
-      "{1:NUMERICAL:=17504,90:0,01}",
-      "{1:NUMERICAL:=583496,71:0,01}",
-      "{1:NUMERICAL:=601001,61:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=100000,00:0,01}",
+      "{1:NUMERICAL:=181380,16:0,01}",
+      "{1:NUMERICAL:=1818619,84:0,01}",
+      "{1:NUMERICAL:=90930,99:0,01}",
+      "{1:NUMERICAL:=190449,17:0,01}",
+      "{1:NUMERICAL:=1628170,67:0,01}"
     ]
   },
   {
-    "einleitung": "Frau Lindqvist nimmt für die Einrichtung ihrer ersten eigenen Wohnung ein Darlehen über 25.000 € auf. Der Zinssatz beträgt 5,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 9.266,35 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Frau Lindqvist nimmt für die Einrichtung ihrer ersten eigenen Wohnung ein Darlehen über 17.000 € auf. Der Zinssatz beträgt 6,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 10 Jahren mit einer Annuität von 2.364,78 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>17.000,00 €</td><td>?</td><td>?</td><td>2.364,78 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>2.364,78 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=1375,00:0,01}",
-      "{1:NUMERICAL:=7891,35:0,01}",
-      "{1:NUMERICAL:=8783,28:0,01}",
-      "{1:NUMERICAL:=483,08:0,01}",
-      "{1:NUMERICAL:=8783,28:0,01}",
-      "{1:NUMERICAL:=9266,36:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=1105,00:0,01}",
+      "{1:NUMERICAL:=1259,78:0,01}",
+      "{1:NUMERICAL:=15740,22:0,01}",
+      "{1:NUMERICAL:=1023,11:0,01}",
+      "{1:NUMERICAL:=1341,67:0,01}",
+      "{1:NUMERICAL:=14398,55:0,01}"
     ]
   },
   {
-    "einleitung": "Frau Dr. Ahrens nimmt für die Modernisierung ihres Hauses ein Darlehen über 100.000 € auf. Der Zinssatz beträgt 3,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 35.693,42 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Frau Dr. Ahrens nimmt für die Modernisierung ihres Hauses ein Darlehen über 170.000 € auf. Der Zinssatz beträgt 5,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 9 Jahren mit einer Annuität von 24.452,71 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>170.000,00 €</td><td>?</td><td>?</td><td>24.452,71 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>24.452,71 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=3500,00:0,01}",
-      "{1:NUMERICAL:=32193,42:0,01}",
-      "{1:NUMERICAL:=34486,39:0,01}",
-      "{1:NUMERICAL:=1207,02:0,01}",
-      "{1:NUMERICAL:=34486,39:0,01}",
-      "{1:NUMERICAL:=35693,41:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=9350,00:0,01}",
+      "{1:NUMERICAL:=15102,71:0,01}",
+      "{1:NUMERICAL:=154897,29:0,01}",
+      "{1:NUMERICAL:=8519,35:0,01}",
+      "{1:NUMERICAL:=15933,36:0,01}",
+      "{1:NUMERICAL:=138963,93:0,01}"
     ]
   },
   {
-    "einleitung": "Die Spedition Rademacher nimmt für den Bau einer Lagerhalle ein Darlehen über 600.000 € auf. Der Zinssatz beträgt 4,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 218.264,02 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Spedition Rademacher nimmt für den Bau einer Lagerhalle ein Darlehen über 250.000 € auf. Der Zinssatz beträgt 2 %, die Rückzahlung erfolgt durch Annuitätentilgung in 7 Jahren mit einer Annuität von 38.627,99 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>250.000,00 €</td><td>?</td><td>?</td><td>38.627,99 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>38.627,99 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=27000,00:0,01}",
-      "{1:NUMERICAL:=191264,02:0,01}",
-      "{1:NUMERICAL:=208865,08:0,01}",
-      "{1:NUMERICAL:=9398,93:0,01}",
-      "{1:NUMERICAL:=208865,08:0,01}",
-      "{1:NUMERICAL:=218264,01:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=5000,00:0,01}",
+      "{1:NUMERICAL:=33627,99:0,01}",
+      "{1:NUMERICAL:=216372,01:0,01}",
+      "{1:NUMERICAL:=4327,44:0,01}",
+      "{1:NUMERICAL:=34300,55:0,01}",
+      "{1:NUMERICAL:=182071,46:0,01}"
     ]
   },
   {
-    "einleitung": "Das Start-up „Solvia Energy“ nimmt für die Einrichtung eines Prüflabors ein Darlehen über 700.000 € auf. Der Zinssatz beträgt 4,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 253.441,75 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Das Start-up „Solvia Energy“ nimmt für die Einrichtung eines Prüflabors ein Darlehen über 750.000 € auf. Der Zinssatz beträgt 4,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 6 Jahren mit einer Annuität von 145.408,79 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>750.000,00 €</td><td>?</td><td>?</td><td>145.408,79 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>145.408,79 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=29750,00:0,01}",
-      "{1:NUMERICAL:=223691,75:0,01}",
-      "{1:NUMERICAL:=243109,60:0,01}",
-      "{1:NUMERICAL:=10332,16:0,01}",
-      "{1:NUMERICAL:=243109,60:0,01}",
-      "{1:NUMERICAL:=253441,76:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=33750,00:0,01}",
+      "{1:NUMERICAL:=111658,79:0,01}",
+      "{1:NUMERICAL:=638341,21:0,01}",
+      "{1:NUMERICAL:=28725,35:0,01}",
+      "{1:NUMERICAL:=116683,44:0,01}",
+      "{1:NUMERICAL:=521657,77:0,01}"
     ]
   },
   {
-    "einleitung": "Frau Kowalski nimmt für den Anbau eines Wintergartens ein Darlehen über 360.000 € auf. Der Zinssatz beträgt 2,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 126.049,38 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Frau Kowalski nimmt für den Anbau eines Wintergartens ein Darlehen über 300.000 € auf. Der Zinssatz beträgt 3 %, die Rückzahlung erfolgt durch Annuitätentilgung in 7 Jahren mit einer Annuität von 48.151,91 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>300.000,00 €</td><td>?</td><td>?</td><td>48.151,91 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>48.151,91 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
       "{1:NUMERICAL:=9000,00:0,01}",
-      "{1:NUMERICAL:=117049,38:0,01}",
-      "{1:NUMERICAL:=122975,01:0,01}",
-      "{1:NUMERICAL:=3074,38:0,01}",
-      "{1:NUMERICAL:=122975,01:0,01}",
-      "{1:NUMERICAL:=126049,39:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=39151,91:0,01}",
+      "{1:NUMERICAL:=260848,09:0,01}",
+      "{1:NUMERICAL:=7825,44:0,01}",
+      "{1:NUMERICAL:=40326,47:0,01}",
+      "{1:NUMERICAL:=220521,62:0,01}"
     ]
   },
   {
-    "einleitung": "Die Möbelmanufaktur Lindner nimmt für eine CNC-Fräse ein Darlehen über 600.000 € auf. Der Zinssatz beträgt 2,75 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 211.099,46 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Die Möbelmanufaktur Lindner nimmt für eine CNC-Fräse ein Darlehen über 2.800.000 € auf. Der Zinssatz beträgt 6 %, die Rückzahlung erfolgt durch Annuitätentilgung in 10 Jahren mit einer Annuität von 380.430,28 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>2.800.000,00 €</td><td>?</td><td>?</td><td>380.430,28 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>380.430,28 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=16500,00:0,01}",
-      "{1:NUMERICAL:=194599,46:0,01}",
-      "{1:NUMERICAL:=205449,59:0,01}",
-      "{1:NUMERICAL:=5649,86:0,01}",
-      "{1:NUMERICAL:=205449,59:0,01}",
-      "{1:NUMERICAL:=211099,45:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=168000,00:0,01}",
+      "{1:NUMERICAL:=212430,28:0,01}",
+      "{1:NUMERICAL:=2587569,72:0,01}",
+      "{1:NUMERICAL:=155254,18:0,01}",
+      "{1:NUMERICAL:=225176,10:0,01}",
+      "{1:NUMERICAL:=2362393,62:0,01}"
     ]
   },
   {
-    "einleitung": "Herr Nowak nimmt für eine neue Einbauküche ein Darlehen über 8.000 € auf. Der Zinssatz beträgt 3,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 2.841,85 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Herr Nowak nimmt für eine neue Einbauküche ein Darlehen über 9.000 € auf. Der Zinssatz beträgt 2,75 %, die Rückzahlung erfolgt durch Annuitätentilgung in 6 Jahren mit einer Annuität von 1.647,64 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>9.000,00 €</td><td>?</td><td>?</td><td>1.647,64 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>1.647,64 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=247,50:0,01}",
+      "{1:NUMERICAL:=1400,14:0,01}",
+      "{1:NUMERICAL:=7599,86:0,01}",
+      "{1:NUMERICAL:=209,00:0,01}",
+      "{1:NUMERICAL:=1438,64:0,01}",
+      "{1:NUMERICAL:=6161,22:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Familie Berger nimmt für die Anschaffung eines Kleinwagens ein Darlehen über 8.000 € auf. Der Zinssatz beträgt 3,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 8 Jahren mit einer Annuität von 1.151,70 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>8.000,00 €</td><td>?</td><td>?</td><td>1.151,70 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>1.151,70 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
+    "fragen": [
+      "Wie hoch sind die Zinsen im 1. Jahr?",
+      "Wie hoch ist die Tilgung im 1. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
       "{1:NUMERICAL:=260,00:0,01}",
-      "{1:NUMERICAL:=2581,85:0,01}",
-      "{1:NUMERICAL:=2752,39:0,01}",
-      "{1:NUMERICAL:=89,45:0,01}",
-      "{1:NUMERICAL:=2752,39:0,01}",
-      "{1:NUMERICAL:=2841,84:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=891,70:0,01}",
+      "{1:NUMERICAL:=7108,30:0,01}",
+      "{1:NUMERICAL:=231,02:0,01}",
+      "{1:NUMERICAL:=920,68:0,01}",
+      "{1:NUMERICAL:=6187,62:0,01}"
     ]
   },
   {
-    "einleitung": "Familie Berger nimmt für die Anschaffung eines Kleinwagens ein Darlehen über 17.000 € auf. Der Zinssatz beträgt 5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 6.242,55 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Der Musiker Jonas Reuter nimmt für ein neues Klavier ein Darlehen über 18.000 € auf. Der Zinssatz beträgt 4 %, die Rückzahlung erfolgt durch Annuitätentilgung in 5 Jahren mit einer Annuität von 4.043,29 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>18.000,00 €</td><td>?</td><td>?</td><td>4.043,29 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>4.043,29 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=850,00:0,01}",
-      "{1:NUMERICAL:=5392,55:0,01}",
-      "{1:NUMERICAL:=5945,27:0,01}",
-      "{1:NUMERICAL:=297,26:0,01}",
-      "{1:NUMERICAL:=5945,27:0,01}",
-      "{1:NUMERICAL:=6242,53:0,01}",
-      "{1:NUMERICAL:=0,020:0,001}"
+      "{1:NUMERICAL:=720,00:0,01}",
+      "{1:NUMERICAL:=3323,29:0,01}",
+      "{1:NUMERICAL:=14676,71:0,01}",
+      "{1:NUMERICAL:=587,07:0,01}",
+      "{1:NUMERICAL:=3456,22:0,01}",
+      "{1:NUMERICAL:=11220,49:0,01}"
     ]
   },
   {
-    "einleitung": "Der Musiker Jonas Reuter nimmt für ein neues Klavier ein Darlehen über 15.000 € auf. Der Zinssatz beträgt 2,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 5.226,67 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Herr Brandt nimmt für den Ausbau des Dachgeschosses ein Darlehen über 300.000 € auf. Der Zinssatz beträgt 3,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 9 Jahren mit einer Annuität von 38.980,67 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>300.000,00 €</td><td>?</td><td>?</td><td>38.980,67 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>38.980,67 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=337,50:0,01}",
-      "{1:NUMERICAL:=4889,17:0,01}",
-      "{1:NUMERICAL:=5111,65:0,01}",
-      "{1:NUMERICAL:=115,01:0,01}",
-      "{1:NUMERICAL:=5111,65:0,01}",
-      "{1:NUMERICAL:=5226,66:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
-    ]
-  },
-  {
-    "einleitung": "Herr Brandt nimmt für den Ausbau des Dachgeschosses ein Darlehen über 300.000 € auf. Der Zinssatz beträgt 3,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 106.569,28 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
-    "fragen": [
-      "Wie hoch sind die Zinsen im 1. Jahr?",
-      "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
       "{1:NUMERICAL:=9750,00:0,01}",
-      "{1:NUMERICAL:=96819,28:0,01}",
-      "{1:NUMERICAL:=103214,81:0,01}",
-      "{1:NUMERICAL:=3354,48:0,01}",
-      "{1:NUMERICAL:=103214,81:0,01}",
-      "{1:NUMERICAL:=106569,29:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=29230,67:0,01}",
+      "{1:NUMERICAL:=270769,33:0,01}",
+      "{1:NUMERICAL:=8800,00:0,01}",
+      "{1:NUMERICAL:=30180,67:0,01}",
+      "{1:NUMERICAL:=240588,66:0,01}"
     ]
   },
   {
-    "einleitung": "Das Architekturbüro Feld & Vogt nimmt für neue Büroausstattung und Software ein Darlehen über 2.900.000 € auf. Der Zinssatz beträgt 2,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 1.015.397,79 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Das Architekturbüro Feld & Vogt nimmt für neue Büroausstattung und Software ein Darlehen über 1.250.000 € auf. Der Zinssatz beträgt 4,25 %, die Rückzahlung erfolgt durch Annuitätentilgung in 8 Jahren mit einer Annuität von 187.581,16 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>1.250.000,00 €</td><td>?</td><td>?</td><td>187.581,16 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>187.581,16 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=72500,00:0,01}",
-      "{1:NUMERICAL:=942897,79:0,01}",
-      "{1:NUMERICAL:=990631,98:0,01}",
-      "{1:NUMERICAL:=24765,80:0,01}",
-      "{1:NUMERICAL:=990631,98:0,01}",
-      "{1:NUMERICAL:=1015397,78:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=53125,00:0,01}",
+      "{1:NUMERICAL:=134456,16:0,01}",
+      "{1:NUMERICAL:=1115543,84:0,01}",
+      "{1:NUMERICAL:=47410,61:0,01}",
+      "{1:NUMERICAL:=140170,55:0,01}",
+      "{1:NUMERICAL:=975373,29:0,01}"
     ]
   },
   {
-    "einleitung": "Familie Yilmaz nimmt für eine Photovoltaikanlage ein Darlehen über 26.000 € auf. Der Zinssatz beträgt 4 %, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von 9.369,06 €. Stellen Sie den Tilgungsplan auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n    <tr><td>3</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>\n</table>",
+    "einleitung": "Familie Yilmaz nimmt für eine Photovoltaikanlage ein Darlehen über 29.000 € auf. Der Zinssatz beträgt 2,5 %, die Rückzahlung erfolgt durch Annuitätentilgung in 10 Jahren mit einer Annuität von 3.313,50 €. Stellen Sie die ersten beiden Zeilen des Tilgungsplans auf (Rundung auf Cent, gerundete Werte weiterverwenden).<table class=\"TabelleEinleitung\">\n    <tr><th>Jahr</th><th>Restschuld (Jahresanfang)</th><th>Zinsen</th><th>Tilgung</th><th>Annuität</th><th>Restschuld (Jahresende)</th></tr>\n    <tr><td>1</td><td>29.000,00 €</td><td>?</td><td>?</td><td>3.313,50 €</td><td>?</td></tr>\n    <tr><td>2</td><td>?</td><td>?</td><td>?</td><td>3.313,50 €</td><td>?</td></tr>\n    <tr><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>\n</table>",
     "fragen": [
       "Wie hoch sind die Zinsen im 1. Jahr?",
       "Wie hoch ist die Tilgung im 1. Jahr?",
-      "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
-      "Wie hoch sind die Zinsen im 3. Jahr?",
-      "Wie hoch ist die Tilgung im 3. Jahr?",
-      "Wie hoch ist die Annuität im 3. Jahr?",
-      "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?"
+      "Wie hoch ist die Restschuld am Ende des 1. Jahres?",
+      "Wie hoch sind die Zinsen im 2. Jahr?",
+      "Wie hoch ist die Tilgung im 2. Jahr?",
+      "Wie hoch ist die Restschuld am Ende des 2. Jahres?"
     ],
     "antworten": [
-      "{1:NUMERICAL:=1040,00:0,01}",
-      "{1:NUMERICAL:=8329,06:0,01}",
-      "{1:NUMERICAL:=9008,72:0,01}",
-      "{1:NUMERICAL:=360,35:0,01}",
-      "{1:NUMERICAL:=9008,72:0,01}",
-      "{1:NUMERICAL:=9369,07:0,01}",
-      "{1:NUMERICAL:=0,010:0,001}"
+      "{1:NUMERICAL:=725,00:0,01}",
+      "{1:NUMERICAL:=2588,50:0,01}",
+      "{1:NUMERICAL:=26411,50:0,01}",
+      "{1:NUMERICAL:=660,29:0,01}",
+      "{1:NUMERICAL:=2653,21:0,01}",
+      "{1:NUMERICAL:=23758,29:0,01}"
     ]
   }
 ]

@@ -8,7 +8,7 @@ a) Wie hoch ist die Restschuld nach 10 Jahren?
 
 b) Wie hoch sind Zinsen und Tilgung im 11. Jahr?
 
-c) Wie viel Zinsen werden über die gesamte Laufzeit gezahlt?
+c) Um welchen Betrag weicht die Annuität im letzten Jahr von der vereinbarten Annuität ab?
 
 **Lösung zu a): Restschuldformel**
 
@@ -33,10 +33,18 @@ Z_{11} &= 139\,761{,}53 \cdot 0{,}035 \approx 4\,891{,}65\,\text{€} \\
 T_{11} &= A - Z_{11} = 12\,134{,}81 - 4\,891{,}65 = 7\,243{,}16\,\text{€}
 \end{aligned}$$
 
-**Lösung zu c): Gesamtzinsen**
+**Lösung zu c): Letzte Annuität und Rundungsdifferenz**
 
-Insgesamt werden 25 Annuitäten gezahlt; davon ist alles, was über die Darlehenssumme hinausgeht, Zins:
+Im 25. Jahr wird genau die Restschuld getilgt, die nach 24 Jahren noch offen ist. Die letzte Annuität besteht aus dieser Restschuld und ihren Zinsen für ein Jahr. Zuerst also $RK_{24}$ mit der Restschuldformel:
 
-$$Z_{\text{gesamt}} = 25 \cdot 12\,134{,}81 - 200\,000 = 303\,370{,}25 - 200\,000 = 103\,370{,}25\,\text{€}$$
+$$\begin{aligned}
+RK_{24} &= 200\,000 \cdot 1{,}035^{24} - \frac{12\,134{,}81 \cdot (1{,}035^{24} - 1)}{0{,}035} \\
+&\approx 456\,665{,}70 - 444\,941{,}35 \\
+&\approx 11\,724{,}34\,\text{€}
+\end{aligned}$$
 
-Hinweis: Wegen der Rundungsdifferenz in der letzten Zeile des Tilgungsplans kann der tatsächliche Wert um wenige Cent abweichen.
+Die letzte Annuität ist Tilgung plus Zinsen, also die um ein Jahr aufgezinste Restschuld (mit dem ungerundeten Wert weiterrechnen):
+
+$$A_{25} = RK_{24} \cdot 1{,}035 \approx 12\,134{,}70\,\text{€}$$
+
+Sie liegt um $12\,134{,}81 - 12\,134{,}70 = 0{,}11$ € unter der vereinbarten Annuität. Diese **Rundungsdifferenz** entsteht, weil die Annuität auf Cent gerundet wurde. Rechnet man den Tilgungsplan Zeile für Zeile mit gerundeten Werten durch, kann das Ergebnis um ein bis zwei Cent abweichen.

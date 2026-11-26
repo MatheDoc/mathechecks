@@ -20,7 +20,7 @@
       <text>stochastik__binomialverteilung__06-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Einzelwahrscheinlichkeits-Histogramm hat bei \(k=3\) die Balkenhöhe \(0{,}24\). Was ist \(P(X=3)\)?</p>]]></text>
+      <text><![CDATA[<p>Bei fester Trefferchance soll eine Mindestwahrscheinlichkeit für mindestens \(k\) Treffer erreicht werden. Welcher Parameter beschreibt die nötige Versuchsanzahl?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
+      <text><![CDATA[<p>Die Versuchsanzahl \(n\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}76\)</p>]]></text>
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit \(p\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenwahrscheinlichkeit gebildet</p>]]></text>
+        <text><![CDATA[<p>Gegebenes \(p\) als gesucht behandelt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}48\)</p>]]></text>
+      <text><![CDATA[<p>Die Treffergrenze \(k\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balkenhöhe verdoppelt</p>]]></text>
+        <text><![CDATA[<p>Gegebenes \(k\) als gesucht behandelt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}08\)</p>]]></text>
+      <text><![CDATA[<p>Der Erwartungswert \(\mu\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balkenhöhe durch Trefferzahl geteilt</p>]]></text>
+        <text><![CDATA[<p>Abgeleitete Kennzahl statt Modellparameter gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__binomialverteilung__06-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die Einzelbalken bei \(k=2,3,4\) haben die Höhen \(0{,}15;0{,}25;0{,}20\). Wie groß ist \(P(2\leq X\leq4)\)?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq12)\geq0{,}30\). Für \(n=20\) gilt \(0{,}27\), für \(n=21\) gilt \(0{,}33\). Welches \(n\) passt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}60\)</p>]]></text>
+      <text><![CDATA[<p>\(21\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <text><![CDATA[<p>\(20\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den mittleren Balken verwendet</p>]]></text>
+        <text><![CDATA[<p>Prüfwert unter 0,30 akzeptiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}40\)</p>]]></text>
+      <text><![CDATA[<p>\(12\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken bei 4 vergessen</p>]]></text>
+        <text><![CDATA[<p>Treffergrenze statt Versuchsanzahl gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}10\)</p>]]></text>
+      <text><![CDATA[<p>\(22\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Größten und kleinsten Balken subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Kleinsten bestätigten Wert unnötig überschritten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__binomialverteilung__06-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die Einzelbalken bei \(k=5,6,7\) sind \(0{,}18;0{,}12;0{,}05\). Wie groß ist \(P(X\geq6)\), wenn für größere \(k\) keine Balkenhöhe mehr positiv ist?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq8)\geq0{,}60\). Prüfwerte: \(n=14:0{,}58\), \(n=15:0{,}64\). Ergebnis?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}17\)</p>]]></text>
+      <text><![CDATA[<p>\(n=15\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}30\)</p>]]></text>
+      <text><![CDATA[<p>\(n=14\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken bei 5 statt bei 7 einbezogen</p>]]></text>
+        <text><![CDATA[<p>Zu kleinen Wahrscheinlichkeitswert akzeptiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}12\)</p>]]></text>
+      <text><![CDATA[<p>\(n=8\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 6 verwendet</p>]]></text>
+        <text><![CDATA[<p>Treffergrenze als \(n\) eingesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}95\)</p>]]></text>
+      <text><![CDATA[<p>\(n=16\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenwahrscheinlichkeit zum Balken bei 7 gebildet</p>]]></text>
+        <text><![CDATA[<p>Minimalität trotz bestätigtem 15 ignoriert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>stochastik__binomialverteilung__06-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die Einzelbalken bei \(k=0,1,2\) sind \(0{,}10;0{,}30;0{,}40\). Wie groß ist \(P(X<2)\)?</p>]]></text>
+      <text><![CDATA[<p>Bei festem \(p\) und festem \(k\): Wie verändert sich \(P(X\geq k)\) typischerweise, wenn \(n\) wächst?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}40\)</p>]]></text>
+      <text><![CDATA[<p>Sie wächst oder bleibt gleich.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}80\)</p>]]></text>
+      <text><![CDATA[<p>Sie sinkt immer.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken bei 2 trotz strenger Grenze einbezogen</p>]]></text>
+        <text><![CDATA[<p>Monotonierichtung vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}30\)</p>]]></text>
+      <text><![CDATA[<p>Sie bleibt stets gleich.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 1 verwendet</p>]]></text>
+        <text><![CDATA[<p>Zusätzliche Versuche als wirkungslos behandelt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}20\)</p>]]></text>
+      <text><![CDATA[<p>Sie wird zu \(p\).</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Restwahrscheinlichkeit statt Balkensumme gebildet</p>]]></text>
+        <text><![CDATA[<p>Intervallwahrscheinlichkeit mit Einzelparameter gleichgesetzt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>stochastik__binomialverteilung__06-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Was gibt die Höhe eines Balkens über \(k\) in einem Histogramm der Einzelwahrscheinlichkeiten an?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist das größte \(n\) mit \(P(X\leq5)\geq0{,}70\). Prüfwerte: \(n=9:0{,}74\), \(n=10:0{,}68\). Ergebnis?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(P(X=k)\)</p>]]></text>
+      <text><![CDATA[<p>\(n=9\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\leq k)\)</p>]]></text>
+      <text><![CDATA[<p>\(n=10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einzel- mit kumulierter Wahrscheinlichkeit verwechselt</p>]]></text>
+        <text><![CDATA[<p>Prüfwert unter 0,70 akzeptiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X\geq k)\)</p>]]></text>
+      <text><![CDATA[<p>\(n=5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken als obere Restwahrscheinlichkeit gedeutet</p>]]></text>
+        <text><![CDATA[<p>Treffergrenze statt Versuchsanzahl gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(P(X<k)\)</p>]]></text>
+      <text><![CDATA[<p>\(n=8\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wert \(k\) fälschlich ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Größten zulässigen Wert unnötig unterschritten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>stochastik__binomialverteilung__06-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Einzelbalken: bei \(k=1\) Höhe \(0{,}2\), bei \(k=2\) Höhe \(0{,}3\). Wie groß ist \(P(1\leq X<3)\)?</p>]]></text>
+      <text><![CDATA[<p>Welcher Ansatz passt zur Frage: Wie oft muss bei Trefferchance \(0{,}4\) mindestens versucht werden, damit mindestens 6 Treffer mit Wahrscheinlichkeit mindestens \(0{,}5\) auftreten?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>Kleinstes \(n\) mit \(P(X\geq6)\geq0{,}5\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <text><![CDATA[<p>Kleinstes \(p\) mit \(P(X\geq6)\geq0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 2 verwendet</p>]]></text>
+        <text><![CDATA[<p>Gesuchtes \(n\) durch \(p\) ersetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}1\)</p>]]></text>
+      <text><![CDATA[<p>Größtes \(k\) mit \(P(X\geq k)\geq0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balkenhöhen subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Gegebene Grenze 6 als gesucht behandelt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}06\)</p>]]></text>
+      <text><![CDATA[<p>Kleinstes \(n\) mit \(P(X\leq6)\geq0{,}5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balkenhöhen multipliziert</p>]]></text>
+        <text><![CDATA[<p>Mindestens 6 mit höchstens 6 verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>stochastik__binomialverteilung__06-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Einzelbalken: \(P(X=0)=0{,}1\), \(P(X=1)=0{,}4\), \(P(X=2)=0{,}3\). Wie groß ist \(P(X\leq1)\)?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist das kleinste \(n\) mit \(P(X\geq4)>0{,}8\). Prüfwerte (exakt): \(n=7:0{,}80\), \(n=8:0{,}85\). Welches \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>\(8\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <text><![CDATA[<p>\(7\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 1 verwendet</p>]]></text>
+        <text><![CDATA[<p>Strenge Schranke \(>0{,}8\) als \(\geq0{,}8\) gelesen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}8\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken bei 2 zusätzlich einbezogen</p>]]></text>
+        <text><![CDATA[<p>Treffergrenze statt Versuchsanzahl gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <text><![CDATA[<p>\(9\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 2 verwendet</p>]]></text>
+        <text><![CDATA[<p>Kleinsten bestätigten Wert überschritten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__binomialverteilung__06-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Einzelbalken bei \(k=3\) und \(k=4\) haben die Höhen \(0{,}22\) und \(0{,}18\). Welche Summe liefert \(P(3\leq X\leq4)\)?</p>]]></text>
+      <text><![CDATA[<p>Bei einer Binomialverteilung wird nur \(n\) variiert. Welcher Verteilungsparameter bleibt unverändert?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}22+0{,}18\)</p>]]></text>
+      <text><![CDATA[<p>Die vorgegebene Trefferwahrscheinlichkeit \(p\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}22-0{,}18\)</p>]]></text>
+      <text><![CDATA[<p>Die Versuchsanzahl \(n\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einzelbalken subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Gesuchte Größe fälschlich festgehalten</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1-0{,}22\)</p>]]></text>
+      <text><![CDATA[<p>Jeder berechnete Wahrscheinlichkeitswert</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenwahrscheinlichkeit eines Balkens gebildet</p>]]></text>
+        <text><![CDATA[<p>Prüfwerte fälschlich als identisch angenommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}22\cdot0{,}18\)</p>]]></text>
+      <text><![CDATA[<p>Die Verteilung unabhängig von \(n\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einzelbalken multipliziert</p>]]></text>
+        <text><![CDATA[<p>Abhängigkeit der Binomialverteilung von \(n\) bestritten</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__binomialverteilung__06-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die einzigen positiven Einzelbalken liegen bei \(k=0,1,2\) mit Höhen \(0{,}25;0{,}50;0{,}25\). Wie groß ist \(P(X>0)\)?</p>]]></text>
+      <text><![CDATA[<p>Bei fester Trefferchance wird die Mindestwahrscheinlichkeit für mindestens \(k\) Treffer erst mit 31 statt 30 Versuchen erreicht. Welches \(n\) ist mindestens nötig?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(n=31\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <text><![CDATA[<p>\(n=30\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den ausgeschlossenen Balken bei 0 gewählt</p>]]></text>
+        <text><![CDATA[<p>Nicht erfüllenden Grenzwert gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}50\)</p>]]></text>
+      <text><![CDATA[<p>\(n=61\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den Balken bei 1 gewählt</p>]]></text>
+        <text><![CDATA[<p>Benachbarte Versuchsanzahlen addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit ist 31.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Balken bei 0 trotz strenger Grenze einbezogen</p>]]></text>
+        <text><![CDATA[<p>Versuchsanzahl als Wahrscheinlichkeit gedeutet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__binomialverteilung__06-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welche Balken werden für \(P(2<X\leq5)\) in einer Einzeldarstellung addiert?</p>]]></text>
+      <text><![CDATA[<p>Warum muss für \(P(X\geq k)>0\) stets \(n\geq k\) gelten?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Die Balken bei \(3,4,5\)</p>]]></text>
+      <text><![CDATA[<p>Mehr Treffer als Versuche sind unmöglich.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Balken bei \(2,3,4,5\)</p>]]></text>
+      <text><![CDATA[<p>Weil \(p=n/k\) gilt.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Ausgeschlossene Untergrenze 2 einbezogen</p>]]></text>
+        <text><![CDATA[<p>Eine falsche Parameterformel verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Balken bei \(3,4\)</p>]]></text>
+      <text><![CDATA[<p>Weil \(P(X\geq k)=k/n\) gilt.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Eingeschlossene Obergrenze 5 ausgelassen</p>]]></text>
+        <text><![CDATA[<p>Intervallwahrscheinlichkeit als Anteil \(k/n\) gedeutet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Nur der Balken bei \(5\)</p>]]></text>
+      <text><![CDATA[<p>Weil immer genau \(k\) Treffer auftreten.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Intervallwahrscheinlichkeit auf einen Einzelbalken reduziert</p>]]></text>
+        <text><![CDATA[<p>Trefferzahl fälschlich als sicher angenommen</p>]]></text>
       </feedback>
     </answer>
   </question>

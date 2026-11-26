@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/15-kennzahlen-p-sigma-gegeben.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/13-kennzahlen-p-sigma-gegeben.html
 ---
 Eine Maschine produziert ein bestimmtes Bauteil. Erfahrungsgemäß ist etwa jedes zehnte Bauteil fehlerhaft. Bei einer Qualitätskontrolle ergibt sich eine Standardabweichung von $4{,}6476$ für die Anzahl fehlerhafter Bauteile. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte Bauteile werden in der Stichprobe erwartet?
 

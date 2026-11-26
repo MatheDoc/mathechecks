@@ -1,11 +1,11 @@
-"""Check 03 – Restschuldformel: Restschuld nach k Jahren, Zins/Tilgung im Folgejahr, Gesamtzinsen."""
+"""Check 03 – Restschuldformel: Restschuld nach k Jahren, Zins/Tilgung im Folgejahr, Rundungsdifferenz im letzten Jahr."""
 
 from __future__ import annotations
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical_finanz_geld
+from aufgaben.core.placeholders import numerical, numerical_finanz_geld
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.finanzmathematik.shared import (
     annuitaet,
@@ -28,12 +28,19 @@ class RestschuldformelGenerator(TaskGenerator):
         tasks: list[Task] = []
 
         for sz in szenario_folge(rng, count):
-            k0 = sample_darlehen(rng, sz.stufe)
-            p = sample_zinssatz(rng)
-            n = rng.randint(8, 30)
+            # Letzte Annuität über die Restschuldformel: RK_{n-1} * q. Ihre Abweichung von A stammt aus der
+            # Rundung von A auf Cent; Kandidaten mit Abweichung unter 5 Cent werden verworfen, damit die
+            # Toleranz 0,02 nicht auch „keine Abweichung“ akzeptiert.
+            while True:
+                k0 = sample_darlehen(rng, sz.stufe)
+                p = sample_zinssatz(rng)
+                n = rng.randint(8, 30)
+                q = q_of(p)
+                a = rund2(annuitaet(k0, q, n))
+                diff = restschuld(k0, a, q, n - 1) * q - a
+                if abs(diff) >= 0.05:
+                    break
             k = rng.randint(3, n - 2)
-            q = q_of(p)
-            a = rund2(annuitaet(k0, q, n))
             rk = restschuld(k0, a, q, k)
             zinsen_folge = rk * (q - 1.0)
 
@@ -45,13 +52,13 @@ class RestschuldformelGenerator(TaskGenerator):
                 f"Wie hoch ist die Restschuld nach {k} Jahren?",
                 f"Wie hoch sind die Zinsen im {k + 1}. Jahr?",
                 f"Wie hoch ist die Tilgung im {k + 1}. Jahr?",
-                "Wie viel Zinsen werden über die gesamte Laufzeit insgesamt gezahlt?",
+                "Um welchen Betrag weicht die Annuität im letzten Jahr von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?",
             ]
             antworten = [
                 numerical_finanz_geld(rk),
                 numerical_finanz_geld(zinsen_folge),
                 numerical_finanz_geld(a - zinsen_folge),
-                numerical_finanz_geld(n * a - k0),
+                numerical(abs(diff), tolerance=0.02, decimals=2),
             ]
             tasks.append(Task(einleitung=intro, fragen=fragen, antworten=antworten))
 

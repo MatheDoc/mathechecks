@@ -1,13 +1,13 @@
-# Warm-Up zu Check 08 „n mit Intervall-Wkt bestimmen“ (Binomialverteilung)
+# Warm-Up zu Check 06 „n mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 # Kern: n lässt sich nur ausprobieren. P(X≥k) steigt, P(X≤k) fällt mit n. Die Antwort liegt zwischen zwei Nachbarn:
 # „mindestens n“ = kleinstes n, für das die Bedingung gilt; „höchstens n“ = größtes n, für das sie gilt.
-# Das Probieren läuft über Bcd(a;b;n;p) wie in Check 05; die obere Grenze b ändert sich bei „mindestens k“ mit n.
+# Das Probieren läuft über Bcd(a;b;n;p) wie in Check 03; die obere Grenze b ändert sich bei „mindestens k“ mit n.
 # Alle vier Kombinationen des Trainings kommen vor: Zuschauen (mind./≥/≥, höchst./≤/≥), Mitmachen (höchst./≥/≤, mind./≤/≤).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
-check_id: stochastik__binomialverteilung__08
+check_id: stochastik__binomialverteilung__06
 abschluss: '<p>Im Training steht eine Bedingung wie $P(X\geq 144)\geq 0{,}29$ oder $P(X\leq 173)\leq 0{,}84$, und du suchst $n$. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $n\approx k/p$, prüfe, ob $P$ zu groß oder zu klein ist, und taste dich mit dem Taschenrechner an die Schwelle heran. Bei „mindestens $k$“ ändert sich die obere Grenze mit: $Bcd(k;n;n;p)$. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Bei „mindestens $n$“ gibst du das kleinste $n$ an, bei dem sie gilt, bei „höchstens $n$“ das größte.</p>'
 karten:
 

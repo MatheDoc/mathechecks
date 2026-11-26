@@ -1,15 +1,15 @@
-# Warm-Up zu Check 10 „Intervallgrenzen mit Intervall-Wkt bestimmen“ (Binomialverteilung)
+# Warm-Up zu Check 08 „Intervallgrenzen mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Aufbau wie Check 08/09, nur mit k: k lässt sich nur ausprobieren, P(X≥k) fällt, P(X≤k) steigt mit k,
+# Aufbau wie Check 06/07, nur mit k: k lässt sich nur ausprobieren, P(X≥k) fällt, P(X≤k) steigt mit k,
 # Nachbarn-Paar bei ganzzahligem k, Startwert k≈n·p (Erwartungswert).
 # „größtes k“ = größtes k, für das die Bedingung gilt; „kleinstes k“ = kleinstes k, für das sie gilt.
-# Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 08/09 ändert sich je nach Ungleichung
+# Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 06/07 ändert sich je nach Ungleichung
 # die untere Grenze (Bcd(k;n;n;p) für „mindestens k“) oder die obere Grenze (Bcd(0;k;n;p) für „höchstens k“).
 # Kombinationen: Zuschauen (größtes/≥/≥, kleinstes/≤/≥), Mitmachen (kleinstes/≥/≤, größtes/≤/≤, kleinstes/≤/≥).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
-check_id: stochastik__binomialverteilung__10
+check_id: stochastik__binomialverteilung__08
 abschluss: '<p>Im Training stehen $n$, $p$ und eine Bedingung wie $P(X\geq k)\geq 0{,}87$, und du suchst $k$. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $k\approx n\cdot p$, prüfe, ob die Bedingung gilt, und taste dich mit dem Taschenrechner Schritt für Schritt (bei großen Zahlen auch in größeren Sprüngen) an die Schwelle heran. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Beim „größten $k$“ gibst du das größte $k$ an, bei dem sie gilt, beim „kleinsten $k$“ das kleinste. Achte bei $Bcd$ darauf, dass $k$ je nach Ungleichung an einer anderen Stelle steht: $Bcd(k;n;n;p)$ für „mindestens $k$“, $Bcd(0;k;n;p)$ für „höchstens $k$“.</p>'
 karten:
 

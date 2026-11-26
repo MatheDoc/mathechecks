@@ -1,0 +1,3758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__01</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was kennzeichnet die Annuitätentilgung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die jährliche Zahlung (Annuität) ist konstant</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die jährliche Tilgung ist konstant</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Tilgung wäre Ratentilgung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die jährlichen Zinsen sind konstant</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen sinken mit der Restschuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wird nur am Ende getilgt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bei Annuitätentilgung wird jedes Jahr getilgt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie setzt sich die Annuität zusammen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(A = Z_k + T_k\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = Z_k - T_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen und Tilgung werden addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = Z_k \cdot T_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen und Tilgung werden addiert, nicht multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = RK_k + Z_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuld gehört nicht zur Annuität</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie werden die Zinsen im Jahr \(k\) berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Aus der Restschuld zu Jahresbeginn: \(Z_k = RK_{k-1} \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der ursprünglichen Darlehenssumme: \(Z_k = K_0 \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das gilt nur im ersten Jahr</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Annuität: \(Z_k = A \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen beziehen sich auf die Schuld, nicht auf die Zahlung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Restschuld zu Jahresende</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Schuld am Jahresanfang wird verzinst</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld zu Jahresbeginn 10 000 €, Zinssatz 5 %, Annuität 2 500 €. Wie hoch ist die Tilgung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(500\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das sind die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\,500\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen müssen abgezogen werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen wurden addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld zu Jahresbeginn 10 000 €, Tilgung 2 000 €. Wie hoch ist die Restschuld am Jahresende?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(8\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(12\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Tilgung verringert die Schuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7\,500\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Tilgung wird abgezogen, nicht die Annuität</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgung wurde nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie entwickeln sich Zinsen und Tilgung im Verlauf eines Tilgungsplans?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Zinsen sinken, Tilgung steigt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zinsen steigen, Tilgung sinkt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuld sinkt, also sinken die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide bleiben konstant</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Annuität bleibt konstant</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide sinken</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgung steigt, weil A konstant bleibt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Darlehen über 20 000 € wird mit 4 % verzinst. Wie hoch sind die Zinsen im 1. Jahr?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(800\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit 0,4 statt 0,04 gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(80\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit 0,004 statt 0,04 gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\,800\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die aufgezinste Schuld, nicht die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Darlehen 20 000 €, Restschuld am Ende des 1. Jahres 15 000 €, Zinssatz 4 %. Wie hoch sind die Zinsen im 2. Jahr?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(600\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(800\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen aus der Darlehenssumme statt aus der aktuellen Restschuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(200\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen aus der Tilgung des 1. Jahres berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(15\,600\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die aufgezinste Restschuld, nicht die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld zu Jahresbeginn 20 000 €, Zinssatz 5 %, Annuität 5 000 €. Wie hoch ist die Restschuld am Jahresende?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(16\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(15\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die ganze Annuität abgezogen statt nur der Tilgung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(19\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen statt der Tilgung abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(21\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen addiert, Zahlung vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__01-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Woher stammt der Wert in der Spalte „Restschuld (Jahresanfang)“ der zweiten Zeile?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Aus der Spalte „Restschuld (Jahresende)“ der ersten Zeile</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Darlehenssumme</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das gilt nur für die erste Zeile</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Annuität</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität ist eine Zahlung, keine Schuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Tilgung der zweiten Zeile</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgung wird erst in dieser Zeile berechnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__02</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die Annuitätenformel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(A = \dfrac{K_0 \cdot q^n \cdot (q-1)}{q^n - 1}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = \dfrac{K_0 \cdot (q^n - 1)}{q^n \cdot (q-1)}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die Barwertformel mit K_0 statt r</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = K_0 \cdot q^n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die Zinseszinsformel</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = \dfrac{K_0}{n}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das wäre eine zinslose Ratenzahlung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Zusammenhang besteht zwischen Annuität und erster Tilgung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(A = T_1 \cdot q^n\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = T_1 + q^n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zusammenhang ist multiplikativ</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = T_1 \cdot n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit steht im Exponenten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = \dfrac{T_1}{q^n}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>T_1 wird aufgezinst, nicht abgezinst</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird die Tilgung des ersten Jahres berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(T_1 = A - K_0 \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_1 = A + K_0 \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen werden von der Annuität abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_1 = K_0 \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das sind die Zinsen des ersten Jahres</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_1 = \dfrac{A}{n}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgung ist nicht gleichmäßig verteilt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Annuität ist gegeben, gesucht ist die Darlehenssumme \(K_0\). Wie geht man vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Den Bruch \(\frac{q^n \cdot (q-1)}{q^n - 1}\) ausrechnen und \(A\) dadurch teilen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\) mit \(n\) multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ignoriert die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\) durch \(q^n\) teilen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist nur die Abzinsung einer einzelnen Zahlung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Logarithmus bilden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Logarithmus wird bei gesuchtem n gebraucht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Laufzeit ist gesucht. Welche Schritte führen zum Ziel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(T_1\) berechnen, dann \(q^n = \frac{A}{T_1}\) und \(n = \frac{\ln(A/T_1)}{\ln q}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n = \frac{K_0}{A}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ignoriert die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n = \frac{A}{K_0}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ergibt keine sinnvolle Zahl</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die \(n\)-te Wurzel ziehen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wurzel löst nach der Basis auf</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(K_0 = 100\,000\) €, \(p = 4\,\%\), \(A = 9\,000\) €. Wie groß ist \(T_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(5\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das sind die Zinsen des ersten Jahres</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(9\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen wurden nicht abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(13\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen wurden addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was gilt für die Annuität im Vergleich zu den Zinsen des ersten Jahres?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie muss größer sein, sonst sinkt die Schuld nie</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie muss kleiner sein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dann würde die Schuld wachsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie muss gleich groß sein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dann bliebe die Schuld konstant</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt keinen Zusammenhang</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur wenn A die Zinsen übersteigt, wird getilgt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was passiert mit der Annuität, wenn bei gleicher Darlehenssumme und gleichem Zinssatz die Laufzeit verlängert wird?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie wird kleiner</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wird größer</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Rückzahlung verteilt sich auf mehr Jahre</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleibt gleich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit beeinflusst die Annuität</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wird null</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es muss weiterhin gezahlt werden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was gilt für die Gesamtzinsen bei längerer Laufzeit (gleiche Darlehenssumme, gleicher Zinssatz)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie steigen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie sinken</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Schuld besteht länger und wird länger verzinst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleiben gleich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit beeinflusst die Gesamtzinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie werden negativ</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen sind positiv</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__02-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie hängt die Annuitätenformel mit dem Rentenbarwert zusammen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das Darlehen ist der Barwert der Annuitäten: \(K_0 = R_0\) mit \(r = A\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Darlehen ist der Endwert der Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Darlehen wird heute ausgezahlt, also Barwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt keinen Zusammenhang</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Formeln sind eng verwandt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Annuität ist der Barwert des Darlehens</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität ist die Rate, das Darlehen der Barwert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die Restschuldformel mit der Annuität?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 \cdot q^k - \dfrac{A \cdot (q^k - 1)}{q - 1}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 - k \cdot A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ignoriert alle Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 \cdot q^k - k \cdot A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuitäten müssen aufgezinst werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 - \dfrac{A \cdot (q^k - 1)}{q - 1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Darlehen muss aufgezinst werden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die Restschuldformel mit der ersten Tilgung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 - \dfrac{T_1 \cdot (q^k - 1)}{q - 1}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 - k \cdot T_1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgungen wachsen mit q, sind also nicht konstant</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 \cdot q^k - T_1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es werden alle bisherigen Tilgungen abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k = K_0 - T_1 \cdot q^k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es werden alle Tilgungen summiert, nicht nur die letzte</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bedeutet der Ausdruck \(K_0 \cdot q^k\) in der Restschuldformel anschaulich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Schuld, wenn k Jahre lang gar nichts gezahlt worden wäre</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Summe der gezahlten Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist der zweite Term der Formel</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zinsen des Jahres k</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen eines Jahres sind viel kleiner</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Restschuld nach k Jahren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuld ist die Differenz beider Terme</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bedeutet der Ausdruck \(\dfrac{A \cdot (q^k - 1)}{q - 1}\) in der Restschuldformel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Den Endwert der k bisher gezahlten Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Summe der Zinsen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es sind Annuitäten, nicht nur Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Restschuld</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuld ergibt sich erst durch Subtraktion</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Barwert aller Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es ist ein Endwert (aufgezinst), kein Barwert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie berechnet man die Zinsen im Jahr \(k + 1\), wenn \(RK_k\) bekannt ist?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(Z_{k+1} = RK_k \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(Z_{k+1} = A \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen beziehen sich auf die Schuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(Z_{k+1} = K_0 \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das wären die Zinsen des ersten Jahres</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(Z_{k+1} = RK_k - A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist keine Zinsberechnung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie berechnet man die Tilgung im Jahr \(k + 1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(T_{k+1} = A - Z_{k+1}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_{k+1} = A + Z_{k+1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen werden abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_{k+1} = RK_k - Z_{k+1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Von der Annuität, nicht von der Restschuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(T_{k+1} = Z_{k+1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Tilgung und Zinsen sind verschieden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Restschuld zu Beginn des letzten Jahres ist \(RK_{n-1}\). Wie hoch ist die letzte Annuität?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_{n-1} \cdot q\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die letzte Annuität weicht wegen der Rundung meist etwas von A ab</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{n-1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen des letzten Jahres fehlen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{n-1} \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das sind nur die Zinsen, die Tilgung fehlt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Warum weicht die letzte Annuität meist um einige Cent von der vereinbarten Annuität \(A\) ab?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Weil \(A\) auf Cent gerundet ist</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil im letzten Jahr keine Zinsen anfallen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Auch im letzten Jahr wird die Restschuld verzinst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil sich der Zinssatz im letzten Jahr ändert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz bleibt gleich</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wegen eines Rechenfehlers im Plan</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Abweichung ist eine Folge der Rundung, kein Fehler</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Warum wird bei der Restschuld nach 10 Jahren die Formel und nicht der Tilgungsplan verwendet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Weil die Formel den Wert in einem Schritt liefert, ohne zehn Zeilen zu rechnen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil der Tilgungsplan falsch ist</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Plan ist korrekt, nur aufwendig</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil die Formel genauer ist als der Plan</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Plan mit Rundung ist der eigentliche Vertrag; die Formel weicht um Cent ab</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Man darf den Plan nicht verwenden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beides ist zulässig</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was gilt für \(RK_n\), also die Restschuld nach der letzten Annuität?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_n = 0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_n = A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nach der letzten Zahlung ist die Schuld getilgt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_n = K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Schuld ist am Ende null</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_n = Z_n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen sind Teil der letzten Annuität, keine Restschuld</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__04</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>„Wie hoch ist die jährliche Rate für Zins und Tilgung?“ Welche Größe ist gesucht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Annuität \(A\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Darlehenssumme \(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Darlehenssumme ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Laufzeit \(n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Restschuld \(RK_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es ist nicht nach einem Zeitpunkt gefragt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>„Welche Darlehenssumme ist bei einer jährlichen Belastung von 8 000 € möglich?“ Welche Größe ist gesucht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>8 000 € ist die gegebene Annuität</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit steht im Text</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es geht nicht um einen Zwischenstand</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>„Nach wie vielen Jahren ist das Darlehen getilgt?“ Welche Größe ist gesucht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(n\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Darlehenssumme ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Am Ende ist die Restschuld null, gefragt ist der Zeitpunkt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>„Wie hoch ist die Schuld nach 7 Jahren?“ Welche Größe ist gesucht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_7\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>7 Jahre sind gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Darlehenssumme ist gegeben</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel wird verwendet, wenn \(A\) gesucht ist?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Annuitätenformel</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Restschuldformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuldformel liefert RK_k</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A = T_1 \cdot q^n\) nach \(n\) aufgelöst</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das liefert die Laufzeit</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zinseszinsformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ein Darlehen ist keine Einmalanlage</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel wird verwendet, wenn \(n\) gesucht ist?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(A = T_1 \cdot q^n\), nach \(q^n\) auflösen und logarithmieren</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Restschuldformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuldformel setzt k voraus</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Annuitätenformel direkt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuitätenformel ist nach n schwer aufzulösen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Rentenendwertformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es geht um ein Darlehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Darlehen von 50 000 € zu 4 % soll mit 2 000 € jährlich getilgt werden. Was ist das Problem?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Annuität deckt genau die Zinsen, die Schuld sinkt nie</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Annuität ist zu hoch</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität ist zu niedrig</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt kein Problem</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen im ersten Jahr betragen 2 000 €, es bleibt nichts zur Tilgung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Zinssatz ist zu niedrig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist nicht das Problem</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ist ein Signalwort für die Annuität im Aufgabentext?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>„gleich hohe Jahresraten“</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>„Restschuld“</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das deutet auf RK_k hin</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>„Laufzeit“</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das deutet auf n hin</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>„Zinssatz“</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das deutet auf p hin</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Ergebnis lautet \(n \approx 15{,}1\) Jahre. Wie ist das zu deuten?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>15 volle Annuitäten und eine kleine Restzahlung im 16. Jahr</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau 15 Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nach 15 Annuitäten bleibt eine kleine Restschuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>16 volle Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die 16. Zahlung ist nur eine Restzahlung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Ergebnis ist ungültig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht-ganzzahlige Laufzeiten sind sinnvoll interpretierbar</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__04-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Darlehen über 100 000 € wird mit 15 Annuitäten von je 9 000 € zurückgezahlt. Wie viel Zinsen werden insgesamt gezahlt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(35\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(135\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die Gesamtzahlung, die Darlehenssumme muss abgezogen werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(9\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist eine einzelne Annuität</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(6\,667\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Darlehenssumme durch Laufzeit geteilt, das ist keine Zinsgröße</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einer Zeile des Tilgungsplans sind Restschuld zu Jahresbeginn und Zinsen bekannt. Wie erhält man den Zinssatz?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p = \dfrac{Z_k}{RK_{k-1}} \cdot 100\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p = \dfrac{RK_{k-1}}{Z_k} \cdot 100\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zähler und Nenner vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p = Z_k - RK_{k-1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist ein Verhältnis, keine Differenz</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p = Z_k \cdot RK_{k-1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist ein Quotient</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld zu Jahresbeginn 20 000 €, Zinsen 900 €. Wie hoch ist der Zinssatz?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4{,}5\,\%\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(9\,\%\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>900 / 20 000 = 0,045</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}45\,\%\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(45\,\%\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Zinsen 750 € und Tilgung 4 250 € einer Zeile sind bekannt. Wie hoch ist die Annuität?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(5\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\,500\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen und Tilgung werden addiert, nicht subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\,250\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist nur die Tilgung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(750\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das sind nur die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld am Jahresende 30 000 € und Tilgung 5 000 € sind bekannt. Wie hoch war die Restschuld zu Jahresbeginn?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(35\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(25\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rückwärts wird die Tilgung addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(30\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Tilgung hat die Schuld bereits verringert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die Tilgung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bekannt sind Annuität \(A\), Zinssatz und die Restschuld am Jahresende \(RK_k\). Wie erhält man die Restschuld am Jahresanfang \(RK_{k-1}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = \dfrac{RK_k + A}{q}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = RK_k + A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen des Jahres müssen herausgerechnet werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = (RK_k + A) \cdot q\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es muss durch q geteilt werden, nicht multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = RK_k - A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rückwärts wird addiert, nicht subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Woher stammt die Beziehung \(RK_k = q \cdot RK_{k-1} - A\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Aus \(RK_k = RK_{k-1} - T_k\) mit \(T_k = A - RK_{k-1} \cdot \frac{p}{100}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Zinseszinsformel allein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität muss berücksichtigt werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Aus der Rentenendwertformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es geht um eine einzelne Zeile, nicht um eine Rente</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie ist falsch</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sie ergibt sich direkt aus den Zeilenzusammenhängen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Mit welcher Zeile sollte man beim Vervollständigen beginnen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Mit der Zeile, in der die meisten Werte bekannt sind</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Immer mit der ersten Zeile</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die erste Zeile kann unvollständig sein</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Immer mit der letzten Zeile</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die letzte Zeile kann unvollständig sein</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das ist egal</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Reihenfolge bestimmt, ob man weiterrechnen kann</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Zinssatz ist bekannt, die Restschuld am Jahresanfang nicht, aber die Zinsen der Zeile. Wie erhält man die Restschuld am Jahresanfang?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = \dfrac{Z_k}{p} \cdot 100\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = Z_k \cdot p\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen sind ein Anteil der Schuld, also wird geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = Z_k + p\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prozent und Betrag können nicht addiert werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(RK_{k-1} = \dfrac{p}{Z_k}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zähler und Nenner vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Zinsen 600 €, Zinssatz 3 %. Wie hoch war die Restschuld zu Jahresbeginn?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(20\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(18\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>600 / 0,03 = 20 000</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(200\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__05-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Beim Rückwärtsrechnen weicht das Ergebnis um einen Cent vom Originalplan ab. Woran liegt das?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Am zeilenweisen Runden im Originalplan</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>An einem falschen Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist korrekt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>An einer falschen Formel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Formel ist korrekt, nur die Rundung wirkt sich aus</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das kann nicht passieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rundung erzeugt kleine Abweichungen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__06</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ist der erste Schritt bei einem Zinssatzwechsel im Annuitätendarlehen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Restschuld zum Zeitpunkt des Wechsels bestimmen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die neue Annuität mit der ursprünglichen Darlehenssumme berechnen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die neue Annuität bezieht sich auf die Restschuld, nicht auf K_0</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Laufzeit verlängern</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Gesamtlaufzeit bleibt in der Regel unverändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die alte Annuität weiterzahlen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit der alten Annuität wäre das Darlehen nicht pünktlich getilgt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Größe übernimmt nach dem Wechsel die Rolle von \(K_0\) in der Annuitätenformel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Restschuld zum Zeitpunkt des Wechsels</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die ursprüngliche Darlehenssumme</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ein Teil ist bereits getilgt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die bisher gezahlten Annuitäten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gezahlte Beträge sind keine Schuld mehr</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zinsen des Wechseljahres</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen sind keine Schuld</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Größe übernimmt nach dem Wechsel die Rolle von \(n\) in der Annuitätenformel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Restlaufzeit \(n - k\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die ursprüngliche Laufzeit \(n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>k Jahre sind bereits vergangen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die bisherige Laufzeit \(k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die vergangene Zeit</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n + k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit verlängert sich nicht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Zinssatz steigt nach 5 Jahren. Wie ändert sich die Annuität bei unveränderter Gesamtlaufzeit?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie steigt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie sinkt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höhere Zinsen bedeuten höhere Belastung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleibt gleich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität muss angepasst werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie halbiert sich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es gibt keinen festen Faktor</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Zinssatz sinkt nach 5 Jahren. Wie ändert sich die Annuität bei unveränderter Gesamtlaufzeit?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie sinkt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie steigt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Niedrigere Zinsen bedeuten niedrigere Belastung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleibt gleich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität muss angepasst werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie verdoppelt sich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es gibt keinen festen Faktor</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie werden die Zinsen im ersten Jahr nach dem Wechsel berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Restschuld beim Wechsel mal neuem Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Restschuld beim Wechsel mal altem Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ab dem Wechsel gilt der neue Zinssatz</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Darlehenssumme mal neuem Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Restschuld wird verzinst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Neue Annuität mal neuem Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen beziehen sich auf die Schuld</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld beim Wechsel 200 000 €, neuer Zinssatz 4,5 %. Wie hoch sind die Zinsen im folgenden Jahr?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(9\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\,500\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>200 000 · 0,045 = 9 000</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(90\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(900\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bleibt beim Zinssatzwechsel typischerweise unverändert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Gesamtlaufzeit</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Annuität</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität wird neu berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ändert sich per Definition</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Restschuld</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Restschuld sinkt weiter</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Mit welcher Formel wird die Restschuld zum Zeitpunkt des Wechsels bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Mit der Restschuldformel (oder dem Tilgungsplan) und dem alten Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mit der Restschuldformel und dem neuen Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bis zum Wechsel galt der alte Zinssatz</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mit der Zinseszinsformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuitäten müssen berücksichtigt werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mit dem Rentenbarwert und dem neuen Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Vergangenheit wird mit dem alten Zinssatz bewertet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__06-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie geht es nach der Berechnung der neuen Annuität weiter?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Tilgungsplan wird mit der neuen Annuität und dem neuen Zinssatz fortgeführt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Tilgungsplan beginnt von vorn mit \(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die bisherigen Zahlungen bleiben bestehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die alte Annuität wird weitergezahlt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität wurde angepasst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zinsen werden nicht mehr berechnet</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen fallen weiterhin an</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/tilgungsrechnung/finanzmathematik__tilgungsrechnung__07</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ist eine Sondertilgung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine zusätzliche Tilgungszahlung, die die Restschuld über die planmäßige Tilgung hinaus verringert</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine erhöhte Zinszahlung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sondertilgung betrifft die Schuld, nicht die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Aussetzen der Tilgung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist eine Tilgungspause</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Verlängerung der Laufzeit</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sondertilgung verkürzt eher die Laufzeit</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld 72 950 €, Sondertilgung 20 000 €. Wie hoch ist die Restschuld danach?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(52\,950\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(92\,950\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Sondertilgung verringert die Schuld</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist die Sondertilgung selbst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(72\,950\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Sondertilgung wurde nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach einer Sondertilgung bleibt die Gesamtlaufzeit unverändert. Was ändert sich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Annuität wird kleiner</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Annuität wird größer</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Weniger Schuld bei gleicher Zeit bedeutet weniger Zahlung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Zinssatz sinkt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist vertraglich festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nichts</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die verringerte Schuld wirkt sich auf die Annuität aus</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach einer Sondertilgung bleibt die Annuität unverändert. Was ändert sich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Restlaufzeit wird kürzer</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Restlaufzeit wird länger</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Weniger Schuld bei gleicher Zahlung wird schneller getilgt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Zinssatz steigt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ist vertraglich festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nichts</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die verringerte Schuld wirkt sich auf die Laufzeit aus</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird die neue Annuität nach einer Sondertilgung bei fester Laufzeit berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Annuitätenformel mit der verringerten Restschuld und der Restlaufzeit</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alte Annuität minus Sondertilgung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Sondertilgung ist eine Einmalzahlung, keine Jahresrate</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Annuitätenformel mit der ursprünglichen Darlehenssumme</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Schuld hat sich geändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alte Annuität geteilt durch die Restlaufzeit</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist keine korrekte Umformung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird die neue Restlaufzeit nach einer Sondertilgung bei fester Annuität berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(T_1' = A - RK' \cdot \frac{p}{100}\), dann \(n = \frac{\ln(A / T_1')}{\ln q}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alte Laufzeit minus Sondertilgung geteilt durch Annuität</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist keine korrekte Formel</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Restschuld geteilt durch Annuität</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ignoriert die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Laufzeit ändert sich nicht</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bei fester Annuität verkürzt sich die Laufzeit</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was passiert in einem Jahr mit Tilgungspause?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es werden nur die Zinsen gezahlt, die Restschuld bleibt gleich</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wird gar nichts gezahlt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen fallen trotzdem an und werden gezahlt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wird nur getilgt, keine Zinsen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen müssen gezahlt werden, die Tilgung ruht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Schuld sinkt wie geplant</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Tilgung bleibt die Schuld unverändert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Restschuld 488 000 €, Zinssatz 4 %. Welche Zahlung ist im Pausenjahr zu leisten?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(19\,520\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zinsen werden weiterhin gezahlt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(48\,800\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das wären 10 %</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\,952\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kommastelle falsch gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach einer Tilgungspause soll die Gesamtlaufzeit erhalten bleiben. Was folgt daraus?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Annuität für die verbleibenden Jahre wird neu berechnet und ist höher</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die alte Annuität wird weitergezahlt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit der alten Annuität wäre das Darlehen ein Jahr später getilgt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Laufzeit verlängert sich automatisch um ein Jahr</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Laufzeit soll erhalten bleiben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zinsen entfallen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsen fallen weiterhin an</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__tilgungsrechnung__07-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was haben Sondertilgung, Tilgungspause und Zinssatzwechsel gemeinsam?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die aktuelle Restschuld wird als neues \(K_0\) und die Restlaufzeit als neues \(n\) in die Annuitätenformel eingesetzt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Darlehenssumme wird neu festgelegt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die ursprüngliche Darlehenssumme spielt keine Rolle mehr</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Zinssatz wird halbiert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz ändert sich nur beim Zinssatzwechsel</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Annuität bleibt immer gleich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Annuität wird in der Regel angepasst</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

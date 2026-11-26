@@ -1,6 +1,6 @@
 ﻿---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/06-histogramme-einzeln.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/04-histogramme-einzeln.html
 ---
 Hier sehen wir ein Histogramm der Einzelwahrscheinlichkeiten. 
 

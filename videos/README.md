@@ -13,7 +13,7 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Rechenverfahren in Schritten, tragender Graph | `analysis/differentialrechnung-ganzrationaler-funktionen/06-extremstellen-bestimmen.py` |
 | Algorithmus an einer Matrix | `lineare-algebra/lineare-gleichungssysteme/02-lgs-loesen-3x3.py` |
 | Kennzahlen einer Matrix ablesen und vergleichen, Fälle durch Ändern einer Zeile | `lineare-algebra/lineare-gleichungssysteme/05-lgs-rangkriterium.py` |
-| Textverständnis, viele Fallarten, Bild begleitet nur | `stochastik/binomialverteilung/05-bereichswahrscheinlichkeiten-berechnung.py` |
+| Textverständnis, viele Fallarten, Bild begleitet nur | `stochastik/binomialverteilung/03-bereichswahrscheinlichkeiten-berechnung.py` |
 | Diagramm lesen ohne Ablauf, nach den Teilaufgaben des Trainings | `stochastik/bedingte-wahrscheinlichkeiten/03-baumdiagramm-folgern-mit-unabh.py` |
 | Diagramm mit Lücken vervollständigen, Werte wandern aus der Rechnung ins Feld | `stochastik/bedingte-wahrscheinlichkeiten/02-baumdiagramm-erstellen-mit-unabh.py` |
 | Symbole in Worte übersetzen, Wahrscheinlichkeit als Teil durch Ganzes (Punktefeld mit Ereigniskästen) | `stochastik/bedingte-wahrscheinlichkeiten/01-interpretationen-mit-bedingt.py` |

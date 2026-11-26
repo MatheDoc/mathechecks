@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/17-umgebungen-relativ.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/15-umgebungen-relativ.html
 ---
 Es seien $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $10\%$ vom Erwartungswert abweicht?
 

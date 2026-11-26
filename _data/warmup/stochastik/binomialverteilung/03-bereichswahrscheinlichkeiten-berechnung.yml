@@ -1,4 +1,4 @@
-# Warm-Up zu Check 05 „Intervall-Wkt berechnen“ (Binomialverteilung)
+# Warm-Up zu Check 03 „Intervall-Wkt berechnen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 # Lösungsweg nur mit Bcd(a;b;n;p). Kumulierte Wahrscheinlichkeiten und Histogramme gehören zu anderen Checks.
@@ -6,7 +6,7 @@
 # 14 Schritte: Der Check hat sieben Ereignistypen pro Aufgabe; jeder kommt einmal im Zuschauen
 # oder Mitmachen vor, die Falle „Was wird gezählt?“ zweimal.
 
-check_id: stochastik__binomialverteilung__05
+check_id: stochastik__binomialverteilung__03
 abschluss: '<p>Im Training stehen sieben Ereignisse in einem Sachzusammenhang. Prüfe bei jedem zuerst, ob es um eine <strong>Anzahl</strong> geht (dann $Bcd$) oder um <strong>bestimmte</strong> Versuche wie „die ersten 3“ (dann reicht die Pfadmultiplikationsregel). Achte darauf, was der Text zählt, und nimm das passende $p$. Rechne Prozentangaben in Anzahlen um und runde so, dass du im Bereich bleibst. Bei „oder“ beide $Bcd$-Werte addieren und erst am Ende auf 4 Nachkommastellen runden.</p><p>Seltener: „genau $k$“ ist $Bcd(k;k;n;p)$. „Einschließlich 3 und ausschließlich 9“ heißt $3$ bis $8$. Steht bei bestimmten Versuchen auch fest, dass alle übrigen <strong>keine</strong> Treffer sind, kommt für jeden davon der Faktor $1-p$ dazu.</p>'
 karten:
 

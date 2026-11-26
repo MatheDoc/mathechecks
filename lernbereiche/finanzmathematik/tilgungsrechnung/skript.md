@@ -58,7 +58,7 @@ Für Maras Darlehen lauten die ersten beiden Zeilen (Beträge in €):
 | 1 | 60 000,00 | 3 000,00 | 4 770,27 | 7 770,27 | 55 229,73 |
 | 2 | 55 229,73 | 2 761,49 | 5 008,78 | 7 770,27 | 50 220,95 |
 
-Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. In der letzten Zeile ist die Tilgung gleich der verbliebenen Restschuld; die letzte Annuität weicht dadurch meist um wenige Cent von $A$ ab – bei Mara beträgt sie 7 770,34 €, also 7 Cent mehr (**Rundungsdifferenz**). Bei kurzen Laufzeiten ist die Differenz oft nur ein oder zwei Cent, gelegentlich auch null.
+Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. Die Restschuld am Ende eines Jahres ist die Restschuld zu Beginn des nächsten Jahres; aus ihr werden die Zinsen der nächsten Zeile berechnet. Nur die letzte Zeile ist besonders: Dort wird genau die verbliebene Restschuld getilgt (Abschnitt „Restschuld“).
 
 Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern (voreingestellt ist Maras Darlehen). Der Tilgungsplan wird zeilenweise berechnet; im Diagramm siehst du, wie der Zinsanteil der Annuität von Jahr zu Jahr sinkt und der Tilgungsanteil wächst.
 
@@ -90,7 +90,11 @@ RK_k = K_0 \cdot q^k - \frac{A \cdot (q^k - 1)}{q - 1}
 RK_k = K_0 - \frac{T_1 \cdot (q^k - 1)}{q - 1}
 $$
 
-Für Mara: $RK_5 = 60\,000 \cdot 1{,}05^5 - \frac{7\,770{,}27 \cdot (1{,}05^5 - 1)}{0{,}05} \approx 33\,641{,}25$ €. Aus der Restschuld ergeben sich Zinsen und Tilgung des Folgejahres: $Z_6 \approx 33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ € und $T_6 = A - Z_6 \approx 6\,088{,}21$ €. Die Gesamtzinsen über die Laufzeit sind $n \cdot A - K_0 = 10 \cdot 7\,770{,}27 - 60\,000 = 17\,702{,}70$ €.
+Für Mara: $RK_5 = 60\,000 \cdot 1{,}05^5 - \frac{7\,770{,}27 \cdot (1{,}05^5 - 1)}{0{,}05} \approx 33\,641{,}25$ €. Aus der Restschuld ergeben sich Zinsen und Tilgung des Folgejahres: $Z_6 \approx 33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ € und $T_6 = A - Z_6 \approx 6\,088{,}21$ €.
+
+Auch die **letzte Zeile** des Tilgungsplans lässt sich so bestimmen, ohne den ganzen Plan aufzustellen. Im letzten Jahr wird genau die Restschuld getilgt, die dann noch offen ist: $T_n = RK_{n-1}$. Die letzte Annuität ist diese Tilgung plus ihre Zinsen, also $RK_{n-1} \cdot q$ – dieselbe Überlegung wie bei der Herleitung von $A = T_1 \cdot q^n$ im Abschnitt „Laufzeit“.
+
+„Die letzte Annuität ist genau $A$.“ Stimmt das? Nur ungefähr: Weil $A$ auf Cent gerundet ist, weicht die letzte Annuität meist um einige Cent ab (**Rundungsdifferenz**). Für Mara ist $RK_9 \approx 7\,400{,}31$ € und die letzte Annuität $RK_9 \cdot 1{,}05 \approx 7\,770{,}33$ €, also 6 Cent mehr als $A$. Im zeilenweise gerundeten Tilgungsplan aus dem Widget stehen 7 770,34 €; die Zwischenrundungen der einzelnen Zeilen können noch ein bis zwei Cent ausmachen.
 
 {% include check-anker.html nummer="3" %}
 
@@ -98,11 +102,13 @@ Für Mara: $RK_5 = 60\,000 \cdot 1{,}05^5 - \frac{7\,770{,}27 \cdot (1{,}05^5 - 
 
 In Textaufgaben ist zu klären, welche Größen gegeben sind und ob Annuität, Darlehenssumme, Laufzeit oder Restschuld gesucht ist. „Gleich hohe Jahresraten“ deutet auf $A$, „welcher Kredit ist möglich“ auf $K_0$, „nach wie vielen Jahren getilgt“ auf $n$ und „Schulden nach $k$ Jahren“ auf $RK_k$.
 
+Wie viel kostet Mara das Darlehen? Gemeint sind die **Zinsen über die gesamte Laufzeit**. Die Zinsen ändern sich jedes Jahr, sie einzeln zu addieren wäre mühsam. Einfacher: Alle Annuitäten zusammen enthalten die Darlehenssumme und sämtliche Zinsen. Mara zahlt also $n \cdot A - K_0 = 10 \cdot 7\,770{,}27 - 60\,000 = 17\,702{,}70$ € Zinsen, bis auf die Rundungsdifferenz im letzten Jahr.
+
 {% include check-anker.html nummer="4" %}
 
 ## Tilgungsplan vervollständigen
 
-Sind nur einzelne Werte eines Tilgungsplans bekannt, werden die Zusammenhänge $A = Z_k + T_k$, $Z_k = RK_{k-1} \cdot \frac{p}{100}$ und $RK_k = RK_{k-1} - T_k$ genutzt – auch rückwärts, etwa $RK_{k-1} = RK_k + T_k$. Kennt man aus einer Zeile Restschuld und Zinsen, lässt sich sogar der Zinssatz rekonstruieren: In Maras zweiter Zeile ist $\frac{2\,761{,}49}{55\,229{,}73} \cdot 100 \approx 5\,\%$.
+Sind nur einzelne Werte eines Tilgungsplans bekannt, werden die Zusammenhänge $A = Z_k + T_k$, $Z_k = RK_{k-1} \cdot \frac{p}{100}$ und $RK_k = RK_{k-1} - T_k$ genutzt – auch rückwärts, etwa $RK_{k-1} = RK_k + T_k$. Fehlen in einer Zeile Zinsen und Tilgung, hilft $RK_k = RK_{k-1} \cdot q - A$: Die Restschuld wächst ein Jahr mit Zinsen, dann wird die Annuität abgezogen. Rückwärts heißt das $RK_{k-1} = \frac{RK_k + A}{q}$. Kennt man aus einer Zeile Restschuld und Zinsen, lässt sich sogar der Zinssatz rekonstruieren: In Maras zweiter Zeile ist $\frac{2\,761{,}49}{55\,229{,}73} \cdot 100 \approx 5\,\%$.
 
 {% include check-anker.html nummer="5" %}
 
@@ -114,7 +120,7 @@ $$
 A_{\text{neu}} = \frac{33\,641{,}25 \cdot 1{,}04^5 \cdot 0{,}04}{1{,}04^5 - 1} \approx 7\,556{,}74\,\text{€}
 $$
 
-Der Tilgungsplan wird ab dem sechsten Jahr mit der neuen Annuität und dem neuen Zinssatz fortgeführt; die Zinsen im sechsten Jahr sind dann $33\,641{,}25 \cdot 0{,}04 \approx 1\,345{,}65$ €.
+„Die Restschuld beim Wechsel wird schon mit dem neuen Zinssatz berechnet.“ Stimmt das? Nein: Bis zum Wechsel galten 5 %, also stecken in $RK_5$ auch nur 5 %. Erst ab dem sechsten Jahr läuft der Tilgungsplan mit 4 % und der neuen Annuität weiter.
 
 {% include check-anker.html nummer="6" %}
 

@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/14-kennzahlen-mu-sigma-gegeben.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/12-kennzahlen-mu-sigma-gegeben.html
 ---
 Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?
 

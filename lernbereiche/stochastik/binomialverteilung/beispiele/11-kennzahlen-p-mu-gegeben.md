@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/13-kennzahlen-p-mu-gegeben.html
+permalink: /lernbereiche/stochastik/binomialverteilung/beispiele/11-kennzahlen-p-mu-gegeben.html
 ---
 Auf einem gebührenpflichtigen Parkplatz parken erfahrungsgemäß 15 % der Autofahrer ohne gültigen Parkschein. Eine Mitarbeiterin des Ordnungsamts beginnt ihren Dienst mit 12 Überweisungsträgern, die sie bei festgestellten Verstößen hinter die Scheibenwischer der Fahrzeuge legt. Mit wie vielen Fahrzeugen ohne gültigen Parkschein rechnet die Mitarbeiterin an diesem Tag? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl der Falschparker beschreibt?
 

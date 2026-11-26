@@ -1,9 +1,9 @@
-# Warm-Up zu Check 03 „Restschuldformel und Gesamtzinsen“ (Tilgungsrechnung)
+# Warm-Up zu Check 03 „Restschuldformel und letzte Annuität“ (Tilgungsrechnung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: finanzmathematik__tilgungsrechnung__03
-abschluss: '<p>Restschuld nach $k$ Jahren: Darlehenssumme $k$ Jahre aufzinsen, Endwert der $k$ Annuitäten abziehen. Die Zinsen im Jahr $k+1$ berechnest du aus $RK_k$, die Gesamtzinsen sind $n\cdot A-K_0$.</p>'
+abschluss: '<p>Restschuld nach $k$ Jahren: Darlehenssumme $k$ Jahre aufzinsen, Endwert der $k$ Annuitäten abziehen. Die Zinsen im Jahr $k+1$ berechnest du aus $RK_k$. Die letzte Annuität ist $RK_{n-1}\cdot q$; ihre Abweichung von $A$ ist die <strong>Rundungsdifferenz</strong>.</p>'
 karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
@@ -59,19 +59,19 @@ karten:
         hinweis: 'Verzinst wird die Schuld, die zu Beginn des 11. Jahres besteht.'
         danach: '<p><strong>Merke:</strong> $RK_{10}$ ist die Restschuld am Ende des 10. Jahres, also zu Beginn des 11. Jahres.</p>$$\begin{align*}Z_{11}&=139\,761{,}53\cdot 0{,}035\\ &\approx 4\,891{,}65\,\text{€}\\ T_{11}&=12\,134{,}81-4\,891{,}65\\ &=7\,243{,}16\,\text{€}\end{align*}$$'
   - phase: vormachen
-    titel: 'Zinsen über die gesamte Laufzeit'
-    text: '<p>In $25$ Jahren zahlt die Werkstatt $25$-mal die Annuität $12\,134{,}81$ €. Damit zahlt sie die $200\,000$ € zurück und alle Zinsen.</p>'
+    titel: 'Die letzte Annuität'
+    text: '<p>Im $25.$ Jahr tilgt die Werkstatt genau die Restschuld, die nach $24$ Jahren noch offen ist. Mit der Restschuldformel ist $RK_{24}\approx 11\,724{,}34$ €.</p>'
     schritte:
       - typ: auswahl
-        frage: 'Wie viel Zinsen sind das insgesamt?'
+        frage: 'Wie hoch ist die letzte Annuität?'
         optionen:
-          - '$25\cdot 12\,134{,}81-200\,000$'
-          - '$25\cdot 4\,891{,}65$'
-          - '$25\cdot 12\,134{,}81$'
+          - '$RK_{24}\cdot 1{,}035$'
+          - '$12\,134{,}81$ €, wie in jedem Jahr'
+          - '$RK_{24}$'
         mischen: false
         korrekt: 0
-        hinweis: 'Die Zinsen ändern sich jedes Jahr. Zieh von allen Annuitäten zusammen die Darlehenssumme ab.'
-        danach: '$$\begin{align*}n\cdot A-K_0&=303\,370{,}25-200\,000\\ &=103\,370{,}25\,\text{€}\end{align*}$$'
+        hinweis: 'Im letzten Jahr wird die Restschuld getilgt, und für sie fallen noch ein Jahr Zinsen an.'
+        danach: '$$\begin{align*}A_{25}&=RK_{24}\cdot 1{,}035\\ &\approx 12\,134{,}70\,\text{€}\end{align*}$$<p>Das sind $0{,}11$ € weniger als $A=12\,134{,}81$ €. Diese <strong>Rundungsdifferenz</strong> entsteht, weil $A$ auf Cent gerundet ist. Mit dem ungerundeten $RK_{24}$ weiterrechnen.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -86,7 +86,7 @@ karten:
         danach: '$$\begin{align*}RK_4&\approx 58\,492{,}93-26\,177{,}54\\ &\approx 32\,315{,}39\,\text{€}\end{align*}$$'
 
   - phase: mitmachen
-    titel: 'Jetzt du: Folgejahr und Gesamtzinsen'
+    titel: 'Jetzt du: Folgejahr und letztes Jahr'
     text: '<p>Familie Haas schuldet nach $4$ Jahren noch $RK_4\approx 32\,315{,}39$ €. Zinssatz $4\,\%$, Laufzeit $10$ Jahre, Annuität $6\,164{,}55$ €.</p>'
     schritte:
       - typ: eingabe
@@ -96,7 +96,9 @@ karten:
           - { label: '$T_5=$', loesung: 4871.93, toleranz: 0.1, einheit: '€' }
         hinweis: 'Das 5. Jahr beginnt mit $RK_4$: $Z_5=RK_4\cdot 0{,}04$, dann $T_5=A-Z_5$.'
       - typ: eingabe
-        frage: 'Wie viel Zinsen werden über die gesamte Laufzeit gezahlt?'
+        frage: 'Im $10.$ Jahr wird die Restschuld $RK_9$ getilgt. Wie hoch ist die letzte Annuität, und um wie viel weicht sie von $A$ ab (positiver Wert)?'
         felder:
-          - { label: 'Gesamtzinsen:', loesung: 11645.5, toleranz: 0.01, einheit: '€' }
-        hinweis: '$10$ Annuitäten minus Darlehenssumme: $10\cdot 6\,164{,}55-50\,000$.'
+          - { label: 'letzte Annuität:', loesung: 6164.52, toleranz: 0.02, einheit: '€' }
+          - { label: 'Rundungsdifferenz:', loesung: 0.03, toleranz: 0.02, einheit: '€' }
+        hinweis: 'Zuerst $RK_9$ mit der Restschuldformel ($k=9$), dann $RK_9\cdot 1{,}04$. Zum Schluss den Abstand zu $A=6\,164{,}55$ € bilden.'
+        danach: '$$\begin{align*}RK_9&\approx 5\,927{,}42\,\text{€}\\ RK_9\cdot 1{,}04&\approx 6\,164{,}52\,\text{€}\end{align*}$$<p>Die letzte Annuität liegt $0{,}03$ € unter $A$.</p>'
