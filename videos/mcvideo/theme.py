@@ -24,6 +24,11 @@ config.pixel_width, config.pixel_height, config.frame_rate = QUALITAETEN[QUALITA
 config.frame_width = BREITE
 config.frame_height = HOEHE
 config.media_dir = str(VIDEOS / "media")
+# Zwischenstände wie die Szenen nach Gebiet und Lernbereich ablegen:
+# media/videos/<gebiet>/<lernbereich>/<nr>-<name>/<qualität>/
+if os.environ.get("MC_ABLAGE"):
+    _bereich = Path(os.environ["MC_ABLAGE"]).parent.as_posix()
+    config.video_dir = "{media_dir}/videos/" + _bereich + "/{module_name}/{quality}"
 
 # ---------- Farben ----------
 # Zwei Ebenen:

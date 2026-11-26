@@ -92,7 +92,7 @@ x_2&\approx 17{,}07 \quad (x_2\approx -33{,}74 \text{ entfällt})
 \end{align*}
 $$
 
-Hinreichende Bedingung: $A''(x_2)=-0{,}12x_2-1$, also $A''(17{,}07)\approx -3{,}05<0$. Es liegt ein Maximum vor.
+Hinreichende Bedingung: $A^{\prime\prime}(x_2)=-0{,}12x_2-1$, also $A^{\prime\prime}(17{,}07)\approx -3{,}05<0$. Es liegt ein Maximum vor.
 
 Teilmarktpreis:
 

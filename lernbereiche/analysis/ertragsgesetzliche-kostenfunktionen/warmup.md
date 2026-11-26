@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261126-spalten
+page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
 permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/warmup.html
 ---
 

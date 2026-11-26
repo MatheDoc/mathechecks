@@ -4,8 +4,8 @@ import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficienc
 import { createRunXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
-import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261025-expression-parser";
-import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
+import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261127-venn";
+import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20261127-venn";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction, createCardTaskPicker } from "./ui/card-actions-menu.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
@@ -13,6 +13,7 @@ import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=202611
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
+import { vennKontext } from "../visuals/venn.js?v=20261127-venn";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
@@ -301,6 +302,11 @@ function extractGraphDescriptions(container) {
     if (pba) lines.push(`  P_A(B) = ${pba}`);
     if (pbna) lines.push(`  P_A̅(B) = ${pbna}`);
     parts.push(lines.join("\n"));
+  });
+
+  // ── .venn-auto (Venn-Diagramme) ──
+  container.querySelectorAll(".venn-auto").forEach((node) => {
+    parts.push(vennKontext(node.dataset.markiert));
   });
 
   // ── .verflechtungsdiagramm-auto ──

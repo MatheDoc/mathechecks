@@ -359,8 +359,11 @@ function createNumberLineVisual(spec) {
 
     if (state.p !== null && state.ranges.length) {
       const pTex = String(state.p).replace(".", "{,}");
-      const terms = state.ranges.map(([a, b]) => `Bcd(${a};${b};${n};${pTex})`).join("+");
-      caption.innerHTML = `<span class="cw-zs__caption-label">Eingabe</span> $${terms}$`;
+      // Jeder Summand als eigene Formel, damit die Zeile auf schmalen Bildschirmen umbrechen kann.
+      const terms = state.ranges
+        .map(([a, b], index) => `$${index ? "+" : ""}Bcd(${a};${b};${n};${pTex})$`)
+        .join(" ");
+      caption.innerHTML = `<span class="cw-zs__caption-label">Eingabe</span> ${terms}`;
       typeset(caption);
     } else {
       caption.innerHTML = "";

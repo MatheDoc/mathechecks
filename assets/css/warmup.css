@@ -1184,6 +1184,7 @@
 .cw-zs {
     --cw-zs-mark: #4a7bdc;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 14px;
     padding: 34px 18px 16px;
 }

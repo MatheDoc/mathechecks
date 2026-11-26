@@ -102,7 +102,7 @@ karten:
     text: '<p><em>Bei einer Verkehrskontrolle werden $80$ Fahrzeuge überprüft. Im Mittel sind $28$ Fahrzeuge zu schnell.</em></p><p>Jetzt sind $n=80$ und $\mu=28$ gegeben, $p$ fehlt.</p>'
     visual:
       typ: liste
-      titel: 'Verkehrskontrolle (n = 80, μ = 28)'
+      titel: 'Verkehrskontrolle'
       eintraege:
         - { id: p, text: 'Trefferwahrscheinlichkeit p', gleichung: '$28=80\cdot p$<br>$p=0{,}35$' }
         - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma=\sqrt{80\cdot 0{,}35\cdot 0{,}65}$<br>$\sigma\approx 4{,}27$' }
@@ -128,7 +128,7 @@ karten:
     text: '<p><em>Bei einem Glücksrad gewinnt jede Drehung mit $20\,\%$. Ein Händler rechnet im Mittel mit $18$ Gewinnen.</em></p><p>Jetzt sind $p=0{,}2$ und $\mu=18$ gegeben, $n$ fehlt.</p>'
     visual:
       typ: liste
-      titel: 'Glücksrad (p = 0,2, μ = 18)'
+      titel: 'Glücksrad'
       eintraege:
         - { id: n, text: 'Versuchsanzahl n', gleichung: '$18=n\cdot 0{,}2$<br>$n=90$' }
         - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma\approx 3{,}79$' }

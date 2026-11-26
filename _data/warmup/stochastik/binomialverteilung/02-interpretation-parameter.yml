@@ -1,0 +1,111 @@
+# Warm-Up zu Check 02 „Bernoulli-Parameter“ (Binomialverteilung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: binom(n,k)·p^k·(1−p)^(n−k) = P(X=k). n alle, k Treffer, p Treffer-Wkt eines Versuchs,
+# 1−p Nieten-Wkt, n−k Nieten, Ergebnis = Wkt für genau k Treffer unter n.
+# Training: 20 Rechnungen, je 6 Fragen (n, k, p, 1−p, n−k, Ergebnis), Ausgänge sind Anzahlen bzw.
+# Wahrscheinlichkeiten im Sachzusammenhang. Falle: Der „Treffer“ ist oft die große Gruppe
+# (z. B. 45 negative von 52 Proben). Welche Gruppe gezählt wird, zeigt der Exponent k.
+# Nachgerechnet: 4·0,7³·0,3 = 0,4116; 28·0,1²·0,9⁶ ≈ 0,1488; binom(30,27)·0,92²⁷·0,08³ ≈ 0,2188.
+
+check_id: stochastik__binomialverteilung__02
+abschluss: '<p>Im Training deutest du die sechs Zahlen einer Bernoulli-Formel im Sachzusammenhang. Lies zuerst ab, welche Wahrscheinlichkeit den Exponenten $k$ trägt: Diese Gruppe wird gezählt, auch wenn es die große Gruppe ist. Das Ergebnis ist immer die Wahrscheinlichkeit für <strong>genau</strong> $k$ von $n$.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Pfade zählen'
+    text: '<p>Eine Basketballspielerin wirft $4$-mal, jeder Wurf trifft mit $p=0{,}7$. Wie wahrscheinlich sind <strong>genau 3</strong> Treffer?</p>'
+    visual:
+      typ: liste
+      titel: 'Genau 3 Treffer bei 4 Würfen'
+      eintraege:
+        - { id: pfad, text: 'ein Pfad, z. B. TTTN', gleichung: '$0{,}7^3\cdot 0{,}3^1$' }
+        - { id: anzahl, text: 'Anzahl solcher Pfade', gleichung: '$\binom{4}{3}=4$' }
+        - { id: ges, text: 'genau 3 Treffer', gleichung: '$\binom{4}{3}\cdot 0{,}7^3\cdot 0{,}3^1$<br>$=0{,}4116$' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Wie wahrscheinlich ist der Pfad <strong>Treffer, Treffer, Treffer, Niete</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>Pfadmultiplikationsregel: dreimal $0{,}7$ für die Treffer, einmal $1-0{,}7=0{,}3$ für die Niete:</p>$$0{,}7^3\cdot 0{,}3^1\approx 0{,}1029$$'
+        zeige: { eintraege: [pfad] }
+      - typ: auswahl
+        frage: 'Wie viele Pfade mit genau 3 Treffern gibt es?'
+        optionen:
+          - '$1$'
+          - '$3$'
+          - '$4$'
+          - '$12$'
+        korrekt: 2
+        mischen: false
+        hinweis: 'Die eine Niete kann im 1., 2., 3. oder 4. Wurf liegen.'
+        zeige: { eintraege: [anzahl, ges] }
+        danach: '<p>Diese Anzahl liefert der Binomialkoeffizient $\binom{4}{3}=4$. Alle vier Pfade haben dieselbe Wahrscheinlichkeit, das ergibt die <strong>Bernoulli-Formel</strong>:</p>$$P(X=k)=\binom{n}{k}\cdot p^k\cdot (1-p)^{n-k}$$<p><strong>Merke:</strong></p><ul><li>$n$: Anzahl aller Versuche, $k$: Anzahl der Treffer, $n-k$: Anzahl der Nieten.</li><li>$p$: Trefferwahrscheinlichkeit, $1-p$: Nietenwahrscheinlichkeit, jeweils für <strong>einen</strong> Versuch.</li><li>Das Ergebnis ist die Wahrscheinlichkeit für <strong>genau</strong> $k$ Treffer.</li></ul>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Im Sachzusammenhang'
+    text: '<p>Ein kleiner Teil der Pakete wird zu spät geliefert. Jemand rechnet:</p>$$\binom{8}{2}\cdot 0{,}1^2\cdot 0{,}9^6=0{,}1488$$'
+    visual:
+      typ: liste
+      titel: 'Bedeutung der Zahlen'
+      eintraege:
+        - { id: n, text: '$8$', gleichung: 'Anzahl aller Pakete' }
+        - { id: k, text: '$2$', gleichung: 'Anzahl der Pakete, die zu spät kommen' }
+        - { id: nk, text: '$6$', gleichung: 'Anzahl der Pakete, die pünktlich kommen' }
+        - { id: p, text: '$0{,}1$', gleichung: 'Wkt., dass ein Paket zu spät kommt' }
+        - { id: q, text: '$0{,}9$', gleichung: 'Wkt., dass ein Paket pünktlich kommt' }
+        - { id: erg, text: '$0{,}1488$', gleichung: 'Wkt., dass genau 2 von 8 Paketen zu spät kommen' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Welche Zahlen sind <strong>Anzahlen</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>Im Binomialkoeffizienten stehen $n=8$ und $k=2$: Es geht um $8$ Pakete, davon kommen $2$ zu spät. Der Exponent $6=8-2$ zählt die übrigen, also die pünktlichen Pakete.</p>'
+        zeige: { eintraege: [n, k, nk] }
+      - typ: auswahl
+        frage: 'Was bedeutet $0{,}1$?'
+        optionen:
+          - 'die Wahrscheinlichkeit, dass ein Paket zu spät kommt'
+          - 'die Wahrscheinlichkeit, dass genau 2 Pakete zu spät kommen'
+          - 'die Wahrscheinlichkeit, dass ein Paket pünktlich kommt'
+        korrekt: 0
+        hinweis: '$0{,}1$ hat den Exponenten $2$, also die Anzahl der verspäteten Pakete.'
+        zeige: { eintraege: [p, q] }
+        danach: '<p>Dann ist $0{,}9=1-0{,}1$ die Wahrscheinlichkeit, dass ein Paket pünktlich kommt. Beide Wahrscheinlichkeiten gelten für <strong>ein</strong> Paket.</p>'
+      - typ: auswahl
+        frage: 'Was bedeutet das Ergebnis $0{,}1488$?'
+        optionen:
+          - 'die Wahrscheinlichkeit, dass genau 2 von 8 Paketen zu spät kommen'
+          - 'die Wahrscheinlichkeit, dass höchstens 2 von 8 Paketen zu spät kommen'
+          - 'die Wahrscheinlichkeit, dass die ersten 2 Pakete zu spät kommen'
+        korrekt: 0
+        hinweis: 'Die Formel addiert alle Pfade mit derselben Trefferanzahl, und nur diese.'
+        zeige: { eintraege: [erg] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Schrauben'
+    text: '<p>Eine Fabrik prüft Schrauben. Fast alle sind einwandfrei, nur wenige sind fehlerhaft. Es wird gerechnet:</p>$$\binom{30}{27}\cdot 0{,}92^{27}\cdot 0{,}08^{3}=0{,}2188$$<p>Achtung: Hier trägt die Wahrscheinlichkeit für <strong>einwandfrei</strong> den Exponenten $k=27$.</p>'
+    schritte:
+      - typ: zuordnen
+        frage: 'Was bedeuten die Zahlen?'
+        titel_links: 'Zahl'
+        titel_rechts: 'Bedeutung'
+        paare:
+          - { links: '$30$', rechts: 'Anzahl der geprüften Schrauben' }
+          - { links: '$27$', rechts: 'Anzahl der einwandfreien Schrauben' }
+          - { links: '$3$', rechts: 'Anzahl der fehlerhaften Schrauben' }
+          - { links: '$0{,}92$', rechts: 'Wkt., dass eine Schraube einwandfrei ist' }
+          - { links: '$0{,}08$', rechts: 'Wkt., dass eine Schraube fehlerhaft ist' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        hinweis: 'Gehört eine Zahl zu einer Anzahl oder zu einer Wahrscheinlichkeit? Der Exponent verbindet beide.'
+      - typ: auswahl
+        frage: 'Was bedeutet $0{,}2188$?'
+        optionen:
+          - 'die Wahrscheinlichkeit, dass unter 30 Schrauben genau 27 einwandfrei sind'
+          - 'die Wahrscheinlichkeit, dass unter 30 Schrauben genau 27 fehlerhaft sind'
+          - 'die Wahrscheinlichkeit, dass unter 30 Schrauben mindestens 27 einwandfrei sind'
+          - 'die Wahrscheinlichkeit, dass eine Schraube einwandfrei ist'
+        korrekt: 0
+        hinweis: 'Gezählt wird die Gruppe mit dem Exponenten $27$, und die Formel steht für „genau“.'
+        danach: '<p>Gleichbedeutend: genau $3$ von $30$ Schrauben sind fehlerhaft.</p>'

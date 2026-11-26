@@ -2,7 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import { getRetentionFlashcardsApi } from "../platform/feed-actions.js?v=20261121-feed-simple";
 import { recordUserActivity } from "../platform/progress-client.js?v=20261121-feed-simple";
-import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261025-expression-parser";
+import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261127-venn";
 import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
 

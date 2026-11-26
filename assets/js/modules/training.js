@@ -10,13 +10,14 @@ import {
 } from "../state/check-state-store.js?v=20261121-feed-simple";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20261121-feed-simple";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261108-speech-preview";
-import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261127-venn";
+import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20261127-venn";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
+import { vennKontext } from "../visuals/venn.js?v=20261127-venn";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261121-feed-simple";
 import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
@@ -285,6 +286,11 @@ function extractGraphDescriptions(container) {
     if (pba) lines.push(`  P_A(B) = ${pba}`);
     if (pbna) lines.push(`  P_A̅(B) = ${pbna}`);
     parts.push(lines.join("\n"));
+  });
+
+  // ── .venn-auto (Venn-Diagramme) ──
+  container.querySelectorAll(".venn-auto").forEach((node) => {
+    parts.push(vennKontext(node.dataset.markiert));
   });
 
   // ── .verflechtungsdiagramm-auto ──
@@ -930,6 +936,11 @@ function buildVisualContext(task, runtimeTaskNode = null) {
     if (e.length > 0) lines.push(`  Endprodukte: ${e.join(", ")}`);
   }
 
+  // ── venn (Venn-Diagramm mit markierten Teilflächen) ──
+  if (specType === "venn") {
+    lines.push(vennKontext(spec.markiert));
+  }
+
   // ── binomial-histogramm ──
   if (specType === "binomial-histogramm-einzeln" || specType === "binomial-histogramm-kumuliert") {
     const n = spec.n;
@@ -940,7 +951,7 @@ function buildVisualContext(task, runtimeTaskNode = null) {
 
   // Fallback: raw params if no function lines and no specific handler matched
   const params = spec.params && typeof spec.params === "object" ? spec.params : null;
-  if (params && functionLines.length === 0 && !["ab-tree", "vft", "wkt-tabelle", "verflechtungsdiagramm", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"].includes(specType)) {
+  if (params && functionLines.length === 0 && !["ab-tree", "vft", "wkt-tabelle", "verflechtungsdiagramm", "venn", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"].includes(specType)) {
     lines.push("Parameter:");
     Object.entries(params).forEach(([key, value]) => {
       lines.push(`- ${key}: ${value}`);

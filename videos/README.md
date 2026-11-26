@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit achtzehn Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit 29 Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -20,9 +20,12 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Graph im Sachzusammenhang lesen (Kennzahl ↔ Merkmal, jede Kennzahl eine Farbe) | `analysis/produktlebenszyklus/01-kennzahlen-graphisch-umsatz.py` |
 | Sachaufgabe: Größen im Text erkennen und in eine Formel einsetzen (Orange nur für die gesuchte Größe, Zeitstrahl) | `finanzmathematik/zinseszinsrechnung/02-zinseszins-sachaufgaben.py` |
 | Bereiche einer Verteilung im Histogramm, Tabelle bleibt oben stehen (Hypothesentest) | `stochastik/hypothesentests/01-hypothesenergebnis.py` |
+| Werte im Histogramm ablesen, Balken addieren oder subtrahieren (Hilfslinien, `ablesen`) | `stochastik/binomialverteilung/05-histogramme-kumuliert.py` |
+| Größe durch Probieren bestimmen, Übergang in einer Wertetabelle auf der Bühne | `stochastik/binomialverteilung/06-npk.py` |
 | Formel umformen: wo die Unbekannte steht, entscheidet über das Werkzeug (Formel bleibt groß auf der Bühne) | `finanzmathematik/zinseszinsrechnung/01-zinseszinsformel-umformen.py` |
 | Zwei Abschnitte über einen Zwischenwert verbinden, vorwärts oder rückwärts rechnen (`Phasenstrahl`) | `finanzmathematik/zinseszinsrechnung/03-zinssatzwechsel.py` |
 | Angebote mit Zahlungen zu verschiedenen Zeitpunkten vergleichen (`Zahlungsplan`) | `finanzmathematik/zinseszinsrechnung/04-kapitalvergleich-einmalzahlungen.py` |
+| Fläche unter dem Graphen deuten und mit Rechtecken abschätzen (Monatsbalken werden zur Fläche, Rechteck gleicher Fläche) | `analysis/produktlebenszyklus/04-gesamtabsatz-graphisch.py` |
 
 ## Aufbau
 
@@ -40,6 +43,7 @@ videos/
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
   aufnahmen/<gebiet>/<lernbereich>/<NN>-<sammlung>/   eigene Sprachaufnahmen je Sprechabschnitt (MP3, im Repo)
   media/                    Zwischenstände, Tonzwischenspeicher, Prüfbögen (gitignored)
+    videos/<gebiet>/<lernbereich>/<NN>-<sammlung>/<qualität>/  gerenderte Entwürfe und Finalfassungen vor dem Kopieren nach ausgabe/
   ausgabe/<gebiet>/<lernbereich>/<NN> <Schlagwort> <Lernbereichsname>.mp4  fertige Videos (gitignored)
 ```
 
@@ -113,7 +117,7 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Matrizen: `ErweiterteMatrix` zeigt ein LGS in Matrixform mit Zeilennamen und hält den aktuellen Stand der Zahlen (`werte`). `gleichungen()` setzt das LGS als Gleichungen, `aus_gleichungen()` lässt die Koeffizienten von dort in die Matrix wandern. Umformungen stehen wie im Heft rechts neben der Zeile; `self.zeilenumformung(matrix, zeile, faktor, basis, ...)` zeigt darunter die Nebenrechnung in denselben Spalten (`nebenrechnung`) und ersetzt danach die Zeile. Zeilennamen sind aufrechte römische Zahlen.
 - Baumdiagramme: `Baumdiagramm` zeigt zwei Ereignisse A und B wie auf der Website (von links nach rechts, Wahrscheinlichkeiten an den Ästen, Produkte an den Pfadenden). `markiere` färbt die Äste und Pfadenden, um die es gerade geht, in der Farbe der zugehörigen Zahlen in der Rechnung; mit `knoten=False` bleiben die Kreise ungefärbt, wenn nur Werte verglichen werden (Check 02: zweite Stufe oben und unten gleich). Mit `luecken=(…)` stehen in offenen Feldern die Feldnummern ① bis ⑩ wie auf der Website (Baustein `feldnummer`, auch für die Rechnung); `fuelle(nr, quelle=…)` lässt den Wert aus der Rechnung (oder von einem anderen Ast) in das Feld wandern.
 - Punktefeld: `Punktefeld` zeigt Personen (oder Ergebnisse) als Gitter, Ereignisse als durchsichtige Kästen in ihrer Farbe wie im Kontextbild, den Namen außen daneben (`zeige`). `markiere(ganzes, teil, kasten)` lässt alle außerhalb des Ganzen zurücktreten, färbt den Teil und hebt den Kasten der Bedingung hervor: Wahrscheinlichkeit als Teil durch Ganzes. Kästen, die über das ganze Feld reichen, machen die Ereignisse unabhängig; für bedingte Wahrscheinlichkeiten deshalb Kästen wählen, die das nicht tun.
-- Histogramme: `Histogramm` zeigt die Binomialverteilung mit dem Wert von p rechts oben. `faerbe` färbt Bereiche samt ihren Grenzen in der Beschriftung (Hypothesentests: Ablehnungsbereich `ROSE`, Annahmebereich `BLAU`), `zu` wechselt p bei gleichem Maßstab (etwa von $p_0$ zu $p_1$). Gesprochen wird „Annahmebereich“ und „Ablehnungsbereich“, nicht „A“ und „A quer“.
+- Histogramme: `Histogramm` zeigt die Binomialverteilung mit dem Wert von p rechts oben. `faerbe` färbt Bereiche samt ihren Grenzen in der Beschriftung (Hypothesentests: Ablehnungsbereich `ROSE`, Annahmebereich `BLAU`), `zu` wechselt p bei gleichem Maßstab (etwa von $p_0$ zu $p_1$). Mit `kumuliert=True` zeigen die Balken $P(X\leq k)$. `y_werte` (etwa `(0.1, 0.2)`) legt Hilfslinien mit Beschriftung an, damit sich Balkenhöhen ablesen lassen; `ablesen(k, farbe)` zieht dazu eine gestrichelte Linie vom Balken zur Beschriftung (Checks 04 und 05 der Binomialverteilung). Gesprochen wird „Annahmebereich“ und „Ablehnungsbereich“, nicht „A“ und „A quer“.
 - Was beim Rechnen stehen bleiben soll (etwa Hypothesen mit Annahme- und Ablehnungsbereich als `tabelle`), setzt `self.oben_auf_tafel(...)` oben auf die Tafel; `self.tafel(..., unter=...)` ordnet die Rechnung darunter an.
 - Zeitstrahl (Finanzmathematik): `Zeitstrahl` zeigt links den früheren und rechts den späteren Zeitpunkt. Über dem Strahl stehen die Zeitangaben, darunter Beträge und Zins. `zeige` ersetzt einzelne Angaben; `uebernimm` lässt ein Ergebnis aus der Rechnung an die Stelle des Fragezeichens wandern.
 - Phasenstrahl (Zinssatzwechsel): `Phasenstrahl` ist ein Zeitstrahl mit Teilstrich am Übergang zweier Zinsphasen, schematisch statt maßstäblich, damit die Beträge nebeneinander passen. Über den Phasen stehen Dauer und Zinssatz (`phase1`, `phase2`), darunter `anfang`, `mitte` (Zwischenwert) und `ende`. `phase(nr)` legt eine Fläche in der Stimmungsfarbe unter die Phase, in der gerade gerechnet wird; `zeige`, `uebernimm` und `betone` wie beim `Zeitstrahl`.

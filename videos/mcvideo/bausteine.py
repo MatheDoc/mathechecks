@@ -18,6 +18,7 @@ from manim import (
     ArcBetweenPoints,
     Circle,
     Create,
+    DashedLine,
     DecimalNumber,
     Dot,
     FadeIn,
@@ -325,6 +326,9 @@ class Histogramm(VGroup):
     Beschriftet sind die Anzahlen in zahlen; beim Färben eines Bereichs kommen seine Grenzen dazu.
     y_max legt die Höhe fest, damit beim Wechsel von p (zu) die Balken vergleichbar bleiben.
     p_tex: Anzeige von p, falls sie vom Wert abweicht (etwa "p_0=\\,?").
+    kumuliert: Balkenhöhe P(X ≤ k) statt P(X = k).
+    y_werte: Hilfslinien mit Beschriftung links (etwa (0.1, 0.2, 0.3)), damit sich Balkenhöhen ablesen lassen;
+    ablesen(k) zieht dann eine gestrichelte Linie vom Balken zur Beschriftung.
     """
 
     def __init__(
@@ -337,13 +341,26 @@ class Histogramm(VGroup):
         breite: float = t.BUEHNE_BREITE,
         hoehe: float = 3.2,
         p_tex: str | None = None,
+        kumuliert: bool = False,
+        y_werte: tuple[float, ...] = (),
     ) -> None:
         super().__init__()
         self.n, self.p, self.y_max, self.hoehe = n, p, y_max, hoehe
+        self.kumuliert = kumuliert
         self.werte = list(range(bis + 1))
         self._zahlen = set(zahlen)
+        if y_werte:
+            breite -= 0.9  # Platz für die Beschriftung der Hilfslinien
         raster = breite / (len(self.werte) + (1.2 if bis < n else 0))
         self.grundlinie = Line([-0.5 * raster, 0, 0], [(bis + 0.5) * raster, 0, 0], color=t.ACHSE, stroke_width=3)
+        self.hilfslinien = VGroup()
+        for y in y_werte:
+            hoehe_y = y / y_max * hoehe
+            linie = Line([-0.5 * raster, hoehe_y, 0], [(bis + 0.5) * raster, hoehe_y, 0],
+                         color=t.FELD, stroke_width=1.5)
+            zahl = text(f"{y:g}".replace(".", ","), groesse=20, farbe=t.TEXT_LEISE).next_to(linie, LEFT, buff=0.12)
+            self.hilfslinien.add(VGroup(linie, zahl))
+        self.add(self.hilfslinien)
         self._laenge = self.grundlinie.get_length()
         self.balken = VGroup(*[
             Rectangle(
@@ -371,8 +388,14 @@ class Histogramm(VGroup):
         """Aktuelle Größe im Verhältnis zur Größe beim Anlegen (auf_buehne verkleinert das Histogramm)."""
         return self.grundlinie.get_length() / self._laenge
 
+    def wahrscheinlichkeit(self, k: int, p: float | None = None) -> float:
+        """Höhe des Balkens k als Wahrscheinlichkeit: P(X = k), bei kumuliert P(X ≤ k)."""
+        p = self.p if p is None else p
+        werte = range(k + 1) if self.kumuliert else (k,)
+        return sum(math.comb(self.n, i) * p**i * (1 - p) ** (self.n - i) for i in werte)
+
     def _hoehe(self, k: int, p: float) -> float:
-        hoehe = math.comb(self.n, k) * p**k * (1 - p) ** (self.n - k) / self.y_max * self.hoehe
+        hoehe = self.wahrscheinlichkeit(k, p) / self.y_max * self.hoehe
         return max(hoehe * self._massstab(), 0.002)
 
     def _p_text(self, tex: str) -> MathTex:
@@ -387,6 +410,7 @@ class Histogramm(VGroup):
         sichtbar = [zahl for k, zahl in zip(self.werte, self.zahlen) if k in self._zahlen]
         return [
             Create(self.grundlinie),
+            *([FadeIn(self.hilfslinien)] if len(self.hilfslinien) else []),
             LaggedStart(*[GrowFromEdge(balken, DOWN) for balken in self.balken], lag_ratio=0.04),
             FadeIn(VGroup(*sichtbar, *([self.ende] if hasattr(self, "ende") else []), self.p_text)),
             lichtpunkt(self.grundlinie.copy()),
@@ -436,6 +460,12 @@ class Histogramm(VGroup):
     def ort(self, k: int) -> np.ndarray:
         """Oberkante des Balkens zur Anzahl k."""
         return self.balken[k].get_top()
+
+    def ablesen(self, k: int, farbe: str = t.HERVOR) -> DashedLine:
+        """Gestrichelte Linie von der Oberkante des Balkens k waagerecht zur Beschriftung der Hilfslinien."""
+        oben = self.balken[k].get_top()
+        links = np.array([self.grundlinie.get_left()[0], oben[1], 0])
+        return DashedLine(oben, links, color=farbe, stroke_width=3, dash_length=0.08)
 
 
 class Zeitstrahl(VGroup):

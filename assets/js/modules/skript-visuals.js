@@ -12,6 +12,7 @@ import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgun
 import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinseszins-herleitung.js";
 import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
 import { berechneMarkt, berechneAbschoepfung, buildAbschoepfungMarktFigure, buildAbschoepfungZielFigure } from "../visuals/abschoepfung.js?v=20261025-abschoepfung";
+import { buildVennFigure, parseVennRegionen, vennKey, vennRegionAusTrace, VENN_EREIGNISSE, VENN_FARBEN, VENN_REGIONEN } from "../visuals/venn.js?v=20261127-venn";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
@@ -1183,6 +1184,123 @@ function initAbschoepfungWidgets(root) {
     });
 }
 
+const VENN_AUFTRAEGE = Object.keys(VENN_EREIGNISSE).filter((key) => key !== "" && key !== "a,ab,b,n");
+
+function vennTypeset(nodes) {
+    if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise(nodes).catch(() => { });
+}
+
+function vennBeschreibung(key) {
+    const eintrag = VENN_EREIGNISSE[key];
+    if (!eintrag) return "";
+    const formen = eintrag.latex.map((l) => `\\(${l}\\)`).join(" bzw. ");
+    return `${formen}<br><span class="venn-text">${eintrag.text}</span>`;
+}
+
+function initVennWidgets(root) {
+    root.querySelectorAll(".venn-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const plotDiv = widget.querySelector(".venn-plot");
+        const hoverInfo = widget.querySelector(".venn-hover");
+        const auswahlInfo = widget.querySelector(".venn-auswahl");
+        const auftragInfo = widget.querySelector(".venn-auftrag-info");
+        const resetButton = widget.querySelector(".venn-reset");
+        const auftragButton = widget.querySelector(".venn-auftrag");
+        if (!plotDiv) return;
+
+        const auswahl = new Set(parseVennRegionen(widget.dataset.markiert));
+        let hoverRegion = null;
+        let auftrag = null;
+        let bereit = false;
+
+        function fillFarben() {
+            return VENN_REGIONEN.map((key) => {
+                if (key === hoverRegion) return VENN_FARBEN.hover;
+                return auswahl.has(key) ? VENN_FARBEN.markiert : VENN_FARBEN.unmarkiert;
+            });
+        }
+
+        function zeichneFarben() {
+            if (!bereit) return;
+            window.Plotly.restyle(plotDiv, { fillcolor: fillFarben() }, VENN_REGIONEN.map((_, i) => i));
+        }
+
+        function zeigeHover() {
+            if (!hoverInfo) return;
+            hoverInfo.innerHTML = hoverRegion
+                ? `<strong>Teilfläche:</strong> ${vennBeschreibung(hoverRegion)}`
+                : "<strong>Teilfläche:</strong> –";
+            vennTypeset([hoverInfo]);
+        }
+
+        function zeigeAuswahl() {
+            const key = vennKey([...auswahl]);
+            if (auswahlInfo) {
+                auswahlInfo.innerHTML = auswahl.size === 0
+                    ? "<strong>Markiert:</strong> noch nichts"
+                    : `<strong>Markiert:</strong> ${vennBeschreibung(key)}`;
+            }
+            if (auftragInfo && auftrag) {
+                const geloest = key === auftrag.key;
+                auftragInfo.classList.toggle("venn-auftrag-info--geloest", geloest);
+                auftragInfo.innerHTML = `Markiere die Fläche zu \\(${auftrag.latex}\\).`
+                    + (geloest ? " <strong>Richtig!</strong>" : "");
+            }
+            vennTypeset([auswahlInfo, auftragInfo].filter(Boolean));
+        }
+
+        function neuerAuftrag() {
+            const kandidaten = VENN_AUFTRAEGE.filter((key) => key !== auftrag?.key);
+            const key = kandidaten[Math.floor(Math.random() * kandidaten.length)];
+            const formen = VENN_EREIGNISSE[key].latex;
+            auftrag = { key, latex: formen[Math.floor(Math.random() * formen.length)] };
+            auswahl.clear();
+            if (auftragInfo) auftragInfo.hidden = false;
+            zeichneFarben();
+            zeigeAuswahl();
+        }
+
+        const fig = buildVennFigure({ markiert: [...auswahl], interaktiv: true });
+        plotlyRender(plotDiv, fig.data, fig.layout).then(() => {
+            bereit = true;
+            plotDiv.on("plotly_hover", (event) => {
+                const region = vennRegionAusTrace(event?.points?.[0]?.curveNumber);
+                if (!region || region === hoverRegion) return;
+                hoverRegion = region;
+                zeichneFarben();
+                zeigeHover();
+            });
+            plotDiv.on("plotly_unhover", () => {
+                hoverRegion = null;
+                zeichneFarben();
+                zeigeHover();
+            });
+            plotDiv.on("plotly_click", (event) => {
+                const region = vennRegionAusTrace(event?.points?.[0]?.curveNumber);
+                if (!region) return;
+                if (auswahl.has(region)) auswahl.delete(region);
+                else auswahl.add(region);
+                zeichneFarben();
+                zeigeAuswahl();
+            });
+        });
+
+        resetButton?.addEventListener("click", () => {
+            auswahl.clear();
+            auftrag = null;
+            if (auftragInfo) auftragInfo.hidden = true;
+            zeichneFarben();
+            zeigeAuswahl();
+        });
+        auftragButton?.addEventListener("click", neuerAuftrag);
+
+        zeigeHover();
+        zeigeAuswahl();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -1200,6 +1318,19 @@ export function initSkriptVisuals(root) {
     initRegressionMinimierungWidgets(root);
     initGesamtabsatzWidgets(root);
     initAbschoepfungWidgets(root);
+    initVennWidgets(root);
+
+    /* ---- Venn-Diagramme (statisch) ---- */
+    root.querySelectorAll(".venn-auto").forEach((div) => {
+        const figure = buildVennFigure({
+            markiert: parseVennRegionen(div.dataset.markiert),
+            titel: div.dataset.titel || "",
+            labelA: div.dataset.labelA || "A",
+            labelB: div.dataset.labelB || "B",
+            labelX: div.dataset.labelX || "X",
+        });
+        plotlyRender(div, figure.data, figure.layout);
+    });
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");

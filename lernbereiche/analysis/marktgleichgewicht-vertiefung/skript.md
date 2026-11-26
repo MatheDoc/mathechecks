@@ -215,8 +215,6 @@ $$
 
 Bei der Produzentenrente ist es umgekehrt: Das Dreieck ergibt $\frac{1}{2}\cdot 19{,}59\cdot 6{,}57\approx 64$ GE, in der Mitte liegt $p_A$ mit $4{,}8$ GE/ME aber weiter unter $p_G$ als die Dreieckskante mit $3{,}3$ GE/ME, und man erhält $PR\approx 79$ GE.
 
-Wer möchte, kann stattdessen Kästchen zählen: Jedes Kästchen des Gitters steht für Breite mal Höhe, hier $2\cdot 2=4$ GE.
-
 Typische Fehler:
 
 - Die Fläche bis zur $x$-Achse statt bis zur Geraden $p=p_G$ nehmen. Das ergibt die Zahlungsbereitschaft bzw. die Angebotsbereitschaft, nicht die Rente.

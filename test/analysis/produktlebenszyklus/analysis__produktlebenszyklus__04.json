@@ -43,31 +43,31 @@
             ]
         },
         {
-            "frage": "Ein Kästchen im Diagramm ist 1 Monat breit und 2 ME/Monat hoch. Welchem Absatz entspricht ein Kästchen?",
+            "frage": "Auf \\([2;6]\\) liegt der Graph von \\(a\\) überall über 6 ME/Monat. Was gilt sicher für \\(\\int_2^6 a(t)\\,dt\\)?",
             "antworten": [
-                "2 ME",
-                "1 ME",
-                "0,5 ME",
-                "3 ME"
+                "mindestens 24 ME",
+                "höchstens 24 ME",
+                "genau 6 ME",
+                "mindestens 36 ME"
             ],
             "fehler": [
-                "nur die Breite berücksichtigt",
-                "Breite durch Höhe geteilt",
-                "Breite und Höhe addiert"
+                "Rechteck unter dem Graphen als Obergrenze gedeutet",
+                "Höhe des Rechtecks als Gesamtabsatz angegeben",
+                "obere Grenze 6 statt der Breite 4 verwendet"
             ]
         },
         {
-            "frage": "Eine Fläche umfasst etwa 12 Kästchen mit je 1 Monat Breite und 2 ME/Monat Höhe. Wie groß ist der Gesamtabsatz etwa?",
+            "frage": "\\(a\\) steigt auf \\([0;3]\\) mit \\(a(1)=2\\), \\(a(2)=4\\) und \\(a(3)=7\\) ME/Monat. Die Monatsbalken mit der Höhe am rechten Rand ergeben zusammen 13 ME. Was folgt für \\(\\int_0^3 a(t)\\,dt\\)?",
             "antworten": [
-                "24 ME",
-                "12 ME",
-                "6 ME",
-                "14 ME"
+                "kleiner als 13 ME",
+                "größer als 13 ME",
+                "genau 13 ME",
+                "kleiner als 7 ME"
             ],
             "fehler": [
-                "Kästcheninhalt nicht berücksichtigt",
-                "durch die Kästchenhöhe geteilt",
-                "Kästchenhöhe addiert statt multipliziert"
+                "Lage der Balken zum Graphen falsch eingeschätzt",
+                "Balkensumme für den genauen Wert gehalten",
+                "Funktionswert am Rand als Gesamtabsatz genommen"
             ]
         },
         {

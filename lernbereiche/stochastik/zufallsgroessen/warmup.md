@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: zufallsgroessen
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261126-spalten
+page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
 permalink: /lernbereiche/stochastik/zufallsgroessen/warmup.html
 ---
 

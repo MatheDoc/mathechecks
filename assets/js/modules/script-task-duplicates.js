@@ -9,7 +9,7 @@ import {
 } from "../state/check-state-store.js?v=20261121-feed-simple";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20261121-feed-simple";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261108-speech-preview";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261127-venn";
 import { createCardMenuItem, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
@@ -22,7 +22,7 @@ import {
     updateCheckRateBadge,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20261121-feed-simple";
+} from "./training.js?v=20261127-venn";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;

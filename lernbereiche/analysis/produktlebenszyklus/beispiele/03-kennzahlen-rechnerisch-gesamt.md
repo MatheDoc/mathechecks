@@ -12,8 +12,8 @@ mit den Ableitungen
 
 $$
 \begin{align*}
-a'(t) &= (-0{,}8t+3{,}6)\cdot e^{-0{,}2t}\\
-a''(t) &= (0{,}16t-1{,}52)\cdot e^{-0{,}2t}
+a^{\prime}(t) &= (-0{,}8t+3{,}6)\cdot e^{-0{,}2t}\\
+a^{\prime\prime}(t) &= (0{,}16t-1{,}52)\cdot e^{-0{,}2t}
 \end{align*}
 $$
 
@@ -25,13 +25,13 @@ $$
 
 - **Zeitpunkt und Höhe des höchsten Absatzes**
 
-    Notwendige Bedingung $a'(t)=0$. Da $e^{-0{,}2t}\neq 0$, genügt es, den Klammerterm null zu setzen:
+    Notwendige Bedingung $a^{\prime}(t)=0$. Da $e^{-0{,}2t}\neq 0$, genügt es, den Klammerterm null zu setzen:
 
     $$
     -0{,}8t+3{,}6=0 \quad\Leftrightarrow\quad t=4{,}5
     $$
 
-    Hinreichende Bedingung: Der Klammerterm $-0{,}8t+3{,}6$ wechselt bei $t=4{,}5$ das Vorzeichen von $+$ nach $-$ (alternativ: $a''(4{,}5)\approx-0{,}33<0$). Also liegt ein Maximum vor:
+    Hinreichende Bedingung: Der Klammerterm $-0{,}8t+3{,}6$ wechselt bei $t=4{,}5$ das Vorzeichen von $+$ nach $-$ (alternativ: $a^{\prime\prime}(4{,}5)\approx-0{,}33<0$). Also liegt ein Maximum vor:
 
     $$
     a(4{,}5)=20\cdot e^{-0{,}9}+3\approx 11{,}13 \text{ ME/Monat}
@@ -41,15 +41,15 @@ $$
 
 - **Stärkster Rückgang und stärkster Anstieg**
 
-    Notwendige Bedingung $a''(t)=0$:
+    Notwendige Bedingung $a^{\prime\prime}(t)=0$:
 
     $$
     0{,}16t-1{,}52=0 \quad\Leftrightarrow\quad t=9{,}5
     $$
 
-    Der Klammerterm wechselt bei $t=9{,}5$ das Vorzeichen von $-$ nach $+$, also hat $a'$ dort ein Minimum. Mit $a'(9{,}5)=-4\cdot e^{-1{,}9}\approx-0{,}60<0$ geht der Absatz nach $9{,}5$ Monaten am stärksten zurück, um ca. $0{,}60$ ME/Monat pro Monat.
+    Der Klammerterm wechselt bei $t=9{,}5$ das Vorzeichen von $-$ nach $+$, also hat $a^{\prime}$ dort ein Minimum. Mit $a^{\prime}(9{,}5)=-4\cdot e^{-1{,}9}\approx-0{,}60<0$ geht der Absatz nach $9{,}5$ Monaten am stärksten zurück, um ca. $0{,}60$ ME/Monat pro Monat.
 
-    Einen weiteren Wendepunkt gibt es nicht. Für $0\le t<9{,}5$ ist $a''(t)<0$, d. h. $a'$ fällt dort. Der stärkste Anstieg liegt deshalb am Rand, bei der Markteinführung: $a'(0)=3{,}6$ ME/Monat pro Monat.
+    Einen weiteren Wendepunkt gibt es nicht. Für $0\le t<9{,}5$ ist $a^{\prime\prime}(t)<0$, d. h. $a^{\prime}$ fällt dort. Der stärkste Anstieg liegt deshalb am Rand, bei der Markteinführung: $a^{\prime}(0)=3{,}6$ ME/Monat pro Monat.
 
 - **Langfristiger Absatz**
 

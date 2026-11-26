@@ -2,6 +2,7 @@ import { buildBaumdiagrammFigure } from "../../assets/js/visuals/baumdiagramm.js
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../assets/js/visuals/histogramm.js";
 import { plotlyRender } from "../../assets/js/visuals/plotly-defaults.js?v=20260512-plotly-hover-name-theme";
 import { buildVerflechtungsdiagrammFigure } from "../../assets/js/visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
+import { buildVennFigure } from "../../assets/js/visuals/venn.js?v=20261127-venn";
 
 function toNumber(value, fallback) {
     const numeric = Number(value);
@@ -745,6 +746,17 @@ export function renderVisual(task, wrapper) {
             ...vdFigure.layout,
             margin: { l: 10, r: 10, t: 10, b: 10 },
         });
+        return;
+    }
+
+    if (specType === "venn") {
+        const vennFigure = buildVennFigure({
+            markiert: spec.markiert,
+            labelA: spec.labelA,
+            labelB: spec.labelB,
+            labelX: spec.labelX,
+        });
+        plotlyRender(plotContainer, vennFigure.data, vennFigure.layout);
         return;
     }
 

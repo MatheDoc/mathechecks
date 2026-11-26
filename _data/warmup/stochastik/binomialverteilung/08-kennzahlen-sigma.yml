@@ -1,0 +1,135 @@
+# Warm-Up zu Check 08 „Kenngrößen aus σ berechnen“ (Binomialverteilung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: σ gegeben → zuerst quadrieren, σ² = n·p·(1−p). p bekannt → nach n umstellen, dann μ = n·p.
+# μ bekannt → n·p durch μ ersetzen: σ² = μ·(1−p), nach p umstellen, dann n = μ/p.
+# Training: 20 Aufgaben, je zur Hälfte p und σ bzw. μ und σ gegeben. Eingaben: μ exakt, n ganzzahlig,
+# p in % auf eine ganze Zahl. Falle: Quadrieren vergessen (μ·(1−p) = σ).
+# Nachgerechnet: 4,6476²/0,09 ≈ 240,002; 10,6653²/175 ≈ 0,65; Mitmachen: n = 210, p = 0,3, σ ≈ 6,6408
+# (6,6408²/0,21 ≈ 210,001); n = 400, p = 0,15, μ = 60, σ ≈ 7,1414 (1 − 7,1414²/60 ≈ 0,1500).
+
+check_id: stochastik__binomialverteilung__08
+abschluss: '<p>Im Training ist immer $\sigma$ gegeben, dazu $p$ oder $\mu$. Quadriere zuerst. Mit $p$ stellst du nach $n$ um, mit $\mu$ nutzt du $\sigma^2=\mu\cdot (1-p)$ und stellst nach $p$ um.</p><p>Runde $n$ auf eine ganze Zahl, gib $p$ in Prozent und $\mu$ exakt an.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Die Wurzel muss weg'
+    text: '<p>Jetzt ist die Standardabweichung $\sigma$ gegeben. Gesucht sind die übrigen Kenngrößen. Dafür muss die Formel</p>$$\sigma=\sqrt{n\cdot p\cdot (1-p)}$$<p>umgestellt werden.</p>'
+    visual:
+      typ: liste
+      titel: 'Standardabweichung gegeben'
+      eintraege:
+        - { id: quad, text: 'zuerst quadrieren', gleichung: '$\sigma^2=n\cdot p\cdot (1-p)$' }
+        - { id: pg, text: '$p$ gegeben', gleichung: 'nach $n$ umstellen,<br>dann $\mu=n\cdot p$' }
+        - { id: mug, text: '$\mu$ gegeben', gleichung: '$\sigma^2=\mu\cdot (1-p)$ nach $p$ umstellen,<br>dann $n=\frac{\mu}{p}$' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Was ist der erste Schritt?'
+        knopf: 'Zeigen'
+        text: '<p>Die gesuchte Größe steht unter der Wurzel. Quadrieren beseitigt die Wurzel:</p>$$\sigma^2=n\cdot p\cdot (1-p)$$<p>Ist $p$ bekannt, ist jetzt nur noch $n$ unbekannt.</p>'
+        zeige: { eintraege: [quad, pg] }
+      - typ: auswahl
+        frage: 'Ist statt $p$ der Erwartungswert $\mu$ bekannt, hilft ein Blick auf die rechte Seite. Wofür steht $n\cdot p$?'
+        optionen:
+          - 'für den Erwartungswert $\mu$'
+          - 'für die Standardabweichung $\sigma$'
+          - 'für die Nietenwahrscheinlichkeit $1-p$'
+        korrekt: 0
+        hinweis: 'Erinnere dich an die Formel für den Erwartungswert.'
+        zeige: { eintraege: [mug] }
+        danach: '<p>Mit $n\cdot p=\mu$ wird</p>$$\sigma^2=\mu\cdot (1-p)$$<p>Jetzt ist nur noch $p$ unbekannt.</p><p><strong>Merke:</strong></p><ul><li>Ist $\sigma$ gegeben, wird zuerst quadriert.</li><li>$p$ bekannt: nach $n$ umstellen. $\mu$ bekannt: $\sigma^2=\mu\cdot (1-p)$ nach $p$ umstellen.</li></ul>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'p und σ gegeben'
+    text: '<p><em>Eine Maschine produziert Bauteile, jedes zehnte ist fehlerhaft. Bei einer Kontrolle ergibt sich für die Anzahl fehlerhafter Bauteile $\sigma=4{,}6476$. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte werden erwartet?</em></p>'
+    visual:
+      typ: liste
+      titel: 'Maschine'
+      eintraege:
+        - { id: n, text: 'Versuchsanzahl n', gleichung: '$n\approx 240$' }
+        - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=240\cdot 0{,}1=24$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Mit $p=0{,}1$ und $1-p=0{,}9$: Welche Gleichung ist der richtige Ansatz?'
+        optionen:
+          - '$4{,}6476^2=n\cdot 0{,}1\cdot 0{,}9$'
+          - '$4{,}6476=n\cdot 0{,}1\cdot 0{,}9$'
+          - '$4{,}6476=n\cdot 0{,}1$'
+        korrekt: 0
+        hinweis: 'In der Formel steht $n\cdot p\cdot (1-p)$ unter einer Wurzel. Was passiert mit $\sigma$?'
+      - typ: aufdecken
+        frage: 'Nach $n$ umstellen, dann $\mu$ berechnen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}21{,}6002&=n\cdot 0{,}09\quad |:0{,}09\\ n&\approx 240{,}002\\ n&=240\\ \mu&=240\cdot 0{,}1=24\end{align*}$$<p>$\sigma$ ist gerundet angegeben, deshalb kommt nicht genau $240$ heraus. $n$ ist eine Anzahl, also wird auf eine ganze Zahl gerundet.</p>'
+        zeige: { eintraege: [n, mu] }
+
+  - phase: vormachen
+    titel: 'μ und σ gegeben'
+    text: '<p><em>Vor einer Wahl wird untersucht, wie viele Befragte noch unentschlossen sind. Die Auswertung liefert $\mu=175$ und $\sigma=10{,}6653$. Wie groß ist die Wahrscheinlichkeit, dass ein Wahlberechtigter unentschlossen ist? Wie viele wurden befragt?</em></p>'
+    visual:
+      typ: liste
+      titel: 'Wahl'
+      eintraege:
+        - { id: p, text: 'Trefferwahrscheinlichkeit p', gleichung: '$p=0{,}35=35\,\%$' }
+        - { id: n, text: 'Versuchsanzahl n', gleichung: '$n=\frac{175}{0{,}35}=500$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Gleichung ist der richtige Ansatz?'
+        optionen:
+          - '$10{,}6653^2=175\cdot (1-p)$'
+          - '$10{,}6653=175\cdot (1-p)$'
+          - '$10{,}6653^2=175\cdot p\cdot (1-p)$'
+        korrekt: 0
+        hinweis: 'Quadrieren nicht vergessen. Und $n\cdot p$ ist schon $\mu=175$, ein weiteres $p$ kommt nicht dazu.'
+      - typ: aufdecken
+        frage: 'Nach $p$ umstellen, dann $n$ berechnen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}113{,}7486&=175\cdot (1-p)\quad|:175\\ 0{,}65&\approx 1-p\\ p&=0{,}35\\ n&=\frac{\mu}{p}=\frac{175}{0{,}35}=500\end{align*}$$<p>Ein Wahlberechtigter ist mit $35\,\%$ unentschlossen, befragt wurden $500$.</p>'
+        zeige: { eintraege: [p, n] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen: p und σ'
+    text: '<p><em>In einem Onlineshop bezahlen $30\,\%$ der Kunden per Rechnung. Für die Anzahl der Rechnungskunden gilt $\sigma=6{,}6408$.</em></p>'
+    visual:
+      typ: liste
+      titel: 'Onlineshop'
+      eintraege:
+        - { id: n, text: 'Versuchsanzahl n', gleichung: '$n=210$' }
+        - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=63$' }
+    schritte:
+      - typ: eingabe
+        frage: 'Stelle $$6{,}6408^2=n\cdot 0{,}3\cdot 0{,}7$$ nach $n$ um (ganze Zahl) und berechne $\mu$.'
+        layout: zeile
+        felder:
+          - { label: '$n=$', loesung: 210, toleranz: 0, aria: 'Versuchsanzahl', zeige: { eintraege: [n] } }
+          - { label: '$\mu=$', loesung: 63, aria: 'Erwartungswert', zeige: { eintraege: [mu] } }
+        hinweis: '$6{,}6408^2\approx 44{,}1$ und $0{,}3\cdot 0{,}7=0{,}21$. Teile, runde auf eine ganze Zahl, dann $\mu=n\cdot 0{,}3$.'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: μ und σ'
+    text: '<p><em>Ein Kino wertet Ticketkäufe aus. Im Durchschnitt sind $60$ Online-Tickets zu erwarten, die Standardabweichung beträgt $\sigma=7{,}1414$.</em></p>'
+    visual:
+      typ: liste
+      titel: 'Kino'
+      eintraege:
+        - { id: p, text: 'Trefferwahrscheinlichkeit p', gleichung: '$p=0{,}15=15\,\%$' }
+        - { id: n, text: 'Versuchsanzahl n', gleichung: '$n=400$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Gleichung ist der richtige Ansatz?'
+        optionen:
+          - '$7{,}1414^2=60\cdot (1-p)$'
+          - '$7{,}1414=60\cdot (1-p)$'
+          - '$7{,}1414^2=60\cdot p$'
+        korrekt: 0
+        hinweis: 'Quadrieren und $n\cdot p$ durch $\mu$ ersetzen. Übrig bleibt der Faktor $1-p$.'
+      - typ: eingabe
+        frage: 'Mit welcher Wahrscheinlichkeit ist ein Ticket online gekauft (in % auf eine ganze Zahl)? Wie viele Tickets werden betrachtet?'
+        layout: zeile
+        felder:
+          - { label: '$p\approx$', einheit: '$\%$', loesung: 15, toleranz: 0, aria: 'Trefferwahrscheinlichkeit in Prozent', zeige: { eintraege: [p] } }
+          - { label: '$n=$', loesung: 400, toleranz: 0, aria: 'Versuchsanzahl', zeige: { eintraege: [n] } }
+        hinweis: '$7{,}1414^2:60\approx 0{,}85=1-p$, also $p=0{,}15$. Dann $n=\frac{60}{0{,}15}$.'

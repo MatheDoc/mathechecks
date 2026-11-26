@@ -227,6 +227,7 @@ Eigene kompakte Spec-Typen sind gegenüber rohen `"plotly"`-Trace-Arrays bevorzu
 | `economic-curves` | Erlös-, Kosten-, Gewinnfunktion |
 | `plotly` | Fallback: explizite Trace-Arrays mit x/y-Werten |
 | `vft` | Vier-Felder-Tafel als DOM-Tabelle (kein Plotly) |
+| `venn` | Venn-Diagramm mit Ereignissen $A$, $B$ in $X$; `markiert` = Liste der markierten Teilflächen `a` ($A\cap\overline{B}$), `ab` ($A\cap B$), `b` ($\overline{A}\cap B$), `n` ($\overline{A}\cap\overline{B}$); Builder `assets/js/visuals/venn.js` (ohne Hover, verrät keine Lösung) |
 | `wkt-tabelle` | Diskrete Wahrscheinlichkeitsverteilung (x-Zeile + P-Zeile, `null` = leere Zelle) |
 
 Neue Diagrammtypen erhalten einen eigenen Branch in `preview.js` (`renderVisual` → `else if (specType === '...')`). Tabellendaten nie als HTML in `einleitung` hartcodieren, sondern als `visual` mit passendem `spec.type` übergeben.

@@ -1,0 +1,17 @@
+<div class="skript-widget skript-widget--aside venn-widget"{% if include.id %} id="{{ include.id | escape }}"{% endif %}
+    data-markiert="{{ include.markiert | default: '' | escape }}">
+    <div class="widget-controls">
+        <div class="widget-row widget-row--label">Fahre über eine Teilfläche oder tippe sie an. Angetippte Flächen werden markiert.</div>
+        <div class="widget-info venn-hover" aria-live="polite"></div>
+        <div class="widget-info venn-auswahl" aria-live="polite"></div>
+        <div class="widget-actions">
+            <button type="button" class="widget-button venn-auftrag">Neuer Auftrag</button>
+            <button type="button" class="widget-button venn-reset">Zurücksetzen</button>
+        </div>
+        <div class="widget-info venn-auftrag-info" aria-live="polite" hidden></div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="venn-plot diagramm"></div>
+    </div>
+</div>

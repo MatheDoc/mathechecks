@@ -112,22 +112,22 @@ Bei der Spielkonsole ist $a'(t)=(-0{,}25t^2+1{,}75t+2)\cdot e^{-0{,}25t}$. Der G
 
 ## Kennzahlen rechnerisch bestimmen
 
-Für die rechnerische Bestimmung braucht man $a$, $a'$ und $a''$ (die Ableitungen werden mit Produkt- und Kettenregel gebildet und in Aufgaben oft vorgegeben). Entscheidend ist eine Eigenschaft der $e$-Funktion:
+Für die rechnerische Bestimmung braucht man $a$, $a'$ und $a^{\prime\prime}$ (die Ableitungen werden mit Produkt- und Kettenregel gebildet und in Aufgaben oft vorgegeben). Entscheidend ist eine Eigenschaft der $e$-Funktion:
 
 $$
 e^{-ct}>0 \text{ für alle } t \qquad\Rightarrow\qquad p(t)\cdot e^{-ct}=0 \quad\Leftrightarrow\quad p(t)=0
 $$
 
-Bei Gleichungen wie $a'(t)=0$ oder $a''(t)=0$ genügt es deshalb, den Klammerterm null zu setzen. Bei der Spielkonsole:
+Bei Gleichungen wie $a'(t)=0$ oder $a^{\prime\prime}(t)=0$ genügt es deshalb, den Klammerterm null zu setzen. Bei der Spielkonsole:
 
 $$
 \begin{align*}
 a'(t)=0 \quad&\Leftrightarrow\quad -0{,}25t^2+1{,}75t+2=0 \quad\Leftrightarrow\quad t^2-7t-8=0 \quad\Leftrightarrow\quad t=-1 \ \text{ oder } \ t=8\\
-a''(t)=0 \quad&\Leftrightarrow\quad 0{,}0625t^2-0{,}9375t+1{,}25=0 \quad\Leftrightarrow\quad t^2-15t+20=0 \quad\Leftrightarrow\quad t\approx 1{,}48 \ \text{ oder } \ t\approx 13{,}52
+a^{\prime\prime}(t)=0 \quad&\Leftrightarrow\quad 0{,}0625t^2-0{,}9375t+1{,}25=0 \quad\Leftrightarrow\quad t^2-15t+20=0 \quad\Leftrightarrow\quad t\approx 1{,}48 \ \text{ oder } \ t\approx 13{,}52
 \end{align*}
 $$
 
-Ob tatsächlich ein Hochpunkt bzw. eine Wendestelle vorliegt, zeigt der **Vorzeichenwechsel** des Klammerterms: $-0{,}25t^2+1{,}75t+2$ wechselt bei $t=8$ von $+$ nach $-$, also liegt dort ein Maximum ($t=-1$ liegt außerhalb des Zeitraums). Alternativ prüft man $a''(8)<0$. Kandidaten außerhalb des betrachteten Zeitraums werden verworfen, und die Randstellen (z. B. $t=0$) werden immer mitgeprüft.
+Ob tatsächlich ein Hochpunkt bzw. eine Wendestelle vorliegt, zeigt der **Vorzeichenwechsel** des Klammerterms: $-0{,}25t^2+1{,}75t+2$ wechselt bei $t=8$ von $+$ nach $-$, also liegt dort ein Maximum ($t=-1$ liegt außerhalb des Zeitraums). Alternativ prüft man $a^{\prime\prime}(8)<0$. Kandidaten außerhalb des betrachteten Zeitraums werden verworfen, und die Randstellen (z. B. $t=0$) werden immer mitgeprüft.
 
 Den **langfristigen Absatz** erhält man über den Grenzwert $\lim\limits_{t\to\infty} a(t)$, den **Marktaustritt** über die positive Nullstelle von $p(t)$.
 
@@ -157,10 +157,7 @@ Im folgenden Widget kannst du den Zeitraum verändern und die Monatsbalken einbl
 
 Für das erste Halbjahr ergibt sich $\int_0^6 a(t)\,dt\approx 43{,}11$ ME, also ca. $43\,110$ Konsolen.
 
-Ohne Rechner lässt sich die Fläche **abschätzen**:
-
-- **Kästchen zählen:** Ein Kästchen im Koordinatensystem entspricht Breite $\cdot$ Höhe, z. B. $1$ Monat $\cdot\ 2$ ME/Monat $=2$ ME.
-- **Rechtecke:** Liegt der Graph auf $[t_1;t_2]$ zwischen den Werten $m$ und $M$, dann liegt die Fläche zwischen $(t_2-t_1)\cdot m$ und $(t_2-t_1)\cdot M$. Damit lassen sich Aussagen wie „Im ersten Halbjahr werden mindestens $60$ ME abgesetzt“ prüfen: Auf $[0;6]$ ist $a(t)\le a(6)\approx 12{,}48$, also ist der Gesamtabsatz kleiner als $6\cdot 12{,}48\approx 75$ ME. Diese grobe Grenze reicht hier noch nicht aus. Mit den Monatsbalken (rechte Ränder) ergibt sich die engere Grenze $a(1)+a(2)+\dots+a(6)\approx 49{,}2$ ME, die Aussage ist also falsch.
+Ohne Rechner lässt sich die Fläche mit **Rechtecken abschätzen**. Ein Rechteck hat den Flächeninhalt Breite $\cdot$ Höhe, also Monate $\cdot$ ME/Monat $=$ ME. Liegt der Graph auf $[t_1;t_2]$ zwischen den Werten $m$ und $M$, dann liegt die Fläche zwischen $(t_2-t_1)\cdot m$ und $(t_2-t_1)\cdot M$. Damit lassen sich Aussagen wie „Im ersten Halbjahr werden mindestens $60$ ME abgesetzt“ prüfen: Auf $[0;6]$ ist $a(t)\le a(6)\approx 12{,}48$, also ist der Gesamtabsatz kleiner als $6\cdot 12{,}48\approx 75$ ME. Diese grobe Grenze reicht hier noch nicht aus. Mit den Monatsbalken (rechte Ränder) ergibt sich die engere Grenze $a(1)+a(2)+\dots+a(6)\approx 49{,}2$ ME, die Aussage ist also falsch.
 
 Der **durchschnittliche monatliche Absatz** ist die Höhe des Rechtecks, das über demselben Zeitraum dieselbe Fläche hat. Im ersten Halbjahr: $\frac{43{,}11}{6}\approx 7{,}19$ ME/Monat.
 

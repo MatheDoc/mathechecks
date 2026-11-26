@@ -12,8 +12,6 @@ const LEGACY_BEISPIEL_SAMMLUNGEN = new Map([
   ["vierfelder-folgern-mit-unabh", "vierfelder-folgern-mitUnabh"],
   ["ohne-struktur-ohne-info-unabh", "ohne-struktur-ohneInfoUnabh"],
   ["ohne-struktur-mit-info-unabh", "ohne-struktur-mitInfoUnabh"],
-  ["venn-mit-bedingt", "venn-mitBedingt"],
-  ["venn-ohne-bedingt", "venn-ohneBedingt"],
 ]);
 
 function getBeispielContext(check) {

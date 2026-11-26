@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20261108-speech-preview";
+import { renderTask } from "../runtime/task-render.js?v=20261127-venn";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

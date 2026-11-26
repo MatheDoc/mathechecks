@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: mehrstufige-zufallsexperimente
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261126-spalten
+page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
 permalink: /lernbereiche/stochastik/mehrstufige-zufallsexperimente/warmup.html
 ---
 

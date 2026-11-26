@@ -1053,7 +1053,7 @@ class ProduktlebenszyklusGesamtabsatzGraphischGenerator(TaskGenerator):
                 t_domain = t_limit * 0.9
 
             y_min, y_max = _positive_y_axis_range(y_values, pad_ratio=0.04)
-            # Feines Raster, damit sich Flächen über Kästchen abschätzen lassen.
+            # Feines Raster, damit sich Rechteckhöhen für die Flächenschätzung gut ablesen lassen.
             x_tick = next(step for step in (1.0, 2.0, 5.0) if t_limit / step <= 26)
             y_tick = _nice_step(max(0.6, y_max - y_min))
             cell = x_tick * y_tick

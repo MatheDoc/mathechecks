@@ -236,5 +236,25 @@ $$
 
 Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1.
 
+Zwei Ereignisse $A$ und $B$ zerlegen die Fläche $X$ in vier Teilflächen:
+
+- $A\cap\overline{B}$: in $A$, aber nicht in $B$,
+- $A\cap B$: die Überlappung der beiden Kreise,
+- $\overline{A}\cap B$: in $B$, aber nicht in $A$,
+- $\overline{A}\cap\overline{B}$: außerhalb beider Kreise.
+
+Jedes Ereignis, das sich mit $A$, $B$, Schnitt, Vereinigung und Gegenereignis beschreiben lässt, setzt sich aus diesen vier Bausteinen zusammen. Seine Wahrscheinlichkeit ist die Summe der Wahrscheinlichkeiten seiner Bausteine.
+
+Fahre im folgenden Diagramm über die vier Teilflächen und lies ab, welches Ereignis jede darstellt. Markiere dann durch Antippen $A\cap\overline{B}$ und $A\cap B$: Welches Ereignis entsteht? Setze das Diagramm zurück und markiere alle Teilflächen außer der Überlappung. Mit „Neuer Auftrag“ kannst du dich anschließend selbst testen.
+
+{% include widgets/widget-venn.html %}
+
+Aus $A\cap\overline{B}$ und $A\cap B$ entsteht der ganze Kreis $A$. Das ist die Zerlegung $P(A)=P(A\cap B)+P(A\cap\overline{B})$. Alle Teilflächen außer der Überlappung bilden das Gegenereignis von $A\cap B$. Nach de Morgan ist das $\overline{A}\cup\overline{B}$, also gilt $P(\overline{A}\cup\overline{B})=1-P(A\cap B)$. Viele Flächen haben so mehrere gleichwertige Schreibweisen. Das Widget zeigt sie nebeneinander an.
+
+Typische Fehler:
+
+- „Der Buchstabe $A$ steht für die Fläche links neben der Überlappung.“ Stimmt das? Nein. $A$ ist der ganze Kreis, einschließlich der Überlappung. Die Fläche links neben der Überlappung ist $A\cap\overline{B}$.
+- „Für die markierte Fläche $A\cup B$ gilt $P(A\cup B)=P(A)+P(B)$.“ Stimmt das? Nur, wenn sich die Kreise nicht überlappen. Sonst wird die Überlappung $A\cap B$ doppelt gezählt. Deshalb zieht der Satz von Sylvester sie einmal ab.
+
 {% include check-anker.html nummer="5" %}
 

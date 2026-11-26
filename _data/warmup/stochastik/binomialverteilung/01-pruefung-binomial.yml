@@ -1,0 +1,110 @@
+# Warm-Up zu Check 01 „Eigenschaften Binomialverteilung“ (Binomialverteilung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: X ist binomialverteilt, wenn X die Treffer einer Bernoulli-Kette zählt: feste Anzahl n,
+# pro Versuch zwei Ausgänge (Treffer/Niete), p in jedem Versuch gleich.
+# Training (20 Situationen, je 4 Fragen richtig/falsch bzw. ja/nein): 8 binomialverteilt,
+# 6 mit sich änderndem p (ohne Zurücklegen, versteckt: Ermüdung, adaptiver Test, Warmlaufen),
+# 3 ohne feste Anzahl („bis zum …“), 3 mit Summe oder Ähnlichem. Falle: Würfel, aber nur die 6 zählt.
+# Zahlen Karte 2: 5 Lose, davon 2 Gewinne: 2/5 = 40 %, nach einem Gewinn 1/4 = 25 %.
+
+check_id: stochastik__binomialverteilung__01
+abschluss: '<p>Im Training prüfst du bei jeder Situation die drei Bedingungen einzeln und entscheidest dann: binomialverteilt nur, wenn <strong>alle drei</strong> erfüllt sind. Achte auf versteckte Änderungen von $p$, etwa durch Ziehen ohne Zurücklegen oder Ermüdung, und auf „so lange, bis …“.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Treffer zählen'
+    text: '<p>Ein Glücksrad hat vier gleich große Felder, eines davon ist rot. Es wird $10$-mal gedreht. $X$ zählt, wie oft Rot kommt.</p>'
+    visual:
+      typ: liste
+      titel: 'Binomialverteilt, wenn …'
+      eintraege:
+        - { id: n, text: 'feste Anzahl $n$ von Versuchen', gleichung: 'hier $n=10$ Drehungen' }
+        - { id: zwei, text: 'pro Versuch zwei Ausgänge', gleichung: 'Treffer: Rot<br>Niete: nicht Rot' }
+        - { id: p, text: 'Trefferwahrscheinlichkeit $p$ in jedem Versuch gleich', gleichung: 'hier immer $p=0{,}25$' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Was ist hier ein Versuch, was ein Treffer?'
+        knopf: 'Zeigen'
+        text: '<p>Ein Versuch ist eine Drehung. Uns interessiert nur, ob Rot kommt: <strong>Treffer</strong> ist Rot, <strong>Niete</strong> ist jedes andere Feld. Ein Versuch mit nur diesen zwei Ausgängen heißt <strong>Bernoulli-Experiment</strong>.</p>'
+        zeige: { eintraege: [zwei] }
+      - typ: aufdecken
+        frage: 'Wann ist $X$ binomialverteilt?'
+        knopf: 'Bedingungen zeigen'
+        text: '<p>Das Glücksrad wird genau $10$-mal gedreht, und jede Drehung landet mit derselben Wahrscheinlichkeit $p=0{,}25$ auf Rot. Eine solche Folge heißt <strong>Bernoulli-Kette</strong>, und $X$ ist binomialverteilt.</p><p><strong>Merke:</strong> $X$ ist binomialverteilt, wenn $X$ die Treffer zählt und</p><ul><li>die Anzahl $n$ der Versuche fest ist,</li><li>jeder Versuch nur Treffer oder Niete liefert,</li><li>die Trefferwahrscheinlichkeit $p$ in jedem Versuch gleich ist.</li></ul>'
+        zeige: { eintraege: [n, zwei, p] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Vier Situationen'
+    text: '<p>Wir prüfen vier Situationen. Ist eine Bedingung verletzt, ist $X$ nicht binomialverteilt.</p>'
+    schritte:
+      - typ: aufdecken
+        frage: 'Aus einer Box mit Losen (Gewinn oder Niete) wird $10$-mal <strong>mit Zurücklegen</strong> gezogen. $X$ zählt die Gewinne.'
+        knopf: 'Prüfen'
+        text: '<p>Feste Anzahl $n=10$, pro Zug Gewinn oder Niete, und durch das Zurücklegen ist die Box vor jedem Zug gleich. Alle drei Bedingungen sind erfüllt: <strong>binomialverteilt</strong>.</p>'
+      - typ: aufdecken
+        frage: 'Aus einer Box mit $5$ Losen, davon $2$ Gewinne, werden $3$ Lose <strong>ohne Zurücklegen</strong> gezogen. $X$ zählt die Gewinne.'
+        knopf: 'Prüfen'
+        text: '<p>Beim ersten Zug ist $p=\frac{2}{5}=40\,\%$. War das ein Gewinn, liegen noch $1$ Gewinn und $3$ Nieten in der Box, beim zweiten Zug ist also $p=\frac{1}{4}=25\,\%$.</p><p>$p$ ändert sich von Zug zu Zug: <strong>nicht binomialverteilt</strong>.</p>'
+      - typ: auswahl
+        frage: 'Jemand gibt ein Passwort ein, <strong>bis</strong> es richtig ist. $X$ zählt die Eingaben. Welche Bedingung ist verletzt?'
+        optionen:
+          - 'keine feste Anzahl $n$'
+          - 'mehr als zwei Ausgänge'
+          - '$p$ ändert sich'
+          - 'keine, $X$ ist binomialverteilt'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Steht vorher fest, wie oft eingegeben wird?'
+        danach: '<p>Bei „so lange, bis …“ steht die Anzahl der Versuche nicht vorher fest.</p>'
+      - typ: auswahl
+        frage: 'Ein Würfel wird $3$-mal geworfen, $X$ ist die Summe der Augenzahlen. Welche Bedingung ist verletzt?'
+        optionen:
+          - 'keine feste Anzahl $n$'
+          - 'mehr als zwei Ausgänge'
+          - '$p$ ändert sich'
+          - 'keine, $X$ ist binomialverteilt'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Wie viele verschiedene Ergebnisse hat ein Wurf, die für $X$ wichtig sind?'
+        danach: '<p>Für die Summe zählt jede Augenzahl von $1$ bis $6$, also sechs Ausgänge statt Treffer und Niete. Zählt man dagegen, <strong>wie oft eine 6</strong> fällt, gibt es wieder nur zwei Ausgänge: 6 oder keine 6.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was ist verletzt?'
+    text: '<p>Ordne jeder Situation zu, welche Bedingung verletzt ist.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Situation'
+        titel_rechts: 'Ergebnis'
+        paare:
+          - { links: 'Eine Münze wird geworfen, bis zum ersten Mal Kopf fällt. $X$ zählt die Würfe.', rechts: 'keine feste Anzahl $n$' }
+          - { links: 'Aus einer Klasse mit $12$ Mädchen und $13$ Jungen werden $5$ Personen ausgelost. $X$ zählt die Mädchen.', rechts: '$p$ ändert sich' }
+          - { links: 'Ein Würfel wird $8$-mal geworfen. $X$ ist die Summe der Augenzahlen.', rechts: 'mehr als zwei Ausgänge' }
+          - { links: 'Ein Würfel wird $8$-mal geworfen. $X$ zählt, wie oft eine 6 fällt.', rechts: 'keine, binomialverteilt' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        hinweis: 'Ausgelost wird eine Person nicht zweimal, also ohne Zurücklegen.'
+
+  - phase: mitmachen
+    titel: 'Genau hinschauen'
+    text: '<p>Im Training wird jede Bedingung einzeln abgefragt, mit „richtig“ oder „falsch“.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Ein Würfel wird $15$-mal geworfen, gezählt wird, wie oft eine 1 fällt. <em>„Gibt es pro Versuch genau zwei mögliche Ausgänge?“</em>'
+        optionen:
+          - 'richtig: 1 oder keine 1'
+          - 'falsch: ein Würfel hat sechs Augenzahlen'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Entscheidend ist, was $X$ zählt, nicht wie viele Seiten der Würfel hat.'
+      - typ: auswahl
+        frage: 'Ein Basketballspieler wirft $30$ Freiwürfe. Mit zunehmender Müdigkeit trifft er seltener. <em>„Ist die Trefferwahrscheinlichkeit in allen Versuchen konstant?“</em>'
+        optionen:
+          - 'richtig'
+          - 'falsch'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Was bedeutet „trifft seltener“ für $p$?'
+        danach: '<p>$p$ sinkt im Lauf der Serie, also ist $X$ <strong>nicht</strong> binomialverteilt, obwohl $n=30$ fest ist und jeder Wurf Treffer oder Niete liefert.</p>'

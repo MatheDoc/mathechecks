@@ -1,7 +1,7 @@
 ﻿---
 layout: module
 title: "Bedingte Wahrscheinlichkeiten erklärt – Baumdiagramme und Vier-Felder-Tafeln"
-description: "Bedingte Wahrscheinlichkeiten erklärt: Berechnung mit Baumdiagrammen und Vier-Felder-Tafeln, stochastische Unabhängigkeit und Venn-Diagramme."
+description: "Bedingte Wahrscheinlichkeiten erklärt: Berechnung mit Baumdiagrammen und Vier-Felder-Tafeln, und stochastische Unabhängigkeit."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -450,12 +450,6 @@ Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, können 
 Liegt zusätzlich stochastische Unabhängigkeit vor, vereinfacht sich die Berechnung: Statt $P_A(B)$ aus $P(A\cap B)$ und $P(A)$ zu bestimmen, kann direkt $P(A\cap B)=P(A)\cdot P(B)$ genutzt werden.
 
 {% include check-anker.html nummer=9 %}
-
-## Venn-Diagramme
-
-Bedingte Wahrscheinlichkeiten können auch in Venn-Diagrammen dargestellt werden. Das Ereignis, auf das die jeweilige Bedingung nicht zutrifft, wird weiß gefärbt. Das dunkle Blau bezeichnet den Teil, und das dunkle zusammen mit dem hellen Blau das Ganze.
-
-{% include check-anker.html nummer=10 %}
 
 
 
