@@ -1,12 +1,14 @@
-# Warm-Up zu Check 09 „μ,σ  aus n,p berechnen“ (Binomialverteilung)
+# Warm-Up zu Check 07 „Kenngrößen direkt berechnen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 # Kern: μ = n·p (Erwartungswert, auch bei Formulierungen „im Durchschnitt / im Mittel zu erwarten“,
 # exakt mit Nachkommastellen angeben) und σ = √(n·p·(1−p)) (Standardabweichung, auf 2 NKS).
+# Das Training mischt drei Fälle: n und p, n und μ oder p und μ gegeben. Rückwärts wird zuerst
+# μ = n·p nach der fehlenden Größe umgestellt, danach σ berechnet (je eine Mitmachen-Karte).
 # Alle Zahlen per Python-Skript nachgerechnet.
 
-check_id: stochastik__binomialverteilung__09
-abschluss: '<p>Im Training bekommst du $n$ und eine Prozentangabe für $p$. Gefragt ist nach dem Erwartungswert $\mu$ (oft formuliert als „wie viele … im Durchschnitt / im Mittel zu erwarten sind“) und der Standardabweichung $\sigma$. Die Reihenfolge der beiden Fragen wechselt zufällig.</p><p><strong>Drei Dinge für die Eingabe:</strong> Schreibe $p$ als Dezimalzahl, gib $\mu=n\cdot p$ <strong>exakt mit Nachkommastellen</strong> an (nicht auf ganze Anzahlen runden) und runde $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ auf <strong>2 Nachkommastellen</strong>.</p><p>Abkürzung: Weil $\mu=n\cdot p$ ist, gilt auch $\sigma=\sqrt{\mu\cdot (1-p)}$.</p>'
+check_id: stochastik__binomialverteilung__07
+abschluss: '<p>Im Training sind zwei der drei Größen $n$, $p$ und $\mu$ gegeben. Fehlt $n$ oder $p$, stellst du zuerst $\mu=n\cdot p$ um, danach folgt $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.</p><p>Gib $p$ als Dezimalzahl in die Formeln ein, $\mu$ <strong>exakt</strong> (nicht auf ganze Anzahlen runden) und $\sigma$ auf <strong>2 Nachkommastellen</strong>.</p>'
 karten:
 
   # ── Phase A: Idee ──────────────────────────────────────────
@@ -96,29 +98,45 @@ karten:
         hinweis: 'Unter der Wurzel steht $28{,}125$. Ziehe daraus die Wurzel.'
 
   - phase: mitmachen
-    titel: 'Fast allein: Rücksendungen'
-    text: '<p><em>Ein Online-Shop betrachtet $130$ Bestellungen. Die Wahrscheinlichkeit, dass eine Bestellung zurückgeschickt wird, beträgt $15\,\%$.</em></p>'
+    titel: 'Rückwärts: p fehlt'
+    text: '<p><em>Bei einer Verkehrskontrolle werden $80$ Fahrzeuge überprüft. Im Mittel sind $28$ Fahrzeuge zu schnell.</em></p><p>Jetzt sind $n=80$ und $\mu=28$ gegeben, $p$ fehlt.</p>'
     visual:
       typ: liste
-      titel: 'Online-Shop (n = 130)'
+      titel: 'Verkehrskontrolle (n = 80, μ = 28)'
       eintraege:
-        - { id: ansatz, text: 'Ansatz σ', gleichung: '$\sigma=\sqrt{130\cdot 0{,}15\cdot 0{,}85}$' }
-        - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=19{,}5$' }
-        - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma\approx 4{,}07$' }
+        - { id: p, text: 'Trefferwahrscheinlichkeit p', gleichung: '$28=80\cdot p$<br>$p=0{,}35$' }
+        - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma=\sqrt{80\cdot 0{,}35\cdot 0{,}65}$<br>$\sigma\approx 4{,}27$' }
     schritte:
       - typ: auswahl
-        frage: 'Welcher Ansatz liefert die Standardabweichung?'
+        frage: 'Wie bekommst du $p$ aus $\mu=n\cdot p$?'
         optionen:
-          - '$\sqrt{130\cdot 0{,}15\cdot 0{,}85}$'
-          - '$\sqrt{130\cdot 0{,}15}$'
-          - '$130\cdot 0{,}15\cdot 0{,}85$'
+          - '$p=\frac{\mu}{n}=\frac{28}{80}$'
+          - '$p=\frac{n}{\mu}=\frac{80}{28}$'
+          - '$p=\mu\cdot n=28\cdot 80$'
         korrekt: 0
-        hinweis: 'In die Formel gehören $n$, $p$ und $1-p$, und am Ende kommt die Wurzel.'
-        zeige: { eintraege: [ansatz] }
+        hinweis: 'Teile beide Seiten von $28=80\cdot p$ durch $80$. Eine Wahrscheinlichkeit liegt zwischen $0$ und $1$.'
+        zeige: { eintraege: [p] }
+        danach: '<p>$p=0{,}35$, also $35\,\%$ der Fahrzeuge.</p>'
       - typ: eingabe
-        frage: 'Wie viele Rücksendungen sind <strong>im Mittel</strong> zu erwarten, und wie groß ist $\sigma$? Tipp: Wird $\mu$ gerundet?'
+        frage: 'Berechne die Standardabweichung auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$\sigma\approx$', loesung: 4.27, toleranz: 0.01, aria: 'Standardabweichung', zeige: { eintraege: [sigma] } }
+        hinweis: '$\sigma=\sqrt{80\cdot 0{,}35\cdot 0{,}65}$, unter der Wurzel steht $18{,}2$.'
+
+  - phase: mitmachen
+    titel: 'Rückwärts: n fehlt'
+    text: '<p><em>Bei einem Glücksrad gewinnt jede Drehung mit $20\,\%$. Ein Händler rechnet im Mittel mit $18$ Gewinnen.</em></p><p>Jetzt sind $p=0{,}2$ und $\mu=18$ gegeben, $n$ fehlt.</p>'
+    visual:
+      typ: liste
+      titel: 'Glücksrad (p = 0,2, μ = 18)'
+      eintraege:
+        - { id: n, text: 'Versuchsanzahl n', gleichung: '$18=n\cdot 0{,}2$<br>$n=90$' }
+        - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma\approx 3{,}79$' }
+    schritte:
+      - typ: eingabe
+        frage: 'Wie oft wird gedreht, und wie groß ist $\sigma$?'
         layout: zeile
         felder:
-          - { label: '$\mu=$', loesung: 19.5, aria: 'Erwartungswert', zeige: { eintraege: [mu] } }
-          - { label: '$\sigma\approx$', loesung: 4.07, toleranz: 0.01, aria: 'Standardabweichung', zeige: { eintraege: [sigma] } }
-        hinweis: '$\mu=130\cdot 0{,}15$ exakt mit Nachkommastelle. Für $\sigma$ den Ansatz von oben eintippen und auf 2 Nachkommastellen runden.'
+          - { label: '$n=$', loesung: 90, aria: 'Versuchsanzahl', zeige: { eintraege: [n] } }
+          - { label: '$\sigma\approx$', loesung: 3.79, toleranz: 0.01, aria: 'Standardabweichung', zeige: { eintraege: [sigma] } }
+        hinweis: 'Aus $18=n\cdot 0{,}2$ folgt $n=18/0{,}2$. Dann $\sigma=\sqrt{n\cdot 0{,}2\cdot 0{,}8}$ mit diesem $n$.'

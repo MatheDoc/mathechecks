@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\), \\(k\\) und \\(P(X\\leq k)\\) gegeben. Welcher Verteilungsparameter ist noch gesucht?",
-            "antworten": ["Die Trefferwahrscheinlichkeit \\(p\\)","Die Versuchsanzahl \\(n\\)","Die Treffergrenze \\(k\\)","Die Standardabweichung \\(\\sigma\\)"],
-            "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(k\\) als gesucht behandelt","Abgeleitete Kennzahl statt Parameter gewählt"]
+            "frage": "Welche Formel berechnet den Erwartungswert einer Binomialverteilung?",
+            "antworten": ["\\(\\mu=np\\)","\\(\\mu=n(1-p)\\)","\\(\\mu=\\sqrt{np(1-p)}\\)","\\(\\mu=n/p\\)"],
+            "fehler": ["Erwartete Nieten statt Treffer berechnet","Standardabweichungsformel gewählt","Multiplikation durch Division ersetzt"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(p\\) in Hundertstelschritten mit \\(P(X\\leq10)\\leq0{,}30\\). Prüfwerte: \\(p=0{,}40:0{,}34\\), \\(p=0{,}41:0{,}28\\). Ergebnis?",
-            "antworten": ["\\(p=0{,}41\\)","\\(p=0{,}40\\)","\\(p=0{,}30\\)","\\(p=0{,}42\\)"],
-            "fehler": ["Prüfwert über 0,30 akzeptiert","Schranke als Trefferwahrscheinlichkeit übernommen","Kleinsten bestätigten Wert überschritten"]
+            "frage": "Welche Formel berechnet die Standardabweichung einer Binomialverteilung?",
+            "antworten": ["\\(\\sigma=\\sqrt{np(1-p)}\\)","\\(\\sigma=np(1-p)\\)","\\(\\sigma=np\\)","\\(\\sigma=\\sqrt{np}\\)"],
+            "fehler": ["Varianz statt Standardabweichung angegeben","Erwartungswertformel gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Bei festem \\(n,k\\): Wie verändert sich \\(P(X\\leq k)\\), wenn \\(p\\) wächst?",
-            "antworten": ["Sie sinkt oder bleibt gleich.","Sie wächst immer.","Sie bleibt stets gleich.","Sie wird gleich \\(k\\)."],
-            "fehler": ["Monotonierichtung vertauscht","Einfluss von \\(p\\) bestritten","Wahrscheinlichkeit mit Treffergrenze gleichgesetzt"]
+            "frage": "Für \\(X\\sim B(4;0{,}5)\\): Wie groß ist \\(\\mu\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(0{,}5\\)","\\(8\\)"],
+            "fehler": ["Versuchsanzahl unverändert übernommen","Trefferwahrscheinlichkeit statt Erwartungswert gewählt","Durch \\(p\\) geteilt statt mit \\(p\\) multipliziert"]
         },
         {
-            "frage": "Bei festem \\(n,k\\): Wie verändert sich \\(P(X\\geq k)\\), wenn \\(p\\) wächst?",
-            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird gleich \\(n\\)."],
-            "fehler": ["Monotonierichtung vertauscht","Einfluss von \\(p\\) bestritten","Wahrscheinlichkeit mit Versuchsanzahl gleichgesetzt"]
+            "frage": "Für \\(X\\sim B(25;0{,}2)\\): Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(5\\)","\\(\\sqrt{5}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert statt Standardabweichung gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Gesucht ist das größte \\(p\\) in Hundertstelschritten mit \\(P(X\\geq7)\\leq0{,}25\\). Prüfwerte: \\(p=0{,}30:0{,}22\\), \\(p=0{,}31:0{,}27\\). Ergebnis?",
-            "antworten": ["\\(p=0{,}30\\)","\\(p=0{,}31\\)","\\(p=0{,}25\\)","\\(p=0{,}29\\)"],
-            "fehler": ["Prüfwert über 0,25 akzeptiert","Schranke als \\(p\\) übernommen","Größten zulässigen Prüfwert unterschritten"]
+            "frage": "Für eine Binomialverteilung sind \\(n\\) und \\(\\mu\\) bekannt. Welche Formel liefert \\(p\\)?",
+            "antworten": ["\\(p=\\frac{\\mu}{n}\\)","\\(p=\\frac{n}{\\mu}\\)","\\(p=n\\mu\\)","\\(p=1-\\mu\\)"],
+            "fehler": ["Quotient umgekehrt","Multipliziert statt dividiert","Erwartungswert fälschlich direkt von 1 abgezogen"]
         },
         {
-            "frage": "Welcher Ansatz bestimmt den Mindestanteil \\(p\\), sodass höchstens 12 Treffer mit Wahrscheinlichkeit höchstens \\(0{,}2\\) auftreten?",
-            "antworten": ["Kleinstes \\(p\\) mit \\(P(X\\leq12)\\leq0{,}2\\)","Kleinstes \\(n\\) mit \\(P(X\\leq12)\\leq0{,}2\\)","Größtes \\(k\\) mit \\(P(X\\leq k)\\leq0{,}2\\)","Kleinstes \\(p\\) mit \\(P(X\\geq12)\\leq0{,}2\\)"],
-            "fehler": ["Gesuchtes \\(p\\) durch \\(n\\) ersetzt","Gegebene Grenze als gesucht behandelt","Höchstens mit mindestens verwechselt"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=25\\), \\(\\mu=5\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}2\\)","\\(5\\)","\\(0{,}8\\)","\\(0{,}04\\)"],
+            "fehler": ["Erwartungswert als Wahrscheinlichkeit verwendet","Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit gewählt","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(p\\) in Zehntelschritten mit \\(P(X\\geq5)>0{,}60\\). Prüfwerte (exakt): \\(p=0{,}2:0{,}60\\), \\(p=0{,}3:0{,}72\\). Ergebnis?",
-            "antworten": ["\\(p=0{,}3\\)","\\(p=0{,}2\\)","\\(p=0{,}6\\)","\\(p=0{,}4\\)"],
-            "fehler": ["Strenge Schranke als inklusive Schranke gelesen","Zielwahrscheinlichkeit als \\(p\\) übernommen","Kleinsten bestätigten Tabellenwert überschritten"]
+            "frage": "Für eine Binomialverteilung gilt \\(n=9\\), \\(\\mu=3\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(\\sqrt{2}\\)","\\(2\\)","\\(3\\)","\\(\\sqrt{3}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
         },
         {
-            "frage": "Bei einer Binomialverteilung wird nur \\(p\\) variiert. Welcher Verteilungsparameter bleibt unverändert?",
-            "antworten": ["Die vorgegebene Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Alle berechneten Wahrscheinlichkeiten","Die Verteilung trotz verändertem \\(p\\)"],
-            "fehler": ["Gesuchte Größe fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Abhängigkeit der Verteilung von \\(p\\) bestritten"]
+            "frage": "Wie wird \\(\\mu=np\\) nach \\(n\\) umgestellt?",
+            "antworten": ["\\(n=\\frac{\\mu}{p}\\)","\\(n=\\frac{p}{\\mu}\\)","\\(n=\\mu p\\)","\\(n=\\mu-p\\)"],
+            "fehler": ["Quotient umgekehrt","Multipliziert statt dividiert","Subtrahiert statt dividiert"]
         },
         {
-            "frage": "Prüfwerte: \\(p=0{,}54\\) verfehlt die Bedingung, \\(p=0{,}55\\) erfüllt sie. Gesucht ist das kleinste \\(p\\) in Hundertstelschritten. Ergebnis?",
-            "antworten": ["\\(0{,}55\\)","\\(0{,}54\\)","\\(0{,}01\\)","\\(1{,}09\\)"],
-            "fehler": ["Nicht erfüllenden Prüfwert gewählt","Schrittweite statt Trefferwahrscheinlichkeit gewählt","Benachbarte Prüfwerte addiert"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}2\\), \\(\\mu=5\\). Wie groß ist \\(n\\)?",
+            "antworten": ["\\(25\\)","\\(1\\)","\\(5\\)","\\(4\\)"],
+            "fehler": ["\\(\\mu p\\) statt \\(\\mu/p\\) berechnet","Erwartungswert übernommen","\\(\\mu(1-p)\\) statt \\(\\mu/p\\) berechnet"]
         },
         {
-            "frage": "Welcher Wertebereich ist für eine gesuchte Trefferwahrscheinlichkeit \\(p\\) zulässig?",
-            "antworten": ["\\(0\\leq p\\leq1\\)","\\(p>1\\)","\\(p<0\\)","Nur ganzzahlige \\(p\\)"],
-            "fehler": ["Wahrscheinlichkeit größer als 1 zugelassen","Negative Wahrscheinlichkeit zugelassen","Wahrscheinlichkeiten fälschlich auf ganze Zahlen beschränkt"]
+            "frage": "Für eine Binomialverteilung gilt \\(p=0{,}5\\), \\(\\mu=8\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(8\\)","\\(\\sqrt{8}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
         }
     ]
 }

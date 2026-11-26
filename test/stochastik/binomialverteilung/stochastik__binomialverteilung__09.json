@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Für \\(X\\sim B(4;0{,}5)\\): Wie groß ist \\(\\mu\\)?",
-            "antworten": ["\\(2\\)","\\(4\\)","\\(0{,}5\\)","\\(8\\)"],
-            "fehler": ["Versuchsanzahl unverändert übernommen","Trefferwahrscheinlichkeit statt Erwartungswert gewählt","Durch \\(p\\) geteilt statt mit \\(p\\) multipliziert"]
+            "frage": "Es ist \\(\\mu=7{,}5\\). Welche reelle absolute Umgebung beschreibt „Abweichung höchstens 2“?",
+            "antworten": ["\\(5{,}5\\leq X\\leq9{,}5\\)","\\(5\\leq X\\leq10\\)","\\(2\\leq X\\leq7{,}5\\)","\\(7{,}5\\leq X\\leq9{,}5\\)"],
+            "fehler": ["Grenzen bereits nach außen gerundet","Abweichung 2 als untere Grenze verwendet","Nur die obere Hälfte der Umgebung betrachtet"]
         },
         {
-            "frage": "Für \\(X\\sim B(4;0{,}5)\\): Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(1\\)","\\(2\\)","\\(0{,}5\\)","\\(\\sqrt{2}\\)"],
-            "fehler": ["Erwartungswert statt Standardabweichung gewählt","Nur \\(1-p\\) verwendet","Faktor \\(1-p\\) unter der Wurzel vergessen"]
+            "frage": "Es ist \\(\\mu=8{,}2\\). Welche ganzzahlige Umgebung gehört zur absoluten Abweichung höchstens \\(1{,}5\\)?",
+            "antworten": ["\\(7\\leq X\\leq9\\)","\\(6\\leq X\\leq10\\)","\\(7\\leq X\\leq10\\)","\\(6\\leq X\\leq9\\)"],
+            "fehler": ["Beide reellen Grenzen nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Für \\(X\\sim B(16;0{,}5)\\): Wie groß ist \\(\\mu\\)?",
-            "antworten": ["\\(8\\)","\\(16\\)","\\(4\\)","\\(32\\)"],
-            "fehler": ["\\(n\\) statt \\(np\\) verwendet","Standardabweichung statt Erwartungswert gewählt","Durch \\(p\\) geteilt"]
+            "frage": "Es ist \\(\\mu=7{,}5\\). Wie groß ist der Radius einer relativen \\(10\\%\\)-Umgebung?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}10\\)","\\(7{,}5\\)","\\(75\\)"],
+            "fehler": ["Prozentsatz ohne Multiplikation mit \\(\\mu\\) übernommen","Erwartungswert statt Anteil gewählt","Prozentangabe ohne Division durch 100 multipliziert"]
         },
         {
-            "frage": "Für \\(X\\sim B(16;0{,}5)\\): Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(2\\)","\\(4\\)","\\(8\\)","\\(\\sqrt{8}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert statt Standardabweichung gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Für ganzzahliges \\(X\\): Welche Grenzen folgen bei \\(\\mu=7{,}5\\) und höchstens \\(10\\%\\) Abweichung?",
+            "antworten": ["\\(7\\leq X\\leq8\\)","\\(6\\leq X\\leq9\\)","\\(7\\leq X\\leq9\\)","\\(6\\leq X\\leq8\\)"],
+            "fehler": ["Reelle Grenzen 6,75 und 8,25 nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Für \\(X\\sim B(25;0{,}2)\\): Wie groß ist \\(\\mu\\)?",
-            "antworten": ["\\(5\\)","\\(20\\)","\\(25\\)","\\(0{,}2\\)"],
-            "fehler": ["\\(n(1-p)\\) statt \\(np\\) berechnet","Versuchsanzahl übernommen","Trefferwahrscheinlichkeit statt Erwartungswert gewählt"]
+            "frage": "Welche Faktoren begrenzen eine relative \\(r\\)-Umgebung von \\(\\mu\\)?",
+            "antworten": ["\\((1-r)\\mu\\) und \\((1+r)\\mu\\)","\\(\\mu-r\\) und \\(\\mu+r\\)","\\(\\mu-r\\sigma\\) und \\(\\mu+r\\sigma\\)","\\(r\\mu\\) und \\(\\mu\\)"],
+            "fehler": ["Absolute statt relative Umgebung gebildet","Sigma- statt relative Umgebung gebildet","Nur Radius und Erwartungswert statt beider Grenzen angegeben"]
         },
         {
-            "frage": "Für \\(X\\sim B(25;0{,}2)\\): Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(2\\)","\\(4\\)","\\(5\\)","\\(\\sqrt{5}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert statt Standardabweichung gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Es ist \\(\\mu=10\\) und \\(\\sigma=2\\). Welche Grenzen hat die \\(2\\sigma\\)-Umgebung?",
+            "antworten": ["\\(6\\leq X\\leq14\\)","\\(8\\leq X\\leq12\\)","\\(4\\leq X\\leq16\\)","\\(2\\leq X\\leq20\\)"],
+            "fehler": ["Nur eine Standardabweichung verwendet","Drei statt zwei Standardabweichungen verwendet","Faktoren und Kennzahlen als Grenzen verwendet"]
         },
         {
-            "frage": "Für \\(X\\sim B(9;\\frac{1}{3})\\): Wie groß ist \\(\\mu\\)?",
-            "antworten": ["\\(3\\)","\\(6\\)","\\(9\\)","\\(\\frac{1}{3}\\)"],
-            "fehler": ["Erwartete Nieten statt Treffer berechnet","Versuchsanzahl übernommen","Trefferwahrscheinlichkeit statt Erwartungswert gewählt"]
+            "frage": "Für ganzzahliges \\(X\\): Welche Grenzen folgen aus \\(2{,}92\\leq X\\leq12{,}08\\)?",
+            "antworten": ["\\(3\\leq X\\leq12\\)","\\(2\\leq X\\leq13\\)","\\(3\\leq X\\leq13\\)","\\(2\\leq X\\leq12\\)"],
+            "fehler": ["Beide Grenzen nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Für \\(X\\sim B(9;\\frac{1}{3})\\): Wie groß ist \\(\\sigma\\)?",
-            "antworten": ["\\(\\sqrt{2}\\)","\\(2\\)","\\(3\\)","\\(\\sqrt{3}\\)"],
-            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Es ist \\(\\mu=12{,}5\\) und \\(\\sigma=1{,}5\\). Welche ganzzahligen Grenzen hat die \\(2\\sigma\\)-Umgebung?",
+            "antworten": ["\\(10\\leq X\\leq15\\)","\\(9\\leq X\\leq16\\)","\\(10\\leq X\\leq16\\)","\\(9\\leq X\\leq15\\)"],
+            "fehler": ["Reelle Grenzen 9,5 und 15,5 nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
         },
         {
-            "frage": "Welche Formel berechnet den Erwartungswert einer Binomialverteilung?",
-            "antworten": ["\\(\\mu=np\\)","\\(\\mu=n(1-p)\\)","\\(\\mu=\\sqrt{np(1-p)}\\)","\\(\\mu=n/p\\)"],
-            "fehler": ["Erwartete Nieten statt Treffer berechnet","Standardabweichungsformel gewählt","Multiplikation durch Division ersetzt"]
+            "frage": "Es ist \\(\\mu=10\\). Welche ganzzahligen Werte gehören zu „um mindestens 3 vom Erwartungswert abweichen“?",
+            "antworten": ["\\(X\\leq7\\) oder \\(X\\geq13\\)","\\(7\\leq X\\leq13\\)","\\(X\\leq6\\) oder \\(X\\geq14\\)","\\(X\\geq13\\)"],
+            "fehler": ["innerhalb statt außerhalb der Grenzen","Grenzen fälschlich ausgeschlossen","nur eine Seite betrachtet"]
         },
         {
-            "frage": "Welche Formel berechnet die Standardabweichung einer Binomialverteilung?",
-            "antworten": ["\\(\\sigma=\\sqrt{np(1-p)}\\)","\\(\\sigma=np(1-p)\\)","\\(\\sigma=np\\)","\\(\\sigma=\\sqrt{np}\\)"],
-            "fehler": ["Varianz statt Standardabweichung angegeben","Erwartungswertformel gewählt","Faktor \\(1-p\\) vergessen"]
+            "frage": "Welches Ereignis ist das Gegenereignis zu \\(|X-\\mu|\\leq4\\)?",
+            "antworten": ["\\(|X-\\mu|>4\\)","\\(|X-\\mu|\\geq4\\)","\\(|X-\\mu|<4\\)","\\(|X-\\mu|=4\\)"],
+            "fehler": ["Randwerte 4 fälschlich beiden Ereignissen zugeordnet","Inneres Ereignis nur streng formuliert","Nur die Randwerte statt des gesamten Gegenereignisses gewählt"]
         }
     ]
 }

@@ -279,17 +279,11 @@ Mit Hilfe eines Tafelwerks oder Taschenrechners stellen wir folgende Tabelle auf
 
 Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist also $k=174$.
 
-Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarten Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
+Häufig ist ein kleinstes oder größtes $n$, $p$ oder $k$ gesucht, sodass eine vorgegebene Wahrscheinlichkeit erreicht, über- oder unterschritten wird. Dann suchen wir in der Tabelle zwei benachbarte Einträge, zwischen denen die Bedingung kippt: Beim einen gilt sie, beim anderen nicht. Welcher der beiden die Antwort ist, hängt davon ab, ob der kleinste oder der größte passende Wert gesucht ist.
+
+Beim Probieren hilft es zu wissen, in welche Richtung sich die Wahrscheinlichkeit verändert: $P(X\geq k)$ wächst mit $n$ und mit $p$ und fällt mit $k$. Bei $P(X\leq k)$ ist es umgekehrt. Einen guten Startwert liefert der Erwartungswert: $n\approx\frac{k}{p}$, $p\approx\frac{k}{n}$ oder $k\approx n\cdot p$.
 
 {% include check-anker.html nummer=6 %}
-
-Dasselbe Vorgehen lässt sich auf die Trefferwahrscheinlichkeit $p$ übertragen: Jetzt sind $a$, $b$ und $n$ bekannt, und $p$ wird durch systematisches Probieren bestimmt.
-
-{% include check-anker.html nummer=7 %}
-
-Die dritte Variante fragt nach einer Intervallgrenze $k$, wenn $n$, $p$ und eine Wahrscheinlichkeitsbedingung vorgegeben sind.
-
-{% include check-anker.html nummer=8 %}
 
 
 
@@ -339,35 +333,21 @@ ist noch aufwendiger und wird hier übersprungen.
 
 Sind $n$ und $p$ gegeben, so können wir mit den Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ den Erwartungswert und die Standardabweichung direkt berechnen.
 
-Der erste Check in diesem Abschnitt trainiert genau diesen Standardfall: gegebene Versuchsanzahl, gegebene Trefferwahrscheinlichkeit, daraus $\mu$ und $\sigma$ bestimmen.
-
-{% include check-anker.html nummer=9 %}
-
-
 In den beiden Gleichungen
 
 $$
 \mu=n\cdot p \text{ und } \sigma=\sqrt{n\cdot p\cdot (1-p)}
 $$
 
-werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit können wir häufig, wenn zwei Werte dieser vier Größen bekannt sind, die Werte der anderen beiden Größen berechnen.
+werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Sind zwei dieser vier Größen bekannt, lassen sich meist die anderen beiden berechnen.
 
-Es lohnt sich dabei ein klarer Ablauf:
+Am einfachsten ist es, wenn neben $n$ oder $p$ der Erwartungswert $\mu$ gegeben ist. Dann wird zuerst die einfachere Formel $\mu=n\cdot p$ nach der fehlenden Größe umgestellt, also $p=\frac{\mu}{n}$ oder $n=\frac{\mu}{p}$. Anschließend wird $\sigma$ mit der Formel berechnet.
 
-- zuerst festhalten, welche zwei Größen gegeben sind,
-- falls möglich dann die einfachere Formel $\mu=n\cdot p$ zum Umstellen nutzen,
-- anschließend die fehlende Größe in die Formel für $\sigma$ einsetzen,
-- bei schwierigeren Fällen beide Formeln gezielt kombinieren.
+{% include check-anker.html nummer=7 %}
 
-Genau dieser Perspektivwechsel steckt in den nächsten vier Checks. Die Formeln bleiben gleich, aber die gegebenen und gesuchten Größen wechseln.
+Ist dagegen die Standardabweichung $\sigma$ gegeben, muss die Formel für $\sigma$ umgestellt werden. Dazu wird zuerst quadriert: $\sigma^2=n\cdot p\cdot (1-p)$. Ist $p$ bekannt, lässt sich danach direkt nach $n$ auflösen. Ist $\mu$ bekannt, hilft der Zusammenhang $n\cdot p=\mu$: Damit wird $\sigma^2=\mu\cdot (1-p)$, und $p$ ist die einzige Unbekannte. Ein typischer Fehler ist, das Quadrieren zu vergessen und $\mu\cdot (1-p)=\sigma$ statt $\mu\cdot (1-p)=\sigma^2$ zu rechnen.
 
-{% include check-anker.html nummer=10 %}
-
-{% include check-anker.html nummer=11 %}
-
-{% include check-anker.html nummer=12 %}
-
-{% include check-anker.html nummer=13 %}
+{% include check-anker.html nummer=8 %}
 
 
 
@@ -411,15 +391,11 @@ $$
 
 Da $X$ nur ganzzahlige Werte annehmen kann, müssen die Intervallgrenzen danach gegebenfalls noch passend auf ganze Trefferzahlen gerundet werden. Außerdem müssen wir beachten, ob nach Werten **innerhalb** oder **außerhalb** der Umgebung gefragt ist.
 
-{% include check-anker.html nummer=14 %}
-
 ### Relative Umgebungen
 
 Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir alternativ eine relative Abweichung vom Erwartungswert.
 
 Hier wird also nicht um eine feste Zahl $d$, sondern um einen prozentualen Anteil des Erwartungswerts erweitert. Auch daraus entsteht am Ende wieder ein Intervall, dessen Grenzen anschließend auf sinnvolle ganzzahlige Trefferzahlen übersetzt werden.
-
-{% include check-anker.html nummer=15 %}
 
 ### Sigma-Umgebungen
 
@@ -433,7 +409,16 @@ $$
 
 wobei $c$ festlegt, wie breit die Umgebung ist. 
 
-{% include check-anker.html nummer=16 %}
+### Umgebungswahrscheinlichkeiten berechnen
+
+Alle drei Varianten folgen demselben Ablauf. Zuerst wird die Abweichung vom Erwartungswert bestimmt: ein fester Wert $d$, ein Anteil $r\cdot\mu$ oder ein Vielfaches $c\cdot\sigma$. Dann werden die Grenzen $\mu$ minus und plus Abweichung berechnet und auf ganze Anzahlen gerundet:
+
+- **höchstens** so weit entfernt: $X$ liegt innerhalb der Grenzen, es wird nach innen gerundet,
+- **mindestens** so weit entfernt: $X$ liegt außerhalb, die Grenzen gehören dazu. Links wird abgerundet, rechts aufgerundet, und die Wahrscheinlichkeiten beider Seiten werden addiert.
+
+„Mindestens 2 vom Erwartungswert entfernt“ ist das Gegenereignis zu „höchstens 2 entfernt“. Stimmt das? Nicht immer: Liegen die Grenzen auf ganzen Zahlen, gehören sie zu beiden Ereignissen. Das Gegenereignis zu „höchstens 2 entfernt“ ist „mehr als 2 entfernt“.
+
+{% include check-anker.html nummer=9 %}
 
 
 

@@ -20,7 +20,7 @@
       <text>stochastik__binomialverteilung__08-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(n;p)\) sind \(n\) und \(p\) bekannt. Gesucht ist, wie viele Treffer mindestens mit 80 % Wahrscheinlichkeit auftreten. Welche Größe ist gesucht?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung sind \(\mu\) und \(\sigma\) bekannt. Welche Identität hilft, \(p\) zu bestimmen?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Die Treffergrenze \(k\)</p>]]></text>
+      <text><![CDATA[<p>\(\sigma^2=\mu(1-p)\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Versuchsanzahl \(n\)</p>]]></text>
+      <text><![CDATA[<p>\(\sigma=\mu(1-p)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegebenes \(n\) als gesucht behandelt</p>]]></text>
+        <text><![CDATA[<p>Quadrat der Standardabweichung vergessen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit \(p\)</p>]]></text>
+      <text><![CDATA[<p>\(\sigma^2=\mu p\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegebenes \(p\) als gesucht behandelt</p>]]></text>
+        <text><![CDATA[<p>Faktor \(1-p\) durch \(p\) ersetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der Erwartungswert \(\mu\)</p>]]></text>
+      <text><![CDATA[<p>\(\sigma^2=\mu/p\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Abgeleitete Kennzahl statt Grenze gewählt</p>]]></text>
+        <text><![CDATA[<p>Multiplikation mit \(1-p\) durch Division durch \(p\) ersetzt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__binomialverteilung__08-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gesucht ist das größte \(k\) mit \(P(X\geq k)\geq0{,}80\). Prüfwerte: \(k=4:0{,}84\), \(k=5:0{,}76\). Ergebnis?</p>]]></text>
+      <text><![CDATA[<p>Wie wird \(\sigma^2=np(1-p)\) nach \(n\) umgestellt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(k=4\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\frac{\sigma^2}{p(1-p)}\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=5\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\frac{\sigma}{p(1-p)}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Prüfwert unter 0,80 akzeptiert</p>]]></text>
+        <text><![CDATA[<p>Standardabweichung nicht quadriert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=0{,}80\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\sigma^2p(1-p)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wahrscheinlichkeitsschranke als Trefferzahl gewählt</p>]]></text>
+        <text><![CDATA[<p>Multipliziert statt dividiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=3\)</p>]]></text>
+      <text><![CDATA[<p>\(n=\frac{p(1-p)}{\sigma^2}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Größten zulässigen Wert unterschritten</p>]]></text>
+        <text><![CDATA[<p>Quotient umgekehrt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__binomialverteilung__08-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Bei festem \(n,p\): Wie verändert sich \(P(X\geq k)\), wenn \(k\) wächst?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(p\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Sie sinkt oder bleibt gleich.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie wächst immer.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}8\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Monotonierichtung vertauscht</p>]]></text>
+        <text><![CDATA[<p>\(\sigma^2/\mu\) als \(p\) statt als \(1-p\) verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie bleibt stets gleich.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einfluss der Grenze bestritten</p>]]></text>
+        <text><![CDATA[<p>\(\sigma/\mu\) statt \(1-\sigma^2/\mu\) berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie wird gleich \(k/n\).</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Intervallwahrscheinlichkeit als einfachen Anteil gedeutet</p>]]></text>
+        <text><![CDATA[<p>Varianz als Wahrscheinlichkeit verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>stochastik__binomialverteilung__08-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Bei festem \(n,p\): Wie verändert sich \(P(X\leq k)\), wenn \(k\) wächst?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=5\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Sie wächst oder bleibt gleich.</p>]]></text>
+      <text><![CDATA[<p>\(25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie sinkt immer.</p>]]></text>
+      <text><![CDATA[<p>\(5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Monotonierichtung vertauscht</p>]]></text>
+        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie bleibt stets gleich.</p>]]></text>
+      <text><![CDATA[<p>\(10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Einfluss der Grenze bestritten</p>]]></text>
+        <text><![CDATA[<p>Mit \(\sigma\) multipliziert statt durch \(p\) geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sie wird gleich \(p\).</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kumulierte Wahrscheinlichkeit mit \(p\) gleichgesetzt</p>]]></text>
+        <text><![CDATA[<p>Varianz als Versuchsanzahl verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>stochastik__binomialverteilung__08-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gesucht ist das kleinste \(k\) mit \(P(X\leq k)\geq0{,}90\). Prüfwerte: \(k=7:0{,}88\), \(k=8:0{,}93\). Ergebnis?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=3\), \(\sigma=\sqrt{2}\). Wie groß ist \(p\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(k=8\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{3}\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=7\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{2}{3}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Prüfwert unter 0,90 akzeptiert</p>]]></text>
+        <text><![CDATA[<p>\(\sigma^2/\mu\) als \(p\) statt als \(1-p\) verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=9\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{\sqrt{2}}{3}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kleinsten bestätigten Wert überschritten</p>]]></text>
+        <text><![CDATA[<p>\(\sigma/\mu\) statt Varianz durch Erwartungswert verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=0{,}90\)</p>]]></text>
+      <text><![CDATA[<p>\(2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wahrscheinlichkeitsschranke als Trefferzahl gewählt</p>]]></text>
+        <text><![CDATA[<p>Varianz als Wahrscheinlichkeit verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>stochastik__binomialverteilung__08-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Welcher Ansatz passt zu „höchstens wie viele Treffer mit Wahrscheinlichkeit mindestens \(0{,}75\)“?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(\mu=8\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Kleinstes \(k\) mit \(P(X\leq k)\geq0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(16\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Kleinstes \(n\) mit \(P(X\leq k)\geq0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(8\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesuchte Grenze durch Versuchsanzahl ersetzt</p>]]></text>
+        <text><![CDATA[<p>Erwartungswert übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Kleinstes \(p\) mit \(P(X\leq k)\geq0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesuchte Grenze durch Trefferwahrscheinlichkeit ersetzt</p>]]></text>
+        <text><![CDATA[<p>Varianz als Versuchsanzahl verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Größtes \(k\) mit \(P(X\geq k)\geq0{,}75\)</p>]]></text>
+      <text><![CDATA[<p>\(32\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Höchstens-Ereignis mit Mindestens-Ereignis vertauscht</p>]]></text>
+        <text><![CDATA[<p>Mit \(1/p\) doppelt multipliziert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>stochastik__binomialverteilung__08-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gesucht ist das größte \(k\) mit \(P(X\geq k)>0{,}50\). Prüfwerte (exakt): \(k=6:0{,}51\), \(k=7:0{,}50\). Ergebnis?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=1\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(k=6\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=7\)</p>]]></text>
+      <text><![CDATA[<p>\(2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Strenge Schranke \(>0{,}5\) als inklusive gelesen</p>]]></text>
+        <text><![CDATA[<p>Nur durch \(p\) geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=0{,}51\)</p>]]></text>
+      <text><![CDATA[<p>\(1\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Prüfwahrscheinlichkeit als Treffergrenze gewählt</p>]]></text>
+        <text><![CDATA[<p>Standardabweichung als Versuchsanzahl übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=5\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Größten zulässigen Wert unterschritten</p>]]></text>
+        <text><![CDATA[<p>\(p(1-p)\) statt Quotient berechnet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__binomialverteilung__08-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für eine feste Binomialverteilung wird die Treffergrenze \(k\) variiert. Welche Größen bleiben unverändert?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}5\), \(\sigma=2\). Wie groß ist \(\mu\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Die vorgegebenen Parameter \(n\) und \(p\)</p>]]></text>
+      <text><![CDATA[<p>\(8\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Treffergrenze \(k\)</p>]]></text>
+      <text><![CDATA[<p>\(16\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesuchte Grenze fälschlich festgehalten</p>]]></text>
+        <text><![CDATA[<p>Versuchsanzahl übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Alle kumulierten Wahrscheinlichkeiten</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Prüfwerte fälschlich als identisch angenommen</p>]]></text>
+        <text><![CDATA[<p>Varianz statt Erwartungswert gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Die Ereignisse trotz verändertem \(k\)</p>]]></text>
+      <text><![CDATA[<p>\(2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Veränderung des Ereignisses durch \(k\) bestritten</p>]]></text>
+        <text><![CDATA[<p>Standardabweichung übernommen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__binomialverteilung__08-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für \(X\sim B(12;p)\): Welcher Wert kann keine Treffergrenze \(k\) sein?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}2\), \(\sigma=2\). Wie groß ist \(n\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(13\)</p>]]></text>
+      <text><![CDATA[<p>\(25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0\)</p>]]></text>
+      <text><![CDATA[<p>\(20\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Zulässige Untergrenze 0 ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Durch \(p\) geteilt, aber \(1-p\) vergessen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(6\)</p>]]></text>
+      <text><![CDATA[<p>\(5\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Zulässigen inneren Wert 6 ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Späteren Erwartungswert statt \(n\) gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(12\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Maximal mögliche Trefferzahl 12 ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Varianz als Versuchsanzahl übernommen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__binomialverteilung__08-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für dieselbe Trefferzahl \(X\) gilt \(P(X\geq9)=0{,}85\), \(P(X\geq10)=0{,}75\). Welches größte \(k\) erfüllt \(P(X\geq k)\geq0{,}8\)?</p>]]></text>
+      <text><![CDATA[<p>Für eine Binomialverteilung gilt \(p=0{,}75\), \(\sigma=\sqrt{3}\). Welches Paar \((n;\mu)\) folgt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(k=9\)</p>]]></text>
+      <text><![CDATA[<p>\((16;12)\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=10\)</p>]]></text>
+      <text><![CDATA[<p>\((12;16)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nicht erfüllenden Nachbarwert gewählt</p>]]></text>
+        <text><![CDATA[<p>Versuchsanzahl und Erwartungswert vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=19\)</p>]]></text>
+      <text><![CDATA[<p>\((4;3)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Prüfgrenzen addiert</p>]]></text>
+        <text><![CDATA[<p>Varianz fälschlich direkt durch \(p\) geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(k=1\)</p>]]></text>
+      <text><![CDATA[<p>\((16;4)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Differenz der Prüfgrenzen statt Grenzwert gewählt</p>]]></text>
+        <text><![CDATA[<p>Erwartete Nieten statt Treffer als \(\mu\) verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>

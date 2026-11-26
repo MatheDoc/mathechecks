@@ -874,35 +874,13 @@
             ]
         },
         {
-            "generator": "stochastik.binomialverteilung.npk_n",
+            "generator": "stochastik.binomialverteilung.npk",
             "seed": 2104,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-n"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.npk_p",
-            "seed": 2105,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-p"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.npk_k",
-            "seed": 2106,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-k"
+                    "sammlung": "npk"
                 }
             ]
         },
@@ -929,90 +907,35 @@
             ]
         },
         {
-            "generator": "stochastik.binomialverteilung.umgebungen_absolut",
+            "generator": "stochastik.binomialverteilung.umgebungen",
             "seed": 2109,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-absolut"
+                    "sammlung": "umgebungen"
                 }
             ]
         },
         {
-            "generator": "stochastik.binomialverteilung.umgebungen_relativ",
-            "seed": 2110,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-relativ"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.umgebungen_sigma",
-            "seed": 2111,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-sigma"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.kennzahlen_n_p_gegeben",
+            "generator": "stochastik.binomialverteilung.kennzahlen_mu",
             "seed": 2112,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-n-p-gegeben"
+                    "sammlung": "kennzahlen-mu"
                 }
             ]
         },
         {
-            "generator": "stochastik.binomialverteilung.kennzahlen_n_mu_gegeben",
-            "seed": 2113,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-n-mu-gegeben"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.kennzahlen_p_mu_gegeben",
-            "seed": 2114,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-p-mu-gegeben"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.kennzahlen_p_sigma_gegeben",
+            "generator": "stochastik.binomialverteilung.kennzahlen_sigma",
             "seed": 2115,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-p-sigma-gegeben"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.binomialverteilung.kennzahlen_mu_sigma_gegeben",
-            "seed": 2116,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-mu-sigma-gegeben"
+                    "sammlung": "kennzahlen-sigma"
                 }
             ]
         },

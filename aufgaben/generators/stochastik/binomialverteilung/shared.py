@@ -111,3 +111,17 @@ def violates_probability_rounding_policy(
         )
         for value in probabilities
     )
+
+
+def mix_generator_tasks(generator_classes: list, count: int, seed: int | None) -> list:
+    """Aufgaben mehrerer Generatoren im Wechsel mischen (Typ i % m, Aufgabe i).
+
+    Jeder Teilgenerator bekommt einen eigenen, aus `seed` abgeleiteten Seed. Da Aufgabe i
+    jeweils Szenario i nutzt, wechseln Typ und Szenario gemeinsam.
+    """
+    base_seed = 0 if seed is None else seed
+    pools = [
+        generator_class().generate(count=count, seed=base_seed * 10 + offset)
+        for offset, generator_class in enumerate(generator_classes)
+    ]
+    return [pools[index % len(pools)][index] for index in range(count)]
