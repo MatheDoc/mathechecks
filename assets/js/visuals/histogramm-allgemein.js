@@ -5,7 +5,7 @@
  * visualised with freely specified x and y values (not binomial).
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 function inferBarWidth(x, explicitWidth) {
     if (explicitWidth != null) return Number(explicitWidth);

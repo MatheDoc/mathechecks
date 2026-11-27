@@ -12,7 +12,7 @@
  * No DOM access apart from theme colors, no Plotly call.
  */
 
-import { themeTextColor, themeBorderColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor, themeBorderColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 const FARBE_GRAPH = "#4363d8";
 const FARBE_FLAECHE = "rgba(67, 99, 216, 0.28)";

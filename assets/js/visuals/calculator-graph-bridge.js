@@ -1,5 +1,5 @@
 import { buildGraphFigure } from "./graph.js";
-import { plotlyRender } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { plotlyRender } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 export function renderCalculatorGraph(container, funktionen, optionen = {}) {
     const figure = buildGraphFigure({

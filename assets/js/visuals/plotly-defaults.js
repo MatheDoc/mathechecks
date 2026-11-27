@@ -157,6 +157,60 @@ export function plotlyRender(container, data, layout = {}, config = {}) {
     return window.Plotly.newPlot(el || container, data, mergedLayout, mergedConfig)
         .then((plotEl) => {
             enableTouchScroll(plotEl);
+            plotEl._mcThemePalette = themePalette();
+            plotEl._mcConfig = mergedConfig;
             return plotEl;
         });
+}
+
+/* ── Theme-Wechsel ohne Reload ───────────────────────────────────
+ * Figure-Builder backen Theme-Farben (teils mit Alpha-Suffix, z. B.
+ * themeTextColor() + "40") direkt in data/layout ein. Beim Theme-Wechsel
+ * werden diese Farbstrings in allen gerenderten Plots durch die neuen
+ * ersetzt und per Plotly.react neu gezeichnet. */
+
+function themePalette() {
+    return [themeTextColor(), themeBorderColor(), themeSurfaceColor(), themeHoverSurfaceColor()];
+}
+
+function replaceColors(value, pairs) {
+    if (typeof value === "string") {
+        let result = value;
+        for (const [from, to] of pairs) {
+            if (result.includes(from)) result = result.split(from).join(to);
+        }
+        return result;
+    }
+    if (Array.isArray(value)) return value.map((v) => replaceColors(v, pairs));
+    if (value && Object.getPrototypeOf(value) === Object.prototype) {
+        const out = {};
+        for (const key of Object.keys(value)) out[key] = replaceColors(value[key], pairs);
+        return out;
+    }
+    return value;
+}
+
+function rethemePlots() {
+    if (!window.Plotly) return;
+    const next = themePalette();
+    document.querySelectorAll(".js-plotly-plot").forEach((plotEl) => {
+        const prev = plotEl._mcThemePalette;
+        if (!prev) return;
+        const pairs = prev
+            .map((from, i) => [from, next[i]])
+            .filter(([from, to]) => from && from !== to);
+        plotEl._mcThemePalette = next;
+        if (!pairs.length) return;
+        window.Plotly.react(
+            plotEl,
+            replaceColors(plotEl.data, pairs),
+            replaceColors(plotEl.layout, pairs),
+            plotEl._mcConfig,
+        );
+    });
+}
+
+if (typeof document !== "undefined" && !window.__mcPlotlyThemeListener) {
+    window.__mcPlotlyThemeListener = true;
+    document.addEventListener("mathechecks:themechange", rethemePlots);
 }

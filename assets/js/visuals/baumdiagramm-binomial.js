@@ -7,7 +7,7 @@
  * Returns {data, layout} ready for plotlyRender().
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 export function buildBaumdiagrammBinomialFigure({ n = 3, p = 0.5, k = null }) {
     const nodes = {};

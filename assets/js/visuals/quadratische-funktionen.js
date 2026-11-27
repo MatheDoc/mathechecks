@@ -3,7 +3,7 @@
  * f(x) = ax² + bx + c
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 export function buildQuadratischeFunktionenFigure({ a, b, c, xMin = -6, xMax = 6, yMin = -8, yMax = 12 }) {
     const step = 0.05;

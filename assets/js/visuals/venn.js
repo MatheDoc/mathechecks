@@ -13,7 +13,7 @@
  * nutzt dieselben Schlüssel.
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 export const VENN_REGIONEN = ["a", "ab", "b", "n"];
 

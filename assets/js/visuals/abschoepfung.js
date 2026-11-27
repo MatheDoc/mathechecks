@@ -15,7 +15,7 @@
  * No DOM access apart from theme colors, no Plotly call.
  */
 
-import { themeTextColor, themeBorderColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor, themeBorderColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 const FARBE_NACHFRAGE = "#1f77b4";
 const FARBE_ANGEBOT = "#d62728";

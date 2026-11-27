@@ -28,7 +28,8 @@
             toggle.addEventListener('click', () => {
                 const isLight = !document.documentElement.classList.contains('light');
                 localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
-                location.reload();
+                applyThemeState(isLight);
+                document.dispatchEvent(new CustomEvent('mathechecks:themechange', { detail: { isLight } }));
             });
         });
     })();

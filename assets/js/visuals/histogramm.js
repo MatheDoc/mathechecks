@@ -8,7 +8,7 @@
  * When omitted all bars use a neutral colour (task mode).
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 /* ------------------------------------------------------------------ */
 /*  Helpers                                                            */

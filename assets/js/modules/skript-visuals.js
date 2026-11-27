@@ -13,7 +13,7 @@ import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinse
 import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
 import { berechneMarkt, berechneAbschoepfung, buildAbschoepfungMarktFigure, buildAbschoepfungZielFigure } from "../visuals/abschoepfung.js?v=20261025-abschoepfung";
 import { buildVennFigure, parseVennRegionen, vennKey, vennRegionAusTrace, VENN_EREIGNISSE, VENN_FARBEN, VENN_REGIONEN } from "../visuals/venn.js?v=20261127-venn";
-import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20261127-theme-live-switch";
 
 function parseNum(raw) {
     if (raw == null || raw === "") return null;

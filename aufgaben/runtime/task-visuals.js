@@ -1,6 +1,6 @@
 import { buildBaumdiagrammFigure } from "../../assets/js/visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../assets/js/visuals/histogramm.js";
-import { plotlyRender } from "../../assets/js/visuals/plotly-defaults.js?v=20260512-plotly-hover-name-theme";
+import { plotlyRender } from "../../assets/js/visuals/plotly-defaults.js?v=20261127-theme-live-switch";
 import { buildVerflechtungsdiagrammFigure } from "../../assets/js/visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
 import { buildVennFigure } from "../../assets/js/visuals/venn.js?v=20261127-venn";
 

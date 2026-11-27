@@ -8,7 +8,7 @@
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../visuals/histogramm.js";
-import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20261127-theme-live-switch";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";

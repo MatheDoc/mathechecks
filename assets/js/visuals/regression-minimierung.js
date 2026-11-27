@@ -4,7 +4,7 @@
  * squared residuals drawn as actual squares (side length = |residual|).
  */
 
-import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
+import { themeTextColor } from "./plotly-defaults.js?v=20261127-theme-live-switch";
 
 /** Fixed, almost linear point cloud (least squares optimum: m = 0.85, b = 1.25). */
 export const REGRESSION_MINIMIERUNG_PUNKTE = [
