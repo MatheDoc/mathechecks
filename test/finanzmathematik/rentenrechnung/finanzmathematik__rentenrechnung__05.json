@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Wie lautet die Formel für das Endkapital beim Kapitalaufbau (nachschüssig)?",
-            "antworten": ["\\(E_n = K_0 \\cdot q^n + R_n\\)", "\\(E_n = K_0 \\cdot q^n - R_n\\)", "\\(E_n = K_0 + R_n\\)", "\\(E_n = (K_0 + r) \\cdot q^n\\)"],
-            "fehler": ["Minus gilt beim Kapitalabbau", "Das Startkapital muss aufgezinst werden", "Die Raten werden nicht alle n Jahre verzinst"]
+            "frage": "Woran erkennt man im Text, dass Zinseszins- und Rentenformel kombiniert werden müssen?",
+            "antworten": ["Es gibt ein Startkapital und zusätzlich regelmäßige Zahlungen", "Es gibt nur eine Einmalzahlung", "Es gibt nur regelmäßige Zahlungen", "Der Zinssatz wechselt"],
+            "fehler": ["Das ist reine Zinseszinsrechnung", "Das ist reine Rentenrechnung", "Ein Zinssatzwechsel ist ein anderes Thema"]
         },
         {
-            "frage": "Welche beiden Formeln werden beim Kapitalauf- und -abbau kombiniert?",
-            "antworten": ["Zinseszinsformel und Rentenendwertformel", "Zinseszinsformel und Annuitätenformel", "Rentenbarwert- und Rentenendwertformel", "Annuitätenformel und Restschuldformel"],
-            "fehler": ["Die Annuitätenformel gehört zur Tilgungsrechnung", "Das Startkapital wird mit der Zinseszinsformel bewertet", "Beide gehören zur Tilgungsrechnung"]
+            "frage": "„Frau D hat 20 000 € gespart und zahlt weiter jährlich 2 000 € ein.“ Um welchen Fall handelt es sich?",
+            "antworten": ["Kapitalaufbau", "Kapitalabbau", "Reine Rentenrechnung", "Tilgungsrechnung"],
+            "fehler": ["Es wird eingezahlt, nicht entnommen", "Das Startkapital muss berücksichtigt werden", "Es liegt kein Darlehen vor"]
         },
         {
-            "frage": "Beim Kapitalabbau werden Beträge …",
-            "antworten": ["entnommen, das Vorzeichen vor \\(R_n\\) ist minus", "eingezahlt, das Vorzeichen vor \\(R_n\\) ist plus", "entnommen, das Vorzeichen vor \\(K_0 \\cdot q^n\\) ist minus", "weder ein- noch ausgezahlt"],
-            "fehler": ["Einzahlungen sind Kapitalaufbau", "Das Startkapital bleibt positiv aufgezinst", "Ohne Zahlungen wäre es reine Zinseszinsrechnung"]
+            "frage": "„Herr E hat 50 000 € angelegt und entnimmt jährlich 6 000 €.“ Um welchen Fall handelt es sich?",
+            "antworten": ["Kapitalabbau", "Kapitalaufbau", "Reine Zinseszinsrechnung", "Tilgungsrechnung"],
+            "fehler": ["Es wird entnommen, nicht eingezahlt", "Die Entnahmen müssen berücksichtigt werden", "Es liegt kein Darlehen vor"]
         },
         {
-            "frage": "\\(K_0 = 1\\,000\\) €, \\(r = 100\\) € nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalaufbau. Wie groß ist \\(E_1\\)?",
-            "antworten": ["\\(1\\,200\\) €", "\\(1\\,210\\) €", "\\(1\\,100\\) €", "\\(1\\,110\\) €"],
-            "fehler": ["Die nachschüssige Rate wird im ersten Jahr nicht verzinst", "Die Rate wurde vergessen", "Rate und Zinsen falsch kombiniert"]
+            "frage": "„Wie lange reicht das Kapital?“ Wie wird diese Frage mathematisch übersetzt?",
+            "antworten": ["Kapitalabbau mit \\(E_n = 0\\), nach \\(n\\) auflösen", "Kapitalaufbau mit \\(E_n = K_0\\)", "Rentenendwert berechnen", "Zinseszinsformel nach \\(K_0\\) auflösen"],
+            "fehler": ["Das Kapital soll aufgebraucht werden, nicht wachsen", "Das Startkapital wird ignoriert", "Es geht um regelmäßige Entnahmen"]
         },
         {
-            "frage": "\\(K_0 = 1\\,000\\) €, \\(r = 100\\) € nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalabbau. Wie groß ist \\(E_1\\)?",
-            "antworten": ["\\(1\\,000\\) €", "\\(900\\) €", "\\(1\\,100\\) €", "\\(990\\) €"],
-            "fehler": ["Das Startkapital muss zuerst aufgezinst werden: 1 100 − 100", "Die Entnahme wurde vergessen", "Rechenfehler"]
+            "frage": "Bei 1 000 € Startkapital, 10 % Zinsen und jährlicher Entnahme von 100 € am Jahresende: Wie entwickelt sich das Kapital?",
+            "antworten": ["Es bleibt bei 1 000 €, weil die Entnahme genau den Zinsen entspricht", "Es sinkt jedes Jahr um 100 €", "Es wächst jedes Jahr um 100 €", "Es ist nach 10 Jahren aufgebraucht"],
+            "fehler": ["Die Zinsen gleichen die Entnahme aus", "Entnahme und Zinsen heben sich auf", "Das Kapital bleibt konstant"]
         },
         {
-            "frage": "\\(E_n\\) und \\(r\\) sind gegeben, \\(K_0\\) ist gesucht (Kapitalaufbau). Welche Umformung ist richtig?",
-            "antworten": ["\\(K_0 = \\dfrac{E_n - R_n}{q^n}\\)", "\\(K_0 = \\dfrac{E_n + R_n}{q^n}\\)", "\\(K_0 = (E_n - R_n) \\cdot q^n\\)", "\\(K_0 = E_n - R_n\\)"],
-            "fehler": ["Plus gilt beim Kapitalabbau", "Es muss abgezinst werden, nicht aufgezinst", "Das Abzinsen fehlt"]
+            "frage": "„Welcher Betrag muss heute zusätzlich angelegt werden, damit mit jährlichen Einzahlungen von 1 500 € nach 10 Jahren 30 000 € erreicht werden?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(K_0\\)", "\\(E_n\\)", "\\(r\\)", "\\(n\\)"],
+            "fehler": ["30 000 € ist das gegebene Endkapital", "1 500 € ist die gegebene Rate", "10 Jahre sind gegeben"]
         },
         {
-            "frage": "Wie geht man vor, wenn beim Kapitalauf- oder -abbau \\(n\\) gesucht ist?",
-            "antworten": ["Den Bruch \\(\\frac{r \\cdot f}{q-1}\\) ausrechnen, \\(q^n\\) ausklammern, nach \\(q^n\\) auflösen und logarithmieren", "Die \\(n\\)-te Wurzel ziehen", "\\(E_n\\) durch \\(r\\) teilen", "Das ist nicht lösbar"],
-            "fehler": ["Wurzel löst nach der Basis auf", "Das ignoriert Startkapital und Zinsen", "Mit Ausklammern und Logarithmus ist es gut lösbar"]
+            "frage": "„Welchen Betrag kann sie jährlich entnehmen, damit nach 15 Jahren noch 5 000 € übrig sind?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(r\\)", "\\(E_n\\)", "\\(K_0\\)", "\\(n\\)"],
+            "fehler": ["5 000 € ist das gegebene Endkapital", "Das Startkapital steht im Text", "15 Jahre sind gegeben"]
         },
         {
-            "frage": "Beim Kapitalabbau ist das Kapital nach \\(n\\) Jahren aufgebraucht. Was gilt?",
-            "antworten": ["\\(E_n = 0\\)", "\\(E_n = K_0\\)", "\\(E_n = R_n\\)", "\\(E_n = r\\)"],
-            "fehler": ["Das Kapital ist nicht mehr vorhanden", "Aufgebraucht bedeutet Endkapital null", "Auch die letzte Rate ist bereits entnommen"]
+            "frage": "Beim Kapitalaufbau mit vorschüssigen Einzahlungen wird das Startkapital wie lange verzinst?",
+            "antworten": ["\\(n\\) Jahre", "\\(n + 1\\) Jahre", "\\(n - 1\\) Jahre", "gar nicht"],
+            "fehler": ["Die Zahlungsweise betrifft nur die Raten", "Das Startkapital liegt die gesamte Laufzeit an", "Das Startkapital wird stets verzinst"]
         },
         {
-            "frage": "Vorschüssige Zahlungen beim Kapitalaufbau: Wie ändert sich die Formel?",
-            "antworten": ["Statt \\(R_n\\) wird \\(\\overline{R}_n\\) verwendet", "Statt \\(K_0 \\cdot q^n\\) wird \\(K_0 \\cdot q^{n+1}\\) verwendet", "Es ändert sich nichts", "Das Vorzeichen vor \\(R_n\\) wechselt"],
-            "fehler": ["Das Startkapital wird unabhängig von der Zahlungsweise n Jahre verzinst", "Vorschüssige Raten werden ein Jahr länger verzinst", "Das Vorzeichen hängt von Aufbau oder Abbau ab"]
+            "frage": "Ein Kapitalabbau soll berechnet werden, das Ergebnis für \\(E_n\\) ist negativ. Was bedeutet das?",
+            "antworten": ["Das Kapital reicht nicht für alle geplanten Entnahmen", "Die Rechnung ist immer falsch", "Das Kapital ist gewachsen", "Es wurde zu wenig entnommen"],
+            "fehler": ["Ein negatives Ergebnis kann rechnerisch korrekt sein und zeigt eine Unterdeckung", "Gewachsenes Kapital wäre positiv und größer als K_0", "Zu wenig Entnahme ergibt ein positives Endkapital"]
         },
         {
-            "frage": "Beim Kapitalabbau soll \\(n\\) bestimmt werden. Unter welcher Bedingung wird das Kapital überhaupt aufgebraucht?",
-            "antworten": ["Die Entnahme muss größer sein als die jährlichen Zinsen des Startkapitals", "Die Entnahme muss kleiner sein als die Zinsen", "Das Kapital wird immer aufgebraucht", "Nur bei vorschüssiger Zahlung"],
-            "fehler": ["Dann wächst das Kapital trotz Entnahmen", "Bei kleiner Entnahme wächst das Kapital", "Die Zahlungsweise ändert die Bedingung nur geringfügig"]
+            "frage": "Welche Reihenfolge ist beim Lösen sinnvoll?",
+            "antworten": ["Aufbau oder Abbau erkennen → Zahlungsweise klären → Formel aufstellen → Werte einsetzen → nach der gesuchten Größe auflösen", "Sofort den Logarithmus anwenden", "Zuerst alle Zahlen addieren", "Erst die Formel nach jeder Größe allgemein umstellen"],
+            "fehler": ["Der Logarithmus wird nur bei gesuchtem n gebraucht", "Die Zahlen haben unterschiedliche Bedeutung", "Es wird nur nach der konkret gesuchten Größe aufgelöst"]
         }
     ]
 }

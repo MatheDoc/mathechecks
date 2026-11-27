@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Wann liegt eine nachschüssige Rente vor?",
-            "antworten": ["Die Zahlungen erfolgen jeweils am Ende eines Jahres", "Die Zahlungen erfolgen jeweils am Anfang eines Jahres", "Die Zahlungen sind unterschiedlich hoch", "Es gibt nur eine einzige Zahlung"],
-            "fehler": ["Zahlung am Jahresanfang ist vorschüssig", "Eine Rente besteht aus gleich hohen Zahlungen", "Eine Rente besteht aus mehreren Zahlungen"]
+            "frage": "Welche Formulierung im Text deutet auf eine vorschüssige Rente hin?",
+            "antworten": ["„jeweils zu Beginn eines Jahres“", "„jeweils am Ende eines Jahres“", "„einmalig heute“", "„nachschüssig“"],
+            "fehler": ["Das ist nachschüssig", "Eine Einmalzahlung ist keine Rente", "Das Wort selbst bedeutet Zahlung am Jahresende"]
         },
         {
-            "frage": "Was kennzeichnet der Querstrich in \\(\\overline{R}_n\\)?",
-            "antworten": ["Die Rente ist vorschüssig", "Die Rente ist nachschüssig", "Es handelt sich um einen Barwert", "Die Rente ist ewig"],
-            "fehler": ["Nachschüssige Größen tragen keinen Querstrich", "Barwerte erkennt man am Index 0", "Ewige Renten werden hier nicht behandelt"]
+            "frage": "„Wie hoch ist das Guthaben nach der letzten Einzahlung?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenendwert", "Rentenbarwert", "Rate", "Laufzeit"],
+            "fehler": ["Der Barwert bezieht sich auf heute", "Die Rate ist gegeben", "Die Laufzeit ist gegeben"]
         },
         {
-            "frage": "Was gibt der Rentenendwert \\(R_n\\) an?",
-            "antworten": ["Den Wert aller Raten am Ende der Laufzeit", "Den Wert aller Raten zu Beginn der Laufzeit", "Die Summe der Raten ohne Zinsen", "Die Höhe einer einzelnen Rate"],
-            "fehler": ["Das ist der Rentenbarwert", "Zinsen werden im Endwert berücksichtigt", "Die Rate ist \\(r\\)"]
+            "frage": "„Welcher Betrag muss heute angelegt werden, um 10 Jahre lang 3 000 € entnehmen zu können?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenbarwert", "Rentenendwert", "Rate", "Laufzeit"],
+            "fehler": ["Gefragt ist der heutige Betrag", "Die Rate 3 000 € ist gegeben", "10 Jahre sind gegeben"]
         },
         {
-            "frage": "Was gibt der Rentenbarwert \\(R_0\\) an?",
-            "antworten": ["Den Betrag, der heute angelegt werden muss, um alle Raten zahlen zu können", "Den Wert aller Raten am Ende der Laufzeit", "Die erste Rate", "Die Zinsen des ersten Jahres"],
-            "fehler": ["Das ist der Rentenendwert", "Der Barwert umfasst alle Raten", "Zinsen sind nur ein Teilaspekt"]
+            "frage": "„Wie hoch muss die jährliche Einzahlung sein, um nach 8 Jahren 20 000 € zu haben?“ Welche Größe ist gesucht?",
+            "antworten": ["Rate \\(r\\)", "Rentenendwert \\(R_n\\)", "Laufzeit \\(n\\)", "Rentenbarwert \\(R_0\\)"],
+            "fehler": ["20 000 € ist der gegebene Endwert", "8 Jahre sind gegeben", "Es geht um einen Endwert, nicht um einen Barwert"]
         },
         {
-            "frage": "Wie unterscheiden sich vorschüssiger und nachschüssiger Rentenendwert bei gleichen \\(r\\), \\(q\\), \\(n\\)?",
-            "antworten": ["\\(\\overline{R}_n = R_n \\cdot q\\)", "\\(\\overline{R}_n = R_n + r\\)", "\\(\\overline{R}_n = R_n \\cdot q^n\\)", "Sie sind gleich groß"],
-            "fehler": ["Jede Rate wird ein Jahr länger verzinst, das entspricht dem Faktor q", "Nicht n Jahre, sondern ein Jahr länger verzinst", "Vorschüssige Raten werden länger verzinst"]
+            "frage": "„Wie viele Jahre kann der Betrag in voller Höhe entnommen werden?“ Welche Größe ist gesucht?",
+            "antworten": ["Laufzeit \\(n\\)", "Rate \\(r\\)", "Rentenbarwert \\(R_0\\)", "Zinsfaktor \\(q\\)"],
+            "fehler": ["Die Rate ist gegeben", "Das angelegte Kapital ist gegeben", "Nach q wird nicht umgeformt"]
         },
         {
-            "frage": "„Herr B zahlt 10 Jahre lang jeweils am Jahresende 500 € ein. Wie hoch ist das Guthaben danach?“ Welche Formel passt?",
-            "antworten": ["nachschüssiger Rentenendwert \\(R_n\\)", "vorschüssiger Rentenendwert \\(\\overline{R}_n\\)", "nachschüssiger Rentenbarwert \\(R_0\\)", "vorschüssiger Rentenbarwert \\(\\overline{R}_0\\)"],
-            "fehler": ["Zahlung am Jahresende ist nachschüssig", "Gesucht ist das Guthaben am Ende, also der Endwert", "Gesucht ist der Endwert und die Rente ist nachschüssig"]
+            "frage": "Jemand zahlt 5 Jahre lang jeweils am Jahresende 1 000 € ein. Wie oft wird die erste Rate verzinst?",
+            "antworten": ["4 Jahre", "5 Jahre", "1 Jahr", "gar nicht"],
+            "fehler": ["Bei nachschüssiger Zahlung wird die erste Rate n − 1 Jahre verzinst", "Das gilt für die vorletzte Rate", "Das gilt für die letzte Rate"]
         },
         {
-            "frage": "„Frau C möchte 8 Jahre lang zu Jahresbeginn 2 000 € entnehmen, erstmals sofort. Wie viel muss sie heute anlegen?“ Welche Formel passt?",
-            "antworten": ["vorschüssiger Rentenbarwert \\(\\overline{R}_0\\)", "nachschüssiger Rentenbarwert \\(R_0\\)", "vorschüssiger Rentenendwert \\(\\overline{R}_n\\)", "nachschüssiger Rentenendwert \\(R_n\\)"],
-            "fehler": ["Zahlung zu Jahresbeginn ist vorschüssig", "Gesucht ist der heutige Betrag, also der Barwert", "Gesucht ist der Barwert einer vorschüssigen Rente"]
+            "frage": "Jemand zahlt 5 Jahre lang jeweils zu Jahresbeginn 1 000 € ein. Wie oft wird die letzte Rate bis zum Ende des 5. Jahres verzinst?",
+            "antworten": ["1 Jahr", "gar nicht", "5 Jahre", "4 Jahre"],
+            "fehler": ["Vorschüssig wird auch die letzte Rate noch ein Jahr verzinst", "Das gilt für die erste Rate", "Das gilt für die zweite Rate"]
         },
         {
-            "frage": "Wie hängen Rentenbarwert und Rentenendwert zusammen?",
-            "antworten": ["\\(R_0 = \\dfrac{R_n}{q^n}\\)", "\\(R_0 = R_n \\cdot q^n\\)", "\\(R_0 = R_n - n \\cdot r\\)", "\\(R_0 = \\dfrac{R_n}{n}\\)"],
-            "fehler": ["Der Endwert wird abgezinst, nicht aufgezinst", "Der Zusammenhang ist multiplikativ über den Zinsfaktor", "Die Laufzeit allein bestimmt den Zusammenhang nicht"]
+            "frage": "„Statt einer Rente von 10 Jahreszahlungen wird ein Einmalbetrag heute angeboten.“ Welcher Wert macht die beiden vergleichbar?",
+            "antworten": ["Der Rentenbarwert", "Der Rentenendwert", "Die Summe der Raten", "Die erste Rate"],
+            "fehler": ["Der Einmalbetrag wird heute gezahlt, also Barwert", "Die Summe ignoriert Zinsen", "Eine einzelne Rate ist nicht vergleichbar"]
         },
         {
-            "frage": "Eine nachschüssige Rente läuft 5 Jahre. Wann erfolgt die letzte Zahlung?",
-            "antworten": ["Am Ende des 5. Jahres", "Am Anfang des 5. Jahres", "Am Ende des 6. Jahres", "Am Anfang des 1. Jahres"],
-            "fehler": ["Nachschüssig bedeutet Zahlung am Jahresende", "Es gibt nur 5 Zahlungen innerhalb von 5 Jahren", "Das wäre die erste Zahlung einer vorschüssigen Rente"]
+            "frage": "Welche drei Fragen sind bei einer Renten-Sachaufgabe zu klären?",
+            "antworten": ["Vor- oder nachschüssig? End- oder Barwert? Welche Größe ist gesucht?", "Wie hoch ist der Gewinn? Wer zahlt? Wann ist Feiertag?", "Ist die Rente ewig? Wie viele Personen? Welche Bank?", "Nur: Welche Größe ist gesucht?"],
+            "fehler": ["Diese Fragen sind für die Formelwahl irrelevant", "Ewige Renten werden nicht behandelt", "Zahlungsweise und Bewertungszeitpunkt bestimmen die Formel"]
         },
         {
-            "frage": "Welche Rate wird beim nachschüssigen Rentenendwert nicht mehr verzinst?",
-            "antworten": ["Die letzte Rate", "Die erste Rate", "Alle Raten werden gleich lang verzinst", "Keine Rate wird verzinst"],
-            "fehler": ["Die erste Rate wird n−1 Jahre verzinst", "Frühere Raten werden länger verzinst", "Alle Raten außer der letzten werden verzinst"]
+            "frage": "Ein Ergebnis lautet \\(n \\approx 12{,}4\\) Jahre Entnahmedauer. Was bedeutet das?",
+            "antworten": ["12 volle Raten sind möglich, die 13. Rate nur noch teilweise", "13 volle Raten sind möglich", "Genau 12 Raten, danach ist das Kapital exakt null", "Das Ergebnis ist ungültig"],
+            "fehler": ["Für 13 volle Raten reicht das Kapital nicht", "Nach 12 Raten ist noch ein Rest vorhanden", "Nicht-ganzzahlige Laufzeiten sind sinnvoll interpretierbar"]
         }
     ]
 }
