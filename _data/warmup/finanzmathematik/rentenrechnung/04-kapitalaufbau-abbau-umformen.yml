@@ -1,0 +1,150 @@
+# Warm-Up zu Check 04 „Kapitalauf- und -abbau“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__04
+abschluss: '<p>Im Training ist pro Aufgabe je einmal $E_n$, $K_0$, $r$ und $n$ gesucht. Ist $K_0$ oder $r$ gesucht, rechnest du zuerst den anderen Anteil aus und bringst ihn mit umgekehrtem Vorzeichen auf die andere Seite. Bei $n$ fasst du die beiden $q^n$-Terme zusammen.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Startkapital plus Raten'
+    text: '<p>Jonas hat bereits $800$ € auf dem Konto. Dann zahlt er $5$ Jahre lang jeweils am Jahresende $1\,200$ € ein, Zinssatz $2{,}5\,\%$, also $q=1{,}025$.</p><p>Auf dem Konto liegt jetzt zweierlei Geld: das <strong>Startkapital</strong> $K_0$ und die <strong>Raten</strong> $r$.</p>'
+    visual:
+      typ: liste
+      titel: 'Kontostand'
+      eintraege:
+        - { id: k, text: 'Startkapital aufgezinst: $K_0\cdot q^n$', gleichung: '$800\cdot 1{,}025^5\approx 905{,}13$ €' }
+        - { id: r, text: 'Raten: Rentenendwert $R_n$', gleichung: '$\dfrac{1\,200\cdot(1{,}025^5-1)}{0{,}025}$<br>$\approx 6\,307{,}59$ €' }
+        - { id: e, text: 'Endkapital nach 5 Jahren', gleichung: '$E_5\approx 7\,212{,}72$ €' }
+        - { id: ab, text: 'danach 3 Jahre lang $1\,500$ € entnehmen', gleichung: '$E_3\approx 3\,153{,}87$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Wie viel hat Jonas nach 5 Jahren?'
+        knopf: 'Beide Anteile bewerten'
+        text: '<p>Beide Anteile werden getrennt auf das Ende von Jahr 5 bezogen: Das Startkapital wächst mit der Zinseszinsformel, die Raten bewertet die Rentenendwertformel. Zusammen ergeben sie das <strong>Endkapital</strong> $E_n$:</p>$$\begin{align*}E_n&=K_0\cdot q^n+R_n\\ E_5&\approx 905{,}13+6\,307{,}59\\ &=7\,212{,}72\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [k, r, e] }
+      - typ: auswahl
+        frage: 'Jonas lässt die $7\,212{,}72$ € liegen und <strong>entnimmt</strong> nun $3$ Jahre lang jeweils am Jahresende $1\,500$ €. Wie wird der Rentenanteil $R_3$ jetzt verrechnet?'
+        optionen:
+          - 'Er wird vom aufgezinsten Kapital abgezogen.'
+          - 'Er wird wie beim Einzahlen addiert.'
+          - 'Er fällt weg, weil nichts eingezahlt wird.'
+        korrekt: 0
+        hinweis: 'Wird der Kontostand durch Entnahmen größer oder kleiner?'
+        danach: '$$\begin{align*}E_3&=7\,212{,}72\cdot 1{,}025^3\\ &\quad-R_3\\ &\approx 7\,767{,}31\\ &\quad-4\,613{,}44\\ &=3\,153{,}87\,\text{€}\end{align*}$$<p><strong>Merke:</strong></p><ul><li>$E_n=K_0\cdot q^n\pm R_n$: Einzahlungen $+$ (<strong>Kapitalaufbau</strong>), Entnahmen $-$ (<strong>Kapitalabbau</strong>).</li><li>Vorschüssig nimmst du $\overline{R}_n$ und schreibst $\overline{E}_n$.</li></ul>'
+        zeige: { eintraege: [ab] }
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Endkapital, Startkapital, Rate'
+    text: '<p>Je nachdem, welche Größe gesucht ist, gehst du anders vor. In der Übersicht sammeln wir die Wege.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: en, text: '$E_n$ gesucht', gleichung: 'beide Anteile ausrechnen, addieren bzw. subtrahieren' }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'Rentenanteil ausrechnen, auf die andere Seite bringen, durch $q^n$ teilen' }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Zinseszinsanteil ausrechnen, auf die andere Seite bringen, nach $r$ auflösen' }
+        - { id: n, text: '$n$ gesucht', gleichung: 'Bruch ausrechnen, $q^n$-Terme zusammenfassen, Logarithmus' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>a) $E_n$ gesucht:</strong> Kapitalaufbau, nachschüssig: $K_0=10\,000$ €, $r=1\,200$ €, $p=3\,\%$, $n=8$.'
+        knopf: 'Beide Anteile ausrechnen'
+        text: '$$\begin{align*}K_0\cdot q^8&=10\,000\cdot 1{,}03^8\\ &\approx 12\,667{,}70\\ R_8&=\frac{1\,200\cdot(1{,}03^8-1)}{0{,}03}\\ &\approx 10\,670{,}80\\ E_8&\approx 12\,667{,}70+10\,670{,}80\\ &=23\,338{,}50\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [en] }
+      - typ: auswahl
+        frage: '<strong>b) $K_0$ gesucht:</strong> Kapitalaufbau, vorschüssig: $\overline{E}_n=20\,000$ €, $r=1\,000$ €, $p=2\,\%$, $n=10$. Eingesetzt: $$20\,000=K_0\cdot 1{,}02^{10}+\overline{R}_{10}$$ Wie stellst du $K_0$ frei?'
+        optionen:
+          - '$\overline{R}_{10}$ ausrechnen, von $20\,000$ abziehen, dann durch $1{,}02^{10}$ teilen'
+          - '$20\,000$ durch $1{,}02^{10}$ teilen, dann $\overline{R}_{10}$ abziehen'
+          - '$\overline{R}_{10}$ ausrechnen, zu $20\,000$ addieren, dann durch $1{,}02^{10}$ teilen'
+        korrekt: 0
+        hinweis: 'Nur $K_0$ ist mit $1{,}02^{10}$ multipliziert, $\overline{R}_{10}$ nicht. Bring den Rentenanteil zuerst auf die andere Seite.'
+        danach: '<p>$\overline{R}_{10}\approx 11\,168{,}72$, von $20\,000$ abziehen:</p>$$\begin{align*}8\,831{,}28&=K_0\cdot 1{,}02^{10}\\ K_0&=\frac{8\,831{,}28}{1{,}02^{10}}\\ &\approx 7\,244{,}73\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [k0] }
+      - typ: aufdecken
+        frage: '<strong>c) $r$ gesucht:</strong> Kapitalaufbau, nachschüssig: $K_0=5\,000$ €, $E_n=30\,000$ €, $p=4\,\%$, $n=10$.'
+        knopf: 'Umgekehrt vorgehen'
+        text: '<p>Jetzt steckt die Unbekannte im Rentenanteil. Also zuerst den Zinseszinsanteil ausrechnen und abziehen, danach wie in Check 1 nach $r$ auflösen:</p>$$\begin{align*}K_0\cdot q^{10}&=5\,000\cdot 1{,}04^{10}\\ &\approx 7\,401{,}22\\ 30\,000-7\,401{,}22&=R_{10}\\ 22\,598{,}78&=r\cdot\frac{1{,}04^{10}-1}{0{,}04}\\ 22\,598{,}78&\approx r\cdot 12{,}0061\\ r&\approx 1\,882{,}27\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [r] }
+
+  - phase: vormachen
+    titel: 'Laufzeit n: beide Potenzen zusammenfassen'
+    text: '<p><strong>d) $n$ gesucht:</strong> Kapitalabbau, vorschüssig: $K_0=80\,000$ €, $r=7\,000$ €, $p=2\,\%$. Das Kapital soll aufgebraucht sein, also $\overline{E}_n=0$:</p>$$\begin{align*}0=\;&80\,000\cdot 1{,}02^n\\ &-\frac{7\,000\cdot 1{,}02\cdot(1{,}02^n-1)}{0{,}02}\end{align*}$$<p>$1{,}02^n$ steht zweimal da: beim Startkapital und im Rentenanteil.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: en, text: '$E_n$ gesucht', gleichung: 'beide Anteile ausrechnen, addieren bzw. subtrahieren', erledigt: true }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'Rentenanteil ausrechnen, auf die andere Seite bringen, durch $q^n$ teilen', erledigt: true }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Zinseszinsanteil ausrechnen, auf die andere Seite bringen, nach $r$ auflösen', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'Bruch ausrechnen, $q^n$-Terme zusammenfassen, Logarithmus' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Den Vorfaktor ausrechnen und die Klammer auflösen.'
+        knopf: 'Umformung zeigen'
+        text: '<p>Alles außer der Klammer ist eine feste Zahl: $\frac{7\,000\cdot 1{,}02}{0{,}02}=357\,000$. Damit:</p>$$\begin{align*}0&=80\,000\cdot 1{,}02^n\\ &\quad-357\,000\cdot(1{,}02^n-1)\\ 0&=80\,000\cdot 1{,}02^n\\ &\quad-357\,000\cdot 1{,}02^n+357\,000\end{align*}$$'
+      - typ: auswahl
+        frage: '<strong>Schritt 2:</strong> Fasse die beiden $1{,}02^n$-Terme zusammen. Welche Gleichung entsteht?'
+        optionen:
+          - '$0=-277\,000\cdot 1{,}02^n+357\,000$'
+          - '$0=437\,000\cdot 1{,}02^n+357\,000$'
+          - '$0=-277\,000\cdot 1{,}02^n-357\,000$'
+        korrekt: 0
+        hinweis: 'Denk dir $1{,}02^n$ wie ein $x$: $80\,000x-357\,000x=-277\,000x$. Das $+357\,000$ bleibt stehen.'
+        danach: '$$\begin{align*}277\,000\cdot 1{,}02^n&=357\,000\\ 1{,}02^n&=\frac{357\,000}{277\,000}\\ &\approx 1{,}2888\\ n&=\frac{\ln 1{,}2888}{\ln 1{,}02}\\ &\approx 12{,}81\end{align*}$$<p>Das Kapital reicht für 12 volle Entnahmen, die 13. ist nur noch teilweise möglich.</p><p>Beim Kapital<strong>aufbau</strong> steht $+$ vor dem Rentenanteil. Dann wird aus $+357\,000$ ein $-357\,000$: Achte genau auf die Vorzeichen.</p>'
+        zeige: { eintraege: [n] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Schritt folgt?'
+    text: '<p>Ordne jeder Gleichung den passenden nächsten Schritt zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gleichung'
+        titel_rechts: 'Nächster Schritt'
+        paare:
+          - { links: '$18\,000=K_0\cdot 1{,}03^6-6\,468{,}41$', rechts: '$+6\,468{,}41$, dann $:1{,}03^6$' }
+          - { links: '$18\,000=K_0\cdot 1{,}03^6+6\,468{,}41$', rechts: '$-6\,468{,}41$, dann $:1{,}03^6$' }
+          - { links: '$18\,000=11\,940{,}52+R_6$', rechts: '$-11\,940{,}52$, dann nach $r$ auflösen' }
+          - { links: '$0=60\,000\cdot 1{,}05^n-$<br>$100\,000\cdot(1{,}05^n-1)$', rechts: 'Klammer auflösen, $1{,}05^n$-Terme zusammenfassen' }
+        danach: '<p>Erst den Anteil <strong>ohne</strong> Unbekannte mit umgekehrtem Vorzeichen auf die andere Seite bringen. Beim Kapitalabbau wird der Rentenanteil also <strong>addiert</strong>.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Startkapital und Rate'
+    text: '<p>Jetzt rechnest du selbst. Beträge trägst du ohne Tausenderpunkt ein.</p>'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>1.</strong> Kapitalabbau, nachschüssig: $E_n=15\,000$ €, $r=2\,000$ €, $p=3\,\%$, $n=6$. Gesucht: $K_0$. Der Ansatz steht da: $$15\,000=K_0\cdot 1{,}03^6-R_6$$ Berechne zuerst $R_6$, dann $K_0$.'
+        felder:
+          - { label: '$R_6\approx$', loesung: 12936.82, toleranz: 1, einheit: '€' }
+          - { label: '$K_0\approx$', loesung: 23396.65, toleranz: 1, einheit: '€' }
+        hinweis: '$R_6=\frac{2\,000\cdot(1{,}03^6-1)}{0{,}03}$. Beim Abbau wird $R_6$ auf die linke Seite <strong>addiert</strong>: $K_0=\frac{15\,000+R_6}{1{,}03^6}$.'
+        danach: '$$\begin{align*}27\,936{,}82&=K_0\cdot 1{,}03^6\\ K_0&=\frac{27\,936{,}82}{1{,}03^6}\\ &\approx 23\,396{,}65\,\text{€}\end{align*}$$'
+      - typ: eingabe
+        frage: '<strong>2.</strong> Kapitalaufbau, vorschüssig: $K_0=8\,000$ €, $\overline{E}_n=25\,000$ €, $p=2{,}5\,\%$, $n=8$. Gesucht: $r$. Diesmal ohne Ansatz.'
+        felder:
+          - { label: '$r\approx$', loesung: 1703.36, toleranz: 1, einheit: '€' }
+        hinweis: '$25\,000=8\,000\cdot 1{,}025^8+\overline{R}_8$. Zinseszinsanteil $\approx 9\,747{,}22$ abziehen: $15\,252{,}78=r\cdot\frac{1{,}025\cdot(1{,}025^8-1)}{0{,}025}\approx r\cdot 8{,}9545$.'
+        danach: '$$\begin{align*}15\,252{,}78&=\overline{R}_8\\ 15\,252{,}78&\approx r\cdot 8{,}9545\\ r&\approx 1\,703{,}36\,\text{€}\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Laufzeit n'
+    text: '<p>Kapitalaufbau, nachschüssig: $K_0=10\,000$ €, $r=2\,000$ €, $p=5\,\%$, $E_n=35\,000$ €. Gesucht: $n$.</p>$$\begin{align*}35\,000=\;&10\,000\cdot 1{,}05^n\\ &+\frac{2\,000\cdot(1{,}05^n-1)}{0{,}05}\end{align*}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Rechne den Bruch aus ($\frac{2\,000}{0{,}05}=40\,000$), löse die Klammer auf und fasse die $1{,}05^n$-Terme zusammen. Welche Gleichung entsteht?'
+        optionen:
+          - '$35\,000=$<br>$50\,000\cdot 1{,}05^n-40\,000$'
+          - '$35\,000=$<br>$-30\,000\cdot 1{,}05^n+40\,000$'
+          - '$35\,000=$<br>$50\,000\cdot 1{,}05^n-1$'
+        korrekt: 0
+        hinweis: 'Beim Aufbau steht $+40\,000\cdot(1{,}05^n-1)=+40\,000\cdot 1{,}05^n-40\,000$. Dann $10\,000+40\,000=50\,000$.'
+      - typ: eingabe
+        frage: 'Stelle $1{,}05^n$ frei und berechne $n$ (auf 2 Nachkommastellen).'
+        felder:
+          - { label: '$1{,}05^n=$', loesung: 1.5 }
+          - { label: '$n\approx$', loesung: 8.31, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: 'Auf beiden Seiten $+40\,000$: $75\,000=50\,000\cdot 1{,}05^n$, also $1{,}05^n=1{,}5$ und $n=\frac{\ln 1{,}5}{\ln 1{,}05}$.'
+        danach: '$$\begin{align*}75\,000&=50\,000\cdot 1{,}05^n\\ 1{,}05^n&=1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}05}\\ &\approx 8{,}31\end{align*}$$'

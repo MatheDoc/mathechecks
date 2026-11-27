@@ -615,7 +615,10 @@ class Zahlungsplan(VGroup):
         zeilen_abstand: float = 1.05,
         barwert_breite: float = 2.6,
         groesse: float = 30,
+        renten: Mapping[str, tuple[str, int, int]] | None = None,
     ) -> None:
+        """renten: Name → (Rate als TeX, erstes Jahr, letztes Jahr). Eine Rente steht als Punkt an jedem
+        Zahlungsjahr mit einer gemeinsamen Beschriftung „je … €“; sie ist die Zahlung nr 0 ihrer Zeile."""
         super().__init__()
         self._groesse = groesse
         self._x0 = 0.9                                # Strahlbeginn rechts der Namen
@@ -634,6 +637,9 @@ class Zahlungsplan(VGroup):
             ],
             text("Barwert", groesse=24, farbe=t.TEXT_LEISE).move_to([self._spalte, kopf_y, 0]),
         )
+        heute = self.kopf[0]
+        if heute.width > 0.9 * jahr_breite:  # enge Jahresspalten: „heute“ endet am Strich, statt die 1 zu berühren
+            heute.shift((self._x(0) + 0.12 - heute.get_right()[0]) * RIGHT)
         self._kopf_hoehe = self.kopf[-1].height
         self.add(self.kopf)
 
@@ -647,6 +653,15 @@ class Zahlungsplan(VGroup):
             ])
             self.strahlen[name] = VGroup(linie, striche)
             self.zahlungen[name] = []
+            if renten and name in renten:
+                rate, erstes, letztes = renten[name]
+                punkte = VGroup(*[
+                    Dot([self._x(j), y, 0], radius=0.08, color=t.TEXT) for j in range(erstes, letztes + 1)
+                ])
+                je = reihe(text("je", groesse=groesse * 0.75), betrag(rate, groesse=groesse), abstand=0.15,
+                           grundlinie=True)
+                je.next_to(punkte, UP, buff=0.12)
+                self.zahlungen[name].append(VGroup(punkte, je))
             for betrag_tex, jahr in zahlungen:
                 punkt = Dot([self._x(jahr), y, 0], radius=0.08, color=t.TEXT)
                 wert = betrag(betrag_tex, groesse=groesse).next_to(punkt, UP, buff=0.12)
@@ -708,6 +723,155 @@ class Zahlungsplan(VGroup):
         ])
 
 
+class Rentenstrahl(VGroup):
+    """Schematischer Zeitstrahl einer Rente: Jahre 0, 1, 2, …, n−1, n, Raten als Punkte mit „r“ darüber.
+
+    Nachschüssig liegen die Raten am Ende der Jahre (1, 2, …, n), vorschüssig am Anfang (0, 1, …, n−1);
+    zahlweise lässt sie um ein Jahr wandern. Unter dem Strahl nehmen zwei Plätze Angaben auf:
+    "barwert" links unter dem Jahr 0, "endwert" rechts unter dem Jahr n (Name und Wert, mehrzeilig erlaubt).
+    """
+
+    JAHRE = ("0", "1", "2", "n-1", "n")
+
+    def __init__(
+        self,
+        vorschuessig: bool = False,
+        rate: str = "r",
+        breite: float = t.BUEHNE_BREITE,
+        groesse: float = 44,
+    ) -> None:
+        super().__init__()
+        self._groesse = groesse
+        # Rand links und rechts, damit Beschriftungen wie „−5 000“ an den äußeren Raten nicht überstehen
+        links, rechts = -breite / 2 + 0.6, breite / 2 - 0.6
+        schritt = (rechts - links) / (len(self.JAHRE) - 1)
+        xs = [links + schritt * i for i in range(len(self.JAHRE))]
+        self._schritt = schritt
+        luecke = (xs[2] + xs[3]) / 2
+        teil1 = Line([xs[0], 0, 0], [luecke - 0.38 * schritt, 0, 0], color=t.ACHSE, stroke_width=4)
+        teil2 = Line([luecke + 0.38 * schritt, 0, 0], [breite / 2, 0, 0], color=t.ACHSE, stroke_width=4)
+        teil2.add_tip(tip_length=0.24, tip_width=0.24)
+        punkte = formel(r"\cdots", groesse=groesse, farbe=t.ACHSE).move_to([luecke, 0, 0])
+        self.linie = VGroup(teil1, punkte, teil2)
+        self.striche = VGroup(*[
+            Line([x, 0.1, 0], [x, -0.1, 0], color=t.ACHSE, stroke_width=4) for x in xs
+        ])
+        self.jahre = VGroup(*[
+            formel(jahr, groesse=groesse * 0.8, farbe=t.TEXT_LEISE).next_to([x, -0.1, 0], DOWN, buff=0.14)
+            for jahr, x in zip(self.JAHRE, xs)
+        ])
+        # gemeinsame Oberkante der Jahreszahlen
+        oben = max(j.get_top()[1] for j in self.jahre)
+        for j in self.jahre:
+            j.shift((oben - j.get_top()[1]) * UP)
+        self._hoehe_bezug = self.striche[0].height
+        self.vorschuessig = vorschuessig
+        self._tex, self._farbe = rate, t.TEXT
+        self.raten = VGroup(*[self._rate(rate) for _ in range(4)])
+        self._lege_raten(vorschuessig)
+        self.angaben: dict[str, Mobject] = {}
+        self.add(self.linie, self.striche, self.jahre, self.raten)
+
+    def _massstab(self) -> float:
+        return self.striche[0].height / self._hoehe_bezug
+
+    def _rate(self, tex: str, farbe: str = t.TEXT) -> VGroup:
+        punkt = Dot(ORIGIN, radius=0.1, color=farbe)
+        name = formel(tex, groesse=self._groesse, farbe=farbe)
+        einpassen(name, 0.8 * self._schritt)  # Beträge wie „+3 000“ dürfen sich nicht berühren
+        name.next_to(punkt, UP, buff=0.16)
+        return VGroup(punkt, name)
+
+    def _stellen(self, vorschuessig: bool) -> list[int]:
+        return [0, 1, 2, 3] if vorschuessig else [1, 2, 3, 4]
+
+    def _lege_raten(self, vorschuessig: bool) -> None:
+        for rate, i in zip(self.raten, self._stellen(vorschuessig)):
+            rate.shift(self.striche[i].get_center() - rate[0].get_center())
+
+    def aufbau(self) -> list[Animation]:
+        """Strahl und Jahre entstehen, dann erscheinen die Raten nacheinander."""
+        return [
+            Create(self.linie),
+            FadeIn(self.striche),
+            FadeIn(self.jahre),
+            LaggedStart(*[FadeIn(r, shift=0.15 * DOWN) for r in self.raten], lag_ratio=0.25),
+            *[FadeIn(a) for a in self.angaben.values()],
+        ]
+
+    def raten_zu(
+        self, tex: str | None = None, farbe: str | None = None, vorschuessig: bool | None = None,
+    ) -> Animation:
+        """Ändert Beschriftung, Farbe und Zahlungsweise der Raten in einem Schritt (je Rate eine Animation).
+
+        tex: neue Beschriftung, etwa "+r", "-r" oder ein Betrag; vorschuessig: Raten an den Anfang (True)
+        oder das Ende (False) der Jahre. Nicht genannte Eigenschaften bleiben.
+        """
+        if tex is not None:
+            self._tex = tex
+        if farbe is not None:
+            self._farbe = farbe
+        if vorschuessig is not None:
+            self.vorschuessig = vorschuessig
+        massstab = self._massstab()
+        schritte = []
+        for rate, i in zip(self.raten, self._stellen(self.vorschuessig)):
+            neu = self._rate(self._tex, self._farbe).scale(massstab)
+            neu.shift(self.striche[i].get_center() - neu[0].get_center())
+            schritte.append(Transform(rate, neu))
+        return AnimationGroup(*schritte)
+
+    def zahlweise(self, vorschuessig: bool) -> Animation:
+        """Die Raten wandern an den Anfang (vorschüssig) oder das Ende (nachschüssig) der Jahre."""
+        return self.raten_zu(vorschuessig=vorschuessig)
+
+    def rate(self, tex: str, farbe: str = t.TEXT) -> Animation:
+        """Ersetzt die Beschriftung aller Raten, etwa durch "+r", "-r" oder einen Betrag."""
+        return self.raten_zu(tex=tex, farbe=farbe)
+
+    def _setze(self, platz: str, angabe: Mobject) -> None:
+        massstab = self._massstab()
+        angabe.scale(massstab)
+        oben = self.jahre.get_bottom()[1] - 0.22 * massstab
+        angabe.shift((oben - angabe.get_top()[1]) * UP)
+        if platz == "barwert":
+            angabe.shift((self.striche[0].get_x() - 0.15 * massstab - angabe.get_left()[0]) * RIGHT)
+        else:
+            angabe.shift((self.striche[-1].get_x() + 0.15 * massstab - angabe.get_right()[0]) * RIGHT)
+        self.angaben[platz] = angabe
+        self.add(angabe)
+
+    def _entferne(self, platz: str) -> list[Animation]:
+        alt = self.angaben.pop(platz, None)
+        if alt is None:
+            return []
+        self.remove(alt)
+        return [FadeOut(alt)]
+
+    def zeige(self, **angaben: Mobject | None) -> Animation:
+        """Ersetzt die Angaben der Plätze "barwert" und "endwert" (None leert den Platz)."""
+        schritte = []
+        for platz, angabe in angaben.items():
+            schritte += self._entferne(platz)
+            if angabe is not None:
+                self._setze(platz, angabe)
+                schritte.append(FadeIn(angabe))
+        return AnimationGroup(*schritte)
+
+    def uebernimm(self, platz: str, angabe: Mobject, quelle: Mobject) -> Animation:
+        """Ein Ergebnis wandert aus der Rechnung an seinen Platz und ersetzt die bisherige Angabe."""
+        schritte = self._entferne(platz)
+        self._setze(platz, angabe)
+        return AnimationGroup(*schritte, FadeIn(angabe, target_position=quelle))
+
+    def betone(self, *plaetze: str) -> Animation:
+        """Die Angaben der Plätze pulsieren kurz; "raten" lässt die Raten pulsieren."""
+        teile = [teil for platz in plaetze for teil in ([*self.raten] if platz == "raten" else [self.angaben[platz]])]
+        return AnimationGroup(*[
+            teil.animate(rate_func=rate_functions.there_and_back).scale(1.3) for teil in teile
+        ])
+
+
 def wortlaut(*zeilen: str, signal: tuple[str, ...] = (), groesse: float = 32) -> VGroup:
     """Wortlaut einer Aufgabe in Anführungszeichen, eine Bildzeile je Argument, linksbündig.
 
@@ -725,6 +889,145 @@ def wortlaut(*zeilen: str, signal: tuple[str, ...] = (), groesse: float = 32) ->
 def _zahl(wert: float) -> str:
     """Zahl als TeX mit Dezimalkomma."""
     return f"{wert:g}".replace(".", "{,}")
+
+
+def geld(wert: float, cent: bool = True) -> str:
+    r"""Geldbetrag als TeX mit schmalem Tausenderabstand und Dezimalkomma, etwa 15\,251{,}97; ohne cent ganze Euro."""
+    return f"{wert:,.{2 if cent else 0}f}".replace(",", "X").replace(".", "{,}").replace("X", r"\,")
+
+
+class Tilgungsplan(VGroup):
+    """Tilgungsplan wie im Training: eine Zeile je Jahr, Spalten Restschuld (Anfang), Zinsen, Tilgung,
+    Annuität, Restschuld (Ende).
+
+    jahre: Jahre der Zeilen, etwa (1, 2) oder (1, None, 10, 11, None, 24, 25); None ist eine ausgelassene
+    Strecke (⋮). Zellen werden mit zeige gefüllt, als TeX (etwa geld(630)) oder "?" für eine Lücke.
+    Die Lage der Zellen wird aus Kopf und Jahreszahlen gelesen: Der Plan darf nach dem Bau eingepasst werden.
+    """
+
+    SPALTEN = ("rk_anfang", "zinsen", "tilgung", "annuitaet", "rk_ende")
+    _KOPF = {
+        "rk_anfang": ("Restschuld", "Anfang"), "zinsen": ("Zinsen",), "tilgung": ("Tilgung",),
+        "annuitaet": ("Annuität",), "rk_ende": ("Restschuld", "Ende"),
+    }
+
+    def __init__(
+        self,
+        jahre: Iterable[int | None],
+        groesse: float = 32,
+        spalte: float = 1.48,
+        jahr_spalte: float = 0.55,
+        zeile: float = 0.66,
+        luecke: float = 0.5,
+    ) -> None:
+        super().__init__()
+        self._groesse = groesse
+        xs = [0.0] + [jahr_spalte / 2 + 0.1 + spalte * (i + 0.5) for i in range(len(self.SPALTEN))]
+        kopf = [VGroup(text("Jahr", groesse=20, farbe=t.TEXT_LEISE))]
+        for name in self.SPALTEN:
+            kopf.append(VGroup(*[text(wort, groesse=20, farbe=t.TEXT_LEISE) for wort in self._KOPF[name]])
+                        .arrange(DOWN, buff=0.08))
+        for teil, x in zip(kopf, xs):
+            teil.move_to([x, 0, 0]).align_to([0, 0, 0], DOWN)
+        self.kopf = VGroup(*kopf)
+        self._kopf_hoehe = self.kopf[0].height
+        links, rechts = -jahr_spalte / 2, xs[-1] + spalte / 2
+        self.linie = Line([links, -0.15, 0], [rechts, -0.15, 0], color=t.RAHMEN, stroke_width=3)
+        self._breite = (links, rechts)
+        self.marken: dict[int, Mobject] = {}
+        self.auslassungen = VGroup()
+        y = -0.15
+        for jahr in jahre:
+            hoehe = zeile if jahr is not None else luecke
+            y -= hoehe / 2
+            if jahr is None:
+                self.auslassungen.add(*[
+                    formel(r"\vdots", groesse=26, farbe=t.TEXT_SCHWACH).move_to([x, y, 0]) for x in xs
+                ])
+            else:
+                self.marken[jahr] = text(str(jahr), groesse=groesse * 0.9, farbe=t.TEXT_LEISE).move_to([0, y, 0])
+            y -= hoehe / 2
+        self.zellen: dict[tuple[int, str], Mobject] = {}
+        self.band: Mobject | None = None
+        self.add(self.kopf, self.linie, *self.marken.values(), self.auslassungen)
+
+    def _massstab(self) -> float:
+        return self.kopf[0].height / self._kopf_hoehe
+
+    def ort(self, jahr: int, spalte: str) -> np.ndarray:
+        return np.array([self.kopf[1 + self.SPALTEN.index(spalte)].get_x(), self.marken[jahr].get_y(), 0])
+
+    def _setze(self, jahr: int, spalte: str, inhalt: str, farbe: str) -> Mobject:
+        zelle = formel(inhalt, groesse=self._groesse, farbe=farbe).scale(self._massstab())
+        zelle.move_to(self.ort(jahr, spalte))
+        self.zellen[(jahr, spalte)] = zelle
+        self.add(zelle)
+        return zelle
+
+    def zelle(self, jahr: int, spalte: str) -> Mobject:
+        return self.zellen[(jahr, spalte)]
+
+    def aufbau(self) -> list[Animation]:
+        """Kopf und Linie erscheinen, dann Jahre und schon gesetzte Zellen."""
+        return [
+            FadeIn(self.kopf),
+            Create(self.linie),
+            LaggedStart(
+                *[FadeIn(m) for m in (*self.marken.values(), *self.auslassungen, *self.zellen.values())],
+                lag_ratio=0.1,
+            ),
+        ]
+
+    def zeige(self, jahr: int, spalte: str, inhalt: str, farbe: str = t.TEXT, quelle: Mobject | None = None) -> Animation:
+        """Setzt eine Zelle (ersetzt den bisherigen Inhalt); mit quelle wandert der Wert aus der Rechnung dorthin.
+
+        inhalt: TeX, etwa geld(630) oder "?".
+        """
+        schritte = []
+        alt = self.zellen.pop((jahr, spalte), None)
+        if alt is not None:
+            self.remove(alt)
+            schritte.append(FadeOut(alt))
+        neu = self._setze(jahr, spalte, inhalt, farbe)
+        schritte.append(FadeIn(neu, target_position=quelle) if quelle is not None else FadeIn(neu))
+        return AnimationGroup(*schritte)
+
+    def fuelle(self, *zellen: tuple[int, str, str], farbe: str = t.TEXT) -> Animation:
+        """Setzt mehrere Zellen ohne Herkunft: (Jahr, Spalte, Inhalt)."""
+        return AnimationGroup(*[self.zeige(jahr, spalte, inhalt, farbe) for jahr, spalte, inhalt in zellen])
+
+    def uebertrag(self, jahr: int, farbe: str = t.TEXT) -> Animation:
+        """Die Restschuld am Ende von jahr wandert an den Anfang des Folgejahres."""
+        quelle = self.zellen[(jahr, "rk_ende")]
+        return self.zeige(jahr + 1, "rk_anfang", quelle.get_tex_string(), farbe, quelle=quelle)
+
+    def faerbe(self, *zellen: tuple[int, str], farbe: str = t.TEXT) -> Animation:
+        return AnimationGroup(*[self.zellen[z].animate.set_color(farbe) for z in zellen])
+
+    def betone(self, *zellen: tuple[int, str]) -> Animation:
+        """Die genannten Zellen pulsieren kurz."""
+        return AnimationGroup(*[
+            self.zellen[z].animate(rate_func=rate_functions.there_and_back).scale(1.3) for z in zellen
+        ])
+
+    def zeile(self, jahr: int | None) -> Animation:
+        """Legt eine Fläche in der Stimmungsfarbe unter die Zeile, in der gerade gerechnet wird; None nimmt sie weg."""
+        schritte = []
+        if self.band is not None:
+            self.remove(self.band)
+            schritte.append(FadeOut(self.band))
+            self.band = None
+        if jahr is not None:
+            massstab = self._massstab()
+            links = self.kopf[0].get_left()[0] - 0.15 * massstab
+            rechts = self.kopf[-1].get_right()[0] + 0.15 * massstab
+            self.band = RoundedRectangle(
+                width=rechts - links, height=0.56 * massstab, corner_radius=0.16 * massstab,
+                fill_color=t.MARKE, fill_opacity=0.25, stroke_width=0,
+            ).move_to([(links + rechts) / 2, self.marken[jahr].get_y(), 0])
+            self.add_to_back(self.band)
+            schritte.append(FadeIn(self.band))
+        return AnimationGroup(*schritte)
 
 
 class ErweiterteMatrix(VGroup):

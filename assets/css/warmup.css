@@ -753,6 +753,68 @@
     display: none;
 }
 
+/* ─── Abgehakte Listeneinträge im Schritt (schmal) ───────── */
+/* Unter 960 px steht die Liste nicht neben, sondern unter den Schritten.
+   Neu abgehakte Einträge erscheinen deshalb zusätzlich im Schritt. */
+
+.cw-echo {
+    display: none;
+}
+
+@media (max-width: 959.98px) {
+    .cw-echo {
+        display: grid;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px dashed color-mix(in srgb, var(--cw-accent) 45%, var(--border));
+        background: color-mix(in srgb, var(--cw-accent-soft) 45%, transparent);
+        font-size: 0.86rem;
+        line-height: 1.45;
+        animation: cwFadeIn 220ms ease;
+    }
+
+    .cw-echo__row {
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .cw-echo__check {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+        border-radius: 5px;
+        background: var(--cw-accent);
+    }
+
+    .cw-echo__check::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 1px;
+        width: 4px;
+        height: 9px;
+        border: solid #fff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .cw-echo__content {
+        display: grid;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    .cw-echo__eq {
+        min-width: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        color: var(--text);
+    }
+}
+
 /* ─── Rückmeldung ────────────────────────────────────────── */
 
 .cw-feedback {
@@ -1291,6 +1353,7 @@
     .cw-finish,
     .cw-step,
     .cw-after,
+    .cw-echo,
     .cw-match__item.is-wrong {
         animation: none;
     }

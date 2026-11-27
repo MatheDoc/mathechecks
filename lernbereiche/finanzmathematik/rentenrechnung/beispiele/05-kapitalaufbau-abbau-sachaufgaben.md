@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/06-kapitalaufbau-abbau-sachaufgaben.html
+permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/05-kapitalaufbau-abbau-sachaufgaben.html
 ---
 Ein Ingenieurbüro plant Rücklagen. Die Angaben in den Teilaufgaben sind unabhängig voneinander.
 

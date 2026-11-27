@@ -474,28 +474,31 @@ function createListVisual(spec) {
     content.appendChild(equation);
     li.appendChild(content);
     list.appendChild(li);
-    items.set(entry.id, { li, equation });
+    items.set(entry.id, { li, equation, entry });
   });
   node.appendChild(list);
 
+  // Gibt den Eintrag zurück, wenn er durch diesen Aufruf neu abgehakt wurde.
   function markDone(id, { renderMath = true } = {}) {
     const item = items.get(id);
-    if (!item || item.li.classList.contains("is-done")) return;
+    if (!item || item.li.classList.contains("is-done")) return null;
     item.li.classList.add("is-done");
     if (item.equation.innerHTML) {
       item.equation.hidden = false;
       if (renderMath) typeset(item.equation);
     }
+    return item.entry;
   }
 
   // Vorab erledigte Einträge setzt MathJax erst mit der angezeigten Seite.
   (spec.eintraege || []).filter((entry) => entry.erledigt).forEach((entry) => markDone(entry.id, { renderMath: false }));
 
   return {
+    kind: "liste",
     node,
     render() {},
     apply(zeige) {
-      (zeige?.eintraege || []).forEach(markDone);
+      return (zeige?.eintraege || []).map((id) => markDone(id)).filter(Boolean);
     },
   };
 }
@@ -832,6 +835,22 @@ const STEP_BUILDERS = {
 
 /* ───────────────────────── Seiten & Ablauf ───────────────────────── */
 
+// Auf schmalen Bildschirmen steht eine Liste nicht neben den Schritten. Abgehakte
+// Einträge erscheinen deshalb zusätzlich im Schritt (per CSS nur schmal sichtbar).
+function buildListEcho(entries) {
+  const echo = el("div", "cw-echo");
+  entries.forEach((entry) => {
+    const row = el("span", "cw-echo__row");
+    row.appendChild(el("span", "cw-echo__check"));
+    const content = el("span", "cw-echo__content");
+    content.appendChild(el("span", "cw-echo__text", entry.text || ""));
+    if (entry.gleichung) content.appendChild(el("span", "cw-echo__eq", entry.gleichung));
+    row.appendChild(content);
+    echo.appendChild(row);
+  });
+  return echo;
+}
+
 function buildPage(card, pageIndex, { onComplete, onStepResult }) {
   const phase = PHASES.find((entry) => entry.key === card.phase) || PHASES[0];
   const page = el("section", `cw-page cw-page--${phase.key}`);
@@ -848,6 +867,7 @@ function buildPage(card, pageIndex, { onComplete, onStepResult }) {
   const layout = el("div", `cw-page__layout${visual ? " has-visual" : ""}`);
   const steps = el("ol", "cw-steps");
   layout.appendChild(steps);
+  const isList = visual?.kind === "liste";
   if (visual) {
     const visualCol = el("div", "cw-page__visual");
     visualCol.appendChild(visual.node);
@@ -886,7 +906,12 @@ function buildPage(card, pageIndex, { onComplete, onStepResult }) {
           });
         }
         stepNode.classList.add("is-done");
-        if (spec.zeige) applyVisual(spec.zeige);
+        const marked = spec.zeige ? applyVisual(spec.zeige) : null;
+        if (isList && Array.isArray(marked) && marked.length) {
+          const echo = buildListEcho(marked);
+          stepNode.querySelector(".cw-step__body").appendChild(echo);
+          typeset(echo);
+        }
         const finishStep = () => {
           current += 1;
           renderNextStep();

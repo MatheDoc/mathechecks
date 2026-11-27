@@ -27,7 +27,7 @@ karten:
       - typ: aufdecken
         frage: 'Warum liegt $\overline{A}$ links?'
         knopf: 'Zeigen'
-        text: '<p>Für einen gesunkenen Anteil sprechen <strong>wenige</strong> Zuschauer, die überspringen. Also liegt $\overline{A}$ am linken Rand: ein <strong>linksseitiger</strong> Test. Vermutet man dagegen einen gestiegenen Anteil ($H_1: p&gt;p_0$), liegt $\overline{A}$ am rechten Rand: ein <strong>rechtsseitiger</strong> Test.</p><p>Rechts ist $\overline{A}=\{0,\ldots,12\}$ markiert. Die markierte Fläche ist die Wahrscheinlichkeit für den Fehler 1. Art:</p>$$P(X\leq 12)\approx 0{,}2229$$<p>In mehr als jedem fünften Fall würde man zu Unrecht auf einen gesunkenen Anteil schließen. Das ist zu viel.</p>'
+        text: '<p>Für einen gesunkenen Anteil sprechen <strong>wenige</strong> Zuschauer, die überspringen. Also liegt $\overline{A}$ am linken Rand: ein <strong>linksseitiger</strong> Test. Vermutet man dagegen einen gestiegenen Anteil ($H_1: p&gt;p_0$), liegt $\overline{A}$ am rechten Rand: ein <strong>rechtsseitiger</strong> Test.</p><p>Im Bild ist $\overline{A}=\{0,\ldots,12\}$ markiert. Die markierte Fläche ist die Wahrscheinlichkeit für den Fehler 1. Art:</p>$$P(X\leq 12)\approx 0{,}2229$$<p>In mehr als jedem fünften Fall würde man zu Unrecht auf einen gesunkenen Anteil schließen. Das ist zu viel.</p>'
         zeige: { bereiche: [[0, 12]] }
       - typ: auswahl
         frage: 'Schau ins Histogramm. Wie wird die Wahrscheinlichkeit für den Fehler 1. Art kleiner?'

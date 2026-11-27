@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
-page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
+page_css: /assets/css/warmup.css?v=20261127-echo
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/warmup.html
 ---
 

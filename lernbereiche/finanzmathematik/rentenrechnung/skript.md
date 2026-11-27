@@ -103,15 +103,19 @@ Der Barwert unterscheidet sich vom Endwert nur durch den zusätzlichen Faktor $q
 | **nachschüssig** (Jahresende) | $R_n = \dfrac{r \cdot (q^n - 1)}{q - 1}$ | $R_0 = \dfrac{r \cdot (q^n - 1)}{q^n \cdot (q - 1)}$ |
 | **vorschüssig** (Jahresanfang) | $\overline{R}_n = \dfrac{r \cdot q \cdot (q^n - 1)}{q - 1}$ | $\overline{R}_0 = \dfrac{r \cdot q \cdot (q^n - 1)}{q^n \cdot (q - 1)}$ |
 
-In Sachaufgaben entscheidet der Text, welche Formel gebraucht wird. Zwei Fragen sind zu klären: Wann wird gezahlt (Jahresanfang → vorschüssig, Jahresende → nachschüssig)? Und zu welchem Zeitpunkt soll bewertet werden (Guthaben am Ende → Endwert, heute nötiger Betrag → Barwert)?
-
-{% include check-anker.html nummer="3" %}
+Merkhilfe: Der Querstrich steht für vorschüssig – jede Rate wird ein Jahr länger verzinst, deshalb der zusätzliche Faktor $q$ im Zähler. Der Barwert entsteht aus dem Endwert durch Abzinsen, deshalb steht beim Barwert zusätzlich $q^n$ im Nenner.
 
 ## Sachaufgaben zur Rentenrechnung
 
-In Textaufgaben sind drei Fragen zu klären: Ist die Zahlung vor- oder nachschüssig? Geht es um End- oder Barwert? Welche Größe ist gesucht? Bei Jonas könnte zum Beispiel gefragt sein, wie lange er 1 200 € nachschüssig einzahlen muss, bis 10 000 € zusammen sind: Aus $10\,000 = \frac{1\,200 \cdot (1{,}025^n - 1)}{0{,}025}$ folgt $1{,}025^n \approx 1{,}2083$ und $n \approx 7{,}66$ – also erst im achten Jahr.
+In Sachaufgaben entscheidet der Text, welche der vier Formeln gebraucht wird. Drei Fragen sind zu klären:
 
-{% include check-anker.html nummer="4" %}
+1. Wann wird gezahlt? Jahresanfang → vorschüssig, Jahresende → nachschüssig.
+2. Zu welchem Zeitpunkt wird bewertet? Guthaben am Ende → Endwert, heute nötiger oder angelegter Betrag → Barwert.
+3. Welche Größe ist gesucht: der End- oder Barwert, die Rate $r$ oder die Laufzeit $n$?
+
+Bei Jonas könnte zum Beispiel gefragt sein, wie lange er 1 200 € nachschüssig einzahlen muss, bis 10 000 € zusammen sind: Aus $10\,000 = \frac{1\,200 \cdot (1{,}025^n - 1)}{0{,}025}$ folgt $1{,}025^n \approx 1{,}2083$ und $n \approx 7{,}66$ – also erst im achten Jahr.
+
+{% include check-anker.html nummer="3" %}
 
 ## Kapitalauf- und -abbau
 
@@ -127,13 +131,13 @@ Für Jonas (nachschüssig): $E_5 = 800 \cdot 1{,}025^5 + 6\,307{,}59 \approx 905
 
 Einzahlungen erhöhen das Kapital ($+$, **Kapitalaufbau**), Entnahmen verringern es ($-$, **Kapitalabbau**) – etwa wenn Jonas später aus dem angesparten Betrag jährlich einen festen Betrag für Versicherung und Wartung entnimmt. Ist $n$ gesucht, wird $q^n$ ausgeklammert und anschließend logarithmiert.
 
-{% include check-anker.html nummer="5" %}
+{% include check-anker.html nummer="4" %}
 
 ## Sachaufgaben zum Kapitalauf- und -abbau
 
 Typische Fragen sind „Wie hoch ist das Guthaben nach $n$ Jahren?“ oder „Wie lange reicht das Kapital bei jährlicher Entnahme?“ (Kapitalabbau mit $E_n = 0$). Entscheidend ist, die Kombination zu erkennen: ein Startkapital *und* regelmäßige Zahlungen.
 
-{% include check-anker.html nummer="6" %}
+{% include check-anker.html nummer="5" %}
 
 ## Kapitalvergleich
 
@@ -153,4 +157,4 @@ $$
 
 Als Empfänger wählt Jonas das Angebot mit dem höchsten Barwert, also B – obwohl C mit insgesamt 6 000 € die größte Summe verspricht.
 
-{% include check-anker.html nummer="7" %}
+{% include check-anker.html nummer="6" %}

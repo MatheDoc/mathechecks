@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/07-kapitalvergleich-renten.html
+permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/06-kapitalvergleich-renten.html
 ---
 Eine Landwirtin verkauft eine gebrauchte Erntemaschine. Drei Interessenten machen folgende Angebote:
 

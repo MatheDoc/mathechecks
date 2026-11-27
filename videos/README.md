@@ -2,7 +2,7 @@
 
 Kurzvideos im Hochformat (YouTube Shorts, TikTok), eines pro Check, erzeugt mit [Manim](https://www.manim.community/) und `manim-voiceover`.
 
-Stand: Pilot mit 29 Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
+Stand: Pilot mit 44 Videos. Der Ordner ist von Jekyll ausgeschlossen; die fertigen Videos liegen auf YouTube und erscheinen auf der Website im Modul „Video“ (siehe „Einbindung in die Website“). Arbeitsauftrag für die KI: Skill `video-erstellen` (`.github/skills/video-erstellen/SKILL.md`), Rolle `agent-video`.
 
 ## Vorlagen
 
@@ -25,6 +25,9 @@ Neue Szenen entstehen aus der Vorlage, die dem Check am nächsten kommt (alle un
 | Formel umformen: wo die Unbekannte steht, entscheidet über das Werkzeug (Formel bleibt groß auf der Bühne) | `finanzmathematik/zinseszinsrechnung/01-zinseszinsformel-umformen.py` |
 | Zwei Abschnitte über einen Zwischenwert verbinden, vorwärts oder rückwärts rechnen (`Phasenstrahl`) | `finanzmathematik/zinseszinsrechnung/03-zinssatzwechsel.py` |
 | Angebote mit Zahlungen zu verschiedenen Zeitpunkten vergleichen (`Zahlungsplan`) | `finanzmathematik/zinseszinsrechnung/04-kapitalvergleich-einmalzahlungen.py` |
+| Tabelle Zeile für Zeile füllen, Werte wandern aus der Rechnung in die Zellen (`Tilgungsplan`) | `finanzmathematik/tilgungsrechnung/01-tilgungsplan-aufstellen.py` |
+| Lückenhafte Tabelle vorwärts und rückwärts vervollständigen, je Bild höchstens drei Zeilen | `finanzmathematik/tilgungsrechnung/05-tilgungsplan-vervollstaendigen.py` |
+| Sachaufgabe mit regelmäßigen Zahlungen: Zahlungsweise, Bewertungszeitpunkt und gesuchte Größe am Strahl (`Rentenstrahl`) | `finanzmathematik/rentenrechnung/03-rente-sachaufgaben.py` |
 | Fläche unter dem Graphen deuten und mit Rechtecken abschätzen (Monatsbalken werden zur Fläche, Rechteck gleicher Fläche) | `analysis/produktlebenszyklus/04-gesamtabsatz-graphisch.py` |
 
 ## Aufbau
@@ -37,7 +40,7 @@ videos/
   mcvideo/                  gemeinsame Bibliothek
     theme.py                Farben, Schrift, Bildaufteilung, Auflösung
     szene.py                Basisszene MCSzene: Logo, Bereiche, Ton, Schlussbild, Randprüfung
-    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Tabelle, Zahlenstrahl, Versuche, Histogramm, Zeitstrahl, Phasenstrahl, Zahlungsplan, ErweiterteMatrix, Baumdiagramm, Punktefeld, Betrag, Dezimalzahl, …
+    bausteine.py            Frage, Schritt, Kurzfassung, Aufzählung, Legende, Tabelle, Zahlenstrahl, Versuche, Histogramm, Zeitstrahl, Phasenstrahl, Zahlungsplan, Rentenstrahl, Tilgungsplan, ErweiterteMatrix, Baumdiagramm, Punktefeld, Betrag, Dezimalzahl, …
     stimme.py               Sprachdienst: eigene Aufnahmen, sonst Entwurfsstimme
     fonts/                  Inter (SIL Open Font License)
   checks/<gebiet>/<lernbereich>/<NN>-<sammlung>.py   Szene eines Checks
@@ -121,7 +124,9 @@ Alles Gestalterische steht in `mcvideo/theme.py` und gilt nach dem Neurendern f�
 - Was beim Rechnen stehen bleiben soll (etwa Hypothesen mit Annahme- und Ablehnungsbereich als `tabelle`), setzt `self.oben_auf_tafel(...)` oben auf die Tafel; `self.tafel(..., unter=...)` ordnet die Rechnung darunter an.
 - Zeitstrahl (Finanzmathematik): `Zeitstrahl` zeigt links den früheren und rechts den späteren Zeitpunkt. Über dem Strahl stehen die Zeitangaben, darunter Beträge und Zins. `zeige` ersetzt einzelne Angaben; `uebernimm` lässt ein Ergebnis aus der Rechnung an die Stelle des Fragezeichens wandern.
 - Phasenstrahl (Zinssatzwechsel): `Phasenstrahl` ist ein Zeitstrahl mit Teilstrich am Übergang zweier Zinsphasen, schematisch statt maßstäblich, damit die Beträge nebeneinander passen. Über den Phasen stehen Dauer und Zinssatz (`phase1`, `phase2`), darunter `anfang`, `mitte` (Zwischenwert) und `ende`. `phase(nr)` legt eine Fläche in der Stimmungsfarbe unter die Phase, in der gerade gerechnet wird; `zeige`, `uebernimm` und `betone` wie beim `Zeitstrahl`.
-- Zahlungsplan (Kapitalvergleich): `Zahlungsplan` zeigt je Angebot eine Zeile mit den Zahlungen an ihren Jahren und rechts die Spalte „Barwert“. `bogen` zeichnet den Abzinsungspfeil von einer Zahlung zurück auf heute, `faerbe` färbt die Zahlung, `barwert` lässt den Barwert aus der Rechnung rechtsbündig in die Spalte wandern.
+- Zahlungsplan (Kapitalvergleich): `Zahlungsplan` zeigt je Angebot eine Zeile mit den Zahlungen an ihren Jahren und rechts die Spalte „Barwert“. `bogen` zeichnet den Abzinsungspfeil von einer Zahlung zurück auf heute, `faerbe` färbt die Zahlung, `barwert` lässt den Barwert aus der Rechnung rechtsbündig in die Spalte wandern. Eine Rente steht mit `renten={"C": (r"4\,500", 1, 8)}` als Punkt an jedem Zahlungsjahr und einer gemeinsamen Beschriftung „je 4 500 €“ (Rentenrechnung, Check 06).
+- Rentenstrahl (Rentenrechnung): `Rentenstrahl` ist ein schematischer Zeitstrahl mit den Jahren 0, 1, 2, …, n−1, n und den Raten als Punkten mit Beschriftung. Nachschüssig liegen sie am Ende der Jahre, vorschüssig am Anfang. `raten_zu(tex, farbe, vorschuessig)` ändert Beschriftung (etwa „+3 000“, „−5 000“), Farbe und Zahlungsweise in einem Schritt (`zahlweise` und `rate` sind Kurzformen; nicht beide im selben `play`). Unter dem Strahl liegen die Plätze `barwert` (links, auch $K_0$) und `endwert` (rechts, auch $E_n$); `zeige`, `uebernimm` und `betone` wie beim `Zeitstrahl`, `betone("raten")` lässt die Raten pulsieren.
+- Tilgungsplan (Tilgungsrechnung): `Tilgungsplan` zeigt die Spalten wie im Training (Restschuld Anfang, Zinsen, Tilgung, Annuität, Restschuld Ende), eine Zeile je Jahr; `None` in der Liste der Jahre setzt eine Auslassung (⋮), etwa `(1, None, 10, 11, None, 25)`. `zeige(jahr, spalte, tex, farbe, quelle=…)` füllt eine Zelle (auch „?“ für eine Lücke) und lässt den Wert aus der Rechnung dorthin wandern, `uebertrag(jahr)` die Restschuld am Ende an den Anfang des Folgejahres; `zeile(jahr)` legt eine Fläche unter die Zeile, in der gerade gerechnet wird, `betone` und `faerbe` wie bei den anderen Bausteinen. Beträge setzt `geld(wert)` (schmaler Tausenderabstand, Dezimalkomma). Die Tabelle braucht die ganze Bühnenbreite; die Rechnung darunter trägt deshalb möglichst wenige, dafür große Zeilen.
 - Wortlaut einer Aufgabe: `wortlaut` setzt ihn in Anführungszeichen, eine Bildzeile je Argument; Signalwörter erscheinen orange.
 - Geldbeträge: `betrag` setzt das Eurozeichen in der Hausschrift hinter die Formel, weil LaTeX hier kein Eurozeichen setzt (`\text{€}` bleibt leer).
 - Ein Wert, der weiterverwendet wird, behält seine Farbe und wandert sichtbar an die Stelle, an der er eingesetzt wird (Rückwärtseinsetzen).

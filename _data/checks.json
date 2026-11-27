@@ -4092,11 +4092,11 @@
         "Tipps": [
             {
                 "cue": "Nachschüssiger Rentenbarwert",
-                "response": "$R_n = \\frac{r \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
+                "response": "$R_0 = \\frac{r \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
             },
             {
                 "cue": "Vorschüssiger Rentenbarwert",
-                "response": "$\\overline{R}_n = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
+                "response": "$\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
             },
             {
                 "cue": "$R_0$ oder $\\overline{R}_0$ gesucht",
@@ -4118,43 +4118,11 @@
         "LernbereichAnzeigename": "Rentenrechnung",
         "Nummer": 3,
         "check_id": "finanzmathematik__rentenrechnung__03",
-        "Ich kann": "vorschüssige und nachschüssige Renten sowie Endwert und Barwert unterscheiden und die passende Rentenformel auswählen.",
-        "Sammlung": "rente-formelauswahl",
-        "Schlagwort": "Vor- oder nachschüssig & Formelauswahl",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-03",
-        "questionOrder": "shuffle",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "Nachschüssig",
-                "response": "Zahlung am Jahresende"
-            },
-            {
-                "cue": "Vorschüssig",
-                "response": "Zahlung am Jahresanfang"
-            },
-            {
-                "cue": "Endwert oder Barwert",
-                "response": "Wert am Ende der Laufzeit → $R_n$; Wert zu Beginn → $R_0$"
-            },
-            {
-                "cue": "Vier Formeln",
-                "response": "$R_n$, $\\overline{R}_n$, $R_0$, $\\overline{R}_0$ – Querstrich kennzeichnet vorschüssig, Index kennzeichnet Zeitpunkt (n: Endwert, 0: Barwert)"
-            }
-        ]
-    },
-    {
-        "Gebiet": "finanzmathematik",
-        "Lernbereich": "rentenrechnung",
-        "LernbereichAnzeigename": "Rentenrechnung",
-        "Nummer": 4,
-        "check_id": "finanzmathematik__rentenrechnung__04",
         "Ich kann": "in Textaufgaben zur Rentenrechnung Zahlungsweise, gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
         "Sammlung": "rente-sachaufgaben",
         "Schlagwort": "Rente im Sachkontext",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-03",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -4180,13 +4148,13 @@
         "Gebiet": "finanzmathematik",
         "Lernbereich": "rentenrechnung",
         "LernbereichAnzeigename": "Rentenrechnung",
-        "Nummer": 5,
-        "check_id": "finanzmathematik__rentenrechnung__05",
+        "Nummer": 4,
+        "check_id": "finanzmathematik__rentenrechnung__04",
         "Ich kann": "Zinseszins- und Rentenendwertformel zu $E_n = K_n \\pm R_n$ kombinieren und jede Größe außer $q$ bestimmen.",
         "Sammlung": "kapitalaufbau-abbau-umformen",
         "Schlagwort": "Kapitalauf- und -abbau",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -4212,13 +4180,13 @@
         "Gebiet": "finanzmathematik",
         "Lernbereich": "rentenrechnung",
         "LernbereichAnzeigename": "Rentenrechnung",
-        "Nummer": 6,
-        "check_id": "finanzmathematik__rentenrechnung__06",
+        "Nummer": 5,
+        "check_id": "finanzmathematik__rentenrechnung__05",
         "Ich kann": "Sparpläne mit Startkapital und Entnahmepläne im Sachzusammenhang als Kapitalauf- oder -abbau erkennen und berechnen.",
         "Sammlung": "kapitalaufbau-abbau-sachaufgaben",
         "Schlagwort": "Kapitalauf- und -abbau im Sachkontext",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-06",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
@@ -4244,13 +4212,13 @@
         "Gebiet": "finanzmathematik",
         "Lernbereich": "rentenrechnung",
         "LernbereichAnzeigename": "Rentenrechnung",
-        "Nummer": 7,
-        "check_id": "finanzmathematik__rentenrechnung__07",
+        "Nummer": 6,
+        "check_id": "finanzmathematik__rentenrechnung__06",
         "Ich kann": "Angebote aus Einmalzahlungen und Renten über Barwerte vergleichen und die Entscheidung begründen.",
         "Sammlung": "kapitalvergleich-renten",
         "Schlagwort": "Kapitalvergleich mit Renten",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-07",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-06",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [

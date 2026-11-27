@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: binomialverteilung
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
+page_css: /assets/css/warmup.css?v=20261127-echo
 permalink: /lernbereiche/stochastik/binomialverteilung/warmup.html
 ---
 

@@ -1,0 +1,157 @@
+# Warm-Up zu Check 06 „Kapitalvergleich mit Renten“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__06
+abschluss: '<p>Bringe jede Zahlung auf heute: Einmalzahlungen mit $q^n$ abzinsen, Renten über $R_0$ bzw. $\overline{R}_0$, eine später beginnende Rente zusätzlich mit $q^k$. Wer Geld <strong>bekommt</strong>, wählt den höchsten Barwert, wer <strong>zahlt</strong>, den niedrigsten.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Zahlungen vergleichbar machen'
+    text: '<p>Jonas'' Tante bietet ihm drei Varianten an (Zinssatz $2{,}5\,\%$):</p><ul><li>A: $5\,600$ € sofort</li><li>B: $2\,500$ € sofort und $3\,500$ € in drei Jahren</li><li>C: fünf Jahre lang jeweils am Jahresende $1\,200$ €</li></ul>'
+    visual:
+      typ: liste
+      titel: 'Barwerte (Wert heute)'
+      eintraege:
+        - { id: a, text: 'A: sofort', gleichung: '$B_A=5\,600$ €' }
+        - { id: b, text: 'B: $3\,500$ € abzinsen', gleichung: '$B_B=2\,500+\dfrac{3\,500}{1{,}025^3}$<br>$\approx 5\,750{,}10$ €' }
+        - { id: c, text: 'C: Rentenbarwert $R_0$', gleichung: '$B_C=\dfrac{1\,200\cdot(1{,}025^5-1)}{1{,}025^5\cdot 0{,}025}$<br>$\approx 5\,574{,}99$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: 'C bringt insgesamt $6\,000$ €, also am meisten. Ist C deshalb am besten?'
+        knopf: 'Erklärung zeigen'
+        text: '<p>Nicht unbedingt: Geld, das man früher bekommt, kann man länger verzinsen. Beträge zu verschiedenen Zeitpunkten darf man deshalb nicht einfach addieren. Man bezieht alle Zahlungen auf denselben Zeitpunkt, meist auf heute. Das ergibt den <strong>Barwert</strong> eines Angebots.</p>'
+        zeige: { eintraege: [a] }
+      - typ: aufdecken
+        frage: 'Wie bekommt man die Barwerte von B und C?'
+        knopf: 'Barwerte berechnen'
+        text: '<p>Eine spätere Einmalzahlung wird wie in der Zinseszinsrechnung abgezinst: $K_0=\frac{K_n}{q^n}$. Eine Rente bewertet der Rentenbarwert aus Check 2.</p>'
+        zeige: { eintraege: [b, c] }
+      - typ: auswahl
+        frage: 'Jonas <strong>bekommt</strong> das Geld. Welches Angebot sollte er wählen?'
+        optionen:
+          - 'Angebot A'
+          - 'Angebot B'
+          - 'Angebot C'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Vergleiche die Barwerte: Welches Angebot ist heute am meisten wert?'
+        danach: '<p>B ist heute am meisten wert, obwohl C die größte Summe verspricht.</p><p><strong>Merke:</strong></p><ul><li>Angebote vergleicht man über ihre Barwerte.</li><li>Wer Geld <strong>bekommt</strong> (z. B. beim Verkauf), wählt den höchsten Barwert. Wer <strong>zahlt</strong> (z. B. beim Kauf), wählt den niedrigsten.</li></ul>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Drei Angebote vergleichen'
+    text: '<p>Eine Landwirtin <strong>verkauft</strong> eine Erntemaschine. Zinssatz $3\,\%$.</p><ul><li>A: $30\,000$ € sofort</li><li>B: $12\,000$ € sofort und $22\,000$ € in 5 Jahren</li><li>C: 8 Jahreszahlungen von je $4\,500$ €, die erste Zahlung in einem Jahr</li></ul>'
+    visual:
+      typ: liste
+      titel: 'Barwerte (Wert heute)'
+      eintraege:
+        - { id: a, text: 'A', gleichung: '$B_A=30\,000$ €' }
+        - { id: b, text: 'B', gleichung: '$B_B\approx 30\,977{,}39$ €' }
+        - { id: c, text: 'C', gleichung: '$B_C\approx 31\,588{,}61$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Barwert von B'
+        knopf: 'Abzinsen'
+        text: '$$\begin{align*}B_B&=12\,000+\frac{22\,000}{1{,}03^5}\\ &\approx 12\,000+18\,977{,}39\\ &=30\,977{,}39\,\text{€}\end{align*}$$<p>Die $12\,000$ € sofort sind schon ein Wert von heute und bleiben, wie sie sind.</p>'
+        zeige: { eintraege: [a, b] }
+      - typ: auswahl
+        frage: 'Barwert von C: Die erste Zahlung kommt „in einem Jahr“. Welche Formel passt?'
+        optionen:
+          - 'nachschüssiger Rentenbarwert:<br>$R_0=\dfrac{r\cdot(q^n-1)}{q^n\cdot(q-1)}$'
+          - 'vorschüssiger Rentenbarwert:<br>$\overline{R}_0=\dfrac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}$'
+          - 'nachschüssiger Rentenendwert:<br>$R_n=\dfrac{r\cdot(q^n-1)}{q-1}$'
+        korrekt: 0
+        hinweis: '„In einem Jahr“ heißt am Ende des 1. Jahres. Und für den Vergleich brauchst du den Wert heute.'
+        danach: '$$\begin{align*}B_C&=\frac{4\,500\cdot(1{,}03^8-1)}{1{,}03^8\cdot 0{,}03}\\ &\approx 31\,588{,}61\,\text{€}\end{align*}$$<p>Beginnt die Rente <strong>sofort</strong>, ist sie vorschüssig. Dann nimmst du $\overline{R}_0$.</p>'
+        zeige: { eintraege: [c] }
+      - typ: auswahl
+        frage: 'Für welches Angebot sollte sich die Landwirtin entscheiden?'
+        optionen:
+          - 'Angebot A'
+          - 'Angebot B'
+          - 'Angebot C'
+        korrekt: 2
+        mischen: false
+        hinweis: 'Sie verkauft, bekommt also das Geld.'
+        danach: '<p>Sie bekommt das Geld und wählt deshalb den höchsten Barwert: Angebot C.</p>'
+
+  - phase: vormachen
+    titel: 'Später beginnende Rente'
+    text: '<p>Ein vierter Interessent bietet D: 8 Jahreszahlungen von je $4\,500$ €, die erste Zahlung aber erst <strong>am Ende des 3. Jahres</strong>. Die Zahlungen kommen also am Ende der Jahre 3 bis 10.</p>'
+    visual:
+      typ: liste
+      titel: 'Barwert von D'
+      eintraege:
+        - { id: r0, text: 'Rentenbarwert (wie bei C)', gleichung: '$R_0\approx 31\,588{,}61$ €' }
+        - { id: zp, text: 'gilt für den Zeitpunkt', gleichung: 'Ende von Jahr 2' }
+        - { id: ab, text: 'auf heute abzinsen', gleichung: '$B_D=\dfrac{31\,588{,}61}{1{,}03^2}$<br>$\approx 29\,775{,}30$ €' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Was liefert die Barwertformel hier?'
+        knopf: 'Erklärung zeigen'
+        text: '<p>Die nachschüssige Barwertformel bezieht eine Rente immer auf den Zeitpunkt <strong>ein Jahr vor der ersten Zahlung</strong>. Bei C war das heute, bei D ist es das Ende von Jahr 2. Die Formel liefert dieselbe Zahl wie bei C, aber für diesen späteren Zeitpunkt.</p>'
+        zeige: { eintraege: [r0, zp] }
+      - typ: auswahl
+        frage: 'Über wie viele Jahre musst du $R_0$ noch auf heute abzinsen?'
+        optionen:
+          - '$k=2$'
+          - '$k=3$'
+          - '$k=10$'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Wie viele Jahre liegen zwischen heute und dem Ende von Jahr 2?'
+        danach: '$$\begin{align*}B_D&=\frac{31\,588{,}61}{1{,}03^2}\\ &\approx 29\,775{,}30\,\text{€}\end{align*}$$<p>Faustregel: erste Zahlung am Ende von Jahr $k+1$ → zusätzlich durch $q^k$ teilen. D ist weniger wert als C, weil jede Zahlung zwei Jahre später kommt.</p>'
+        zeige: { eintraege: [ab] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Barwert passt?'
+    text: '<p>Ordne jeder Zahlung zu, wie du ihren Barwert berechnest.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Zahlung'
+        titel_rechts: 'Barwert heute'
+        paare:
+          - { links: '$10\,000$ € in 4 Jahren', rechts: '$\dfrac{10\,000}{q^4}$' }
+          - { links: 'Rente, erste Zahlung sofort', rechts: '$\overline{R}_0$' }
+          - { links: 'Rente, erste Zahlung in einem Jahr', rechts: '$R_0$' }
+          - { links: 'Rente, erste Zahlung am Ende des 4. Jahres', rechts: '$\dfrac{R_0}{q^3}$' }
+        danach: '<p>Die erste Zahlung entscheidet: sofort → vorschüssig, in einem Jahr → nachschüssig, später → nachschüssig und zusätzlich abzinsen.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: später beginnende Rente'
+    text: '<p>7 Jahreszahlungen von je $5\,000$ €, die erste Zahlung am Ende des 4. Jahres. Zinssatz $4\,\%$. Beträge trägst du ohne Tausenderpunkt ein.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne zuerst den Rentenbarwert $R_0$. Er gilt für das Ende von Jahr 3: $$R_0=\frac{5\,000\cdot(1{,}04^7-1)}{1{,}04^7\cdot 0{,}04}$$'
+        felder:
+          - { label: '$R_0\approx$', loesung: 30010.27, toleranz: 1, einheit: '€' }
+        hinweis: 'Setze im Taschenrechner eine Klammer um den Nenner $1{,}04^7\cdot 0{,}04$.'
+      - typ: eingabe
+        frage: 'Zinse $R_0$ jetzt auf heute ab.'
+        felder:
+          - { label: 'Barwert heute $\approx$', loesung: 26679.02, toleranz: 1, einheit: '€' }
+        hinweis: 'Erste Zahlung am Ende von Jahr 4, also $k=3$: $\frac{30\,010{,}27}{1{,}04^3}$.'
+        danach: '$$\frac{30\,010{,}27}{1{,}04^3}\approx 26\,679{,}02\,\text{€}$$'
+
+  - phase: mitmachen
+    titel: 'Kaufen statt verkaufen'
+    text: '<p>Ein Café <strong>kauft</strong> eine Kaffeemaschine. Der Verkäufer bietet drei Zahlungsvarianten an (Zinssatz $4\,\%$):</p><ul><li>A: $20\,000$ € sofort</li><li>B: $8\,000$ € sofort und $13\,000$ € in 4 Jahren, Barwert $B_B\approx 19\,112{,}45$ €</li><li>C: 6 Jahreszahlungen von je $3\,800$ €, die erste Zahlung sofort</li></ul>'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne den Barwert von C.'
+        felder:
+          - { label: '$B_C\approx$', loesung: 20716.92, toleranz: 1, einheit: '€' }
+        hinweis: '„Erste Zahlung sofort“ → vorschüssig: $\overline{R}_0=\frac{3\,800\cdot 1{,}04\cdot(1{,}04^6-1)}{1{,}04^6\cdot 0{,}04}$.'
+      - typ: auswahl
+        frage: 'Welche Variante ist für das Café am günstigsten?'
+        optionen:
+          - 'Angebot A'
+          - 'Angebot B'
+          - 'Angebot C'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Das Café zahlt. Es wählt die Variante, die heute am wenigsten wert ist.'
+        danach: '<p>Das Café zahlt und wählt deshalb den niedrigsten Barwert: Angebot B mit rund $19\,112{,}45$ €.</p>'

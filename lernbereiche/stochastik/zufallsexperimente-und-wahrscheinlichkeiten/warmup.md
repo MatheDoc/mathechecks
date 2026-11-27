@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
 gebiet: stochastik
-page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
+page_css: /assets/css/warmup.css?v=20261127-echo
 permalink: /lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/warmup.html
 ---
 

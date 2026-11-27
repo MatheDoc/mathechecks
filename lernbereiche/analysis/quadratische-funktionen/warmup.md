@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: quadratische-funktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
+page_css: /assets/css/warmup.css?v=20261127-echo
 permalink: /lernbereiche/analysis/quadratische-funktionen/warmup.html
 ---
 

@@ -31,7 +31,7 @@ karten:
         text: '<p>Die Nullhypothese ist der bisherige Wert, die Gegenhypothese die Vermutung. Die Regel teilt die möglichen Anzahlen $0$ bis $50$ in den Annahmebereich $A$ und den Ablehnungsbereich $\overline{A}$:</p><table class="cw-table"><tr><th>Nullhypothese</th><th>Gegenhypothese</th></tr><tr><td>$H_0: p=0{,}2$</td><td>$H_1: p&lt;0{,}2$</td></tr><tr><td>$A=\{6,\ldots,50\}$</td><td>$\overline{A}=\{0,\ldots,5\}$</td></tr></table><p>Liegt das Ergebnis in $\overline{A}$, wird $H_0$ verworfen. Weil $\overline{A}$ links liegt, heißt der Test <strong>linksseitig</strong>.</p>'
         zeige: { bereiche: [[0, 5]] }
       - typ: auswahl
-        frage: 'Rechts siehst du die Verteilung für $p=0{,}2$, $\overline{A}$ ist markiert. Kann ein Ergebnis in $\overline{A}$ vorkommen, obwohl der Anteil weiterhin $20\,\%$ beträgt?'
+        frage: 'Im Bild siehst du die Verteilung für $p=0{,}2$, $\overline{A}$ ist markiert. Kann ein Ergebnis in $\overline{A}$ vorkommen, obwohl der Anteil weiterhin $20\,\%$ beträgt?'
         optionen:
           - 'Ja, die markierten Balken sind klein, aber nicht null.'
           - 'Nein, bei $20\,\%$ erwartet man $10$ seltene Items.'

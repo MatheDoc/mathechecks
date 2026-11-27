@@ -9,7 +9,7 @@ module_key: warmup
 published: true
 lernbereich: tilgungsrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/warmup.css?v=20261126-zs-umbruch
+page_css: /assets/css/warmup.css?v=20261127-echo
 permalink: /lernbereiche/finanzmathematik/tilgungsrechnung/warmup.html
 ---
 

@@ -1,0 +1,143 @@
+# Warm-Up zu Check 05 „Kapitalauf- und -abbau im Sachkontext“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__05
+abschluss: '<p>Erstelle vor jeder Rechnung den Steckbrief: Einzahlen oder entnehmen? Vor- oder nachschüssig? Welcher Betrag ist $K_0$, welcher $E_n$, und was ist gesucht? „Aufgebraucht“ heißt $E_n=0$.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Startkapital und Raten im Text erkennen'
+    text: '<p>In diesen Sachaufgaben gibt es immer beides: ein <strong>Startkapital</strong> und <strong>regelmäßige Zahlungen</strong>. Dann rechnest du wie in Check 4 mit $E_n=K_0\cdot q^n\pm R_n$.</p><p><em>„Frau Berg hat $50\,000$ € zu $3\,\%$ angelegt. Nach $10$ Jahren sollen noch $20\,000$ € übrig sein. Welchen Betrag kann sie jeweils zu Beginn eines Jahres entnehmen?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: ab, text: 'Einzahlen oder entnehmen?', gleichung: '„entnehmen“ → Kapitalabbau ($-$)' }
+        - { id: zw, text: 'Wann wird gezahlt?', gleichung: '„zu Beginn eines Jahres“ → vorschüssig' }
+        - { id: k0, text: 'Betrag heute', gleichung: '„hat $50\,000$ € angelegt“ → $K_0$' }
+        - { id: en, text: 'Betrag am Ende', gleichung: '„noch $20\,000$ € übrig“ → $\overline{E}_{10}$' }
+        - { id: ges, text: 'Gesucht', gleichung: '„welchen Betrag … entnehmen“ → $r$' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Einzahlen oder entnehmen? Und wann?'
+        knopf: 'Erklärung zeigen'
+        text: '<p>Einzahlungen erhöhen das Kapital (Kapital<strong>aufbau</strong>, $+R_n$), Entnahmen verringern es (Kapital<strong>abbau</strong>, $-R_n$). Frau Berg entnimmt, und zwar „zu Beginn eines Jahres“, also vorschüssig.</p>'
+        zeige: { eintraege: [ab, zw] }
+      - typ: auswahl
+        frage: 'Im Text stehen zwei Beträge. Welche Rolle spielen die $20\,000$ €?'
+        optionen:
+          - 'Endkapital $\overline{E}_{10}$: So viel ist nach 10 Jahren noch da.'
+          - 'Startkapital $K_0$: So viel liegt heute auf dem Konto.'
+          - 'Rentenbarwert $\overline{R}_0$: der heutige Wert aller Entnahmen.'
+        korrekt: 0
+        hinweis: 'Wann sind die $20\,000$ € auf dem Konto: heute oder nach 10 Jahren?'
+        danach: '<p>Die $50\,000$ € liegen heute auf dem Konto, das ist $K_0$. Gesucht ist die Rate $r$:</p>$$\begin{align*}20\,000=\;&50\,000\cdot 1{,}03^{10}\\ &-\overline{R}_{10}\end{align*}$$<p><strong>Merke:</strong></p><ul><li>Startkapital und regelmäßige Zahlungen → $E_n=K_0\cdot q^n\pm R_n$.</li><li>Betrag heute → $K_0$, Betrag am Ende → $E_n$.</li></ul>'
+        zeige: { eintraege: [k0, en, ges] }
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Fall 1: Guthaben am Ende (Kapitalaufbau)'
+    text: '<p><em>„Ein Ingenieurbüro hat bereits $25\,000$ € angespart und zahlt weitere $12$ Jahre lang jeweils am Jahresende $3\,000$ € auf dasselbe Konto ein ($3\,\%$). Wie hoch ist das Guthaben am Ende der Laufzeit?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: ab, text: '„zahlt … ein“', gleichung: 'Kapitalaufbau ($+$)' }
+        - { id: zw, text: '„am Jahresende“', gleichung: 'nachschüssig' }
+        - { id: k0, text: '„bereits $25\,000$ € angespart“', gleichung: '$K_0=25\,000$ €' }
+        - { id: ges, text: '„Guthaben am Ende“', gleichung: '$E_{12}$ gesucht' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ansatz passt?'
+        optionen:
+          - '$E_{12}=25\,000\cdot 1{,}03^{12}$<br>$+\dfrac{3\,000\cdot(1{,}03^{12}-1)}{0{,}03}$'
+          - '$E_{12}=25\,000\cdot 1{,}03^{12}$<br>$-\dfrac{3\,000\cdot(1{,}03^{12}-1)}{0{,}03}$'
+          - '$E_{12}=25\,000\cdot 1{,}03^{12}$<br>$+\dfrac{3\,000\cdot 1{,}03\cdot(1{,}03^{12}-1)}{0{,}03}$'
+        korrekt: 0
+        hinweis: '„zahlt … ein“ → Kapitalaufbau, also $+$. „am Jahresende“ → nachschüssig, also kein zusätzliches $q$ im Zähler.'
+        zeige: { eintraege: [ab, zw, k0, ges] }
+      - typ: aufdecken
+        frage: 'Ausrechnen'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}K_0\cdot q^{12}&=25\,000\cdot 1{,}03^{12}\\ &\approx 35\,644{,}02\\ R_{12}&\approx 42\,576{,}09\\ E_{12}&\approx 78\,220{,}11\,\text{€}\end{align*}$$<p>Am Ende verfügt das Büro über rund $78\,220{,}11$ €.</p>'
+
+  - phase: vormachen
+    titel: 'Fall 2: Wie lange reicht das Kapital? (Kapitalabbau)'
+    text: '<p><em>„Das Büro hat $60\,000$ € zu $2\,\%$ angelegt und entnimmt jeweils zu Jahresbeginn $5\,000$ €. Nach wie vielen Jahren ist das Kapital vollständig aufgebraucht?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: ab, text: '„entnimmt“', gleichung: 'Kapitalabbau ($-$)' }
+        - { id: zw, text: '„zu Jahresbeginn“', gleichung: 'vorschüssig' }
+        - { id: k0, text: '„hat $60\,000$ € angelegt“', gleichung: '$K_0=60\,000$ €' }
+        - { id: en, text: '„vollständig aufgebraucht“', gleichung: '$\overline{E}_n=0$' }
+        - { id: ges, text: '„nach wie vielen Jahren“', gleichung: '$n$ gesucht' }
+    schritte:
+      - typ: auswahl
+        frage: 'Gesucht ist die Laufzeit $n$. Welcher Wert gehört dann zu $\overline{E}_n$?'
+        optionen:
+          - '$\overline{E}_n=0$, weil am Ende nichts mehr übrig ist'
+          - '$\overline{E}_n=60\,000$ €'
+          - '$\overline{E}_n$ ist unbekannt, deshalb kann man nicht rechnen'
+        korrekt: 0
+        hinweis: 'Was bedeutet „vollständig aufgebraucht“ für den Kontostand am Ende?'
+        zeige: { eintraege: [ab, zw, k0, en, ges] }
+      - typ: aufdecken
+        frage: 'Gleichung aufstellen und nach $n$ auflösen'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Wie in Check 4: Vorfaktor ausrechnen ($\frac{5\,000\cdot 1{,}02}{0{,}02}=255\,000$), $1{,}02^n$-Terme zusammenfassen, Logarithmus.</p>$$\begin{align*}0&=60\,000\cdot 1{,}02^n\\ &\quad-255\,000\cdot(1{,}02^n-1)\\ 0&=-195\,000\cdot 1{,}02^n+255\,000\\ 1{,}02^n&=\frac{255\,000}{195\,000}\\ &\approx 1{,}3077\\ n&=\frac{\ln 1{,}3077}{\ln 1{,}02}\\ &\approx 13{,}55\end{align*}$$<p>Das Kapital reicht für 13 volle Entnahmen, die 14. ist nur noch teilweise möglich.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Textbausteine entschlüsseln'
+    text: '<p>Diese Formulierungen begegnen dir im Training immer wieder. Ordne jeder ihre Bedeutung zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Formulierung im Text'
+        titel_rechts: 'Bedeutung'
+        paare:
+          - { links: '„Welcher Betrag muss zusätzlich heute einmalig angelegt werden?“', rechts: '$K_0$ gesucht' }
+          - { links: '„Welcher Betrag muss zusätzlich jährlich eingezahlt werden?“', rechts: '$r$ gesucht' }
+          - { links: '„Nach 7 Jahren soll noch ein Restbetrag von 60.000 € vorhanden sein.“', rechts: '$E_n$ gegeben' }
+          - { links: '„Welcher Betrag ist danach noch vorhanden?“', rechts: '$E_n$ gesucht' }
+          - { links: '„Nach wie vielen Jahren ist das Kapital aufgebraucht?“', rechts: '$n$ gesucht, $E_n=0$' }
+        danach: '<p>„heute“ gehört zu $K_0$, „am Ende“, „danach“ oder „Restbetrag“ zu $E_n$.</p>'
+
+  - phase: mitmachen
+    titel: 'Aufgabe 1 und 2: Startkapital und Rate'
+    text: '<p>Ein Sportverein plant seine Finanzen. Bei Aufgabe 1 wählst du den Ansatz, bei Aufgabe 2 stellst du ihn selbst auf. Beträge trägst du ohne Tausenderpunkt ein.</p>'
+    schritte:
+      - typ: auswahl
+        frage: '<strong>1.</strong> <em>„Der Verein möchte $8$ Jahre lang jeweils am Jahresende $1\,500$ € entnehmen und am Ende noch über $10\,000$ € verfügen. Welcher Betrag muss dafür heute zu $3\,\%$ angelegt werden?“</em><br>Welcher Ansatz passt?'
+        optionen:
+          - '$10\,000=K_0\cdot 1{,}03^8$<br>$-\dfrac{1\,500\cdot(1{,}03^8-1)}{0{,}03}$'
+          - '$K_0=\dfrac{1\,500\cdot(1{,}03^8-1)}{1{,}03^8\cdot 0{,}03}$'
+          - '$10\,000=K_0\cdot 1{,}03^8$<br>$+\dfrac{1\,500\cdot(1{,}03^8-1)}{0{,}03}$'
+        korrekt: 0
+        hinweis: '„entnehmen“ → Kapitalabbau, also $-R_8$. Die $10\,000$ € sind am Ende noch da: $E_8=10\,000$ €. Ein reiner Rentenbarwert würde diesen Rest vergessen.'
+      - typ: eingabe
+        frage: 'Berechne den Betrag, der heute angelegt werden muss.'
+        felder:
+          - { label: '$K_0\approx$', loesung: 18423.63, toleranz: 1, einheit: '€' }
+        hinweis: '$R_8\approx 13\,338{,}50$. Beim Abbau addierst du ihn auf die linke Seite: $K_0=\frac{10\,000+13\,338{,}50}{1{,}03^8}$.'
+      - typ: eingabe
+        frage: '<strong>2.</strong> <em>„Der Verein legt heute $12\,000$ € zu $2\,\%$ an und möchte in $10$ Jahren über $40\,000$ € verfügen. Welcher Betrag muss dafür zusätzlich jeweils zu Beginn eines Jahres eingezahlt werden?“</em><br>Stelle den Ansatz selbst auf.'
+        felder:
+          - { label: '$r\approx$', loesung: 2271.71, toleranz: 1, einheit: '€' }
+        hinweis: '„eingezahlt“ → Aufbau, „zu Beginn“ → vorschüssig: $40\,000=12\,000\cdot 1{,}02^{10}+\overline{R}_{10}$. Zinseszinsanteil $\approx 14\,627{,}93$ abziehen, dann $25\,372{,}07\approx r\cdot 11{,}1687$.'
+        danach: '$$\begin{align*}40\,000&=12\,000\cdot 1{,}02^{10}\\ &\quad+\overline{R}_{10}\\25\,372{,}07&\approx r\cdot 11{,}1687\\ r&\approx 2\,271{,}71\,\text{€}\end{align*}$$'
+
+  - phase: mitmachen
+    titel: 'Aufgabe 3: Laufzeit ohne Hilfe'
+    text: '<p><em>„Der Verein hat $20\,000$ € zu $4\,\%$ angelegt und entnimmt jeweils am Jahresende $1\,500$ €. Nach wie vielen Jahren ist das Guthaben auf $11\,250$ € gesunken?“</em></p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Stelle den Ansatz auf, löse nach $1{,}04^n$ auf und berechne $n$ (auf 2 Nachkommastellen).'
+        felder:
+          - { label: '$1{,}04^n=$', loesung: 1.5 }
+          - { label: '$n\approx$', loesung: 10.34, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: 'Nachschüssiger Abbau mit $E_n=11\,250$ und $\frac{1\,500}{0{,}04}=37\,500$: $11\,250=20\,000\cdot 1{,}04^n-37\,500\cdot(1{,}04^n-1)$, zusammengefasst $11\,250=-17\,500\cdot 1{,}04^n+37\,500$.'
+        danach: '<p>Zusammengefasst und umgestellt:</p>$$\begin{align*}17\,500\cdot 1{,}04^n&=26\,250\\ 1{,}04^n&=1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}04}\\ &\approx 10{,}34\end{align*}$$'

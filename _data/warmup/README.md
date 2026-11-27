@@ -11,7 +11,7 @@ Kurzer, interaktiver Einstieg in **einen** Check, so kurz wie möglich, so lang 
 **Gute Vorlagen:**
 - `analysis/ertragsgesetzliche-kostenfunktionen/05-…`: Idee am Graphen, zwei Lösungswege
 - `analysis/differentialrechnung-ganzrationaler-funktionen/05-…`: $f$ und $f'$ gemeinsam im Bild, Flächen
-- `finanzmathematik/zinseszinsrechnung/01-…`: Spickzettel-Liste, Zuordnen als Brücke
+- `finanzmathematik/zinseszinsrechnung/01-…`: Übersichtsliste, Zuordnen als Brücke
 
 
 ## Leitlinien
@@ -126,6 +126,8 @@ Graph-Terme werden mit math.js ausgewertet (Dezimalpunkt, z. B. `0.5x^3-6x^2`).
 ### Fallstricke
 
 - **Handy (~360 px):**
+  - Auf dem Handy steht das Bild nicht neben den Schritten. Deshalb nicht auf seine Lage verweisen („rechts“, „links daneben“), sondern neutral formulieren: „im Bild“, „in der Übersicht“.
+  - Lösungskästen (`danach`) sind nur etwa 190 px breit: Gleichungen dort früh umbrechen.
   - Lange Formeln abgesetzt (`$$…$$`), inline nur kurze Ausdrücke.
   - Abgesetzte Formeln schmal halten: `align*` untereinander, keine `\text{…}`-Erklärungen.
   - Umformungsangaben mit `\quad|` statt `&&|`.
@@ -150,5 +152,5 @@ Graph-Terme werden mit math.js ausgewertet (Dezimalpunkt, z. B. `0.5x^3-6x^2`).
 
 ## Offene Punkte
 
-- **Handy:** Das Bild steht über den Schritten; Änderungen sieht man beim Eintragen nicht sofort.
+- **Handy:** Unter 960 px steht das Bild unter den Schritten; Änderungen sieht man beim Eintragen nicht sofort. Bei Listen (`liste`) erscheinen neu abgehakte Einträge deshalb zusätzlich im Schritt (`.cw-echo`); für Graph, Histogramm usw. gibt es das noch nicht.
 - **Freischaltung** (Feed, Verlinkung) steht aus.

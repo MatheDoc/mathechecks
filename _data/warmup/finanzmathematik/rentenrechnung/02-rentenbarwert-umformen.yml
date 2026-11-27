@@ -27,7 +27,7 @@ karten:
       - typ: aufdecken
         frage: 'Jetzt die Endwertformel für $R_n$ einsetzen.'
         knopf: 'Barwertformeln zeigen'
-        text: '<p>Dadurch kommt im Nenner der Faktor $q^n$ dazu. Das sind die beiden <strong>Rentenbarwertformeln</strong> (rechts). Vorschüssig steht wie beim Endwert zusätzlich $q$ im Zähler.</p>'
+        text: '<p>Dadurch kommt im Nenner der Faktor $q^n$ dazu. Das sind die beiden <strong>Rentenbarwertformeln</strong> (siehe Übersicht). Vorschüssig steht wie beim Endwert zusätzlich $q$ im Zähler.</p>'
         zeige: { eintraege: [fn, fv] }
       - typ: auswahl
         frage: 'Schau dir die Barwertformel an. Wo steckt die Laufzeit $n$?'
@@ -110,7 +110,7 @@ karten:
 
   - phase: mitmachen
     titel: 'Neue Zahlen: Barwert und Rate'
-    text: '<p>Jetzt rechnest du selbst. Rechts steht noch dein Spickzettel.</p>'
+    text: '<p>Jetzt rechnest du selbst. Die Übersicht hilft dir noch.</p>'
     visual:
       typ: liste
       titel: 'Gesucht – so geht es'
@@ -157,7 +157,7 @@ karten:
 
   - phase: mitmachen
     titel: 'Noch einmal n – vorschüssig und mit weniger Hilfe'
-    text: '<p>Vorschüssige Rente mit $r=2\,500$ €, $\overline{R}_0=15\,000$ €, $p=4\,\%$. Gesucht: $n$. Diesmal ohne Spickzettel.</p><p>Im Zähler gibt $r\cdot q=2\,500\cdot 1{,}04=2\,600$:</p>$$15\,000=\frac{2\,600\cdot(1{,}04^n-1)}{1{,}04^n\cdot 0{,}04}$$'
+    text: '<p>Vorschüssige Rente mit $r=2\,500$ €, $\overline{R}_0=15\,000$ €, $p=4\,\%$. Gesucht: $n$. Diesmal ohne Übersicht.</p><p>Im Zähler gibt $r\cdot q=2\,500\cdot 1{,}04=2\,600$:</p>$$15\,000=\frac{2\,600\cdot(1{,}04^n-1)}{1{,}04^n\cdot 0{,}04}$$'
     schritte:
       - typ: auswahl
         frage: 'Welche Gleichung entsteht, wenn du mit $0{,}04\cdot 1{,}04^n$ multiplizierst und rechts die Klammer auflöst?'

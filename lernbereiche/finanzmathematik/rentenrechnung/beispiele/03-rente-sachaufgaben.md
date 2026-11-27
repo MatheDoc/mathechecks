@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/04-rente-sachaufgaben.html
+permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/03-rente-sachaufgaben.html
 ---
 Eine Physiotherapiepraxis plant ihre Finanzen. Die Angaben in den Teilaufgaben sind unabhängig voneinander.
 
