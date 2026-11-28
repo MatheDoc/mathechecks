@@ -107,7 +107,7 @@ class Video(MCSzene):
         ansatz = self.tafel(erklaerung, gleichung, abstand=0.5, unter=oben)
         with self.sprich(
             "Der Fehler erster Art ist die Wahrscheinlichkeit, dass X im Ablehnungsbereich liegt, "
-            "obwohl p null zutrifft. Diese Wahrscheinlichkeit setzen wir gleich null Komma null zwei acht sieben."
+            "obwohl p null zutrifft. Diese Wahrscheinlichkeit setzen wir gleich 0,0287."
         ):
             self.play(auftritt(oben), welle(hist.ort(9), ROSE), run_time=0.6)
             self.warte_bis(0.1)
@@ -125,7 +125,7 @@ class Video(MCSzene):
         ergebnis.shift(0.2 * DOWN)
         with self.sprich(
             "Jetzt probieren wir verschiedene Werte für p null aus, bis die Wahrscheinlichkeit passt. "
-            "Bei null Komma zwei stimmt sie genau."
+            "Bei 0,2 stimmt sie genau."
         ):
             self.play(
                 FadeOut(ansatz[0], shift=0.25 * UP), gleichung.animate.move_to(probieren[0]), run_time=0.6,

@@ -2,9 +2,9 @@ import random
 
 from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
-from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
     _e2k3_kennzahlen_items,
+    _select_kennzahlen_items,
 )
 
 
@@ -154,133 +154,99 @@ def _sample_template_scaled_parameters(
     raise ValueError("Konnte keine gültigen E2K3-Parameter aus der Muster-Skalierung erzeugen.")
 
 
-class EconomicPolynomialKennzahlenGraphischE2K3Generator(TaskGenerator):
-    """Erzeugt graphische E2K3-Kennzahlenaufgaben mit kompaktem visual.spec."""
+def monopol_graph_task(rng: random.Random, used_params: set, satz: str, variante: int) -> Task:
+    """Graphische Kennzahlen-Aufgabe im Angebotsmonopol."""
+    while True:
+        (
+            a2,
+            a1,
+            k3,
+            k2,
+            k1,
+            k0,
+            x_break_even_low,
+            x_break_even_high,
+            x_gain_max,
+        ) = _sample_template_scaled_parameters(rng)
 
-    generator_key = "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_graphisch_e2k3"
+        key = ("monopol", a2, a1, k3, k2, k1, k0)
+        if key in used_params:
+            continue
 
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
-        used_params: set[tuple[float, float, float, float, float, float]] = set()
+        x_sättigung = -a1 / a2
+        if x_sättigung <= x_break_even_high * 1.01:
+            continue
+        used_params.add(key)
+        break
 
-        for _ in range(count):
-            attempts = 0
-            while True:
-                attempts += 1
-                (
-                    a2,
-                    a1,
-                    k3,
-                    k2,
-                    k1,
-                    k0,
-                    x_break_even_low,
-                    x_break_even_high,
-                    x_gain_max,
-                ) = _sample_template_scaled_parameters(rng)
+    # x-Achse soll bis kurz nach der Sättigungsmenge gehen.
+    max_x = x_sättigung * rng.uniform(1.03, 1.08)
 
-                key = (a2, a1, k3, k2, k1, k0)
-                if key in used_params:
-                    continue
+    g0 = -k0
+    x_erlös_max = -a1 / (2.0 * a2)
+    e_max = a2 * (x_erlös_max ** 2) + a1 * x_erlös_max
 
-                x_sättigung = -a1 / a2
-                if x_sättigung <= x_break_even_high * 1.01:
-                    continue
+    # y_max etwas über Erlösmaximum, y_min etwas unterhalb G(0).
+    y_span_ref = max(8.0, e_max - g0)
+    y_min = g0 - max(2.0, 0.08 * y_span_ref)
+    y_max = e_max + max(3.0, 0.08 * e_max)
+    if y_max <= y_min + 8.0:
+        y_max = y_min + 8.0
 
-                # x-Achse soll bis kurz nach der Sättigungsmenge gehen.
-                max_x = x_sättigung * rng.uniform(1.03, 1.08)
+    x_tolerance = graph_read_tolerance_from_span(max_x)
+    y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
 
-                def _k_value(x: float) -> float:
-                    return k3 * (x ** 3) + k2 * (x ** 2) + k1 * x + k0
+    items = _e2k3_kennzahlen_items(
+        rng=rng,
+        a2=a2,
+        a1=a1,
+        k3=k3,
+        k2=k2,
+        k1=k1,
+        k0=k0,
+        x_break_even_low=x_break_even_low,
+        x_break_even_high=x_break_even_high,
+        x_gain_max=x_gain_max,
+        x_tolerance=x_tolerance,
+        y_tolerance=y_tolerance,
+    )
+    auswahl = _select_kennzahlen_items(items, "monopol", variante)
 
-                def _e_value(x: float) -> float:
-                    return a2 * (x ** 2) + a1 * x
+    intro = (
+        f"{satz} Das Diagramm zeigt die Preis-Absatz-, Erlös-, Kosten- und Gewinnfunktion. "
+        "Lesen Sie die Werte so genau wie möglich ab."
+    )
 
-                def _g_value(x: float) -> float:
-                    return _e_value(x) - _k_value(x)
+    visual = {
+        "type": "plot",
+        "spec": {
+            "type": "economic-curves",
+            "params": {
+                "a2": a2,
+                "a1": a1,
+                "k3": k3,
+                "k2": k2,
+                "k1": k1,
+                "k0": k0,
+                "capacity": x_sättigung,
+                "xMax": max_x,
+                "showCapacityLine": False,
+            },
+            "points": 280,
+            "layout": {
+                "title": "Preis-Absatz-, Erlös-, Kosten- und Gewinnfunktion",
+                "xaxis": {"title": "Menge x", "range": [0.0, max_x]},
+                "yaxis": {"title": "Wert", "range": [y_min, y_max]},
+            },
+            "width": 900,
+            "height": 520,
+            "scale": 1,
+        },
+    }
 
-                g0 = _g_value(0.0)
-                x_erlös_max = -a1 / (2.0 * a2)
-                e_max = _e_value(x_erlös_max)
-
-                # Vorgabe für Check 4:
-                # y_max etwas über Erlösmaximum, y_min etwas unterhalb G(0).
-                y_span_ref = max(8.0, e_max - g0)
-                y_min = g0 - max(2.0, 0.08 * y_span_ref)
-                y_max = e_max + max(3.0, 0.08 * e_max)
-
-                if y_min >= g0:
-                    y_min = g0 - 2.0
-                if y_max <= e_max:
-                    y_max = e_max + 3.0
-                if y_max <= y_min + 8.0:
-                    y_max = y_min + 8.0
-
-                if attempts > 5000:
-                    used_params.add(key)
-                    break
-
-                used_params.add(key)
-                break
-
-            x_tolerance = graph_read_tolerance_from_span(max_x)
-            y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
-
-            items = _e2k3_kennzahlen_items(
-                rng=rng,
-                a2=a2,
-                a1=a1,
-                k3=k3,
-                k2=k2,
-                k1=k1,
-                k0=k0,
-                x_break_even_low=x_break_even_low,
-                x_break_even_high=x_break_even_high,
-                x_gain_max=x_gain_max,
-                x_tolerance=x_tolerance,
-                y_tolerance=y_tolerance,
-            )
-
-            intro = (
-                "Das Diagramm zeigt die Preis-Absatz-, Erlös-, Kosten- und Gewinnfunktion "
-                "eines Unternehmens. Bestimmen Sie"
-            )
-
-            visual = {
-                "type": "plot",
-                "spec": {
-                    "type": "economic-curves",
-                    "params": {
-                        "a2": a2,
-                        "a1": a1,
-                        "k3": k3,
-                        "k2": k2,
-                        "k1": k1,
-                        "k0": k0,
-                        "capacity": x_sättigung,
-                        "xMax": max_x,
-                        "showCapacityLine": False,
-                    },
-                    "points": 280,
-                    "layout": {
-                        "title": "Preis-Absatz-, Erlös-, Kosten- und Gewinnfunktion",
-                        "xaxis": {"title": "Menge x", "range": [0.0, max_x]},
-                        "yaxis": {"title": "Wert", "range": [y_min, y_max]},
-                    },
-                    "width": 900,
-                    "height": 520,
-                    "scale": 1,
-                },
-            }
-
-            tasks.append(
-                Task(
-                    einleitung=intro,
-                    fragen=[question for question, _ in items],
-                    antworten=[answer for _, answer in items],
-                    visual=visual,
-                )
-            )
-
-        return tasks
+    return Task(
+        einleitung=intro,
+        fragen=[question for question, _ in auswahl],
+        antworten=[answer for _, answer in auswahl],
+        visual=visual,
+    )

@@ -38,7 +38,7 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Das Histogramm zeigt eine Binomialverteilung mit n gleich zehn. "
+            "Das Histogramm zeigt eine Binomialverteilung mit n gleich 10. "
             "Die Höhe jedes Balkens ist die Wahrscheinlichkeit für genau diese Anzahl von Treffern."
         ):
             self.play(auftritt(idee[0]), run_time=0.5)
@@ -52,7 +52,7 @@ class Video(MCSzene):
             wortlaut("genau 2", signal=("genau 2",), groesse=44),
             [formel(r"P(X=2)\approx 0{,}12", groesse=G_FORMEL)],
             bereiche=[(2, 2)], ablesen=[2],
-            sprechtext="Genau zwei: Wir lesen die Höhe des Balkens über zwei ab, etwa null Komma eins zwei.",
+            sprechtext="Genau 2: Wir lesen die Höhe des Balkens über 2 ab, etwa 0,12.",
         )
         self.fall(
             wortlaut("mehr als 3 und höchstens 5", signal=("mehr als 3", "höchstens 5"), groesse=44),
@@ -61,8 +61,8 @@ class Video(MCSzene):
                 formel(r"\approx 0{,}25+0{,}20=0{,}45", groesse=G_FORMEL),
             ],
             bereiche=[(4, 5)], ablesen=[4, 5],
-            sprechtext="Mehr als drei und höchstens fünf: Das sind vier und fünf. "
-                       "Wir addieren beide Balken: null Komma zwei fünf plus null Komma zwei, also null Komma vier fünf.",
+            sprechtext="Mehr als 3 und höchstens 5: Das sind 4 und 5. "
+                       "Wir addieren beide Balken: 0,25 plus 0,2, also 0,45.",
         )
         self.fall(
             wortlaut("mindestens 7", signal=("mindestens 7",), groesse=44),
@@ -71,7 +71,7 @@ class Video(MCSzene):
                 formel(r"\approx 0{,}04+0{,}01+0+0\approx 0{,}05", groesse=G_FORMEL),
             ],
             bereiche=[(7, 10)], ablesen=[7, 8],
-            sprechtext="Mindestens sieben: Die Balken von sieben bis zehn sind sehr niedrig, zusammen etwa null Komma null fünf.",
+            sprechtext="Mindestens 7: Die Balken von 7 bis 10 sind sehr niedrig, zusammen etwa 0,05.",
         )
         self.fall(
             wortlaut("höchstens 6", signal=("höchstens 6",), groesse=44),
@@ -80,8 +80,8 @@ class Video(MCSzene):
                 formel(r"\approx 1-0{,}05=0{,}95", groesse=G_FORMEL),
             ],
             bereiche=[(0, 6)], ablesen=[],
-            sprechtext="Höchstens sechs wären sieben Balken. Schneller geht es mit dem Rest: "
-                       "eins minus null Komma null fünf, also null Komma neun fünf.",
+            sprechtext="Höchstens 6 wären 7 Balken. Schneller geht es mit dem Rest: "
+                       "1 minus 0,05, also 0,95.",
         )
 
         # ---------- Kurzfassung ----------
@@ -94,7 +94,7 @@ class Video(MCSzene):
         self.tafel(punkte)
         with self.sprich(
             "Kurz gesagt: Für genau eine Anzahl liest du die Balkenhöhe ab. Für einen Bereich addierst du die Balken. "
-            "Sind es viele, rechnest du eins minus den Rest."
+            "Sind es viele, rechnest du 1 minus den Rest."
         ):
             self.play(self.hist.faerbe(), run_time=0.5)
             for punkt, beginn in zip(punkte, (0.1, 0.42, 0.7)):

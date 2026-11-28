@@ -1,0 +1,4361 @@
+[
+  {
+    "einleitung": "In einer Fabrik wird jedes Bauteil geprüft. Es ist fehlerfrei (F) oder mangelhaft (M). Ein fehlerfreies Teil wird ausgeliefert. Ein mangelhaftes Teil wird nachgebessert und erneut geprüft. Ein Teil wird höchstens zweimal nachgebessert, danach wird es aussortiert. Ausgewertet wurden 1.000 Bauteile. 85 % der Bauteile sind bei der ersten Prüfung fehlerfrei. Zwei Fünftel der bei der ersten Prüfung mangelhaften Teile sind auch nach der ersten Nachbesserung mangelhaft. 36 der Bauteile sind erst nach der zweiten Nachbesserung fehlerfrei. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „36 der Bauteile sind erst nach der zweiten Nachbesserung fehlerfrei.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der auch nach der ersten Nachbesserung mangelhaften Teile, die nach der zweiten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die erst nach der ersten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die ausgeliefert werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~=am Ende des Pfades M → M → F~am letzten Ast des Pfades M → M → F~am ersten Ast des Pfades M → M → F~an jedem Ast, der zu F führt}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "{1:NUMERICAL:=0,0900:0,0001}",
+      "{1:NUMERICAL:=0,9760:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Onlineshop hat seine Bestellungen ausgewertet. Bezahlt wurde per Rechnung (R), per Kreditkarte (K) oder per Sofortüberweisung (S). Außerdem wurde erfasst, ob die Ware zurückgeschickt (Z) oder behalten (B) wurde. Ausgewertet wurden 5.000 Bestellungen. Ein Viertel der Bestellungen wird per Kreditkarte bezahlt. 800 der Bestellungen werden per Rechnung bezahlt und behalten. 375 der Bestellungen werden per Kreditkarte bezahlt und zurückgeschickt. 5,5 % aller Bestellungen werden per Sofortüberweisung bezahlt und zurückgeschickt. Insgesamt 17 % aller Bestellungen werden zurückgeschickt. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „375 der Bestellungen werden per Kreditkarte bezahlt und zurückgeschickt.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Bestellungen mit Kreditkarte, die zurückgeschickt werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die per Kreditkarte bezahlt und behalten werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die nicht per Rechnung bezahlt und zurückgeschickt werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~am ersten Ast des Pfades K → Z~an jedem Ast, der zu Z führt~am letzten Ast des Pfades K → Z~=am Ende des Pfades K → Z}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,1750:0,0001}",
+      "{1:NUMERICAL:=0,1300:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Sportverein hat seine Mitglieder ausgewertet. Sie sind Kinder (K), Jugendliche (J) oder Erwachsene (A). Außerdem wurde erfasst, ob ein Mitglied an Wettkämpfen teilnimmt (W) oder nur in der Freizeit trainiert (F). Der Verein hat 400 Mitglieder. Jeder Zweite der Mitglieder ist ein Kind. 120 der Mitglieder sind Jugendliche. 17,5 % aller Mitglieder sind Kinder und trainieren nur in der Freizeit. 66 der Mitglieder sind Jugendliche und trainieren nur in der Freizeit. 14 % aller Mitglieder sind Erwachsene und nehmen an Wettkämpfen teil. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „66 der Mitglieder sind Jugendliche und trainieren nur in der Freizeit.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Jugendlichen, die an Wettkämpfen teilnehmen.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die Erwachsene sind und nur in der Freizeit trainieren.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die nur in der Freizeit trainieren."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~am letzten Ast des Pfades J → F~am ersten Ast des Pfades J → F~an jedem Ast, der zu F führt~=am Ende des Pfades J → F}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,0600:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J"
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Paketdienst hat seine Zustellungen ausgewertet. Ein Paket bleibt in Deutschland (D) oder geht ins Ausland (A). Es wird beim ersten Versuch zugestellt (Z) oder der Empfänger wird nicht angetroffen (N). Ein Inlandspaket, das nicht zugestellt werden konnte, wird in einer Filiale abgeholt (F) oder an den Absender zurückgeschickt (R). Ausgewertet wurden 1.000 Pakete. 52 % aller Pakete sind beim ersten Versuch zugestellte Inlandspakete. Ein Fünftel der Inlandspakete kann nicht zugestellt werden. 40 % der Auslandspakete können nicht zugestellt werden. 39 der Pakete sind zurückgeschickte Inlandspakete. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „39 der Pakete sind zurückgeschickte Inlandspakete.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der nicht zugestellten Inlandspakete, die in einer Filiale abgeholt werden.",
+      "Bestimmen Sie den Anteil aller Pakete, die beim ersten Versuch zugestellte Auslandspakete sind.",
+      "Bestimmen Sie den Anteil aller Pakete, die nicht beim ersten Versuch zugestellt werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~am ersten Ast des Pfades D → N → R~an jedem Ast, der zu R führt~am letzten Ast des Pfades D → N → R~=am Ende des Pfades D → N → R}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "{1:NUMERICAL:=0,2700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "D"
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Stadtbibliothek hat ihre Besuche ausgewertet. Bei einem Besuch werden Bücher (B) oder andere Medien wie Filme und Spiele (M) ausgeliehen, oder es wird nichts (N) ausgeliehen. Wer etwas ausleiht, gibt es rechtzeitig (R) oder verspätet (V) zurück. Ausgewertet wurden 400 Besuche. Die Hälfte der Besuche ist eine Buchausleihe. 60 der Besuche sind Ausleihen anderer Medien. 7,5 % aller Besuche sind verspätet zurückgegebene Buchausleihen. 13,5 % aller Besuche sind rechtzeitig zurückgegebene Ausleihen anderer Medien. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „13,5 % aller Besuche sind rechtzeitig zurückgegebene Ausleihen anderer Medien.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Buchausleihen, die rechtzeitig zurückgegeben werden.",
+      "Bestimmen Sie den Anteil aller Besuche, die verspätet zurückgegebene Ausleihen anderer Medien sind.",
+      "Bestimmen Sie den Anteil aller Besuche, die rechtzeitig zurückgegebene Ausleihen sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am ersten Ast des Pfades M → R~=am Ende des Pfades M → R~an jedem Ast, der zu R führt~am letzten Ast des Pfades M → R}",
+      "{1:NUMERICAL:=0,8500:0,0001}",
+      "{1:NUMERICAL:=0,0150:0,0001}",
+      "{1:NUMERICAL:=0,5600:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Reisebüro hat die Rückmeldungen seiner Kunden ausgewertet. Gereist wurde mit dem Flugzeug (F) oder mit der Bahn (B). Bei Bahnreisen wurde erfasst, ob die Fahrt pünktlich (R) oder verspätet (V) war. Bei Flugreisen war der Flug pünktlich (R), verspätet (V) oder er ist ausgefallen (A). Ausgewertet wurden 500 Reisen. 15 der Reisen sind verspätete Flugreisen. 4,5 % aller Reisen sind ausgefallene Flugreisen. Drei Fünftel der Bahnreisen sind verspätet. Insgesamt 225 der Reisen sind verspätet. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „4,5 % aller Reisen sind ausgefallene Flugreisen.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Flugreisen, die pünktlich sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die verspätete Bahnreisen sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die pünktlich sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~an jedem Ast, der zu A führt~am ersten Ast des Pfades F → A~am letzten Ast des Pfades F → A~=am Ende des Pfades F → A}",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "{1:NUMERICAL:=0,4200:0,0001}",
+      "{1:NUMERICAL:=0,5050:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "An einer Schule wurde gefragt, wie Lern-Apps genutzt werden. Die Befragten nutzen eine kostenlose Version (G), eine Bezahlversion (B) oder keine Lern-App (K). Wer eine App nutzt, wurde zusätzlich gefragt, ob er sie vor allem zur Unterhaltung (U) oder zur Prüfungsvorbereitung (V) nutzt. Befragt wurden 1.200 Schülerinnen und Schüler. Jeder Zweite der Befragten nutzt die kostenlose Version. 30 % der Befragten nutzen die Bezahlversion. 390 der Befragten nutzen die kostenlose Version vor allem zur Unterhaltung. 30 % der Nutzer der Bezahlversion nutzen sie vor allem zur Prüfungsvorbereitung. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „390 der Befragten nutzen die kostenlose Version vor allem zur Unterhaltung.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Nutzer der kostenlosen Version, die sie vor allem zur Unterhaltung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die die Bezahlversion vor allem zur Prüfungsvorbereitung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die eine Lern-App vor allem zur Unterhaltung nutzen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~am letzten Ast des Pfades G → U~an jedem Ast, der zu U führt~=am Ende des Pfades G → U~am ersten Ast des Pfades G → U}",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,0900:0,0001}",
+      "{1:NUMERICAL:=0,5350:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G"
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrschule hat die praktischen Prüfungen ihrer Fahrschüler ausgewertet. Jeder Fahrschüler hat höchstens drei Versuche. Eine Prüfung wird bestanden (B) oder nicht bestanden (N). Wer bestanden hat, tritt nicht mehr an. Ausgewertet wurden 8.000 Fahrschüler. 2.520 der Fahrschüler bestehen erst im zweiten Versuch. 5,4 % aller Fahrschüler bestehen erst im dritten Versuch. Drei Fünftel der auch im zweiten Versuch durchgefallenen Fahrschüler fallen auch im dritten Versuch durch. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „5,4 % aller Fahrschüler bestehen erst im dritten Versuch.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der im ersten Versuch durchgefallenen Fahrschüler, die im zweiten Versuch bestehen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die dreimal durchfallen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die die Prüfung bestehen."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~an jedem Ast, der zu B führt~am ersten Ast des Pfades N → N → B~=am Ende des Pfades N → N → B~am letzten Ast des Pfades N → N → B}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,0810:0,0001}",
+      "{1:NUMERICAL:=0,9190:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Hotel hat seine Buchungen ausgewertet. Gebucht wurde ein Einzelzimmer (Z) oder ein Doppelzimmer (D). Einzelzimmer gibt es mit Frühstück (F) oder ohne Verpflegung (N). Doppelzimmer gibt es mit Frühstück (F), mit Halbpension (H) oder ohne Verpflegung (N). Ausgewertet wurden 1.000 Buchungen. Ein Fünftel der Buchungen ist eine Einzelzimmerbuchung. 80 der Buchungen sind Doppelzimmer mit Frühstück. 65 % der Doppelzimmerbuchungen sind ohne Verpflegung gebucht. Insgesamt 39 % aller Buchungen sind mit Verpflegung gebucht. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „80 der Buchungen sind Doppelzimmer mit Frühstück.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Einzelzimmerbuchungen, die mit Frühstück gebucht sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die Doppelzimmer mit Halbpension sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die mit Frühstück gebucht sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~=B~C~D}",
+      "{1:MC:~an jedem Ast, der zu F führt~am ersten Ast des Pfades D → F~am letzten Ast des Pfades D → F~=am Ende des Pfades D → F}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,1900:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrradwerkstatt hat ihre Aufträge ausgewertet. Ein Fahrrad kommt zur Wartung (W) oder zur Reparatur (R). Der Auftrag ist sofort erledigt (S), oder es wird ein Ersatzteil gebraucht (T). Bei Reparaturen mit Ersatzteil wurde außerdem erfasst, ob das Teil vorrätig (V) war oder bestellt (B) werden musste. Ausgewertet wurden 1.000 Aufträge. 350 der Aufträge sind Reparaturen. 90 % der Wartungen sind sofort erledigt. Drei Fünftel der Reparaturen brauchen ein Ersatzteil. 168 der Aufträge sind Reparaturen mit bestelltem Ersatzteil. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „168 der Aufträge sind Reparaturen mit bestelltem Ersatzteil.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Reparaturen mit Ersatzteil, die ein vorrätiges Teil haben.",
+      "Bestimmen Sie den Anteil aller Aufträge, die sofort erledigte Wartungen sind.",
+      "Bestimmen Sie den Anteil aller Aufträge, die sofort erledigt sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~=am Ende des Pfades R → T → B~an jedem Ast, der zu B führt~am ersten Ast des Pfades R → T → B~am letzten Ast des Pfades R → T → B}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,5850:0,0001}",
+      "{1:NUMERICAL:=0,7250:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W"
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Stadtbibliothek hat ihre Besuche ausgewertet. Bei einem Besuch werden Bücher (B) oder andere Medien wie Filme und Spiele (M) ausgeliehen, oder es wird nichts (N) ausgeliehen. Wer etwas ausleiht, gibt es rechtzeitig (R) oder verspätet (V) zurück. Ausgewertet wurden 2.000 Besuche. Drei Fünftel der Buchausleihen werden rechtzeitig zurückgegeben. 400 der Besuche sind verspätet zurückgegebene Buchausleihen. 60 % der Ausleihen anderer Medien werden rechtzeitig zurückgegeben. 16 % aller Besuche sind verspätet zurückgegebene Ausleihen anderer Medien. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „16 % aller Besuche sind verspätet zurückgegebene Ausleihen anderer Medien.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Ausleihen anderer Medien, die verspätet zurückgegeben werden.",
+      "Bestimmen Sie den Anteil aller Besuche, die rechtzeitig zurückgegebene Buchausleihen sind.",
+      "Bestimmen Sie den Anteil aller Besuche, die rechtzeitig zurückgegebene Ausleihen sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~=am Ende des Pfades M → V~am ersten Ast des Pfades M → V~an jedem Ast, der zu V führt~am letzten Ast des Pfades M → V}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,5400:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M"
+              },
+              {
+                "label": "N"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Hotel hat seine Buchungen ausgewertet. Gebucht wurde ein Einzelzimmer (Z) oder ein Doppelzimmer (D). Einzelzimmer gibt es mit Frühstück (F) oder ohne Verpflegung (N). Doppelzimmer gibt es mit Frühstück (F), mit Halbpension (H) oder ohne Verpflegung (N). Ausgewertet wurden 4.000 Buchungen. 1.400 der Buchungen sind Einzelzimmerbuchungen. Ein Fünftel der Einzelzimmerbuchungen ist mit Frühstück gebucht. 10 % der Doppelzimmerbuchungen sind mit Halbpension gebucht. Insgesamt 1.900 der Buchungen sind ohne Verpflegung gebucht. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „Insgesamt 1.900 der Buchungen sind ohne Verpflegung gebucht.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Doppelzimmerbuchungen, die mit Frühstück gebucht sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die Einzelzimmer mit Frühstück sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die mit Verpflegung gebucht sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~an jedem Ast, der zu N führt~=nicht an einer Stelle: Er ist die Summe der Pfade Z → N und D → N~am letzten Ast des Pfades Z → N~am Ende des Pfades Z → N}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "{1:NUMERICAL:=0,0700:0,0001}",
+      "{1:NUMERICAL:=0,5250:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrradwerkstatt hat ihre Aufträge ausgewertet. Ein Fahrrad kommt zur Wartung (W) oder zur Reparatur (R). Der Auftrag ist sofort erledigt (S), oder es wird ein Ersatzteil gebraucht (T). Bei Reparaturen mit Ersatzteil wurde außerdem erfasst, ob das Teil vorrätig (V) war oder bestellt (B) werden musste. Ausgewertet wurden 5.000 Aufträge. Zwei Fünftel der Aufträge sind Reparaturen. 6 % aller Aufträge sind Wartungen mit Ersatzteil. 800 der Aufträge sind sofort erledigte Reparaturen. 360 der Aufträge sind Reparaturen mit vorrätigem Ersatzteil. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „800 der Aufträge sind sofort erledigte Reparaturen.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Reparaturen, die sofort erledigt sind.",
+      "Bestimmen Sie den Anteil aller Aufträge, die Reparaturen mit bestelltem Ersatzteil sind.",
+      "Bestimmen Sie den Anteil aller Aufträge, die sofort erledigt sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~=am Ende des Pfades R → S~an jedem Ast, der zu S führt~am ersten Ast des Pfades R → S~am letzten Ast des Pfades R → S}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,1680:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrschule hat die praktischen Prüfungen ihrer Fahrschüler ausgewertet. Jeder Fahrschüler hat höchstens drei Versuche. Eine Prüfung wird bestanden (B) oder nicht bestanden (N). Wer bestanden hat, tritt nicht mehr an. Ausgewertet wurden 2.000 Fahrschüler. 400 der Fahrschüler fallen im ersten Versuch durch. Drei Fünftel der im ersten Versuch durchgefallenen Fahrschüler bestehen im zweiten Versuch. 4,8 % aller Fahrschüler fallen dreimal durch. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „4,8 % aller Fahrschüler fallen dreimal durch.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der auch im zweiten Versuch durchgefallenen Fahrschüler, die im dritten Versuch bestehen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die erst im zweiten Versuch bestehen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die die Prüfung bestehen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~an jedem Ast, der zu N führt~am ersten Ast des Pfades N → N → N~=am Ende des Pfades N → N → N~am letzten Ast des Pfades N → N → N}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,1200:0,0001}",
+      "{1:NUMERICAL:=0,9520:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einer Fabrik wird jedes Bauteil geprüft. Es ist fehlerfrei (F) oder mangelhaft (M). Ein fehlerfreies Teil wird ausgeliefert. Ein mangelhaftes Teil wird nachgebessert und erneut geprüft. Ein Teil wird höchstens zweimal nachgebessert, danach wird es aussortiert. Ausgewertet wurden 8.000 Bauteile. Ein Viertel der Bauteile ist bei der ersten Prüfung mangelhaft. 2 % aller Bauteile sind erst nach der zweiten Nachbesserung fehlerfrei. 40 der Bauteile werden aussortiert. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „2 % aller Bauteile sind erst nach der zweiten Nachbesserung fehlerfrei.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der auch nach der ersten Nachbesserung mangelhaften Teile, die nach der zweiten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die erst nach der ersten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die ausgeliefert werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~=am Ende des Pfades M → M → F~an jedem Ast, der zu F führt~am letzten Ast des Pfades M → M → F~am ersten Ast des Pfades M → M → F}",
+      "{1:NUMERICAL:=0,8000:0,0001}",
+      "{1:NUMERICAL:=0,2250:0,0001}",
+      "{1:NUMERICAL:=0,9950:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "An einer Schule wurde gefragt, wie Lern-Apps genutzt werden. Die Befragten nutzen eine kostenlose Version (G), eine Bezahlversion (B) oder keine Lern-App (K). Wer eine App nutzt, wurde zusätzlich gefragt, ob er sie vor allem zur Unterhaltung (U) oder zur Prüfungsvorbereitung (V) nutzt. Befragt wurden 1.200 Schülerinnen und Schüler. Drei Fünftel der Befragten nutzen die kostenlose Version. 33 % aller Befragten nutzen die kostenlose Version vor allem zur Unterhaltung. 162 der Befragten nutzen die Bezahlversion vor allem zur Unterhaltung. 198 der Befragten nutzen die Bezahlversion vor allem zur Prüfungsvorbereitung. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „33 % aller Befragten nutzen die kostenlose Version vor allem zur Unterhaltung.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Nutzer der kostenlosen Version, die sie vor allem zur Unterhaltung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die die kostenlose Version vor allem zur Prüfungsvorbereitung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die eine Lern-App vor allem zur Prüfungsvorbereitung nutzen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~an jedem Ast, der zu U führt~am ersten Ast des Pfades G → U~am letzten Ast des Pfades G → U~=am Ende des Pfades G → U}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "{1:NUMERICAL:=0,4350:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B"
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Paketdienst hat seine Zustellungen ausgewertet. Ein Paket bleibt in Deutschland (D) oder geht ins Ausland (A). Es wird beim ersten Versuch zugestellt (Z) oder der Empfänger wird nicht angetroffen (N). Ein Inlandspaket, das nicht zugestellt werden konnte, wird in einer Filiale abgeholt (F) oder an den Absender zurückgeschickt (R). Ausgewertet wurden 8.000 Pakete. 800 der Pakete gehen ins Ausland. 3 % aller Pakete sind nicht zugestellte Auslandspakete. 24,3 % aller Pakete sind in einer Filiale abgeholte Inlandspakete. Ein Zehntel der nicht zugestellten Inlandspakete wird zurückgeschickt. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „3 % aller Pakete sind nicht zugestellte Auslandspakete.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Inlandspakete, die beim ersten Versuch zugestellt werden.",
+      "Bestimmen Sie den Anteil aller Pakete, die zurückgeschickte Inlandspakete sind.",
+      "Bestimmen Sie den Anteil aller Pakete, die beim ersten Versuch zugestellt werden."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am ersten Ast des Pfades A → N~=am Ende des Pfades A → N~am letzten Ast des Pfades A → N~an jedem Ast, der zu N führt}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,0270:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Onlineshop hat seine Bestellungen ausgewertet. Bezahlt wurde per Rechnung (R), per Kreditkarte (K) oder per Sofortüberweisung (S). Außerdem wurde erfasst, ob die Ware zurückgeschickt (Z) oder behalten (B) wurde. Ausgewertet wurden 400 Bestellungen. Die Hälfte der Bestellungen wird per Sofortüberweisung bezahlt. 64 der Bestellungen werden per Rechnung bezahlt und zurückgeschickt. 12 der Bestellungen werden per Kreditkarte bezahlt und zurückgeschickt. 7 % aller Bestellungen werden per Kreditkarte bezahlt und behalten. Insgesamt 36,5 % aller Bestellungen werden zurückgeschickt. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „7 % aller Bestellungen werden per Kreditkarte bezahlt und behalten.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Bestellungen auf Rechnung, die zurückgeschickt werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die per Rechnung bezahlt und behalten werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die nicht per Rechnung bezahlt und zurückgeschickt werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~an jedem Ast, der zu B führt~=am Ende des Pfades K → B~am letzten Ast des Pfades K → B~am ersten Ast des Pfades K → B}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,2400:0,0001}",
+      "{1:NUMERICAL:=0,2050:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Reisebüro hat die Rückmeldungen seiner Kunden ausgewertet. Gereist wurde mit dem Flugzeug (F) oder mit der Bahn (B). Bei Bahnreisen wurde erfasst, ob die Fahrt pünktlich (R) oder verspätet (V) war. Bei Flugreisen war der Flug pünktlich (R), verspätet (V) oder er ist ausgefallen (A). Ausgewertet wurden 4.000 Reisen. Drei Fünftel der Reisen sind Bahnreisen. 26 % aller Reisen sind pünktliche Flugreisen. 80 der Reisen sind ausgefallene Flugreisen. Insgesamt 27 % aller Reisen sind verspätet. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „Insgesamt 27 % aller Reisen sind verspätet.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Flugreisen, die verspätet sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die pünktliche Bahnreisen sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die pünktlich sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am Ende des Pfades F → V~an jedem Ast, der zu V führt~am letzten Ast des Pfades F → V~=nicht an einer Stelle: Er ist die Summe der Pfade F → V und B → V}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,7100:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Sportverein hat seine Mitglieder ausgewertet. Sie sind Kinder (K), Jugendliche (J) oder Erwachsene (A). Außerdem wurde erfasst, ob ein Mitglied an Wettkämpfen teilnimmt (W) oder nur in der Freizeit trainiert (F). Der Verein hat 800 Mitglieder. 40 % der Mitglieder sind Jugendliche. 208 der Mitglieder sind Jugendliche und nehmen an Wettkämpfen teil. 40 der Mitglieder sind Erwachsene und nehmen an Wettkämpfen teil. Vier Fünftel der Erwachsenen trainieren nur in der Freizeit. Insgesamt 31,25 % aller Mitglieder sind minderjährig und nehmen an Wettkämpfen teil. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „40 der Mitglieder sind Erwachsene und nehmen an Wettkämpfen teil.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Jugendlichen, die an Wettkämpfen teilnehmen.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die Erwachsene sind und nur in der Freizeit trainieren.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die an Wettkämpfen teilnehmen."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am ersten Ast des Pfades A → W~am letzten Ast des Pfades A → W~=am Ende des Pfades A → W~an jedem Ast, der zu W führt}",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,3625:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J"
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Onlineshop hat seine Bestellungen ausgewertet. Bezahlt wurde per Rechnung (R), per Kreditkarte (K) oder per Sofortüberweisung (S). Außerdem wurde erfasst, ob die Ware zurückgeschickt (Z) oder behalten (B) wurde. Ausgewertet wurden 2.000 Bestellungen. 40 % der Bestellungen werden per Rechnung bezahlt. Ein Viertel der Bestellungen wird per Sofortüberweisung bezahlt. 32 % aller Bestellungen werden per Rechnung bezahlt und behalten. 420 der Bestellungen werden per Kreditkarte bezahlt und behalten. 16,25 % aller Bestellungen werden per Sofortüberweisung bezahlt und behalten. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „16,25 % aller Bestellungen werden per Sofortüberweisung bezahlt und behalten.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Bestellungen auf Rechnung, die zurückgeschickt werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die per Kreditkarte bezahlt und zurückgeschickt werden.",
+      "Bestimmen Sie den Anteil aller Bestellungen, die zurückgeschickt werden."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am letzten Ast des Pfades S → B~am ersten Ast des Pfades S → B~an jedem Ast, der zu B führt~=am Ende des Pfades S → B}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,1400:0,0001}",
+      "{1:NUMERICAL:=0,3075:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "B"
+                  }
+                ]
+              },
+              {
+                "label": "S"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Reisebüro hat die Rückmeldungen seiner Kunden ausgewertet. Gereist wurde mit dem Flugzeug (F) oder mit der Bahn (B). Bei Bahnreisen wurde erfasst, ob die Fahrt pünktlich (R) oder verspätet (V) war. Bei Flugreisen war der Flug pünktlich (R), verspätet (V) oder er ist ausgefallen (A). Ausgewertet wurden 500 Reisen. 45 % der Reisen sind Flugreisen. 24,75 % aller Reisen sind pünktliche Flugreisen. Zwei Fünftel der Flugreisen sind verspätet. Insgesamt 275 der Reisen sind pünktlich. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „Insgesamt 275 der Reisen sind pünktlich.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Bahnreisen, die pünktlich sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die ausgefallene Flugreisen sind.",
+      "Bestimmen Sie den Anteil aller Reisen, die verspätet sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~=B~C~D}",
+      "{1:MC:~am Ende des Pfades F → R~=nicht an einer Stelle: Er ist die Summe der Pfade F → R und B → R~am letzten Ast des Pfades F → R~an jedem Ast, der zu R führt}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,0225:0,0001}",
+      "{1:NUMERICAL:=0,4275:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  },
+                  {
+                    "label": "A"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Stadtbibliothek hat ihre Besuche ausgewertet. Bei einem Besuch werden Bücher (B) oder andere Medien wie Filme und Spiele (M) ausgeliehen, oder es wird nichts (N) ausgeliehen. Wer etwas ausleiht, gibt es rechtzeitig (R) oder verspätet (V) zurück. Ausgewertet wurden 800 Besuche. Ein Viertel der Besuche ist ein Besuch ohne Ausleihe. 384 der Besuche sind rechtzeitig zurückgegebene Buchausleihen. 20 % der Buchausleihen werden verspätet zurückgegeben. 24 der Besuche sind verspätet zurückgegebene Ausleihen anderer Medien. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „24 der Besuche sind verspätet zurückgegebene Ausleihen anderer Medien.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Ausleihen anderer Medien, die rechtzeitig zurückgegeben werden.",
+      "Bestimmen Sie den Anteil aller Besuche, die verspätet zurückgegebene Buchausleihen sind.",
+      "Bestimmen Sie den Anteil aller Besuche, die rechtzeitig zurückgegebene Ausleihen sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~an jedem Ast, der zu V führt~=am Ende des Pfades M → V~am ersten Ast des Pfades M → V~am letzten Ast des Pfades M → V}",
+      "{1:NUMERICAL:=0,8000:0,0001}",
+      "{1:NUMERICAL:=0,1200:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "R"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "N"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einer Fabrik wird jedes Bauteil geprüft. Es ist fehlerfrei (F) oder mangelhaft (M). Ein fehlerfreies Teil wird ausgeliefert. Ein mangelhaftes Teil wird nachgebessert und erneut geprüft. Ein Teil wird höchstens zweimal nachgebessert, danach wird es aussortiert. Ausgewertet wurden 8.000 Bauteile. Zwei Fünftel der Bauteile sind bei der ersten Prüfung mangelhaft. 36 % aller Bauteile sind erst nach der ersten Nachbesserung fehlerfrei. 192 der Bauteile werden aussortiert. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „36 % aller Bauteile sind erst nach der ersten Nachbesserung fehlerfrei.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der bei der ersten Prüfung mangelhaften Teile, die nach der ersten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die erst nach der zweiten Nachbesserung fehlerfrei sind.",
+      "Bestimmen Sie den Anteil aller Bauteile, die nachgebessert werden müssen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~am letzten Ast des Pfades M → F~an jedem Ast, der zu F führt~am ersten Ast des Pfades M → F~=am Ende des Pfades M → F}",
+      "{1:NUMERICAL:=0,9000:0,0001}",
+      "{1:NUMERICAL:=0,0160:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "F"
+              },
+              {
+                "label": "M",
+                "children": [
+                  {
+                    "label": "F",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "M",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "M"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrradwerkstatt hat ihre Aufträge ausgewertet. Ein Fahrrad kommt zur Wartung (W) oder zur Reparatur (R). Der Auftrag ist sofort erledigt (S), oder es wird ein Ersatzteil gebraucht (T). Bei Reparaturen mit Ersatzteil wurde außerdem erfasst, ob das Teil vorrätig (V) war oder bestellt (B) werden musste. Ausgewertet wurden 10.000 Aufträge. 38,5 % aller Aufträge sind sofort erledigte Wartungen. 30 % der Wartungen brauchen ein Ersatzteil. 630 der Aufträge sind Reparaturen mit vorrätigem Ersatzteil. Vier Fünftel der Reparaturen mit Ersatzteil müssen auf ein bestelltes Teil warten. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „38,5 % aller Aufträge sind sofort erledigte Wartungen.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Reparaturen, die sofort erledigt sind.",
+      "Bestimmen Sie den Anteil aller Aufträge, die Reparaturen mit bestelltem Ersatzteil sind.",
+      "Bestimmen Sie den Anteil aller Aufträge, die sofort erledigt sind."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am ersten Ast des Pfades W → S~am letzten Ast des Pfades W → S~=am Ende des Pfades W → S~an jedem Ast, der zu S führt}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,2520:0,0001}",
+      "{1:NUMERICAL:=0,5200:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "T",
+                    "children": [
+                      {
+                        "label": "V"
+                      },
+                      {
+                        "label": "B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "W",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              },
+              {
+                "label": "R",
+                "children": [
+                  {
+                    "label": "S"
+                  },
+                  {
+                    "label": "T"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Paketdienst hat seine Zustellungen ausgewertet. Ein Paket bleibt in Deutschland (D) oder geht ins Ausland (A). Es wird beim ersten Versuch zugestellt (Z) oder der Empfänger wird nicht angetroffen (N). Ein Inlandspaket, das nicht zugestellt werden konnte, wird in einer Filiale abgeholt (F) oder an den Absender zurückgeschickt (R). Ausgewertet wurden 10.000 Pakete. 800 der Pakete sind beim ersten Versuch zugestellte Auslandspakete. 2 % aller Pakete sind nicht zugestellte Auslandspakete. 2.430 der Pakete sind in einer Filiale abgeholte Inlandspakete. Ein Zehntel der nicht zugestellten Inlandspakete wird zurückgeschickt. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „800 der Pakete sind beim ersten Versuch zugestellte Auslandspakete.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Inlandspakete, die beim ersten Versuch zugestellt werden.",
+      "Bestimmen Sie den Anteil aller Pakete, die zurückgeschickte Inlandspakete sind.",
+      "Bestimmen Sie den Anteil aller Pakete, die beim ersten Versuch zugestellt werden."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~an jedem Ast, der zu Z führt~am letzten Ast des Pfades A → Z~am ersten Ast des Pfades A → Z~=am Ende des Pfades A → Z}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,0270:0,0001}",
+      "{1:NUMERICAL:=0,7100:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "Z",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "F"
+                      },
+                      {
+                        "label": "R"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "Z"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "An einer Schule wurde gefragt, wie Lern-Apps genutzt werden. Die Befragten nutzen eine kostenlose Version (G), eine Bezahlversion (B) oder keine Lern-App (K). Wer eine App nutzt, wurde zusätzlich gefragt, ob er sie vor allem zur Unterhaltung (U) oder zur Prüfungsvorbereitung (V) nutzt. Befragt wurden 2.000 Schülerinnen und Schüler. 1.000 der Befragten nutzen die kostenlose Version. Ein Fünftel der Befragten nutzt die Bezahlversion. 180 der Befragten nutzen die Bezahlversion vor allem zur Unterhaltung. Insgesamt 41 % aller Befragten nutzen eine Lern-App vor allem zur Prüfungsvorbereitung. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „Insgesamt 41 % aller Befragten nutzen eine Lern-App vor allem zur Prüfungsvorbereitung.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Nutzer der Bezahlversion, die sie vor allem zur Unterhaltung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die die kostenlose Version vor allem zur Unterhaltung nutzen.",
+      "Bestimmen Sie den Anteil aller Befragten, die eine Lern-App vor allem zur Unterhaltung nutzen."
+    ],
+    "antworten": [
+      "{1:MC:~=A~B~C~D}",
+      "{1:MC:~am letzten Ast des Pfades G → V~am Ende des Pfades G → V~an jedem Ast, der zu V führt~=nicht an einer Stelle: Er ist die Summe der Pfade G → V und B → V}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,2900:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G"
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "K"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "G",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              },
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "U"
+                  },
+                  {
+                    "label": "V"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Hotel hat seine Buchungen ausgewertet. Gebucht wurde ein Einzelzimmer (Z) oder ein Doppelzimmer (D). Einzelzimmer gibt es mit Frühstück (F) oder ohne Verpflegung (N). Doppelzimmer gibt es mit Frühstück (F), mit Halbpension (H) oder ohne Verpflegung (N). Ausgewertet wurden 2.000 Buchungen. Ein Viertel der Buchungen ist eine Einzelzimmerbuchung. 16,25 % aller Buchungen sind Einzelzimmer ohne Verpflegung. 65 % der Doppelzimmerbuchungen sind mit Frühstück gebucht. 225 der Buchungen sind Doppelzimmer ohne Verpflegung. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „225 der Buchungen sind Doppelzimmer ohne Verpflegung.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Doppelzimmerbuchungen, die mit Halbpension gebucht sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die Einzelzimmer mit Frühstück sind.",
+      "Bestimmen Sie den Anteil aller Buchungen, die ohne Verpflegung gebucht sind."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~=C~D}",
+      "{1:MC:~am letzten Ast des Pfades D → N~am ersten Ast des Pfades D → N~an jedem Ast, der zu N führt~=am Ende des Pfades D → N}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,0875:0,0001}",
+      "{1:NUMERICAL:=0,2750:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "Z",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "H"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              },
+              {
+                "label": "D",
+                "children": [
+                  {
+                    "label": "F"
+                  },
+                  {
+                    "label": "N"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fahrschule hat die praktischen Prüfungen ihrer Fahrschüler ausgewertet. Jeder Fahrschüler hat höchstens drei Versuche. Eine Prüfung wird bestanden (B) oder nicht bestanden (N). Wer bestanden hat, tritt nicht mehr an. Ausgewertet wurden 1.000 Fahrschüler. Vier Fünftel der im ersten Versuch durchgefallenen Fahrschüler bestehen im zweiten Versuch. 63 der Fahrschüler bestehen erst im dritten Versuch. 2,7 % aller Fahrschüler fallen dreimal durch. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „2,7 % aller Fahrschüler fallen dreimal durch.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der auch im zweiten Versuch durchgefallenen Fahrschüler, die im dritten Versuch bestehen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die erst im zweiten Versuch bestehen.",
+      "Bestimmen Sie den Anteil aller Fahrschüler, die mindestens einmal durchfallen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~am ersten Ast des Pfades N → N → N~an jedem Ast, der zu N führt~=am Ende des Pfades N → N → N~am letzten Ast des Pfades N → N → N}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,3600:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "B",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "B"
+              },
+              {
+                "label": "N",
+                "children": [
+                  {
+                    "label": "B"
+                  },
+                  {
+                    "label": "N",
+                    "children": [
+                      {
+                        "label": "B"
+                      },
+                      {
+                        "label": "N"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Sportverein hat seine Mitglieder ausgewertet. Sie sind Kinder (K), Jugendliche (J) oder Erwachsene (A). Außerdem wurde erfasst, ob ein Mitglied an Wettkämpfen teilnimmt (W) oder nur in der Freizeit trainiert (F). Der Verein hat 400 Mitglieder. 120 der Mitglieder sind Jugendliche. 7 % aller Mitglieder sind Kinder und trainieren nur in der Freizeit. 45 % der Jugendlichen trainieren nur in der Freizeit. Drei Viertel der Erwachsenen nehmen an Wettkämpfen teil. Insgesamt 29,5 % aller Mitglieder sind minderjährig und nehmen an Wettkämpfen teil. Zeichnen Sie zuerst das Baumdiagramm und tragen Sie die gegebenen Werte ein. Geben Sie Anteile als Dezimalzahl an.",
+    "fragen": [
+      "Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt.",
+      "Geben Sie an, wo der Anteil aus der Angabe „7 % aller Mitglieder sind Kinder und trainieren nur in der Freizeit.“ im Baumdiagramm steht.",
+      "Bestimmen Sie den Anteil der Kinder, die an Wettkämpfen teilnehmen.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die Jugendliche sind und nur in der Freizeit trainieren.",
+      "Bestimmen Sie den Anteil aller Mitglieder, die an Wettkämpfen teilnehmen."
+    ],
+    "antworten": [
+      "{1:MC:~A~B~C~=D}",
+      "{1:MC:~=am Ende des Pfades K → F~am letzten Ast des Pfades K → F~an jedem Ast, der zu F führt~am ersten Ast des Pfades K → F}",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,1350:0,0001}",
+      "{1:NUMERICAL:=0,6700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "tree-choice",
+        "labels": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "options": [
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K"
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A"
+              }
+            ]
+          },
+          {
+            "children": [
+              {
+                "label": "K",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "J",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              },
+              {
+                "label": "A",
+                "children": [
+                  {
+                    "label": "W"
+                  },
+                  {
+                    "label": "F"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

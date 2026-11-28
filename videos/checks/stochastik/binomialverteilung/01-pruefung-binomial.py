@@ -49,10 +49,10 @@ class Video(MCSzene):
             abstand=0.55,
         )
         with self.sprich(
-            "Wir ziehen zehnmal ein Los mit Zurücklegen, X zählt die Gewinne. Drei Fragen: "
+            "Wir ziehen 10-mal ein Los mit Zurücklegen, X zählt die Gewinne. 3 Fragen: "
             "Steht die Anzahl der Versuche fest? Gibt es pro Versuch nur Treffer oder Niete? "
             "Ist p konstant, bleibt die Trefferwahrscheinlichkeit also gleich? "
-            "Dreimal ja, also ist X binomialverteilt."
+            "3-mal ja, also ist X binomialverteilt."
         ):
             self.play(auftritt(block[0]), run_time=0.5)
             self.play(auftritt(block[1]), zuege.markiere(2, 5, 9), run_time=0.7)
@@ -76,8 +76,8 @@ class Video(MCSzene):
             abstand=0.55,
         )
         with self.sprich(
-            "Ohne Zurücklegen ändert sich die Box: Erst sind zwei von fünf Losen Gewinne, "
-            "nach einem Gewinn nur noch eins von vier. p ist nicht konstant. "
+            "Ohne Zurücklegen ändert sich die Box: Erst sind 2 von 5 Losen Gewinne, "
+            "nach einem Gewinn nur noch 1 von 4. p ist nicht konstant. "
             "Genauso, wenn jemand mit der Zeit müde wird."
         ):
             self.play(FadeIn(box), auftritt(block[0]), run_time=0.6)
@@ -121,8 +121,8 @@ class Video(MCSzene):
         ).arrange(DOWN, buff=0.4)
         block = self.tafel(text("3-mal würfeln", groesse=44, gewicht=BOLD), summe, sechsen, abstand=0.7)
         with self.sprich(
-            "Dreimal würfeln und die Augensumme bilden: Jede Augenzahl zählt, das sind sechs Ausgänge. "
-            "Zählst du nur die Sechsen, sind es wieder zwei: Sechs oder keine Sechs. Das ist binomialverteilt."
+            "3-mal würfeln und die Augensumme bilden: Jede Augenzahl zählt, das sind 6 Ausgänge. "
+            "Zählst du nur die Sechsen, sind es wieder 2: 6 oder keine 6. Das ist binomialverteilt."
         ):
             self.play(FadeIn(augen), auftritt(block[0]), run_time=0.6)
             self.play(auftritt(summe[0]), augen.markiere(1, 2, 3, 4, 5, 6, farbe=HERVOR), run_time=0.7)
@@ -140,7 +140,7 @@ class Video(MCSzene):
         punkte = aufzaehlung(*[text(b, groesse=46) for b in BEDINGUNGEN], abstand=0.55)
         schluss = text("alle drei: binomialverteilt", groesse=42, gewicht=BOLD)
         self.tafel(punkte, schluss, abstand=0.8)
-        with self.sprich("Kurz gesagt: n fest, zwei Ausgänge, p konstant. Nur wenn alle drei passen, ist X binomialverteilt."):
+        with self.sprich("Kurz gesagt: n fest, 2 Ausgänge, p konstant. Nur wenn alle 3 passen, ist X binomialverteilt."):
             for zeile, beginn in zip((*punkte, schluss), (0.1, 0.25, 0.42, 0.62)):
                 self.warte_bis(beginn)
                 self.play(auftritt(zeile), run_time=0.5)

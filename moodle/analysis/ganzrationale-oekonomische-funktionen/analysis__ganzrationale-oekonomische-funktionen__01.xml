@@ -73,6 +73,59 @@
       <text>analysis__ganzrationale-oekonomische-funktionen__01-02</text>
     </name>
     <questiontext format="html">
+      <text><![CDATA[<p>Wie verhält sich die Preis-Absatz-Funktion \(p(x)\) im Angebotsmonopol?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie fällt mit wachsender Absatzmenge.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie ist für jede Absatzmenge konstant.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Monopol mit konstantem Marktpreis im Polypol verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie steigt mit wachsender Absatzmenge.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtung der Preisänderung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie stimmt immer mit \(E(x)\) überein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Preis pro Mengeneinheit mit dem Gesamterlös verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__ganzrationale-oekonomische-funktionen__01-03</text>
+    </name>
+    <questiontext format="html">
       <text><![CDATA[<p>Welche Formel beschreibt den Erlös im Angebotspolypol?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
@@ -123,10 +176,10 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__ganzrationale-oekonomische-funktionen__01-03</text>
+      <text>analysis__ganzrationale-oekonomische-funktionen__01-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Der Marktpreis beträgt \(8\) GE pro ME. Wie groß ist \(E(3)\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel beschreibt den Erlös im Angebotsmonopol?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,33 +203,33 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(24\) GE</p>]]></text>
+      <text><![CDATA[<p>\(E(x)=p(x)\cdot x\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(11\) GE</p>]]></text>
+      <text><![CDATA[<p>\(E(x)=p(x)+x\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preis und Menge addiert</p>]]></text>
+        <text><![CDATA[<p>Preis und Menge addiert statt multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(5\) GE</p>]]></text>
+      <text><![CDATA[<p>\(E(x)=\frac{p(x)}{x}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Menge vom Preis abgezogen</p>]]></text>
+        <text><![CDATA[<p>Preis durch Menge geteilt statt mit der Menge multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\frac{8}{3}\) GE</p>]]></text>
+      <text><![CDATA[<p>\(E(x)=p(x)-x\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Preis durch Menge geteilt</p>]]></text>
+        <text><![CDATA[<p>Menge vom Preis abgezogen statt Preis und Menge zu multiplizieren</p>]]></text>
       </feedback>
     </answer>
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__ganzrationale-oekonomische-funktionen__01-04</text>
+      <text>analysis__ganzrationale-oekonomische-funktionen__01-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei \(x=5\) ME beträgt der Erlös \(35\) GE. Wie groß ist der Marktpreis?</p>]]></text>
@@ -229,63 +282,10 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__ganzrationale-oekonomische-funktionen__01-05</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Welche Formel beschreibt den Gewinn?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(G(x)=E(x)-K(x)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=E(x)+K(x)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Kosten zum Erlös addiert statt abgezogen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=K(x)-E(x)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Reihenfolge der Subtraktion vertauscht</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=E(x)\cdot K(x)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Erlös und Kosten multipliziert statt subtrahiert</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
       <text>analysis__ganzrationale-oekonomische-funktionen__01-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Bei einer Menge gilt \(E=30\) GE und \(K=18\) GE. Wie groß ist der Gewinn?</p>]]></text>
+      <text><![CDATA[<p>Gegeben ist \(E(x)=-2x^2+12x\). Welche Preis-Absatz-Funktion gehört dazu?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,33 +309,86 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(12\) GE</p>]]></text>
+      <text><![CDATA[<p>\(p(x)=-2x+12\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(48\) GE</p>]]></text>
+      <text><![CDATA[<p>\(p(x)=-2x^2+12x\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erlös und Kosten addiert</p>]]></text>
+        <text><![CDATA[<p>Erlösfunktion unverändert als Preis-Absatz-Funktion übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(-12\) GE</p>]]></text>
+      <text><![CDATA[<p>\(p(x)=-2x+12x\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Reihenfolge der Subtraktion vertauscht</p>]]></text>
+        <text><![CDATA[<p>Nur den quadratischen Term durch \(x\) geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(540\) GE</p>]]></text>
+      <text><![CDATA[<p>\(p(x)=-2x^3+12x^2\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erlös und Kosten multipliziert</p>]]></text>
+        <text><![CDATA[<p>Mit \(x\) multipliziert statt durch \(x\) dividiert</p>]]></text>
       </feedback>
     </answer>
   </question>
   <question type="multichoice">
     <name>
       <text>analysis__ganzrationale-oekonomische-funktionen__01-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(p(x)=10-x\). Welcher Erlösterm passt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(E(x)=(10-x)x\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(E(x)=10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Multiplikation der Preis-Absatz-Funktion mit \(x\) weggelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(E(x)=10-2x\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Menge additiv abgezogen statt mit der Preis-Absatz-Funktion multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(E(x)=\frac{10-x}{x}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Preis-Absatz-Funktion durch die Menge geteilt statt multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__ganzrationale-oekonomische-funktionen__01-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei einer Menge gilt \(G=9\) GE und \(K=11\) GE. Wie groß ist der Erlös?</p>]]></text>
@@ -388,7 +441,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__ganzrationale-oekonomische-funktionen__01-08</text>
+      <text>analysis__ganzrationale-oekonomische-funktionen__01-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Bei einer Menge gilt \(E=25\) GE und \(G=7\) GE. Wie groß sind die Kosten?</p>]]></text>
@@ -441,63 +494,10 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__ganzrationale-oekonomische-funktionen__01-09</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Im Polypol gilt \(p=6\). Welcher Erlösterm passt?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(E(x)=6x\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(x)=6+x\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Preis und Menge addiert statt multipliziert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(x)=\frac{6}{x}\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Preis durch Menge geteilt statt mit der Menge multipliziert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(x)=x-6\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Preis von der Menge abgezogen statt Preis und Menge zu multiplizieren</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
       <text>analysis__ganzrationale-oekonomische-funktionen__01-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gegeben sind \(E(x)=5x\) und \(K(x)=x+4\). Welcher Gewinnterm passt?</p>]]></text>
+      <text><![CDATA[<p>Gegeben sind \(E(x)=-x^2+8x\) und \(K(x)=2x+3\). Welcher Gewinnterm passt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(G(x)=4x-4\)</p>]]></text>
+      <text><![CDATA[<p>\(G(x)=-x^2+6x-3\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=6x+4\)</p>]]></text>
+      <text><![CDATA[<p>\(G(x)=-x^2+10x+3\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Kosten zum Erlös addiert statt abgezogen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=-4x+4\)</p>]]></text>
+      <text><![CDATA[<p>\(G(x)=x^2-6x+3\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Reihenfolge \(K-E\) statt \(E-K\) verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(x)=5x-4\)</p>]]></text>
+      <text><![CDATA[<p>\(G(x)=-x^2+6x+3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Linearen Kostenterm \(x\) beim Subtrahieren weggelassen</p>]]></text>
+        <text><![CDATA[<p>Vorzeichen des konstanten Kostenterms beim Subtrahieren nicht geändert</p>]]></text>
       </feedback>
     </answer>
   </question>

@@ -135,7 +135,7 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Ein y-Wert ist deshalb kein Absatz, sondern eine Änderungsrate: "
-            "Nach fünf Monaten wächst der Absatz um etwa eins Komma eins ME pro Monat pro Monat."
+            "Nach 5 Monaten wächst der Absatz um etwa 1,1 ME pro Monat pro Monat."
         ):
             self.play(auftritt(rate[0]), run_time=0.5)
             self.warte_bis(0.3)
@@ -189,7 +189,7 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Der Absatz ist am höchsten, wo er von wachsend zu fallend wechselt: an der Nullstelle mit Vorzeichenwechsel "
-            "von plus nach minus, hier nach acht Monaten. Die Absatzhöhe verrät dieser Graph nicht."
+            "von plus nach minus, hier nach 8 Monaten. Die Absatzhöhe verrät dieser Graph nicht."
         ):
             self.play(auftritt(null[0]), run_time=0.5)
             self.warte_bis(0.3)
@@ -224,8 +224,8 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Am stärksten steigt der Absatz im Hochpunkt von a Strich, nach etwa zwei Komma drei Monaten. "
-            "Am stärksten fällt er im Tiefpunkt, nach etwa dreizehn Komma sieben Monaten."
+            "Am stärksten steigt der Absatz im Hochpunkt von a Strich, nach etwa 2,3 Monaten. "
+            "Am stärksten fällt er im Tiefpunkt, nach etwa 13,7 Monaten."
         ):
             self.play(auftritt(extrem[0]), run_time=0.5)
             self.warte_bis(0.15)

@@ -85,8 +85,8 @@ class Video(MCSzene):
         )
         block = self.tafel(aufgabe)
         with self.sprich(
-            "Ein Pflegedienst tilgt zweihundertfünfzigtausend Euro in zwanzig Jahren, zunächst zu drei Prozent. "
-            "Nach fünf Jahren steigt der Zinssatz auf viereinhalb Prozent, die Gesamtlaufzeit bleibt."
+            "Ein Pflegedienst tilgt 250.000 Euro in 20 Jahren, zunächst zu 3 %. "
+            "Nach 5 Jahren steigt der Zinssatz auf 4,5 %, die Gesamtlaufzeit bleibt."
         ):
             self.play(auftritt(aufgabe), run_time=0.6)
             self.warte_bis(0.15)
@@ -104,8 +104,8 @@ class Video(MCSzene):
         hinweis = text("n = 20: die ganze Laufzeit", groesse=30, farbe=TEXT_LEISE)
         block = self.tafel(titel, a1, hinweis, abstand=0.5)
         with self.sprich(
-            "Die erste Annuität ist so geplant, als bliebe es bei drei Prozent: "
-            "mit der ganzen Laufzeit von zwanzig Jahren. Etwa sechzehntausendachthundertvier Euro."
+            "Die erste Annuität ist so geplant, als bliebe es bei 3 %: "
+            "mit der ganzen Laufzeit von 20 Jahren. Etwa 16.804 Euro."
         ):
             self.play(
                 auftritt(titel), strahl.zeige(phase1=phase(1, "5 Jahre", r"3\,\%", ann("A_1", farbe=HERVOR))),
@@ -134,8 +134,8 @@ class Video(MCSzene):
         hinweis = text("noch mit 3 % und der ersten Annuität", groesse=30, farbe=TEXT_LEISE)
         block = self.tafel(titel, rk5, hinweis, abstand=0.5)
         with self.sprich(
-            "Bis zum Wechsel galten drei Prozent. Mit der Restschuldformel bleiben nach fünf Jahren "
-            "etwa zweihunderttausendsechshundertvier Euro."
+            "Bis zum Wechsel galten 3 %. Mit der Restschuldformel bleiben nach 5 Jahren "
+            "etwa 200.604 Euro."
         ):
             self.play(auftritt(titel), strahl.phase(1), strahl.zeige(mitte=kapital("RK_5", "?", HERVOR)), run_time=0.6)
             self.play(auftritt(hinweis), run_time=0.5)
@@ -158,8 +158,8 @@ class Video(MCSzene):
         a2 = ergebnis("A_2", r"\frac{200\,604{,}17\cdot 1{,}045^{15}\cdot 0{,}045}{1{,}045^{15}-1}", r"18\,679{,}02")
         block = self.tafel(titel, neu, a2, abstand=0.5)
         with self.sprich(
-            "Diese Restschuld behandeln wir wie ein neues Darlehen: fünfzehn Jahre zu viereinhalb Prozent. "
-            "Die neue Annuität beträgt etwa achtzehntausendsechshundertneunundsiebzig Euro."
+            "Diese Restschuld behandeln wir wie ein neues Darlehen: 15 Jahre zu 4,5 %. "
+            "Die neue Annuität beträgt etwa 18.679 Euro."
         ):
             self.play(
                 auftritt(titel), strahl.phase(2),

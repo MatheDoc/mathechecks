@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Ein Baumknoten hat genau drei Äste. Zwei tragen \\(0{,}2\\) und \\(0{,}3\\). Welche Wahrscheinlichkeit hat der dritte?",
-            "antworten": ["\\(0{,}5\\)", "\\(0{,}06\\)", "\\(0{,}8\\)", "\\(0{,}7\\)"],
-            "fehler": ["Bekannte Astwahrscheinlichkeiten multipliziert", "Nur den ersten Ast von 1 abgezogen", "Nur den zweiten Ast von 1 abgezogen"]
+            "frage": "Ein Baum verzweigt zuerst in A, B und C. Nur bei A und B wird danach zwischen X und Y unterschieden. Welche Aussage stimmt?",
+            "antworten": ["Der Pfad über C endet nach der ersten Stufe.", "Auch C verzweigt danach in X und Y.", "Der Baum hat sechs Pfadenden.", "Nach C folgt ein Ast mit Wahrscheinlichkeit 0."],
+            "fehler": ["Endenden Pfad fortgesetzt", "Pfadenden wie bei einem vollständigen 3×2-Baum gezählt", "Nicht erfasste Stufe als Ast mit Wahrscheinlichkeit 0 gezeichnet"]
         },
         {
-            "frage": "Ein Baum verzweigt zuerst in drei Gruppen und danach jeweils in Treffer oder Niete. Wie viele Endpfade hat er?",
-            "antworten": ["\\(6\\)", "\\(5\\)", "\\(3\\)", "\\(8\\)"],
-            "fehler": ["Anzahlen der Äste addiert", "Nur die erste Stufe gezählt", "Drei binäre Stufen angenommen"]
+            "frage": "Erste Stufe: A oder B, zweite Stufe: X oder Y. Wo steht die Angabe „20 % von A haben das Merkmal X“?",
+            "antworten": ["am Ast von A nach X", "am Ende des Pfades A → X", "am Ast zu A", "an jedem Ast, der zu X führt"],
+            "fehler": ["Anteil einer Gruppe als Anteil aller gedeutet", "Bezugsgruppe als Ast eingetragen", "Anteil von A auf alle Gruppen übertragen"]
         },
         {
-            "frage": "Ein Baum hat zuerst die Gruppen A, B und C. Wo wird die Angabe „Von Gruppe B sind 40 % erfolgreich“ eingetragen?",
-            "antworten": ["Am Erfolgsast nach B", "Am ersten Ast zu B", "Am Ende jedes Erfolgspfades", "Am Erfolgsast nach A"],
-            "fehler": ["Bedingten Anteil mit Gruppenanteil verwechselt", "Bedingten Anteil als Pfadwahrscheinlichkeit verwendet", "Bezugsgruppe verwechselt"]
+            "frage": "Erste Stufe: A oder B, zweite Stufe: X oder Y. Wo steht die Angabe „20 % aller gehören zu A und haben das Merkmal X“?",
+            "antworten": ["am Ende des Pfades A → X", "am Ast von A nach X", "am Ast zu A", "an jedem Ast, der zu X führt"],
+            "fehler": ["Anteil aller als Anteil der Gruppe A gedeutet", "Nur das erste Merkmal beachtet", "Gesamtanteil und Pfadende verwechselt"]
         },
         {
-            "frage": "Ein dreistufiger Pfad trägt \\(0{,}5\\), \\(0{,}4\\) und \\(0{,}5\\). Wie groß ist seine Pfadwahrscheinlichkeit?",
-            "antworten": ["\\(0{,}1\\)", "\\(0{,}2\\)", "\\(0{,}25\\)", "\\(1{,}4\\)"],
-            "fehler": ["Den dritten Ast nicht berücksichtigt", "Den mittleren Ast nicht berücksichtigt", "Astwahrscheinlichkeiten addiert"]
+            "frage": "Erste Stufe: A oder B, zweite Stufe: X oder Y. Was bedeutet „Insgesamt haben 30 % das Merkmal X“ im Baum?",
+            "antworten": ["Die Pfadenden von A → X und B → X ergeben 0,3.", "An jedem Ast nach X steht 0,3.", "Das Pfadende von A → X ist 0,3.", "Der Ast zu A hat die Wahrscheinlichkeit 0,3."],
+            "fehler": ["Gesamtanteil an jeden Ast geschrieben", "Gesamtanteil einem einzelnen Pfad zugeordnet", "Merkmal der zweiten Stufe mit der ersten Stufe verwechselt"]
         },
         {
-            "frage": "Ein dreistufiger Pfad hat Wahrscheinlichkeit \\(0{,}06\\). Die ersten beiden Äste tragen \\(0{,}5\\) und \\(0{,}4\\). Welchen Wert hat der dritte Ast?",
-            "antworten": ["\\(0{,}3\\)", "\\(0{,}012\\)", "\\(0{,}12\\)", "\\(0{,}15\\)"],
-            "fehler": ["Pfadwahrscheinlichkeit mit den Astwerten multipliziert", "Nur durch den ersten Astwert dividiert", "Nur durch den zweiten Astwert dividiert"]
+            "frage": "Von 400 Befragten gehören 100 zur Gruppe A. Welcher Wert steht im Baumdiagramm am Ast zu A?",
+            "antworten": ["\\(0{,}25\\)", "\\(100\\)", "\\(0{,}75\\)", "\\(4\\)"],
+            "fehler": ["Absolute Häufigkeit eingetragen", "Anteil der übrigen Befragten berechnet", "Gesamtzahl durch Teilgruppe geteilt"]
         },
         {
-            "frage": "Ein Ereignis besteht aus genau drei Endpfaden und hat Wahrscheinlichkeit \\(0{,}6\\). Zwei Pfade haben \\(0{,}1\\) und \\(0{,}2\\). Wie groß ist der dritte?",
-            "antworten": ["\\(0{,}3\\)", "\\(0{,}9\\)", "\\(0{,}4\\)", "\\(0{,}02\\)"],
-            "fehler": ["Bekannte Pfade zur Ereigniswahrscheinlichkeit addiert", "Nur einen bekannten Pfad abgezogen", "Bekannte Pfadwahrscheinlichkeiten multipliziert"]
+            "frage": "Erste Stufe: A oder B, zweite Stufe: X oder Y. Was gibt das Pfadende von A → X an?",
+            "antworten": ["den Anteil aller, die zu A gehören und X haben", "den Anteil derer aus A, die X haben", "den Anteil aller, die X haben", "den Anteil aller, die zu A gehören"],
+            "fehler": ["Pfadende mit dem Wert am Ast verwechselt", "Pfadende mit dem Gesamtanteil von X verwechselt", "Nur die erste Stufe beachtet"]
         },
         {
-            "frage": "Unter dem ersten Ast A enden genau drei Pfade mit \\(0{,}1\\), \\(0{,}2\\) und \\(0{,}3\\). Wie groß ist \\(P(A)\\)?",
-            "antworten": ["\\(0{,}6\\)", "\\(0{,}006\\)", "\\(0{,}4\\)", "\\(0{,}3\\)"],
-            "fehler": ["Pfadwahrscheinlichkeiten multipliziert", "Gegenwahrscheinlichkeit der Summe gebildet", "Nur den größten Pfad übernommen"]
+            "frage": "Es gibt höchstens drei Versuche. Wer besteht (B), tritt nicht mehr an, sonst folgt ein neuer Versuch (N). Welcher Pfad kommt im Baum nicht vor?",
+            "antworten": ["B → N", "N → B", "N → N → B", "N → N → N"],
+            "fehler": ["Gültiger Pfad: Bestehen im zweiten Versuch", "Gültiger Pfad: Bestehen im dritten Versuch", "Gültiger Pfad: dreimal nicht bestanden"]
         },
         {
-            "frage": "Gruppe A umfasst 40 % aller Personen. 10 % aller Personen gehören zu A und sind erfolgreich. Wie viel Prozent von A sind erfolgreich?",
-            "antworten": ["\\(25\\,\\%\\)", "\\(4\\,\\%\\)", "\\(10\\,\\%\\)", "\\(30\\,\\%\\)"],
-            "fehler": ["Anteile multipliziert statt dividiert", "Anteil an allen Personen übernommen", "Anteile subtrahiert statt dividiert"]
+            "frage": "Ein Spiel endet, sobald A oder B zwei Runden gewonnen hat. Welcher Pfad kommt im Baum vor?",
+            "antworten": ["A → B → A", "A → A → B", "B → B → A", "A → B"],
+            "fehler": ["Nach zwei Siegen von A weitergespielt", "Nach zwei Siegen von B weitergespielt", "Beim Stand 1:1 schon beendet"]
         },
         {
-            "frage": "Im Baum gilt \\(P(A)=0{,}2\\). Unter A soll ein Endpfad die Wahrscheinlichkeit \\(0{,}3\\) haben. Welche Aussage stimmt?",
-            "antworten": ["Unmöglich: Der Endpfad kann nicht größer als P(A) sein.", "Möglich: Die Astwahrscheinlichkeit danach ist 1,5.", "Möglich: Endpfade sind immer unabhängig von P(A).", "Unmöglich: Endpfade müssen mindestens 0,5 haben."],
-            "fehler": ["Eine Astwahrscheinlichkeit über 1 zugelassen", "Teilereignisbeziehung nicht berücksichtigt", "Eine nicht existierende Untergrenze angenommen"]
+            "frage": "Es gilt \\(P(A)=0{,}4\\). Das Pfadende von A → X ist \\(0{,}1\\). Welcher Wert steht am Ast von A nach X?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}04\\)", "\\(0{,}3\\)", "\\(4\\)"],
+            "fehler": ["Multipliziert statt dividiert", "Subtrahiert statt dividiert", "Division vertauscht"]
         },
         {
-            "frage": "Ein Baumknoten hat genau drei Äste. Nur einer ist mit \\(0{,}4\\) bekannt. Was lässt sich über die beiden anderen sagen?",
-            "antworten": ["Ihre Summe ist 0,6; einzeln sind sie noch unbekannt.", "Beide haben sicher die Wahrscheinlichkeit 0,3.", "Beide haben sicher die Wahrscheinlichkeit 0,6.", "Ihr Produkt muss 0,6 sein."],
-            "fehler": ["Gleiche Astwahrscheinlichkeiten ohne Angabe angenommen", "Die Restsumme jedem Ast einzeln zugewiesen", "Summenregel mit Produktregel verwechselt"]
+            "frage": "Erste Stufe: A oder B, zweite Stufe: X oder Y. Insgesamt haben 30 % das Merkmal X, das Pfadende von A → X ist 0,12. Wie groß ist das Pfadende von B → X?",
+            "antworten": ["\\(0{,}18\\)", "\\(0{,}42\\)", "\\(0{,}036\\)", "\\(0{,}7\\)"],
+            "fehler": ["Addiert statt subtrahiert", "Multipliziert statt subtrahiert", "Gegenwahrscheinlichkeit des Gesamtanteils gebildet"]
         }
     ]
 }

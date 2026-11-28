@@ -83,7 +83,7 @@ class Video(MCSzene):
         self.einstieg(
             "Wie löst du ein LGS", "mit zwei Unbekannten?",
             bild=[LaggedStart(*[Write(zeile) for zeile in lgs], lag_ratio=0.35)],
-            sprechtext="Wie löst du ein lineares Gleichungssystem mit zwei Unbekannten?",
+            sprechtext="Wie löst du ein lineares Gleichungssystem mit 2 Unbekannten?",
         )
 
         self.idee()
@@ -105,7 +105,7 @@ class Video(MCSzene):
         unbekannte = [self.i[0], self.i[2], self.ii[0], self.ii[2]]
         with self.sprich(
             "In jeder Gleichung stecken x und y. Wir kombinieren die Gleichungen so, "
-            "dass nur noch eine Unbekannte übrig bleibt. Dafür gibt es drei Wege."
+            "dass nur noch eine Unbekannte übrig bleibt. Dafür gibt es 3 Wege."
         ):
             self.play(
                 *[teil.animate(rate_func=rate_functions.there_and_back).scale(1.35) for teil in unbekannte],
@@ -158,8 +158,8 @@ class Video(MCSzene):
         aufgeloest, eingesetzt, ergebnis = rechnung
         self.tafel(kopf, rechnung, abstand=0.6)
         with self.sprich(
-            "Zweitens, das Einsetzungsverfahren: Gleichung zwei nach y auflösen "
-            "und in Gleichung eins einsetzen. Auch hier ist das y weg."
+            "Zweitens, das Einsetzungsverfahren: Gleichung 2 nach y auflösen "
+            "und in Gleichung 1 einsetzen. Auch hier ist das y weg."
         ):
             self.play(auftritt(kopf), run_time=0.5)
             self.warte_bis(0.25)
@@ -234,7 +234,7 @@ class Video(MCSzene):
         self.loesung = loesung = self.kopf("x=", "4", r"\quad y=", "5")
         loesung[1].set_color(BLAU)
         loesung[3].set_color(ROSE)
-        with self.sprich("Jeder Weg führt auf fünf x gleich zwanzig. Also x gleich vier."):
+        with self.sprich("Jeder Weg führt auf 5 x gleich 20. Also x gleich 4."):
             self.play(LaggedStart(*[auftritt(zeile) for zeile in wege], lag_ratio=0.25), run_time=1.0)
             self.warte_bis(0.45)
             self.play(
@@ -259,7 +259,7 @@ class Video(MCSzene):
         y_ist = gl("y", "=", "5", farben={2: ROSE})
         self.tafel(kopf, einsatz, y_ist, abstand=0.5)
         with self.sprich(
-            "Das setzen wir in Gleichung eins ein: zwei mal vier plus y gleich dreizehn. Also y gleich fünf."
+            "Das setzen wir in Gleichung 1 ein: 2 mal 4 plus y gleich 13. Also y gleich 5."
         ):
             self.play(
                 auftritt(kopf),

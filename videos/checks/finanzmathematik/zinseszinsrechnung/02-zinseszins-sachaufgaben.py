@@ -131,8 +131,8 @@ class Video(MCSzene):
         merke = text("3 gegeben, 1 gesucht", groesse=44, gewicht=BOLD, farben={"1 gesucht": HERVOR})
         idee = self.tafel(groessen, zinsfaktor, merke, abstand=0.65)
         with self.sprich(
-            "In jeder Aufgabe stecken vier Größen: das Anfangskapital K null, das Kapital nach n Jahren, "
-            "der Zinssatz und die Laufzeit. Drei stehen im Text, die vierte ist gesucht."
+            "In jeder Aufgabe stecken 4 Größen: das Anfangskapital K null, das Kapital nach n Jahren, "
+            "der Zinssatz und die Laufzeit. 3 stehen im Text, die vierte ist gesucht."
         ):
             for zeile, platz, beginn in zip(groessen, ("anfang", "ende", "zins", "dauer"), (0.2, 0.36, 0.53, 0.63)):
                 self.warte_bis(beginn)
@@ -157,8 +157,8 @@ class Video(MCSzene):
             gesucht=("ende", ende("?", HERVOR)),
             ergebnis=(ergebnis, ende(r"\approx 14\,264{,}23", HERVOR)),
             gegeben_ab=0.5, betont_ab=0.6, betont=("anfang",), gesucht_ab=0.7, rechnung_ab=(0.9, 0.97),
-            sprechtext="Ein Verein legt zwölftausend Euro zu zweieinhalb Prozent an. "
-                       "Über welchen Betrag kann er nach sieben Jahren verfügen? "
+            sprechtext="Ein Verein legt 12.000 Euro zu 2,5 % an. "
+                       "Über welchen Betrag kann er nach 7 Jahren verfügen? "
                        "Angelegt wird am Anfang, das ist K null. Gesucht ist der Betrag am Ende, also K n. "
                        "Einsetzen und ausrechnen.",
         )
@@ -184,10 +184,10 @@ class Video(MCSzene):
             ergebnis=(ergebnis, anfang(r"\approx 8\,374{,}84", HERVOR)),
             gegeben_ab=0.52, betont_ab=0.66, betont=("spaeter", "ende"), gesucht_ab=0.78,
             rechnung_ab=(0.83, 0.9, 0.97),
-            sprechtext="In sechs Jahren will der Verein über zehntausend Euro verfügen. "
-                       "Welchen Betrag muss er heute zu drei Prozent anlegen? "
-                       "Die zehntausend Euro sind der spätere Betrag, also K n. "
-                       "Gesucht ist K null: durch q hoch sechs teilen.",
+            sprechtext="In 6 Jahren will der Verein über 10.000 Euro verfügen. "
+                       "Welchen Betrag muss er heute zu 3 % anlegen? "
+                       "Die 10.000 Euro sind der spätere Betrag, also K n. "
+                       "Gesucht ist K null: durch q hoch 6 teilen.",
         )
 
         # ---------- n gesucht ----------
@@ -209,8 +209,8 @@ class Video(MCSzene):
             gesucht=("dauer", angabe(r"n=\,?", HERVOR)),
             ergebnis=(logarithmus[4], angabe(r"n\approx 9{,}73", HERVOR)),
             gegeben_ab=0.3, gesucht_ab=0.57, rechnung_ab=(0.66, 0.75, 0.87),
-            sprechtext="Dreitausend Euro zu drei Prozent: Nach wie vielen Jahren sind es viertausend Euro? "
-                       "Gesucht ist n. Durch dreitausend teilen, dann den Logarithmus anwenden.",
+            sprechtext="3000 Euro zu 3 %: Nach wie vielen Jahren sind es 4000 Euro? "
+                       "Gesucht ist n. Durch 3000 teilen, dann den Logarithmus anwenden.",
         )
 
         # ---------- p gesucht ----------
@@ -234,7 +234,7 @@ class Video(MCSzene):
             ergebnis=(ergebnis, angabe(r"p\approx 3{,}14\,\%", HERVOR)),
             gegeben_ab=0.45, betont_ab=0.56, betont=("spaeter", "ende"), gesucht_ab=0.7,
             rechnung_ab=(0.78, 0.85, 0.94),
-            sprechtext="Vor zwölf Jahren achttausend Euro angelegt, heute sind es elftausendsechshundert. "
+            sprechtext="Vor 12 Jahren 8000 Euro angelegt, heute sind es 11.600. "
                        "Mit welchem Zinssatz? Heute ist diesmal das Ende, also K n. "
                        "Gesucht ist p: teilen, zwölfte Wurzel ziehen, dann p berechnen.",
         )

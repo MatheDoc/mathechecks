@@ -4,7 +4,7 @@ import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficienc
 import { createRunXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
-import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261127-venn";
+import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20261127-tree-choice3";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20261127-venn";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction, createCardTaskPicker } from "./ui/card-actions-menu.js";
@@ -14,6 +14,7 @@ import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
 import { vennKontext } from "../visuals/venn.js?v=20261127-venn";
+import { treeChoiceKontext } from "../visuals/baumdiagramm-allgemein.js?v=20261127-tree-choice3";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
@@ -452,7 +453,11 @@ function buildTaskVisualContext(task) {
   if (!spec || typeof spec !== "object") return "";
 
   try {
-    const readableContext = spec.type === "ab-tree" ? buildAbTreeVisualContext(spec) : "";
+    const readableContext = spec.type === "ab-tree"
+      ? buildAbTreeVisualContext(spec)
+      : spec.type === "tree-choice"
+        ? treeChoiceKontext(spec)
+        : "";
     const rawContext = truncateText(JSON.stringify(spec), 6000);
     return [readableContext, rawContext ? `Rohdaten: ${rawContext}` : ""].filter(Boolean).join("\n\n");
   } catch {

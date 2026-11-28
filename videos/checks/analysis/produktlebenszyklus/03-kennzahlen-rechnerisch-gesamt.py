@@ -5,7 +5,8 @@ alle Kennzahlen folgen demselben Muster (Bedingung aufstellen, Klammer null, ein
 Beispiel: a(t) = (4t + 2) * e^(-0,2 t) + 3 aus dem Musterbeispiel des Checks, ohne Abweichung.
 Didaktisch reduziert: Gerechnet werden höchster Absatz, stärkster Rückgang (mit Anstieg am Rand) und langfristiger
 Absatz. Markteinführung a(0), Änderungsrate a'(t0) und Zeitraum über c (Rechner) stehen nur in der Kurzfassung;
-die hinreichende Bedingung nur über den Vorzeichenwechsel, a'' < 0 fehlt bewusst.
+die hinreichende Bedingung für den Hochpunkt kurz über a''(t) < 0, ohne Vorzeichenwechsel.
+Die Einheit von a' (ME/Monat pro Monat) steht nicht als Einheit am Wert, sondern als Satz darunter.
 """
 import math
 
@@ -74,9 +75,9 @@ class Video(MCSzene):
             kopf=kopf,
         )
 
-        # ---------- Der Trick: e-Funktion wird nie null ----------
+        # ---------- Hinweis vorab: e-Funktion wird nie null ----------
         trick = self.tafel(
-            titel("Der Trick"),
+            leise("Hinweis vorab", groesse=32),
             reihe(formel(r"e^{-0{,}2t}>0"), leise("wird nie null"), abstand=0.35, grundlinie=True),
             formel(r"(\dots)", r"\cdot e^{-0{,}2t}=0"),
             formel(r"\Leftrightarrow\quad", r"(\dots)", r"=0"),
@@ -85,8 +86,8 @@ class Video(MCSzene):
         trick[2][0].set_color(HERVOR)
         trick[3][1].set_color(HERVOR)
         with self.sprich(
-            "Die Ableitungen haben immer die Form Klammer mal e hoch minus null Komma zwei t. "
-            "Die e-Funktion wird nie null. Also setzen wir einfach die Klammer null."
+            "Ein Hinweis vorab: Die Ableitungen haben immer die Form Klammer mal e hoch minus 0,2 t. "
+            "Die e-Funktion wird nie 0. Also genügt es, die Klammer 0 zu setzen."
         ):
             self.play(auftritt(trick[0]), run_time=0.5)
             self.warte_bis(0.1)
@@ -113,14 +114,14 @@ class Video(MCSzene):
             titel("Höchster Absatz"),
             ableitung,
             loesung,
-            reihe(leise("Vorzeichenwechsel"), formel(r"+\to-", groesse=40), leise("Maximum"), abstand=0.25, grundlinie=True),
+            reihe(formel(r"a''(4{,}5)\approx-0{,}33<0"), leise("Maximum"), abstand=0.35, grundlinie=True),
             mit_einheit(hoehe, "ME/Monat"),
             abstand=0.4,
         )
         with self.sprich(
-            "Höchster Absatz: a Strich gleich null. Die Klammer ist null bei t gleich vier Komma fünf "
-            "und wechselt dort von plus nach minus: ein Maximum. "
-            "Eingesetzt in a: etwa elf Komma eins drei ME pro Monat."
+            "Höchster Absatz: a Strich gleich 0. Die Klammer ist 0 bei t gleich 4,5. "
+            "Die zweite Ableitung ist dort negativ: ein Maximum. "
+            "Eingesetzt in a: etwa 11,13 ME pro Monat."
         ):
             self.play(auftritt(hoch[0]), run_time=0.5)
             self.play(auftritt(hoch[1]), run_time=0.6)
@@ -153,25 +154,31 @@ class Video(MCSzene):
             titel("Stärkster Rückgang"),
             zweite,
             wende,
-            mit_einheit(rueckgang, "ME/Monat pro Monat"),
+            rueckgang,
+            VGroup(
+                leise("Pro Monat sinkt der Absatz", groesse=28),
+                leise("um etwa 0,6 ME/Monat.", groesse=28),
+            ).arrange(DOWN, buff=0.15),
             reihe(leise("stärkster Anstieg am Rand:"), anstieg, abstand=0.3, grundlinie=True),
             abstand=0.4,
         )
         with self.sprich(
-            "Stärkster Rückgang: a zwei Strich gleich null, also t gleich neun Komma fünf. "
-            "Dort fällt der Absatz um etwa null Komma sechs ME pro Monat pro Monat. "
+            "Stärkster Rückgang: a zwei Strich gleich 0, also t gleich 9,5. "
+            "a Strich ist dort etwa minus 0,6: Pro Monat sinkt der Absatz um 0,6 ME pro Monat. "
             "Eine weitere Wendestelle gibt es nicht, der stärkste Anstieg liegt deshalb am Rand: "
-            "bei der Markteinführung, mit drei Komma sechs."
+            "bei der Markteinführung, mit 3,6."
         ):
             self.play(auftritt(rate[0]), run_time=0.5)
             self.play(auftritt(rate[1]), run_time=0.6)
-            self.warte_bis(0.12)
+            self.warte_bis(0.1)
             self.play(Write(rate[2]), run_time=0.9)
             self.play(Create(linie_wende), GrowFromCenter(punkt_wende), welle(ort_wende, BLAU), run_time=0.7)
-            self.warte_bis(0.3)
+            self.warte_bis(0.25)
             self.play(Write(rate[3]), run_time=0.8)
-            self.warte_bis(0.72)
-            self.play(GrowFromCenter(punkt_start), welle(ort_start, BLAU), auftritt(rate[4]), run_time=0.8)
+            self.warte_bis(0.4)
+            self.play(auftritt(rate[4]), run_time=0.6)
+            self.warte_bis(0.76)
+            self.play(GrowFromCenter(punkt_start), welle(ort_start, BLAU), auftritt(rate[5]), run_time=0.8)
         self.wait(0.4)
         self.play(FadeOut(rate, shift=0.25 * UP), run_time=0.4)
 
@@ -192,8 +199,8 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Langfristig geht Klammer mal e-Funktion gegen null, übrig bleibt die Drei: "
-            "Auf Dauer werden etwa drei ME pro Monat abgesetzt. "
+            "Langfristig geht Klammer mal e-Funktion gegen 0, übrig bleibt die 3: "
+            "Auf Dauer werden etwa 3 ME pro Monat abgesetzt. "
             "Ohne die Konstante endet der Zyklus meist mit dem Marktaustritt, an der positiven Nullstelle der Klammer."
         ):
             self.play(auftritt(langfristig[0]), run_time=0.5)
@@ -221,8 +228,8 @@ class Video(MCSzene):
         )
         self.tafel(punkte)
         with self.sprich(
-            "Kurz gesagt: Markteinführung: a von null. Höchster Absatz: a Strich gleich null. "
-            "Stärkster Anstieg oder Rückgang: a zwei Strich gleich null, Randstellen mitprüfen. "
+            "Kurz gesagt: Markteinführung: a von 0. Höchster Absatz: a Strich gleich 0. "
+            "Stärkster Anstieg oder Rückgang: a zwei Strich gleich 0, Randstellen mitprüfen. "
             "Langfristig: der Grenzwert. Und über einem Wert c liegt der Absatz zwischen den Lösungen von a von t gleich c."
         ):
             self.warte_bis(0.03)

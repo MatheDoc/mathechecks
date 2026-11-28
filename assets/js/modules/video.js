@@ -1,5 +1,7 @@
 // Erklärvideo pro Check (Modul „Video“). Quelle: Feld `video` (YouTube-ID) in checks.json.
+// Alle Videos des Lernbereichs stehen untereinander (eine Karte pro Check, wie in Training/Recall/Feynman).
 // Zunächst nur das eigene Vorschaubild; erst der Klick lädt den YouTube-Player (youtube-nocookie) und startet ihn.
+// Es läuft höchstens ein Video: Startet ein anderes oder scrollt es aus dem Bild, pausiert es.
 // Kein Fortschritt, kein Feed, keine XP. Einbindung und Datenschutz: videos/README.md
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -9,8 +11,10 @@ const JUMP_NAV_ID = "video-jump-nav";
 const WARMUP_IDS_ID = "video-warmup-ids";
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
 
+const VISIBLE_RATIO = 0.4;
+
 let apiPromise = null;
-let activePlayer = null;
+const players = new Set();
 
 function el(tag, className = "", html = null) {
   const node = document.createElement(tag);
@@ -49,13 +53,18 @@ function loadYouTubeApi() {
   return apiPromise;
 }
 
-function destroyActivePlayer() {
+function pausePlayer(player) {
   try {
-    activePlayer?.destroy();
+    if (player?.getPlayerState?.() === window.YT?.PlayerState?.PLAYING) player.pauseVideo();
   } catch {
     /* Player war noch nicht bereit */
   }
-  activePlayer = null;
+}
+
+function pauseOthers(current) {
+  players.forEach((player) => {
+    if (player !== current) pausePlayer(player);
+  });
 }
 
 const PLAY_ICON = '<svg viewBox="1.8 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>';
@@ -95,9 +104,10 @@ function buildNextLinks(entry) {
   return links;
 }
 
-function renderPlayer(root, entry, { vorschauBase }) {
-  destroyActivePlayer();
-  root.innerHTML = "";
+function renderCard(entry, { vorschauBase }) {
+  const section = el("section", "check-viewport-item check-viewport-item--scroll-card");
+  section.id = `check-${entry.nummer}`;
+  section.dataset.checkId = entry.check_id;
 
   const card = el("article", "check-card check-card--video vid-card");
   const header = el("div", "check-card__header");
@@ -134,8 +144,7 @@ function renderPlayer(root, entry, { vorschauBase }) {
 
   body.appendChild(frame);
   card.append(header, body);
-  root.appendChild(card);
-  window.MathJax?.typesetPromise?.([card]).catch(() => {});
+  section.appendChild(card);
 
   let player = null;
   let ended = false;
@@ -163,7 +172,6 @@ function renderPlayer(root, entry, { vorschauBase }) {
       status.textContent = `${error.message} Bitte später erneut versuchen oder das Video direkt auf YouTube ansehen.`;
       return;
     }
-    if (!root.contains(frame)) return; // Check gewechselt, während die Schnittstelle lud
     const target = el("div");
     host.appendChild(target);
     player = new YT.Player(target, {
@@ -185,6 +193,7 @@ function renderPlayer(root, entry, { vorschauBase }) {
           frame.classList.add("is-active");
         },
         onStateChange: (event) => {
+          if (event.data === YT.PlayerState.PLAYING) pauseOthers(player);
           if (event.data === YT.PlayerState.ENDED) showEnd(true);
           else if (event.data === YT.PlayerState.PLAYING && ended) showEnd(false);
         },
@@ -195,7 +204,7 @@ function renderPlayer(root, entry, { vorschauBase }) {
         },
       },
     });
-    activePlayer = player;
+    players.add(player);
   }
 
   poster.addEventListener("click", start);
@@ -204,6 +213,23 @@ function renderPlayer(root, entry, { vorschauBase }) {
     player?.seekTo(0, true);
     player?.playVideo();
   });
+
+  frame.pauseVideo = () => pausePlayer(player);
+  return section;
+}
+
+// Video pausieren, sobald es größtenteils aus dem Bild gescrollt ist
+function bindPauseWhenHidden(frames) {
+  if (typeof IntersectionObserver !== "function") return;
+  const observer = new IntersectionObserver(
+    (records) => {
+      records.forEach((record) => {
+        if (record.intersectionRatio < VISIBLE_RATIO) record.target.pauseVideo?.();
+      });
+    },
+    { threshold: [0, VISIBLE_RATIO] }
+  );
+  frames.forEach((frame) => observer.observe(frame));
 }
 
 /* ───────────────────────── Modul: Auswahl pro Lernbereich ───────────────────────── */
@@ -238,35 +264,82 @@ function buildEntries(checks, warmupIds) {
     .sort((a, b) => a.nummer - b.nummer);
 }
 
-function resolveEntryFromLocation(entries, preferredCheckId = "") {
-  const preferred = String(preferredCheckId || "").trim();
-  if (preferred) {
-    const byId = entries.find((entry) => entry.check_id === preferred);
-    if (byId) return byId;
+function scrollModMainToEl(target) {
+  const container = document.querySelector(".mod-main");
+  if (!container) {
+    target.scrollIntoView({ behavior: "auto", block: "start" });
+    return;
   }
-  const rawHash = window.location.hash || "";
-  const hash = decodeURIComponent(rawHash.startsWith("#") ? rawHash.slice(1) : rawHash);
-  const match = /^check-(\d+)$/.exec(hash);
-  if (match) {
-    const byNummer = entries.find((entry) => entry.nummer === Number(match[1]));
-    if (byNummer) return byNummer;
-  }
-  return entries[0] || null;
+  const tabNav = container.querySelector(".mod-tab-nav");
+  const jumpNavWrap = container.querySelector(".check-jump-nav-wrap");
+  const offset = (tabNav ? tabNav.offsetHeight : 0) + (jumpNavWrap ? jumpNavWrap.offsetHeight : 0);
+  const y = container.scrollTop + target.getBoundingClientRect().top - container.getBoundingClientRect().top - offset;
+  container.scrollTo({ top: Math.max(0, y), behavior: "auto" });
 }
 
-function renderJumpNav(navNode, entries, activeCheckId) {
+function setJumpNavActive(navNode, checkId) {
+  if (!navNode) return;
+  navNode.querySelectorAll(".check-jump-tab").forEach((tab) => {
+    const active = tab.dataset.checkId === checkId;
+    tab.classList.toggle("active", active);
+    if (active) tab.setAttribute("aria-current", "true");
+    else tab.removeAttribute("aria-current");
+  });
+}
+
+function renderJumpNav(navNode, entries) {
   if (!navNode) return;
   navNode.innerHTML = "";
   entries.forEach((entry) => {
-    const active = entry.check_id === activeCheckId;
-    const tab = el("a", `check-jump-tab${active ? " active" : ""}`);
+    const tab = el("a", "check-jump-tab");
     tab.href = `#check-${entry.nummer}`;
     tab.dataset.checkId = entry.check_id;
     tab.textContent = `${entry.nummer}. ${entry.titel || "Check"}`;
-    if (active) tab.setAttribute("aria-current", "true");
     navNode.appendChild(tab);
   });
+  navNode.addEventListener("click", (event) => {
+    const tab = event.target.closest(".check-jump-tab");
+    if (!tab) return;
+    event.preventDefault();
+    const target = document.getElementById(tab.getAttribute("href").slice(1));
+    if (!target) return;
+    setJumpNavActive(navNode, tab.dataset.checkId);
+    scrollModMainToEl(target);
+  });
   enhanceCheckJumpNav(navNode);
+}
+
+// Aktiven Reiter beim Scrollen mitführen (wie in Feynman und Recall)
+function bindJumpNavScrollSync(navNode, sections) {
+  if (!navNode || !sections.length) return;
+  const update = () => {
+    const offsetTop = 210;
+    let passed = null;
+    let upcoming = null;
+    let upcomingDistance = Number.POSITIVE_INFINITY;
+    sections.forEach((section) => {
+      const distance = section.getBoundingClientRect().top - offsetTop;
+      if (distance <= 0) {
+        passed = section;
+      } else if (distance < upcomingDistance) {
+        upcomingDistance = distance;
+        upcoming = section;
+      }
+    });
+    setJumpNavActive(navNode, (passed || upcoming || sections[0]).dataset.checkId);
+  };
+  let ticking = false;
+  const onChange = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      ticking = false;
+      update();
+    });
+  };
+  (document.querySelector(".mod-main") || window).addEventListener("scroll", onChange, { passive: true });
+  window.addEventListener("resize", onChange);
+  update();
 }
 
 export async function initVideoModule({ root, lernbereich, preferredCheckId = "" } = {}) {
@@ -290,17 +363,18 @@ export async function initVideoModule({ root, lernbereich, preferredCheckId = ""
     return;
   }
 
-  let activeCheckId = "";
-  const show = (entry) => {
-    if (!entry || entry.check_id === activeCheckId) return;
-    activeCheckId = entry.check_id;
-    renderJumpNav(navNode, entries, activeCheckId);
-    renderPlayer(root, entry, options);
-  };
+  renderJumpNav(navNode, entries);
+  const sections = entries.map((entry) => renderCard(entry, options));
+  root.replaceChildren(...sections);
+  window.MathJax?.typesetPromise?.([root]).catch(() => {});
+  bindPauseWhenHidden(sections.map((section) => section.querySelector(".vid-frame")));
+  bindJumpNavScrollSync(navNode, sections);
 
-  show(resolveEntryFromLocation(entries, preferredCheckId));
-
-  window.addEventListener("hashchange", () => {
-    show(resolveEntryFromLocation(entries));
-  });
+  // Sprung per #check-<Nummer> übernimmt app.js (scrollToTargetId)
+  const preferred = String(preferredCheckId || "").trim();
+  const preferredSection = preferred ? sections.find((section) => section.dataset.checkId === preferred) : null;
+  if (preferredSection) {
+    setJumpNavActive(navNode, preferred);
+    scrollModMainToEl(preferredSection);
+  }
 }

@@ -451,29 +451,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "funktionsterme-e1k3"
-                }
-            ]
-        },
-        {
-            "generator": "analysis.ganzrationale_oekonomische_funktionen.funktionsterme_e2k3",
-            "seed": 778,
-            "targets": [
-                {
-                    "gebiet": "analysis",
-                    "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "funktionsterme-e2k3"
-                }
-            ]
-        },
-        {
-            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_rechnerisch",
-            "seed": 888,
-            "targets": [
-                {
-                    "gebiet": "analysis",
-                    "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-rechnerisch-e1k3"
+                    "sammlung": "funktionsterme"
                 }
             ]
         },
@@ -484,29 +462,40 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-graphisch-e1k3"
+                    "sammlung": "kennzahlen-graphisch"
                 }
             ]
         },
         {
-            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_rechnerisch_e2k3",
-            "seed": 990,
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.grenzfunktionen_graphisch",
+            "seed": 890,
             "targets": [
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-rechnerisch-e2k3"
+                    "sammlung": "grenzfunktionen-graphisch"
                 }
             ]
         },
         {
-            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_graphisch_e2k3",
-            "seed": 991,
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_rechnerisch",
+            "seed": 888,
             "targets": [
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-graphisch-e2k3"
+                    "sammlung": "kennzahlen-rechnerisch"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.gewinnanalyse",
+            "seed": 894,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "gewinnanalyse"
                 }
             ]
         },
@@ -1050,24 +1039,14 @@
             ]
         },
         {
-            "generator": "stochastik.mehrstufige_zufallsexperimente.baumdiagramm_komplex_3kat",
-            "seed": 3100,
+            "generator": "stochastik.mehrstufige_zufallsexperimente.baumdiagramm_komplex",
+            "seed": 3120,
+            "count": 30,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-komplex-var1"
-                }
-            ]
-        },
-        {
-            "generator": "stochastik.mehrstufige_zufallsexperimente.baumdiagramm_komplex_nutzung_3kat",
-            "seed": 3110,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-komplex-var2"
+                    "sammlung": "baumdiagramm-komplex"
                 }
             ]
         },

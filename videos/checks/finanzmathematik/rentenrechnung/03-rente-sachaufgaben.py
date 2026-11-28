@@ -80,7 +80,7 @@ class Video(MCSzene):
         fragen = kurzfassung(zahlung, bewertung, gesucht)
         block = self.tafel(fragen)
         with self.sprich(
-            "Drei Fragen an den Text. Wann wird gezahlt? Jahresanfang heißt vorschüssig, "
+            "3 Fragen an den Text. Wann wird gezahlt? Jahresanfang heißt vorschüssig, "
             "Jahresende nachschüssig. Wann wird bewertet? Am Ende: Endwert, heute: Barwert. "
             "Und: Was ist gesucht?"
         ):
@@ -117,8 +117,8 @@ class Video(MCSzene):
             gesucht=lambda: [self.strahl.zeige(endwert=wert(r"\overline{R}_{15}", "?", RIGHT, HERVOR))],
             gegeben_ab=0.55, gesucht_ab=0.68, rechnung_ab=(0.85, 0.95),
             uebernahme=("endwert", wert(r"\overline{R}_{15}", r"\approx 34\,482{,}39", RIGHT, HERVOR), ergebnis_a),
-            sprechtext="Eine Praxis zahlt fünfzehn Jahre lang zu Jahresbeginn achtzehnhundert Euro ein, "
-                       "zu drei Prozent. Über welchen Betrag verfügt sie am Ende? "
+            sprechtext="Eine Praxis zahlt 15 Jahre lang zu Jahresbeginn 1800 Euro ein, "
+                       "zu 3 %. Über welchen Betrag verfügt sie am Ende? "
                        "Jahresbeginn heißt vorschüssig. Gesucht ist der Wert am Ende, "
                        "also der vorschüssige Endwert. Einsetzen und ausrechnen.",
         )
@@ -139,9 +139,9 @@ class Video(MCSzene):
             gegeben=lambda: [self.strahl.zahlweise(False), self.strahl.zeige(barwert=wert("R_0", r"40\,000", LEFT))],
             gesucht=lambda: [self.strahl.rate("r", HERVOR)],
             gegeben_ab=0.45, gesucht_ab=0.75, rechnung_ab=(0.82, 0.9, 0.96),
-            sprechtext="Die Praxis legt heute vierzigtausend Euro an und entnimmt zehn Jahre lang am Jahresende "
+            sprechtext="Die Praxis legt heute 40.000 Euro an und entnimmt 10 Jahre lang am Jahresende "
                        "einen gleich hohen Betrag. Am Jahresende heißt nachschüssig. "
-                       "Die vierzigtausend Euro liegen heute bereit: Das ist der Barwert. Gesucht ist die Rate r.",
+                       "Die 40.000 Euro liegen heute bereit: Das ist der Barwert. Gesucht ist die Rate r.",
         )
 
         # ---------- c) nachschüssig, Endwert, n gesucht ----------
@@ -162,7 +162,7 @@ class Video(MCSzene):
             gesucht=lambda: [jahr_n.animate.set_color(HERVOR), welle(jahr_n, HERVOR)],
             gegeben_ab=0.3, gesucht_ab=0.5, rechnung_ab=(0.56, 0.7, 0.82),
             nachher=lambda: [jahr_n.animate.set_color(TEXT_LEISE)],
-            sprechtext="Am Jahresende zwölfhundert Euro: Nach wie vielen Jahren sind zehntausend Euro erreicht? "
+            sprechtext="Am Jahresende 1200 Euro: Nach wie vielen Jahren sind 10.000 Euro erreicht? "
                        "Nachschüssig, Endwert, gesucht ist n. Nach q hoch n auflösen, logarithmieren: "
                        "Im achten Jahr ist es geschafft.",
         )

@@ -66,8 +66,8 @@ class Video(MCSzene):
         )
         einpassen(kopf, BREITE - 3).move_to([0.4, KOPF_Y, 0])
         with self.sprich(
-            "Dreißig Personen. Zehn putzen regelmäßig die Zähne, das ist A. "
-            "Zwölf haben gesunde Zähne, das ist B."
+            "30 Personen. 10 putzen regelmäßig die Zähne, das ist A. "
+            "12 haben gesunde Zähne, das ist B."
         ):
             self.play(auftritt(ereignisse[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -83,7 +83,7 @@ class Video(MCSzene):
         block1 = self.tafel(text("Ohne Index", groesse=40, gewicht=BOLD), schnitt, schnitt_anteil, abstand=0.6)
         with self.sprich(
             "P von A und B ist die Wahrscheinlichkeit, dass eine Person regelmäßig die Zähne putzt "
-            "und gesunde Zähne hat. Ohne Index bezieht sich das auf alle dreißig. Sechs haben beides."
+            "und gesunde Zähne hat. Ohne Index bezieht sich das auf alle 30. 6 haben beides."
         ):
             self.play(auftritt(block1[0]), run_time=0.4)
             self.play(auftritt(schnitt), run_time=0.6)
@@ -105,7 +105,7 @@ class Video(MCSzene):
         with self.sprich(
             "Mit Index: P von B unter der Bedingung A ist die Wahrscheinlichkeit, dass eine Person, "
             "die regelmäßig die Zähne putzt, gesunde Zähne hat. Der Index ist die Bedingung. "
-            "Jetzt geht es nur um die zehn, die putzen. Sechs davon haben gesunde Zähne."
+            "Jetzt geht es nur um die 10, die putzen. 6 davon haben gesunde Zähne."
         ):
             self.play(auftritt(block2[0]), run_time=0.4)
             self.play(auftritt(bed_a), run_time=0.6)
@@ -114,8 +114,8 @@ class Video(MCSzene):
             self.warte_bis(0.85)
             self.play(feld.markiere(a, a & b, kasten="A"), Write(anteil_a), run_time=0.9)
         with self.sprich(
-            "Umgedreht, P von A unter der Bedingung B: Jetzt geht es nur um die zwölf mit gesunden Zähnen. "
-            "Sechs davon putzen regelmäßig. Ein anderer Wert."
+            "Umgedreht, P von A unter der Bedingung B: Jetzt geht es nur um die 12 mit gesunden Zähnen. "
+            "6 davon putzen regelmäßig. Ein anderer Wert."
         ):
             self.play(auftritt(bed_b), feld.markiere(), run_time=0.6)
             self.warte_bis(0.3)
@@ -131,8 +131,8 @@ class Video(MCSzene):
         anteil_na = anteil(6, 20, 30, r"\overline{A}")
         block3 = self.tafel(text("Gegenereignis im Index", groesse=40, gewicht=BOLD), bed_na, anteil_na, abstand=0.6)
         with self.sprich(
-            "Steht nicht A im Index, geht es um die zwanzig außerhalb von A: Sie putzen nicht regelmäßig. "
-            "Sechs davon haben dennoch gesunde Zähne."
+            "Steht nicht A im Index, geht es um die 20 außerhalb von A: Sie putzen nicht regelmäßig. "
+            "6 davon haben dennoch gesunde Zähne."
         ):
             self.play(auftritt(block3[0]), auftritt(bed_na), run_time=0.6)
             self.warte_bis(0.25)

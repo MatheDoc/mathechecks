@@ -270,15 +270,16 @@ Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kenn
   - Gesuchte Werte müssen gut abgelesen werden können.
   - Standardtoleranz für Ableseaufgaben: ein Viertel der Schrittweite der jeweiligen Achse.
 
-### Natürliche Fragesätze statt technischer Labels
+### Arbeitsaufträge statt technischer Labels
 
-Fragen sollen als **vollständige, natürliche Sätze** formuliert sein — besonders bei Sachaufgaben. Keine formalen Variablen vor dem Eingabefeld.
+Teilfragen im Training sind **vollständige Arbeitsaufträge** mit Operator („Bestimmen Sie …“, „Berechnen Sie …“, „Geben Sie an …“), keine Fragesätze. Keine formalen Variablen vor dem Eingabefeld. Im Test (`test/`) sind dagegen Fragesätze üblich und erwünscht.
 
-**Richtig**: `"Welche maximale Höhe erreicht der Speer?"`  
+**Richtig**: `"Bestimmen Sie die maximale Höhe, die der Speer erreicht."`  
+**Falsch**: `"Welche maximale Höhe erreicht der Speer?"`  
 **Falsch**: `"Maximale Höhe (Scheitelpunkt): $ h(x_S) = $"`
 
-**Richtig**: `"Bei welchem Preis wird der Gewinn maximal?"`  
-**Falsch**: `"Bei welchem Preis wird der Gewinn maximal? $ p = $"`
+**Richtig**: `"Geben Sie an, welches Baumdiagramm (A, B, C oder D) zum Sachverhalt passt."`  
+**Falsch**: `"Bestimmen Sie den Preis, bei dem der Gewinn maximal wird. $ p = $"`
 
 ## Formulierungen
 

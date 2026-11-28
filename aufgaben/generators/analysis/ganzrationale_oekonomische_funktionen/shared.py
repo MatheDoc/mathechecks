@@ -68,15 +68,16 @@ def _preis_latex(price: float) -> str:
     return f"p(x)={_format_number(price)}"
 
 
-def _build_intro(given_expressions: list[str]) -> str:
+def _build_intro(given_expressions: list[str], satz: str = "") -> str:
     if len(given_expressions) == 1:
         equations = _display_equation(given_expressions[0])
     else:
         equations = _align_equations(given_expressions)
+    prefix = f"{satz} Bekannt sind:" if satz else "Gegeben:"
     return (
-        "Gegeben:"
-        f"{equations}"
-        "Bestimmen Sie die Koeffizienten der angegebenen Funktionen."
+        prefix
+        + f"{equations}"
+        + "Geben Sie die Koeffizienten der gesuchten Funktionen an."
     )
 
 
@@ -330,7 +331,7 @@ def _kennzahlen_items(
     capacity: int,
     x_tolerance: float | None = None,
     y_tolerance: float | None = None,
-) -> list[tuple[str, str]]:
+) -> dict[str, tuple[str, str]]:
     x_tol = 0.1 if x_tolerance is None else x_tolerance
     y_tol = 0.1 if y_tolerance is None else y_tolerance
 
@@ -338,19 +339,19 @@ def _kennzahlen_items(
     x_wende = -k2 / (3.0 * k3)
     e_max = price * capacity
 
-    items = [
-        ("den Verkaufspreis.", _num_tol(price, tolerance=0.2*y_tol/x_tol)),
-        ("die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
-        ("die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
-        ("den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
-        ("die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
-        (
-            "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+    items = {
+        "preis": ("Bestimmen Sie den Marktpreis.", _num_tol(price, tolerance=0.2*y_tol/x_tol)),
+        "x_gs": ("Bestimmen Sie die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
+        "k_f": ("Bestimmen Sie die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
+        "g_max": ("Bestimmen Sie den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
+        "x_gg": ("Bestimmen Sie die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
+        "x_w": (
+            "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
             _num_tol(x_wende, tolerance=2*x_tol),
         ),
-        ("den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
-        ("die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
-    ]
+        "e_max": ("Bestimmen Sie den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
+        "x_gmax": ("Bestimmen Sie die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
+    }
     return items
 
 
@@ -375,7 +376,7 @@ def _e2k3_kennzahlen_items(
     x_gain_max: float,
     x_tolerance: float | None = None,
     y_tolerance: float | None = None,
-) -> list[tuple[str, str]]:
+) -> dict[str, tuple[str, str]]:
     x_tol = 0.1 if x_tolerance is None else x_tolerance
     y_tol = 0.1 if y_tolerance is None else y_tolerance
 
@@ -392,22 +393,22 @@ def _e2k3_kennzahlen_items(
     p_gain_max = a2 * x_gain_max + a1
     p_höchst = a1
 
-    items = [
-        ("den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
-        ("die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
-        ("die erlösmaximale Menge.", _num_tol(x_erlös_max, tolerance=x_tol)),
-        ("die Sättigungsmenge.", _num_tol(x_sättigung, tolerance=x_tol)),
-        ("den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
-        ("den gewinnmaximalen Verkaufspreis.", _num_tol(p_gain_max, tolerance=y_tol)),
-        ("die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
-        (
-            "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+    items = {
+        "g_max": ("Bestimmen Sie den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
+        "x_gs": ("Bestimmen Sie die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
+        "x_emax": ("Bestimmen Sie die erlösmaximale Menge.", _num_tol(x_erlös_max, tolerance=x_tol)),
+        "s_m": ("Bestimmen Sie die Sättigungsmenge.", _num_tol(x_sättigung, tolerance=x_tol)),
+        "e_max": ("Bestimmen Sie den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
+        "p_gmax": ("Bestimmen Sie den gewinnmaximalen Verkaufspreis.", _num_tol(p_gain_max, tolerance=y_tol)),
+        "x_gg": ("Bestimmen Sie die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
+        "x_w": (
+            "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
             _num_tol(x_wende, tolerance=x_tol),
         ),
-        ("die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
-        ("den Höchstpreis.", _num_tol(p_höchst, tolerance=y_tol)),
-        ("die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
-    ]
+        "x_gmax": ("Bestimmen Sie die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
+        "p_h": ("Bestimmen Sie den Höchstpreis.", _num_tol(p_höchst, tolerance=y_tol)),
+        "k_f": ("Bestimmen Sie die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
+    }
     return items
 
 
@@ -843,3 +844,31 @@ def _sample_e2k3_parameters(
     raise ValueError("Konnte keine gültigen E2K3-Parameter erzeugen.")
 
 
+
+
+# ── Auswahl der Teilfragen für die gemischten Kennzahlen-Checks ─────────────
+#
+# Jede Aufgabe fragt genau sechs Kennzahlen ab:
+#   immer:    x_w, Gewinnschwelle ODER Gewinngrenze, x_Gmax, G_max
+#   Polypol:  Marktpreis, maximaler Erlös (an der Kapazitätsgrenze)
+#   Monopol:  Paar (Höchstpreis, Sättigungsmenge) ODER (x_Emax, E_max)
+# Die Varianten werden über den Aufgabenindex abgewechselt, damit eine
+# Sammlung alle Kombinationen gleichmäßig enthält.
+
+MONOPOL_PAARE: tuple[tuple[str, str], ...] = (("p_h", "s_m"), ("x_emax", "e_max"))
+
+
+def _select_kennzahlen_items(
+    items: dict[str, tuple[str, str]],
+    marktform: str,
+    variante: int,
+) -> list[tuple[str, str]]:
+    gewinn_nullstelle = "x_gs" if variante % 2 == 0 else "x_gg"
+    keys = ["x_w", gewinn_nullstelle, "x_gmax", "g_max"]
+    if marktform == "polypol":
+        keys += ["preis", "e_max"]
+    elif marktform == "monopol":
+        keys += list(MONOPOL_PAARE[(variante // 2) % len(MONOPOL_PAARE)])
+    else:
+        raise ValueError(f"Unbekannte Marktform: {marktform}")
+    return [items[key] for key in keys]

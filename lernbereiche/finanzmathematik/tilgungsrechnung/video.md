@@ -9,7 +9,7 @@ module_key: video
 published: true
 lernbereich: tilgungsrechnung
 gebiet: finanzmathematik
-page_css: /assets/css/video.css?v=20261124-video-play
+page_css: /assets/css/video.css?v=20261128-video-list
 permalink: /lernbereiche/finanzmathematik/tilgungsrechnung/video.html
 ---
 

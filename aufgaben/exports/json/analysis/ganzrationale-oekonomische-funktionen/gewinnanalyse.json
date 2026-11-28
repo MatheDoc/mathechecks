@@ -1,0 +1,342 @@
+[
+  {
+    "einleitung": "Die Velotec GmbH bietet als einziges Unternehmen einen faltbaren Lastenanhänger mit patentierter Kupplung an. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}084x^3-0{,}92x^2+8{,}3x+98$. Die Preis-Absatz-Funktion lautet $p(x)=-4{,}9x+91$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie die kleinste Absatzmenge, ab der der Gewinn mindestens 120 GE beträgt.",
+      "Bestimmen Sie die größte Absatzmenge, bis zu der der Gewinn mindestens 120 GE beträgt.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 3,4 ME.",
+      "Geben Sie an, wie die Absatzmenge von 3,4 ME einzuordnen ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=8,24:0,1}$ \\mid ${1:NUMERICAL:=50,6242:0,152}$ ) $",
+      "{1:NUMERICAL:=3,143:0,1}",
+      "{1:NUMERICAL:=12,9989:0,1}",
+      "{1:NUMERICAL:=52,7229:0,158}",
+      "{1:MC:~Verlustzone~Gewinnzone, das Gewinnmaximum ist bereits überschritten.~=Gewinnzone, das Gewinnmaximum ist noch nicht erreicht.~genau im Gewinnmaximum}"
+    ]
+  },
+  {
+    "einleitung": "Die Mühle Kornblume ist alleinige Anbieterin eines Mehls aus einer geschützten Urgetreidesorte. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}033x^3-x^2+20x+400$. Bei einem Preis von 73,76 GE/ME werden 8,3 ME abgesetzt, bei 41 GE/ME sind es 20 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie, wie hoch die Fixkosten sein müssten, damit bei 8,6 ME weder Gewinn noch Verlust entsteht.",
+      "Geben Sie an, ob 8,6 ME bei diesen Fixkosten die Gewinnschwelle oder die Gewinngrenze ist.",
+      "Nach Ablauf des Patents bieten weitere Unternehmen das Produkt an. Der Marktpreis liegt dann bei 35 GE/ME, die Kosten bleiben gleich. Bestimmen Sie die neue gewinnmaximale Menge.",
+      "Bestimmen Sie, um wie viel GE der maximale Gewinn gegenüber dem Monopol sinkt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=15,1102:0,1}$ \\mid ${1:NUMERICAL:=54,6915:0,164}$ ) $",
+      "{1:NUMERICAL:=508,0822:1,524}",
+      "{1:MC:~Gewinngrenze, weil der Gewinn dort fällt.~Gewinnschwelle, weil der Gewinn dort fällt.~Gewinngrenze, weil der Gewinn dort steigt.~=Gewinnschwelle, weil der Gewinn dort steigt.}",
+      "{1:NUMERICAL:=26,0241:0,1}",
+      "{1:NUMERICAL:=152,672:0,458}"
+    ]
+  },
+  {
+    "einleitung": "Die Textilfirma Nordfaden ist alleinige Anbieterin von T-Shirts aus einer selbst entwickelten Algenfaser. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}083x^3-0{,}52x^2+5{,}3x+90$. Der Höchstpreis beträgt 67 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 5,1 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Durch eine Werbekampagne soll der Absatz von 2,8 ME auf 6,2 ME steigen. Bestimmen Sie den Gewinnzuwachs.",
+      "Die Kampagne kostet 64 GE. Geben Sie an, ob sie sich lohnt.",
+      "Durch eine Imagekampagne verschiebt sich die Preis-Absatz-Funktion parallel nach oben, ihre Steigung bleibt gleich. Bestimmen Sie den neuen Höchstpreis, bei dem die gewinnmaximale Menge 6,7 ME beträgt.",
+      "Bestimmen Sie den zugehörigen gewinnmaximalen Preis."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,8162:0,1}$ \\mid ${1:NUMERICAL:=37,3372:0,112}$ ) $",
+      "{1:NUMERICAL:=51,6728:0,155}",
+      "{1:MC:~Ja, der Gewinnzuwachs ist größer als die Kosten der Kampagne.~Ja, weil der Erlös durch die Kampagne steigt.~Nein, weil die Produktionskosten steigen.~=Nein, der Gewinnzuwachs ist kleiner als die Kosten der Kampagne.}",
+      "{1:NUMERICAL:=77,8496:0,234}",
+      "{1:NUMERICAL:=43,6796:0,131}"
+    ]
+  },
+  {
+    "einleitung": "Die Druckerei Papyrus bietet als Einzige Visitenkarten aus Graspapier nach einem patentierten Verfahren an. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}063x^3-0{,}67x^2+7{,}3x+80$. Die Preis-Absatz-Funktion lautet $p(x)=-2{,}6x+42$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Die Fixkosten steigen um 12 GE. Bestimmen Sie die neue Gewinnschwelle.",
+      "Geben Sie an, wie sich der Cournotsche Punkt durch die Fixkostenerhöhung verändert.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 4 ME.",
+      "Geben Sie an, wie die Absatzmenge von 4 ME einzuordnen ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=6,7553:0,1}$ \\mid ${1:NUMERICAL:=24,4363:0,1}$ ) $",
+      "{1:NUMERICAL:=3,339:0,1}",
+      "{1:MC:~Die Menge sinkt, der Preis steigt.~Die Menge steigt, der Preis sinkt.~=Er bleibt unverändert.~Menge und Preis steigen.}",
+      "{1:NUMERICAL:=16,236:0,1}",
+      "{1:MC:~genau im Gewinnmaximum~Gewinnzone, das Gewinnmaximum ist bereits überschritten.~Verlustzone~=Gewinnzone, das Gewinnmaximum ist noch nicht erreicht.}"
+    ]
+  },
+  {
+    "einleitung": "Die Brauerei Hopfenhof ist alleinige Anbieterin eines alkoholfreien Craft-Biers nach eigenem, geschütztem Verfahren. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}019x^3-0{,}43x^2+6{,}1x+400$. Bei einem Preis von 74,25 GE/ME werden 5,5 ME abgesetzt, bei 33 GE/ME sind es 22 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie die kleinste Absatzmenge, ab der der Gewinn mindestens 130 GE beträgt.",
+      "Bestimmen Sie die größte Absatzmenge, bis zu der der Gewinn mindestens 130 GE beträgt.",
+      "Bestimmen Sie, wie hoch die Fixkosten höchstens sein dürfen, damit das Unternehmen noch Gewinn erzielen kann.",
+      "Bestimmen Sie den maximalen Gewinn, wenn die Fixkosten um 110 GE steigen."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=16,1788:0,1}$ \\mid ${1:NUMERICAL:=47,5531:0,143}$ ) $",
+      "{1:NUMERICAL:=8,3852:0,1}",
+      "{1:NUMERICAL:=23,604:0,1}",
+      "{1:NUMERICAL:=702,7515:2,108}",
+      "{1:NUMERICAL:=192,7515:0,578}"
+    ]
+  },
+  {
+    "einleitung": "Die Spielwaren GmbH Holzwurm bietet als einziges Unternehmen magnetische Holzbausteine mit patentiertem Stecksystem an. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}02x^3-0{,}43x^2+6{,}7x+93$. Der Höchstpreis beträgt 90 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 8 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie, wie hoch die Fixkosten sein müssten, damit bei 7,9 ME weder Gewinn noch Verlust entsteht.",
+      "Geben Sie an, ob 7,9 ME bei diesen Fixkosten die Gewinnschwelle oder die Gewinngrenze ist.",
+      "Durch eine Imagekampagne verschiebt sich die Preis-Absatz-Funktion parallel nach oben, ihre Steigung bleibt gleich. Bestimmen Sie den neuen Höchstpreis, bei dem die gewinnmaximale Menge 6,1 ME beträgt.",
+      "Bestimmen Sie den zugehörigen gewinnmaximalen Preis."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,387:0,1}$ \\mid ${1:NUMERICAL:=46,9042:0,141}$ ) $",
+      "{1:NUMERICAL:=175,7655:0,527}",
+      "{1:MC:~Gewinnschwelle, weil der Gewinn dort fällt.~Gewinnschwelle, weil der Gewinn dort steigt.~Gewinngrenze, weil der Gewinn dort steigt.~=Gewinngrenze, weil der Gewinn dort fällt.}",
+      "{1:NUMERICAL:=101,2866:0,304}",
+      "{1:NUMERICAL:=52,4866:0,157}"
+    ]
+  },
+  {
+    "einleitung": "Die Rösterei Bohnenwerk ist alleinige Anbieterin kompostierbarer Kaffeekapseln, für die sie ein Patent hält. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}01x^3-0{,}17x^2+8x+310$. Die Preis-Absatz-Funktion lautet $p(x)=-1{,}5x+84$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie, wie hoch die Fixkosten höchstens sein dürfen, damit das Unternehmen noch Gewinn erzielen kann.",
+      "Bestimmen Sie den maximalen Gewinn, wenn die Fixkosten um 180 GE steigen.",
+      "Nach Ablauf des Patents bieten weitere Unternehmen das Produkt an. Der Marktpreis liegt dann bei 37 GE/ME, die Kosten bleiben gleich. Bestimmen Sie die neue gewinnmaximale Menge.",
+      "Bestimmen Sie, um wie viel GE der maximale Gewinn gegenüber dem Monopol sinkt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=22,7396:0,1}$ \\mid ${1:NUMERICAL:=49,8906:0,15}$ ) $",
+      "{1:NUMERICAL:=922,8966:2,769}",
+      "{1:NUMERICAL:=432,8966:1,299}",
+      "{1:NUMERICAL:=37,2701:0,1}",
+      "{1:NUMERICAL:=123,6276:0,371}"
+    ]
+  },
+  {
+    "einleitung": "Die Klangwerk AG hat einen wasserdichten Lautsprecher mit patentierter Akkutechnik entwickelt und ist damit alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}057x^3-0{,}83x^2+6x+94$. Bei einem Preis von 50,56 GE/ME werden 4,2 ME abgesetzt, bei 12,8 GE/ME sind es 16 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Die Fixkosten steigen um 89 GE. Bestimmen Sie die neue Gewinnschwelle.",
+      "Geben Sie an, wie sich der Cournotsche Punkt durch die Fixkostenerhöhung verändert.",
+      "Durch eine Werbekampagne soll der Absatz von 5 ME auf 9,2 ME steigen. Bestimmen Sie den Gewinnzuwachs.",
+      "Die Kampagne kostet 47 GE. Geben Sie an, ob sie sich lohnt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=9,1897:0,1}$ \\mid ${1:NUMERICAL:=34,5931:0,104}$ ) $",
+      "{1:NUMERICAL:=3,7987:0,1}",
+      "{1:MC:~=Er bleibt unverändert.~Die Menge steigt, der Preis sinkt.~Die Menge sinkt, der Preis steigt.~Menge und Preis steigen.}",
+      "{1:NUMERICAL:=64,993:0,195}",
+      "{1:MC:~Nein, der Gewinnzuwachs ist kleiner als die Kosten der Kampagne.~Ja, weil der Erlös durch die Kampagne steigt.~Nein, weil die Produktionskosten steigen.~=Ja, der Gewinnzuwachs ist größer als die Kosten der Kampagne.}"
+    ]
+  },
+  {
+    "einleitung": "Die Agrargenossenschaft Elbtal hat eine eigene Kartoffelsorte gezüchtet und ist durch den Sortenschutz alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}014x^3-0{,}37x^2+5{,}3x+25$. Der Höchstpreis beträgt 20 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 0,8 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Durch eine Werbekampagne soll der Absatz von 5,7 ME auf 11 ME steigen. Bestimmen Sie den Gewinnzuwachs.",
+      "Die Kampagne kostet 16 GE. Geben Sie an, ob sie sich lohnt.",
+      "Bestimmen Sie, wie hoch die Fixkosten sein müssten, damit bei 4,6 ME weder Gewinn noch Verlust entsteht.",
+      "Geben Sie an, ob 4,6 ME bei diesen Fixkosten die Gewinnschwelle oder die Gewinngrenze ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=11,0884:0,1}$ \\mid ${1:NUMERICAL:=11,1293:0,1}$ ) $",
+      "{1:NUMERICAL:=23,8094:0,1}",
+      "{1:MC:~=Ja, der Gewinnzuwachs ist größer als die Kosten der Kampagne.~Ja, weil der Erlös durch die Kampagne steigt.~Nein, weil die Produktionskosten steigen.~Nein, der Gewinnzuwachs ist kleiner als die Kosten der Kampagne.}",
+      "{1:NUMERICAL:=57,1585:0,171}",
+      "{1:MC:~Gewinngrenze, weil der Gewinn dort steigt.~=Gewinnschwelle, weil der Gewinn dort steigt.~Gewinnschwelle, weil der Gewinn dort fällt.~Gewinngrenze, weil der Gewinn dort fällt.}"
+    ]
+  },
+  {
+    "einleitung": "Die Möbelmanufaktur Lindner ist mit ihrem patentierten, stufenlos ausziehbaren Esstisch alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}069x^3-0{,}27x^2+6{,}1x+90$. Die Preis-Absatz-Funktion lautet $p(x)=-5{,}3x+85$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 4,4 ME.",
+      "Geben Sie an, wie die Absatzmenge von 4,4 ME einzuordnen ist.",
+      "Durch eine Imagekampagne verschiebt sich die Preis-Absatz-Funktion parallel nach oben, ihre Steigung bleibt gleich. Bestimmen Sie den neuen Höchstpreis, bei dem die gewinnmaximale Menge 8,3 ME beträgt.",
+      "Bestimmen Sie den zugehörigen gewinnmaximalen Preis."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=6,8714:0,1}$ \\mid ${1:NUMERICAL:=48,5816:0,146}$ ) $",
+      "{1:NUMERICAL:=30,6285:0,1}",
+      "{1:MC:~=Gewinnzone, das Gewinnmaximum ist noch nicht erreicht.~Verlustzone~Gewinnzone, das Gewinnmaximum ist bereits überschritten.~genau im Gewinnmaximum}",
+      "{1:NUMERICAL:=103,8582:0,312}",
+      "{1:NUMERICAL:=59,8682:0,18}"
+    ]
+  },
+  {
+    "einleitung": "Die Frischwerk GmbH ist mit einem Saft, der nach einem patentierten Kaltverfahren haltbar gemacht wird, alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}15x^3-0{,}8x^2+6x+92$. Bei einem Preis von 61,12 GE/ME werden 3,8 ME abgesetzt, bei 30,72 GE/ME sind es 7,8 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Die Fixkosten steigen um 29 GE. Bestimmen Sie die neue Gewinnschwelle.",
+      "Geben Sie an, wie sich der Cournotsche Punkt durch die Fixkostenerhöhung verändert.",
+      "Nach Ablauf des Patents bieten weitere Unternehmen das Produkt an. Der Marktpreis liegt dann bei 33 GE/ME, die Kosten bleiben gleich. Bestimmen Sie die neue gewinnmaximale Menge.",
+      "Bestimmen Sie, um wie viel GE der maximale Gewinn gegenüber dem Monopol sinkt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,2607:0,1}$ \\mid ${1:NUMERICAL:=50,0184:0,15}$ ) $",
+      "{1:NUMERICAL:=1,6764:0,1}",
+      "{1:MC:~Die Menge sinkt, der Preis steigt.~=Er bleibt unverändert.~Die Menge steigt, der Preis sinkt.~Menge und Preis steigen.}",
+      "{1:NUMERICAL:=9,7251:0,1}",
+      "{1:NUMERICAL:=31,5973:0,1}"
+    ]
+  },
+  {
+    "einleitung": "Die Solaris GmbH ist mit ihrem patentierten, biegsamen Solarmodul alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}01x^3-0{,}18x^2+9{,}3x+90$. Der Höchstpreis beträgt 64 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 1,9 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie die kleinste Absatzmenge, ab der der Gewinn mindestens 180 GE beträgt.",
+      "Bestimmen Sie die größte Absatzmenge, bis zu der der Gewinn mindestens 180 GE beträgt.",
+      "Bestimmen Sie, wie hoch die Fixkosten höchstens sein dürfen, damit das Unternehmen noch Gewinn erzielen kann.",
+      "Bestimmen Sie den maximalen Gewinn, wenn die Fixkosten um 120 GE steigen."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=14,154:0,1}$ \\mid ${1:NUMERICAL:=37,1073:0,111}$ ) $",
+      "{1:NUMERICAL:=6,1802:0,1}",
+      "{1:NUMERICAL:=21,8417:0,1}",
+      "{1:NUMERICAL:=401,2909:1,204}",
+      "{1:NUMERICAL:=191,2909:0,574}"
+    ]
+  },
+  {
+    "einleitung": "Die Rösterei Bohnenwerk ist alleinige Anbieterin kompostierbarer Kaffeekapseln, für die sie ein Patent hält. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}01x^3-0{,}39x^2+8{,}5x+340$. Die Preis-Absatz-Funktion lautet $p(x)=-0{,}98x+52$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie die kleinste Absatzmenge, ab der der Gewinn mindestens 68 GE beträgt.",
+      "Bestimmen Sie die größte Absatzmenge, bis zu der der Gewinn mindestens 68 GE beträgt.",
+      "Nach Ablauf des Patents bieten weitere Unternehmen das Produkt an. Der Marktpreis liegt dann bei 21 GE/ME, die Kosten bleiben gleich. Bestimmen Sie die neue gewinnmaximale Menge.",
+      "Bestimmen Sie, um wie viel GE der maximale Gewinn gegenüber dem Monopol sinkt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=23,191:0,1}$ \\mid ${1:NUMERICAL:=29,2728:0,1}$ ) $",
+      "{1:NUMERICAL:=11,538:0,1}",
+      "{1:NUMERICAL:=33,8688:0,1}",
+      "{1:NUMERICAL:=37,2006:0,1}",
+      "{1:NUMERICAL:=76,8577:0,231}"
+    ]
+  },
+  {
+    "einleitung": "Die Agrargenossenschaft Elbtal hat eine eigene Kartoffelsorte gezüchtet und ist durch den Sortenschutz alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}025x^3-0{,}38x^2+5x+130$. Bei einem Preis von 71,02 GE/ME werden 2,6 ME abgesetzt, bei 31,6 GE/ME sind es 8 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Die Fixkosten steigen um 33 GE. Bestimmen Sie die neue Gewinnschwelle.",
+      "Geben Sie an, wie sich der Cournotsche Punkt durch die Fixkostenerhöhung verändert.",
+      "Bestimmen Sie, wie hoch die Fixkosten sein müssten, damit bei 3,7 ME weder Gewinn noch Verlust entsteht.",
+      "Geben Sie an, ob 3,7 ME bei diesen Fixkosten die Gewinnschwelle oder die Gewinngrenze ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,9498:0,1}$ \\mid ${1:NUMERICAL:=46,5666:0,14}$ ) $",
+      "{1:NUMERICAL:=2,3845:0,1}",
+      "{1:MC:~Die Menge steigt, der Preis sinkt.~Die Menge sinkt, der Preis steigt.~Menge und Preis steigen.~=Er bleibt unverändert.}",
+      "{1:NUMERICAL:=218,4989:0,655}",
+      "{1:MC:~Gewinngrenze, weil der Gewinn dort fällt.~Gewinnschwelle, weil der Gewinn dort fällt.~Gewinngrenze, weil der Gewinn dort steigt.~=Gewinnschwelle, weil der Gewinn dort steigt.}"
+    ]
+  },
+  {
+    "einleitung": "Die Solaris GmbH ist mit ihrem patentierten, biegsamen Solarmodul alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}038x^3-0{,}38x^2+5{,}1x+300$. Der Höchstpreis beträgt 78 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 3,1 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Durch eine Werbekampagne soll der Absatz von 7,1 ME auf 11 ME steigen. Bestimmen Sie den Gewinnzuwachs.",
+      "Die Kampagne kostet 41 GE. Geben Sie an, ob sie sich lohnt.",
+      "Durch eine Imagekampagne verschiebt sich die Preis-Absatz-Funktion parallel nach oben, ihre Steigung bleibt gleich. Bestimmen Sie den neuen Höchstpreis, bei dem die gewinnmaximale Menge 13 ME beträgt.",
+      "Bestimmen Sie den zugehörigen gewinnmaximalen Preis."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=10,9075:0,1}$ \\mid ${1:NUMERICAL:=44,1867:0,133}$ ) $",
+      "{1:NUMERICAL:=55,3278:0,166}",
+      "{1:MC:~Nein, der Gewinnzuwachs ist kleiner als die Kosten der Kampagne.~Ja, weil der Erlös durch die Kampagne steigt.~=Ja, der Gewinnzuwachs ist größer als die Kosten der Kampagne.~Nein, weil die Produktionskosten steigen.}",
+      "{1:NUMERICAL:=95,086:0,285}",
+      "{1:NUMERICAL:=54,786:0,164}"
+    ]
+  },
+  {
+    "einleitung": "Die Frischwerk GmbH ist mit einem Saft, der nach einem patentierten Kaltverfahren haltbar gemacht wird, alleinige Anbieterin. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}03x^3-0{,}48x^2+6{,}6x+92$. Die Preis-Absatz-Funktion lautet $p(x)=-7{,}8x+85$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie, wie hoch die Fixkosten höchstens sein dürfen, damit das Unternehmen noch Gewinn erzielen kann.",
+      "Bestimmen Sie den maximalen Gewinn, wenn die Fixkosten um 38 GE steigen.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 9,9 ME.",
+      "Geben Sie an, wie die Absatzmenge von 9,9 ME einzuordnen ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,1896:0,1}$ \\mid ${1:NUMERICAL:=44,5209:0,134}$ ) $",
+      "{1:NUMERICAL:=205,5298:0,617}",
+      "{1:NUMERICAL:=75,5298:0,227}",
+      "{1:NUMERICAL:=-75,3569:0,226}",
+      "{1:MC:~genau im Gewinnmaximum~Gewinnzone, das Gewinnmaximum ist noch nicht erreicht.~=Verlustzone~Gewinnzone, das Gewinnmaximum ist bereits überschritten.}"
+    ]
+  },
+  {
+    "einleitung": "Die Velotec GmbH bietet als einziges Unternehmen einen faltbaren Lastenanhänger mit patentierter Kupplung an. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}078x^3-0{,}88x^2+8x+110$. Bei einem Preis von 42,86 GE/ME werden 5,8 ME abgesetzt, bei 15,8 GE/ME sind es 14 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Die Fixkosten steigen um 34 GE. Bestimmen Sie die neue Gewinnschwelle.",
+      "Geben Sie an, wie sich der Cournotsche Punkt durch die Fixkostenerhöhung verändert.",
+      "Nach Ablauf des Patents bieten weitere Unternehmen das Produkt an. Der Marktpreis liegt dann bei 24 GE/ME, die Kosten bleiben gleich. Bestimmen Sie die neue gewinnmaximale Menge.",
+      "Bestimmen Sie, um wie viel GE der maximale Gewinn gegenüber dem Monopol sinkt."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=8,0354:0,1}$ \\mid ${1:NUMERICAL:=35,4832:0,106}$ ) $",
+      "{1:NUMERICAL:=3,1596:0,1}",
+      "{1:MC:~Die Menge sinkt, der Preis steigt.~=Er bleibt unverändert.~Menge und Preis steigen.~Die Menge steigt, der Preis sinkt.}",
+      "{1:NUMERICAL:=12,8447:0,1}",
+      "{1:NUMERICAL:=51,7838:0,155}"
+    ]
+  },
+  {
+    "einleitung": "Die Mühle Kornblume ist alleinige Anbieterin eines Mehls aus einer geschützten Urgetreidesorte. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}021x^3-0{,}4x^2+6{,}6x+84$. Der Höchstpreis beträgt 55 GE/ME. Mit jeder zusätzlich abgesetzten ME sinkt der erzielbare Preis um 3,2 GE/ME. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 15 ME.",
+      "Geben Sie an, wie die Absatzmenge von 15 ME einzuordnen ist.",
+      "Bestimmen Sie, wie hoch die Fixkosten sein müssten, damit bei 4,4 ME weder Gewinn noch Verlust entsteht.",
+      "Geben Sie an, ob 4,4 ME bei diesen Fixkosten die Gewinnschwelle oder die Gewinngrenze ist."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=7,9346:0,1}$ \\mid ${1:NUMERICAL:=29,6093:0,1}$ ) $",
+      "{1:NUMERICAL:=-49,775:0,149}",
+      "{1:MC:~Gewinnzone, das Gewinnmaximum ist bereits überschritten.~=Verlustzone~Gewinnzone, das Gewinnmaximum ist noch nicht erreicht.~genau im Gewinnmaximum}",
+      "{1:NUMERICAL:=156,9631:0,471}",
+      "{1:MC:~=Gewinnschwelle, weil der Gewinn dort steigt.~Gewinnschwelle, weil der Gewinn dort fällt.~Gewinngrenze, weil der Gewinn dort steigt.~Gewinngrenze, weil der Gewinn dort fällt.}"
+    ]
+  },
+  {
+    "einleitung": "Die Brauerei Hopfenhof ist alleinige Anbieterin eines alkoholfreien Craft-Biers nach eigenem, geschütztem Verfahren. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}051x^3-0{,}7x^2+6x+90$. Die Preis-Absatz-Funktion lautet $p(x)=-6{,}5x+80$. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Bestimmen Sie die kleinste Absatzmenge, ab der der Gewinn mindestens 77 GE beträgt.",
+      "Bestimmen Sie die größte Absatzmenge, bis zu der der Gewinn mindestens 77 GE beträgt.",
+      "Bestimmen Sie, wie hoch die Fixkosten höchstens sein dürfen, damit das Unternehmen noch Gewinn erzielen kann.",
+      "Bestimmen Sie den maximalen Gewinn, wenn die Fixkosten um 71 GE steigen."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=5,9175:0,1}$ \\mid ${1:NUMERICAL:=41,5365:0,125}$ ) $",
+      "{1:NUMERICAL:=2,9626:0,1}",
+      "{1:NUMERICAL:=8,8073:0,1}",
+      "{1:NUMERICAL:=224,2297:0,673}",
+      "{1:NUMERICAL:=63,2297:0,19}"
+    ]
+  },
+  {
+    "einleitung": "Die Textilfirma Nordfaden ist alleinige Anbieterin von T-Shirts aus einer selbst entwickelten Algenfaser. Für die Herstellung gilt die Kostenfunktion $K(x)=0{,}074x^3-0{,}46x^2+8{,}2x+97$. Bei einem Preis von 53,4 GE/ME werden 6,4 ME abgesetzt, bei 31 GE/ME sind es 12 ME. Die Preis-Absatz-Funktion ist linear. Dabei ist $x$ die Menge in ME, Preise sind in GE/ME und Kosten in GE angegeben. Runden Sie auf zwei Nachkommastellen.",
+    "fragen": [
+      "Bestimmen Sie den Cournotschen Punkt.",
+      "Durch eine Werbekampagne soll der Absatz von 3,9 ME auf 7,7 ME steigen. Bestimmen Sie den Gewinnzuwachs.",
+      "Die Kampagne kostet 110 GE. Geben Sie an, ob sie sich lohnt.",
+      "Durch eine Imagekampagne verschiebt sich die Preis-Absatz-Funktion parallel nach oben, ihre Steigung bleibt gleich. Bestimmen Sie den neuen Höchstpreis, bei dem die gewinnmaximale Menge 9,5 ME beträgt.",
+      "Bestimmen Sie den zugehörigen gewinnmaximalen Preis."
+    ],
+    "antworten": [
+      "$ C( ${1:NUMERICAL:=7,9955:0,1}$ \\mid ${1:NUMERICAL:=47,0181:0,141}$ ) $",
+      "{1:NUMERICAL:=83,603:0,251}",
+      "{1:MC:~Ja, der Gewinnzuwachs ist größer als die Kosten der Kampagne.~Ja, weil der Erlös durch die Kampagne steigt.~Nein, weil die Produktionskosten steigen.~=Nein, der Gewinnzuwachs ist kleiner als die Kosten der Kampagne.}",
+      "{1:NUMERICAL:=95,4955:0,286}",
+      "{1:NUMERICAL:=57,4955:0,172}"
+    ]
+  }
+]

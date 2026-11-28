@@ -131,9 +131,9 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Zuerst die wichtigste Unterscheidung. Der monatliche Absatz ist ein Funktionswert: "
-            "nach acht Monaten etwa fünfzehn Komma fünf eins ME pro Monat. "
+            "nach 8 Monaten etwa 15,51 ME pro Monat. "
             "Der Gesamtabsatz ist eine Fläche, also ein Integral: Vom Ende des dritten bis zum Ende des neunten "
-            "Monats sind das etwa dreiundachtzig Komma sechs drei ME."
+            "Monats sind das etwa 83,63 ME."
         ):
             self.play(auftritt(unterscheidung[0]), run_time=0.5)
             self.warte_bis(0.12)
@@ -162,9 +162,9 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Für den ganzen Lebenszyklus integrieren wir von null bis zum Ende. "
-            "Hier wird das Produkt nach zwanzig Monaten vom Markt genommen, da ist die Klammer null. "
-            "Insgesamt: etwa hundertachtundsechzig Komma fünf ME."
+            "Für den ganzen Lebenszyklus integrieren wir von 0 bis zum Ende. "
+            "Hier wird das Produkt nach 20 Monaten vom Markt genommen, da ist die Klammer 0. "
+            "Insgesamt: etwa 168,5 ME."
         ):
             self.play(auftritt(zyklus[0]), run_time=0.5)
             self.play(auftritt(zyklus[1]), run_time=0.5)
@@ -189,8 +189,8 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Durchschnittlicher monatlicher Absatz in den ersten sechs Monaten: Gesamtabsatz geteilt durch sechs Monate. "
-            "Das ist die Höhe des Rechtecks mit gleicher Fläche, etwa sieben Komma neun drei ME pro Monat."
+            "Durchschnittlicher monatlicher Absatz in den ersten 6 Monaten: Gesamtabsatz geteilt durch 6 Monate. "
+            "Das ist die Höhe des Rechtecks mit gleicher Fläche, etwa 7,93 ME pro Monat."
         ):
             self.play(auftritt(mittel[0]), FadeIn(flaeche_0_6), run_time=0.6)
             self.warte_bis(0.2)
@@ -230,8 +230,8 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Und wann sind insgesamt hundert ME verkauft? Jetzt ist die Fläche bekannt und die obere Grenze gesucht. "
-            "Der Rechner löst die Gleichung: nach etwa neun Komma vier zwei Monaten."
+            "Und wann sind insgesamt 100 ME verkauft? Jetzt ist die Fläche bekannt und die obere Grenze gesucht. "
+            "Der Rechner löst die Gleichung: nach etwa 9,42 Monaten."
         ):
             self.play(auftritt(zeitpunkt[0]), run_time=0.5)
             self.warte_bis(0.25)

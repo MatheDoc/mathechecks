@@ -95,8 +95,8 @@ class Video(MCSzene):
         )
         self.tafel(aufgabe)
         with self.sprich(
-            "Eine Tischlerei legt zwanzigtausend Euro an: drei Jahre zu zwei Prozent, "
-            "danach fünf Jahre zu einem anderen Zinssatz. Am Ende sind es fünfundzwanzigtausendzweihundert Euro."
+            "Eine Tischlerei legt 20.000 Euro an: 3 Jahre zu 2 %, "
+            "danach 5 Jahre zu einem anderen Zinssatz. Am Ende sind es 25.200 Euro."
         ):
             self.play(auftritt(aufgabe), run_time=0.6)
             self.warte_bis(0.15)
@@ -137,7 +137,7 @@ class Video(MCSzene):
         k3 = ergebnis("K_3", r"20\,000\cdot 1{,}02^{3}", r"21\,224{,}16", euro=True)
         block = self.tafel(titel, k3, abstand=0.7)
         with self.sprich(
-            "Gesucht ist p zwei, die Unbekannte liegt also in Phase zwei. Phase eins kennen wir ganz. "
+            "Gesucht ist p zwei, die Unbekannte liegt also in Phase 2. Phase 1 kennen wir ganz. "
             "Also rechnen wir K drei vorwärts aus."
         ):
             self.play(self.strahl.betone("phase2"), run_time=0.6)
@@ -160,8 +160,8 @@ class Video(MCSzene):
         ]
         block = self.tafel(*rechnung, abstand=0.45)
         with self.sprich(
-            "In Phase zwei ist K drei das Anfangskapital. Durch K drei teilen, fünfte Wurzel ziehen: "
-            "p zwei ist etwa drei Komma vier neun Prozent."
+            "In Phase 2 ist K drei das Anfangskapital. Durch K drei teilen, fünfte Wurzel ziehen: "
+            "p zwei ist etwa 3,49 %."
         ):
             self.play(
                 self.strahl.phase(2),
@@ -187,9 +187,9 @@ class Video(MCSzene):
         p1 = hervor(formel("p_1", r"\approx", r"1{,}99\,\%", groesse=G_FORMEL), 0, 2)
         block = self.tafel(titel, k3, q1, p1, abstand=0.55)
         with self.sprich(
-            "Ist dagegen p eins gesucht und p zwei bekannt, kommen wir in Phase eins nicht vorwärts. "
-            "Dann rechnen wir rückwärts: K acht durch eins Komma null drei fünf hoch fünf. "
-            "Danach in Phase eins auflösen: p eins ist etwa eins Komma neun neun Prozent."
+            "Ist dagegen p eins gesucht und p zwei bekannt, kommen wir in Phase 1 nicht vorwärts. "
+            "Dann rechnen wir rückwärts: K acht durch 1,035 hoch 5. "
+            "Danach in Phase 1 auflösen: p eins ist etwa 1,99 %."
         ):
             self.play(
                 self.strahl.zeige(
@@ -233,7 +233,7 @@ class Video(MCSzene):
         with self.sprich(
             "Kurz gesagt: Erkennen, in welcher Phase die Unbekannte steckt. "
             "Den Zwischenwert in der anderen Phase berechnen. "
-            "Dann sind drei von vier Größen bekannt, und wir lösen nach der Unbekannten auf."
+            "Dann sind 3 von 4 Größen bekannt, und wir lösen nach der Unbekannten auf."
         ):
             for zeile, beginn in zip(schritte, (0.1, 0.4, 0.68)):
                 self.warte_bis(beginn)

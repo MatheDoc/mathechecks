@@ -56,7 +56,7 @@ class Video(MCSzene):
             abstand=0.5,
         )
         with self.sprich(
-            "Eine Basketballspielerin wirft zwanzigmal und trifft jeweils mit zehn Prozent. X zählt die Treffer."
+            "Eine Basketballspielerin wirft 20-mal und trifft jeweils mit 10 %. X zählt die Treffer."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
             self.warte_bis(0.35)
@@ -77,7 +77,7 @@ class Video(MCSzene):
         )
         idee = self.tafel(text("Vier Angaben:", groesse=G_TEXT, farbe=TEXT_LEISE), schablone, angaben, abstand=0.6)
         with self.sprich(
-            "Dein Taschenrechner braucht vier Angaben: die kleinste und die größte Anzahl, dazu n und p."
+            "Dein Taschenrechner braucht 4 Angaben: die kleinste und die größte Anzahl, dazu n und p."
         ):
             self.play(auftritt(idee[0]), Write(schablone), run_time=1.2)
             self.warte_bis(0.42)
@@ -97,7 +97,7 @@ class Video(MCSzene):
             ereignis("höchstens 4 Treffer", farben={"höchstens 4": HERVOR}),
             [formel(r"P(X\leq 4)", groesse=G_FORMEL), eingabe("=", "0", "4"), naeherung("0{,}9568")],
             bereiche=[(0, 4)], bereich_ab=0.25, eingabe_ab=0.5,
-            sprechtext="Höchstens vier Treffer: Das sind null bis vier. Also null und vier eintippen, dann n und p.",
+            sprechtext="Höchstens 4 Treffer: Das sind 0 bis 4. Also 0 und 4 eintippen, dann n und p.",
         )
         self.fall(
             ereignis("weniger als 4 oder", "mehr als 7 Treffer", farben={"weniger als 4": HERVOR, "mehr als 7": HERVOR}),
@@ -110,8 +110,8 @@ class Video(MCSzene):
                 naeherung("0{,}8675"),
             ],
             bereiche=[(0, 3), (8, 20)], bereich_ab=0.4, eingabe_ab=0.6,
-            sprechtext="Weniger als vier oder mehr als sieben Treffer: Vier und sieben zählen nicht mit. "
-                       "Zwei Bereiche, also beide berechnen und addieren.",
+            sprechtext="Weniger als 4 oder mehr als 7 Treffer: 4 und 7 zählen nicht mit. "
+                       "2 Bereiche, also beide berechnen und addieren.",
         )
 
         grenze = self.strahl.ort(2.6)
@@ -125,8 +125,8 @@ class Video(MCSzene):
             ereignis("in höchstens 13 % der Würfe", farben={"höchstens 13 %": HERVOR}),
             [formel(r"P(X\leq 2{,}6)", groesse=G_FORMEL), eingabe("=", "0", "2"), naeherung("0{,}6769")],
             bereiche=[(0, 2)], zwischen=umrechnung, zusatz=marke, zwischen_ab=0.3, bereich_ab=0.65, eingabe_ab=0.85,
-            sprechtext="In höchstens dreizehn Prozent der Würfe: Das sind zwei Komma sechs Würfe. "
-                       "Mehr ist nicht erlaubt, also null bis zwei.",
+            sprechtext="In höchstens 13 % der Würfe: Das sind 2,6 Würfe. "
+                       "Mehr ist nicht erlaubt, also 0 bis 2.",
         )
 
         fehlwurf = eingabe("=", "0", "15", p="0{,}9")
@@ -141,8 +141,8 @@ class Video(MCSzene):
             ereignis("höchstens 15 Fehlwürfe", farben={"höchstens 15": HERVOR, "Fehlwürfe": ROSE}),
             [formel(r"P(Y\leq 15)", groesse=G_FORMEL), fehlwurf, naeherung("0{,}0432")],
             bereiche=[(0, 15)], zwischen=gezaehlt, zwischen_ab=0.45, bereich_ab=0.75, eingabe_ab=0.9,
-            sprechtext="Höchstens fünfzehn Fehlwürfe: Jetzt werden Fehlwürfe gezählt. "
-                       "Deshalb ist p gleich null Komma neun.",
+            sprechtext="Höchstens 15 Fehlwürfe: Jetzt werden Fehlwürfe gezählt. "
+                       "Deshalb ist p gleich 0,9.",
         )
 
         # ---------- Nicht binomialverteilt: bestimmte Würfe ----------

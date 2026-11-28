@@ -1,0 +1,7 @@
+{% comment %}
+Allgemeines Baumdiagramm (beliebige Verzweigung, endende Pfade).
+Parameter:
+  baum    Kurzschreibweise, z. B. "B[0,4](R[0,8|0,32] V[0,2|0,08]) Z[0,25|0,25]"
+          [Wert am Ast] oder [Wert am Ast|Wert am Pfadende]; ohne Klammer nur das Label.
+  breite  maximale Breite in px (Standard 560)
+{% endcomment %}<div class="baumdiagramm-allgemein-auto diagramm" data-baum="{{ include.baum | escape }}" style="max-width: {{ include.breite | default: 560 }}px"></div>

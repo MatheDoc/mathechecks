@@ -1,6 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { fetchBeispielHtml } from "./beispiel-loader.js?v=20261127-venn";
-import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js?v=20261127-venn";
+import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js?v=20261128-oekonomie9";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
 const CHECK_ANKER_BEISPIEL_CACHE = new Map();

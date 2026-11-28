@@ -55,8 +55,8 @@ class Video(MCSzene):
             abstand=0.5,
         )
         with self.sprich(
-            "Einundsechzig Prozent der Gäste eines Restaurants bestellen vegetarisch. Wie viele Bestellungen brauchen wir "
-            "mindestens, damit mit mindestens neunundzwanzig Prozent mindestens hundertvierundvierzig vegetarische dabei sind?"
+            "61 % der Gäste eines Restaurants bestellen vegetarisch. Wie viele Bestellungen brauchen wir "
+            "mindestens, damit mit mindestens 29 % mindestens 144 vegetarische dabei sind?"
         ):
             self.play(auftritt(aufgabe[0]), run_time=0.5)
             self.warte_bis(0.3)
@@ -73,7 +73,7 @@ class Video(MCSzene):
         richtung[0][0].set_color(HERVOR)
         block = self.tafel(gesucht, ungleichung, richtung, abstand=0.6)
         with self.sprich(
-            "Gesucht ist n. Als Ungleichung: P von X größer gleich hundertvierundvierzig ist mindestens null Komma zwei neun. "
+            "Gesucht ist n. Als Ungleichung: P von X größer gleich 144 ist mindestens 0,29. "
             "Mit mehr Bestellungen wird das wahrscheinlicher, also erhöhen wir n."
         ):
             self.play(auftritt(gesucht), run_time=0.5)
@@ -89,8 +89,8 @@ class Video(MCSzene):
             tab, uebergang=3, ungleichung=r"P(X\geq 144)\geq 0{,}29",
             ergebnis=formel("n=229", groesse=G_FORMEL + 6, farbe=HERVOR),
             vergleich=(r"0{,}2753<0{,}29", r"0{,}3042\geq 0{,}29"),
-            sprechtext="In der Wertetabelle suchen wir den Übergang: Bei zweihundertachtundzwanzig ist es zu wenig, "
-                       "bei zweihundertneunundzwanzig reicht es. Das kleinste n ist zweihundertneunundzwanzig.",
+            sprechtext="In der Wertetabelle suchen wir den Übergang: Bei 228 ist es zu wenig, "
+                       "bei 229 reicht es. Das kleinste n ist 229.",
         )
         self.play(FadeOut(tab), FadeOut(kopf), run_time=0.4)
 
@@ -108,8 +108,8 @@ class Video(MCSzene):
         )
         block[2][0][0].set_color(HERVOR)
         with self.sprich(
-            "Genauso mit p: Bei zweihundert Bestellungen sollen mit mindestens fünfzig Prozent "
-            "mindestens hundertdreißig vegetarisch sein. Größeres p macht das wahrscheinlicher."
+            "Genauso mit p: Bei 200 Bestellungen sollen mit mindestens 50 % "
+            "mindestens 130 vegetarisch sein. Größeres p macht das wahrscheinlicher."
         ):
             self.play(FadeIn(kopf_p), FadeIn(tab_p[0]), auftritt(block[0]), run_time=0.6)
             self.warte_bis(0.25)
@@ -122,8 +122,8 @@ class Video(MCSzene):
             tab_p, uebergang=2, ungleichung=r"P(X\geq 130)\geq 0{,}5",
             ergebnis=formel("p=0{,}65", groesse=G_FORMEL + 6, farbe=HERVOR),
             vergleich=(r"0{,}4151<0{,}5", r"0{,}5325\geq 0{,}5"),
-            sprechtext="Wir erhöhen p in Hundertsteln: Bei null Komma sechs vier reicht es nicht, "
-                       "bei null Komma sechs fünf schon.",
+            sprechtext="Wir erhöhen p in Hundertsteln: Bei 0,64 reicht es nicht, "
+                       "bei 0,65 schon.",
         )
 
         # ---------- Kurzfassung ----------

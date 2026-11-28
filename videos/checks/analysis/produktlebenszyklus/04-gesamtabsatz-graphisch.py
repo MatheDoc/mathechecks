@@ -97,7 +97,7 @@ class Video(MCSzene):
         with self.sprich(
             "a von t gibt an, wie viel pro Monat verkauft wird. In einem Monat sind das Höhe mal Breite: "
             "ein schmaler Balken. Alle Balken vom sechsten bis zum zwölften Monat zusammen ergeben die Fläche "
-            "unter dem Graphen: das Integral von sechs bis zwölf, der Gesamtabsatz im zweiten Halbjahr."
+            "unter dem Graphen: das Integral von 6 bis 12, der Gesamtabsatz im zweiten Halbjahr."
         ):
             self.play(auftritt(gesamt[0]), run_time=0.5)
             self.warte_bis(0.2)
@@ -134,8 +134,8 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Zum Schätzen legen wir ein Rechteck darüber, das gleich viel Fläche hat: Was oben übersteht, "
-            "füllt die Lücken. Höhe etwa elf Komma zwei, Breite sechs: rund siebenundsechzig ME. "
-            "Die Höhe des Rechtecks ist der durchschnittliche monatliche Absatz, etwa elf Komma zwei ME pro Monat."
+            "füllt die Lücken. Höhe etwa 11,2, Breite 6: rund 67 ME. "
+            "Die Höhe des Rechtecks ist der durchschnittliche monatliche Absatz, etwa 11,2 ME pro Monat."
         ):
             self.play(auftritt(schaetzen[0]), run_time=0.5)
             self.warte_bis(0.1)
@@ -166,9 +166,9 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Stimmt die Aussage: Im ersten Halbjahr werden mindestens sechzig ME abgesetzt? "
+            "Stimmt die Aussage: Im ersten Halbjahr werden mindestens 60 ME abgesetzt? "
             "Die Balken mit der Höhe am rechten Rand ragen über den Graphen. Zusammen sind das nur etwa "
-            "sechsundvierzig Komma sechs ME, die echte Fläche ist also noch kleiner. Die Aussage ist falsch."
+            "46,6 ME, die echte Fläche ist also noch kleiner. Die Aussage ist falsch."
         ):
             self.play(auftritt(aussage[0]), run_time=0.6)
             self.warte_bis(0.3)

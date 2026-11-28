@@ -1,4 +1,5 @@
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
+import { buildAllgemeinerBaumFigure, parseBaumKurzform } from "../visuals/baumdiagramm-allgemein.js?v=20261127-tree-choice3";
 import { buildBaumdiagrammBinomialFigure } from "../visuals/baumdiagramm-binomial.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
@@ -13,6 +14,7 @@ import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinse
 import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
 import { berechneMarkt, berechneAbschoepfung, buildAbschoepfungMarktFigure, buildAbschoepfungZielFigure } from "../visuals/abschoepfung.js?v=20261025-abschoepfung";
 import { buildVennFigure, parseVennRegionen, vennKey, vennRegionAusTrace, VENN_EREIGNISSE, VENN_FARBEN, VENN_REGIONEN } from "../visuals/venn.js?v=20261127-venn";
+import { berechneOekonomie, buildOekonomieFigure, buildGrenzFigure } from "../visuals/oekonomische-funktionen.js?v=20261128-oekonomie9";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20261127-theme-live-switch";
 
 function parseNum(raw) {
@@ -1184,6 +1186,167 @@ function initAbschoepfungWidgets(root) {
     });
 }
 
+/* ---- Ökonomische Funktionen (Polypol/Monopol, Gewinn als Abstand E − K) ---- */
+function initOekonomischeFunktionenWidgets(root) {
+    const zahl = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+    const f2 = (n) => zahl.format(n);
+    const MENGE_SCHRITTE = 200;
+
+    root.querySelectorAll(".of-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const ds = widget.dataset;
+        const q = (sel) => widget.querySelector(sel);
+        const radios = [...widget.querySelectorAll(".of-marktform input[type=radio]")];
+        const gruppen = [...widget.querySelectorAll(".of-gruppe")];
+        const sl = {
+            preis: q(".of-preis"), kap: q(".of-kap"), ph: q(".of-ph"), sm: q(".of-sm"),
+            kf: q(".of-kf"), menge: q(".of-menge"),
+        };
+        const out = {
+            preis: q(".of-preisWert"), kap: q(".of-kapWert"), ph: q(".of-phWert"), sm: q(".of-smWert"),
+            kf: q(".of-kfWert"), menge: q(".of-mengeWert"),
+            e: q(".of-eWert"), k: q(".of-kWert"), g: q(".of-gWert"),
+            es: q(".of-esWert"), ks: q(".of-ksWert"), gs: q(".of-gsWert"),
+        };
+        const boxGewinnzone = q(".of-zeigeGewinnzone");
+        const boxKennzahlen = q(".of-zeigeKennzahlen");
+        const boxCournot = q(".of-zeigeCournot");
+        const labelCournot = q(".of-labelCournot");
+        const info = q(".of-info");
+        const plotDiv = q(".of-plot");
+        const plotGrenzDiv = q(".of-plotGrenz");
+        const mitGrenz = ds.grenz === "true";
+        if (mitGrenz) {
+            plotGrenzDiv.hidden = false;
+            q(".of-grenzWerte").hidden = false;
+        }
+
+        const k3 = parseNum(ds.k3) ?? 0.5;
+        const k2 = parseNum(ds.k2) ?? -6;
+        const k1 = parseNum(ds.k1) ?? 30;
+        let marktform = ds.marktform === "monopol" ? "monopol" : "polypol";
+
+        if (ds.umschalten === "false") q(".of-marktform").hidden = true;
+        if (ds.fixkosten === "false") q(".of-zeileKf").hidden = true;
+        if (boxGewinnzone) boxGewinnzone.checked = ds.gewinnzone === "true";
+        if (boxKennzahlen) boxKennzahlen.checked = ds.kennzahlen === "true";
+        if (boxCournot) boxCournot.checked = ds.cournot === "true";
+
+        // Startmenge exakt übernehmen, bis der Mengen-Slider bewegt wird
+        let menge = parseNum(ds.menge) ?? 6;
+
+        const zeile = (label, wert) => `<div><span>${label}</span><strong>${wert}</strong></div>`;
+        const me = (x) => (x === null ? "–" : `${f2(x)} ME`);
+
+        function kennzahlenHtml(kz) {
+            const z = [];
+            if (marktform === "polypol") {
+                z.push(zeile("Marktpreis p", `${f2(kz.preis)} GE/ME`));
+                z.push(zeile("maximaler Erlös E<sub>max</sub> (an der Kapazitätsgrenze)", `${f2(kz.eMax)} GE`));
+            } else {
+                z.push(zeile("Höchstpreis p<sub>H</sub>", `${f2(kz.pH)} GE/ME`));
+                z.push(zeile("Sättigungsmenge s<sub>m</sub>", me(kz.sm)));
+                z.push(zeile("erlösmaximale Menge x<sub>Emax</sub>", me(kz.xEmax)));
+                z.push(zeile("maximaler Erlös E<sub>max</sub>", `${f2(kz.eMax)} GE`));
+            }
+            z.push(zeile("Wendestelle von K (degressiv → progressiv) x<sub>w</sub>", me(kz.xW)));
+            if (kz.xGS === null) {
+                z.push(zeile("Gewinnzone", "keine – die Kosten liegen überall über dem Erlös"));
+            } else {
+                z.push(zeile("Gewinnschwelle x<sub>GS</sub>", me(kz.xGS)));
+                z.push(zeile("Gewinngrenze x<sub>GG</sub>",
+                    kz.gewinngrenzeAmRand
+                        ? `liegt hinter der ${marktform === "monopol" ? "Sättigungsmenge" : "Kapazitätsgrenze"}`
+                        : me(kz.xGG)));
+            }
+            z.push(zeile(`gewinnmaximale Menge x<sub>Gmax</sub>${kz.randmaximum ? " (Randmaximum)" : ""}`, me(kz.xGmax)));
+            z.push(zeile(kz.gMax >= 0 ? "maximaler Gewinn G<sub>max</sub>" : "kleinster Verlust (G<sub>max</sub> &lt; 0)",
+                `${f2(kz.gMax)} GE`));
+            if (marktform === "monopol" && boxCournot?.checked) {
+                z.push(zeile("gewinnmaximaler Preis p<sub>max</sub>", `${f2(kz.pH - (kz.pH / kz.sm) * kz.xGmax)} GE/ME`));
+            }
+            return z.join("");
+        }
+
+        function update() {
+            radios.forEach((r) => { r.checked = r.value === marktform; });
+            gruppen.forEach((g) => { g.hidden = g.dataset.gruppe !== marktform; });
+            if (labelCournot) labelCournot.hidden = marktform !== "monopol";
+
+            const params = {
+                marktform, k3, k2, k1,
+                kf: Number(sl.kf.value),
+                preis: Number(sl.preis.value),
+                kapazitaet: Number(sl.kap.value),
+                pH: Number(sl.ph.value),
+                sm: Number(sl.sm.value),
+            };
+            const werte = berechneOekonomie(params);
+            menge = Math.min(Math.max(menge, 0), werte.xEnde);
+            sl.menge.value = String(Math.round((menge / werte.xEnde) * MENGE_SCHRITTE));
+
+            out.preis.textContent = `${f2(params.preis)} GE/ME`;
+            out.kap.textContent = `${f2(params.kapazitaet)} ME`;
+            out.ph.textContent = `${f2(params.pH)} GE/ME`;
+            out.sm.textContent = `${f2(params.sm)} ME`;
+            out.kf.textContent = `${f2(params.kf)} GE`;
+            out.menge.textContent = `${f2(menge)} ME`;
+            out.e.textContent = `${f2(werte.E(menge))} GE`;
+            out.k.textContent = `${f2(werte.K(menge))} GE`;
+            out.g.textContent = `${f2(werte.G(menge))} GE`;
+            if (mitGrenz) {
+                out.es.textContent = `${f2(werte.Es(menge))} GE/ME`;
+                out.ks.textContent = `${f2(werte.Ks(menge))} GE/ME`;
+                out.gs.textContent = `${f2(werte.Gs(menge))} GE/ME`;
+            }
+
+            const zeigeKennzahlen = !!boxKennzahlen?.checked;
+            info.hidden = !zeigeKennzahlen;
+            if (zeigeKennzahlen) info.innerHTML = kennzahlenHtml(werte.kennzahlen);
+
+            const fig = buildOekonomieFigure({
+                werte,
+                menge,
+                zeigeKennzahlen,
+                zeigeGewinnzone: !!boxGewinnzone?.checked,
+                zeigeCournot: !!boxCournot?.checked,
+                yMin: parseNum(ds[marktform === "monopol" ? "yminMonopol" : "yminPolypol"]) ?? -150,
+                yMax: parseNum(ds[marktform === "monopol" ? "ymaxMonopol" : "ymaxPolypol"]) ?? 500,
+                titel: mitGrenz ? "Gesamtgrößen in GE" : "",
+            });
+            plotlyRender(plotDiv, fig.data, fig.layout);
+            if (mitGrenz) {
+                const figGrenz = buildGrenzFigure({
+                    werte,
+                    menge,
+                    zeigeKennzahlen,
+                    yMin: parseNum(ds[marktform === "monopol" ? "ygrenzMinMonopol" : "ygrenzMinPolypol"]) ?? -40,
+                    yMax: parseNum(ds[marktform === "monopol" ? "ygrenzMaxMonopol" : "ygrenzMaxPolypol"]) ?? 100,
+                    titel: "Grenzgrößen in GE/ME",
+                });
+                plotlyRender(plotGrenzDiv, figGrenz.data, figGrenz.layout);
+            }
+        }
+
+        radios.forEach((r) => r.addEventListener("change", () => {
+            if (r.checked) marktform = r.value;
+            update();
+        }));
+        [sl.preis, sl.kap, sl.ph, sl.sm, sl.kf].forEach((s) => s?.addEventListener("input", update));
+        sl.menge.addEventListener("input", () => {
+            const xEnde = marktform === "monopol" ? Number(sl.sm.value) : Number(sl.kap.value);
+            menge = (Number(sl.menge.value) / MENGE_SCHRITTE) * xEnde;
+            update();
+        });
+        boxGewinnzone?.addEventListener("change", update);
+        boxKennzahlen?.addEventListener("change", update);
+        boxCournot?.addEventListener("change", update);
+        update();
+    });
+}
+
 const VENN_AUFTRAEGE = Object.keys(VENN_EREIGNISSE).filter((key) => key !== "" && key !== "a,ab,b,n");
 
 function vennTypeset(nodes) {
@@ -1318,6 +1481,7 @@ export function initSkriptVisuals(root) {
     initRegressionMinimierungWidgets(root);
     initGesamtabsatzWidgets(root);
     initAbschoepfungWidgets(root);
+    initOekonomischeFunktionenWidgets(root);
     initVennWidgets(root);
 
     /* ---- Venn-Diagramme (statisch) ---- */
@@ -1349,6 +1513,13 @@ export function initSkriptVisuals(root) {
         };
 
         const figure = buildBaumdiagrammFigure(opts);
+        plotlyRender(div, figure.data, figure.layout);
+    });
+
+    /* ---- Allgemeine Baumdiagramme (Include baumdiagramm-allgemein.html) ---- */
+    root.querySelectorAll(".baumdiagramm-allgemein-auto").forEach((div) => {
+        const baum = parseBaumKurzform(div.dataset.baum);
+        const figure = buildAllgemeinerBaumFigure(baum, { breite: div.clientWidth || 480 });
         plotlyRender(div, figure.data, figure.layout);
     });
 

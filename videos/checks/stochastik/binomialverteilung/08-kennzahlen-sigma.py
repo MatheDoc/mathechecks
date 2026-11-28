@@ -43,7 +43,7 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Jetzt ist die Standardabweichung gegeben. Die gesuchte Größe steckt unter der Wurzel. "
-            "Also quadrieren wir zuerst: Sigma Quadrat ist n mal p mal eins minus p."
+            "Also quadrieren wir zuerst: Sigma Quadrat ist n mal p mal 1 minus p."
         ):
             self.play(auftritt(idee[0]), run_time=0.5)
             self.warte_bis(0.3)
@@ -67,15 +67,15 @@ class Video(MCSzene):
             ],
             stelle=quadrat[2],
             rechnung_ab=(0.25, 0.45, 0.62, 0.85),
-            sprechtext="Jedes zehnte Bauteil einer Maschine ist defekt, Sigma ist vier Komma sechs vier sieben sechs. "
-                       "Wir setzen ein und teilen durch null Komma null neun. "
-                       "n ist etwa zweihundertvierzig, als Anzahl eine ganze Zahl. Dann ist mü gleich vierundzwanzig.",
+            sprechtext="Jedes zehnte Bauteil einer Maschine ist defekt, Sigma ist 4,6476. "
+                       "Wir setzen ein und teilen durch 0,09. "
+                       "n ist etwa 240, als Anzahl eine ganze Zahl. Dann ist mü gleich 24.",
         )
 
         # ---------- μ gegeben ----------
         with self.sprich(
             "Ist statt p der Erwartungswert gegeben, hilft ein Trick: n mal p ist mü. "
-            "Also ist Sigma Quadrat gleich mü mal eins minus p, und nur p ist unbekannt."
+            "Also ist Sigma Quadrat gleich mü mal 1 minus p, und nur p ist unbekannt."
         ):
             self.play(welle(VGroup(quadrat[2], quadrat[3]), HERVOR), run_time=0.6)
             self.warte_bis(0.45)
@@ -92,9 +92,9 @@ class Video(MCSzene):
             ],
             stelle=mit_mu[3],
             rechnung_ab=(0.2, 0.42, 0.6, 0.8),
-            sprechtext="Bei einer Wahlumfrage ist mü hundertfünfundsiebzig und Sigma zehn Komma sechs sechs fünf drei. "
-                       "Wir teilen durch hundertfünfundsiebzig: Eins minus p ist null Komma sechs fünf, "
-                       "also p gleich fünfunddreißig Prozent. Und n ist mü durch p, also fünfhundert.",
+            sprechtext="Bei einer Wahlumfrage ist mü 175 und Sigma 10,6653. "
+                       "Wir teilen durch 175: 1 minus p ist 0,65, "
+                       "also p gleich 35 %. Und n ist mü durch p, also 500.",
         )
 
         # ---------- Kurzfassung ----------
@@ -108,7 +108,7 @@ class Video(MCSzene):
         )
         self.tafel(schritte)
         with self.sprich(
-            "Kurz gesagt: zuerst quadrieren. Mit p nach n umstellen, mit mü Sigma Quadrat gleich mü mal eins minus p nutzen. "
+            "Kurz gesagt: zuerst quadrieren. Mit p nach n umstellen, mit mü Sigma Quadrat gleich mü mal 1 minus p nutzen. "
             "Den Rest liefert mü gleich n mal p."
         ):
             for zeile, beginn in zip(schritte, (0.08, 0.25, 0.42, 0.75)):

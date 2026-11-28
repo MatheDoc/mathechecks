@@ -414,53 +414,29 @@
         "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
         "Nummer": 5,
         "check_id": "stochastik__mehrstufige-zufallsexperimente__05",
-        "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 1).",
-        "Sammlung": "baumdiagramm-komplex-var1",
-        "Schlagwort": "Komplexes Baumdiagramm I",
+        "Ich kann": "Baumdiagramme zu komplexen Sachverhalten aufstellen und auswerten.",
+        "Sammlung": "baumdiagramm-komplex",
+        "Schlagwort": "Komplexes Baumdiagramm",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-05",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {
                 "cue": "1. Baumdiagramm aufstellen",
-                "response": "Baumdiagramm zeichnen und gegebene Werte eintragen"
+                "response": "Stufen und Ausgänge aus dem Text, auf endende Pfade achten"
             },
             {
-                "cue": "2. Baumdiagramm vervollständigen",
-                "response": "Pfadadditionsregel und Pfadmultiplikationsregel anwenden"
+                "cue": "2. Angaben eintragen",
+                "response": "Anteil einer Gruppe am Ast, Anteil aller am Pfadende, Gesamtanteil als Summe von Pfaden"
             },
             {
-                "cue": "3. Baumdiagramm interpretieren",
-                "response": "gesuchte Wahrscheinlichkeiten identifizieren"
-            }
-        ]
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "mehrstufige-zufallsexperimente",
-        "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-        "Nummer": 6,
-        "check_id": "stochastik__mehrstufige-zufallsexperimente__06",
-        "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 2).",
-        "Sammlung": "baumdiagramm-komplex-var2",
-        "Schlagwort": "Komplexes Baumdiagramm II",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-06",
-        "questionOrder": "shuffle",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "1. Baumdiagramm aufstellen",
-                "response": "Baumdiagramm zeichnen und gegebene Werte eintragen"
+                "cue": "3. Baumdiagramm vervollständigen",
+                "response": "Knotensumme 1, Pfadmultiplikation (auch rückwärts), Pfadaddition"
             },
             {
-                "cue": "2. Baumdiagramm vervollständigen",
-                "response": "Pfadadditionsregel und Pfadmultiplikationsregel anwenden"
-            },
-            {
-                "cue": "3. Baumdiagramm interpretieren",
-                "response": "gesuchte Wahrscheinlichkeiten identifizieren"
+                "cue": "4. Baumdiagramm auswerten",
+                "response": "Ast, Pfadende oder Summe von Pfadenden ablesen"
             }
         ]
     },
@@ -1162,25 +1138,29 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 1,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__01",
-        "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
-        "Sammlung": "funktionsterme-e1k3",
-        "Schlagwort": "Gleichungen berechnen (Polypol)",
+        "Ich kann": "Gleichungen kubischer ökonomischer Funktionen im Angebotspolypol und im Angebotsmonopol aufstellen.",
+        "Sammlung": "funktionsterme",
+        "Schlagwort": "Funktionsgleichungen aufstellen",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-01",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Erlös aus Preis und Menge",
-                "response": "$E(x)=p\\cdot x$"
+                "cue": "Erlös im Angebotspolypol",
+                "response": "$E(x)=p\\cdot x$ (Gerade)"
+            },
+            {
+                "cue": "Erlös im Angebotsmonopol",
+                "response": "$E(x)=p(x)\\cdot x$ (Parabel)"
+            },
+            {
+                "cue": "Preis aus dem Erlös",
+                "response": "$p(x)=\\frac{E(x)}{x}$"
             },
             {
                 "cue": "Gewinn",
                 "response": "$G(x)=E(x)-K(x)$"
-            },
-            {
-                "cue": "Preis",
-                "response": "$p=\\frac{E(x)}{x}$"
             },
             {
                 "cue": "Erlös aus Gewinn und Kosten",
@@ -1198,33 +1178,41 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 2,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__02",
-        "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
-        "Sammlung": "funktionsterme-e2k3",
-        "Schlagwort": "Gleichungen berechnen (Monopol)",
+        "Ich kann": "Kennzahlen kubischer ökonomischer Funktionen im Angebotspolypol und im Angebotsmonopol graphisch bestimmen.",
+        "Sammlung": "kennzahlen-graphisch",
+        "Schlagwort": "Kennzahlen graphisch",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-02",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Erlös aus Preis und Menge",
-                "response": "$E(x)=p(x)\\cdot x$"
+                "cue": "Marktpreis $p$ (Polypol)",
+                "response": "konstanter Wert von $p$ bzw. Steigung von $E$"
             },
             {
-                "cue": "Gewinn",
-                "response": "$G(x)=E(x)-K(x)$"
+                "cue": "maximaler Erlös $E_{max}$ (Polypol)",
+                "response": "Erlös an der Kapazitätsgrenze"
             },
             {
-                "cue": "Preis",
-                "response": "$p(x)=\\frac{E(x)}{x}$"
+                "cue": "Höchstpreis $p_H$ und Sättigungsmenge $s_m$ (Monopol)",
+                "response": "$y$-Abschnitt und Nullstelle von $p$"
             },
             {
-                "cue": "Erlös aus Gewinn und Kosten",
-                "response": "$E(x)=G(x)+K(x)$"
+                "cue": "erlösmaximale Menge $x_{Emax}$ und maximaler Erlös $E_{max}$ (Monopol)",
+                "response": "Hochpunkt von $E$"
             },
             {
-                "cue": "Kosten aus Erlös und Gewinn",
-                "response": "$K(x)=E(x)-G(x)$"
+                "cue": "Übergang degressiv/progressiv $x_w$",
+                "response": "Wendestelle von $K$"
+            },
+            {
+                "cue": "Gewinnschwelle $x_{GS}$ und Gewinngrenze $x_{GG}$",
+                "response": "erste und zweite positive Nullstelle von $G$"
+            },
+            {
+                "cue": "gewinnmaximale Menge $x_{Gmax}$ und maximaler Gewinn $G_{max}$",
+                "response": "Hochpunkt von $G$"
             }
         ]
     },
@@ -1234,45 +1222,37 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 3,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__03",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
-        "Sammlung": "kennzahlen-graphisch-e1k3",
-        "Schlagwort": "Kennzahlen graphisch (Polypol)",
+        "Ich kann": "Kennzahlen ökonomischer Funktionen aus den Graphen der Grenzfunktionen bestimmen.",
+        "Sammlung": "grenzfunktionen-graphisch",
+        "Schlagwort": "Grenzfunktionen graphisch",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-03",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Verkaufspreis $p$",
-                "response": "Steigung von $E$ bzw. konstanter Wert von $p(x)$"
-            },
-            {
-                "cue": "erlösmaximale Menge $x_{Emax}$",
-                "response": "Kapazitätsgrenze (Polypol)"
-            },
-            {
-                "cue": "maximaler Erlös $E_{max}$",
-                "response": "Erlös an Kapazitätsgrenze (Polypol)"
-            },
-            {
-                "cue": "Fixkosten $K_f$",
-                "response": "$y$-Abschnitt von $K$"
-            },
-            {
                 "cue": "Übergang degressiv/progressiv $x_w$",
-                "response": "Wendestelle von $K$"
-            },
-            {
-                "cue": "Gewinnschwelle $x_{GS}$ und Gewinngrenze $x_{GG}$",
-                "response": "erste und zweite positive Nullstelle von $G$"
+                "response": "Tiefpunkt von $K'$"
             },
             {
                 "cue": "gewinnmaximale Menge $x_{Gmax}$",
-                "response": "$x$-Wert des Hochpunkts von $G$"
+                "response": "Schnittstelle von $E'$ und $K'$ bzw. Nullstelle von $G'$ mit Vorzeichenwechsel von $+$ nach $-$"
             },
             {
-                "cue": "maximaler Gewinn $G_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $G$"
+                "cue": "erlösmaximale Menge $x_{Emax}$ (Monopol)",
+                "response": "Nullstelle von $E'$"
+            },
+            {
+                "cue": "Marktpreis $p$ (Polypol)",
+                "response": "konstanter Wert von $E'$"
+            },
+            {
+                "cue": "Grenzgewinn $G'(x_0)$",
+                "response": "$E'(x_0)-K'(x_0)$; positiv: Gewinn steigt, negativ: Gewinn fällt"
+            },
+            {
+                "cue": "stärkster Gewinnanstieg",
+                "response": "Hochpunkt von $G'$ (Wendestelle von $G$)"
             }
         ]
     },
@@ -1282,53 +1262,41 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 4,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__04",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
-        "Sammlung": "kennzahlen-graphisch-e2k3",
-        "Schlagwort": "Kennzahlen graphisch (Monopol)",
+        "Ich kann": "Kennzahlen kubischer ökonomischer Funktionen im Angebotspolypol und im Angebotsmonopol berechnen.",
+        "Sammlung": "kennzahlen-rechnerisch",
+        "Schlagwort": "Kennzahlen berechnen",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-04",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "$p_H$",
-                "response": "$y$-Abschnitt von $p$"
-            },
-            {
-                "cue": "$s_m$",
-                "response": "Nullstelle von $p$"
-            },
-            {
-                "cue": "erlösmaximale Menge $x_{Emax}$",
-                "response": "$x$-Wert des Hochpunkts von $E$"
-            },
-            {
-                "cue": "maximaler Erlös $E_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $E$"
-            },
-            {
-                "cue": "$K_f$",
-                "response": "$y$-Abschnitt von $K$"
-            },
-            {
                 "cue": "Übergang degressiv/progressiv $x_w$",
-                "response": "Wendestelle von $K$"
+                "response": "$K''(x)=0$ lösen, $K'''(x)\\neq 0$ prüfen"
             },
             {
                 "cue": "Gewinnschwelle $x_{GS}$ und Gewinngrenze $x_{GG}$",
-                "response": "erste und zweite positive Nullstelle von $G$"
+                "response": "$G(x)=0$ lösen, erste und zweite positive Lösung"
             },
             {
                 "cue": "gewinnmaximale Menge $x_{Gmax}$",
-                "response": "$x$-Wert des Hochpunkts von $G$"
+                "response": "$G'(x)=0$ lösen, $G''(x)<0$ prüfen"
             },
             {
                 "cue": "maximaler Gewinn $G_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $G$"
+                "response": "$G(x_{Gmax})$ berechnen"
             },
             {
-                "cue": "gewinnmaximaler Verkaufspreis $p_{max}$",
-                "response": "Wert von $p$ an $x_{Gmax}$"
+                "cue": "maximaler Erlös $E_{max}$ (Polypol)",
+                "response": "$E$ an der Kapazitätsgrenze berechnen"
+            },
+            {
+                "cue": "Höchstpreis $p_H$ und Sättigungsmenge $s_m$ (Monopol)",
+                "response": "$p(0)$ berechnen bzw. $p(x)=0$ lösen"
+            },
+            {
+                "cue": "erlösmaximale Menge $x_{Emax}$ (Monopol)",
+                "response": "$E'(x)=0$ lösen, $E''(x)<0$ prüfen"
             }
         ]
     },
@@ -1338,89 +1306,37 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 5,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__05",
-        "Ich kann": "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
-        "Sammlung": "kennzahlen-ansatz",
-        "Schlagwort": "Berechnungsansätze",
+        "Ich kann": "Gewinnsituationen im Angebotsmonopol analysieren und die Auswirkungen von Veränderungen beurteilen.",
+        "Sammlung": "gewinnanalyse",
+        "Schlagwort": "Gewinnsituationen analysieren",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-05",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Nullstellen ($s_m$, $x_{GS}$, $x_{GG}$)",
-                "response": "Gleichung $f(x)=0$ nach $x$ auflösen"
+                "cue": "Cournotscher Punkt",
+                "response": "$C(x_{Gmax}\\mid p(x_{Gmax}))$"
             },
             {
-                "cue": "$y$-Abschnitte ($p_H$, $K_f$)",
-                "response": "$f(0)$ berechnen"
+                "cue": "Fixkosten ändern sich",
+                "response": "$x_{Gmax}$ und $p_{max}$ bleiben gleich, $G_{max}$ und Gewinnzone ändern sich"
             },
             {
-                "cue": "lokale Maxima ($x_{Gmax}$ und ggf. $x_{Emax}$)",
-                "response": "notwendige Bedingung: $f'(x)=0$, hinreichende Bedingung: $f''(x)<0$"
+                "cue": "höchstens tragbare Fixkosten",
+                "response": "bisherige Fixkosten $+\\,G_{max}$"
             },
             {
-                "cue": "$y$-Werte ($E_{max}$, $G_{max}$, ggf. $p_{max}$)",
-                "response": "$f(x)$ berechnen"
+                "cue": "Mengenbereich mit Gewinn mindestens $c$",
+                "response": "$G(x)=c$ lösen"
             },
             {
-                "cue": "Wendestellen ($x_w$)",
-                "response": "notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$"
-            }
-        ]
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "ganzrationale-oekonomische-funktionen",
-        "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-        "Nummer": 6,
-        "check_id": "analysis__ganzrationale-oekonomische-funktionen__06",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
-        "Sammlung": "kennzahlen-rechnerisch-e1k3",
-        "Schlagwort": "Kennzahlen berechnen (Polypol)",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-06",
-        "questionOrder": "shuffle",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "1. Schritt",
-                "response": "festlegen, welche mathematische Größe gesucht ist"
+                "cue": "Gewinnzone vor oder nach dem Maximum",
+                "response": "Vorzeichen des Grenzgewinns $G'(x)$"
             },
             {
-                "cue": "2. Schritt",
-                "response": "passenden Ansatz formulieren"
-            },
-            {
-                "cue": "3. Schritt",
-                "response": "gesuchten $x$ oder $y$-Wert berechnen"
-            }
-        ]
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "ganzrationale-oekonomische-funktionen",
-        "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-        "Nummer": 7,
-        "check_id": "analysis__ganzrationale-oekonomische-funktionen__07",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
-        "Sammlung": "kennzahlen-rechnerisch-e2k3",
-        "Schlagwort": "Kennzahlen berechnen (Monopol)",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-07",
-        "questionOrder": "shuffle",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "1. Schritt",
-                "response": "festlegen, welche mathematische Größe gesucht ist"
-            },
-            {
-                "cue": "2. Schritt",
-                "response": "passenden Ansatz formulieren"
-            },
-            {
-                "cue": "3. Schritt",
-                "response": "gesuchten $x$ oder $y$-Wert berechnen"
+                "cue": "Lohnt sich eine Maßnahme?",
+                "response": "Gewinnzuwachs $G(x_2)-G(x_1)$ mit den Kosten der Maßnahme vergleichen"
             }
         ]
     },
@@ -3189,6 +3105,7 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 3,
         "check_id": "analysis__produktlebenszyklus__03",
+        "video": "j9uXZZgF-WI",
         "Ich kann": "Kennzahlen des Produktlebenszyklus berechnen (ohne Integration).",
         "Sammlung": "kennzahlen-rechnerisch-gesamt",
         "Schlagwort": "Kennzahlen (ohne Integral)",
@@ -3229,6 +3146,7 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 4,
         "check_id": "analysis__produktlebenszyklus__04",
+        "video": "xHrS908v-_U",
         "Ich kann": "den Gesamtabsatz als Fläche unter dem Graphen deuten und abschätzen.",
         "Sammlung": "gesamtabsatz-graphisch",
         "Schlagwort": "Gesamtabsatz graphisch",
@@ -3261,6 +3179,7 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 5,
         "check_id": "analysis__produktlebenszyklus__05",
+        "video": "pPr0HE-1ObY",
         "Ich kann": "Kennzahlen des Produktlebenszyklus mit Integralen berechnen.",
         "Sammlung": "integrale-gemischt",
         "Schlagwort": "Kennzahlen (mit Integral)",
@@ -3921,6 +3840,7 @@
         "LernbereichAnzeigename": "Zinseszinsrechnung",
         "Nummer": 1,
         "check_id": "finanzmathematik__zinseszinsrechnung__01",
+        "video": "ijPH34kGKPI",
         "Ich kann": "den Zinsfaktor $q$ aus dem Zinssatz $p$ bilden und in der Zinseszinsformel jede Größe durch Einsetzen und Umformen bestimmen.",
         "Sammlung": "zinseszinsformel-umformen",
         "Schlagwort": "Zinseszinsformel umformen",
@@ -3990,6 +3910,7 @@
         "LernbereichAnzeigename": "Zinseszinsrechnung",
         "Nummer": 3,
         "check_id": "finanzmathematik__zinseszinsrechnung__03",
+        "video": "4tZvFu_mX6k",
         "Ich kann": "Kapitalentwicklungen mit zwei Zinsphasen über den Zwischenwert $K_{n_1}$ berechnen und darin eine fehlende Größe bestimmen.",
         "Sammlung": "zinssatzwechsel",
         "Schlagwort": "Zinssatzwechsel",
@@ -4018,6 +3939,7 @@
         "LernbereichAnzeigename": "Zinseszinsrechnung",
         "Nummer": 4,
         "check_id": "finanzmathematik__zinseszinsrechnung__04",
+        "video": "KICk7EHd1Xk",
         "Ich kann": "Angebote mit Einmalzahlungen zu verschiedenen Zeitpunkten über Barwerte vergleichen und die Entscheidung begründen.",
         "Sammlung": "kapitalvergleich-einmalzahlungen",
         "Schlagwort": "Kapitalvergleich",

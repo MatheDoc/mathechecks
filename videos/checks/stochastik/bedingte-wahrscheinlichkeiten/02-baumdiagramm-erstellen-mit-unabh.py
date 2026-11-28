@@ -57,7 +57,7 @@ class Video(MCSzene):
         ).arrange(DOWN, buff=0.25)
         sach = self.tafel(gegeben)
         kopf = einpassen(unabhaengig(26), BREITE - 3).move_to([0.4, KOPF_Y, 0])
-        with self.sprich("Gegeben sind zwei Pfadenden, und: A und B sind stochastisch unabhängig. Das brauchen wir gleich."):
+        with self.sprich("Gegeben sind 2 Pfadenden, und: A und B sind stochastisch unabhängig. Das brauchen wir gleich."):
             self.play(baum.markiere(enden={"AB": HERVOR, "AnB": HERVOR}), run_time=0.6)
             self.warte_bis(0.3)
             self.play(auftritt(gegeben), baum.markiere(), run_time=0.7)
@@ -69,7 +69,7 @@ class Video(MCSzene):
         block1 = self.tafel(titel("Pfadadditionsregel"), feld1, abstand=0.7)
         with self.sprich(
             "Die beiden Pfade über A ergeben zusammen P von A: "
-            "null Komma eins zwei plus null Komma zwei acht gleich null Komma vier."
+            "0,12 plus 0,28 gleich 0,4."
         ):
             self.play(auftritt(block1[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -92,7 +92,7 @@ class Video(MCSzene):
         feld3 = zeile(3, "=", r"\frac{0{,}12}{0{,}4}", "=", "0{,}3", farben={1: BLAU, 3: HERVOR})
         block2 = self.tafel(titel("Pfadmultiplikationsregel"), ansatz, feld3, abstand=0.6)
         with self.sprich(
-            "Null Komma vier mal Feld drei ergibt null Komma eins zwei. Also teilen wir: Feld drei ist null Komma drei."
+            "0,4 mal Feld 3 ergibt 0,12. Also teilen wir: Feld 3 ist 0,3."
         ):
             self.play(
                 auftritt(block2[0]), baum.markiere(aeste={"A": BLAU, "AB": HERVOR}, enden={"AB": BLAU}), run_time=0.6,
@@ -108,7 +108,7 @@ class Video(MCSzene):
         feld4 = zeile(4, "=", "1-", "0{,}3", "=", "0{,}7", farben={2: BLAU, 4: HERVOR})
         feld2 = zeile(2, "=", "1-", "0{,}4", "=", "0{,}6", farben={2: BLAU, 4: HERVOR})
         block3 = self.tafel(titel("An jedem Knoten: Summe 1"), feld4, feld2, abstand=0.6)
-        with self.sprich("An jedem Knoten ergeben die Äste zusammen eins. Das liefert Feld vier und Feld zwei."):
+        with self.sprich("An jedem Knoten ergeben die Äste zusammen 1. Das liefert Feld 4 und Feld 2."):
             self.play(auftritt(block3[0]), run_time=0.5)
             self.warte_bis(0.2)
             self.play(baum.markiere(aeste={"AB": BLAU, "AnB": HERVOR}), Write(feld4), run_time=1.0)
@@ -126,14 +126,14 @@ class Video(MCSzene):
         block4 = self.tafel(titel("Unabhängigkeit"), ueber_b, ueber_nb, abstand=0.6)
         with self.sprich(
             "Jetzt nutzen wir, dass A und B unabhängig sind. Dann ist die Wahrscheinlichkeit für B "
-            "unten dieselbe wie oben: null Komma drei."
+            "unten dieselbe wie oben: 0,3."
         ):
             self.play(auftritt(block4[0]), Indicate(kopf, color=kopf.get_color(), scale_factor=1.15), run_time=0.8)
             self.warte_bis(0.4)
             self.play(baum.markiere(aeste={"AB": HERVOR, "nAB": HERVOR}, knoten=False), Write(ueber_b), run_time=1.0)
             self.warte_bis(0.8)
             self.play(baum.fuelle(5, quelle=baum.werte["AB"]), run_time=0.9)
-        with self.sprich("Genauso für nicht B: null Komma sieben."):
+        with self.sprich("Genauso für nicht B: 0,7."):
             self.play(
                 baum.markiere(aeste={"AB": HERVOR, "nAB": HERVOR, "AnB": BLAU, "nAnB": BLAU}, knoten=False),
                 Write(ueber_nb), run_time=1.0,
@@ -175,7 +175,7 @@ class Video(MCSzene):
         self.tafel(punkte)
         with self.sprich(
             "Kurz gesagt: Bei Unabhängigkeit ist die zweite Stufe oben und unten gleich. "
-            "Ansonsten wie gewohnt: Am Knoten ergänzt du zu eins, entlang des Pfades multiplizierst du, "
+            "Ansonsten wie gewohnt: Am Knoten ergänzt du zu 1, entlang des Pfades multiplizierst du, "
             "Pfadenden addierst du, um die erste Stufe zu bekommen."
         ):
             # oben und unten gleich: erst die beiden B-Äste, dann die beiden anderen kurz aufleuchten lassen

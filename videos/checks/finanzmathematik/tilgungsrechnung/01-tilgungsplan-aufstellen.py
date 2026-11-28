@@ -40,8 +40,8 @@ class Video(MCSzene):
         idee = text("Annuität = Zinsen + Tilgung", groesse=40)
         block = self.tafel(aufgabe, idee, abstand=0.8)
         with self.sprich(
-            "Ein Fotostudio nimmt ein Darlehen über achtzehntausend Euro zu drei Komma fünf Prozent auf. "
-            "Es zahlt jedes Jahr dieselbe Annuität: dreitausenddreihundertachtundsiebzig Euro und drei Cent. "
+            "Ein Fotostudio nimmt ein Darlehen über 18.000 Euro zu 3,5 % auf. "
+            "Es zahlt jedes Jahr dieselbe Annuität: 3378 Euro und 3 Cent. "
             "Darin stecken Zinsen und Tilgung."
         ):
             self.play(auftritt(aufgabe), run_time=0.6)
@@ -68,20 +68,20 @@ class Video(MCSzene):
         self.play(plan.zeile(1), run_time=0.4)
         self.schritt_zeigen(
             paare[0], (1, "zinsen"), None,
-            "Erster Schritt: die Zinsen. Sie betragen drei Komma fünf Prozent der Restschuld am Jahresanfang, "
-            "also sechshundertdreißig Euro.",
+            "Erster Schritt: die Zinsen. Sie betragen 3,5 % der Restschuld am Jahresanfang, "
+            "also 630 Euro.",
             betont=[(1, "rk_anfang")],
         )
         self.schritt_zeigen(
             paare[1], (1, "tilgung"), (1, "zinsen"),
             "Zweiter Schritt: Der Rest der Annuität ist die Tilgung. "
-            "Annuität minus Zinsen ergibt zweitausendsiebenhundertachtundvierzig Euro und drei Cent.",
+            "Annuität minus Zinsen ergibt 2748 Euro und 3 Cent.",
             betont=[(1, "annuitaet"), (1, "zinsen")],
         )
         self.schritt_zeigen(
             paare[2], (1, "rk_ende"), (1, "tilgung"),
             "Dritter Schritt: Die Tilgung verringert die Schuld. "
-            "Am Jahresende bleiben fünfzehntausendzweihunderteinundfünfzig Euro und siebenundneunzig Cent.",
+            "Am Jahresende bleiben 15.251 Euro und 97 Cent.",
             betont=[(1, "rk_anfang"), (1, "tilgung")],
         )
         self.wait(0.3)

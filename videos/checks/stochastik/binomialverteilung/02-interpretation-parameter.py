@@ -56,7 +56,7 @@ class Video(MCSzene):
         )
         block = self.tafel(text("Anzahlen", groesse=G_TEXT, farbe=TEXT_LEISE), anzahlen, abstand=0.5)
         with self.sprich(
-            "Acht ist die Anzahl aller Pakete. Zwei Pakete kommen zu spät, die übrigen sechs pünktlich."
+            "8 ist die Anzahl aller Pakete. 2 Pakete kommen zu spät, die übrigen 6 pünktlich."
         ):
             self.play(auftritt(block[0]), auftritt(anzahlen[0]), welle(acht, HERVOR), run_time=0.6)
             self.warte_bis(0.35)
@@ -76,9 +76,9 @@ class Video(MCSzene):
         )
         block = self.tafel(text("Wahrscheinlichkeiten", groesse=G_TEXT, farbe=TEXT_LEISE), wkt, abstand=0.5)
         with self.sprich(
-            "Null Komma eins hat den Exponenten zwei, gehört also zu den verspäteten Paketen: "
+            "0,1 hat den Exponenten 2, gehört also zu den verspäteten Paketen: "
             "Das ist die Wahrscheinlichkeit, dass ein Paket zu spät kommt. "
-            "Null Komma neun ist die Wahrscheinlichkeit, dass ein Paket pünktlich kommt."
+            "0,9 ist die Wahrscheinlichkeit, dass ein Paket pünktlich kommt."
         ):
             self.play(auftritt(block[0]), run_time=0.4)
             self.play(bernoulli[P].animate.set_color(HERVOR), welle(bernoulli[K], HERVOR), run_time=0.6)
@@ -99,9 +99,9 @@ class Video(MCSzene):
         )
         block[0].shift(0.2 * UP)
         with self.sprich(
-            "Acht über zwei zählt die Möglichkeiten, welche zwei der acht Pakete zu spät kommen: "
+            "8 über 2 zählt die Möglichkeiten, welche 2 der 8 Pakete zu spät kommen: "
             "das erste und das zweite, das erste und das dritte, und so weiter. "
-            "Das sind achtundzwanzig Möglichkeiten."
+            "Das sind 28 Möglichkeiten."
         ):
             self.play(welle(binom, HERVOR), Write(koeff), run_time=0.8)
             self.play(auftritt(block[1:]), run_time=0.5)
@@ -123,7 +123,7 @@ class Video(MCSzene):
         )
         block[0].shift(0.2 * UP)
         with self.sprich(
-            "Das Ergebnis ist die Wahrscheinlichkeit, dass genau zwei von acht Paketen zu spät kommen."
+            "Das Ergebnis ist die Wahrscheinlichkeit, dass genau 2 von 8 Paketen zu spät kommen."
         ):
             self.play(welle(bernoulli[ERG], HERVOR), Write(block[0]), pakete.markiere(3, 7, farbe=HERVOR), run_time=0.8)
             self.warte_bis(0.4)

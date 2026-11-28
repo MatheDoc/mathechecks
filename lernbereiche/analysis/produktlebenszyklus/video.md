@@ -9,7 +9,7 @@ module_key: video
 published: true
 lernbereich: produktlebenszyklus
 gebiet: analysis
-page_css: /assets/css/video.css?v=20261124-video-play
+page_css: /assets/css/video.css?v=20261128-video-list
 permalink: /lernbereiche/analysis/produktlebenszyklus/video.html
 ---
 

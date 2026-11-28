@@ -10,9 +10,10 @@
     /* Hintergrund der Videos (videos/mcvideo/theme.py), in beiden Farbschemata gleich */
     --vid-screen-bg: #0f0f14;
     --vid-on-screen: #f2f2f5;
-    /* Höhe von Kopfleiste, Reitern, Check-Navigation und Kartenkopf: Das Video passt ohne Scrollen ins Bild */
-    --vid-chrome: 270px;
-    padding: 18px 0 48px;
+    /* Innenabstand der Kartenfläche, Kartenkopf und Kartenrand: Das Video passt in eine Kartenfläche
+       (--check-stage-height aus shared.css, wie in Training/Recall/Feynman) */
+    --vid-card-chrome: 124px;
+    padding-bottom: 48px;
     color: var(--text-body);
 }
 
@@ -26,7 +27,7 @@
 
 .vid-frame {
     position: relative;
-    width: min(100%, calc((100svh - var(--vid-chrome)) * 9 / 16));
+    width: min(100%, calc((var(--check-stage-height, calc(100dvh - 132px)) - var(--vid-card-chrome)) * 9 / 16));
     min-width: 220px;
     aspect-ratio: 9 / 16;
     border-radius: 18px;
@@ -335,8 +336,7 @@
 
 @media (max-width: 680px) {
     .vid-root {
-        --vid-chrome: 130px;
-        padding-top: 12px;
+        --vid-card-chrome: 112px;
     }
 
     .vid-frame {

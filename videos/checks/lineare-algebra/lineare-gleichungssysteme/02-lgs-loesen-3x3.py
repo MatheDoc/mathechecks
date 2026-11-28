@@ -42,7 +42,7 @@ class Video(MCSzene):
         self.einstieg(
             "Wie löst du ein LGS", "mit drei Unbekannten?",
             bild=[LaggedStart(*[Write(zeile) for zeile in gleichungen], lag_ratio=0.35)],
-            sprechtext="Wie löst du ein lineares Gleichungssystem mit drei Unbekannten?",
+            sprechtext="Wie löst du ein lineares Gleichungssystem mit 3 Unbekannten?",
         )
 
         # ---------- Schritt 1: Matrixform ----------
@@ -50,7 +50,7 @@ class Video(MCSzene):
 
         kopf1 = schritt(1, "Matrixform")
         block1 = self.tafel(kopf1, text("nur die Zahlen aufschreiben", groesse=38, farbe=TEXT_LEISE), abstand=0.5)
-        with self.sprich("Schritt eins: die Matrixform. Wir schreiben nur noch die Zahlen auf."):
+        with self.sprich("Schritt 1: die Matrixform. Wir schreiben nur noch die Zahlen auf."):
             self.play(auftritt(kopf1), run_time=0.5)
             self.warte_bis(0.45)
             self.play(*uebergang, auftritt(block1[1]), run_time=1.5)
@@ -71,7 +71,7 @@ class Video(MCSzene):
         unter_diagonale = [m.eintraege[1][0], m.eintraege[2][0], m.eintraege[2][1]]
 
         with self.sprich(
-            "Schritt zwei: der Gauß-Algorithmus. Unter der Diagonale sollen Nullen stehen. "
+            "Schritt 2: der Gauß-Algorithmus. Unter der Diagonale sollen Nullen stehen. "
             "Das ist die obere Dreiecksform."
         ):
             self.play(auftritt(kopf2), run_time=0.5)
@@ -83,15 +83,15 @@ class Video(MCSzene):
 
         self.zeilenumformung(
             m, 1, 4, 0, y=self.y_rechnung,
-            sprechtext="Zeile zwei minus viermal Zeile eins: Aus der Vier wird eine Null.",
+            sprechtext="Zeile 2 minus 4-mal Zeile 1: Aus der 4 wird eine 0.",
         )
         self.zeilenumformung(
             m, 2, 16, 0, y=self.y_rechnung,
-            sprechtext="Genauso: Zeile drei minus sechzehnmal Zeile eins.",
+            sprechtext="Genauso: Zeile 3 minus 16-mal Zeile 1.",
         )
         self.zeilenumformung(
             m, 2, 10, 1, y=self.y_rechnung,
-            sprechtext="Jetzt noch -20 zu 0 machen: Zeile drei minus zehnmal Zeile zwei.",
+            sprechtext="Jetzt noch -20 zu 0 machen: Zeile 3 minus 10-mal Zeile 2.",
         )
         erreicht = text("Obere Dreiecksform", groesse=42, gewicht=BOLD).move_to(ziel)
         with self.sprich("Fertig ist die obere Dreiecksform."):
@@ -121,8 +121,8 @@ class Video(MCSzene):
         self.tafel(kopf3, zeilen, abstand=0.7)
 
         with self.sprich(
-            "Schritt drei: rückwärts einsetzen. Die letzte Zeile heißt: fünfzehn x drei gleich minus sechzig. "
-            "Also x drei gleich minus vier."
+            "Schritt 3: rückwärts einsetzen. Die letzte Zeile heißt: 15 x drei gleich minus 60. "
+            "Also x drei gleich minus 4."
         ):
             self.play(
                 auftritt(kopf3), *[eintrag.animate.set_color(TEXT_LEISE) for eintrag in unter_diagonale], run_time=0.5,
@@ -135,12 +135,12 @@ class Video(MCSzene):
             )
             self.warte_bis(0.75)
             self.play(FadeIn(g3[3]), FadeIn(g3[4], scale=1.4), run_time=0.5)
-        with self.sprich("Das setzen wir in Zeile zwei ein: x zwei gleich fünf."):
+        with self.sprich("Das setzen wir in Zeile 2 ein: x zwei gleich 5."):
             self.play(m.betonen(1), FadeIn(zeilen[1][0]), run_time=0.5)
             self.play(Write(g2[0]), TransformFromCopy(g3[4], g2[1]), Write(g2[2]), run_time=0.9)
             self.warte_bis(0.65)
             self.play(FadeIn(g2[3]), FadeIn(g2[4], scale=1.4), run_time=0.5)
-        with self.sprich("Und beides in Zeile eins: x eins gleich zwei."):
+        with self.sprich("Und beides in Zeile 1: x eins gleich 2."):
             self.play(m.betonen(0), FadeIn(zeilen[2][0]), run_time=0.5)
             self.play(
                 Write(g1[0]), TransformFromCopy(g2[4], g1[1]), TransformFromCopy(g3[4], g1[2]), Write(g1[3]),

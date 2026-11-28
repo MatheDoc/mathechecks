@@ -39,7 +39,7 @@ class Video(MCSzene):
             abstand=0.5,
         )
         with self.sprich(
-            "Zuerst berechnen wir mü und Sigma: mü ist sieben Komma fünf, Sigma etwa zwei Komma zwei neun. "
+            "Zuerst berechnen wir mü und Sigma: mü ist 7,5, Sigma etwa 2,29. "
             "Gefragt ist, wie weit X von mü abweicht: um einen festen Wert, einen Prozentsatz von mü "
             "oder ein Vielfaches von Sigma."
         ):
@@ -59,8 +59,8 @@ class Video(MCSzene):
                 formel(r"P(6\leq X\leq 9)\approx 0{,}6171", groesse=G_FORMEL),
             ],
             grenzen=(5.5, 9.5), bereiche=[(6, 9)],
-            sprechtext="Höchstens zwei vom Erwartungswert entfernt: Die Grenzen sind fünf Komma fünf und neun Komma fünf. "
-                       "Höchstens heißt innerhalb, also sechs bis neun. Das ergibt null Komma sechs eins sieben eins.",
+            sprechtext="Höchstens 2 vom Erwartungswert entfernt: Die Grenzen sind 5,5 und 9,5. "
+                       "Höchstens heißt innerhalb, also 6 bis 9. Das ergibt 0,6171.",
             ab=(0.15, 0.45, 0.75),
         )
 
@@ -73,9 +73,9 @@ class Video(MCSzene):
                 formel(r"P(X\leq 6)+P(X\geq 9)\approx 0{,}6637", groesse=G_FORMEL),
             ],
             grenzen=(6.75, 8.25), bereiche=[(0, 6), (9, 25)],
-            sprechtext="Mindestens zehn Prozent: Die Abweichung ist zehn Prozent von mü, also null Komma sieben fünf. "
+            sprechtext="Mindestens 10 %: Die Abweichung ist 10 % von mü, also 0,75. "
                        "Mindestens heißt außerhalb: links abrunden, rechts aufrunden und beide Seiten addieren. "
-                       "Ergebnis: null Komma sechs sechs drei sieben.",
+                       "Ergebnis: 0,6637.",
             ab=(0.12, 0.35, 0.55, 0.85),
         )
 
@@ -88,8 +88,8 @@ class Video(MCSzene):
                 formel(r"P(3\leq X\leq 12)\approx 0{,}9736", groesse=G_FORMEL),
             ],
             grenzen=(2.92, 12.08), bereiche=[(3, 12)],
-            sprechtext="Höchstens die doppelte Standardabweichung: Die Abweichung ist etwa vier Komma fünf acht. "
-                       "Innerhalb liegen drei bis zwölf, das ergibt null Komma neun sieben drei sechs.",
+            sprechtext="Höchstens die doppelte Standardabweichung: Die Abweichung ist etwa 4,58. "
+                       "Innerhalb liegen 3 bis 12, das ergibt 0,9736.",
             ab=(0.12, 0.3, 0.5, 0.8),
         )
 

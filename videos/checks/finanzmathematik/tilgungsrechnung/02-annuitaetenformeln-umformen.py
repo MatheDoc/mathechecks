@@ -72,8 +72,8 @@ class Video(MCSzene):
         merke = text("3 gegeben, 1 gesucht", groesse=44, farben={"1 gesucht": HERVOR})
         block = self.tafel(groessen, merke, abstand=0.7)
         with self.sprich(
-            "Die Annuitätenformel verbindet vier Größen: Annuität A, Darlehenssumme K null, "
-            "Zinsfaktor q und Laufzeit n. Drei sind gegeben, die vierte ist gesucht."
+            "Die Annuitätenformel verbindet 4 Größen: Annuität A, Darlehenssumme K null, "
+            "Zinsfaktor q und Laufzeit n. 3 sind gegeben, die vierte ist gesucht."
         ):
             for zeile, name, beginn in zip(groessen, ("A", "K_0", "q", "n"), (0.2, 0.36, 0.5, 0.62)):
                 self.warte_bis(beginn)
@@ -94,8 +94,8 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.35, 0.7),
             sprechtext="Ist A gesucht, steht es schon allein. Einsetzen und ausrechnen: "
-                       "Bei hundertfünfzigtausend Euro, vier Prozent und zwanzig Jahren "
-                       "sind das etwa elftausendsiebenunddreißig Euro.",
+                       "Bei 150.000 Euro, 4 % und 20 Jahren "
+                       "sind das etwa 11.037 Euro.",
         )
 
         # ---------- K_0 gesucht ----------
@@ -110,8 +110,8 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.25, 0.5, 0.78),
             sprechtext="Ist K null gesucht, steht es als Faktor im Zähler. Wir rechnen den Bruch ohne K null aus: "
-                       "null Komma null acht drei sieben sieben. Dann teilen wir zwölftausend durch diesen Faktor: "
-                       "etwa hundertdreiundvierzigtausendzweihundertfünfundfünfzig Euro.",
+                       "0,08377. Dann teilen wir 12.000 durch diesen Faktor: "
+                       "etwa 143.255 Euro.",
         )
 
         # ---------- n gesucht ----------
@@ -127,9 +127,9 @@ class Video(MCSzene):
         t1 = betrag("T_1", "=", r"9\,000-100\,000\cdot 0{,}04", "=", r"5\,000", groesse=G_FORMEL)
         block = self.tafel(angaben, werkzeug, erklaerung, t1, abstand=0.5)
         with self.sprich(
-            "Bei n wird es knifflig: n steht zweimal im Exponenten. Hier hilft die zweite Formel: "
+            "Bei n wird es knifflig: n steht 2-mal im Exponenten. Hier hilft die zweite Formel: "
             "A gleich T eins mal q hoch n. T eins ist die Tilgung im ersten Jahr, "
-            "also Annuität minus Zinsen: fünftausend Euro."
+            "also Annuität minus Zinsen: 5000 Euro."
         ):
             self.play(auftritt(angaben), run_time=0.5)
             self.play(stelle.animate.set_color(HERVOR), FadeIn(schild, shift=0.1 * DOWN),
@@ -150,8 +150,8 @@ class Video(MCSzene):
         rechnung = VGroup(*loesung).arrange(DOWN, buff=0.5)
         rechnung.next_to(angaben, DOWN, buff=0.6).set_x(0)
         with self.sprich(
-            "Jetzt einsetzen, durch fünftausend teilen und logarithmieren: n ist etwa vierzehn Komma neun neun. "
-            "Nach rund fünfzehn Jahren ist das Darlehen getilgt."
+            "Jetzt einsetzen, durch 5000 teilen und logarithmieren: n ist etwa 14,99. "
+            "Nach rund 15 Jahren ist das Darlehen getilgt."
         ):
             self.play(FadeOut(VGroup(werkzeug, erklaerung, t1), shift=0.25 * UP), run_time=0.4)
             for zeile, beginn in zip(loesung, (0.1, 0.3, 0.5)):

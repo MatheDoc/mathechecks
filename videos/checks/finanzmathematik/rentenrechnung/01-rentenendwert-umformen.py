@@ -82,7 +82,7 @@ class Video(MCSzene):
         with self.sprich(
             "Der Rentenendwert R n ist der Wert aller Raten am Ende. "
             "Dazu kommen die Rate r, der Zinsfaktor q und die Laufzeit n. "
-            "Drei Größen sind gegeben, eine ist gesucht."
+            "3 Größen sind gegeben, eine ist gesucht."
         ):
             for zeile, name, beginn in zip(groessen, ("R", "r", None, "n"), (0.05, 0.4, 0.52, 0.64)):
                 self.warte_bis(beginn)
@@ -141,8 +141,8 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.3, 0.55, 0.8),
             sprechtext="Jetzt ist bei einer vorschüssigen Rente r gesucht. r steht als Faktor im Zähler. "
-                       "Wir rechnen den Bruch ohne r aus und teilen dreißigtausend "
-                       "durch elf Komma eins sechs acht sieben.",
+                       "Wir rechnen den Bruch ohne r aus und teilen 30.000 "
+                       "durch 11,1687.",
         )
 
         # zurück zur nachschüssigen Formel
@@ -175,9 +175,9 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.1, 0.25, 0.37, 0.48, 0.7),
             sprechtext="Bei n steht die Unbekannte im Exponenten. Wir lösen zuerst nach q hoch n auf: "
-                       "mal null Komma null vier, durch fünfzehnhundert, plus eins. "
-                       "Dann holt der Logarithmus n herunter: Nach knapp elf Jahren "
-                       "sind zwanzigtausend Euro erreicht.",
+                       "mal 0,04, durch 1500, plus 1. "
+                       "Dann holt der Logarithmus n herunter: Nach knapp 11 Jahren "
+                       "sind 20.000 Euro erreicht.",
         )
 
         # ---------- Kurzfassung ----------

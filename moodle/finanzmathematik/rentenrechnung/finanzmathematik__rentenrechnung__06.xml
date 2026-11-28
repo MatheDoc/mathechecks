@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/rentenrechnung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/rentenrechnung/finanzmathematik__rentenrechnung__06</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird eine Rente in den Kapitalvergleich einbezogen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Über ihren Rentenbarwert</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Über die Summe der Raten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Summe ignoriert die Zeitpunkte</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Über die erste Rate</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine einzelne Rate ist nicht vergleichbar</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Über ihren Rentenendwert, wenn alle anderen Werte Barwerte sind</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Werte müssen sich auf denselben Zeitpunkt beziehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Angebot lautet: „8 Jahreszahlungen von je 4 500 €, die erste in einem Jahr.“ Wie wird der Barwert berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Nachschüssiger Rentenbarwert mit \(r = 4\,500\), \(n = 8\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Vorschüssiger Rentenbarwert mit \(r = 4\,500\), \(n = 8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die erste Zahlung erfolgt am Ende des ersten Jahres, also nachschüssig</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nachschüssiger Rentenendwert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesucht ist der Barwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8 \cdot 4\,500 = 36\,000\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Summe ignoriert die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Angebot lautet: „6 Jahreszahlungen von je 3 000 €, die erste sofort.“ Welche Formel passt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Vorschüssiger Rentenbarwert \(\overline{R}_0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nachschüssiger Rentenbarwert \(R_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sofortige erste Zahlung ist vorschüssig</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Vorschüssiger Rentenendwert \(\overline{R}_n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesucht ist der Barwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zinseszinsformel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es sind mehrere Zahlungen, also eine Rente</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine nachschüssige Rente beginnt erst in 4 Jahren (erste Zahlung am Ende des 4. Jahres). Wie wird der Barwert bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Rentenbarwert \(R_0\) berechnen und zusätzlich durch \(q^3\) teilen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Rentenbarwert \(R_0\) berechnen und zusätzlich durch \(q^4\) teilen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>R_0 bewertet die Rente ein Jahr vor der ersten Zahlung, also zum Zeitpunkt 3</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Rentenbarwert \(R_0\) berechnen, fertig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Verschiebung gegenüber dem Normalfall beträgt 3 Jahre</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Rentenendwert berechnen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Verschiebung muss berücksichtigt werden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Empfänger vergleicht: A = 30 000 € sofort, B = Rente mit Barwert 31 500 €, C = Einmalzahlung mit Barwert 29 800 €. Welches Angebot wählt er?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>B</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>B hat einen höheren Barwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>C</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>C hat den niedrigsten Barwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle gleichwertig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Barwerte unterscheiden sich</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Zahler vergleicht: A = 30 000 € sofort, B = Rente mit Barwert 31 500 €, C = Einmalzahlung mit Barwert 29 800 €. Welche Variante wählt er?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>C</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>B</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>B ist für den Zahler am teuersten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>A</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>A ist teurer als C</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle gleichwertig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Barwerte unterscheiden sich</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ist beim Vergleich von Einmalzahlung und Rente auf jeden Fall gleich zu wählen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Bezugszeitpunkt und der Zinssatz</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Anzahl der Zahlungen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Anzahl darf sich unterscheiden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Höhe der Zahlungen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Höhe darf sich unterscheiden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Währung der Rate</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das ist keine finanzmathematische Bedingung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Angebot besteht aus 10 000 € sofort und einer nachschüssigen Rente von 5 Raten je 2 000 €. Wie wird der Barwert berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(10\,000 + R_0\) der Rente</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\dfrac{10\,000 + R_0}{q^5}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die sofortige Zahlung wird nicht abgezinst</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\,000 + 5 \cdot 2\,000\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Rente muss abgezinst werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(R_0\) der Rente allein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Einmalzahlung darf nicht fehlen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Warum ist die Summe aller Raten kein geeignetes Vergleichskriterium?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Weil spätere Zahlungen weniger wert sind als frühere</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil Raten immer gleich hoch sind</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleich hohe Raten ändern nichts am Zeitwert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Weil die Summe zu groß wird</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Größe der Summe ist nicht das Problem</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie ist ein geeignetes Kriterium</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zeitwert des Geldes wird ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__rentenrechnung__06-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Zwei Angebote haben denselben Barwert. Was gilt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie sind aus finanzmathematischer Sicht gleichwertig</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das frühere Angebot ist besser</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zeitpunkt ist im Barwert schon berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Angebot mit mehr Zahlungen ist besser</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Anzahl der Zahlungen ist kein Kriterium</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Angebot mit der höheren Summe ist besser</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Summe ist kein Kriterium</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

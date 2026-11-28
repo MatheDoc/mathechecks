@@ -15,6 +15,20 @@
             ]
         },
         {
+            "frage": "Wie verhält sich die Preis-Absatz-Funktion \\(p(x)\\) im Angebotsmonopol?",
+            "antworten": [
+                "Sie fällt mit wachsender Absatzmenge.",
+                "Sie ist für jede Absatzmenge konstant.",
+                "Sie steigt mit wachsender Absatzmenge.",
+                "Sie stimmt immer mit \\(E(x)\\) überein."
+            ],
+            "fehler": [
+                "Monopol mit konstantem Marktpreis im Polypol verwechselt",
+                "Richtung der Preisänderung vertauscht",
+                "Preis pro Mengeneinheit mit dem Gesamterlös verwechselt"
+            ]
+        },
+        {
             "frage": "Welche Formel beschreibt den Erlös im Angebotspolypol?",
             "antworten": [
                 "\\(E(x)=p\\cdot x\\)",
@@ -29,17 +43,17 @@
             ]
         },
         {
-            "frage": "Der Marktpreis beträgt \\(8\\) GE pro ME. Wie groß ist \\(E(3)\\)?",
+            "frage": "Welche Formel beschreibt den Erlös im Angebotsmonopol?",
             "antworten": [
-                "\\(24\\) GE",
-                "\\(11\\) GE",
-                "\\(5\\) GE",
-                "\\(\\frac{8}{3}\\) GE"
+                "\\(E(x)=p(x)\\cdot x\\)",
+                "\\(E(x)=p(x)+x\\)",
+                "\\(E(x)=\\frac{p(x)}{x}\\)",
+                "\\(E(x)=p(x)-x\\)"
             ],
             "fehler": [
-                "Preis und Menge addiert",
-                "Menge vom Preis abgezogen",
-                "Preis durch Menge geteilt"
+                "Preis und Menge addiert statt multipliziert",
+                "Preis durch Menge geteilt statt mit der Menge multipliziert",
+                "Menge vom Preis abgezogen statt Preis und Menge zu multiplizieren"
             ]
         },
         {
@@ -57,31 +71,31 @@
             ]
         },
         {
-            "frage": "Welche Formel beschreibt den Gewinn?",
+            "frage": "Gegeben ist \\(E(x)=-2x^2+12x\\). Welche Preis-Absatz-Funktion gehört dazu?",
             "antworten": [
-                "\\(G(x)=E(x)-K(x)\\)",
-                "\\(G(x)=E(x)+K(x)\\)",
-                "\\(G(x)=K(x)-E(x)\\)",
-                "\\(G(x)=E(x)\\cdot K(x)\\)"
+                "\\(p(x)=-2x+12\\)",
+                "\\(p(x)=-2x^2+12x\\)",
+                "\\(p(x)=-2x+12x\\)",
+                "\\(p(x)=-2x^3+12x^2\\)"
             ],
             "fehler": [
-                "Kosten zum Erlös addiert statt abgezogen",
-                "Reihenfolge der Subtraktion vertauscht",
-                "Erlös und Kosten multipliziert statt subtrahiert"
+                "Erlösfunktion unverändert als Preis-Absatz-Funktion übernommen",
+                "Nur den quadratischen Term durch \\(x\\) geteilt",
+                "Mit \\(x\\) multipliziert statt durch \\(x\\) dividiert"
             ]
         },
         {
-            "frage": "Bei einer Menge gilt \\(E=30\\) GE und \\(K=18\\) GE. Wie groß ist der Gewinn?",
+            "frage": "Gegeben ist \\(p(x)=10-x\\). Welcher Erlösterm passt?",
             "antworten": [
-                "\\(12\\) GE",
-                "\\(48\\) GE",
-                "\\(-12\\) GE",
-                "\\(540\\) GE"
+                "\\(E(x)=(10-x)x\\)",
+                "\\(E(x)=10\\)",
+                "\\(E(x)=10-2x\\)",
+                "\\(E(x)=\\frac{10-x}{x}\\)"
             ],
             "fehler": [
-                "Erlös und Kosten addiert",
-                "Reihenfolge der Subtraktion vertauscht",
-                "Erlös und Kosten multipliziert"
+                "Multiplikation der Preis-Absatz-Funktion mit \\(x\\) weggelassen",
+                "Menge additiv abgezogen statt mit der Preis-Absatz-Funktion multipliziert",
+                "Preis-Absatz-Funktion durch die Menge geteilt statt multipliziert"
             ]
         },
         {
@@ -113,31 +127,17 @@
             ]
         },
         {
-            "frage": "Im Polypol gilt \\(p=6\\). Welcher Erlösterm passt?",
+            "frage": "Gegeben sind \\(E(x)=-x^2+8x\\) und \\(K(x)=2x+3\\). Welcher Gewinnterm passt?",
             "antworten": [
-                "\\(E(x)=6x\\)",
-                "\\(E(x)=6+x\\)",
-                "\\(E(x)=\\frac{6}{x}\\)",
-                "\\(E(x)=x-6\\)"
-            ],
-            "fehler": [
-                "Preis und Menge addiert statt multipliziert",
-                "Preis durch Menge geteilt statt mit der Menge multipliziert",
-                "Preis von der Menge abgezogen statt Preis und Menge zu multiplizieren"
-            ]
-        },
-        {
-            "frage": "Gegeben sind \\(E(x)=5x\\) und \\(K(x)=x+4\\). Welcher Gewinnterm passt?",
-            "antworten": [
-                "\\(G(x)=4x-4\\)",
-                "\\(G(x)=6x+4\\)",
-                "\\(G(x)=-4x+4\\)",
-                "\\(G(x)=5x-4\\)"
+                "\\(G(x)=-x^2+6x-3\\)",
+                "\\(G(x)=-x^2+10x+3\\)",
+                "\\(G(x)=x^2-6x+3\\)",
+                "\\(G(x)=-x^2+6x+3\\)"
             ],
             "fehler": [
                 "Kosten zum Erlös addiert statt abgezogen",
                 "Reihenfolge \\(K-E\\) statt \\(E-K\\) verwendet",
-                "Linearen Kostenterm \\(x\\) beim Subtrahieren weggelassen"
+                "Vorzeichen des konstanten Kostenterms beim Subtrahieren nicht geändert"
             ]
         }
     ]

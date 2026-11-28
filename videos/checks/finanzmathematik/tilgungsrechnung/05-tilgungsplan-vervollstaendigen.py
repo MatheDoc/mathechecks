@@ -70,7 +70,7 @@ class Video(MCSzene):
         ).arrange(DOWN, buff=0.55, aligned_edge=LEFT)
         block = self.tafel(beziehungen)
         with self.sprich(
-            "Von diesem Tilgungsplan kennen wir nur einzelne Werte. Drei Beziehungen helfen: "
+            "Von diesem Tilgungsplan kennen wir nur einzelne Werte. 3 Beziehungen helfen: "
             "Zinsen sind p Prozent der Restschuld am Anfang. Annuität ist Zinsen plus Tilgung. "
             "Restschuld am Ende ist Anfang minus Tilgung."
         ):
@@ -91,8 +91,8 @@ class Video(MCSzene):
         block = self.tafel(VGroup(stich("Zinsen : Restschuld"), p).arrange(DOWN, buff=0.35))
         kopf = self.kopf(r"p=4{,}5\,\%")
         with self.sprich(
-            "Restschuld und Zinsen stehen in Zeile vier. Zinsen durch Restschuld ergibt den Zinssatz: "
-            "viereinhalb Prozent."
+            "Restschuld und Zinsen stehen in Zeile 4. Zinsen durch Restschuld ergibt den Zinssatz: "
+            "4,5 %."
         ):
             self.play(plan.zeile(4), plan.betone((4, "rk_anfang"), (4, "zinsen")), auftritt(block[0]), run_time=0.7)
             self.warte_bis(0.4)
@@ -125,7 +125,7 @@ class Video(MCSzene):
         # ---------- Zeile 5 ----------
         hinweis = text("gleiches Schema wie beim Aufstellen", groesse=G_STICH, farbe=TEXT_LEISE)
         block = self.tafel(hinweis)
-        with self.sprich("Zeile fünf beginnt mit dieser Restschuld und läuft nach demselben Schema."):
+        with self.sprich("Zeile 5 beginnt mit dieser Restschuld und läuft nach demselben Schema."):
             self.play(plan.zeile(5), plan.uebertrag(4), run_time=0.8)
             self.play(auftritt(hinweis), run_time=0.4)
             self.warte_bis(0.5)
@@ -149,7 +149,7 @@ class Video(MCSzene):
         paare = gestapelt((stich("Annuität"), a), (stich("Anfang"), anfang))
         block = self.tafel(titel, paare, abstand=0.7)
         with self.sprich(
-            "Jetzt rückwärts. Von Zeile fünf kennen wir nur Zinsen, Tilgung und die Restschuld am Ende. "
+            "Jetzt rückwärts. Von Zeile 5 kennen wir nur Zinsen, Tilgung und die Restschuld am Ende. "
             "Zinsen plus Tilgung ergibt die Annuität, sie ist in jeder Zeile gleich. "
             "Und der Anfang ist Ende plus Tilgung."
         ):
@@ -186,7 +186,7 @@ class Video(MCSzene):
         zahlen = rechnung(r"\frac{39\,110{,}75+7\,582{,}73}{1{,}045}", PLAN[4]["rk_anfang"], ungefaehr=True)
         block = self.tafel(vorwaerts, regel, zahlen, abstand=0.55)
         with self.sprich(
-            "Für den Anfang von Zeile vier: Vorwärts wächst die Restschuld ein Jahr mit Zinsen, "
+            "Für den Anfang von Zeile 4: Vorwärts wächst die Restschuld ein Jahr mit Zinsen, "
             "dann wird die Annuität abgezogen. Rückwärts also: Annuität addieren und durch q teilen. "
             "Danach folgen Zinsen und Tilgung wie gewohnt."
         ):
@@ -218,7 +218,7 @@ class Video(MCSzene):
         )
         self.tafel(punkte)
         with self.sprich(
-            "Kurz gesagt: Drei Beziehungen füllen jede Zeile. "
+            "Kurz gesagt: 3 Beziehungen füllen jede Zeile. "
             "In die Zeile davor kommst du rückwärts: Annuität addieren und durch q teilen."
         ):
             for zeile, beginn in zip(punkte, (0.08, 0.2, 0.32, 0.5)):

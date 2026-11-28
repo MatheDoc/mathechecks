@@ -54,8 +54,8 @@ class Video(MCSzene):
         )
         block = self.tafel(aufgabe)
         with self.sprich(
-            "Eine Kfz-Werkstatt tilgt zweihunderttausend Euro zu drei Komma fünf Prozent in fünfundzwanzig Jahren, "
-            "mit gleicher Annuität. Wie hoch ist die Restschuld nach zehn Jahren?"
+            "Eine Kfz-Werkstatt tilgt 200.000 Euro zu 3,5 % in 25 Jahren, "
+            "mit gleicher Annuität. Wie hoch ist die Restschuld nach 10 Jahren?"
         ):
             self.play(auftritt(aufgabe), run_time=0.6)
             self.warte_bis(0.15)
@@ -75,8 +75,8 @@ class Video(MCSzene):
         name2 = text("Annuitäten\nmit Zinsen", groesse=26, farbe=TEXT_LEISE).next_to(klammer2, DOWN, buff=0.1)
         formelblock = self.oben_auf_tafel(VGroup(rsf, klammer1, klammer2, name1, name2))
         with self.sprich(
-            "Statt zehn Zeilen zu rechnen, nutzen wir die Restschuldformel: "
-            "die Darlehenssumme zehn Jahre aufgezinst, minus die zehn Annuitäten samt Zinsen."
+            "Statt 10 Zeilen zu rechnen, nutzen wir die Restschuldformel: "
+            "die Darlehenssumme 10 Jahre aufgezinst, minus die 10 Annuitäten samt Zinsen."
         ):
             self.play(Write(rsf), run_time=1.0)
             self.warte_bis(0.45)
@@ -96,7 +96,7 @@ class Video(MCSzene):
         ]
         rechnung = self.tafel(*zeilen, abstand=0.4, unter=formelblock)
         with self.sprich(
-            "Eingesetzt bleiben nach zehn Jahren etwa hundertneununddreißigtausendsiebenhunderteinundsechzig Euro."
+            "Eingesetzt bleiben nach 10 Jahren etwa 139.761 Euro."
         ):
             for zeile, beginn in zip(zeilen, (0.0, 0.3, 0.6)):
                 self.warte_bis(beginn)
@@ -145,8 +145,8 @@ class Video(MCSzene):
             abstand=0.7,
         )
         with self.sprich(
-            "Und die letzte Zeile? Im letzten Jahr wird genau die Restschuld nach vierundzwanzig Jahren getilgt, "
-            "etwa elftausendsiebenhundertvierundzwanzig Euro. "
+            "Und die letzte Zeile? Im letzten Jahr wird genau die Restschuld nach 24 Jahren getilgt, "
+            "etwa 11.724 Euro. "
             "Die letzte Annuität ist diese Tilgung plus ein Jahr Zinsen."
         ):
             self.play(plan.zeile(25), plan.zeige(25, "annuitaet", "?", HERVOR), run_time=0.5)
@@ -173,7 +173,7 @@ class Video(MCSzene):
         grund = text("A ist auf Cent gerundet", groesse=G_TEXT, farbe=TEXT_LEISE)
         block = self.tafel(differenz, name, grund, abstand=0.5)
         with self.sprich(
-            "Das sind elf Cent weniger als A. "
+            "Das sind 11 Cent weniger als A. "
             "Diese Rundungsdifferenz entsteht, weil A auf Cent gerundet ist."
         ):
             self.play(plan.betone((11, "annuitaet"), (25, "annuitaet")), Write(differenz), run_time=0.9)

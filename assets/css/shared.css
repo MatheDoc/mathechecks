@@ -2,7 +2,7 @@
    MatheChecks – Shared Design System
    ═══════════════════════════════════════════════════════════════ */
 
-@import "../../../aufgaben/runtime/task-render.css?v=20261109-numopt-focus";
+@import "../../../aufgaben/runtime/task-render.css?v=20261127-tree-choice3";
 @import "./task-completion.css?v=20261121-feed-simple";
 @import "./cards.css?v=20261121-topbar-picker";
 @import "./dashboard.css?v=20261121-feed-button";
@@ -5018,6 +5018,54 @@ html.light .roulette-widget__event {
 
 .ab-info > div + div {
   margin-top: 8px;
+}
+
+/* ── Widget-specific: Ökonomische Funktionen (Polypol/Monopol) ── */
+.of-widget .widget-controls {
+  width: 100%;
+  max-width: 560px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* .widget-row setzt display:flex und würde das hidden-Attribut überstimmen */
+.of-widget [hidden] {
+  display: none !important;
+}
+
+.of-widget .of-marktform,
+.of-widget .of-toggles {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.of-widget .of-marktform label,
+.of-widget .of-toggles label {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.of-widget .of-werte {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.of-info > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.of-info > div + div {
+  margin-top: 4px;
+}
+
+.of-info strong {
+  white-space: nowrap;
 }
 
 /* ── Widget-specific: Herleitung Zinseszinsformel (Inline-SVG-Zeitstrahl) ── */

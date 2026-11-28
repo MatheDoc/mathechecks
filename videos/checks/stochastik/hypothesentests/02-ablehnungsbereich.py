@@ -79,8 +79,8 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Ein Hersteller eines Computerspiels verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
-            "Die Community vermutet weniger und testet fünfzig Boxen. Das Signifikanzniveau ist fünf Prozent."
+            "Ein Hersteller eines Computerspiels verspricht: In 20 % der Lootboxen steckt ein seltenes Item. "
+            "Die Community vermutet weniger und testet 50 Boxen. Das Signifikanzniveau ist 5 %."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -105,8 +105,8 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Die Gegenhypothese besagt, dass p kleiner ist als vom Hersteller behauptet. "
-            "Also liegt der Ablehnungsbereich links: null bis k. "
-            "Seine Wahrscheinlichkeit ist der Fehler erster Art und darf höchstens fünf Prozent sein. "
+            "Also liegt der Ablehnungsbereich links: 0 bis k. "
+            "Seine Wahrscheinlichkeit ist der Fehler erster Art und darf höchstens 5 % sein. "
             "Er soll aber möglichst groß sein. Gesucht ist also das größte k."
         ):
             self.play(auftritt(tab[0]), run_time=0.6)
@@ -132,8 +132,8 @@ class Video(MCSzene):
             abstand=0.5, unter=tab,
         )
         with self.sprich(
-            "Wir probieren mit p null. Null bis fünf: null Komma null vier acht, das passt. "
-            "Null bis sechs: schon über zehn Prozent, zu viel."
+            "Wir probieren mit p null. 0 bis 5: 0,048, das passt. "
+            "0 bis 6: schon über 10 %, zu viel."
         ):
             self.play(auftritt(probieren[0]), run_time=0.5)
             self.warte_bis(0.2)
@@ -156,7 +156,7 @@ class Video(MCSzene):
         )
         ergebnis[1:].shift(0.3 * DOWN)
         with self.sprich(
-            "Also ist k gleich fünf. Bei höchstens fünf seltenen Items wird die Nullhypothese verworfen."
+            "Also ist k gleich 5. Bei höchstens 5 seltenen Items wird die Nullhypothese verworfen."
         ):
             self.play(auftritt(ergebnis[0]), run_time=0.5)
             self.play(
@@ -187,7 +187,7 @@ class Video(MCSzene):
         rechts[2:].shift(0.3 * DOWN)
         with self.sprich(
             "Vermutet man einen höheren Anteil, liegt der Ablehnungsbereich rechts. "
-            "Dann suchst du das kleinste k: Ab fünfzehn ist es noch zu viel, ab sechzehn passt es."
+            "Dann suchst du das kleinste k: Ab 15 ist es noch zu viel, ab 16 passt es."
         ):
             self.play(hist.faerbe(), auftritt(tab_rechts), run_time=0.7)
             self.warte_bis(0.3)

@@ -81,7 +81,7 @@ class Video(MCSzene):
 
         # ---------- Kennzahlen ----------
         rechts = VGroup(*[zeile[3] for zeile in m.eintraege])
-        with self.sprich("Für den Rang von A zählen wir nur links vom Strich: zwei Zeilen."):
+        with self.sprich("Für den Rang von A zählen wir nur links vom Strich: 2 Zeilen."):
             self.play(rechts.animate.set_color(TEXT_SCHWACH), run_time=0.5)
             self.warte_bis(0.5)
             self.play(
@@ -91,7 +91,7 @@ class Video(MCSzene):
             )
             self.play(FadeIn(kennzahlen[0], shift=0.2 * UP), run_time=0.5)
         with self.sprich(
-            "Mit der Spalte hinter dem Strich zählt auch die dritte Zeile: Der Rang der erweiterten Matrix ist drei."
+            "Mit der Spalte hinter dem Strich zählt auch die dritte Zeile: Der Rang der erweiterten Matrix ist 3."
         ):
             self.play(*[m.zeile(i).animate.set_color(TEXT) for i in range(3)], run_time=0.5)
             self.warte_bis(0.35)
@@ -99,7 +99,7 @@ class Video(MCSzene):
             self.play(*[m.zeile(i).animate.set_color(ROSE) for i in (0, 1)], run_time=0.4)
             self.warte_bis(0.8)
             self.play(FadeIn(kennzahlen[1], shift=0.2 * UP), run_time=0.5)
-        with self.sprich("n steht für die Anzahl der Unbekannten, also der Spalten von A: drei."):
+        with self.sprich("n steht für die Anzahl der Unbekannten, also der Spalten von A: 3."):
             self.play(*[m.zeile(i).animate.set_color(TEXT) for i in range(3)], run_time=0.4)
             self.warte_bis(0.3)
             self.play(LaggedStart(*[FadeIn(x, shift=0.15 * UP) for x in unbekannte], lag_ratio=0.3), run_time=0.9)
@@ -114,7 +114,7 @@ class Video(MCSzene):
             grund=text("Widerspruch", groesse=34, farbe=TEXT_LEISE),
             urteil="keine Lösung",
             allgemein=bedingung(RG_A, "<", RG_AY),
-            sprechtext="Die letzte Zeile heißt null gleich sechs. Ein Widerspruch: keine Lösung.",
+            sprechtext="Die letzte Zeile heißt 0 gleich 6. Ein Widerspruch: keine Lösung.",
             sprechtext_allgemein=(
                 "Allgemein gilt: Ist der Rang von A kleiner als der Rang der erweiterten Matrix, "
                 "gibt es keine Lösung."
@@ -126,8 +126,8 @@ class Video(MCSzene):
             urteil="eine Lösung",
             allgemein=bedingung(RG_A, "=", RG_AY, "=", "n"),
             sprechtext=(
-                "Jetzt heißt die letzte Zeile vier x drei gleich acht, also x drei gleich zwei. "
-                "Drei Gleichungen in Zeilenstufenform für drei Unbekannte: "
+                "Jetzt heißt die letzte Zeile 4 x drei gleich 8, also x drei gleich 2. "
+                "3 Gleichungen in Zeilenstufenform für 3 Unbekannte: "
                 "Rückwärts eingesetzt gibt es genau ein x zwei und ein x eins."
             ),
             sprechtext_allgemein="Allgemein gilt: Sind beide Ränge gleich n, gibt es genau eine Lösung.",
@@ -140,8 +140,8 @@ class Video(MCSzene):
             urteil="unendlich viele Lösungen",
             allgemein=bedingung(RG_A, "=", RG_AY, "<", "n"),
             sprechtext=(
-                "Ist die ganze Zeile null, heißt sie null gleich null. Das stimmt immer. "
-                "Es bleiben zwei solche Gleichungen für drei Unbekannte, x drei ist frei wählbar: "
+                "Ist die ganze Zeile 0, heißt sie 0 gleich 0. Das stimmt immer. "
+                "Es bleiben 2 solche Gleichungen für 3 Unbekannte, x drei ist frei wählbar: "
                 "unendlich viele Lösungen."
             ),
             sprechtext_allgemein=(

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(x_{Gmax}=5\\) ME und \\(p(x)=-2x+30\\). Wie lautet der Cournotsche Punkt?",
+            "antworten": ["\\(C(5\\mid 20)\\)", "\\(C(5\\mid 30)\\)", "\\(C(20\\mid 5)\\)", "\\(C(5\\mid 40)\\)"],
+            "fehler": ["Höchstpreis statt Preis bei der gewinnmaximalen Menge verwendet", "Koordinaten vertauscht", "Vorzeichen der Steigung beim Einsetzen nicht beachtet"]
+        },
+        {
+            "frage": "Die Fixkosten eines Monopolisten steigen. Was passiert mit der gewinnmaximalen Menge?",
+            "antworten": ["Sie bleibt gleich.", "Sie sinkt.", "Sie steigt.", "Sie sinkt um die Fixkostenerhöhung."],
+            "fehler": ["Übersehen, dass die Fixkosten beim Ableiten wegfallen", "Höhere Kosten fälschlich mit höherer Produktion verbunden", "Geldbetrag mit einer Menge verwechselt"]
+        },
+        {
+            "frage": "Bisher gilt \\(G_{max}=50\\) GE. Die Fixkosten steigen um \\(20\\) GE. Wie groß ist der neue maximale Gewinn?",
+            "antworten": ["\\(30\\) GE", "\\(70\\) GE", "\\(50\\) GE", "\\(20\\) GE"],
+            "fehler": ["Fixkostenerhöhung addiert statt abgezogen", "Angenommen, der maximale Gewinn bleibt wie die gewinnmaximale Menge gleich", "Fixkostenerhöhung als neuen maximalen Gewinn übernommen"]
+        },
+        {
+            "frage": "Die Fixkosten steigen. Wie verändert sich die Gewinnzone?",
+            "antworten": ["Sie wird kleiner.", "Sie wird größer.", "Sie bleibt gleich.", "Sie verschiebt sich nach rechts."],
+            "fehler": ["Richtung der Verschiebung des Graphen von G vertauscht", "Gewinnzone mit der gewinnmaximalen Menge verwechselt", "Senkrechte Verschiebung von G als waagerechte gedeutet"]
+        },
+        {
+            "frage": "Bisher betragen die Fixkosten \\(40\\) GE und es gilt \\(G_{max}=25\\) GE. Wie hoch dürfen die Fixkosten höchstens sein, damit noch Gewinn möglich ist?",
+            "antworten": ["\\(65\\) GE", "\\(25\\) GE", "\\(15\\) GE", "\\(40\\) GE"],
+            "fehler": ["Nur den maximalen Gewinn statt Fixkosten plus maximalen Gewinn angegeben", "Maximalen Gewinn von den Fixkosten abgezogen", "Bisherige Fixkosten als Obergrenze angenommen"]
+        },
+        {
+            "frage": "Es gilt \\(G(4)>0\\) und \\(G'(4)=12\\). Wie ist die Absatzmenge \\(4\\) ME einzuordnen?",
+            "antworten": ["Gewinnzone, Maximum noch nicht erreicht", "Gewinnzone, Maximum bereits überschritten", "genau im Gewinnmaximum", "Verlustzone"],
+            "fehler": ["Positiven Grenzgewinn als fallenden Gewinn gedeutet", "Grenzgewinn mit dem Gewinn verwechselt", "Positiven Gewinn übersehen"]
+        },
+        {
+            "frage": "Eine Werbekampagne kostet \\(30\\) GE und erhöht den Absatz von \\(3\\) auf \\(5\\) ME. Es gilt \\(G(3)=40\\) und \\(G(5)=65\\). Lohnt sie sich?",
+            "antworten": ["Nein, der Gewinn steigt nur um 25 GE.", "Ja, denn 65 GE sind mehr als 30 GE.", "Ja, denn der Gewinn steigt.", "Ja, denn 40 GE sind mehr als 30 GE."],
+            "fehler": ["Gesamtgewinn statt Gewinnzuwachs mit den Kosten verglichen", "Kosten der Kampagne nicht berücksichtigt", "Bisherigen Gewinn mit den Kosten verglichen"]
+        },
+        {
+            "frage": "Gesucht sind die Mengen, bei denen der Gewinn mindestens \\(100\\) GE beträgt. Welcher Ansatz passt?",
+            "antworten": ["\\(G(x)=100\\) lösen", "\\(G'(x)=100\\) lösen", "\\(G(100)\\) berechnen", "\\(E(x)=100\\) lösen"],
+            "fehler": ["Grenzgewinn statt Gewinn verwendet", "Gewinn als Menge eingesetzt", "Erlös statt Gewinn verwendet"]
+        },
+        {
+            "frage": "Bei Fixkosten von \\(30\\) GE gilt \\(G(6)=18\\). Bei welchen Fixkosten wäre \\(G(6)=0\\)?",
+            "antworten": ["\\(48\\) GE", "\\(12\\) GE", "\\(18\\) GE", "\\(30\\) GE"],
+            "fehler": ["Gewinn von den Fixkosten abgezogen statt addiert", "Nur den Gewinn als Fixkosten angegeben", "Bisherige Fixkosten übernommen"]
+        },
+        {
+            "frage": "Was bedeutet der Ansatz \\(E'(x)=K'(x)\\)?",
+            "antworten": ["notwendige Bedingung für das Gewinnmaximum", "Bedingung für den Break-even-Point", "Bedingung für das Erlösmaximum", "Bedingung für die Wendestelle von K"],
+            "fehler": ["Gleiche Steigungen mit gleichen Funktionswerten verwechselt", "Grenzkosten nicht berücksichtigt", "Ableitung von K mit der zweiten Ableitung verwechselt"]
+        }
+    ]
+}

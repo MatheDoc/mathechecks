@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/zinseszinsrechnung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/finanzmathematik/zinseszinsrechnung/finanzmathematik__zinseszinsrechnung__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Kapital wird 3 Jahre mit \(q_1\) und danach 4 Jahre mit \(q_2\) verzinst. Wie lautet das Endkapital?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(K_7 = K_0 \cdot q_1^3 \cdot q_2^4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = K_0 \cdot (q_1 + q_2)^7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsfaktoren werden nicht addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = K_0 \cdot q_1^3 + K_0 \cdot q_2^4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Phasen bauen aufeinander auf und werden multipliziert, nicht addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = K_0 \cdot (q_1 \cdot q_2)^7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Jeder Faktor gilt nur für seine eigene Phasendauer</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ist das Anfangskapital der zweiten Zinsphase?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das Endkapital der ersten Zinsphase</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das ursprüngliche Anfangskapital \(K_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Kapital ist in der ersten Phase bereits gewachsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zinsen der ersten Phase</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Es wird das gesamte Kapital weiterverzinst, nicht nur die Zinsen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Durchschnitt aus \(K_0\) und \(K_n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ein Durchschnitt hat hier keine Bedeutung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>1 000 € werden 1 Jahr mit 10 % und dann 1 Jahr mit 20 % verzinst. Wie hoch ist das Endkapital?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(1\,320\) €</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\,300\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinssätze addiert statt Faktoren multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\,200\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den zweiten Zinssatz verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\,230\) €</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechenfehler beim zweiten Faktor</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem Zinssatzwechsel ist der Zinssatz der zweiten Phase gesucht. Welcher Rechenweg ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Zuerst \(K_{n_1}\) vorwärts aus \(K_0\) berechnen, dann in Phase 2 nach \(q_2^{n_2}\) auflösen und die \(n_2\)-te Wurzel ziehen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Logarithmus der Laufzeit bilden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Logarithmus wird gebraucht, wenn eine Laufzeit gesucht ist</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Durchschnitt der beiden Laufzeiten bilden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Laufzeiten sagen nichts über den Zinssatz aus</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_n\) durch \(K_0\) teilen und durch die Gesamtlaufzeit dividieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das wäre lineare Verzinsung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem Zinssatzwechsel ist die Dauer der zweiten Phase gesucht. Welches Werkzeug wird benötigt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Logarithmus</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Wurzel</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wurzel löst nach der Basis auf, nicht nach dem Exponenten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Prozentrechnung mit Dreisatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dreisatz gilt nur bei linearen Zusammenhängen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Mittelwertbildung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mittelwerte helfen hier nicht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Kapital wird 2 Jahre mit 2 % und 4 Jahre mit 5 % verzinst. Zwischen welchen Werten liegt der einheitliche Ersatzzinssatz für 6 Jahre?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>zwischen 2 % und 5 %, näher an 5 %</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>genau bei 3,5 %</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Phasen sind unterschiedlich lang, der Ersatzzinssatz liegt nicht in der Mitte</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>über 5 %</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Ersatzzinssatz kann den höchsten Zinssatz nicht übersteigen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>unter 2 %</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Ersatzzinssatz kann den niedrigsten Zinssatz nicht unterschreiten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wozu ist beim Zinssatzwechsel ein Zeitstrahl nützlich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Um die Dauer und den Zinsfaktor jeder Phase zu ordnen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Um den Zinssatz abzulesen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zinssatz steht im Text, nicht auf dem Zeitstrahl</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Um Zinsen zu berechnen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Berechnungen erfolgen mit der Formel</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Er ist nicht nützlich</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der Zeitstrahl verhindert das Vertauschen von Phasen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem Zinssatzwechsel liegt die gesuchte Größe in der ersten Phase (z. B. \(p_1\) oder \(n_1\)). Wie wird der Zwischenwert \(K_{n_1}\) bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Rückwärts aus dem Endkapital: \(K_{n_1} = \dfrac{K_n}{q_2^{n_2}}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Vorwärts aus dem Anfangskapital: \(K_{n_1} = K_0 \cdot q_1^{n_1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dafür müsste die unbekannte Größe aus Phase 1 schon bekannt sein</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Als Mittelwert von \(K_0\) und \(K_n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinseszins wächst exponentiell, nicht linear</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Er kann nicht bestimmt werden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Phase 2 ist vollständig bekannt, also lässt sich rückwärts rechnen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was passiert mit dem Endkapital, wenn die Reihenfolge der Zinsphasen vertauscht wird (gleiche Dauern und Zinssätze)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es bleibt gleich, weil Faktoren vertauscht werden dürfen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wird größer, wenn der hohe Zinssatz zuerst kommt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Multiplikation ist kommutativ</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wird kleiner, wenn der hohe Zinssatz zuerst kommt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Multiplikation ist kommutativ</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es hängt vom Anfangskapital ab</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Anfangskapital ist in beiden Fällen ein gemeinsamer Faktor</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>finanzmathematik__zinseszinsrechnung__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach der ersten Phase beträgt das Kapital 21 224,16 €. In der zweiten Phase gilt \(q_2 = 1{,}035\), \(n_2 = 4\). Welcher Ansatz liefert \(K_7\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(K_7 = 21\,224{,}16 \cdot 1{,}035^4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = 21\,224{,}16 \cdot 1{,}035 \cdot 4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das wäre lineare Verzinsung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = 21\,224{,}16 + 1{,}035^4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zinsfaktor wird multipliziert, nicht addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_7 = 21\,224{,}16 \cdot 1{,}035^7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der zweite Zinsfaktor gilt nur für 4 Jahre</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

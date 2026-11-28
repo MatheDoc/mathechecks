@@ -69,9 +69,9 @@ class Video(MCSzene):
         merke = text("3 gegeben, 1 gesucht", groesse=44, gewicht=BOLD, farben={"1 gesucht": HERVOR})
         block = self.tafel(definition, beispiel, merke, abstand=0.8)
         with self.sprich(
-            "In der Formel stecken vier Größen. Den Zinsfaktor q bilden wir aus dem Zinssatz: "
-            "q gleich eins plus p durch hundert. "
-            "Bei drei Prozent ist q eins Komma null drei. Drei Größen sind gegeben, eine ist gesucht."
+            "In der Formel stecken 4 Größen. Den Zinsfaktor q bilden wir aus dem Zinssatz: "
+            "q gleich 1 plus p durch 100. "
+            "Bei 3 % ist q 1,03. 3 Größen sind gegeben, eine ist gesucht."
         ):
             self.play(
                 *[
@@ -112,7 +112,7 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.3, 0.72, 0.9),
             sprechtext="Jetzt ist K null gesucht. Nach dem Einsetzen steht K null als Faktor "
-                       "vor eins Komma null zwei fünf hoch zehn. Also teilen wir durch diese Potenz.",
+                       "vor 1,025 hoch 10. Also teilen wir durch diese Potenz.",
         )
 
         # ---------- p gesucht ----------
@@ -131,7 +131,7 @@ class Video(MCSzene):
             rechnung_ab=(0.2, 0.45, 0.6, 0.85),
             sprechtext="Ist p gesucht, steht die Unbekannte in der Basis. "
                        "Wir teilen durch K null und ziehen die zehnte Wurzel. "
-                       "Aus q gleich eins Komma null zwei fünf wird p gleich zweieinhalb Prozent.",
+                       "Aus q gleich 1,025 wird p gleich 2,5 %.",
         )
 
         # ---------- n gesucht ----------
@@ -154,9 +154,9 @@ class Video(MCSzene):
             ],
             rechnung_ab=(0.16, 0.34, 0.52, 0.8),
             sprechtext="Bei n steht die Unbekannte im Exponenten. Auch hier teilen wir zuerst durch K null. "
-                       "Dann holt der Logarithmus n herunter: Nach etwa zehn Komma drei vier Jahren "
-                       "sind es fünfzehntausend Euro. Im Taschenrechner geht auch: "
-                       "Logarithmus zur Basis eins Komma null vier von eins Komma fünf.",
+                       "Dann holt der Logarithmus n herunter: Nach etwa 10,34 Jahren "
+                       "sind es 15.000 Euro. Im Taschenrechner geht auch: "
+                       "Logarithmus zur Basis 1,04 von 1,5.",
         )
 
         # ---------- Kurzfassung ----------

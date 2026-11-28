@@ -75,8 +75,8 @@ class Video(MCSzene):
             gesucht=lambda: [self.strahl.zeige(endwert=wert("E_{12}", "?", RIGHT, HERVOR))],
             gegeben_ab=0.5, gesucht_ab=0.82, rechnung_ab=(0.86, 0.92, 0.97),
             uebernahme=("endwert", wert("E_{12}", r"\approx 78\,220{,}11", RIGHT, HERVOR), ergebnis_a),
-            sprechtext="Ein Büro hat bereits fünfundzwanzigtausend Euro angespart und zahlt zwölf Jahre lang "
-                       "am Jahresende dreitausend Euro ein. Wie hoch ist das Guthaben am Ende? "
+            sprechtext="Ein Büro hat bereits 25.000 Euro angespart und zahlt 12 Jahre lang "
+                       "am Jahresende 3000 Euro ein. Wie hoch ist das Guthaben am Ende? "
                        "Startkapital und Raten zugleich: Das ist eine Kombination. Eingezahlt wird, also plus, "
                        "und zwar nachschüssig. Gesucht ist E zwölf.",
         )
@@ -105,10 +105,10 @@ class Video(MCSzene):
             ],
             gegeben_ab=0.3, gesucht_ab=0.55, rechnung_ab=(0.66, 0.78, 0.86),
             nachher=lambda: [jahr_n.animate.set_color(TEXT_LEISE)],
-            sprechtext="Jetzt hat das Büro sechzigtausend Euro angelegt und entnimmt zu Jahresbeginn "
-                       "fünftausend Euro: also minus, und vorschüssig. Aufgebraucht heißt: E n gleich null. "
+            sprechtext="Jetzt hat das Büro 60.000 Euro angelegt und entnimmt zu Jahresbeginn "
+                       "5000 Euro: also minus, und vorschüssig. Aufgebraucht heißt: E n gleich 0. "
                        "Gesucht ist n. Nach q hoch n auflösen, logarithmieren: "
-                       "Das reicht für dreizehn volle Entnahmen.",
+                       "Das reicht für 13 volle Entnahmen.",
         )
 
         # ---------- c) Abbau, nachschüssig, K_0 gesucht ----------
@@ -132,8 +132,8 @@ class Video(MCSzene):
             gesucht=lambda: [self.strahl.zeige(barwert=wert("K_0", "?", LEFT, HERVOR))],
             gegeben_ab=0.25, gesucht_ab=0.55, rechnung_ab=(0.64, 0.75, 0.86, 0.94),
             uebernahme=("barwert", wert("K_0", r"\approx 44\,133{,}82", LEFT, HERVOR), ergebnis_c),
-            sprechtext="Und umgekehrt: Zehn Jahre lang am Jahresende viertausend Euro entnehmen, danach sollen "
-                       "noch zehntausend übrig sein. Gesucht ist das Startkapital K null. "
+            sprechtext="Und umgekehrt: 10 Jahre lang am Jahresende 4000 Euro entnehmen, danach sollen "
+                       "noch 10.000 übrig sein. Gesucht ist das Startkapital K null. "
                        "Wir rechnen den Rentenanteil aus und lösen nach K null auf.",
         )
 

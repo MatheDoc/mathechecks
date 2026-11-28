@@ -84,8 +84,8 @@ class Video(MCSzene):
         )
         block = self.tafel(aufgabe)
         with self.sprich(
-            "Ein Fahrradladen tilgt hunderttausend Euro zu vier Prozent in fünfzehn Jahren. "
-            "Mit der fünften Annuität zahlt er zwanzigtausend Euro extra."
+            "Ein Fahrradladen tilgt 100.000 Euro zu 4 % in 15 Jahren. "
+            "Mit der fünften Annuität zahlt er 20.000 Euro extra."
         ):
             self.play(auftritt(aufgabe), run_time=0.6)
             self.warte_bis(0.15)
@@ -103,8 +103,8 @@ class Video(MCSzene):
                       abstand=0.15, grundlinie=True)
         block = self.tafel(VGroup(rk5, herkunft).arrange(DOWN, buff=0.12), sonder, neu, merke, abstand=0.4)
         with self.sprich(
-            "Die Restschuldformel liefert nach fünf Jahren etwa zweiundsiebzigtausendneunhundertfünfzig Euro. "
-            "Die Sondertilgung senkt sie auf zweiundfünfzigtausendneunhundertfünfzig Euro. "
+            "Die Restschuldformel liefert nach 5 Jahren etwa 72.950 Euro. "
+            "Die Sondertilgung senkt sie auf 52.950 Euro. "
             "Das ist jetzt das neue K null."
         ):
             self.play(strahl.phase(1), Write(rk5), FadeIn(herkunft), run_time=0.9)
@@ -128,8 +128,8 @@ class Video(MCSzene):
         a_wert[1].set_color(HERVOR)
         block = self.tafel(titel, a_neu, a_wert, abstand=0.45)
         with self.sprich(
-            "Jetzt gibt es zwei Wege. Bleibt die Laufzeit, gibt es für die restlichen zehn Jahre "
-            "eine neue Annuität: etwa sechstausendfünfhundertachtundzwanzig Euro."
+            "Jetzt gibt es 2 Wege. Bleibt die Laufzeit, gibt es für die restlichen 10 Jahre "
+            "eine neue Annuität: etwa 6528 Euro."
         ):
             self.play(auftritt(titel), strahl.phase(2), run_time=0.5)
             self.warte_bis(0.25)
@@ -154,7 +154,7 @@ class Video(MCSzene):
         block = self.tafel(titel, t1, gleichung, n, abstand=0.45)
         with self.sprich(
             "Bleibt die Annuität, wird die Laufzeit kürzer. Erst die neue Tilgung T eins, "
-            "dann A gleich T eins mal q hoch n: nur noch etwa sechs Komma acht fünf Jahre."
+            "dann A gleich T eins mal q hoch n: nur noch etwa 6,85 Jahre."
         ):
             self.play(
                 auftritt(titel),
@@ -186,7 +186,7 @@ class Video(MCSzene):
         block = self.tafel(titel, zinsen, bleibt, abstand=0.5)
         with self.sprich(
             "Bei einer Tilgungspause zahlt der Laden im sechsten Jahr nur die Zinsen, "
-            "etwa zweitausendneunhundertachtzehn Euro. Die Restschuld bleibt gleich."
+            "etwa 2918 Euro. Die Restschuld bleibt gleich."
         ):
             self.play(
                 auftritt(titel),
@@ -211,8 +211,8 @@ class Video(MCSzene):
         ).arrange(DOWN, buff=0.55)
         wege.next_to(titel, DOWN, buff=0.7).set_x(0)
         with self.sprich(
-            "Danach dieselben zwei Wege: Bleibt die Laufzeit, steigt die Annuität für die restlichen neun Jahre "
-            "auf etwa neuntausendachthundertelf Euro. Bleibt die Annuität, dauert es danach noch zehn Jahre."
+            "Danach dieselben 2 Wege: Bleibt die Laufzeit, steigt die Annuität für die restlichen 9 Jahre "
+            "auf etwa 9811 Euro. Bleibt die Annuität, dauert es danach noch 10 Jahre."
         ):
             self.warte_bis(0.15)
             self.play(auftritt(wege[0]), run_time=0.6)

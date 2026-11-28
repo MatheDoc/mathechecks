@@ -88,8 +88,8 @@ class Video(MCSzene):
             abstand=0.45,
         )
         with self.sprich(
-            "Ein Hersteller eines Computerspiels verspricht: In zwanzig Prozent der Lootboxen steckt ein seltenes Item. "
-            "Die Community vermutet weniger. Ein Spieler testet fünfzig Boxen."
+            "Ein Hersteller eines Computerspiels verspricht: In 20 % der Lootboxen steckt ein seltenes Item. "
+            "Die Community vermutet weniger. Ein Spieler testet 50 Boxen."
         ):
             self.play(auftritt(lage[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -114,8 +114,8 @@ class Video(MCSzene):
             self.warte_bis(0.5)
             self.play(auftritt(tabelle_links[0][1]), run_time=0.5)
         with self.sprich(
-            "Angenommen es gibt folgende Regel: Bei höchstens fünf seltenen Items gehen wir von einem niedrigeren Anteil aus. "
-            "Null bis fünf ist der Ablehnungsbereich, ab sechs der Annahmebereich. "
+            "Angenommen es gibt folgende Regel: Bei höchstens 5 seltenen Items gehen wir von einem niedrigeren Anteil aus. "
+            "0 bis 5 ist der Ablehnungsbereich, ab 6 der Annahmebereich. "
             "Der Ablehnungsbereich liegt links: ein linksseitiger Test."
         ):
             self.play(auftritt(regel[:2]), run_time=0.6)
@@ -142,7 +142,7 @@ class Video(MCSzene):
         )
         entscheidung[3].shift(0.1 * DOWN)
         with self.sprich(
-            "Der Spieler findet bei dem Test nun vier seltene Items. Vier liegt im Ablehnungsbereich, "
+            "Der Spieler findet bei dem Test nun 4 seltene Items. 4 liegt im Ablehnungsbereich, "
             "also verwerfen wir die Nullhypothese. "
             "Wir können uns aber nicht hundertprozentig sicher sein, ob die Nullhypothese nicht doch stimmt."
         ):
@@ -169,7 +169,7 @@ class Video(MCSzene):
         )
         with self.sprich(
             "Fehler erster Art: Die Nullhypothese stimmt, wird aber verworfen. "
-            "Das Ergebnis liegt also im Ablehnungsbereich, obwohl p gleich null Komma zwei ist. "
+            "Das Ergebnis liegt also im Ablehnungsbereich, obwohl p gleich 0,2 ist. "
             "Die entsprechende Intervallwahrscheinlichkeit kann mit dem Taschenrechner bestimmt werden."
         ):
             self.play(auftritt(fehler1[0]), run_time=0.5)
@@ -195,8 +195,8 @@ class Video(MCSzene):
             abstand=0.4, unter=tabelle_links,
         )
         with self.sprich(
-            "Es gibt auch den Fehler zweiter Art: Der Anteil ist nun wirklich gesunken, und zwar auf zehn Prozent, "
-            "wir bleiben aber bei der Nullhypothese. Das Ergebnis liegt also im Annahmebereich, obwohl p gleich null Komma eins ist."
+            "Es gibt auch den Fehler zweiter Art: Der Anteil ist nun wirklich gesunken, und zwar auf 10 %, "
+            "wir bleiben aber bei der Nullhypothese. Das Ergebnis liegt also im Annahmebereich, obwohl p gleich 0,1 ist."
         ):
             self.play(auftritt(fehler2[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -227,7 +227,7 @@ class Video(MCSzene):
         rechts[2:].shift(0.3 * DOWN)
         rechts[3:].shift(0.3 * DOWN)
         with self.sprich(
-            "Vermutet man einen höheren Anteil, etwa mit der Regel mindestens sechzehn, "
+            "Vermutet man einen höheren Anteil, etwa mit der Regel mindestens 16, "
             "liegt der Ablehnungsbereich rechts: ein rechtsseitiger Test. Gerechnet wird ähnlich."
         ):
             self.play(

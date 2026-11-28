@@ -95,6 +95,7 @@ Zusätzlich nötig: LaTeX (MiKTeX) für die Formeln und eine Internetverbindung 
 - Schluss: für alle Videos gleich und nicht je Video zu schreiben. Das Logo wandert aus der Ecke in die Bildmitte, dazu „Jetzt bist du dran.“ und die Adresse; gesprochen „Jetzt bist du dran. Bis zum nächsten Check!“. Text und Ton stehen in `MCSzene` (`schlussbild`, `schlusston`).
 - Sprache: direkt, verbindlich und motivierend; „du“ in Einstieg und Schluss, „wir“ beim Rechnen. Lockere Wendungen und Anglizismen sind erlaubt, Fachbegriffe bleiben exakt wie im Skript des Lernbereichs.
 - Das Bild muss ohne Ton verständlich sein. Der Sprechtext wird so geschrieben, wie er gesprochen wird („x Quadrat“). Eine eigene Untertiteldatei gibt es nicht; die automatischen Untertitel von YouTube genügen.
+- Zahlen stehen im Sprechtext als Ziffern, damit sie sich beim Einsprechen schnell lesen lassen: „50.000 Euro“ (Tausenderpunkt ab 10 000), „1,04“, „3 %“, „2,5 %“, „16-mal“. In Worten bleiben Ordnungszahlen („die zweite Ableitung“), der Artikel „ein“ und Indizes von Variablen („K null“, „x eins“, „p zwei“).
 - Einblendungen hängen am Ton, nicht an festen Sekunden: `self.warte_bis(0.6)` wartet, bis 60 % des laufenden Sprechtexts gesprochen sind. So passen die Zeiten auch nach einem Stimmwechsel.
 - Keine Originalaufgaben aus `muster-pruefungen/`.
 
@@ -166,7 +167,7 @@ Das öffnet eine lokale Seite im Browser (beim ersten Mal das Mikrofon freigeben
 
 ## Einbindung in die Website
 
-Modul „Video“ in jedem Lernbereich (`lernbereiche/<gebiet>/<lb>/video.md`, Reiter zwischen Kompetenzliste und Warm-Up). Es zeigt nur Checks mit Feld `video` in `_data/checks.json`; Auswahl per `#check-<Nummer>`. Kein Feed, keine Quote, keine XP.
+Modul „Video“ in jedem Lernbereich (`lernbereiche/<gebiet>/<lb>/video.md`, Reiter zwischen Kompetenzliste und Warm-Up). Es zeigt nur Checks mit Feld `video` in `_data/checks.json`, eine Karte pro Check untereinander (Anker `#check-<Nummer>`). Es läuft höchstens ein Video: Startet ein anderes oder scrollt es aus dem Bild, pausiert es. Kein Feed, keine Quote, keine XP.
 
 | Datei | Rolle |
 |---|---|

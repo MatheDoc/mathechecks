@@ -128,7 +128,7 @@ class Video(MCSzene):
                 ergebnis("r", r"4\,116{,}92", euro=True),
             ],
             rechnung_ab=(0.35, 0.52, 0.66, 0.78),
-            sprechtext="Kapitalabbau: Nach zehn Jahren sollen noch zwanzigtausend Euro übrig sein. "
+            sprechtext="Kapitalabbau: Nach 10 Jahren sollen noch 20.000 Euro übrig sein. "
                        "Gesucht ist die Rate r. Zinseszinsanteil und Bruch ausrechnen, nach r auflösen. "
                        "Genauso geht es bei K null.",
         )
@@ -149,9 +149,9 @@ class Video(MCSzene):
                        0, 4),
             ],
             rechnung_ab=(0.3, 0.5, 0.64, 0.8),
-            sprechtext="Jetzt vorschüssig und bis das Kapital aufgebraucht ist, also E n gleich null. "
+            sprechtext="Jetzt vorschüssig und bis das Kapital aufgebraucht ist, also E n gleich 0. "
                        "Bruch ausrechnen, q hoch n ausklammern, auflösen, logarithmieren: "
-                       "Das Kapital reicht etwa zwölf Komma acht Jahre.",
+                       "Das Kapital reicht etwa 12,8 Jahre.",
         )
 
         # ---------- Kurzfassung ----------

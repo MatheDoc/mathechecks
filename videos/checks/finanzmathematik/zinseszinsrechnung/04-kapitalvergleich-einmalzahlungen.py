@@ -51,9 +51,9 @@ class Video(MCSzene):
         lage[2].shift(0.3 * DOWN)
         block = self.tafel(lage)
         with self.sprich(
-            "Eine Fahrschule verkauft einen Kleinbus. Angebot A: fünfzigtausend Euro sofort. "
-            "B: zwanzigtausend sofort und fünfunddreißigtausend in vier Jahren. "
-            "C: sechzigtausend in drei Jahren. Gerechnet wird mit vier Prozent."
+            "Eine Fahrschule verkauft einen Kleinbus. Angebot A: 50.000 Euro sofort. "
+            "B: 20.000 sofort und 35.000 in 4 Jahren. "
+            "C: 60.000 in 3 Jahren. Gerechnet wird mit 4 %."
         ):
             self.play(auftritt(lage[:2]), run_time=0.6)
             for name, beginn in (("A", 0.18), ("B", 0.36), ("C", 0.68)):
@@ -122,7 +122,7 @@ class Video(MCSzene):
         block = self.tafel(b_c, b_c_wert, abstand=0.5)
         b_c_wert.align_to(b_c[1], LEFT)
         bogen = self.plan.bogen("C", 0)
-        with self.sprich("C: sechzigtausend durch eins Komma null vier hoch drei."):
+        with self.sprich("C: 60.000 durch 1,04 hoch 3."):
             self.play(Create(bogen), self.plan.faerbe("C", 0), run_time=0.7)
             self.play(Write(b_c), run_time=0.8)
             self.play(Write(b_c_wert), run_time=0.6)

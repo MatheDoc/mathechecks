@@ -55,6 +55,27 @@
     max-width: 100% !important;
 }
 
+/* Baumwahl (visual tree-choice): vier kleine Bäume A–D im 2×2-Raster */
+.tree-choice {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.tree-choice__option {
+    margin: 0;
+    min-width: 0;
+    padding: 6px 8px 2px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.tree-choice__label {
+    text-align: center;
+    font-weight: 700;
+    color: var(--text);
+}
+
 .task .intro mjx-container[display="true"],
 .task .frage mjx-container[display="true"],
 .task .answer-preview mjx-container[display="true"],

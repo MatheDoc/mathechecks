@@ -1,16 +1,16 @@
-import { initTrainingModule } from "./modules/training.js?v=20261127-venn";
+import { initTrainingModule } from "./modules/training.js?v=20261127-tree-choice3";
 import { initRecallModule } from "./modules/recall.js?v=20261121-feed-simple";
-import { initFeynmanModule } from "./modules/feynman.js?v=20261127-venn";
+import { initFeynmanModule } from "./modules/feynman.js?v=20261127-tree-choice3";
 import { initTestModule } from "./modules/test.js?v=20261121-feed-simple";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20261127-venn";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261127-venn";
-import { initCheckAnker } from "./modules/check-anker.js?v=20261127-venn";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20261127-tree-choice3";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20261127-tree-choice3";
+import { initCheckAnker } from "./modules/check-anker.js?v=20261128-oekonomie9";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
-import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js?v=20261127-venn";
+import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js?v=20261128-oekonomie9";
 import { initStartModule } from "./modules/start.js?v=20261121-feed-simple";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { initWarmupModule } from "./modules/warmup.js?v=20261127-echo";
-import { initVideoModule } from "./modules/video.js?v=20261124-video-play";
+import { initVideoModule } from "./modules/video.js?v=20261128-video-list";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
@@ -534,6 +534,11 @@ async function bootstrap() {
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
     });
+    if (explicitTargetId) {
+      scrollToTargetId(explicitTargetId);
+    } else if (shouldRestoreRememberedScroll) {
+      restoreScrollPosition(pageKey);
+    }
     return;
   }
 

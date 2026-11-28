@@ -140,7 +140,7 @@ class Video(MCSzene):
             reihe(wert("a(0)=", "3", farbe=HERVOR), text("ME/Monat", farbe=TEXT_LEISE)),
             abstand=0.4,
         )
-        with self.sprich("Den Absatz bei der Markteinführung liest du am y-Achsenabschnitt ab: drei ME pro Monat."):
+        with self.sprich("Den Absatz bei der Markteinführung liest du am y-Achsenabschnitt ab: 3 ME pro Monat."):
             self.play(auftritt(start[0]), run_time=0.5)
             self.warte_bis(0.3)
             self.play(GrowFromCenter(punkt_start), welle(ort_start, HERVOR), auftritt(start[1]), run_time=0.7)
@@ -164,8 +164,8 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Der höchste Absatz ist der Hochpunkt. Sein x-Wert ist der Zeitpunkt: etwa elf Komma acht Monate. "
-            "Sein y-Wert ist der Absatz: vierzehn Komma zwei ME pro Monat."
+            "Der höchste Absatz ist der Hochpunkt. Sein x-Wert ist der Zeitpunkt: etwa 11,8 Monate. "
+            "Sein y-Wert ist der Absatz: 14,2 ME pro Monat."
         ):
             self.play(auftritt(hoch[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -188,7 +188,7 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Der Absatz zu einem bestimmten Zeitpunkt, z.B. nach vier Monaten, ist der entsprechende Funktionswert. Etwa sieben ME pro Monat."
+            "Der Absatz zu einem bestimmten Zeitpunkt, z.B. nach 4 Monaten, ist der entsprechende Funktionswert. Etwa 7 ME pro Monat."
         ):
             self.play(auftritt(nach[0]), run_time=0.5)
             self.warte_bis(0.3)
@@ -222,8 +222,8 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Am stärksten steigt der Absatz im ersten Wendepunkt, nach etwa viereinhalb Monaten. "
-            "Am stärksten fällt er im zweiten, nach knapp neunzehn Monaten."
+            "Am stärksten steigt der Absatz im ersten Wendepunkt, nach etwa 4,5 Monaten. "
+            "Am stärksten fällt er im zweiten, nach knapp 19 Monaten."
         ):
             self.play(auftritt(wende[0]), run_time=0.5)
             self.warte_bis(0.15)
@@ -252,7 +252,7 @@ class Video(MCSzene):
             abstand=0.4,
         )
         with self.sprich(
-            "Für große t nähert sich der Graph einer waagrechten Asymptote. Sie zeigt den langfristigen Absatz: fünf ME pro Monat."
+            "Für große t nähert sich der Graph einer waagrechten Asymptote. Sie zeigt den langfristigen Absatz: 5 ME pro Monat."
         ):
             self.play(auftritt(langfristig[0]), run_time=0.5)
             self.warte_bis(0.25)

@@ -2,9 +2,9 @@ import random
 
 from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
-from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
     _kennzahlen_items,
+    _select_kennzahlen_items,
 )
 
 
@@ -146,122 +146,109 @@ def _sample_template_scaled_parameters(
     raise ValueError("Konnte keine gültigen Parameter aus der Muster-Skalierung erzeugen.")
 
 
-class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
-    """Erzeugt graphische Kennzahlen-Aufgaben mit visual.spec (ohne Base64 im JSON)."""
+def polypol_graph_task(rng: random.Random, used_params: set, satz: str, variante: int) -> Task:
+    """Graphische Kennzahlen-Aufgabe im Angebotspolypol (mit Kapazitätsgrenze)."""
+    while True:
+        (
+            k3,
+            k2,
+            k1,
+            k0,
+            price,
+            x_break_even_low,
+            x_break_even_high,
+            x_gain_max,
+            capacity,
+        ) = _sample_template_scaled_parameters(rng)
 
-    generator_key = "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_graphisch"
+        key = ("polypol", k3, k2, k1, k0, price, capacity)
+        if key in used_params:
+            continue
+        used_params.add(key)
+        break
 
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
-        used_params: set[tuple[float, float, float, float, float, int]] = set()
+    x_axis_max = max(float(capacity) * rng.uniform(1.02, 1.12), x_break_even_high * 1.08, 10.0)
+    # Plotly-ähnliche y_min-Bestimmung, aber ohne den Bereich nach
+    # der zweiten Nullstelle der Gewinnfunktion.
+    x_min_scan_max = max(0.8, min(x_axis_max, x_break_even_high * 1.02))
+    sample_points = 240
+    y_scan: list[float] = []
+    for index in range(sample_points + 1):
+        x_value = (x_min_scan_max * index) / sample_points
+        e_value = price * x_value
+        k_value = k3 * (x_value ** 3) + k2 * (x_value ** 2) + k1 * x_value + k0
+        g_value = e_value - k_value
+        y_scan.extend((e_value, k_value, g_value))
 
-        for _ in range(count):
-            while True:
-                (
-                    k3,
-                    k2,
-                    k1,
-                    k0,
-                    price,
-                    x_break_even_low,
-                    x_break_even_high,
-                    x_gain_max,
-                    capacity,
-                ) = _sample_template_scaled_parameters(rng)
+    y_min_core = min(y_scan)
+    e_at_capacity = price * float(capacity)
 
-                key = (k3, k2, k1, k0, price, capacity)
-                if key in used_params:
-                    continue
+    # y_min leicht unterhalb des gescannten Minimums,
+    # y_max leicht oberhalb des Erlöswerts an der Kapazitätsgrenze.
+    y_min = y_min_core - max(3.0, 0.06 * abs(y_min_core))
+    y_max_raw = e_at_capacity + max(4.0, 0.08 * e_at_capacity)
 
-                used_params.add(key)
-                break
+    # Harte Grenzen: y_max <= 1000 und y-Range <= 1000,
+    # ohne den negativen Bereich kuenstlich anzuheben.
+    y_max = min(y_max_raw, 1000.0, y_min + 1000.0)
 
-            x_axis_max = max(float(capacity) * rng.uniform(1.02, 1.12), x_break_even_high * 1.08, 10.0)
-            # Plotly-ähnliche y_min-Bestimmung, aber ohne den Bereich nach
-            # der zweiten Nullstelle der Gewinnfunktion.
-            x_min_scan_max = max(0.8, min(x_axis_max, x_break_even_high * 1.02))
-            sample_points = 240
-            y_scan: list[float] = []
-            for index in range(sample_points + 1):
-                x_value = (x_min_scan_max * index) / sample_points
-                e_value = price * x_value
-                k_value = k3 * (x_value ** 3) + k2 * (x_value ** 2) + k1 * x_value + k0
-                g_value = e_value - k_value
-                y_scan.extend((e_value, k_value, g_value))
+    if y_max <= y_min + 1.0:
+        y_max = y_min + 8.0
 
-            y_min_core = min(y_scan)
-            e_at_capacity = price * float(capacity)
+    x_tolerance = graph_read_tolerance_from_span(x_axis_max)
+    y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
 
-            # y_min leicht unterhalb des gescannten Minimums,
-            # y_max leicht oberhalb des Erlöswerts an der Kapazitätsgrenze.
-            y_min = y_min_core - max(3.0, 0.06 * abs(y_min_core))
-            y_max_raw = e_at_capacity + max(4.0, 0.08 * e_at_capacity)
+    items = _kennzahlen_items(
+        rng=rng,
+        k3=k3,
+        k2=k2,
+        k1=k1,
+        k0=k0,
+        price=price,
+        x_break_even_low=x_break_even_low,
+        x_break_even_high=x_break_even_high,
+        x_gain_max=x_gain_max,
+        capacity=capacity,
+        x_tolerance=x_tolerance,
+        y_tolerance=y_tolerance,
+    )
+    auswahl = _select_kennzahlen_items(items, "polypol", variante)
 
-            # Harte Grenzen: y_max <= 1000 und y-Range <= 1000,
-            # ohne den negativen Bereich kuenstlich anzuheben.
-            y_max = min(y_max_raw, 1000.0, y_min + 1000.0)
+    intro = (
+        f"{satz} Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion. "
+        f"Die Kapazitätsgrenze beträgt {capacity} Mengeneinheiten. "
+        "Lesen Sie die Werte so genau wie möglich ab."
+    )
 
-            if y_max <= y_min + 1.0:
-                y_max = y_min + 8.0
-
-            x_tolerance = graph_read_tolerance_from_span(x_axis_max)
-            y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
-
-            items = _kennzahlen_items(
-                rng=rng,
-                k3=k3,
-                k2=k2,
-                k1=k1,
-                k0=k0,
-                price=price,
-                x_break_even_low=x_break_even_low,
-                x_break_even_high=x_break_even_high,
-                x_gain_max=x_gain_max,
-                capacity=capacity,
-                x_tolerance=x_tolerance,
-                y_tolerance=y_tolerance,
-            )
-
-            intro = (
-                "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. "
-                f"Die Kapazitätsgrenze beträgt {capacity} Mengeneinheiten. "
-                "Bestimmen Sie"
-            )
-
-            visual = {
-                "type": "plot",
-                "spec": {
-                    "type": "economic-curves",
-                    "params": {
-                        "k3": k3,
-                        "k2": k2,
-                        "k1": k1,
-                        "k0": k0,
-                        "price": price,
-                        "capacity": capacity,
-                    },
-                    "layout": {
-                        "title": "Erlös-, Kosten- und Gewinnfunktion",
-                        "xaxis": {
-                            "title": "Menge x",
-                            "range": [0.0, x_axis_max],
-                        },
-                        "yaxis": {"title": "Wert", "range": [y_min, y_max]},
-                    },
-                    "width": 900,
-                    "height": 520,
-                    "scale": 1,
+    visual = {
+        "type": "plot",
+        "spec": {
+            "type": "economic-curves",
+            "params": {
+                "k3": k3,
+                "k2": k2,
+                "k1": k1,
+                "k0": k0,
+                "price": price,
+                "capacity": capacity,
+            },
+            "layout": {
+                "title": "Erlös-, Kosten- und Gewinnfunktion",
+                "xaxis": {
+                    "title": "Menge x",
+                    "range": [0.0, x_axis_max],
                 },
-            }
+                "yaxis": {"title": "Wert", "range": [y_min, y_max]},
+            },
+            "width": 900,
+            "height": 520,
+            "scale": 1,
+        },
+    }
 
-            tasks.append(
-                Task(
-                    einleitung=intro,
-                    fragen=[question for question, _ in items],
-                    antworten=[answer for _, answer in items],
-                    visual=visual,
-                )
-            )
-
-        return tasks
+    return Task(
+        einleitung=intro,
+        fragen=[question for question, _ in auswahl],
+        antworten=[answer for _, answer in auswahl],
+        visual=visual,
+    )

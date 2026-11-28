@@ -1,0 +1,1546 @@
+[
+  {
+    "einleitung": "Die Agrargenossenschaft Elbtal verkauft Speisekartoffeln an den Großhandel, der Preis ergibt sich am Markt. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 5,8 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5,6057:1}",
+      "{1:NUMERICAL:=5,0271:1}",
+      "{1:NUMERICAL:=10,8892:0,5}",
+      "{1:NUMERICAL:=26,555:1}",
+      "{1:NUMERICAL:=21,4988:2}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "26.554955",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.771162*x^2-8.645746*x+29.259627",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              19.76
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              38.0375151
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "26.554955",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.771162*x^2-8.645746*x+29.259627",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Velotec GmbH bietet als einziges Unternehmen einen faltbaren Lastenanhänger mit patentierter Kupplung an. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 54 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=25,8739:4}",
+      "{1:NUMERICAL:=2,6158:0,5}",
+      "{1:NUMERICAL:=41,9558:2}",
+      "{1:NUMERICAL:=61,3357:2}",
+      "{1:NUMERICAL:=-6,3629:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.226176*x+13.872666",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.006834*x^2-0.353644*x+7.190877",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              127.57828098471987
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -5.549066400000001,
+              15.9535659
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.226176*x+13.872666",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.006834*x^2-0.353644*x+7.190877",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Druckerei Papyrus fertigt Visitenkarten und steht dabei im Wettbewerb mit vielen Online-Druckereien. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 5,3 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 14 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=12,3942:0,5}",
+      "{1:NUMERICAL:=6,0153:1}",
+      "{1:NUMERICAL:=28,6564:2}",
+      "{1:NUMERICAL:=28,2961:2}",
+      "{1:MC:~Der Gewinn ist dort maximal.~Der Gewinn steigt.~=Der Gewinn fällt.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.704244*x^2+8.47242*x+3.174497",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              21.84
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -36.107060185111514,
+              35.82049621538841
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.704244*x^2+8.47242*x+3.174497",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Textilfirma Nordfaden produziert Baumwoll-T-Shirts, wie sie auch viele andere Hersteller anbieten. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 46 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=19,8292:2}",
+      "{1:NUMERICAL:=1,5165:0,2}",
+      "{1:NUMERICAL:=39,6584:1}",
+      "{1:NUMERICAL:=5,7796:0,2}",
+      "{1:NUMERICAL:=-3,1628:0,4}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "5.77956",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.010842*x^2-0.429976*x+5.77956",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              72.8
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              7.513428
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "5.77956",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.010842*x^2-0.429976*x+5.77956",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Brauerei Hopfenhof ist alleinige Anbieterin eines alkoholfreien Craft-Biers nach eigenem, geschütztem Verfahren. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 9,6 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=11,7772:2}",
+      "{1:NUMERICAL:=3,628:0,5}",
+      "{1:NUMERICAL:=18,5051:1}",
+      "{1:NUMERICAL:=26,1414:1}",
+      "{1:NUMERICAL:=9,7468:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.825506*x+21.579907",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.059115*x^2-1.39242*x+11.827449",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              54.37417360988291
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -8.6319628,
+              24.816893049999997
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.825506*x+21.579907",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.059115*x^2-1.39242*x+11.827449",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Solaris GmbH ist mit ihrem patentierten, biegsamen Solarmodul alleinige Anbieterin. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 4,6 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 12 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=9,7182:0,5}",
+      "{1:NUMERICAL:=1,9843:1}",
+      "{1:NUMERICAL:=42,3226:2}",
+      "{1:NUMERICAL:=37,4814:2}",
+      "{1:MC:~Der Gewinn ist dort maximal.~=Der Gewinn fällt.~Der Gewinn steigt.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.707568*x^2+2.80802*x+39.536673",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              23.538449162778715
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -53.32649609495998,
+              52.90326993547617
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.707568*x^2+2.80802*x+39.536673",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Klangwerk AG stellt Bluetooth-Lautsprecher her, die sich kaum von denen anderer Anbieter unterscheiden. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 21 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=7,4564:1}",
+      "{1:NUMERICAL:=1,9306:0,2}",
+      "{1:NUMERICAL:=15,2645:0,5}",
+      "{1:NUMERICAL:=8,746:0,2}",
+      "{1:NUMERICAL:=-13,69:0,4}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "8.746009",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.111789*x^2-1.667082*x+8.145793",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              27.04
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              11.369811700000001
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "8.746009",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.111789*x^2-1.667082*x+8.145793",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Frischwerk GmbH ist mit einem Saft, der nach einem patentierten Kaltverfahren haltbar gemacht wird, alleinige Anbieterin. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 23 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=25,8811:4}",
+      "{1:NUMERICAL:=1,4469:0,25}",
+      "{1:NUMERICAL:=37,1789:2}",
+      "{1:NUMERICAL:=46,27:2}",
+      "{1:NUMERICAL:=4,0134:0,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.236616*x+10.948216",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.005517*x^2-0.285572*x+5.142344",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              96.24154444331745
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -4.379286400000001,
+              12.5904484
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.236616*x+10.948216",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.005517*x^2-0.285572*x+5.142344",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Spielwaren GmbH Holzwurm verkauft Holzbausteine zum marktüblichen Preis. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 36 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 21 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=31,1812:1}",
+      "{1:NUMERICAL:=16,2289:2}",
+      "{1:NUMERICAL:=7,1625:0,5}",
+      "{1:NUMERICAL:=-5,3606:0,5}",
+      "{1:MC:~=Der Gewinn steigt.~Der Gewinn fällt.~Der Gewinn ist dort maximal.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.032037*x^2+1.039852*x-1.2753",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              53.04
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -9.02479903904111,
+              8.95317364984237
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.032037*x^2+1.039852*x-1.2753",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Mühle Kornblume verkauft Weizenmehl auf einem Markt mit vielen Anbietern. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 42 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=16,1033:2}",
+      "{1:NUMERICAL:=3,0987:0,5}",
+      "{1:NUMERICAL:=32,7493:1}",
+      "{1:NUMERICAL:=14,4871:0,5}",
+      "{1:NUMERICAL:=-16,1748:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "14.487101",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.0411*x^2-1.323694*x+13.756659",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              61.36
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              18.833231299999998
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "14.487101",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.0411*x^2-1.323694*x+13.756659",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Möbelmanufaktur Lindner ist mit ihrem patentierten, stufenlos ausziehbaren Esstisch alleinige Anbieterin. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 14 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=25,2945:4}",
+      "{1:NUMERICAL:=3,2108:0,5}",
+      "{1:NUMERICAL:=40,74:2}",
+      "{1:NUMERICAL:=58,3494:2}",
+      "{1:NUMERICAL:=8,6819:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.291294*x+16.996839",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.008043*x^2-0.406888*x+8.356779",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              121.36681538239719
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -6.7987356000000005,
+              19.54636485
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.291294*x+16.996839",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.008043*x^2-0.406888*x+8.356779",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Rösterei Bohnenwerk ist alleinige Anbieterin kompostierbarer Kaffeekapseln, für die sie ein Patent hält. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 32 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 8,8 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=24,7674:1}",
+      "{1:NUMERICAL:=5,4792:2}",
+      "{1:NUMERICAL:=8,5058:0,5}",
+      "{1:NUMERICAL:=-7,5749:0,5}",
+      "{1:MC:~Der Gewinn ist dort maximal.~=Der Gewinn steigt.~Der Gewinn fällt.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.022863*x^2+0.250544*x+7.819361",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              55.51031174325224
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -10.717253943227922,
+              10.632196372249922
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.022863*x^2+0.250544*x+7.819361",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Druckerei Papyrus fertigt Visitenkarten und steht dabei im Wettbewerb mit vielen Online-Druckereien. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 21 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=20,1339:2}",
+      "{1:NUMERICAL:=1,505:0,2}",
+      "{1:NUMERICAL:=37,8377:1}",
+      "{1:NUMERICAL:=6,9548:0,2}",
+      "{1:NUMERICAL:=5,4368:0,4}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "6.954811",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.017388*x^2-0.700176*x+8.553618",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              64.48
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              11.1197034
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "6.954811",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.017388*x^2-0.700176*x+8.553618",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Spielwaren GmbH Holzwurm bietet als einziges Unternehmen magnetische Holzbausteine mit patentiertem Stecksystem an. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 15 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=6,757:2}",
+      "{1:NUMERICAL:=3,9266:0,5}",
+      "{1:NUMERICAL:=11,5031:1}",
+      "{1:NUMERICAL:=18,4209:1}",
+      "{1:NUMERICAL:=-6,4735:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.824876*x+15.194919",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.079014*x^2-1.067802*x+7.534147",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              38.31537288028746
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -6.077967600000001,
+              17.47415685
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.824876*x+15.194919",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.079014*x^2-1.067802*x+7.534147",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Velotec GmbH ist einer von vielen Herstellern von Fahrradanhängern. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 20 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 42 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=35,219:1}",
+      "{1:NUMERICAL:=17,4377:2}",
+      "{1:NUMERICAL:=7,2116:0,5}",
+      "{1:NUMERICAL:=7,0619:0,5}",
+      "{1:MC:~=Der Gewinn fällt.~Der Gewinn ist dort maximal.~Der Gewinn steigt.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.022809*x^2+0.795474*x+0.276008",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              60.32
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -9.086660372118898,
+              9.014544019959224
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.022809*x^2+0.795474*x+0.276008",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Mühle Kornblume verkauft Weizenmehl auf einem Markt mit vielen Anbietern. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 22 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=15,9903:2}",
+      "{1:NUMERICAL:=1,6959:0,2}",
+      "{1:NUMERICAL:=31,6008:1}",
+      "{1:NUMERICAL:=6,8411:0,2}",
+      "{1:NUMERICAL:=4,3827:0,4}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "6.841107",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.021114*x^2-0.675238*x+7.094481",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              55.120000000000005
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              9.2228253
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "6.841107",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.021114*x^2-0.675238*x+7.094481",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Klangwerk AG hat einen wasserdichten Lautsprecher mit patentierter Akkutechnik entwickelt und ist damit alleinige Anbieterin. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 26 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=11,7546:2}",
+      "{1:NUMERICAL:=1,7703:0,5}",
+      "{1:NUMERICAL:=21,8558:1}",
+      "{1:NUMERICAL:=33,7808:1}",
+      "{1:NUMERICAL:=-4,6224:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-0.399904*x+13.509079",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.029388*x^2-0.69089*x+5.830842",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              70.26407417780268
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -5.403631600000001,
+              15.535440849999999
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-0.399904*x+13.509079",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.029388*x^2-0.69089*x+5.830842",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Frischwerk GmbH ist mit einem Saft, der nach einem patentierten Kaltverfahren haltbar gemacht wird, alleinige Anbieterin. Das Diagramm zeigt den Graphen der Grenzgewinnfunktion $G'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die Menge, bei der der Gewinn am stärksten steigt.",
+      "Bestimmen Sie den maximalen Grenzgewinn.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 30 ME.",
+      "Geben Sie an, wie sich der Gewinn bei einer Absatzmenge von 17 ME verändert."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=25,2635:1}",
+      "{1:NUMERICAL:=6,8293:2}",
+      "{1:NUMERICAL:=13,307:0,5}",
+      "{1:NUMERICAL:=-7,7167:0,5}",
+      "{1:MC:~Der Gewinn ist dort maximal.~=Der Gewinn steigt.~Der Gewinn fällt.}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzgewinn",
+        "curves": [
+          {
+            "term": "-0.039159*x^2+0.534858*x+11.480652",
+            "variable": "x",
+            "mode": "lines",
+            "name": "G'(x)",
+            "description": "Grenzgewinnfunktion",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzgewinn",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              65.1040809646399
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -16.766829933178578,
+              16.63375985434383
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "G'(x)",
+            "term": "-0.039159*x^2+0.534858*x+11.480652",
+            "beschreibung": "Grenzgewinnfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Solaris GmbH verkauft Standard-Solarmodule auf einem stark umkämpften Markt. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie den Marktpreis.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 20 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8,4961:1}",
+      "{1:NUMERICAL:=2,8875:0,5}",
+      "{1:NUMERICAL:=16,6726:0,5}",
+      "{1:NUMERICAL:=14,3087:0,5}",
+      "{1:NUMERICAL:=-11,1874:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "14.308688",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.170838*x^2-2.90292*x+15.219241",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              30.16
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              0.0,
+              19.7850133
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "14.308688",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.170838*x^2-2.90292*x+15.219241",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Möbelmanufaktur Lindner ist mit ihrem patentierten, stufenlos ausziehbaren Esstisch alleinige Anbieterin. Das Diagramm zeigt die Graphen der Grenzerlösfunktion $E'$ und der Grenzkostenfunktion $K'$. Lesen Sie die Werte so genau wie möglich ab.",
+    "fragen": [
+      "Bestimmen Sie die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
+      "Bestimmen Sie die minimalen Grenzkosten.",
+      "Bestimmen Sie die gewinnmaximale Menge.",
+      "Bestimmen Sie die erlösmaximale Menge.",
+      "Bestimmen Sie den Grenzgewinn bei einer Absatzmenge von 15 ME."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=7,839:1}",
+      "{1:NUMERICAL:=3,9986:1}",
+      "{1:NUMERICAL:=10,5763:0,5}",
+      "{1:NUMERICAL:=12,8131:0,5}",
+      "{1:NUMERICAL:=-21,7061:2}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Grenzerlös und Grenzkosten",
+        "curves": [
+          {
+            "term": "-2.576334*x+33.010768",
+            "variable": "x",
+            "mode": "lines",
+            "name": "E'(x)",
+            "description": "Grenzerlösfunktion",
+            "line": {
+              "color": "#2ca02c",
+              "width": 2.5
+            }
+          },
+          {
+            "term": "0.23544*x^2-3.691238*x+18.46642",
+            "variable": "x",
+            "mode": "lines",
+            "name": "K'(x)",
+            "description": "Grenzkostenfunktion",
+            "line": {
+              "color": "#d62728",
+              "width": 2.5
+            }
+          }
+        ],
+        "points": 301,
+        "layout": {
+          "title": "Grenzerlös und Grenzkosten",
+          "xaxis": {
+            "title": "Menge x in ME",
+            "range": [
+              0.0,
+              26.651201839513043
+            ],
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "GE/ME",
+            "range": [
+              -13.2043072,
+              37.9623832
+            ],
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "E'(x)",
+            "term": "-2.576334*x+33.010768",
+            "beschreibung": "Grenzerlösfunktion"
+          },
+          {
+            "name": "K'(x)",
+            "term": "0.23544*x^2-3.691238*x+18.46642",
+            "beschreibung": "Grenzkostenfunktion"
+          }
+        ]
+      }
+    }
+  }
+]

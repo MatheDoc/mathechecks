@@ -50,8 +50,8 @@ class Video(MCSzene):
             abstand=0.5,
         )
         with self.sprich(
-            "Der Erwartungswert mü ist n mal p. Die Standardabweichung Sigma ist die Wurzel aus n mal p mal eins minus p. "
-            "Zwei der Größen sind gegeben, den Rest berechnen wir."
+            "Der Erwartungswert mü ist n mal p. Die Standardabweichung Sigma ist die Wurzel aus n mal p mal 1 minus p. "
+            "2 der Größen sind gegeben, den Rest berechnen wir."
         ):
             self.play(auftritt(idee[0]), welle(self.mu, HERVOR), run_time=0.6)
             self.warte_bis(0.3)
@@ -71,8 +71,8 @@ class Video(MCSzene):
             ],
             fehlt=None,
             rechnung_ab=(0.45, 0.7),
-            sprechtext="Eine Münze wird zwanzigmal geworfen, X zählt Kopf. n und p sind gegeben, also nur einsetzen: "
-                       "mü gleich zehn, Sigma etwa zwei Komma zwei vier.",
+            sprechtext="Eine Münze wird 20-mal geworfen, X zählt Kopf. n und p sind gegeben, also nur einsetzen: "
+                       "mü gleich 10, Sigma etwa 2,24.",
         )
 
         # ---------- p fehlt ----------
@@ -86,9 +86,9 @@ class Video(MCSzene):
             ],
             fehlt=P,
             rechnung_ab=(0.35, 0.6, 0.8),
-            sprechtext="Zweihundert Autofahrer werden kontrolliert, im Mittel sind fünfundzwanzig alkoholisiert. "
-                       "Jetzt fehlt p. Wir stellen mü gleich n mal p um: p ist null Komma eins zwei fünf. "
-                       "Dann Sigma: etwa vier Komma sechs acht.",
+            sprechtext="200 Autofahrer werden kontrolliert, im Mittel sind 25 alkoholisiert. "
+                       "Jetzt fehlt p. Wir stellen mü gleich n mal p um: p ist 0,125. "
+                       "Dann Sigma: etwa 4,68.",
         )
 
         # ---------- n fehlt ----------
@@ -102,9 +102,9 @@ class Video(MCSzene):
             ],
             fehlt=N,
             rechnung_ab=(0.35, 0.6, 0.8),
-            sprechtext="Fünfzehn Prozent parken ohne Parkschein, im Mittel sollen zwölf erwischt werden. "
-                       "Jetzt fehlt n: zwölf durch null Komma eins fünf ist achtzig. "
-                       "Sigma ist etwa drei Komma eins neun.",
+            sprechtext="15 % parken ohne Parkschein, im Mittel sollen 12 erwischt werden. "
+                       "Jetzt fehlt n: 12 durch 0,15 ist 80. "
+                       "Sigma ist etwa 3,19.",
         )
 
         # ---------- Kurzfassung ----------

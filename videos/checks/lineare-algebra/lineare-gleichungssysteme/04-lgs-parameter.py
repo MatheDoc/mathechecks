@@ -58,17 +58,17 @@ class Video(MCSzene):
         self.tafel(kopf1, probe, abstand=0.6)
         kopf1.set_x(0)
         y = probe[0][0][0].get_y()
-        with self.sprich("Schritt eins: der Gauß-Algorithmus in Matrixform, wie immer."):
+        with self.sprich("Schritt 1: der Gauß-Algorithmus in Matrixform, wie immer."):
             self.play(auftritt(kopf1), run_time=0.5)
             self.warte_bis(0.4)
             self.play(*uebergang, run_time=1.5)
 
-        self.zeilenumformung(m, 1, 2, 0, y=y, sprechtext="Zeile zwei minus zweimal Zeile eins.")
-        self.zeilenumformung(m, 2, 3, 0, y=y, sprechtext="Zeile drei minus dreimal Zeile eins.")
+        self.zeilenumformung(m, 1, 2, 0, y=y, sprechtext="Zeile 2 minus 2-mal Zeile 1.")
+        self.zeilenumformung(m, 2, 3, 0, y=y, sprechtext="Zeile 3 minus 3-mal Zeile 1.")
         nullzeile = m.eintraege[2]
         self.zeilenumformung(
             m, 2, 1, 1, y=y, farben=dict.fromkeys(range(4), HERVOR),
-            sprechtext="Jetzt Zeile drei minus Zeile zwei: Die ganze Zeile wird null.",
+            sprechtext="Jetzt Zeile 3 minus Zeile 2: Die ganze Zeile wird 0.",
         )
         self.play(FadeOut(kopf1, shift=0.25 * UP), run_time=0.4)
 
@@ -84,7 +84,7 @@ class Video(MCSzene):
         )
         self.tafel(kopf2, nullgleichung, jedes, parameter, abstand=0.5)
         with self.sprich(
-            "Schritt zwei: der Parameter. Die letzte Zeile heißt null mal x drei gleich null. "
+            "Schritt 2: der Parameter. Die letzte Zeile heißt 0 mal x drei gleich 0. "
             "Das stimmt für jedes x drei. Wir setzen x drei gleich t, für eine beliebige Zahl t."
         ):
             self.play(auftritt(kopf2), run_time=0.5)
@@ -124,15 +124,15 @@ class Video(MCSzene):
             run_time=0.8,
         )
         with self.sprich(
-            "Schritt drei: rückwärts einsetzen. Zeile zwei heißt minus x zwei minus t gleich minus zwei. "
-            "Also x zwei gleich zwei minus t."
+            "Schritt 3: rückwärts einsetzen. Zeile 2 heißt minus x zwei minus t gleich minus 2. "
+            "Also x zwei gleich 2 minus t."
         ):
             self.warte_bis(0.25)
             self.play(m.betonen(1), FadeIn(zeilen[1][0]), run_time=0.5)
             self.play(Write(g2[0]), TransformFromCopy(g3[1], g2[1]), Write(g2[2]), run_time=0.9)
             self.warte_bis(0.75)
             self.play(FadeIn(g2[3]), FadeIn(g2[4], scale=1.4), run_time=0.5)
-        with self.sprich("Beides in Zeile eins: x eins gleich drei minus t."):
+        with self.sprich("Beides in Zeile 1: x eins gleich 3 minus t."):
             self.play(m.betonen(0), FadeIn(zeilen[2][0]), run_time=0.5)
             self.play(
                 Write(g1[0]), TransformFromCopy(g2[4], g1[1]), Write(g1[2]), TransformFromCopy(g3[1], g1[3]),
@@ -167,7 +167,7 @@ class Video(MCSzene):
             zeile.shift((beispiel[0][0][2].get_x() - zeile[0][2].get_x()) * RIGHT)
         kopf4 = text("Jedes t liefert eine Lösung", groesse=40)
         block4 = self.tafel(kopf4, wahl, beispiel, abstand=0.5)
-        with self.sprich("Jedes t liefert eine Lösung. Für t gleich vier etwa: minus eins, minus zwei und vier."):
+        with self.sprich("Jedes t liefert eine Lösung. Für t gleich 4 etwa: minus 1, minus 2 und 4."):
             self.play(auftritt(kopf4), welle(loesung[5], HERVOR), run_time=0.6)
             self.warte_bis(0.4)
             self.play(Write(wahl), run_time=0.5)

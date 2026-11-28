@@ -105,8 +105,8 @@ class Video(MCSzene):
         merke = text("3 im Text, 1 im Fragesatz", groesse=42, farben={"1 im Fragesatz": HERVOR})
         block = self.tafel(namen, merke, abstand=0.7)
         with self.sprich(
-            "Es geht um vier Größen: Darlehenssumme, Zinssatz, Laufzeit und Annuität. "
-            "Drei stehen im Text, die vierte verrät der Fragesatz."
+            "Es geht um 4 Größen: Darlehenssumme, Zinssatz, Laufzeit und Annuität. "
+            "3 stehen im Text, die vierte verrät der Fragesatz."
         ):
             for zeile, name, beginn in zip(namen, NAMEN, (0.15, 0.3, 0.4, 0.5)):
                 self.warte_bis(beginn)
@@ -132,10 +132,10 @@ class Video(MCSzene):
             ],
             ergebnis=euro(r"9\,863{,}28").set_color(HERVOR),
             werte_ab=0.25, gesucht_ab=0.55, rechnung_ab=(0.7, 0.88),
-            sprechtext="Ein Cateringbetrieb nimmt achtzigtausend Euro zu vier Prozent auf, getilgt in zehn Jahren "
+            sprechtext="Ein Cateringbetrieb nimmt 80.000 Euro zu 4 % auf, getilgt in 10 Jahren "
                        "durch gleich hohe Jahresraten. Wie hoch ist die jährliche Rate? "
                        "Gleich hohe Jahresraten: Das ist die Annuität. "
-                       "Annuitätenformel: etwa neuntausendachthundertdreiundsechzig Euro.",
+                       "Annuitätenformel: etwa 9863 Euro.",
         )
 
         # ---------- Dauer ----------
@@ -155,9 +155,9 @@ class Video(MCSzene):
             ],
             ergebnis=zahl(r"\approx 15{,}1", HERVOR),
             werte_ab=0.2, gesucht_ab=0.45, rechnung_ab=(0.62, 0.78, 0.88),
-            sprechtext="Ein Darlehen über hundertzwanzigtausend Euro zu drei Prozent wird mit zehntausend Euro "
+            sprechtext="Ein Darlehen über 120.000 Euro zu 3 % wird mit 10.000 Euro "
                        "jährlich getilgt. Nach wie vielen Jahren? Gesucht ist die Laufzeit. "
-                       "Erst T eins, dann A gleich T eins mal q hoch n: etwa fünfzehn Komma eins Jahre.",
+                       "Erst T eins, dann A gleich T eins mal q hoch n: etwa 15,1 Jahre.",
         )
 
         # ---------- Gesamtzinsen ----------
@@ -176,8 +176,8 @@ class Video(MCSzene):
             ergebnis=None,
             werte_ab=0.05, gesucht_ab=None, rechnung_ab=(0.55, 0.7, 0.85),
             sprechtext="Und die Zinsen insgesamt? Alle Annuitäten zusammen enthalten die Darlehenssumme "
-                       "und sämtliche Zinsen. Also zehn mal A minus K null: "
-                       "achtzehntausendsechshundertzweiunddreißig Euro achtzig.",
+                       "und sämtliche Zinsen. Also 10 mal A minus K null: "
+                       "18.632 Euro 80.",
         )
 
         # ---------- Weitere Signalwörter ----------

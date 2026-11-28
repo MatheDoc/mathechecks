@@ -84,7 +84,7 @@ class Video(MCSzene):
         block1 = self.tafel(kopf1, stellen, abstand=0.7)
         alle = dict.fromkeys(baum.PFADE, HERVOR)
         with self.sprich(
-            "Im Baum stehen drei Dinge. Erste Stufe: P von A und P von nicht A. "
+            "Im Baum stehen 3 Dinge. Erste Stufe: P von A und P von nicht A. "
             "Zweite Stufe: P von B unter der Bedingung A, dazu die Varianten mit Gegenereignissen. "
             "Am Pfadende: P von A und B, dazu wieder die Varianten."
         ):
@@ -125,19 +125,19 @@ class Video(MCSzene):
         )
         block2 = self.tafel(kopf2, summe_b, summe_oder, summe_variante, abstand=0.6)
         with self.sprich(
-            "P von B steht nicht im Baum. Du addierst die beiden Pfadenden mit B: null Komma zwei fünf."
+            "P von B steht nicht im Baum. Du addierst die beiden Pfadenden mit B: 0,25."
         ):
             self.play(auftritt(kopf2), baum.markiere(), run_time=0.5)
             self.warte_bis(0.3)
             self.play(baum.markiere(enden={"AB": BLAU, "nAB": BLAU}), Write(summe_b[0]), run_time=0.7)
             self.warte_bis(0.65)
             self.play(Write(summe_b[1:]), run_time=0.9)
-        with self.sprich("Zu A oder B gehören drei Pfadenden."):
+        with self.sprich("Zu A oder B gehören 3 Pfadenden."):
             self.play(
                 baum.markiere(enden={"AB": ROSE, "AnB": ROSE, "nAB": ROSE}), Write(summe_oder[0]), run_time=0.7,
             )
             self.play(Write(summe_oder[1:]), run_time=1.1)
-        with self.sprich("Zu nicht A oder B gehören diese drei."):
+        with self.sprich("Zu nicht A oder B gehören diese 3."):
             self.play(
                 baum.markiere(enden={"AB": GRUEN, "nAB": GRUEN, "nAnB": GRUEN}), Write(summe_variante[0]),
                 run_time=0.7,
@@ -168,7 +168,7 @@ class Video(MCSzene):
         ).arrange(DOWN, buff=0.25)
         block3 = self.tafel(ablesen, rechnen, abstand=0.6)
         with self.sprich(
-            "Die Wahrscheinlichkeit von B unter der Bedingung A (von allen, die putzen, haben vierzig Prozent gesunde Zähne) kannst du ablesen."
+            "Die Wahrscheinlichkeit von B unter der Bedingung A (von allen, die putzen, haben 40 % gesunde Zähne) kannst du ablesen."
         ):
             self.play(baum.markiere(), auftritt(ablesen[0]), run_time=0.5)
             self.warte_bis(0.25)
@@ -209,7 +209,7 @@ class Video(MCSzene):
         urteil = text("stochastisch abhängig", groesse=44, gewicht=BOLD)
         block4 = self.tafel(kopf4, vergleich, urteil, abstand=0.7)
         with self.sprich(
-            "Sind A und B unabhängig? Vergleiche dazu die zweite Stufe: null Komma vier und null Komma eins sind verschieden, also hängt B davon ab, ob A eingetreten ist: Putzen bewirkt was."
+            "Sind A und B unabhängig? Vergleiche dazu die zweite Stufe: 0,4 und 0,1 sind verschieden, also hängt B davon ab, ob A eingetreten ist: Putzen bewirkt was."
         ):
             self.play(auftritt(kopf4), baum.markiere(), run_time=0.5)
             self.warte_bis(0.25)

@@ -20,7 +20,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Baumknoten hat genau drei Äste. Zwei tragen \(0{,}2\) und \(0{,}3\). Welche Wahrscheinlichkeit hat der dritte?</p>]]></text>
+      <text><![CDATA[<p>Ein Baum verzweigt zuerst in A, B und C. Nur bei A und B wird danach zwischen X und Y unterschieden. Welche Aussage stimmt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <text><![CDATA[<p>Der Pfad über C endet nach der ersten Stufe.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}06\)</p>]]></text>
+      <text><![CDATA[<p>Auch C verzweigt danach in X und Y.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bekannte Astwahrscheinlichkeiten multipliziert</p>]]></text>
+        <text><![CDATA[<p>Endenden Pfad fortgesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}8\)</p>]]></text>
+      <text><![CDATA[<p>Der Baum hat sechs Pfadenden.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den ersten Ast von 1 abgezogen</p>]]></text>
+        <text><![CDATA[<p>Pfadenden wie bei einem vollständigen 3×2-Baum gezählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <text><![CDATA[<p>Nach C folgt ein Ast mit Wahrscheinlichkeit 0.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den zweiten Ast von 1 abgezogen</p>]]></text>
+        <text><![CDATA[<p>Nicht erfasste Stufe als Ast mit Wahrscheinlichkeit 0 gezeichnet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Baum verzweigt zuerst in drei Gruppen und danach jeweils in Treffer oder Niete. Wie viele Endpfade hat er?</p>]]></text>
+      <text><![CDATA[<p>Erste Stufe: A oder B, zweite Stufe: X oder Y. Wo steht die Angabe „20 % von A haben das Merkmal X“?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(6\)</p>]]></text>
+      <text><![CDATA[<p>am Ast von A nach X</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <text><![CDATA[<p>am Ende des Pfades A → X</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anzahlen der Äste addiert</p>]]></text>
+        <text><![CDATA[<p>Anteil einer Gruppe als Anteil aller gedeutet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <text><![CDATA[<p>am Ast zu A</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die erste Stufe gezählt</p>]]></text>
+        <text><![CDATA[<p>Bezugsgruppe als Ast eingetragen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <text><![CDATA[<p>an jedem Ast, der zu X führt</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Drei binäre Stufen angenommen</p>]]></text>
+        <text><![CDATA[<p>Anteil von A auf alle Gruppen übertragen</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Baum hat zuerst die Gruppen A, B und C. Wo wird die Angabe „Von Gruppe B sind 40 % erfolgreich“ eingetragen?</p>]]></text>
+      <text><![CDATA[<p>Erste Stufe: A oder B, zweite Stufe: X oder Y. Wo steht die Angabe „20 % aller gehören zu A und haben das Merkmal X“?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Am Erfolgsast nach B</p>]]></text>
+      <text><![CDATA[<p>am Ende des Pfades A → X</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Am ersten Ast zu B</p>]]></text>
+      <text><![CDATA[<p>am Ast von A nach X</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bedingten Anteil mit Gruppenanteil verwechselt</p>]]></text>
+        <text><![CDATA[<p>Anteil aller als Anteil der Gruppe A gedeutet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Am Ende jedes Erfolgspfades</p>]]></text>
+      <text><![CDATA[<p>am Ast zu A</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bedingten Anteil als Pfadwahrscheinlichkeit verwendet</p>]]></text>
+        <text><![CDATA[<p>Nur das erste Merkmal beachtet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Am Erfolgsast nach A</p>]]></text>
+      <text><![CDATA[<p>an jedem Ast, der zu X führt</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bezugsgruppe verwechselt</p>]]></text>
+        <text><![CDATA[<p>Gesamtanteil und Pfadende verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein dreistufiger Pfad trägt \(0{,}5\), \(0{,}4\) und \(0{,}5\). Wie groß ist seine Pfadwahrscheinlichkeit?</p>]]></text>
+      <text><![CDATA[<p>Erste Stufe: A oder B, zweite Stufe: X oder Y. Was bedeutet „Insgesamt haben 30 % das Merkmal X“ im Baum?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}1\)</p>]]></text>
+      <text><![CDATA[<p>Die Pfadenden von A → X und B → X ergeben 0,3.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
+      <text><![CDATA[<p>An jedem Ast nach X steht 0,3.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Den dritten Ast nicht berücksichtigt</p>]]></text>
+        <text><![CDATA[<p>Gesamtanteil an jeden Ast geschrieben</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <text><![CDATA[<p>Das Pfadende von A → X ist 0,3.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Den mittleren Ast nicht berücksichtigt</p>]]></text>
+        <text><![CDATA[<p>Gesamtanteil einem einzelnen Pfad zugeordnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(1{,}4\)</p>]]></text>
+      <text><![CDATA[<p>Der Ast zu A hat die Wahrscheinlichkeit 0,3.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Astwahrscheinlichkeiten addiert</p>]]></text>
+        <text><![CDATA[<p>Merkmal der zweiten Stufe mit der ersten Stufe verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein dreistufiger Pfad hat Wahrscheinlichkeit \(0{,}06\). Die ersten beiden Äste tragen \(0{,}5\) und \(0{,}4\). Welchen Wert hat der dritte Ast?</p>]]></text>
+      <text><![CDATA[<p>Von 400 Befragten gehören 100 zur Gruppe A. Welcher Wert steht im Baumdiagramm am Ast zu A?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}012\)</p>]]></text>
+      <text><![CDATA[<p>\(100\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Pfadwahrscheinlichkeit mit den Astwerten multipliziert</p>]]></text>
+        <text><![CDATA[<p>Absolute Häufigkeit eingetragen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}12\)</p>]]></text>
+      <text><![CDATA[<p>\(0{,}75\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur durch den ersten Astwert dividiert</p>]]></text>
+        <text><![CDATA[<p>Anteil der übrigen Befragten berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}15\)</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur durch den zweiten Astwert dividiert</p>]]></text>
+        <text><![CDATA[<p>Gesamtzahl durch Teilgruppe geteilt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Ereignis besteht aus genau drei Endpfaden und hat Wahrscheinlichkeit \(0{,}6\). Zwei Pfade haben \(0{,}1\) und \(0{,}2\). Wie groß ist der dritte?</p>]]></text>
+      <text><![CDATA[<p>Erste Stufe: A oder B, zweite Stufe: X oder Y. Was gibt das Pfadende von A → X an?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <text><![CDATA[<p>den Anteil aller, die zu A gehören und X haben</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}9\)</p>]]></text>
+      <text><![CDATA[<p>den Anteil derer aus A, die X haben</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bekannte Pfade zur Ereigniswahrscheinlichkeit addiert</p>]]></text>
+        <text><![CDATA[<p>Pfadende mit dem Wert am Ast verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <text><![CDATA[<p>den Anteil aller, die X haben</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur einen bekannten Pfad abgezogen</p>]]></text>
+        <text><![CDATA[<p>Pfadende mit dem Gesamtanteil von X verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}02\)</p>]]></text>
+      <text><![CDATA[<p>den Anteil aller, die zu A gehören</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Bekannte Pfadwahrscheinlichkeiten multipliziert</p>]]></text>
+        <text><![CDATA[<p>Nur die erste Stufe beachtet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Unter dem ersten Ast A enden genau drei Pfade mit \(0{,}1\), \(0{,}2\) und \(0{,}3\). Wie groß ist \(P(A)\)?</p>]]></text>
+      <text><![CDATA[<p>Es gibt höchstens drei Versuche. Wer besteht (B), tritt nicht mehr an, sonst folgt ein neuer Versuch (N). Welcher Pfad kommt im Baum nicht vor?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(0{,}6\)</p>]]></text>
+      <text><![CDATA[<p>B → N</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}006\)</p>]]></text>
+      <text><![CDATA[<p>N → B</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Pfadwahrscheinlichkeiten multipliziert</p>]]></text>
+        <text><![CDATA[<p>Gültiger Pfad: Bestehen im zweiten Versuch</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <text><![CDATA[<p>N → N → B</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gegenwahrscheinlichkeit der Summe gebildet</p>]]></text>
+        <text><![CDATA[<p>Gültiger Pfad: Bestehen im dritten Versuch</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <text><![CDATA[<p>N → N → N</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur den größten Pfad übernommen</p>]]></text>
+        <text><![CDATA[<p>Gültiger Pfad: dreimal nicht bestanden</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gruppe A umfasst 40 % aller Personen. 10 % aller Personen gehören zu A und sind erfolgreich. Wie viel Prozent von A sind erfolgreich?</p>]]></text>
+      <text><![CDATA[<p>Ein Spiel endet, sobald A oder B zwei Runden gewonnen hat. Welcher Pfad kommt im Baum vor?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(25\,\%\)</p>]]></text>
+      <text><![CDATA[<p>A → B → A</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(4\,\%\)</p>]]></text>
+      <text><![CDATA[<p>A → A → B</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anteile multipliziert statt dividiert</p>]]></text>
+        <text><![CDATA[<p>Nach zwei Siegen von A weitergespielt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10\,\%\)</p>]]></text>
+      <text><![CDATA[<p>B → B → A</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anteil an allen Personen übernommen</p>]]></text>
+        <text><![CDATA[<p>Nach zwei Siegen von B weitergespielt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(30\,\%\)</p>]]></text>
+      <text><![CDATA[<p>A → B</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Anteile subtrahiert statt dividiert</p>]]></text>
+        <text><![CDATA[<p>Beim Stand 1:1 schon beendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Im Baum gilt \(P(A)=0{,}2\). Unter A soll ein Endpfad die Wahrscheinlichkeit \(0{,}3\) haben. Welche Aussage stimmt?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(P(A)=0{,}4\). Das Pfadende von A → X ist \(0{,}1\). Welcher Wert steht am Ast von A nach X?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Unmöglich: Der Endpfad kann nicht größer als P(A) sein.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Möglich: Die Astwahrscheinlichkeit danach ist 1,5.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}04\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Eine Astwahrscheinlichkeit über 1 zugelassen</p>]]></text>
+        <text><![CDATA[<p>Multipliziert statt dividiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Möglich: Endpfade sind immer unabhängig von P(A).</p>]]></text>
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Teilereignisbeziehung nicht berücksichtigt</p>]]></text>
+        <text><![CDATA[<p>Subtrahiert statt dividiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Unmöglich: Endpfade müssen mindestens 0,5 haben.</p>]]></text>
+      <text><![CDATA[<p>\(4\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Eine nicht existierende Untergrenze angenommen</p>]]></text>
+        <text><![CDATA[<p>Division vertauscht</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>stochastik__mehrstufige-zufallsexperimente__05-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Ein Baumknoten hat genau drei Äste. Nur einer ist mit \(0{,}4\) bekannt. Was lässt sich über die beiden anderen sagen?</p>]]></text>
+      <text><![CDATA[<p>Erste Stufe: A oder B, zweite Stufe: X oder Y. Insgesamt haben 30 % das Merkmal X, das Pfadende von A → X ist 0,12. Wie groß ist das Pfadende von B → X?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Ihre Summe ist 0,6; einzeln sind sie noch unbekannt.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}18\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Beide haben sicher die Wahrscheinlichkeit 0,3.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}42\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gleiche Astwahrscheinlichkeiten ohne Angabe angenommen</p>]]></text>
+        <text><![CDATA[<p>Addiert statt subtrahiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Beide haben sicher die Wahrscheinlichkeit 0,6.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}036\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Die Restsumme jedem Ast einzeln zugewiesen</p>]]></text>
+        <text><![CDATA[<p>Multipliziert statt subtrahiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Ihr Produkt muss 0,6 sein.</p>]]></text>
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Summenregel mit Produktregel verwechselt</p>]]></text>
+        <text><![CDATA[<p>Gegenwahrscheinlichkeit des Gesamtanteils gebildet</p>]]></text>
       </feedback>
     </answer>
   </question>

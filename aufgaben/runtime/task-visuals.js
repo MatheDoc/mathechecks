@@ -1,4 +1,5 @@
 import { buildBaumdiagrammFigure } from "../../assets/js/visuals/baumdiagramm.js";
+import { baumBlaetter, baumTiefe, buildAllgemeinerBaumFigure } from "../../assets/js/visuals/baumdiagramm-allgemein.js?v=20261127-tree-choice3";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../assets/js/visuals/histogramm.js";
 import { plotlyRender } from "../../assets/js/visuals/plotly-defaults.js?v=20261127-theme-live-switch";
 import { buildVerflechtungsdiagrammFigure } from "../../assets/js/visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
@@ -696,6 +697,39 @@ function buildVftTable(spec) {
     return table;
 }
 
+/**
+ * Baumwahl: mehrere kleine Baumdiagramme nebeneinander (schmal: untereinander),
+ * je mit Buchstabe. Gleiche Stufenbreite und Zeilenzahl, damit die Bäume vergleichbar sind.
+ */
+function renderTreeChoice(spec, wrapper) {
+    const optionen = Array.isArray(spec?.options) ? spec.options : [];
+    if (!optionen.length) return;
+    const labels = Array.isArray(spec?.labels) ? spec.labels : [];
+    const maxTiefe = Math.max(...optionen.map(baumTiefe));
+    const zeilen = Math.max(...optionen.map(baumBlaetter));
+
+    const container = document.createElement("div");
+    container.className = "intro";
+    const raster = document.createElement("div");
+    raster.className = "tree-choice";
+    container.appendChild(raster);
+    wrapper.appendChild(container);
+
+    optionen.forEach((baum, i) => {
+        const figur = document.createElement("figure");
+        figur.className = "tree-choice__option";
+        const titel = document.createElement("figcaption");
+        titel.className = "tree-choice__label";
+        titel.textContent = String(labels[i] ?? String.fromCharCode(65 + i));
+        const plot = document.createElement("div");
+        figur.appendChild(titel);
+        figur.appendChild(plot);
+        raster.appendChild(figur);
+        const fig = buildAllgemeinerBaumFigure(baum, { maxTiefe, zeilen, breite: plot.clientWidth });
+        plotlyRender(plot, fig.data, fig.layout);
+    });
+}
+
 export function renderVisual(task, wrapper) {
     const visual = task?.visual;
     const spec = visual?.spec;
@@ -732,6 +766,11 @@ export function renderVisual(task, wrapper) {
     }
 
     if (!window.Plotly) {
+        return;
+    }
+
+    if (specType === "tree-choice") {
+        renderTreeChoice(spec, wrapper);
         return;
     }
 

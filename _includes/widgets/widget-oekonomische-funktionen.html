@@ -1,0 +1,82 @@
+{%- assign of_id = include.id | default: 'of' -%}
+{%- assign of_marktform = include.marktform | default: 'polypol' -%}
+{%- assign of_preis = include.preis | default: 32 -%}
+{%- assign of_kap = include.kapazitaet | default: 13 -%}
+{%- assign of_ph = include.ph | default: 84 -%}
+{%- assign of_sm = include.sm | default: 14 -%}
+{%- assign of_kf = include.kf | default: 48 -%}
+<div class="skript-widget of-widget" id="{{ of_id | escape }}"
+    data-marktform="{{ of_marktform | escape }}"
+    data-umschalten="{{ include.umschalten | default: 'true' }}"
+    data-fixkosten="{{ include.fixkosten | default: 'true' }}"
+    data-k3="{{ include.k3 | default: 0.5 }}" data-k2="{{ include.k2 | default: -6 }}"
+    data-k1="{{ include.k1 | default: 30 }}"
+    data-menge="{{ include.menge | default: 6 }}"
+    data-kennzahlen="{{ include.kennzahlen | default: 'false' }}"
+    data-gewinnzone="{{ include.gewinnzone | default: 'false' }}"
+    data-cournot="{{ include.cournot | default: 'false' }}"
+    data-grenz="{{ include.grenz | default: 'false' }}"
+    data-ygrenz-min-polypol="{{ include.ygrenz_min_polypol | default: 0 }}"
+    data-ygrenz-max-polypol="{{ include.ygrenz_max_polypol | default: 60 }}"
+    data-ygrenz-min-monopol="{{ include.ygrenz_min_monopol | default: -40 }}"
+    data-ygrenz-max-monopol="{{ include.ygrenz_max_monopol | default: 100 }}"
+    data-ymin-polypol="{{ include.ymin_polypol | default: -150 }}"
+    data-ymax-polypol="{{ include.ymax_polypol | default: 600 }}"
+    data-ymin-monopol="{{ include.ymin_monopol | default: -150 }}"
+    data-ymax-monopol="{{ include.ymax_monopol | default: 400 }}">
+    <div class="widget-controls">
+        <div class="widget-row of-marktform" role="radiogroup" aria-label="Marktform">
+            <label><input type="radio" name="{{ of_id | escape }}-marktform" value="polypol"> Angebotspolypol</label>
+            <label><input type="radio" name="{{ of_id | escape }}-marktform" value="monopol"> Angebotsmonopol</label>
+        </div>
+        <div class="of-gruppe" data-gruppe="polypol">
+            <div class="widget-row">
+                <label>Marktpreis $ p $ = <span class="of-preisWert"></span></label>
+                <input type="range" class="of-preis" min="24" max="40" step="1" value="{{ of_preis }}" aria-label="Marktpreis">
+            </div>
+            <div class="widget-row">
+                <label>Kapazitätsgrenze = <span class="of-kapWert"></span></label>
+                <input type="range" class="of-kap" min="10" max="14" step="0.5" value="{{ of_kap }}" aria-label="Kapazitätsgrenze">
+            </div>
+        </div>
+        <div class="of-gruppe" data-gruppe="monopol">
+            <div class="widget-row">
+                <label>Höchstpreis $ p_H $ = <span class="of-phWert"></span></label>
+                <input type="range" class="of-ph" min="60" max="100" step="1" value="{{ of_ph }}" aria-label="Höchstpreis">
+            </div>
+            <div class="widget-row">
+                <label>Sättigungsmenge $ s_m $ = <span class="of-smWert"></span></label>
+                <input type="range" class="of-sm" min="10" max="18" step="0.5" value="{{ of_sm }}" aria-label="Sättigungsmenge">
+            </div>
+        </div>
+        <div class="widget-row of-zeileKf">
+            <label>Fixkosten $ K_f $ = <span class="of-kfWert"></span></label>
+            <input type="range" class="of-kf" min="10" max="240" step="2" value="{{ of_kf }}" aria-label="Fixkosten">
+        </div>
+        <div class="widget-row">
+            <label>Menge $ x $ = <span class="of-mengeWert"></span></label>
+            <input type="range" class="of-menge" min="0" max="200" step="1" value="0" aria-label="Menge x">
+        </div>
+        <div class="widget-row of-werte" aria-live="polite">
+            <span>E(x) = <strong class="of-eWert"></strong></span>
+            <span>K(x) = <strong class="of-kWert"></strong></span>
+            <span>G(x) = <strong class="of-gWert"></strong></span>
+        </div>
+        <div class="widget-row of-werte of-grenzWerte" aria-live="polite" hidden>
+            <span>E'(x) = <strong class="of-esWert"></strong></span>
+            <span>K'(x) = <strong class="of-ksWert"></strong></span>
+            <span>G'(x) = <strong class="of-gsWert"></strong></span>
+        </div>
+        <div class="widget-row of-toggles">
+            <label><input type="checkbox" class="of-zeigeGewinnzone"> Gewinnzone</label>
+            <label><input type="checkbox" class="of-zeigeKennzahlen"> Kennzahlen</label>
+            <label class="of-labelCournot"><input type="checkbox" class="of-zeigeCournot"> Cournotscher Punkt</label>
+        </div>
+        <div class="widget-info of-info" hidden></div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="of-plot diagramm"></div>
+        <div class="of-plotGrenz diagramm" hidden></div>
+    </div>
+</div>

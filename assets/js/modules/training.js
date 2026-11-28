@@ -10,7 +10,7 @@ import {
 } from "../state/check-state-store.js?v=20261121-feed-simple";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20261121-feed-simple";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261127-venn";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20261127-tree-choice3";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20261127-venn";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -18,6 +18,7 @@ import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, createCa
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20261121-feed-simple";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20261108-speech-preview";
 import { vennKontext } from "../visuals/venn.js?v=20261127-venn";
+import { treeChoiceKontext } from "../visuals/baumdiagramm-allgemein.js?v=20261127-tree-choice3";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20261121-feed-simple";
 import { createTrainingXpTracker } from "../platform/xp-awards.js?v=20261121-feed-simple";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20261121-feed-simple";
@@ -941,6 +942,11 @@ function buildVisualContext(task, runtimeTaskNode = null) {
     lines.push(vennKontext(spec.markiert));
   }
 
+  // ── tree-choice (Baumwahl) ──
+  if (specType === "tree-choice") {
+    lines.push(treeChoiceKontext(spec));
+  }
+
   // ── binomial-histogramm ──
   if (specType === "binomial-histogramm-einzeln" || specType === "binomial-histogramm-kumuliert") {
     const n = spec.n;
@@ -951,7 +957,7 @@ function buildVisualContext(task, runtimeTaskNode = null) {
 
   // Fallback: raw params if no function lines and no specific handler matched
   const params = spec.params && typeof spec.params === "object" ? spec.params : null;
-  if (params && functionLines.length === 0 && !["ab-tree", "vft", "wkt-tabelle", "verflechtungsdiagramm", "venn", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"].includes(specType)) {
+  if (params && functionLines.length === 0 && !["ab-tree", "tree-choice", "vft", "wkt-tabelle", "verflechtungsdiagramm", "venn", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"].includes(specType)) {
     lines.push("Parameter:");
     Object.entries(params).forEach(([key, value]) => {
       lines.push(`- ${key}: ${value}`);

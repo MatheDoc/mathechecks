@@ -62,10 +62,10 @@ class Video(MCSzene):
         lage[2].shift(0.3 * DOWN)
         block = self.tafel(lage)
         with self.sprich(
-            "Eine Landwirtin verkauft eine Erntemaschine. A: dreißigtausend Euro sofort. "
-            "B: zwölftausend sofort und zweiundzwanzigtausend in fünf Jahren. "
-            "C: acht Jahreszahlungen von je viertausendfünfhundert Euro, die erste in einem Jahr. "
-            "Gerechnet wird mit drei Prozent."
+            "Eine Landwirtin verkauft eine Erntemaschine. A: 30.000 Euro sofort. "
+            "B: 12.000 sofort und 22.000 in 5 Jahren. "
+            "C: 8 Jahreszahlungen von je 4500 Euro, die erste in einem Jahr. "
+            "Gerechnet wird mit 3 %."
         ):
             self.play(auftritt(lage[:2]), run_time=0.6)
             for name, beginn in (("A", 0.15), ("B", 0.3), ("C", 0.57)):

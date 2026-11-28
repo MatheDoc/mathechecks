@@ -77,7 +77,7 @@ class Video(MCSzene):
         nenner = VGroup(*[self.ref[i] for i in NENNER_QN])
         with self.sprich(
             "Der Rentenbarwert R null ist der Wert aller Raten heute: der Endwert, auf heute abgezinst. "
-            "Deshalb steht im Nenner zusätzlich q hoch n. Drei Größen sind gegeben, eine ist gesucht."
+            "Deshalb steht im Nenner zusätzlich q hoch n. 3 Größen sind gegeben, eine ist gesucht."
         ):
             self.play(auftritt(bedeutung), welle(self.ref[0], TEXT), run_time=0.6)
             self.warte_bis(0.25)
@@ -140,9 +140,9 @@ class Video(MCSzene):
                               groesse=G_FORMEL), 0, 4),
             ],
             rechnung_ab=(0.08, 0.3, 0.48, 0.62, 0.78),
-            sprechtext="Bei n steht q hoch n zweimal in der Formel. Darum multiplizieren wir zuerst mit dem Nenner. "
+            sprechtext="Bei n steht q hoch n 2-mal in der Formel. Darum multiplizieren wir zuerst mit dem Nenner. "
                        "Dann bringen wir q hoch n auf eine Seite und teilen. Der Logarithmus liefert n: "
-                       "Rund neun Jahre lang reicht das Geld.",
+                       "Rund 9 Jahre lang reicht das Geld.",
         )
 
         # ---------- Kurzfassung ----------
