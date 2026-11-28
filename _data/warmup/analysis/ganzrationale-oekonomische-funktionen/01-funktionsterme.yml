@@ -1,0 +1,99 @@
+# Warm-Up zu Check 01 „Funktionsgleichungen aufstellen“ (Ganzrationale ökonomische Funktionen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__ganzrationale-oekonomische-funktionen__01
+abschluss: '<p>Im Training sind immer zwei der vier Funktionen gegeben. Wähle zuerst die passende Gleichung, setze dann ein und vergiss die Klammer um $K(x)$ bzw. $G(x)$ nicht.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Vier Funktionen, zwei Gleichungen'
+    text: '<p>Ein Unternehmen wird durch vier Funktionen beschrieben: Preis-Absatz-Funktion $p$, Erlös $E$, Kosten $K$ und Gewinn $G$.</p>'
+    schritte:
+      - typ: aufdecken
+        knopf: 'Wie hängen sie zusammen?'
+        text: '<p>Zwei Gleichungen verbinden alle vier:</p>$$\begin{align*}E(x)&=p(x)\cdot x\\ G(x)&=E(x)-K(x)\end{align*}$$<p>Im <strong>Polypol</strong> ist $p$ konstant, $E$ also eine Gerade. Im <strong>Monopol</strong> ist $p$ linear fallend, $E$ also eine Parabel.</p>'
+      - typ: auswahl
+        frage: 'Gegeben sind $E$ und $G$, gesucht ist $K$. Stelle $G(x)=E(x)-K(x)$ um. Was ergibt sich?'
+        optionen:
+          - '$K(x)=E(x)-G(x)$'
+          - '$K(x)=E(x)+G(x)$'
+          - '$K(x)=G(x)-E(x)$'
+        korrekt: 0
+        hinweis: 'Addiere auf beiden Seiten $K(x)$ und ziehe dann $G(x)$ ab.'
+        danach: '<p>Genau. Ebenso folgt $E(x)=G(x)+K(x)$ und aus der ersten Gleichung $p(x)=\frac{E(x)}{x}$.</p><p><strong>Merke:</strong> Sind zwei der vier Funktionen bekannt, erhältst du die anderen durch Umstellen von $E=p\cdot x$ und $G=E-K$.</p>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Polypol: Kosten aus Erlös und Gewinn'
+    text: '<p>Velotec verkauft Fahrradanhänger zum Marktpreis. Bekannt sind</p>$$\begin{align*}E(x)&=32x\\ G(x)&=-0{,}5x^3+6x^2+2x-48\end{align*}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Wie lautet die <strong>Preis-Absatz-Funktion</strong>?'
+        optionen:
+          - '$p(x)=32$'
+          - '$p(x)=32x$'
+          - '$p(x)=32x^2$'
+        korrekt: 0
+        hinweis: 'Teile $E(x)$ durch $x$.'
+        danach: '<p>$p(x)=\frac{32x}{x}=32$: Der Preis ist die Steigung der Erlösgeraden.</p>'
+      - typ: aufdecken
+        frage: '<strong>Kostenfunktion:</strong> $K(x)=E(x)-G(x)$'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}K(x)&=32x-(-0{,}5x^3+6x^2+2x-48)\\ &=32x+0{,}5x^3-6x^2-2x+48\\ &=0{,}5x^3-6x^2+30x+48\end{align*}$$<p>Das Minus vor der Klammer dreht das Vorzeichen <strong>jedes</strong> Summanden von $G$ um, auch das der $-48$.</p>'
+
+  - phase: vormachen
+    titel: 'Monopol: Erlös und Gewinn'
+    text: '<p>Als Monopolist hat Velotec die Preis-Absatz-Funktion und die Kostenfunktion</p>$$\begin{align*}p(x)&=-6x+84\\ K(x)&=0{,}5x^3-6x^2+30x+48\end{align*}$$'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Erlösfunktion:</strong> $E(x)=p(x)\cdot x$'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}E(x)&=(-6x+84)\cdot x\\ &=-6x^2+84x\end{align*}$$'
+      - typ: auswahl
+        frage: '<strong>Gewinnfunktion:</strong> Bei $E(x)-K(x)$ wird die ganze Kostenfunktion abgezogen. Welche Summanden von $K$ ändern ihr Vorzeichen?'
+        optionen:
+          - 'alle vier'
+          - 'nur $0{,}5x^3$'
+          - 'alle außer den Fixkosten $48$'
+        korrekt: 0
+        hinweis: 'Das Minus steht vor der ganzen Klammer $(0{,}5x^3-6x^2+30x+48)$.'
+        danach: '$$\begin{align*}G(x)&=-6x^2+84x-(0{,}5x^3-6x^2+30x+48)\\ &=-0{,}5x^3+54x-48\end{align*}$$<p>Die $x^2$-Glieder heben sich hier weg: $-6x^2+6x^2=0$.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welche Gleichung brauche ich?'
+    text: '<p>Ordne jeder Aufgabe die passende Gleichung zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'gesucht (gegeben)'
+        titel_rechts: 'Gleichung'
+        paare:
+          - { links: '$E$ (aus $p$)', rechts: '$E(x)=p(x)\cdot x$' }
+          - { links: '$p$ (aus $E$)', rechts: '$p(x)=\frac{E(x)}{x}$' }
+          - { links: '$G$ (aus $E$ und $K$)', rechts: '$G(x)=E(x)-K(x)$' }
+          - { links: '$K$ (aus $E$ und $G$)', rechts: '$K(x)=E(x)-G(x)$' }
+          - { links: '$E$ (aus $G$ und $K$)', rechts: '$E(x)=G(x)+K(x)$' }
+
+  - phase: mitmachen
+    titel: 'Neues Monopol – jetzt rechnest du'
+    text: '<p>Ein Monopolist hat</p>$$\begin{align*}E(x)&=-5x^2+90x\\ G(x)&=-0{,}2x^3-3x^2+60x-100\end{align*}$$'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Preis-Absatz-Funktion</strong> – der Ansatz steht da: $p(x)=\frac{E(x)}{x}$'
+        layout: zeile
+        felder:
+          - { label: '$p(x)=$', einheit: '$x\;+$', loesung: -5, aria: 'Steigung' }
+          - { loesung: 90, aria: 'Achsenabschnitt' }
+        hinweis: 'Teile jeden Summanden von $E(x)$ durch $x$.'
+      - typ: eingabe
+        frage: '<strong>Kostenfunktion</strong> – jetzt ohne Vorgabe.'
+        layout: zeile
+        felder:
+          - { label: '$K(x)=$', einheit: '$x^3\;+$', loesung: 0.2 }
+          - { einheit: '$x^2\;+$', loesung: -2 }
+          - { einheit: '$x\;+$', loesung: 30 }
+          - { loesung: 100 }
+        hinweis: 'Rechne $K(x)=E(x)-G(x)$ und dreh in der Klammer um $G(x)$ jedes Vorzeichen um.'
+        danach: '$$\begin{align*}K(x)&=-5x^2+90x-(-0{,}2x^3-3x^2+60x-100)\\ &=0{,}2x^3-2x^2+30x+100\end{align*}$$'

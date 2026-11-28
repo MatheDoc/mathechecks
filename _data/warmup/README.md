@@ -127,9 +127,9 @@ Graph-Terme werden mit math.js ausgewertet (Dezimalpunkt, z. B. `0.5x^3-6x^2`).
 
 - **Handy (~360 px):**
   - Auf dem Handy steht das Bild nicht neben den Schritten. Deshalb nicht auf seine Lage verweisen („rechts“, „links daneben“), sondern neutral formulieren: „im Bild“, „in der Übersicht“.
-  - Lösungskästen (`danach`) sind nur etwa 190 px breit: Gleichungen dort früh umbrechen.
   - Lange Formeln abgesetzt (`$$…$$`), inline nur kurze Ausdrücke.
-  - Abgesetzte Formeln schmal halten: `align*` untereinander, keine `\text{…}`-Erklärungen.
+  - Umformungen mit `align*` untereinander, **eine Zeile pro `=`**. Nicht zusätzlich mitten im Term umbrechen (keine Fortsetzungszeilen wie `&\quad+30x+48`): Abgesetzte Formeln dürfen horizontal scrollen, auch in den schmalen Lösungskästen (`danach`, etwa 190 px).
+  - Keine `\text{…}`-Erklärungen in abgesetzten Formeln.
   - Umformungsangaben mit `\quad|` statt `&&|`.
   - Antwortoptionen und Zuordnungen können nicht scrollen: Lange Gleichungen dort nach dem `=` mit `<br>` umbrechen (`'$600=$<br>$2\,600\cdot 1{,}04^n$'`).
 - **YAML in einfachen Anführungszeichen:** Apostroph verdoppeln (`'K''(1)'`), für zweite Ableitungen `K^{\prime\prime}` schreiben.

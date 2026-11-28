@@ -1,0 +1,181 @@
+# Warm-Up zu Check 02 „Kennzahlen graphisch“ (Ganzrationale ökonomische Funktionen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__ganzrationale-oekonomische-funktionen__02
+abschluss: '<p>Frag dich bei jeder Kennzahl zuerst: Auf welcher Kurve liegt sie, und brauche ich die $x$- oder die $y$-Koordinate? Im Polypol ohne eingezeichnetes $p$ ist der Marktpreis die Steigung von $E$.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Gewinn ist der Abstand von Erlös und Kosten'
+    text: '<p>Velotec verkauft Anhänger zum Marktpreis. Das Diagramm zeigt Erlös $E$, Kosten $K$ und Gewinn $G=E-K$ bis zur Kapazitätsgrenze von $13$ ME.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '32x', name: 'E(x)', xmin: 0, xmax: 13, color: '#2ca02c' }
+        - { term: '0.5x^3-6x^2+30x+48', name: 'K(x)', xmin: 0, xmax: 13, color: '#d62728' }
+        - { term: '-0.5x^3+6x^2+2x-48', name: 'G(x)', xmin: 0, xmax: 13, color: '#1f77b4' }
+      xMin: -0.3
+      xMax: 13.5
+      yMin: -80
+      yMax: 450
+      xSchritt: 1
+      ySchritt: 50
+      xAchse: 'x in ME'
+      yAchse: 'GE'
+      punkte:
+        - { id: gs, x: 3.06, y: 0, label: 'Gewinnschwelle', ax: -30, ay: -60 }
+        - { id: gg, x: 11.63, y: 0, label: 'Gewinngrenze', ax: 10, ay: -70 }
+        - { id: hp, x: 8.16, y: 96.16, label: 'Hochpunkt von G', hilfslinie: true, ax: -40, ay: -40 }
+      flaechen:
+        - { id: abstand, term: '32x', basis: '0.5x^3-6x^2+30x+48', von: 3.06, bis: 11.63, farbe: 'rgba(31,119,180,0.2)', name: 'Gewinn' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir den Gewinn'
+        text: '<p>Liegt $E$ über $K$, macht Velotec Gewinn (blau). Wo sich $E$ und $K$ schneiden, ist der Gewinn null: Dort hat $G$ seine Nullstellen, die <strong>Gewinnschwelle</strong> und die <strong>Gewinngrenze</strong>.</p>'
+        zeige: { flaechen: [abstand], punkte: [gs, gg] }
+      - typ: auswahl
+        frage: 'Schau dir die blaue Fläche an. Wo ist der Abstand zwischen $E$ und $K$ am größten?'
+        optionen:
+          - 'beim Hochpunkt von $G$'
+          - 'an der Kapazitätsgrenze'
+          - 'beim Wendepunkt von $K$'
+        korrekt: 0
+        hinweis: 'Der Abstand von $E$ und $K$ ist genau der Wert von $G$.'
+        danach: '<p>Genau: Der Hochpunkt von $G$ liefert die <strong>gewinnmaximale Menge</strong> ($x$-Wert) und den <strong>maximalen Gewinn</strong> ($y$-Wert).</p><p><strong>Merke:</strong> Jede Kennzahl liegt auf einer Kurve. Bei Mengen liest du den $x$-Wert ab, bei Preisen, Erlösen, Kosten und Gewinnen den $y$-Wert.</p>'
+        zeige: { punkte: [hp] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Polypol: alles ablesen'
+    text: '<p>Dasselbe Diagramm, jetzt lesen wir die Kennzahlen ab.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '32x', name: 'E(x)', xmin: 0, xmax: 13, color: '#2ca02c' }
+        - { term: '0.5x^3-6x^2+30x+48', name: 'K(x)', xmin: 0, xmax: 13, color: '#d62728' }
+        - { term: '-0.5x^3+6x^2+2x-48', name: 'G(x)', xmin: 0, xmax: 13, color: '#1f77b4' }
+      xMin: -0.3
+      xMax: 13.5
+      yMin: -80
+      yMax: 450
+      xSchritt: 1
+      ySchritt: 50
+      xAchse: 'x in ME'
+      yAchse: 'GE'
+      punkte:
+        - { id: hp, x: 8.16, y: 96.16, label: '(8,16 | 96,16)', hilfslinie: true, ax: -40, ay: -40, sichtbar: true }
+        - { id: w, x: 4, y: 104, label: 'Wendepunkt von K', hilfslinie: true, ax: -40, ay: -50 }
+        - { id: e1, x: 1, y: 32, label: 'E(1) = 32', hilfslinie: true, ax: 40, ay: -40 }
+        - { id: emax, x: 13, y: 416, label: 'E(13) = 416', ax: -60, ay: 10 }
+    schritte:
+      - typ: auswahl
+        frage: 'Der Hochpunkt von $G$ liegt bei etwa $(8{,}16\mid 96{,}16)$. Wie hoch ist der <strong>maximale Gewinn</strong>?'
+        optionen:
+          - '$96{,}16$ GE'
+          - '$8{,}16$ GE'
+          - '$8{,}16$ ME'
+        korrekt: 0
+        hinweis: 'Ein Gewinn ist ein Betrag in GE, also der $y$-Wert.'
+        danach: '<p>Die gewinnmaximale Menge ist der $x$-Wert: $8{,}16$ ME.</p>'
+      - typ: aufdecken
+        frage: '<strong>Übergang vom degressiven zum progressiven Kostenwachstum</strong>'
+        knopf: 'Ablesen'
+        text: '<p>Wendepunkt von $K$: Bis $4$ ME wird $K$ flacher, danach steiler. $x_w=4$ ME.</p>'
+        zeige: { punkte: [w] }
+      - typ: aufdecken
+        frage: '<strong>Marktpreis und maximaler Erlös</strong> – $p$ ist nicht eingezeichnet.'
+        knopf: 'Ablesen'
+        text: '<p>Der Marktpreis ist die Steigung der Erlösgeraden: $E(1)=32$, also $p=32$ GE/ME.</p><p>$E$ steigt immer weiter, der größte Erlös liegt an der Kapazitätsgrenze: $E(13)=416$ GE.</p>'
+        zeige: { punkte: [e1, emax] }
+
+  - phase: vormachen
+    titel: 'Monopol: Preis-Absatz-Funktion dazu'
+    text: '<p>Als Monopolist hat Velotec die Preis-Absatz-Funktion $p(x)=-6x+84$. Die Kosten bleiben gleich.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-6x+84', name: 'p(x)', xmin: 0, xmax: 14, color: '#ff7f0e' }
+        - { term: '-6x^2+84x', name: 'E(x)', xmin: 0, xmax: 14, color: '#2ca02c' }
+        - { term: '0.5x^3-6x^2+30x+48', name: 'K(x)', xmin: 0, xmax: 13, color: '#d62728' }
+        - { term: '-0.5x^3+54x-48', name: 'G(x)', xmin: 0, xmax: 13, color: '#1f77b4' }
+      xMin: -0.3
+      xMax: 14.5
+      yMin: -80
+      yMax: 350
+      xSchritt: 1
+      ySchritt: 50
+      xAchse: 'x in ME'
+      yAchse: 'GE bzw. GE/ME'
+      punkte:
+        - { id: ph, x: 0, y: 84, label: 'Höchstpreis', ax: 50, ay: -30 }
+        - { id: sm, x: 14, y: 0, label: 'Sättigungsmenge', ax: -40, ay: -40 }
+        - { id: emax, x: 7, y: 294, label: 'Hochpunkt von E', hilfslinie: true, ax: 50, ay: -20 }
+        - { id: gmax, x: 6, y: 168, label: 'Hochpunkt von G', hilfslinie: true, ax: -50, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>An $p$:</strong> Höchstpreis und Sättigungsmenge'
+        knopf: 'Ablesen'
+        text: '<p>$y$-Achsenabschnitt von $p$: Höchstpreis $84$ GE/ME. Nullstelle von $p$: Sättigungsmenge $14$ ME.</p>'
+        zeige: { punkte: [ph, sm] }
+      - typ: auswahl
+        frage: 'Im Monopol hat $E$ einen Hochpunkt. Schau ihn dir an: Liegt das Erlösmaximum bei derselben Menge wie das Gewinnmaximum?'
+        optionen:
+          - 'Nein, das Erlösmaximum liegt weiter rechts.'
+          - 'Ja, beide liegen bei derselben Menge.'
+          - 'Nein, das Erlösmaximum liegt weiter links.'
+        korrekt: 0
+        hinweis: 'Vergleiche die $x$-Werte der Hochpunkte von $E$ und $G$.'
+        danach: '<p>Erlösmaximum bei $(7\mid 294)$, Gewinnmaximum bei $(6\mid 168)$. Nach $6$ ME steigen die Kosten stärker als der Erlös.</p>'
+        zeige: { punkte: [emax, gmax] }
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Wo liegt welche Kennzahl?'
+    text: '<p>Ordne jeder Kennzahl die Stelle im Diagramm zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Kennzahl'
+        titel_rechts: 'Stelle im Diagramm'
+        paare:
+          - { links: 'Übergang degressiv → progressiv', rechts: 'Wendepunkt von $K$' }
+          - { links: 'Gewinnschwelle, Gewinngrenze', rechts: 'Nullstellen von $G$' }
+          - { links: 'gewinnmaximale Menge', rechts: '$x$-Wert des Hochpunkts von $G$' }
+          - { links: 'maximaler Gewinn', rechts: '$y$-Wert des Hochpunkts von $G$' }
+          - { links: 'Marktpreis (Polypol)', rechts: 'Steigung von $E$' }
+          - { links: 'Höchstpreis (Monopol)', rechts: '$y$-Achsenabschnitt von $p$' }
+
+  - phase: mitmachen
+    titel: 'Neues Polypol – jetzt liest du ab'
+    text: '<p>Ein anderes Unternehmen im Polypol, Kapazitätsgrenze $12$ ME.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '40x', name: 'E(x)', xmin: 0, xmax: 12, color: '#2ca02c' }
+        - { term: '0.5x^3-7.5x^2+40x+50', name: 'K(x)', xmin: 0, xmax: 12, color: '#d62728' }
+        - { term: '-0.5x^3+7.5x^2-50', name: 'G(x)', xmin: 0, xmax: 12, color: '#1f77b4' }
+      xMin: -0.3
+      xMax: 12.5
+      yMin: -80
+      yMax: 500
+      xSchritt: 1
+      ySchritt: 50
+      xAchse: 'x in ME'
+      yAchse: 'GE'
+      punkte:
+        - { id: hp, x: 10, y: 200, label: 'Hochpunkt von G', hilfslinie: true, ax: -50, ay: -40 }
+        - { id: e1, x: 1, y: 40, hilfslinie: true }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Gewinnmaximale Menge und maximaler Gewinn</strong> – lies den Hochpunkt von $G$ ab.'
+        felder:
+          - { label: '$x_{Gmax}\approx$', loesung: 10, toleranz: 0.3, einheit: 'ME' }
+          - { label: '$G_{max}\approx$', loesung: 200, toleranz: 10, einheit: 'GE', zeige: { punkte: [hp] } }
+        hinweis: 'Die Menge ist der $x$-Wert, der Gewinn der $y$-Wert des Hochpunkts.'
+      - typ: eingabe
+        frage: '<strong>Marktpreis</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: '$p\approx$', loesung: 40, toleranz: 2, einheit: 'GE/ME', zeige: { punkte: [e1] } }
+        hinweis: 'Lies $E(10)$ ab und teile durch $10$, oder lies $E(1)$ ab.'
+        danach: '<p>$E(10)=400$, also $p=40$ GE/ME.</p>'

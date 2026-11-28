@@ -1,0 +1,93 @@
+# Warm-Up zu Check 04 „Kennzahlen berechnen“ (Ganzrationale ökonomische Funktionen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__ganzrationale-oekonomische-funktionen__04
+abschluss: '<p>Ordne jede Kennzahl zuerst einem Ansatz zu, dann rechnest du. Negative Lösungen und Mengen hinter Kapazitätsgrenze bzw. Sättigungsmenge fallen weg.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Kennzahl → Konzept → Ansatz'
+    text: '<p>Am Graphen liest du die Kennzahlen nur ungefähr ab. Genau bekommst du sie mit der Differentialrechnung. Dafür übersetzt du jede Kennzahl in ein mathematisches Konzept.</p>'
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir die Übersetzung'
+        text: '<ul><li><strong>$y$-Achsenabschnitt</strong> $f(0)$: Höchstpreis $p_H$</li><li><strong>Nullstelle</strong> $f(x)=0$: Sättigungsmenge, Gewinnschwelle, Gewinngrenze</li><li><strong>Maximalstelle</strong> $f''(x)=0$, $f^{\prime\prime}(x)&lt;0$: erlös- und gewinnmaximale Menge</li><li><strong>Wendestelle</strong> $f^{\prime\prime}(x)=0$, $f^{\prime\prime\prime}(x)\neq 0$: Übergang degressiv → progressiv</li><li><strong>Funktionswert</strong> einsetzen: $E_{max}$, $G_{max}$</li></ul><p>Es zählen nur Lösungen im <strong>ökonomischen Definitionsbereich</strong>: Mengen sind nicht negativ und höchstens so groß wie Kapazitätsgrenze bzw. Sättigungsmenge.</p>'
+      - typ: auswahl
+        frage: 'Im Polypol ist $E(x)=32x$, also $E''(x)=32$. Was liefert der Ansatz $E''(x)=0$ für die erlösmaximale Menge?'
+        optionen:
+          - 'keine Lösung'
+          - '$x=32$'
+          - '$x=0$'
+        korrekt: 0
+        hinweis: 'Kann $32=0$ gelten?'
+        danach: '<p>Richtig: Die Erlösgerade steigt immer. Im Polypol liegt der maximale Erlös deshalb an der <strong>Kapazitätsgrenze</strong>.</p>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Velotec im Monopol'
+    text: '<p>Gegeben sind</p>$$\begin{align*}p(x)&=-6x+84\\ K(x)&=0{,}5x^3-6x^2+30x+48\\ G(x)&=-0{,}5x^3+54x-48\end{align*}$$'
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Übergang degressiv → progressiv:</strong> Wendestelle von $K$'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}K^{\prime\prime}(x)=3x-12&=0\\ x&=4\\ K^{\prime\prime\prime}(4)=3&\neq 0\end{align*}$$'
+      - typ: auswahl
+        frage: '<strong>Gewinnmaximale Menge:</strong> Welcher Ansatz passt?'
+        optionen:
+          - '$G''(x)=0$'
+          - '$G(x)=0$'
+          - '$E''(x)=0$'
+        korrekt: 0
+        hinweis: 'Gesucht ist die Maximalstelle von $G$.'
+        danach: '<p>$G''(x)=0$:</p>$$\begin{align*}-1{,}5x^2+54&=0\\ x_1=-6,\ x_2&=6\\ G^{\prime\prime}(6)&=-18&lt;0\end{align*}$$<p>$x_1=-6$ fällt weg. Gewinnmaximale Menge $6$ ME, maximaler Gewinn $G(6)=168$ GE.</p>'
+      - typ: aufdecken
+        frage: '<strong>Gewinnschwelle und Gewinngrenze:</strong> $G(x)=0$ mit dem Taschenrechner lösen.'
+        knopf: 'Lösen'
+        text: '<p>$x_1\approx-10{,}81$, $x_2\approx 0{,}90$, $x_3\approx 9{,}92$</p><p>$x_1$ fällt weg. Die erste positive Lösung ist die Gewinnschwelle ($0{,}90$ ME), die zweite die Gewinngrenze ($9{,}92$ ME).</p>'
+      - typ: eingabe
+        frage: '<strong>Sättigungsmenge:</strong> Nullstelle von $p$, also $-6x+84=0$.'
+        felder:
+          - { label: '$s_m=$', loesung: 14, einheit: 'ME' }
+        hinweis: 'Löse $6x=84$.'
+        danach: '<p>Der Höchstpreis ist $p(0)=84$ GE/ME.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Ansatz gehört wozu?'
+    text: '<p>Ordne jeder Kennzahl ihren Ansatz zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Kennzahl'
+        titel_rechts: 'Ansatz'
+        paare:
+          - { links: 'Übergang degressiv → progressiv', rechts: '$K^{\prime\prime}(x)=0$' }
+          - { links: 'Gewinnschwelle', rechts: 'erste positive Lösung von $G(x)=0$' }
+          - { links: 'gewinnmaximale Menge', rechts: '$G''(x)=0$, $G^{\prime\prime}(x)&lt;0$' }
+          - { links: 'maximaler Gewinn', rechts: '$G(x_{Gmax})$' }
+          - { links: 'Höchstpreis (Monopol)', rechts: '$p(0)$' }
+          - { links: 'erlösmaximale Menge (Monopol)', rechts: '$E''(x)=0$, $E^{\prime\prime}(x)&lt;0$' }
+          - { links: 'maximaler Erlös (Polypol)', rechts: '$E$ an der Kapazitätsgrenze' }
+
+  - phase: mitmachen
+    titel: 'Neues Polypol – jetzt rechnest du'
+    text: '<p>Ein Unternehmen verkauft zum Marktpreis $40$ GE/ME, die Kapazitätsgrenze beträgt $15$ ME.</p>$$\begin{align*}E(x)&=40x\\ G(x)&=-0{,}25x^3+3{,}75x^2+18x-100\end{align*}$$'
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Gewinnmaximale Menge</strong> – der Ansatz steht da: $G''(x)=0$, also $$-0{,}75x^2+7{,}5x+18=0$$'
+        felder:
+          - { label: '$x_{Gmax}=$', loesung: 12, einheit: 'ME' }
+        hinweis: 'Die Gleichung hat zwei Lösungen. Eine davon ist negativ und fällt weg.'
+        danach: '<p>$x_1=-2$ fällt weg, $G^{\prime\prime}(12)=-10{,}5&lt;0$ bestätigt das Maximum.</p>'
+      - typ: eingabe
+        frage: '<strong>Maximaler Gewinn</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: '$G_{max}=$', loesung: 224, einheit: 'GE' }
+        hinweis: 'Setze $x=12$ in $G$ ein: $-432+540+216-100$.'
+      - typ: eingabe
+        frage: '<strong>Maximaler Erlös</strong> – ohne Vorgabe.'
+        felder:
+          - { label: '$E_{max}=$', loesung: 600, einheit: 'GE' }
+        hinweis: '$E''(x)=40$ wird nie null. Wo ist der Erlös im Polypol am größten?'
+        danach: '<p>$E(15)=40\cdot 15=600$ GE an der Kapazitätsgrenze.</p>'

@@ -1,0 +1,164 @@
+# Warm-Up zu Check 03 „Grenzfunktionen graphisch“ (Ganzrationale ökonomische Funktionen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__ganzrationale-oekonomische-funktionen__03
+abschluss: '<p>Gewinnschwelle, Gewinngrenze und den maximalen Gewinn siehst du an den Grenzfunktionen nicht. Ablesbar sind Stellen, an denen sich der Gewinn anders entwickelt, und der Grenzgewinn als Abstand $E''(x)-K''(x)$.</p>'
+karten:
+
+  # ── Phase A: Idee ─────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Lohnt sich eine ME mehr?'
+    text: '<p>Die <strong>Grenzfunktionen</strong> sind die Ableitungen: $E''(x)$ ist ungefähr der Erlös, $K''(x)$ ungefähr die Kosten einer zusätzlichen ME, beide in GE/ME.</p><p>Bei Velotec im Polypol ist $E''(x)=32$ und $K''(x)=1{,}5x^2-12x+30$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '32', name: 'E′(x)', xmin: 0, xmax: 12, color: '#2ca02c' }
+        - { term: '1.5x^2-12x+30', name: 'K′(x)', xmin: 0, xmax: 11, color: '#d62728' }
+      xMin: -0.3
+      xMax: 12.5
+      yMin: 0
+      yMax: 60
+      xSchritt: 1
+      ySchritt: 10
+      xAchse: 'x in ME'
+      yAchse: 'GE/ME'
+      punkte:
+        - { id: s, x: 8.16, y: 32, label: 'Schnittpunkt', hilfslinie: true, ax: -30, ay: -40 }
+        - { id: tp, x: 4, y: 6, label: 'Tiefpunkt von K′', hilfslinie: true, ax: 60, ay: -10 }
+      flaechen:
+        - { id: plus, term: '32', basis: '1.5x^2-12x+30', von: 0, bis: 8.16, farbe: 'rgba(44,160,44,0.3)', name: 'Gewinn steigt' }
+        - { id: minus, term: '1.5x^2-12x+30', basis: '32', von: 8.16, bis: 10, farbe: 'rgba(214,39,40,0.3)', name: 'Gewinn fällt' }
+    schritte:
+      - typ: aufdecken
+        knopf: 'Zeig mir den Grenzgewinn'
+        text: '<p>Der senkrechte Abstand $E''(x)-K''(x)$ ist der <strong>Grenzgewinn</strong> $G''(x)$.</p><p><strong>Grün:</strong> $E''$ liegt über $K''$, eine ME mehr bringt mehr ein, als sie kostet: Der Gewinn steigt. <strong>Rot:</strong> $K''$ liegt über $E''$, der Gewinn fällt.</p>'
+        zeige: { flaechen: [plus, minus] }
+      - typ: auswahl
+        frage: 'Bei welcher Menge ist der Gewinn also am größten?'
+        optionen:
+          - 'beim Schnittpunkt von $E''$ und $K''$'
+          - 'beim Tiefpunkt von $K''$'
+          - 'dort, wo der grüne Abstand am größten ist'
+        korrekt: 0
+        hinweis: 'Bis wohin steigt der Gewinn, ab wo fällt er?'
+        danach: '<p>Genau: Wo $K''$ von unten nach oben durch $E''$ läuft, hört der Gewinn auf zu steigen. Das ist die <strong>gewinnmaximale Menge</strong>, hier etwa $8{,}16$ ME.</p>'
+        zeige: { punkte: [s] }
+      - typ: aufdecken
+        frage: 'Und der Tiefpunkt von $K''$?'
+        knopf: 'Zeigen'
+        text: '<p>Dort steigen die Kosten am langsamsten: Seine Stelle ist der <strong>Übergang vom degressiven zum progressiven Kostenwachstum</strong> ($x_w=4$ ME), sein $y$-Wert sind die <strong>minimalen Grenzkosten</strong> ($6$ GE/ME).</p><p><strong>Merke:</strong></p><ul><li>Grenzgewinn: Abstand $E''(x)-K''(x)$</li><li>gewinnmaximale Menge: Schnittstelle von $E''$ und $K''$</li><li>$x_w$: Tiefpunkt von $K''$</li></ul>'
+        zeige: { flaechen: [], punkte: [s, tp] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Monopol: Grenzerlös fällt'
+    text: '<p>Im Monopol ist $E(x)=-6x^2+84x$, also $E''(x)=-12x+84$. Die Grenzkosten bleiben gleich.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-12x+84', name: 'E′(x)', xmin: 0, xmax: 12, color: '#2ca02c' }
+        - { term: '1.5x^2-12x+30', name: 'K′(x)', xmin: 0, xmax: 11, color: '#d62728' }
+      xMin: -0.3
+      xMax: 12.5
+      yMin: -60
+      yMax: 90
+      xSchritt: 1
+      ySchritt: 10
+      xAchse: 'x in ME'
+      yAchse: 'GE/ME'
+      punkte:
+        - { id: s, x: 6, y: 12, label: 'Schnittpunkt', hilfslinie: true, ax: 50, ay: -30 }
+        - { id: n, x: 7, y: 0, label: 'Nullstelle von E′', ax: 60, ay: 20 }
+        - { id: e9, x: 9, y: -24, hilfslinie: true }
+        - { id: k9, x: 9, y: 43.5, hilfslinie: true }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Gewinnmaximale und erlösmaximale Menge</strong>'
+        knopf: 'Ablesen'
+        text: '<p>$E''$ und $K''$ schneiden sich bei $6$ ME: gewinnmaximale Menge.</p><p>$E''$ hat bei $7$ ME eine Nullstelle: Bis dort steigt der Erlös, danach fällt er. Das ist die <strong>erlösmaximale Menge</strong>.</p>'
+        zeige: { punkte: [s, n] }
+      - typ: auswahl
+        frage: '<strong>Grenzgewinn bei 9 ME:</strong> $E''(9)=-24$ und $K''(9)=43{,}5$. Welcher Wert stimmt?'
+        optionen:
+          - '$G''(9)=-67{,}5$ GE/ME'
+          - '$G''(9)=19{,}5$ GE/ME'
+          - '$G''(9)=67{,}5$ GE/ME'
+        korrekt: 0
+        hinweis: 'Rechne $E''(9)-K''(9)$ und achte auf das Minus von $E''(9)$.'
+        danach: '<p>$-24-43{,}5=-67{,}5$. Der Grenzgewinn ist negativ, der Gewinn fällt bei $9$ ME bereits.</p>'
+        zeige: { punkte: [e9, k9] }
+
+  - phase: vormachen
+    titel: 'Nur der Grenzgewinn gegeben'
+    text: '<p>Manchmal ist direkt $G''$ gezeichnet, hier für Velotec im Polypol: $G''(x)=-1{,}5x^2+12x+2$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-1.5x^2+12x+2', name: 'G′(x)', xmin: 0, xmax: 12, color: '#1f77b4' }
+      xMin: -0.3
+      xMax: 12.5
+      yMin: -40
+      yMax: 35
+      xSchritt: 1
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'GE/ME'
+      punkte:
+        - { id: n, x: 8.16, y: 0, label: 'Nullstelle, VZW + → −', ax: -20, ay: 40 }
+        - { id: hp, x: 4, y: 26, label: 'Hochpunkt von G′', hilfslinie: true, ax: 50, ay: 10 }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Gewinnmaximum und stärkster Gewinnanstieg</strong>'
+        knopf: 'Ablesen'
+        text: '<p>Bei $8{,}16$ ME wechselt $G''$ von $+$ nach $-$: Der Gewinn hört auf zu steigen, das ist die gewinnmaximale Menge.</p><p>Am Hochpunkt $(4\mid 26)$ steigt der Gewinn am stärksten, der maximale Grenzgewinn beträgt $26$ GE/ME.</p>'
+        zeige: { punkte: [n, hp] }
+
+  # ── Phase C: Mitmachen ────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Was lese ich wo ab?'
+    text: '<p>Ordne jeder Kennzahl das Merkmal der Grenzfunktionen zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Kennzahl'
+        titel_rechts: 'Merkmal'
+        paare:
+          - { links: 'gewinnmaximale Menge', rechts: 'Schnittstelle von $E''$ und $K''$' }
+          - { links: 'Grenzgewinn bei $x_0$', rechts: '$E''(x_0)-K''(x_0)$' }
+          - { links: 'Übergang degressiv → progressiv', rechts: 'Tiefpunkt von $K''$' }
+          - { links: 'erlösmaximale Menge (Monopol)', rechts: 'Nullstelle von $E''$' }
+          - { links: 'Marktpreis (Polypol)', rechts: 'konstanter Wert von $E''$' }
+          - { links: 'stärkster Gewinnanstieg', rechts: 'Hochpunkt von $G''$' }
+
+  - phase: mitmachen
+    titel: 'Neues Monopol – jetzt liest du ab'
+    text: '<p>Ein anderer Monopolist mit Grenzerlös $E''$ und Grenzkosten $K''$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-4x+56', name: 'E′(x)', xmin: 0, xmax: 15, color: '#2ca02c' }
+        - { term: '0.5x^2-6x+26', name: 'K′(x)', xmin: 0, xmax: 15, color: '#d62728' }
+      xMin: -0.3
+      xMax: 15.5
+      yMin: -10
+      yMax: 60
+      xSchritt: 1
+      ySchritt: 5
+      xAchse: 'x in ME'
+      yAchse: 'GE/ME'
+      punkte:
+        - { id: e4, x: 4, y: 40, hilfslinie: true }
+        - { id: k4, x: 4, y: 10, hilfslinie: true }
+        - { id: s, x: 10, y: 16, label: 'Schnittpunkt', hilfslinie: true, ax: 50, ay: -30 }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Grenzgewinn bei 4 ME</strong> – der Ansatz steht da: $G''(4)=E''(4)-K''(4)$'
+        felder:
+          - { label: '$G''(4)\approx$', loesung: 30, toleranz: 2, einheit: 'GE/ME', zeige: { punkte: [e4, k4] } }
+        hinweis: 'Lies bei $x=4$ beide Werte ab: $E''(4)=40$ und $K''(4)=10$.'
+        danach: '<p>$40-10=30$: Der Gewinn steigt bei $4$ ME noch.</p>'
+      - typ: eingabe
+        frage: '<strong>Gewinnmaximale Menge</strong> – jetzt ohne Vorgabe.'
+        felder:
+          - { label: '$x_{Gmax}\approx$', loesung: 10, toleranz: 0.3, einheit: 'ME', zeige: { punkte: [s] } }
+        hinweis: 'Wo läuft $K''$ durch $E''$?'
